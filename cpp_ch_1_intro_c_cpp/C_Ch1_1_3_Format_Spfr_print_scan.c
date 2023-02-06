@@ -41,6 +41,18 @@ int main(void) {
     printf("Floating point number: %f", f);
     printf("Double number: %f", g);
 
+    /* Mod: % and division: / */
+    printf ("%d", 5/2) ;
+    printf("%d" , 5%2) ;
+    printf("%d" , 4/2) ;
+    printf("%d" , 4%2) ;
+
+    
+     //  parentheses and spaces can add clarity
+    float result = (f * num) + (88 / g) - (19 % num);
+    // int result = (f * num) + (88 / g) - (19 % num); /* Datatype error: type conversion needed */
+    printf("%f", result);
+
     // Note: Mixing with float & int type data cause severe problem
 
     return 0;
