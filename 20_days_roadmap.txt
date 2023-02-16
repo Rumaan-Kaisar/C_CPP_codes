@@ -1,0 +1,277 @@
+Day: 1-3:	Learn DataTypes, Variables & Operators (3 days)
+
+Day: 4-5:	Learn Conditional & Control Statements (2 days)
+
+Day: 6-8:	Understand Arrays, Strings & Pointers in C++ (3 days)
+
+Day: 9-12:	Go Through Functions & OOPs Concepts in C++ (4 days)
+
+Day: 13-16:	Learn I/O Streams, Dynamic Memory, & STL in C++ (4 days)
+
+Day: 17-20:	 Understand Exception Handling, Signal Handling & Multithreading in C++
+
+
+---------------- For C language ---------------- 
+
+Day: 1-3:	Go Through Variables, Data Types & Operators (3 days)
+
+Day: 4-5:	Understand the Control Flow Statements (2 days)
+
+Day: 6-7:	Learn Array & String Handling in C (3 days)
+
+Day: 8-10:	Get Familiar with Functions in C (3 days)
+
+Day: 11-13:	Learn about Pointers, Structures, and Unions (3 days)
+
+Day: 14-17:	Understand Dynamic Memory Allocation & LinkedList (4 days)
+
+Day: 18-20	Learn about File Management & Preprocessors in C (3 days)
+
+
+
+--------------- Tips and Tricks ---------------
+6 steps to learn a programming language
+
+step 1: Select a Programming Language as Per Your requirements
+	If you need to learn a programming language for web development, you can opt for JavaScript, PHP, etc. or 
+	If you want to learn a language to work with trending technologies like AI and ML, you can go with Python and so on. 
+	If you’re a beginner, you are recommended to start with C or C++ as it will make you familiar with many underlying programming principles.
+
+
+step 2: Get Your Fundamentals Clear
+	features, 
+	applications, 
+	syntax, 
+	data types, 
+	variables, 
+	text editors, etc. 
+
+	You can use various recommended books, YouTube videos, blogs, etc. to make your fundamentals strong.  
+
+
+
+step 3: Move from Basics to the Advanced Level
+		Pointers, 
+		Dynamic Memory Allocation, 
+		File Management & Preprocessors, etc. in C Language or 
+		OOPs concepts,  
+		Interfaces & Packages, 
+		Multithreading, etc. in case of JAVA and so on. 
+
+	various Data Structures such as:
+		Linked List, 
+		Stack, 
+		Queue, 
+		Heap,
+
+step 4: Practice, Practice, and Practice
+	When you get your hands dirty and get practical exposure, it makes your programming concepts stronger and gives you the much-needed confidence. 
+
+	take part in various coding challenges and competitions, 
+	contribute to open source, 
+
+	competitive programming are – 
+		GeeksforGeeks, 
+		HackerRank, 
+		CodeChef, 
+		TopCoder, etc.
+
+step 5: Solve Problems and Build Projects
+		Now when you’ve spent adequate time on practicing, you can get your hands over project development. 
+		Developing your own project is indeed the best thing you can do to master programming. 
+
+		The steps to solve a problem statement or to develop a project are listed below:
+
+			Identify a problem
+			Understand the problem
+			List all the possible solutions
+			Evaluate all the possible solutions
+			Select the best possible solution
+			Design the selected solution
+			Prepare an algorithm
+			Prepare a pseudo-code
+			Write the main program :
+			Check the program for various test cases :
+			Check and remove all possible errors :
+		And finally, a complete solution to the problem statement is ready
+
+
+step 6: Share your Code & Knowledge with Others
+	Last but not least – share your learning with others as knowledge always increases on sharing. 
+
+
+
+
+7 Tips and Tricks to Learn Programming Faster
+
+
+
+1. Make Your Fundamentals Clear
+
+
+2. Learn by Doing, Practicing, and Not Just Reading
+	It’s easy to read about the loops, and variables, and get all the things in your head but actual programming doesn’t work in this way. 
+
+
+	When you start programming you face a lot of problems, you get stuck there, 
+	you will be asked to implement the code practically and find the solution for a specific problem and there you will scratch your head while implementing the 		code. 
+	When you write the code, play with the code, change your code to see different results, optimize the code and try different solutions, your logical thinking 		ability get improves day by day and you eventually learn a lot of things that make you a better programmer. 
+	When you start coding, practice the same code or sample again and again until or unless you don’t need to refer to the same book or resource from where you 		have learned. 
+
+	Also, build your own project, 
+	participate in coding challenges, 
+	play coding-related games, and 
+	practice it at your own end every single day. 
+
+
+3. Code by Hand
+	When you start programming as a beginner you will be thinking why should I code by hand? 
+	most of the time the technical evaluation process will include code by hand. You will be asked to write code using pen and paper
+	Coding by hand can give you a clear understanding of syntax and algorithms, you make a deeper connection in your brain. 
+	Learning programming this way will make your work easier and faster later. 
+
+
+4. Share, Teach, Discuss and Ask for Help
+	Teaching someone, sharing your knowledge, and doing discussions with other programmers will make you a better programmer quickly. 
+	You can also participate in open source projects, discuss your code with your co-programmers or 
+	contribute on Github, also you can take help from forums or discussion sites. 
+
+
+5. Use Online Resources
+	GeeksforGeeks
+	W3school
+	JavaTpoint
+
+
+6. Take Breaks
+	Sometimes you spend hours and hours to find the bug but you don’t get the solution for your code so it’s good to take a short break, clear your mind and do 		something else. 
+	It will restore your focus and you may come up with the solution for your code where you were stuck. 
+	Also, try to eliminate all kinds of distractions. Turn off your phone notification, and email notifications, and try to isolate yourself to be focused.
+	By doing this you will save a lot of time and will stay away from headaches or frustration. 
+
+
+7. Learn to Use Debugger
+	You will find a lot of errors in your code at the beginning so it’s good to use debuggers to find out errors, and impacts on your result and check where you 	have made the mistake. 
+	You will save a lot of time using a debugger or a tool to fix the errors in your code. 
+	If you are good at debugging, it will be easier to learn to program.
+
+
+
+
+How to Learn Programming?
+
+1. Choose a Language and Understand the Basic Fundamentals Concepts
+
+	-	Stick with one language. 
+		Don’t try to learn everything initially. 
+		If you want to become a Java developer then learn java.
+		Try to make programs every single day without leaving any gap even if it’s just one or two. 
+
+	-	Try to make small programs first and then move to the complex one but maintain consistency.
+
+	-	Adapt a good learning strategy. For example: 
+		instead of consuming all the theories first and then jumping to making the programs follow a 2:1 ratio between conceptual learning and active learning. 
+		It means after every two hours of conceptual learning spend an hour in practical exposure or active learning.
+
+	-	Make a small application or project based on fundamentals you have learned. For example, make a calculator or something that is interesting for you. 
+	-	Learn how to google when you get stuck somewhere.
+
+
+2. Learn Data Structure and Algorithms
+	-	Once you are comfortable with any of the languages and 
+			making some basic programs, the next thing you should do is learning data structures and algorithms. 
+		You will get better at building your problem-solving skills if you understand the fundamentals of data structure and Algorithms. 
+
+
+	-	Again don’t try to consume all the theories or concepts of data structures and algorithms in one go. 
+		Learn a single topic, practice on the sites we have mentioned above and then move to the next topic. 
+		You can adapt a specific learning strategy that is fit for you. One we have already mentioned in the previous step (2:1 ratio).
+
+
+	-	When you move to the complex problem, break the large problems in smaller chunks and then solve these chunks to get the final output or solution.
+
+
+	-	Practice, practice and practice enough. Get your hands dirty in programming and 
+		if it’s possible participate in competitive programming on different websites. 
+		You will gain confidence and you will become much better in problem-solving.
+
+	-	Learn how to use these data structures and algorithms in real-world projects. 
+		For example: In web applications, you will find a lot of use of Array and Strings.
+		You know the basic concept, you know the fundamentals of data structure and algorithms, now build an application based on whatever you have learned. 
+
+		You can also try to use these concepts to implement a feature in your previous application or project, 
+		that will help you to expand your project and it will give you the exposure to solve the problems.
+
+
+
+
+3. Build Projects
+You feel like all the tutorials or exercises are just a waste of time because that’s not helpful in your own project. You retain a lot from tutorials but it’s just going right over the head and now you are unable to apply all the concepts and logic in your project… Relax!
+
+	-	Initially try to build a small project or static website first, 
+			it can be your own portfolio, a web application, android application or any kind of game. 
+		It’s better to start with some simpler projects and then moving on to the complex projects. You can try to build or start something like I am TK site. 
+
+		If you want to make an eCommerce site start with building small features. 
+			You can start from signup or login form, 
+			then you can move to the next feature such as the navigation bar.
+ 
+		So instead of doing everything at once analyze the whole project and break that in smaller problems or chunks. 
+		It depends on your project complexity, which features you need to build first. 
+
+	Initially, you will be making a lot of mistakes and you will face a lot of problems but that’s how you will learn to build and handle the complex projects. 
+
+
+	-	Below are some useful tips you should follow while making a project.
+		Learn to use some good tools, editors or debuggers to use in your project. 
+		Learn how to use developer tools (for web applications, the most essential thing to learn), templates, package or library wherever needed.
+		When you get stuck somewhere or find an error read the error message carefully. 
+		Most of the newbie programmers avoid the error message but it’s really helpful in solving the issues. 
+
+	-	Also, google the problems or errors you encounter while building your project. 
+		In most of the cases, you will find answer on Stackoverflow which is a very good community for developers.
+
+	-	Avoid too much perfection in your project. You will end up with procrastination and slow progress in your project.
+		Remember that there’s no perfect code — so avoid over-engineering things and move forward. 
+			First, make it work, 
+			then make it right, and 
+			finally make it fast.
+
+
+
+
+4. Explore
+Your journey doesn’t end when you are finished with your project. Explore more, explore as much as you can in the computer science field. 
+
+	-	You can explore different fields such as 
+		Machine Learning, 
+		Cloud Computing, 
+		Systems Programming, 
+		Mobile App Development, 
+		Blockchain, 
+		Virtual Reality, 
+		Web Development, etc. 
+
+There are a lot of projects on Github and a lot of resources available on the internet. As per your interest, you can find some tutorials or projects on the internet. Learn from there and try to make some projects on it.
+
+Check the different approaches and methods of other developers.
+ 
+Make a habit to read code on GitHub or StackOverflow. 
+
+You will find multiple ways to solve a single problem. 
+
+Adapt the best practices to solve the problem in programming.
+ 
+Join some online tech community, contribute to open source projects or participate in some contest. 
+
+
+
+
+
+
+
+
+
+
+
+

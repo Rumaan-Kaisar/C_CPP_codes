@@ -1,0 +1,164 @@
+First Step:	must have basic knowledge about the fundamentals and syntax of C++, Java, Python
+
+Second Step:	After that, you must follow the Overview Points of OOP’s concept like:
+		What Is OOP?
+		OOP in real-world problems.
+		Limitations and advantages of OOP
+		Difference between Procedural and Object-Oriented Programming?
+		Why OOP is preferred over Procedural Programming Language?
+
+
+
+Third Step:	Class
+		Object
+		Difference between Class and Object.
+		Use of Classes and Object Inside and Outside of Main Class.
+		Can Class and Object exist or use Individually?
+		Real-World Analogy Of Class and Object.
+		Access Modifiers (public, private, protected, etc.)
+		Member Function(Inner and Outer class function)
+
+
+Fourth Step:	Static Keyword
+		Virtual Keyword
+		Abstract Keyword
+		Final Keyword
+		Explicit keyword
+		This Keyword
+		new Keyword
+		const keyword
+		super keyword
+	One must have knowledge about these keywords like their definition, uses, pros, and cons, etc., and why it is important to learn.
+
+Fifth Step:	Constructor and Destructor :
+		Definition and Working.
+		Rules and Types.
+		Purpose of Using Constructor and Destructor
+		Difference between Constructor and Methods (In Java)
+		Can Constructor Perform Other Task rather than Initialization?
+		Does Constructor Return any value?
+		Constructor vs Destructor.
+		Is there any Constructor Class?
+
+Sixth Step:	Features of OOPS
+
+		Polymorphism: In this, one must know:
+			What is Polymorphism
+			Categories: 	Function/Operator overloading, 
+					Compile time polymorphism, 
+					Function overriding, 
+					Runtime Polymorphism
+			Which function can be overloaded and which functions can’t be overloaded with explanation
+			Virtual function
+			Dynamic Binding
+			Virtual Class
+			Derived Class
+			Inline Virtual Function
+			Abstract Class
+			Pure virtual function
+			Pure Virtual Destructor
+			Instanceof Operator
+
+		Inheritance:	Subclass
+				Superclass
+				Reusability
+				Need for Inheritance
+				Can OOP exist without Inheritance
+				Inheritance types (Single, Multiple, Hierarchical, Multilevel, Hybrid, Virtual Inheritance)
+				Real-life examples of Inheritance
+				Limitation of Inheritance
+				Sealed Modifier
+				Object Slicing
+
+		Encapsulation:	Definition
+				Need
+				How to achieve
+				Real-World Example
+
+		Packages (In Java)
+
+		Abstraction:	Definition
+				When to use
+				How to Achieve
+		Difference between Inheritance and Abstraction
+		Difference between Encapsulation and Abstraction
+		Other’s:
+			Dynamic Binding
+			Message Passing
+			Object Cloning
+			Wrapper Class
+
+	So there are the important OOPs topics for Interview and Academic Examination which if followed properly will sure get you the success.
+
+	Also, these topics must be covered by following the important  principle of learning:
+
+	Get in-depth knowledge about the topic.
+	Must know Implementation details.
+	How it is related to the real world.
+
+
+
+Seventh Step:	Important Interview Questions Of OOP Concept:
+			C vs C++ vs Java vs Python (Just get the idea of how they are different)
+
+			Difference between Procedural and OOP language?
+
+			Why Java is not a pure Object-Oriented Programming Language?
+
+			Is an Array a Primitive type or an Object in Java?
+
+			What is early and late binding?
+			
+			What is the default access modifier?
+
+			How many instances can be created for an abstract class?
+
+			Define Garbage Collection and how does it work?
+		
+			Define Manipulators?
+
+			What do you mean by Final block?
+
+			What is the final variable?
+
+			What do you mean by exception?
+		
+			Is an error basically the same as an exception?
+
+			It is possible for a class to inherit the constructor of its base class?
+
+			When Should we use Structure instead of Class?
+
+			Difference and Similar between Struct and class?
+	
+			Scope Resolution operator
+
+			What is Deep/Shallow Copy?
+
+			Copy Constructor vs Assignment Operator
+
+			Can we have more than one value in class?
+
+			How destructors are different from normal member function?
+
+			Difference between new and override?
+	
+			Does Overriding Works with Inheritance?
+
+			Generalization vs Aggregation vs Composition
+
+	
+		Important Object-Oriented Designing:
+			Design a HASH map
+			Design LRU cache
+			Design a call Center
+			Design a Deck of Cards
+			Design a parking lot
+			Design an Online Chat System
+			Design an Address Book
+			Design Bank Management System
+			Design an ATM
+			Design Hotel Management System
+			Design Library Management System
+
+
