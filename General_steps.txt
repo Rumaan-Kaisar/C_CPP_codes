@@ -1,3 +1,13 @@
+Fundamentals (7-day “8-hour: 1h 20min 6-session” short course - warm up):
+
+		Intro
+		Ctrl st.
+		Function
+		I/O system
+		OOP
+		Exception Handling
+		Multi-threading
+		Library
 
 
 Phase 1 : Introduction, Data structure, Flow-Control
