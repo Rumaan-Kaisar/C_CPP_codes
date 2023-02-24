@@ -55,4 +55,93 @@ int func(void){
 
         It is used mostly by void functions (i.e., functions that have a void return type) to cause the function to return immediately
         can also use this form of return in functions that are supposed to return values. However, doing so makes the returned value undefined.
- */
+*/
+
+
+// Following is wrong: void functiions doesn't return values
+void func(void){
+    int i;
+    printf("Enter a number: ");
+    scanf ("%d",. &i);
+    return i;
+}
+
+
+/*  Notice auto type conversion. 
+    Not wrong though, however misleading and code readibility harmed 
+*/
+#include <stdio.h>
+int f1(void) ;
+
+int main(void) {
+    double answer;
+    answer = f1();  /*  using double data-type to store int type */
+    printf("%f", answer);
+    return 0;
+}
+
+int f1(void){
+    return 100;
+}
+
+
+
+/* Practicce Square the number */
+#include <stdio.h>
+
+int get_sqr(void);
+
+int main(void){
+    int sqr;
+    sqr = get_sqr();
+    printf("Square: %d " , sqr);
+    return 0;
+}
+
+int get_sqr(void){
+    int num;
+    printf("Enter a number: ");
+    scanf ("%d", &num);
+    return num*num; /* square the number */
+}
+
+
+/* 
+use return without specitying a value. 
+This allows a function to return before its closing curly brace is reached 
+*/
+#include <stdio.h>
+void func1(void);
+
+int main(void) {
+    func1();
+    return 0;
+}
+
+void func1(void){
+    printf("This is printed. ");
+    return; /* return with no value */
+    printf("This is never printed.");
+}
+
+
+
+/* Write a program that uses a function called convert(), which
+prompts she user for an amount in dollars and returns this value
+converted into pounds. (Use an exchange rate of $2.00 per
+pound.) Display the conversion. */
+
+#include <stdio.h>
+
+int convert(void);
+int main(void){
+    printf("%d", convert());
+    return 0;
+}
+
+int convert(void){
+    int dollar;
+    printf("Enter number of dollars: ");
+    scanf("%d", &dollar);
+    return dollar/2;
+}

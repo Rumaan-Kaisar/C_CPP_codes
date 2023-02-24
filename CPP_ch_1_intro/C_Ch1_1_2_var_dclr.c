@@ -46,3 +46,11 @@ int main(void)
 
     return 0;
 }
+
+
+
+/* Wrong variable declaration */
+short-fall  //A dash may not be used in a variable name
+$balance    //A dollar sign may not be used in a variable name
+last+name  // A + sign may not be used in a variable name
+9times  //A digit may not begin a variable name

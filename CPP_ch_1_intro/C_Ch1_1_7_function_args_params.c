@@ -49,49 +49,58 @@ void sum(int x, int y) {
 } 
 
 
-// Following is wrong: void functiions doesn't return values
-void func(void){
-    int i;
-    printf("Enter a number: ");
-    scanf ("%d",. &i);
-    return i;
-}
 
-
-/*  Notice auto type conversion. 
-    Not wrong though, however misleading and code readibility harmed 
-*/
+/* This progran1 uses the outchar() fUllction to output characters on the Screen. The program prints ABC */
 #include <stdio.h>
-int f1(void) ;
-
-int main(void) {
-    double answer;
-    answer = fl();  /*  using double data-type to store int type */
-    printf("%f", answer);
-    return 0;
-}
-
-int fl(void){
-    return 100;
-}
-
-
-
-/* Practicce Square the number */
-#include <stdio.h>
-
-int get_sqr(void);
+void outchar(char ch);
 
 int main(void){
-    int sqr;
-    sqr = get_sqr();
-    printf("Square: %d " , sqr);
+    outchar( 'h');
+    outchar( 'B');
+    outchar( 'e');
     return 0;
 }
 
-int get_sqr(void){
-    int num;
-    printf("Enter a number: ");
-    scanf ("%d", &num);
-    return num*num; /* square the number */
+void outchar(char ch){
+    printf("%c", ch);
 }
+
+
+
+/* 
+Write a program that uses a function called outnum() that
+takes one integer argument and displays it on the screen 
+*/
+#include <stdio.h>
+void outnum(int num);
+
+int main(void){
+    outnum(10);
+    return 0;
+}
+
+void outnum(int num){
+    printf("%d", num);
+}
+
+
+
+// Expecting 'int' but giving 'float' arg.
+// However program runs
+#include <stdio.h>
+
+void sqr_it(int num);
+
+int main(void){
+    sqr_it(10.0);   // giving 'float' 
+    return 0;
+}
+
+void sqr_it(int num){
+    printf("%d", num*num);
+}
+
+
+// Note c does not have long or boolean
+/* char, int, float, double, and void. */
+
