@@ -58,3 +58,18 @@ int main(void) {
     return 0;
     
 }
+
+// Write a program that inputs an integer from the kcvboard and displays its square.
+#include <stdio.h>
+int main(void){
+    int i;
+    printf("Enter a number: ");
+    scanf("%d", &i);
+    printf("Square is %d", i*i);
+    return 0;
+}
+
+
+
+
+
