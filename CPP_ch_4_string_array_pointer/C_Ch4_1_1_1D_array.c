@@ -1,23 +1,16 @@
 /* To declare a one-dimensional array, use the general form
-
         type var_name[size];
-
     where 'type' is a valid C data type, 
     'var_name' is the name of the array, and 
     'size' specifies the number of elements in the array.
-
     arrays start at zero, so an index of 1 references the second element. 
-
     specify the index of the element you want inside square brackets. For example, myarray[1] refers to the second element of myarray
     
     TO assign an array element a value, myarray[0] = 100;  gives the first element in myarray the value 100.
     User input: call to scanf() reads an integer into count[9].
         scanf("%d", &count[9]);
-
     Array overrun: C does not perform any bounds checking on array indexes. This means that it is possible to overrun the end of an array. 
-
     Copying array: you must do so by copying each element separately
-
         Char a1[10], a2[10];
         . . .
         . . .
@@ -175,13 +168,10 @@ int main(void){
 // Size of an array: https://www.w3schools.com/cpp/cpp_arrays_size.asp
 Empty character constant in C++: https://stackoverflow.com/questions/31193454/empty-character-constant-in-c
 This line:
-
 m_pchString[m_nLength-1] = '';
 What you probably mean is:
-
 m_pchString[m_nLength-1] = '\0';
 Or even:
-
 m_pchString[m_nLength-1] = 0;
 Strings are zero terminated, which is written as a plain 0 or the null character '\0'. For double quote strings "" the zero termintation character is implicitly added to the end, but since you explicitly set a single character you must specify which. */
 
@@ -215,6 +205,69 @@ int main(void){
     return 0;
 }
 
+// float version
+#include<stdio.h>
+int main(void){
+    float item[100], tmp;
+    int count, i, j;
+
+    printf("How many numbers ? : "); 
+    scanf("%d", &count);
+
+    printf("\n Enter the numbers one by one. : "); 
+    for(i=0; i < count; i++) scanf("%f", &item[i]);
+
+    /*Now sort them using bubble sort*/
+    for(i=1; i < count; ++i)
+    	for(j=(count-1); j>=i; --j){
+    	    /*Compare adjacent element*/
+    	    if(item[j-1] > item[j]){ 
+                tmp = item[j];  
+                item[j] = item[j-1];  
+                item[j-1] = tmp; /*Exchange elements*/ }
+			/*Ascending : s[j-1]>s[j], Descending : s[j-1]<s[j]*/
+   		 }
+    for(i=0; i<count; i++) printf(" %f", item[i]);
+    return 0;
+}
 
 
+/* Example 6: ERROR: The array count is being overrun. It is only 10 elements long,
+                but the program requires one that is 100 elementi long. */
+
+#include <stdio.h>
+int main(void){
+    int i, count[10];
+
+    for(i=0; i<10; i++){
+        printf("Enter a number: ");
+        scanf("%d", &count[i]);
+    }
+
+    for(i=0; count[i]; i++) printf("%d ", count[i]);
+
+    return 0;
+}
+
+
+
+/* Example 7: Write a program that reads ten numbers entered by the user and
+                reports if any of them match or duplication. */
+#include <stdio.h>
+int main (void){
+    int i[10], j, k, match;
+
+    printf("Enter 10 numbers:\n");
+    for(j=0; j<10; j++) scanf("%d", &i[j]);
+
+    // see if any match
+    for(j=0; j<10; j++){
+        match = i[j];
+        for(k=j+1; k<10; k++){  //compare all elements after i[j], with i[j]
+            if(match==i[k]) printf("%d is duplicated \n", match);
+        }
+    }
+
+    return 0;
+}
 
