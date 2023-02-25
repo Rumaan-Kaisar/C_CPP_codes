@@ -36,6 +36,21 @@ When a match is found, the statement sequence associated with that match is exec
     switch can only test for equality, whereas the if conditional expression can be of any type.
 */
 
+
+
+/* no two cases with the same switch may use the same value. 
+Therefore if we use 'A' as a value in one case and 65 in other case, it will give error.
+Since the ASCII code for 'A' is 65. */
+
+// invalid
+    switch(x) {
+        case 'A' : printf("is an A"); break;
+        case 65 : printf("is the number 65"); break;
+    }
+
+// ----------------------------------------------------------------------------------------
+
+
 #include<stdio.h>
 int main(void){
     int x;
