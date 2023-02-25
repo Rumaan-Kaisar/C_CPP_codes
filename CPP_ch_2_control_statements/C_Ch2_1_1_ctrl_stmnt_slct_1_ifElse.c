@@ -123,6 +123,16 @@ int main(void){
     
     */
 
+
+/* Incorrect indentation: The else is associated with the if(j) statement, 
+    However, the indentation is incorrect 
+
+    if(i)
+        if(j) printf("i and j are true");
+    else printf("i is false");    
+*/
+
+
 //Example 5: here the else is used in place of a second if (Example 1), determines
              // whether a number is negative or non·negative.
 #include <stdio.h>
