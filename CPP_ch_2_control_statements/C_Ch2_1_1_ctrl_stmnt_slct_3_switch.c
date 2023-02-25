@@ -50,6 +50,20 @@ Hence to C, both 'A' and 65 are the same thing, and no two case constants can be
         case 65 : printf("is the number 65"); break;
     }
 
+
+
+/* Notice the fall through:
+When i=1, a = 2. When i=4, a i = 5. */
+switch(i){
+case 1: a = 1; // no break, hence fall through
+case 2: a = 2; 
+        break;
+case 3: a = 3;
+        break;
+case 4:
+case 5: a = 5;
+}
+
 // ----------------------------------------------------------------------------------------
 
 
