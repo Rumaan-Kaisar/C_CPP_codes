@@ -40,7 +40,9 @@ When a match is found, the statement sequence associated with that match is exec
 
 /* no two cases with the same switch may use the same value. 
 Therefore if we use 'A' as a value in one case and 65 in other case, it will give error.
-Since the ASCII code for 'A' is 65. */
+Since the ASCII code for 'A' is 65. 
+Hence to C, both 'A' and 65 are the same thing, and no two case constants can be'the same.
+*/
 
 // invalid
     switch(x) {
