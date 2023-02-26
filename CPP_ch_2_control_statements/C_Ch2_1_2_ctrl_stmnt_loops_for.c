@@ -191,7 +191,9 @@ int main(void)
 
 
 //---------------------    Increment & Decrement    ---------------------
-/* 
+/*  The increment operator increases a variable by one and 
+    the decrement operator decreases a variable by one.
+    
     To increment/decrement loop control variable, usually we use:
         increment operator "++" and 
         decrement operator  " - - "
