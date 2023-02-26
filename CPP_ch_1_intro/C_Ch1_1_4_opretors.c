@@ -104,9 +104,19 @@
 
 
 
+3. Do these two expressions evaluate to the same outcome?
+
 #include <stdio.h>
 
 int main(void){
+    int i;
+    
+    i = !(10==9); // !(10==9)  expression true
+    printf("%d\n", i);
+    
+    // "0 && 1 || 1" and "0 && (1 || 1)"are not the same 
+    printf("%d\n", 0 && 1 || 1);
+    printf("%d\n", 0 && (1 || 1));
     
     return 0;
 }
