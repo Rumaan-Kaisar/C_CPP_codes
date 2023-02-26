@@ -114,7 +114,7 @@ int main(void){
     i = !(10==9); // !(10==9)  expression true
     printf("%d\n", i);
     
-    // "0 && 1 || 1" and "0 && (1 || 1)"are not the same 
+    // "0 && 1 || 1" and "0 && (1 || 1)" are not the same 
     printf("%d\n", 0 && 1 || 1);
     printf("%d\n", 0 && (1 || 1));
     
