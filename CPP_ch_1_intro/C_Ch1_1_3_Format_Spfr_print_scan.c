@@ -16,7 +16,14 @@
 // Input specifier for float and double
 /* 
 Float:      scanf('%f', &float-var-name);
-Double:     scanf('%lf', &double-var-name); 
+Double:     scanf('%lf', &double-var-name);
+
+minimum field width and precision specefier :
+    %[-sign][minimum-field-width][.][precision] format-specifier
+
+    printf("%10d %10d %10d\n", rand() , rand(), rand());
+    printf("%15.2f\n", rand());
+    %15.2f  tells printf() to output a double value using a field width of 15, with 2 digits after the decimal point.
 */
 
 #include <stdio.h>
