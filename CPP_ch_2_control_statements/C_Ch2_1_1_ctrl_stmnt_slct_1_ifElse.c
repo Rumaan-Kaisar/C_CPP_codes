@@ -103,6 +103,29 @@ int main(void){
 }
 
 
+
+/* Example 1.2b: Write a program that prints 5 different proverbs. The program
+                    prompts the user for the number of the proverb to print and
+                    then displays it. (Use any proverbs you like.) */
+#include <stdio.h>
+int main(void){
+    int i;
+    
+    printf("Enter proverb number: ");
+    scanf ( "%d", &i);
+
+    if(i==1) printf("A bird in the hand ...");
+    if(i==2) printf("A rolling stone ...");
+    if(i==3) printf("Once burned, twice shy.");
+    if(i==4) printf("Early to bed, early to rise ... ");
+    if(i==5) printf("A penny saved is a penny earned.");
+
+    return 0;
+}
+
+
+
+
 // --------------------------------    IF-ELSE  ---------------------------------
 
 /* General form of the if-else  is shown here:
