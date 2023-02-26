@@ -1,5 +1,5 @@
 // C's escape sequences:asm
-
+/*
 These characters can not be entered from keyboard
     
     \b	    Backspace
@@ -16,7 +16,7 @@ These characters can not be entered from keyboard
     \?	    Question  mark
     \N	    Octal constant (N is octal value)
     \xN	    hexdecimal constant (N is hexadecimal value) 
-
+*/
     
     
 // Example 0: Newline and tab    
