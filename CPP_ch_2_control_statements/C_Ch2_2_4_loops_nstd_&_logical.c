@@ -242,3 +242,122 @@ int main(void){
 }
 
 
+
+// ----------------------------    Nesed Loops     ----------------------------
+/* Any of C’s loops may be nested within any other loop. 
+Can be nested at least 15 levels deep. */
+/* Example 10: As a simple example of nested fors, this fragment prints the numbers 
+                1 to 10 on the screen ten times.    */
+#include <stdio.h>
+int main(void){
+    int i, j;
+
+    for(i=0; i<10; i++){ 
+        for(j=1; j<11; j++) printf ("%d ", j); // nested loop 
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+/* Example 11: You can use a nested for to make another improvement to the arithmetic drill.
+                In the version shown below, the program will give the user three chances to get the right answer.
+                Notice the use of the variable "right" to stop the loop early if the correct answer is given. */
+#include<stdio.h>
+int main(void){
+    int count, ans, chance, right;
+
+    for(count=1; count<11; count++){
+      printf("\nWhat is %d + %d = ",count,count); 
+      scanf("%d", &ans);
+
+      if(ans==(count+count)) printf("Correct");
+      else {
+        printf("False");
+        printf("\nTry again");
+        right=0;		/*When ans is false right=0 so that !right=1 equivalent to false=1*/
+
+        /*Nested for*/
+            for(chance=1; (chance<3)&&(!right); chance++ ){
+                printf("\nWhat is %d + %d = ",count,count); 
+                scanf("%d", &ans);
+                
+                if(ans==(count+count)){ 
+                    printf("Correct"); 
+                    right=1;
+                    } 	/*right changes its value*/
+                else printf("False.\tTry again");
+            }
+
+            /*if answer is still wrong tell user*/
+            if(!right) printf("\nFalse. The correct ans is %d", count+count);
+           }
+    }
+    
+    return 0;
+}
+
+
+
+/* Example 12: This program uses three for loops to print the alphabet three
+                times, each time printing each letter twice. 
+                Notice characters are incremented just like ints */
+#include<stdio.h>
+int main(){
+    int i,j,k;
+
+    for(i=0;i<3;i++){
+        for(j=0;j<26;j++)
+            for(k=0;k<2;k++) printf("%c",'A'+j);
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+/* Example 13: This program finds the prime numbers from 2 to 1000.
+                Notice "i is initialized" inside "nested-for" loop */
+#include<stdio.h>
+int main(){
+    int num, is_prime;
+    
+    for(num = 2; num <= 1000; num++){
+        is_prime = 1;
+        
+        for(int i = 2 ; i <= num/2; i++) if(!(num%i)) is_prime = 0;
+
+        if(is_prime) printf("%d ",num);
+    }
+
+    return 0;
+}
+
+
+
+/* Example 14: Write a program that reads ten characters from the keyboard.
+                Each time a character is read, use its ASCII code value to output
+                a string of periods equal in number to this code. For example,
+                given the letter 'A', whose code is 65, your program would output 65 periods. */
+#include<stdio.h>
+// #include<conio.h>
+int main(){   
+    char ch;
+
+    for(int i=1; i<=10; i++){
+        printf("\nEnter a letter:");
+        // ch=getchar();
+        ch = a;
+
+        printf("\n");
+        for( ; ch; ch--) printf("%c ",'.');
+    }
+
+    return 0;
+}
+
+
