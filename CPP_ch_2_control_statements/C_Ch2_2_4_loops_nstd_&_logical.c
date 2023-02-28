@@ -361,3 +361,44 @@ int main(){
 }
 
 
+
+
+/* Example 15: While the program ia not incorrect, show how it would look if
+                written by an experienced C programmer. 
+
+        #include <stdio.h>
+        int main(void){
+            int i, j, k;
+
+            for(k=0; k<10; k=k+1){
+                printf("Enter first number: ");
+                scanf("%d", &i);
+
+                printf("Enter second number");
+                scanf("%d", &j);
+                if(j != 0) printf("%d\n", i/j);
+                if(j == 0) printf("Cannot divide by zero. \n");
+            }
+
+            return 0;
+        }
+            */
+
+#include <stdio.h>
+int main(void){
+    int i, j, k;
+
+    for(k=0; k<10; k++) { 
+        //use increment operator
+        printf("Enter first number: ");
+        scanf("%d", &i);
+
+        printf("Enter second number: ");
+        scanf("%d", &j);
+
+        if(j) printf("%d\n", i/j);  //simplify condition
+        else printf("Cannot divide by zero. \n");  //use else
+    }
+    return 0;
+}
+
