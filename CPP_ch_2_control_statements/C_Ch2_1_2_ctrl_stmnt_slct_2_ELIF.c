@@ -248,3 +248,23 @@ int main(){
     
     return 0;
 }
+
+
+
+
+/* Example 6: Using a "else if ladder", write a program that prompts the
+user for a number and then reports if the number is positive, zero, or negative */
+#include <stdio.h>
+int main(void){
+    int i;
+
+    printf("Enter a number: ");
+    scanf("%d", &i);
+
+    if(!i) printf("zero");
+    else if(i<0) printf("negative");
+    else printf ("positive");
+
+    return 0;
+}
+
