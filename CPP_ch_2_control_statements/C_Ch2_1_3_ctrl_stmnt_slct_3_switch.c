@@ -261,3 +261,34 @@ int main(void){
     
     return 0;
 }
+
+
+
+/* Example 5: Using a switch statement, write a program that reads characters
+                from the keyboard and watches for tabs, newlines, and
+                backspaces. When one ia received, diaplay what it is in words.
+                For example, wilen the uaer preues the TAB key, print tab. */
+
+#include <stdio.h>
+#include <conio.h>
+int main(){
+    char ch;
+
+    printf("Enter characters (q to quit): \n");
+    do {
+        ch = getche();
+        // ch = getchar();
+        switch(ch) {
+            case '\t':  printf("tab\n");
+                        break;
+
+            case '\b':  printf("backspace\n");
+                        break;
+
+            case '\r':  printf("Enter\n");
+        }
+    } while(ch!='q');
+
+    return 0;
+}
+
