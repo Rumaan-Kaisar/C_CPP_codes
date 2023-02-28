@@ -4,7 +4,19 @@
 2.	does not need any loop-control variable because the conditional expression may use some other means of stopping the loop. 
 3.	increment is technically an expression that is evaluated each time the loop iterates. It does not have to increment or decrement a variable.
 4.	one or more of the expressions inside for may be empty. 
-For example, loop-control variable has already been initialized outside the for, there is no need for an initialization expression. */
+For example, loop-control variable has already been initialized outside the for, there is no need for an initialization expression. 
+
+
+    following for loop is valid. C allows any of its expressions to be empty
+
+            char ch;
+            ch = 'x' ;
+            for ( ; ch ! = ' '; ) ch = getche ();
+
+    traditional way to create an infinite loop in C.
+            for ( ; ; )
+        
+*/
 
 
 
