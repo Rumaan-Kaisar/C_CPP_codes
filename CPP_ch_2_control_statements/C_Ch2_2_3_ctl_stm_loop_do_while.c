@@ -207,3 +207,33 @@ int main(){
 
     return 0;
 }
+
+
+
+/* Example 9: Using the three loop statements, show three different ways to count from 1 to 10. */
+#include <stdio.h>
+int main(void){
+    int i, j, k;
+    
+    // for
+    for(i=1; i<11; i++) printf("%d ", i);
+
+    //do
+    printf("\n");
+    j = 1;
+    do {
+        printf ("%d ", j);
+        j++;
+    } while(j < 11);
+
+    /* while */
+    printf("\n");
+    k=1;
+    while (k<11) {
+        printf("%d ", k);
+        k++;
+    }
+
+    return 0;
+}
+
