@@ -292,3 +292,32 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 6: Convert this series of ifs into an equivalent switch. 
+
+        if(ch=='L') load();
+        else if(ch=='S') save();
+        else if(ch=='E') enter();
+        else if(ch=='O') display();
+        else if(ch=='Q') quit();
+*/
+
+char ch;
+switch(ch){
+    case 'L': load();
+              break;
+
+    case 'S': save();
+              break;
+
+    case 'E': enter();
+              break;
+
+    case 'D': display();
+              break;
+
+    case 'Q': quit();
+              break;
+}
