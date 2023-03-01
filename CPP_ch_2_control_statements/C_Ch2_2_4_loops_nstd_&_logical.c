@@ -402,3 +402,64 @@ int main(void){
     return 0;
 }
 
+
+
+/* Example 16: Write a program that displays this menu, performs the selected
+            operation, and then repeats until the user selects Quit. 
+                Convert .
+                    1. feet to meters
+                    2. meters to feet
+                    3. Otinces to pounds
+                    4. pounds to ounces
+                    5. Quit
+                    
+                Enter the number of your choice: */
+
+#include <stdio.h>
+int main (void){
+    int i;
+    float feet, meters, ounces, pounds;
+
+    do {
+        printf("\n\nConvert \n\n" );
+        printf("1. feet to meters\n");
+        printf("2. meters to feet\n");
+        printf("3. Otinces to pounds\n");
+        printf("4. pounds to ounces\n");
+        printf("5. Quit\n\n");
+
+        do{
+            printf("Enter the number of your choice: ");
+            scanf("%d", &i);
+        }while(i<0 || i>5);
+
+ 
+        switch(i) {
+            case 1:
+                printf("Enter feet : ");
+                scanf("%f" , &feet);
+                printf("\nMeters: %f\t", feet/3.28);
+                break;
+
+            case 2:
+                printf("Enter meters : ");
+                scanf("%f" , &meters);
+                printf("\Feet: %f\t", meters*3.28);
+                break;
+
+            case 3:
+                printf("Enter ounces : ");
+                scanf("%f" , &ounces);
+                printf("\Pounds: %f\t", ounces/16);
+                break;
+
+            case 4:
+                printf("Enter pounds : ");
+                scanf("%f" , &pounds);
+                printf("\Ounces: %f\t", pounds*16);
+                break;
+        }
+    } while(i!=5);
+
+    return 0;
+}
