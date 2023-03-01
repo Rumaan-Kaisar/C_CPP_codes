@@ -253,3 +253,30 @@ int main(void){
 
     return 0;
 }
+
+
+
+
+/* Example 11: Using C's three loop statements, show three ways to write a loop
+that counts from 1 to 10. */
+#include <stdio.h>
+int main(void){
+    int i;
+    
+    for(i=1; i<11; i++) printf("%d ", i);
+    printf("\n");
+    
+    i = 1;
+    do {
+        printf("%d ", i);
+        i++;
+     } while (i<11);
+     printf("\n");
+
+    i = 1;
+    while (i<11) {
+        printf("%d ", i);
+        i++;
+        }
+}
+
