@@ -237,3 +237,19 @@ int main(void){
     return 0;
 }
 
+
+
+/* Example 10: Write a program that inputs characters until the user strikes the
+ENTER key. */
+#include <stdio.h>
+#include <conio.h>
+
+int main(void){
+    char ch;
+
+    do{
+        ch = getche();
+    }while(ch!='\r');
+
+    return 0;
+}
