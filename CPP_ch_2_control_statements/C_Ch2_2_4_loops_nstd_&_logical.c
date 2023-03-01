@@ -444,19 +444,19 @@ int main (void){
             case 2:
                 printf("Enter meters : ");
                 scanf("%f" , &meters);
-                printf("\Feet: %f\t", meters*3.28);
+                printf("\nFeet: %f\t", meters*3.28);
                 break;
 
             case 3:
                 printf("Enter ounces : ");
                 scanf("%f" , &ounces);
-                printf("\Pounds: %f\t", ounces/16);
+                printf("\nPounds: %f\t", ounces/16);
                 break;
 
             case 4:
                 printf("Enter pounds : ");
                 scanf("%f" , &pounds);
-                printf("\Ounces: %f\t", pounds*16);
+                printf("\nOunces: %f\t", pounds*16);
                 break;
         }
     } while(i!=5);
