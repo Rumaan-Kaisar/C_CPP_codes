@@ -268,6 +268,29 @@ int series(void){
 
 /* This program attempts to use series() to generate a number series in which each number is based upon the value of the preceding one. 
 However, the value total will not be maintained between function calls, and the function fails to carry out its intended task. */
+// using global variable
+#include<stdio.h>
+
+int series(void);
+
+int total = 0;
+
+int main(void){
+    int i;
+
+    for(i=0;i<10;i++) printf("%d ",series());
+
+    return 0;
+}
+
+// This is incorrect.
+int series(void){
+    //int total;
+
+    total=(total+1423)%1422;
+
+    return total;
+}
 
 
 
