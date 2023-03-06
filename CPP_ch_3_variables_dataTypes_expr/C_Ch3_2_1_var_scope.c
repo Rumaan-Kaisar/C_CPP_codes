@@ -248,7 +248,7 @@ work correctly: */
 
 #include<stdio.h>
 
-int series(void); //wrong return type
+int series(void); 
 int main(void){
     int i;
 
