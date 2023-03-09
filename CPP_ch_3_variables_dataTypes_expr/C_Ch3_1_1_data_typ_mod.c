@@ -19,7 +19,7 @@ To specifY a "long double", follow the value with an L.
     it automatically converts all "chars" and "shorts" to "int" */
 
 
-// signed integer uses the high-order bit as a sign flag.
+// signed integer uses the high-order bit as a sign flag. When the bit is set, the number is negative, when it is cleared, the number is positive.
 // unsigned integer uses all bits as part of the number and can represent only positive values.
 
 
