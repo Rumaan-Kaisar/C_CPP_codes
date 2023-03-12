@@ -74,6 +74,7 @@ int main(void){
 }
 
 
+
 /* Example 2: This program illustrates how short ints are automatically
                 promoted to ints. The printf( ) statement works correctly even
                 though the %d modifier is used because i is automatically
