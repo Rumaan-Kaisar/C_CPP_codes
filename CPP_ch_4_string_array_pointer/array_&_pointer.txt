@@ -1,0 +1,39 @@
+        
+        
+        4.1 One dimensional Arrays
+        4.2 USE STRINGS : gets(), 4-string functions, atoi(), STRING.H & STDLIB.H
+        4.3 Create multidimensional Arrays
+        4.4 Initialize Arrays
+        4.5 ARRAYS OF STRINGS
+        4.6 The POINTERS
+        4.7 Restriction to Pointer Expression
+        4.8 POINTERS WITH ARRAYS
+        4.9 Use pointers to string constants
+        4.10 Arrays of Pointers
+        4.11 Multiple INDIRECTION
+        4.12 Pointers as Parameters
+
+    C_Ch4_1_1_1D_array
+    C_Ch4_1_2_Dim_array
+    C_Ch4_1_3_initialize_array
+
+    C_Ch4_2_1_strings
+    C_Ch4_2_2_string_array
+
+    C_Ch4_3_1_pointer
+    C_Ch4_3_2_pointer_rules
+
+    C_Ch4_4_1_array_&_pointer
+    C_Ch4_4_2_string_&_pointer
+    C_Ch4_4_3_arrayOfpointer
+
+    C_Ch4_5_1_multi_indirectn
+    C_Ch4_5_2_param_pointer_arg
+
+
+
+
+
+
+
+
