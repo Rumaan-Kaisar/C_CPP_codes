@@ -128,8 +128,7 @@ int main(void){
     
 
 
-/* Example 2: This program requests input of two strings, then demonstrates
-the four string functions with them */
+/* Example 2: This program requests input of two strings, then demonstrates the four string functions with them */
 
 #include <stdio.h>
 #include <string.h>
@@ -184,7 +183,7 @@ int main(void){
 
 
 /* Example 3: The following program allows the user to add, subtract,
-multiply, or divide, but does not use a menu. Instead, it uses a command-based interface. */
+                multiply, or divide, but does not use a menu. Instead, it uses a command-based interface. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
