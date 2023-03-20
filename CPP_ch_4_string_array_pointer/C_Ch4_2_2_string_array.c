@@ -1,29 +1,45 @@
 
 
-4.5 ARRAYS OF STRINGS
-Arrays of strings, often called string tables, are very common in C programming. A string table is created like any other two-dimensional array. For example, here is a small string table. 
-char names[10][40];
-This statement specifies a table that can contain 10 strings, each up to 40 characters long (including the null terminator). To access a string within this table, specify only the left-most index. For example, to read a string from the keyboard into the third string in names :
-gets(names[2]);
-By the same token, to output the first string, use this printf( ) statement:	printf (names[0] ) ;
+/* 
+----------|    ARRAYS OF STRINGS    |----------
+Arrays of strings, often called string tables.
+A string table is created like any other "two-dimensional array". For example, here is a small string table. 
+        char names[10][40];
+    This statement specifies a table that can contain 10 strings, each up to 40 characters long (including the null terminator).
+    To access a string within this table, specify only the left-most index.
+    
+    For example, to read a string from the keyboard into the third string in names :
+        gets(names[2]);
+    
+    To output the first string, use this printf() statement:	
+        printf (names[0] ) ;
 
-Three-dimensional table of strings : 		char animals[3][5][80];
-The declaration creates a three-dimensional table with three lists of strings. Each list is five strings long, and each string can hold 80 characters.
-To access a specific string in this situation, you must specify the two left-most indexes. For example, to access the second string in the third list, specify animals[2][1].
 
-This program lets you enter ten strings, then lets you display
-them, one at a time, in any order you choose. To stop the
-program, enter a negative number.
+
+----------|    Three-dimensional table of strings    |----------
+ 		char animals[3][5][80];
+The declaration creates a three-dimensional table with "three lists of strings". 
+Each list is five strings long, and 
+each string can hold 80 characters.
+
+To access a specific string in this situation, you must specify the two left-most indexes. 
+    For example, to access the "second string" in the "third list", specify
+        animals[2][1].  
+*/
+
+
+
+
+/* Example 1: This program lets you enter ten strings, then lets you display
+                them, one at a time, in any order you choose. To stop the program, enter a negative number. */
 #include <stdio.h>
 
-int main()
-{
+int main(void){
     char text[10][80];
     int i;
     
-    for(i=0;i<10;i++)
-    {
-        printf("%d:" ,i+1);
+    for(i=0; i<10; i++){
+        printf("%d: ", i+1);
         gets(text[i]);
     }
     
@@ -37,39 +53,21 @@ int main()
     return 0;
 }
 
-#include<stdio.h>
-
-int main() {
-    char text[10][80];
-    int i;
-
-    for(i = 0; i<10; i++){
-        printf("%d: ",i+1);
-        gets(text[i]);
-    }
-    do{
-        printf("Enter number of string(1-10): ");
-        scanf("%d",&i);
-        i--;
-        if(i>=0 && i<10) printf("%s\n", text[i]);
-    } while(i>=0);
-
-    return 0;
-}
 
 
 
-
-You can initialize a string table as you would any other type of
-array. For example. the following program uses an initialized
-string table to translate between German and English. Notice
-that curly braces are needed to surround the list. The only time
-they are not needed is when a single string is being initialized .
+/* Example 2: You can initialize a string table as you would any other type of array. 
+                For example, the following program uses an initialized
+                string table to translate between German and English. Notice
+                that curly braces are needed to surround the list. The only time
+                they are not needed is when a single string is being initialized . */
 //English to German translator
 
 #include <stdio.h>
 #include <string.h>
 
+/* Unsized array of list, each list contain 1 english (index 0) and 1 german (index 0) word,
+an word can be 40 char long */
 char words[][2][40]={
     "dog","Hund",
     "no","nein",
@@ -82,8 +80,7 @@ char words[][2][40]={
     "",""
 };
 
-int main(void)
-{
+int main(void){
     char english[80];
     int i;
     
@@ -93,144 +90,63 @@ int main(void)
     //look up the word
     i=0;
     //search while null string  not yet encountered
-    while(strcmp(words[i][0],""))
-    {
-        if(!strcmp(english, words[i] [0]))
-        {
+    while(strcmp(words[i][0],"")){
+        if(!strcmp(english, words[i][0])){
             printf("German translation: %s", words[i][1]);
             break;
         }
         i++;
     }
     
-    if(!strcmp(words[i][0],""))
-    printf("NOt in dictonary\n");
+    if(!strcmp(words[i][0],"")) printf("NOt in dictonary\n");
     
     return 0;
 }
 
-#include<stdio.h>
-#include<string.h>
-
-int main()
-{
-    char words[][2][40]={
-        "dog","Hund",
-        "no","nein",
-        "year","Jahir",
-        "child","Kind",
-        "I","Ich",
-        "drive","fahren",
-        "house","haus",
-        "to","zu",
-
-    };
-
-    char english[60];
-    int i;
-    printf("Enter english word:");
-    gets(english);
-
-    i=0;
-    while(strcmp(words[i][0]," ")){
-        if(!strcmp(english,words[i][0])){
-            printf("German translation:%s",words[i][1]);
-            break;
-        }
-        i++;
-    }
-    if(!strcmp(words[i][0],""))
-      printf("Not in dictionary\n");
-
-    return 0;
-}
 
 
 
-You can access the individual characters that comprise a string
-within a string table by using the rightmost index. For example,
-the following program prints the strings in the table one
-character at a time.
+/* Example 3: You can access the individual characters that comprise a string
+                within a string table by using the rightmost index. For example,
+                the following program prints the strings in the table one
+                character at a time. */
 #include <stdio.h>
 
-int main(void)
-{
-    char text[80]={
+int main(void){
+    char text[][80]={
         "When", "in", "the",
         "course", "of", "human",
         "events", ""
     };
     
-    int i,j;
+    int i, j;
     
     //now display them
-    for(i=0;text[i][0];i++)
-    {
-        for(j=0;text[i][j];j++)
-        {
+    for(i=0; text[i][0]; i++){
+        for(j=0; text[i][j]; j++){
             printf("%c",text[i][j]);
             printf(" ");
         }
+        printf("\n");
     }
     
-    
-    return 0;
-}
-
-#include<stdio.h>
-
-int main()
-{
-
-    char text[][80]={
-        "when","in","the",
-        "course","of","human",
-        "events",""
-    };
-
-    for(int i=0;text[i][0]!='\0';i++){
-        for(int j=0;text[i][j]!='\0';j++){
-            printf("%c ",text[i][j]);
-        }
-    }
-
     return 0;
 }
 
 
 
 
-
-
-Write a program that creates a string table containing the
+/* Example 4: Write a program that creates a string table containing the
 English words for the numbers 0 through 9. Using this table,
 allow the user to enter a digit (as a character) and then have
 your program display the word equivalent. (Hint: to obtain an
-index into the table, subtract '0' from the character entered.)
-#include <stdio.h>
-#include <conio.h>
-int rnain(void)
-(
-,
-char digits[10J [10J = (
-) ;
-Rzero", "one", "two", "three",
-"four" "five", "six", "seven",
-"eight", "nine"
-char nurn;
-prlntf("Enter number: .);
-ntL'1l ::: getche () ;
-printf("\n") ;
-TI<L'"":l ::: num - '0';
-if(nun>=Q && num<10) printf("%s", digits[num]);
-return 0;
+index into the table, subtract '0' from the character entered.) */
 
 #include<stdio.h>
+#include <conio.h>
+int main(void){
 
-int main()
-{
-
-    char numbers[10][15]={
+    char numbers[10][10]={
         "Zero",
         "One",
         "Two",
@@ -244,11 +160,15 @@ int main()
     };
 
     char num;
-    printf("Enter a number(0-9):");
-    scanf(" %c",&num);
 
-    num=num-'0';
-    if(num>=0 && num<10) printf("%s",numbers[num]);
+    printf("Enter a number(0-9): ");
+    num = getche();
+    printf("Entered number %d\n", (int)num);
+    // scanf(" %c", &num);
+
+    num = num -'0'; // makes "num" between 0 and 9 during type promotion
+    printf("Index number %d\n", (int)num);
+    if(num>=0 && num<10) printf("%s", numbers[num]);
 
     return 0;
 }
