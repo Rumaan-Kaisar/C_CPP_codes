@@ -282,3 +282,148 @@ int main(void) {
 }
 
 
+
+
+/* Example 7:  Write a program that repeatedly reads strings from the keyboard
+                until the user enters quit. */
+
+#include <stdio.h>
+#include <string.h>
+int main(void){
+    char str[80];
+
+    do {
+        printf("Enter a string: ");
+        gets(str);
+    } while(strcmp("quit", str));
+
+    return 0;
+}
+
+
+
+
+/* Example 8:  Write a program that acts like an electronic dictionary. If the
+                user enters a word in the dictionary, the program displays its
+                meaning. Use a three-dimensional character array to hold the
+                words and their meanings */
+
+// Computerized dictionary program.
+#include <stdio.h>
+#include<string.h>
+
+char dict[][2][40]={
+    "house", "where you live",
+    "car", "a vehicle, what you drive",
+    "chair", "where you sit",
+    "ball", "round object for playing",
+    "food", "what you eat",
+    "computer" , "a thinking machine",
+    "program",  "sequence of instructions"
+    };
+
+int main(void){
+    char word[80];
+    int i;
+
+    printf("Enter word: ");
+    gets(word);
+
+    //look up the word
+    i = 0;
+    // search,while null string not yet encountered, strcmp(dict[i][0], "") is +ve
+    while(strcmp(dict[i][0], "")){
+        // if match occurs, then strcmp(dict[i][0], word) will be "0"
+        if(!strcmp(word, dict[i][0])){
+            printf("\n meaning is %s",dict[i][1]);
+            break;
+        }
+        i++;
+    }
+
+    if(!strcmp(dict[i][0],""))
+        printf("\n word doesnt exist in dictionary");
+
+    return 0;
+}
+
+
+/* 
+// For-loop version
+    
+int main(void){
+    char word[80];
+    int i;
+
+    printf("Enter word: ");
+    gets(word);
+
+    //look up the word
+    for(i=0; strcmp(dict[i][0],""); i++){
+        if(!strcmp(dict[i][0], word)){
+            printf("\n meaning is %s",dict[i][1]);
+            break;
+        }
+    }
+    if(!strcmp(dict[i][0],""))
+        printf("\n word doesnt exist in dictionary");
+        
+    return 0;
+}
+
+*/
+
+
+
+
+/* Example 9: Write a program that inputs strings from the user. If the string is
+                less than 80 characters long, pad it with periods. Print out the
+                string to verify that you have correctly lengthened the string. */
+#include <stdio.h>
+#include <string.h>
+int main(void){
+    char str[80];
+    int i;
+
+    printf("Enter a string: ");
+    gets(str);
+
+    //pad the string if necessary 
+    for(i=strlen(str); i<79; i++) strcat(str, ".");
+
+    printf(str) ;
+    return 0;
+}
+
+
+
+
+/* Example 10: Write a program that inputs a string and then encodes it by
+                taking the characters from each end, starting with the left side
+                and alternating, stopping when the middle of the string has been
+                reached. For example, the string "Hi there" would be "Heir eth". */
+// A simple coding program. 
+#include <stdio.h>
+#include <string.h>
+
+int main (void){
+    char str[80];
+    int i, j;
+
+    printf("Enter message: ");
+    gets(str);
+
+    //code it
+    i = 0;   j = strlen(str) - 1;
+
+    while(i<=j){
+        if(i<j) printf("%c%c", str[i], str[j]);
+        else printf ("%c", str[i]);
+
+        i++;   j--;
+    }
+
+    return 0;
+}
+
+
