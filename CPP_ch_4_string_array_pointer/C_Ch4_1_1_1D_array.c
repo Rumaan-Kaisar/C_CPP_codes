@@ -1,4 +1,7 @@
-/* To declare a one-dimensional array, use the general form
+/* 
+    An array is a list of like-type variables
+    
+    To declare a one-dimensional array, use the general form
         type var_name[size];
     where 'type' is a valid C data type, 
     'var_name' is the name of the array, and 
@@ -270,4 +273,64 @@ int main (void){
 
     return 0;
 }
+
+
+
+
+/* Example 8: Given the array
+            int count[10];
+		will this statement generate an error message?
+		for(i=0; i<20; i++) count[i] =i; 
+		
+	The statement will not generate an error message because C
+	provides "no bounds checking" on array operations, but it is
+	wrong because it causes "count" to be "overrun".
+*/
+
+
+
+
+/* Example 9:  In statistics, the mode of a group of numbers is the one that
+		occurs the most often. For example, given the list 1, 2, 3, 6, 4, 7,
+		5,4,6, 9, 4, the mode is 4, because It occurs three times. Write a
+		program that allows the user to enter a list of 20 numbers and
+		then finds and displays the mode. */
+#include <stdio.h>
+
+int main(void){
+    int stats[20], i, j;
+    int mode, count, oldcount, oldmode;
+
+    printf("Enter 20 numbers: \n");
+    for(i=0; i<20; i++) scanf("%d", &stats[i]);
+
+    oldcount = 0;
+
+    //find the mode
+    for(i=0; i<20; i++) {
+        mode = stats[i];
+        count = 1;
+
+        //count the occurrences of this value */
+        for(j=i+1; j<20; j++){
+            if(mode==stats[j]) count++;
+        }
+
+        // if count is greater than old count, use new mode
+        if (count > oldcount) {
+            oldmode = mode;
+            oldcount = count;
+        }
+    }
+
+    printf("The mode is %d\n", oldmode);
+    return 0;
+}
+
+
+
+
+/* Example 10 : Show how to initialize an integer array called "items" with the values 1 through 10. */
+int items[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
