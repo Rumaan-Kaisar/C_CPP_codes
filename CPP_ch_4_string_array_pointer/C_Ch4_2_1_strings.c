@@ -8,6 +8,8 @@
         i.e. our array will be one byte larger than the largest string it will be required to hold, to make room for the null.
         A string constant is null-terminated by the compiler automatically. 
 
+    Null string: 
+        A null string is a string that contains only the null character
 
     gets(): 
         To read a string from the keyboard uses the STDIO.H header file.
@@ -94,6 +96,12 @@
     STRING.H & STDLIB.H:
         atoi()  uses the header file <STDLIB.H>.
         strcpy(), strcat(), strcmp(), strlen(), require the header file <STRING.H>. 
+   
+   
+    Following fragment is wrong:
+        char name[10] = "Thomas Jefferson";
+        The array, "name", is not big enough to hold the string being assigned to it 
+
 */
 
 
