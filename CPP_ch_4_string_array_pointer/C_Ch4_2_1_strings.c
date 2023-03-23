@@ -430,7 +430,7 @@ int main (void){
 
 
 /* Example 11: Write a program that counts the number of spaces, commas, and
-periods in a string. Use a switch to categorize the characters." */
+                periods in a string. Use a switch to categorize the characters." */
 
 #include <stdio.h>
 #include <string.h>
@@ -466,8 +466,8 @@ int main(void){
 
 
 /* Example 12:  What is wrong with this fragment?
-char str[80];
-str = getchar(); 
+                char str[80];
+                str = getchar(); 
 
 The getchar() function returns a character, not a string.
 Hence, it cannot be used as shown. You must use gets() to
@@ -479,15 +479,15 @@ read a string from the keyboard
 
 // ----------|    HangMan    |----------
 /* Example 13: Write a program that plays a computerized version of Hangman.
-In the game of Hangman, you are shown the length of a magic
-word (using hyphens) and you try to guess what the word is by
-entering letters. Each time you enter a letter, the magic word is
-checked to see if it contains that letter. If it does, that letter is
-shown. Keep a count on the number ofletters entered to
-complete the word. For the sake of simplicity, a player wins
-when the magic word is entirely filled by characters using 15 or
-fewer guesses. For this exercise make the magic word
-"concatenation." */
+                In the game of Hangman, you are shown the length of a magic
+                word (using hyphens) and you try to guess what the word is by
+                entering letters. Each time you enter a letter, the magic word is
+                checked to see if it contains that letter. If it does, that letter is
+                shown. Keep a count on the number ofletters entered to
+                complete the word. For the sake of simplicity, a player wins
+                when the magic word is entirely filled by characters using 15 or
+                fewer guesses. For this exercise make the magic word
+                "concatenation." */
 
 #include <stdio.h>
 #include <string.h>
