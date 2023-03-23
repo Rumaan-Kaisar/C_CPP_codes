@@ -427,3 +427,51 @@ int main (void){
 }
 
 
+
+
+/* Example 11: Write a program that counts the number of spaces, commas, and
+periods in a string. Use a switch to categorize the characters." */
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void){
+    char str[80];
+    int spaces, periods, commas;
+    int i;
+
+    printf("Enter a string: ");
+    gets(str);
+
+    spaces = 0;
+    commas = 0;
+    periods = 0;
+
+    for(i=0; i < strlen(str); i++){
+        switch(str[i]){
+            case '.': periods++; break;
+            case ',': commas++; break;
+            case ' ': spaces++;
+        }
+    }
+
+    printf("spaces: %d\n", spaces);
+    printf("commas: %d\n", commas),
+    printf("periods: %d\n", periods);
+
+    return 0;
+}
+
+
+
+
+/* Example 12:  What is wrong with this fragment?
+char str[80];
+str = getchar(); 
+
+The getchar() function returns a character, not a string.
+Hence, it cannot be used as shown. You must use gets() to
+read a string from the keyboard
+*/
+
+
