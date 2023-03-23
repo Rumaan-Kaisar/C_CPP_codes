@@ -475,3 +475,46 @@ read a string from the keyboard
 */
 
 
+
+
+// ----------|    HangMan    |----------
+/* Example 13: Write a program that plays a computerized version of Hangman.
+In the game of Hangman, you are shown the length of a magic
+word (using hyphens) and you try to guess what the word is by
+entering letters. Each time you enter a letter, the magic word is
+checked to see if it contains that letter. If it does, that letter is
+shown. Keep a count on the number ofletters entered to
+complete the word. For the sake of simplicity, a player wins
+when the magic word is entirely filled by characters using 15 or
+fewer guesses. For this exercise make the magic word
+"concatenation." */
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void){
+    char word[] = "concatenation";
+    char temp[] = "-------------";
+    char ch;
+    int i, count;
+
+    count = 0;  //count number of guesses
+    do{
+        printf("%s\n", temp);
+        printf("Enter your guess: ");
+        ch = getchar();
+        printf("%n");
+
+        // see if letter matches any in word
+        for(i=0; i<strlen(word); i++){
+            if(ch==word[i]) temp[i] = ch;
+        }
+        count++;
+
+    } while (strcmp(temp, word));
+
+    printf("%s\n", temp);
+    printf ("You guessed the word and used %d guesses", count);
+
+    return 0;
+}
