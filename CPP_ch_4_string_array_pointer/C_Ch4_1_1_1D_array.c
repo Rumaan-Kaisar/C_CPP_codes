@@ -334,3 +334,29 @@ int main(void){
 int items[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 
+
+
+/* Example 11: Write a program that inputs 10 integers into an array. Then
+		have the program display the sum of the even numbers and the
+		sum of the odd numbers. */
+
+#include <stdio.h>
+
+int main(void){
+    int num[10], i;
+    int even, odd;
+
+    printf("Enter 10 integers: ");
+    for(i=0; i<10; i++) scanf("%d",&num[i]);
+    
+    even=0; odd=0;
+    for(i=0; i<10; i++){
+        if(num[i]%2) odd = odd + num[i];
+        else even = even + num[i];
+    }
+
+    printf("sum of even integers %d", even);
+    printf("sum of odd integers %d", odd); 
+    
+    return 0;
+}
