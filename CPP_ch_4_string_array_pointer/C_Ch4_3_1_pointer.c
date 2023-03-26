@@ -170,3 +170,72 @@ int main(void){
 */
 
 
+
+
+/* Example 2: p has nothing to do with the value of q.
+                It simply holds q's address, to which the indirection operator may be applied. */
+#include<stdio.h>
+
+int main(void){
+    int *p, q;
+
+    p = &q;   // p points to q
+    *p = 1000;
+    printf("%d", q);
+
+    return 0;
+}
+
+
+
+
+/* Example 3: The base type of a pointer needs ti be the same as the object it points to, try this incorrect but benign program. 
+                (Some compilers may generate a warning message when you compile it, 
+                but none will issue an actual error message and stop compilation.) 
+                
+                Even though 'p' points to "temp", which does, indeed, hold the value 1234.34, 
+                    but the assignment
+                                        q = *P;
+                    fails to copy the number because only 2 bytes (assuming 2-byte integers) will be transferred.
+                    Since p is an "integer pointer", it cannot be used to transfer an 8-byte quantity (assuming 8-byte doubles)
+                */
+// This program is wrong. but harmless.
+#include<stdio.h>
+
+int main(void){
+    int *p;
+    double q, temp;
+
+    temp=1234.34;
+
+    // attempt to assign q a value using indirection through an integer pointer
+    p = &temp;
+    q = *p;
+
+    printf("%f",q); // this will not print 1234.34
+
+    return 0;
+}
+// warning: assignment to 'int *' from incompatible pointer type 'double *' [-Wincompatible-pointer-types]|
+
+
+
+
+/* Example 4: Write a program with a for loop that counts from 0 to 9,
+                displaying the n].lmbers on the screen. Print the numbers
+                using a pointer. */
+#include<stdio.h>
+
+int main(void){
+    int *ptr, i;
+
+    ptr= &i;
+
+    for(i=0; i < 10; i++){
+        printf("%d ", *ptr);
+    }
+
+    return 0;
+}
+
+
