@@ -10,6 +10,20 @@
         pointers as parameters to functions
 
 
+    ---------|    Summery    |---------
+
+        pointer:
+            A 'pointer' is a "variable" that contains the "address" of another variable.
+
+        pointer operators:
+            '*' operator returns the "value of the object" pointed to by the 'pointer' it precedes.  
+            '&' operator returns the 'address of the variable' it precedes.
+
+        base type of a pointer:
+            The base type of a pointer is important because all pointer arithmetic is done relative to it.
+
+    -----------------------------------
+
 
     pointer : 
         Pointer is a kind of variable by which we can work with other variables data using the location of the pointed variable. 
