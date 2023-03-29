@@ -64,6 +64,28 @@ case 4:
 case 5: a = 5;
 }
 
+// Example Fall-Through demo:
+#include <stdio.h>
+
+int main(void) {
+    int a, i =1;
+    
+    switch(i){
+    case 1: a = 1;
+            printf("inside case 1 \n");   // no break, hence fall through
+    case 2: a = 2;
+            printf("inside case 2 \n");
+            break;
+    case 3: a = 3;
+            break;
+    case 4:
+    case 5: a = 5;
+    }
+
+    return 0;
+}
+
+
 // ----------------------------------------------------------------------------------------
 
 
