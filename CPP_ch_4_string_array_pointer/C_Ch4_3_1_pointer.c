@@ -271,3 +271,21 @@ int main(void){
 */
 The fragment assigns to i the value 19 indirectly using a pointer
 
+
+
+
+/* Example 8: Write a short program that assigns a floating-point value to a
+                variable indirectly using a pointer to the variable. */
+#include <stdio.h>
+int main(void){
+    double d, *p;
+
+    p = &d;
+    *p = 34.665;
+
+    printf("%f", d);
+
+    return 0;
+}
+
+
