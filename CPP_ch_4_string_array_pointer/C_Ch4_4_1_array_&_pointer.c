@@ -298,3 +298,14 @@ int main(void){
 *( (int *)count + (44*10 )+8) = 99;
 
 
+
+
+/* Example 11: Is this fragment correct? If it is, what does the program display?
+                char str[8];
+
+                strcpy(str, "ABCDEFG");
+                printi("%c", *(str+2); */
+
+The fragment is correct. It displays c.
+	
+	
