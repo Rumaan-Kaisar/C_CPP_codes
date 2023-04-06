@@ -288,3 +288,13 @@ int main(void){
                 After p is incremented, what will its value be? */
 108
 
+	
+	
+	
+/* Example 10: Rewrite the following array reference using pointer arithmetic.
+                int count[100][10];
+                count[44][8] = 99;      */
+
+*( (int *)count + (44*10 )+8) = 99;
+
+
