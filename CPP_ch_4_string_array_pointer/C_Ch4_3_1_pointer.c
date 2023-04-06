@@ -239,3 +239,26 @@ int main(void){
 }
 
 
+
+
+/* Example 5: Show how to declare a pointer to a double */
+double *p;
+
+
+
+
+/* Example 6: Write a program that assigns a value to a variable indirectly by
+using a pointer to that variable. */
+#include <stdio.h>
+int main(void){
+    int i, *p;
+
+    p = &i;
+    *p = 100;
+
+    printf("%d", i);
+    
+    return 0;
+}
+
+
