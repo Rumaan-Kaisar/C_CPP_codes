@@ -178,3 +178,13 @@ int main(void){
     return 0;
 }
 
+
+
+
+/* Example 8: Is following fragment correct? If it is correct, explain why it works.
+            char *p = "this is a string"; */
+Yes, the fragment is correct. It works because the compiler creates a string table entry for the string 'this is a string' and
+assigns p a pointer to the start of it.
+	
+	
+	
