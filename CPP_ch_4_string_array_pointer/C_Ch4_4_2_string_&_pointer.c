@@ -134,3 +134,47 @@ str[2];
 *(str+2);
 *(p+2);
 
+
+
+	
+/* Example 7: Below is a program that counts the Number of spaces in a string
+                entered by the user. Rewrite the program so that it uses "pointer
+                arithmetic" rather than 'array indeXing'.
+
+                #include <stdio.h>
+
+                int main(void){
+                    char str[80];
+                    int i, spaces;
+
+                    printf("Enter a string: ");
+                    gets(str);
+
+                    spaces = 0;
+                    for(i=0; str[i]; i++) if(str[i]==' ') spaces++;
+                    printf("Number of spaces: %d", spaces);
+
+                    return 0;
+                }
+                */
+#include <stdio.h>
+
+int main(void){
+    char str[80], *p;
+    int spaces;
+
+    printf("Enter a string: ");
+    gets(str);
+
+    spaces = 0;
+    p = str;
+    while (*p){
+        if(*p==' ') spaces++;
+        p++;    //this is 'pointer icrement' on memory size
+    }
+    
+    printf("Number of spaces: %d", spaces);
+
+    return 0;
+}
+
