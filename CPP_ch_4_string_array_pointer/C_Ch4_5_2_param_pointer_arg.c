@@ -109,7 +109,35 @@ void mystrcat(char *to, char *from){
 
 
 
-/* Example 4: Write a program that "passes a pointer" to an integer variable to a function. 
+/* Example 4: Write your own version of strlen(), called mystrlen( ), and demonstrate it in a program. */
+#include <stdio.h>
+int mystrlen(char *p);
+int main(void){
+    char str[80];
+
+    printf("Enter a string: ");
+    gets(str) ;
+
+    printf("Length is %d", mystrlen(str));
+
+    return 0;
+}
+
+int mystrlen(char *p){
+    int i;
+    i = 0;
+    while(*p){
+        i++;
+        p++;
+    }
+
+    return i;
+}
+
+
+
+
+/* Example 5: Write a program that "passes a pointer" to an integer variable to a function. 
                 Inside that function, assign the variable the value -1.
                 After the function has returned, demonstrate that the variable does, indeed, contain -1 by printing its value. */
 #include <stdio.h>
