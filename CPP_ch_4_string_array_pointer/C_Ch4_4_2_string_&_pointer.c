@@ -101,3 +101,36 @@ int main (void){
 }
 
 
+
+
+/* Example 4: Is this fragment correct? If not, why not? */
+int main(void){
+    char *p;
+
+    printf("Enter a string: ");
+    gets(p);
+
+    return 0;
+}
+/* No. The pointer p has never been initialized to point to a valid
+piece of memory that can hold a string */
+
+
+
+
+/* Example 5: How do pointers and arrays relate to each other? */
+Pointers and arrays are basically two ways of looking at the
+same thing. They are virtually interchangeable.
+
+
+
+
+/* Example 6: Given this fragment:
+                char *p, str[80] = "this lS a test";
+                p = str;
+                show two ways to access the 'i' in "this" */
+
+str[2];
+*(str+2);
+*(p+2);
+
