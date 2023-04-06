@@ -277,3 +277,10 @@ int main(void){
 
 
 
+
+/* Example 9: Assume that p is declared as a pointer to a double and contains
+                the address 100. Further, assume that doubles are 8 bytes long.
+                After p is incremented, what will its value be? */
+108
+
+
