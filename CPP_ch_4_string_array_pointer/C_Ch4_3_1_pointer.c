@@ -248,7 +248,7 @@ double *p;
 
 
 /* Example 6: Write a program that assigns a value to a variable indirectly by
-using a pointer to that variable. */
+                using a pointer to that variable. */
 #include <stdio.h>
 int main(void){
     int i, *p;
