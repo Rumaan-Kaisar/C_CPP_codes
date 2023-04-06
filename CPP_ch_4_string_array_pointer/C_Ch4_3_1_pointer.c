@@ -262,3 +262,12 @@ int main(void){
 }
 
 
+
+
+/* Example 7: What does this fragment do?
+    int i *p;
+    p = &i;
+    *p = 19; 
+*/
+The fragment assigns to i the value 19 indirectly using a pointer
+
