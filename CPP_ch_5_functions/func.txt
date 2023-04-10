@@ -1,0 +1,22 @@
+
+
+    5.1 The PROTOTYPE
+    5.2 Recursion
+    5.3 Parameters Advanced
+    5.4 Pass Arguments  To Main()
+    5.5 Old-Style Parameter Declarations
+
+    -----   ADVANCED   -----
+    5.6 variable storage class specifire (Advanced topic)
+    5.7 Access modifiers : const and volatile (Advanced topic)
+    5.8 Function Pointers (Advanced topic)
+
+
+    C_Ch5_1_1_func_potyp
+
+    C_Ch5_2_1_recrsn
+
+    C_Ch5_3_1_func_param
+    C_Ch5_3_2_main_param
+    C_Ch5_3_3_old_styl_param
+
