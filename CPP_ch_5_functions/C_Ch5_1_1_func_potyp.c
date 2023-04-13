@@ -14,6 +14,10 @@
             2.	The number of   its  parameters.
             3.	The type of   its   parameters. 
 
+        In general, each of C's standard library functions has its prototype specified in a header file.
+            For example, printf() and scanf() have their prototypes in <stdio.h>.
+            sqrt() is prototyped in its header file <math.h>. 
+
 
 
 
@@ -63,7 +67,22 @@
             int myfunc(int a, ...);
 
         Both printf() and seanf() accept a variable number of arguments.
- */
+*/
+
+
+
+
+/* ----------|    main() does not need prototype    |----------
+
+    The main() function does not have (nor does it require) a prototype. 
+        This allows you to define main() any way that is supported by your compiler. 
+            we use      int main(void) { ... }      because it is one of the most common forms. 
+            Another frequently used form of main( ) is          void main(void) { ... }
+                This form is used when no value is returned by main( ). 
+
+        The reason main() does not have a prototype is to allow C to be used in the widest variety of environments.
+        However, nearly all compilers will accept int main(void) and void main(void). 
+*/
 
 
 
@@ -166,91 +185,119 @@ void line(void){
 
 
 
-
-
-
-
-
-
-
-
-
-
-Notes
-[1]	As you know, the standard library function sqrt( ) returns a  double value. You might be wondering how the compiler knows this. The answer is that sqrt( ) is prototyped in its header file MATH.H. To see the importance of using the header file, try to program consisting sqrt() without its header file. 
-
-[2]	In general, each of C's standard library functions has its prototype specified in a header file. For example, printf() and scanf() have their prototypes in STDIO.H. This is one of the reasons that it is important to include the appropriate header file for each library function you use.
-
-[3]	Some 'character-based'-functions have a return type of int rather than char. For example, the getchar( ) function's return type is int, not char. The reason for this is found in the fact that C very cleanly handles the conversion of characters to integers and integers back to characters. There is no loss of information. For example, the following program is perfectly valid:
-#include <stdio.h>
-int char_as_int(void);	/*int type return value instead of char type*/
-int main (void){ 	char ch;
-ch = char_as_int();	printf("%c", ch);
-return 0;	}
-int char_as_int(void){	return 'a';	}
-
-When char_as_int() returns, it elevates the character 'a' to an integer by adding a high-order byte (or bytes) containing zeros. When this value is assigned to ch in main( ), the high-order byte (or bytes) is removed. One reason to declare functions like char_as_int() as returning an integer instead of a character is to allow various error values to be returned that are intentionally outside the range of a char.
-
-[4]	When a function returns a pointer, both the function and its prototype must declare the same pointer return type. 
-#include <stdio.h>
-int *in_it(int x); 	/*prototype of pointer returning function */
-int count; 		/*count as global variable*/
-
-int main(void){ 	int *p; /*global variable count is int type so p is int type pointer*/
-p = in_it(110); 	/* return pointer equal : p=&count*/ 
-printf("count (through p) is %d", *p);
-return 0;}
-
-int * in_it(int x){	count = x;
-return &count; 	/* return a pointer */	}
-
-Prints = count (through p) is 110
-the function in_it( ) returns a pointer to the global variable count. Notice the way that the return type for in_it( ) is specified. This same general form is used for any sort of pointer return type. 
-
-[5]	If a function returns a pointer, then it must make sure that the object being pointed to does not go out-of-scope when the function returns. This means that you must not return pointers to local variables.
-
-[6]	The main( ) function does not have (nor does it require) a prototype. This allows you to define main( ) any way that is supported by your compiler. Here we use int main(void) { ... } because it is one of the most common forms. Another frequently used form of main( ) is 
-void main(void) { ... }
-This form is used when no value is returned by main( ). 
-
-	The reason main( ) does not have a prototype is to allow C to be used in the widest variety of environments. Since the precise conditions present at program start-up and what actions must occur at program termination may differ widely from one operating system to the next, C allows the acceptable forms of main( ) to be determined by the compiler. However, nearly all compilers will accept int main(void) and void main(void) .
-
-
-
-
+/* Example 3: To see how a function prototype can catch an error, try
+                compiling this version of the volume program, which includes
+                volume()'S full prototype: */
 #include <stdio.h>
 
-double volume(double s1,double s2, double s3);
+/* this is volume()'s full prototype */
+double volume(double s1, double s2, double s3);
 
-int main ()
-{
+int main(void){
     double vol;
-    vol=volume(12.2,5.67,9.03);
+
+    vol = volume(12.2, 5.67, 9.03, 10.2);   // mismatch number of arguments, returns ERR
+    // vol = volume(12.2, 5.67, 9.03);
     printf("volume %f",vol);
     return 0;
 }
 
-double volume(double s1,double s2, double s3)
-{
+double volume(double s1,double s2, double s3){
     return s1*s2*s3;
 }
+/* program will not compile because the compiler knows that 
+volume() is declared as having only three parameters */
 
 
+
+
+/* Example 4: Some 'character-based'-functions have a return type of 'int' rather than 'char'. For example, the getchar() function's return type is int, not char. 
+                The reason is to cleanly handle the "conversion of characters to integers and integers back to characters". There is no loss of information.
+                For example, the following program is perfectly valid: */
+#include <stdio.h>
+
+int char_as_int(void);	//  int type return value instead of char type
+
+int main(void){ 	
+    char ch;
+
+    ch = char_as_int();	
+    printf("%c", ch);
+
+    return 0;	
+}
+
+int char_as_int(void){	
+    return 'a';	
+}
+
+/* When char_as_int() returns, it elevates the character 'a' to an integer by adding a high-order byte (or bytes) containing zeros. 
+When this value is assigned to ch in main(), the high-order byte (or bytes) is removed. */
+
+/* One reason to declare functions like char_as_int() as int instead of a char is to 
+   allow various error values to be returned that are intentionally outside the range of a char. */
+
+
+
+
+/* Example 5: When a function returns a "pointer", both the 'function' and its 'prototype' must declare the same pointer return type.  */
+#include <stdio.h>
+
+int *in_it(int x);      // prototype of pointer returning function
+
+int count; 		// count as global variable
+
+int main(void){ 	
+    int *p;     // global variable 'count' is int type so p is int type pointer
+
+    p = in_it(110); 	// return pointer equal : p=&count 
+    printf("count (through p) is %d", *p);
+
+    return 0;
+}
+
+int *in_it(int x){	
+    count = x;
+    return &count; 	// return a pointer
+}
+
+/* 
+Notes: 
+    Prints = count (through p) is 110
+        the function in_it() returns a pointer to the global variable count. 
+        Notice the way that the return type for in_it() is specified. This same general form is used for any sort of pointer return type. 
+
+    GLOBAL var!! Why? 
+        If a function returns a pointer, then it must make sure that the object being pointed to "does not go out-of-scope" when the function returns. 
+        This means that you must not return pointers to 'LOCAL variables'.
+*/
+
+
+
+
+/* Example 6: As explained, if a function is defined before it is called. it does
+not require a separate prototype. for example. the following
+program is perfectly valid.
+Do not use this kind of declaration, because 
+Large programs are typically spread across several files. Since you can't define a
+function more than once, prototypes are the only way to inform all files about a function.  */
 
 #include <stdio.h>
 
-float getnum(void)
-{
+/* define getnum() prior to its first use */
+
+float getnum(void){
     float x;
+
     printf("Enter a number: ");
     scanf("%f",&x);
     return x;
 }
 
-int main ()
-{
+int main(void){
     float i;
-    i=getnum();
+
+    i = getnum();
     printf("%f",i);
     return 0;
 }
@@ -258,14 +305,16 @@ int main ()
 
 
 
-#include <stdio.h>
+/* Example 7: Std library function sqrt()) returns a double value. it doesnot work without <math.h>, since it prptptyped in this header file.
+this program wont work. */
 
-int main ()
-{
+#include <stdio.h>
+// #include <math.h>
+
+int main(void){
     double answer;
     
-    answer=sqrt(16.0);
-    
+    answer = sqrt(16.0);
     printf("%f",answer);
     
     return 0;
@@ -273,99 +322,82 @@ int main ()
 
 
 
-#include<stdio.h>
 
-int get_a_char(void)
-{
-   return 'a';
-}
-
-int main ()
-{
-    char ch;
-    ch=get_a_char();
-    printf("%c",ch);
-    return 0;
-}
-
-
-
-
-
-#include <stdio.h>
-int *init(int x);
-int count;
-
-int main ()
-{
-    int *p;
-    p=init(110);
-    printf("Count is %d",*p);
-    return 0;
-}
-
-int *init(int x)
-{
-    count =x;
-    return &count;
-}
-
-
-
-
+/* Example 8: Write a program that creates a function, called avg(), that
+reads ten floating-point numbers entered by the user and
+returns their average. Use an old-style forward reference and not a function prototype */
 #include <stdio.h>
 
 double avg();
 
-int main()
-{
-    float average;
-    average=avg();
-    printf("%f",average);
+int main(void){
+    printf("%f", avg());
+
     return 0;
 }
 
-double avg()
-{
-    float num,sum=0;
+double avg(){
+    double num, sum = 0.0;
     int i;
-    for(i=0;i<10;i++)
-    {
+
+    for(i=0; i<10; i++){
         printf("Enter number: ");
-        scanf("%f",&num);
-        sum=sum+num;
+        scanf("%lf", &num);
+        sum = sum + num;
     }
-    return sum/10;
+    return sum/10.0;
 }
 
 
 
 
+/* Example 9: Rewrite the program from Exercise 1 so that it uses a function prototype. */
 #include <stdio.h>
 
 double avg(void);
 
-int main()
-{
-    float average;
-    average=avg();
-    printf("%f",average);
+int main(void){
+    printf("%f", avg());
     return 0;
 }
 
-double avg(void)
-{
-    float num,sum=0;
+double avg(void){
+    double num, sum;
     int i;
-    for(i=0;i<10;i++)
-    {
+
+    sum = 0.0;
+    for(i=0; i<10; i++){
         printf("Enter number: ");
-        scanf("%f",&num);
-        sum=sum+num;
+        scanf("%lf", &num);
+        sum = sum + num;
     }
-    return sum/10;
+    return sum/10.0;
 }
 
 
 
+
+/* Example 10: Is the following program correct? If not, why not? If it is, can it
+be made better? */
+// No proper function prototyping
+// the program would be better if a full function prototype were used when declaring myfunc( )
+#include <stdio.h>
+
+double myfunc();
+// double myfunc(double num);
+
+int main(void){
+    printf("%f", myfunc(10.2));
+    return 0;
+}
+
+double myfunc(double num){
+    return num / 2.0;
+}
+
+
+
+
+/* Example 11: Show the prototype for a function called Purge() that has no parameters and returns a pointer to a double. */
+doule *Purge(void);
 
