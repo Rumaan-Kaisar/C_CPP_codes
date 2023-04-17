@@ -94,78 +94,89 @@ void recurse(int i){
 
 
 
-
-
-
-
+/* Example 2: The recursive program described above can be altered to print
+                the numbers 0 through 9 on the screen. To accomplish this,
+                only the position of the printf() statement needs to be changed, as shown here: */
 #include <stdio.h>
 
 void recurse(int i);
 
-int main ()
-{
+int main(void){
     recurse(0);
     return 0;
 }
 
-void recurse(int i)
-{
-    if(i<10)
-    {
-        printf("%d ",i);
+void recurse(int i){
+    if(i<10){
+        printf("%d ",i);    // print before recusive call
         recurse(i+1);
-
     }
 }
+/* Because the call to printf() now precedes the recursive call to
+recurse(), the numbers are printed in 'ascending order'. */
 
 
 
 
+/* Example 3: The following program demonstrates how recursion can be used to copy one string to another */
 #include <stdio.h>
 
-void rcopy(char *s1,char *s2);
+void rcopy(char *s1, char *s2);
 
-int main ()
-{
+int main(void){
     char str[80];
-    rcopy(str,"this is a test");
+
+    rcopy(str, "this is a test");
     printf(str);
+
     return 0;
 }
 
-void rcopy(char *s1,char *s2)
-{
-    if(*s2)
-    {
-        *s1++=*s2++;
+// Copy s2 to s1 using recursion
+void rcopy(char *s1, char *s2){
+    if(*s2){    // if not at end of s2
+        *s1++ = *s2++;
         rcopy(s1,s2);
     }
-    else *s1='\0';
+    else *s1='\0';  // null terminate the string
 }
 
+/* No professional C programmer would actually code a function like this for one simple reason: efficiency.
+It takes more time to "execute" a "function call" than it does to execute a loop. 
+Therefore, tasks like this will almost always be coded using an iterative approach (i.e. use LOOPS). */
 
 
+
+
+// -----------|    Mutually Recursive functions    |-----------
+/* Example 4: It is possible to have a program in which two or more functions are mutually recursive.
+                Mutual recursion occurs when one function calls another, which in turn calls the first. For example, study this short program:
+
+                Its output is caused by the way the two functions f1() and f2() call each other. 
+                    Each time f1() is called, it checks to see if 'a' is zero. If not, it calls f2() with 'a-1'. 
+                    The f2() function first prints a period and then checks to see if b is zero.
+                        If not, it calls fI() with 'b-1', and the process repeats.
+
+                Eventually, b is zero and the function calls "start unraveling",
+                causing f1() to display the numbers 0 to 30 counting by twos. */
 
 #include <stdio.h>
 
 void f2(int b);
 void f1(int a);
 
-int main ()
-{
+int main(void){
     f1(30);
     
     return 0;
 }
 
-void f1(int a)
-{
+void f1(int a){
     if(a) f2(a-1);
     printf("%d ",a);
 }
 
-void f2(int b)
-{
+void f2(int b){
     printf(".");
     if(b) f1(b-1);
 }
@@ -173,48 +184,64 @@ void f2(int b)
 
 
 
-
+/* Example 5: One of the best known examples of recursion is the recursive version of a function that computes the factorial of a number. 
+                (The factorial of a number is obtained by multiplying the original number by all integers less than it and greater than 1).
+                Write a function, called fact(), that uses 'recursion' to compute the factorial of its integer argument. */
 #include <stdio.h>
 
 int fact(int a);
 
-int main ()
-{
+int main(void){
     int x;
+
     printf("Enter a number: ");
     scanf("%d",&x);
-    x=fact(x);
-    printf("Factorial is %d",x);
+
+    printf ("%d factorial is: %d", x, fact(x)) ;
+
+    return 0;
 }
 
-int fact(int a)
-{
-   if (a==1) return 1;
+int fact(int a){
+   if(a==1) return 1;
    else return a*fact(a-1);
 }
 
 
 
 
+/* Example 6: What is wrong with this recursive function? */
+void f(void){
+    int i;
+    
+    printf("in f() \n")
 
+    // call f() 10 times
+    for(i=0; i<10; i++) f();
+}
+
+/* The function will call itself repeatedly, until it crashes the program, 
+because there is "no condition that prevents a recursive call" from occurring */
+
+
+
+
+/* Example 7: Write a program that displays.a string on the screen, one character at a time, using a recursive function */
 #include <stdio.h>
 
-void print(char *c);
+void disply(char *p);
 
-int main ()
-{
-    char st[]="this is a test";
-    print(st);
+int main(void){
+    disply("this is a test");
+    
+    return 0;
 }
 
-void print(char *c)
-{
-    if(*c)
-    {
-        printf("%c",*c);
-        print(c+1);
+void disply(char *p){
+    if(*p){
+        printf("%c",*p);
+        disply(p+1);
     }
 }
-
 
 
