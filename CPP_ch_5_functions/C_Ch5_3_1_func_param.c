@@ -213,3 +213,12 @@ void prompt(char *msg, char *uStrm) {
 }
 
 
+
+
+/* Example 6: Explain how "pointers" allow C to construct a 'call-by-reference' parameter. */
+A "pointer" contains the "address of another variable". When a
+pointer is passed to a function, the function may alter the
+contents of the object pointed to by the pointer. This is the
+equivalent of "call by reference".
+	
+	
