@@ -245,3 +245,21 @@ void disply(char *p){
 }
 
 
+
+
+/* Example 8: Write a program that uses a recursive function to display the letters of the alphabet. */
+#include <stdio.h>
+
+void alpha(char ch);
+
+int main(void){
+    alpha('A');
+    return 0;
+}
+
+void alpha(char ch){
+    printf("%c", ch);
+    if(ch < 'Z') alpha(ch+1);
+}
+
+
