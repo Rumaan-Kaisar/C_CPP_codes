@@ -401,3 +401,24 @@ double myfunc(double num){
 /* Example 11: Show the prototype for a function called Purge() that has no parameters and returns a pointer to a double. */
 doule *Purge(void);
 
+
+
+
+/* Example 12: How do you prototype a function that does not have parameters? */
+A function that does not have parameters specifies "void" in the
+"parameter list" of its "prototype"
+
+ret_typ func_name(void);
+
+
+
+
+/* Example 13: What is a function prototype, and what are the benefits of it? */
+A function prototype tells the compiler these three things: 
+    1. the return type of the function, 
+    2. the type of its parameters, and 
+    3. the number of its parameters. 
+It is useful because it allows the "compiler" to find "errors" if the function is called "incorrectly"
+
+
+
