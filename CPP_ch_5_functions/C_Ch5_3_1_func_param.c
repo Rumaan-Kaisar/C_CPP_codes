@@ -221,4 +221,29 @@ pointer is passed to a function, the function may alter the
 contents of the object pointed to by the pointer. This is the
 equivalent of "call by reference".
 	
+
 	
+	
+/* Example 7: Create a function caned string_up() that transforms the string it is called
+                with into uppercase characters. Demonstrate its use in a program.
+                (Hint, use the toupper() function to convert lowercase characters into uppercase.) */
+#include <stdio.h>
+#include <ctype.h>
+
+void string_up(char *p);
+
+int main(void){
+    char str[] = "this is a test";
+
+    string_up(str);
+    printf(str);
+
+    return 0;
+}
+
+void string_up(char *p){
+    while(*p){
+        *p = toupper(*p);
+        p++;
+    }
+}
