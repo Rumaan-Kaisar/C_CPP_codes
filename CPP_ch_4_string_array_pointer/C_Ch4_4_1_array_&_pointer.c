@@ -308,6 +308,8 @@ int main(void){
 
 The fragment is correct. It displays c.
 	
+
+	
 	
 /* Example 12: Write a function called avg() that averages a list of floating-point values. 
                 The function will have two arguments. 
