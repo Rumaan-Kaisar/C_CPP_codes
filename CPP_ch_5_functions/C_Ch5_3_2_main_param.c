@@ -281,3 +281,52 @@ int main (int argc, char *argv[]){
 // func_mn_prm_7 divide 9 0
 
 
+
+
+/* Example 8: How do command-line arguments get passed to a C program? */
+Command-line arguments are passed to a C program through the "argc" and "argv" parameters to main().
+
+
+   
+
+/* Example 9: Write a program that takes a string as a command-line
+                argument. Have it output the string in coded form. To code the
+                string, add 1 to each character. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    char *p;
+
+    if(argc!=2) {
+        printf("You need to specify a string");
+        exit(1);
+    }
+
+    p = argv[1];
+
+    while(*p) {
+        printf("%c", (*p)+1);
+        p++;
+    }
+
+    return 0;
+}
+// name source file as func_CLiArg_1.c
+// func_CLiArg_1 panthop
+
+
+
+
+/* Example 10: What does the exit() function do? */
+The exit() function causes immediate program termination. 
+It also returns a value to the operating system
+
+
+
+
+/* Example 11: What does the atoi() function do? */
+The atoi() function converts its "STRING ARGUMENT" into its equivalent "INTEGER" form. 
+The string must represent (in string form) a valid integer.
+
+
