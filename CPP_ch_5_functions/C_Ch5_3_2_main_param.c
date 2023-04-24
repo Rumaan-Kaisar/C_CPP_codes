@@ -318,6 +318,31 @@ int main(int argc, char *argv[]){
 
 
 
+/* Example 10: Write a program that allows access only if the user enters the
+                correct password as a command-line parameter. If the user
+                enters the right word, print "Access Permitted"; otherwise print "Access Denied". */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    if(argc!=2){
+        printf("Specify a password");
+        exit(1);
+    }
+
+    if(!strcmp(argv[1], "password")) printf("Access Permitted");
+    else printf("Access Denied");
+
+    return 0;
+}
+// name source file as func_CLiArg_2.c
+// func_CLiArg_2 panthop
+// func_CLiArg_2 password
+
+
+
+
 /* Example 10: What does the exit() function do? */
 The exit() function causes immediate program termination. 
 It also returns a value to the operating system
