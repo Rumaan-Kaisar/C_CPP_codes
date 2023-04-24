@@ -343,14 +343,14 @@ int main(int argc, char *argv[]){
 
 
 
-/* Example 10: What does the exit() function do? */
+/* Example 11: What does the exit() function do? */
 The exit() function causes immediate program termination. 
 It also returns a value to the operating system
 
 
 
 
-/* Example 11: What does the atoi() function do? */
+/* Example 12: What does the atoi() function do? */
 The atoi() function converts its "STRING ARGUMENT" into its equivalent "INTEGER" form. 
 The string must represent (in string form) a valid integer.
 
