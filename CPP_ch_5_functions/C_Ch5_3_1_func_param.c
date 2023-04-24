@@ -34,7 +34,7 @@
 
 
 
-/* -----------------|    swap sing pointer    |----------------- */
+/* -----------------|    swap using pointer    |----------------- */
 /* Example 1: The classic example of a "call-by-reference" function is swap(). It exchanges the value of its two integer arguments. */
 #include <stdio.h>
 
