@@ -113,3 +113,26 @@ double f;
 }
 
 
+
+
+/* Example 5: What is the prototype for this function?
+                double myfunc(int x, int y, char ch){ } */
+
+// The prototype is shown here.
+
+double myfunc(int x, int y, char ch);
+
+
+
+
+/* Example 6: Show how the function in previous Exercise would be coded using the old-style function declaration. */
+
+// Using the old-style function declaration
+double myfunc(x, y, ch)
+int x, y;
+char ch ;
+{
+
+}
+
+
