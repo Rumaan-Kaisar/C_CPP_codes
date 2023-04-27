@@ -355,3 +355,16 @@ The atoi() function converts its "STRING ARGUMENT" into its equivalent "INTEGER"
 The string must represent (in string form) a valid integer.
 
 
+
+/* Example 13: Write a program that reports how many command line
+                arguments it has been called with. Also, have it display the
+                contents of the last one. */
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+    printf("There were %d arguments.\n", argc);
+    printf("The last one is %s.", argv[argc-1]);
+
+    return 0;
+}
+
