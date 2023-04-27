@@ -422,3 +422,52 @@ It is useful because it allows the "compiler" to find "errors" if the function i
 
 
 
+
+
+/* Example 14: What must you do to enable the compiler to check that a
+                function is being called correctly? */
+Must include its prototype.
+
+
+
+
+/* Example 15: What are the principal advantages of using function prototypes? */
+It enables the 'compiler' to provide 'stronger type checking' between 
+    the 'arguments' used to call a function and the 'parameters' of the function. 
+
+Also, it lets the compiler confirm that the function is called with the proper number of arguments.
+
+
+
+
+/* Example 16: Write a program that uses a function called hypot() that
+                returns the length of the hypotenuse of a right triangle when
+                passed the length of the two opposing sides. 
+                Have the function return a double value. The type of the parameters must be
+                double as well. Demonstrate the function in a program. 
+                (The Pythagorean theorem states that the sum of the squares of the
+                two opposing sides equals the square of the hypotenuse.) */
+#include <stdio.h>
+#include <math.h>
+
+double hypot(double s1, double s2);
+
+int main(void){
+    printf("%f", hypot(12.2, 19.2));
+    return 0;
+}
+
+
+double hypot(double s1, double s2){
+    double h;
+    h = s1*s1 + s2*s2;
+    return sqrt(h);
+}
+
+    
+
+/* Example 17: What return type should you use for a function that returns no value?
+                void func_name(void); */
+When a function·does not return a value, its return type should be specified as "void".
+
+
