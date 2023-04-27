@@ -136,3 +136,15 @@ char ch ;
 }
 
 
+
+
+/* Example 7: How is this declaration coded using the old-style function
+                declaration form?
+                void func(int a, char ch, double d) */
+func (a, ch, d)
+int a;
+char Ch;
+double d;
+{
+}
+
