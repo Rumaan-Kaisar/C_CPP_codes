@@ -1,0 +1,37 @@
+    
+    
+    
+    6.1 Macro substitution : #define
+    6.2 Standard CONSOLE i/o : getchar(), putchar() & EOF
+    6.3 NON-STANDARD CONSOLE FUNCTIONS : getche(), getch(), kbhit(), cprintf(), cscanf()
+    6.4 Details on gets() and puts( )
+    6.5 printf() : Details
+    6.6 scanf() : Details	
+
+    6.7 STREAMS for file I/O in C
+    6.8 File access using fopen(), fclose() and read/write using fgetc(), fputc() 
+    6.9 End of file [EOF] feof() And file error checking ferror()
+    6.10 String I/O in a File with fputs() & fgets(). Text I/O with fprintf() & fscanf()
+    6.11 READ AND WRITE BINARY DATA
+    6.12 Random access using fseek()
+    6.13 Some other important File-System functions
+    6.14 THE STANDARD STREAMS
+
+
+---------    File structure    ---------
+
+    C_Ch6_1_1_mcro_sbt_define
+    C_Ch6_1_2_sdt_conio_gtCr_ptCr
+    C_Ch6_1_3_NONsdt_conio_gtCh_
+    C_Ch6_1_4_mstr_gets_puts
+    C_Ch6_1_5_mstr_printf
+    C_Ch6_1_6_mstr_scanf
+
+    C_Ch6_2_1_filio_strm
+    C_Ch6_2_2_file_access
+    C_Ch6_2_3_feof_ferror
+    C_Ch6_2_4_stringIO_filio
+    C_Ch6_2_5_BinaryIO
+    C_Ch6_2_6_RanAcss_fseek
+    C_Ch6_2_7_other_filio_func
+    C_Ch6_2_8_std_strm
