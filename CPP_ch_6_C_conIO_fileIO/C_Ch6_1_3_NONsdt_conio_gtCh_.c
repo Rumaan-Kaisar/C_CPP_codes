@@ -1,17 +1,137 @@
-6.4 NON-STANDARD CONSOLE FUNCTIONS : getche(), getch(), kbhit(), cprintf(), cscanf()
-Both getche() and getch()  are non-standard functions of C. Prototypes of  getche() and getch()  are :
-int getche(void); 	/*Return type is int*/
-int getch(void); 	/*Return type is int*/
-Both functions use the header file CONIO.H and returns int. . 
+/*     
+    ----------------    NON-STANDARD CONSOLE FUNCTIONS    ----------------
+            getche()
+            getch()
+            kbhit()
+            cprintf()
+            cscanf()
 
-	The getche() function waits until the next keystroke is entered at the keyboard. When a key is pressed, getche() echoes(shows) it to the screen and then immediately returns the character. The character is read as an unsigned char and elevated to int. However, your routines (functions) can simply assign this value to a char value. 
 
-	The getch() function is the same as getche(), except that the keystroke is not echoed(not showed) to the screen.
 
-	Another very useful non-ANSI-standard function commonly supplied with a C compiler is kbhit(). It has this prototype:
-int kbhit(void); 	/*Return type is int*/
-The kbhit() function also requires the header file CONIO.H. This function is used to determine whether a key has been pressed or not. When a key is pressed, kbhit() returns true (nonzero), but does not read the character (can be read it with getche() or getch() ). If no keystroke is pending, khhit( ) returns false (zero).
+    getche() and getch():
+        int getche(void); 	// Return type is int
+        int getch(void); 	// Return type is int
 
-Problems of mixing standard I/O and non-standared I/O : For some compilers. the non-standard i/O functions such as getche() are not compatible with the standard i/O functions such as printf() or scanf(). When this is the case, mixing the two can cause unusual program behavior. If mixing standard I/O and non-standared I/O is not compatible in your compiler, you may need to use non-standard versions of scanf() and/or printf(), too. These are called cprintf() and cscanf() . Both cprintf() and  cscanf() use the CONIO.H header file.
-	The cprintf() function works like printf() except that it does not translate the newline character (\n) into the carriage return, linefeed pair as does the printf() function. Therefore, It is necessary to explicitly output the carriage return (\r) where desired. 
-	The cscanf() function works like the scanf() function. 
+        Both functions use the header file <CONIO.H> and returns int.
+
+        getche() waits until the keystroke. 
+        After the keystroke getche() echoes(shows) it to the screen. It immediately returns the character.
+            as an unsigned char and elevated to int. However, your routines (functions) can simply assign this value to a char value. 
+
+        The getch() function is the same as getche(), except that the keystroke is not echoed(not showed) to the screen.
+
+
+
+    kbhit():
+        int kbhit(void); 	// Return type is int
+
+        kbhit()  requires CONIO.H. 
+            It is to detect keypress. When a key is pressed, kbhit() returns true (nonzero), but DOES NOT READ the character.
+            If no keystroke is pending, khhit( ) returns false (zero).
+
+
+    Problems of mixing standard I/O and non-standared I/O: 
+        non-standard i/O functions such as getche() are not compatible with the standard i/O functions such as printf() or scanf().
+
+
+
+    cprintf() and cscanf():
+        These are non-standard versions of printf() and scanf(). Both cprintf() and  cscanf() use the CONIO.H.
+        The cprintf() function works like printf() except that 
+            it does not translate the newline character (\n) into the CARRIAGE RETURN. Use CARRIAGE RETURN (\r) explicitly.
+
+        The cscanf() function works like the scanf() function.
+
+        We can mix cprintf() and cscanf() with other non standared I/O functions like getche() or getch()
+*/
+
+
+
+
+/* Example 1: The getch() function lets you take greater control of the screen because
+                you can determine what is displayed each time a key is struck.
+                For example, this program reads characters until a 'q' is typed.
+                All characters are displayed in uppercase using the cprintf() function. */
+#include <stdio.h>
+#include <conio.h>
+#include <ctype.h>
+
+int main(void) {
+    char ch;
+
+    do{
+        ch = getch();
+        // cprintf("%c", toupper(ch));
+        printf("%c", toupper(ch));
+        } while(ch != 'q');
+    return 0;
+}
+
+
+
+
+
+/* Example 2: The kbbit( ) function is very useful when you want to let a user interrupt a routine
+                without actually forcing the user to continually respond to a prompt like 'Continue?'.
+                For example, this program prints a 5-percent sales-tax table in increments of 20 cents.
+                The program continues to print the table until either the user strikes a key or the maximum value is printed. */
+#include<stdio.h>
+#include<conio.h>
+
+int main(void) {
+    double amount;
+
+    amount = 0.20;
+
+    // notice how CARRIAGE RETURN "\r" is used with "\n"
+    // cprintf( "Printing 5-percent tax table \n\r");
+    // cprintf("Press a key to stop.\n\n\r");
+    printf( "Printing 5-percent tax table \n\r");
+    printf("Press a key to stop.\n\n\r");
+
+    do{
+        // cprintf("amount: %f tax: %f \n\r", amount, amount*0.05);
+        printf("amount: %f tax: %f \n\r", amount, amount*0.05);
+        if(kbhit()) break;
+        amount = amount + 0.20;
+    } while(amount < 100.0);
+
+    return 0;
+}
+
+
+// In the calls to cprintf(), notice how both the carriage return (\r) and the newline (\n) must be output. 
+// As explained, cprintf() does not automatically convert newlines into carriage return.
+
+
+
+
+
+/* Example 3: Write a program that displays the ASCII code of each character typed. 
+                Do not display the actual character, however. */
+#include <stdio.h>
+#include <conio.h>
+
+int main(void){
+    char ch;
+
+    ch = getch();
+    printf("%d", ch);
+
+    return 0;
+}
+
+
+
+
+/* Example 4: Write a program that prints periods on the screen until you press a key. */
+#include <stdio.h>
+#include <conio.h>
+
+int main(void){
+    do{
+        printf("%c", '.');
+    } while(!kbhit());
+
+    return 0;
+}
