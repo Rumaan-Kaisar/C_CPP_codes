@@ -218,3 +218,6 @@ printf("Clearance price: 40% off as marked")
 
 /* Example 7: 3. Show how to display 1023.03 so that only two decimal places are printed. */
 printf("%.2f", 1023.03)
+
+    
+    
