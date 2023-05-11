@@ -59,54 +59,70 @@ int main(void){
 
 
 
+/* Example 2: If you simply want to make sure that gets() did not encounter
+                an error before proceeding, you can place gets() directly inside an if statement, 
+                as illustrated by the following program: 
+                Because a null pointer is false, there is no need for the
+                intermediary variable p, and the gets() statement can be put directly inside the if.*/
 
-
-
-
-Example 2: If you simply want to make sure that gets( ) did not encounter
-an error before proceeding, you can place gets( ) directly inside
-an if statement, as illustrated by the following program:
-Compile the program shown in Example 2, above. Note the size
-of the compiled code. Next, convert it so that it uses pl'intf( )
-statements, instead ofputs( ). You wiJI find that the printf{ :'
-version is several byte, larger.
-'include <stdio.h>
-int main(void)
-(
-char str[80]
-
-
-printf (-Enter a
-if(gets(str))
-string: .);
-/* if not null */
-printf(~Here is your string: %5·, str);
-return 0;
-)
-Because a null pointer is false, there is no need for the
-intermediary variable p, and the gets( ) statement can be put
-directly inside the if. .•
-
-
-Example 3: It is important to understand that even though gets( ) returns a
-pointer to the start of the string, it still must be called with a
-pointer to an actual array. For example, the following is wrong:
-char .p;
-p = gets(pl; /"" wrong!!! */
-Here, there is no array defined into which gets( ) can put the
-string.,This will result in a program failure.
-
-
-Example 4: This program outputs the words one, two, and three on three
-separate Jines. using puts( ).
 #include <stdio.h>
-int main(void)
-{
-)
-puts Vone");
-puts(ntwo") ;
-puts(ftthree") ;
-return 0;
+
+int main(void){
+    char str[80];
+
+    printf("Enter a string: ");
+
+    // if not null 
+    if(gets(str)) printf("Here is your string: %s", str);
+
+    return 0;
+}
+
+
+
+
+/* Example 3: Compile the program shown in Example 2, above. Note the size
+                of the compiled code. Next, convert it so that it uses puts(), instead of printf( ).
+                You will find that the printf() version is several byte, larger. */
+#include <stdio.h>
+
+int main(void){
+    char str[80];
+
+    puts("Enter a string: ");
+
+    // if not null
+    if(gets(str)) puts(str);
+
+    return 0;
+}
+
+
+
+
+/* Example 4: It is important to understand that even though gets( ) returns a
+pointer to the start of the string, it still must be called with a
+pointer to an actual array. For example, the following is wrong: */
+
+char *p;
+p = gets(p); // wrong!!!
+
+// Here, there is no array defined into which gets( ) can put the string. This will result in a program failure.
+
+
+
+
+/* Example 5: This program outputs the words 'one', 'two', and 'three' on three separate lines. using puts( ). */
+#include <stdio.h>
+
+int main(void){
+    puts("one");
+    puts("two");
+    puts("three");
+
+    return 0;
+}
+
 
 
 
