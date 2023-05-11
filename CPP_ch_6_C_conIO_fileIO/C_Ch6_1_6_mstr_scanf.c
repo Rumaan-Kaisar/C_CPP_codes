@@ -1,38 +1,80 @@
-6.7 scanf( ) : Details
-The prototype for scanf() is:
-int scanf(char *control-string, ... );
+/* 
+	---------------    scanf() Details    ---------------
+	The prototype for scanf() is:
 
-The control-string consists mostly of format specifiers. However, it can contain other characters. The format specifiers determine how scanf() reads information into the variables pointed to by the arguments that follow the control string. 
-	The specifiers are matched in order, from left to right, with the arguments. 
-	There must be as many arguments as there are specifiers. 
+		int scanf(char *control-string, ... );
 
-The scanf() function returns the number of fields assigned values. If an error occurs before any assignments are made, EOF is returned.
 
-Code	Meaning	Details
-%c	Read a single character	
-%d	Read a decimal integer	
-%i	Read a decimal integer	
-%e	Read a floating-point number	
-%f	Read a floating-point number	
-%g	Read a floating-point number	
-%o	Read an octal number	used to read an unsigned integer using octal  bases
-%s	Read a string	
-%x	Read a hexadecimal number	used to read an unsigned integer using hexadecimal  bases
-%p	Read a pointer	inputs a memory address using the format determined by the host environment
-%n	Receives an integer value equal to
- the number of characters read so far	assigns the number of characters input up to the point the %n is encountered to the integer variable pointed to by its matching argument,  l or h applied for long or short .
-%u	Read an unsigned integer	
-%[]	Scan for a set of characters	
+	The "CONTROL-STRING" consists mostly of FORMAT SPECIFIERS. However, it can contain other characters. 
+		The format specifiers determine how scanf() reads information into the 'variables pointed to by the arguments' that follow the 'control string'. 
+			The specifiers are matched in order, from left to right, with the arguments. 
+			There must be as many arguments as there are specifiers. 
 
-scanset  %[] : A scanset specifier is created by putting a list of characters inside square brackets, for example, here is a scanset specifier containing the letters 'ABC' :   %[ABC]	 /*reads A,B,C from input*/
-	When scanf() encounters a scanset, it begins reading input into the character array pointed to by the scanset's matching argument.  It will only continue reading characters as long as the next character is part of the scanset. 
-	As soon as a character that is not part of the scanset is found, scanf() stops reading input for this specifier and moves on to any others in the control string.
-	You can specify a range in a scanset using the - (hyphen), for example, this scanset specifies the characters 'A' through 'Z',
- 				%[A-Z]
-Technically, the use of the hyphen to specify a range is not specified by the ANSI C standard, but it is nearly universally accepted.
-When the scanset is very large, sometimes it is easier to specify what is not part of a scanset, To do this, precede the set with a ^ , for example, 	%[^0123456789] 	When scanf() encounters this scanset, it will read any characters except the digits 0 through 9.
+		scanf() returns the number of fields assigned values. 
+			If an error occurs before any assignments are made, "EOF" is returned.
 
-Here’s an example of a scanset that accepts both the upper- and lowercase characters (but no spaces). 
+
+	Code	Meaning						Details
+	%c	Read a single character	
+	%d	Read a decimal integer	
+	%i	Read a decimal integer	
+	%e	Read a floating-point number	
+	%f	Read a floating-point number	
+	%g	Read a floating-point number	
+	%o	Read an octal number			used to read an unsigned integer using octal  bases
+	%s	Read a string	
+	%x	Read a hexadecimal number		used to read an unsigned integer using hexadecimal  bases
+	%p	Read a pointer	inputs a memory address using the format determined by the host environment
+	%n	Receives an integer value equal to the number of characters read so far	
+		assigns the number of characters input up to the point the %n is encountered to 
+		the integer variable pointed to by its matching argument,  l or h applied for long or short .
+
+	%u	Read an unsigned integer	
+	%[]	Scan for a set of characters	
+
+
+
+
+	Use of   %* (no associated argument): 
+		you can suppress(neglect) the assignment of a field by putting an asterisk "*" immediately after the % sign. 
+			This can be very useful when inputting information that contains needless characters. 
+			(eg : input password containing "-" : abc-3nh-th7). 
+			
+			For example, following scanf() used to assign 555 to first, discard the -, and assign 2345 to second. 
+			Since the hyphen is not needed, there is no reason to assign it to anything. Hence, NO ASSOCIATED ARGUMENT is supplied.
+
+				int first , second;
+				scanf( "%d%*c%d", &first. &second);
+
+			inputting : 555-2345, then scanf() will read as first=555 and second=2345, the "-" will be skipped.
+
+
+
+
+	scanset  %[] : 
+		A "SCANSET SPECIFIER" is created by putting a 'list of characters' inside square brackets, 
+			for example, here is a 'scanset specifier' containing the letters 'ABC' :   %[ABC]	 //reads A,B,C from input
+
+		When scanf() encounters a scanset, it begins reading input into the "character array" pointed to by the scanset's matching argument.  
+			It will only continue reading characters as long as the 'next character is part of the scanset'. 
+
+		As soon as a character that is not part of the scanset is found, scanf() stops reading input for this specifier and 
+			moves on to any others in the control string.
+
+		You can specify a range in a scanset using the - (hyphen), for example, this scanset specifies the characters 'A' through 'Z',
+					%[A-Z]
+
+			Technically, the use of the hyphen to specify a range is not specified by the ANSI C standard, but it is nearly universally accepted.
+
+		Exclusion: When the scanset is very large, sometimes it is easier to specify what is "not part of a scanset", 
+			To do this, precede the set with a ^ , for example, 	
+			
+			%[^0123456789] 		// When scanf() encounters this scanset, it will read any characters 'except' the digits 0 through 9.
+*/
+
+
+	Here’s an example of a scanset that accepts both the upper- and lowercase characters (but no spaces). 
+
 char str[80];
 printf("Enter letters, anything else to stop\n");
 scanf("%[a-zA-Z]", str); printf(str);
@@ -40,15 +82,15 @@ Following code is slightly changed with a whitespace " " inside [] , it allows w
 char edstr[80];
 /*Admits space*/
 printf("Enter letters with space, anything else to stop\n");
-scanf("%[a-zA-Z ]", edstr); printf(edstr); /*added white space inside []*/
-	You could also specify punctuation symbols and digits inside scanf("%[a-zA-Z ]", edstr);, so that you can read virtually any type of string. 
+scanf("%[a-zA-Z ]", edstr); printf(edstr); //added white space inside []
 
-Use of   %* : you can suppress(neglect) the assignment of a field by putting an asterisk "*" immediately after the % sign. This can be very useful when inputting information that contains needless characters. (eg : input password containing "-" : abc-3nh-th7). For example, given this scanf() statement
-int first , second;
-scanf( "%d%*c%d", &first. &second);
-inputting : 555-2345, then scanf() will read as first=555 and second=2345, the "-" will be skipped.
 
-will cause scanf() to assign 555 to first, discard the -, and assign 2345 to second. Since the hyphen is not needed, there is no reason to assign it to anything. Hence, no associated argument is supplied.
+	You could also specify punctuation symbols and digits inside scanf("%[a-zA-Z ]", edstr);, so that you can read virtually any type of string. 
+
+
+
+
+
 
 Notes
 [1]	The specifiers %d, %i, %u, %x, and %o (integer type specifiers) may be modified by the h when inputting into a short variable and by l when inputting into a long variable.
