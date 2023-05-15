@@ -326,8 +326,10 @@ int main(void){
 	unsigned u;
 
 	printf("Enter hexadecimal number: ");
-	scanfC"%x", &u);
+	scanf("%x", &u);
 	printf("Decimal equivalent: %u", u);
 
 	return 0;
 }
+
+
