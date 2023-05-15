@@ -1,5 +1,6 @@
 /* 
 	---------------    scanf() Details    ---------------
+
 	The prototype for scanf() is:
 
 		int scanf(char *control-string, ... );
@@ -12,6 +13,29 @@
 
 		scanf() returns the number of fields assigned values. 
 			If an error occurs before any assignments are made, "EOF" is returned.
+
+
+	You can specify a "MAXIMUM FIELD WIDTH" for all specifiers except %c (one character field)  and %n (to which the concept does not apply). 
+		The MAXIMUM FIELD WIDTH is specified as an "unsigned" integer, and it immediately precedes the 'format specifier character'.
+		For example, this limits the maximum length of a 'STRING' assigned to str to 3 characters:  
+				scanf("%3s", str);
+
+
+	Limitation of scanf() to read 'strings': 
+		You can use scanf() to read a string using the %s specifier, but when scanf() inputs a string, 
+		It stops reading that string when the first whitespace character is encountered (i.e. scanf() can read a word, not whole sentence). 
+		A whitespace character is either a 'space', a 'tab', or a 'newline'
+
+		This is why gets() is generally used to input strings.
+
+	If a space appears in the control string, then scanf() will begin reading and 
+		discarding whitespace characters until the first non-whitespace character is encountered
+			following used to read operators for arithmetic operations:
+			printf("Enter operation: "); 
+					scanf("%d %c %d", &i, &op, &j);
+
+	Line-Buffering: 
+		As scanf() is generally implemented, it line-buffers input in the same way that getehar() often does. 
 
 
 	Code	Meaning						Details
@@ -33,6 +57,14 @@
 	%[]	Scan for a set of characters	
 
 
+	The specifiers %d, %i, %u, %x, and %o (integer type specifiers) may be modified by 
+		the 'h' when inputting into a short variable and by 'l' when inputting into a long variable.
+
+	The specifiers %e, %f, and %g are equivalent. They all read floating-point numbers 
+		represented in either scientific notation or standard decimal notation .  
+		To read a double, modify them with 'l'. To read a long double, modify them with 'L'.
+
+
 
 
 	Use of   %* (no associated argument): 
@@ -47,6 +79,7 @@
 				scanf( "%d%*c%d", &first. &second);
 
 			inputting : 555-2345, then scanf() will read as first=555 and second=2345, the "-" will be skipped.
+			%*c to skip single character
 
 
 
@@ -73,50 +106,104 @@
 */
 
 
-	Here’s an example of a scanset that accepts both the upper- and lowercase characters (but no spaces). 
-
-char str[80];
-printf("Enter letters, anything else to stop\n");
-scanf("%[a-zA-Z]", str); printf(str);
-Following code is slightly changed with a whitespace " " inside [] , it allows white space between characters to be read by scanf().
-char edstr[80];
-/*Admits space*/
-printf("Enter letters with space, anything else to stop\n");
-scanf("%[a-zA-Z ]", edstr); printf(edstr); //added white space inside []
 
 
-	You could also specify punctuation symbols and digits inside scanf("%[a-zA-Z ]", edstr);, so that you can read virtually any type of string. 
+/* Example 1: To see the effect of the %s specifier, try this program. 
+				When prompted, type "this is a test" and press ENTER. You will see only "this" redisplayed on the screen. 
+				This is because, when reading strings, scanf() stops when it encounters the 'first whitespace character'. */
+
+#include <stdio.h>
+
+int main(void){
+	char str[80];
+
+	//Enter "this is a test"
+	printf("Enter a string: ");
+	scanf ("%s", str);
+
+	printf(str);
+
+	return 0;
+}
+
+
+
+
+/* Example 2: Here’s an example of a "scanset" that accepts both the Uppercase and Lowercase characters (but no spaces). 
+				Try entering fiew words. After you press ENTER, only the letters that you entered before 
+				pressing the non-letter key (spaces and othr char) will be contained in str. */
+#include <stdio.h>
+
+int main(void){
+	char str[80];
+
+	printf("Enter letters, anything else to stop\n");
+	scanf("%[a-zA-Z]", str);
+	
+	printf(str);
+
+	return 0;
+}
+
+
+
+
+/* Example 3: Following code is slightly changed previous example with a whitespace " " inside [] , 
+				it allows white space between characters to be read by scanf(). */
+#include <stdio.h>
+
+int main(void){
+	char str[80];
+
+	/*Admits space*/
+	printf("Enter letters with space, anything else to stop\n");
+	scanf("%[a-zA-Z ]", str);	//added white space inside [] 
+	printf(str); 
+
+	return 0;
+}
+
+// You could also specify punctuation symbols and digits inside scanf("%[a-zA-Z ]", edstr);, 
+// so that you can read virtually any type of string. 
+
+
+
+
+/* Example 4: If a space appears in the control string, then scanf() will begin reading and 
+				discarding whitespace characters until the first non-whitespace character is encountered.  
+				This program lets the user enter a number 'followed by an operator' followed by a second number, such as 12 + 4. 
+				It then performs the specified operation on the two numbers */
+#include<stdio.h>
+
+int main(void){ 
+	int i, j; 
+	char op;
+
+	printf("Enter operation: "); 
+	scanf("%d %c %d", &i, &op, &j);
+
+	switch(op){ 	
+		case '+': printf("%d", i+j); break;
+		case '-': printf("%d", i-j); break;
+		case '/': if(j) printf("%d",i/j); break;
+		case '*': printf("%d", i*j);
+		}
+
+	return 0;
+}
+
+	
 
 
 
 
 
-
-Notes
-[1]	The specifiers %d, %i, %u, %x, and %o (integer type specifiers) may be modified by the h when inputting into a short variable and by l when inputting into a long variable.
-
-[2]	The specifiers %e. %f, and %g are equivalent. They all read floating-point numbers represented in either scientific notation or standard decimal notation .  To read a double, modify them with l. To read a long double, modify them with L.
-
-[3]	Limitation of scanf()to read strings : You can use scanf() to read a string using the %s specifier, but when scanf() inputs a string, it stops reading that string when the first whitespace character is encountered (i.e. scanf() can read a word, not whole sentence). A whitespace character is either a space, a tab, or a newline, This means that you cannot easily use scanf() to read input like this into a string:
-this is one string
-Because there is a space after "this," scanf() will ,stop inputting the string at that point. This is why gets() is generally used to input strings.
-[4]	Line-Buffering : As scanf() is generally implemented, it line-buffers input in the same way that getehar() often does. While. this makes little difference when inputting numbers, its lack of interactivity tends to make scanf() of limited value for other types of input.
-[5]	You can specify a maximum field width for all specifiers except %c (for which a field is always one character)  and %n (to which the concept does not apply). The maximum field width is specified as an unsigned integer, and it immediately precedes the format specifier character. For example, this limits the maximum length of a string assigned to str to 3 characters:  scanf("%3s", str);
 int i, j; 
 printf("Enter an integer: "); scanf("%3d%d", &i, &j);
 printf("%d %d", i, j);
 This illustrates the maximum-field-width specifier: If 12345 is entered, i will be assigned 123, and j will have the value 45. The reason for this is that scanf() is told that i's field is only three characters long. The remainder of the input is then sent to j.
 
-[6]	If a space appears in the control string, then scanf() will begin reading and discarding whitespace characters until the first non-whitespace character is encountered.  For example: This program lets the user enter a number followed by an operator followed by a second number, such as 12 + 4. It then performs the specified operation on the two numbers
 
-#include<stdio.h>
-int main(void){ int i, j; char op;
-                printf("Enter operation: "); scanf("%d %c %d", &i, &op, &j);
-                switch(op){ 	case '+': printf("%d", i+j); break;
-                        	case '-': printf("%d", i-j); break;
-                        	case '/': if(j) printf("%d",i/j); break;
-                        	case '*': printf("%d", i*j);}
-  return 0;}
 
 Notice that the format for entering the information scanf("%d %c %d", &i, &op, &j); contains whitespace between two format specifires, this tricks admits whitespace between numbers and operation (here the white space is skipped by scanf())
 
