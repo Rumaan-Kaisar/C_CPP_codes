@@ -4,6 +4,10 @@
 	The prototype for scanf() is:
 
 		int scanf(char *control-string, ... );
+		
+		Eg:
+		scanf("%d.%d", &i, &j);
+		Here "%d.%d" is the "CONTROL STRING" and '&i, &j'  are the varargs
 
 
 	The "CONTROL-STRING" consists mostly of FORMAT SPECIFIERS. However, it can contain other characters. 
@@ -33,6 +37,11 @@
 			following used to read operators for arithmetic operations:
 			printf("Enter operation: "); 
 					scanf("%d %c %d", &i, &op, &j);
+
+
+	If any other character appears in the control string, scanf() reads and discards 
+		all matching characters until it reads the first character that does not match that character .
+	
 
 	Line-Buffering: 
 		As scanf() is generally implemented, it line-buffers input in the same way that getehar() often does. 
@@ -149,7 +158,7 @@ int main(void){
 
 
 /* Example 3: Following code is slightly changed previous example with a whitespace " " inside [] , 
-				it allows white space between characters to be read by scanf(). */
+				it allows "WHITE SPACE" between characters to be read by scanf(). */
 #include <stdio.h>
 
 int main(void){
@@ -157,7 +166,7 @@ int main(void){
 
 	/*Admits space*/
 	printf("Enter letters with space, anything else to stop\n");
-	scanf("%[a-zA-Z ]", str);	//added white space inside [] 
+	scanf("%[a-zA-Z ]", str);	//added WHITE SPACE inside [] 
 	printf(str); 
 
 	return 0;
@@ -172,7 +181,12 @@ int main(void){
 /* Example 4: If a space appears in the control string, then scanf() will begin reading and 
 				discarding whitespace characters until the first non-whitespace character is encountered.  
 				This program lets the user enter a number 'followed by an operator' followed by a second number, such as 12 + 4. 
-				It then performs the specified operation on the two numbers */
+				It then performs the specified operation on the two numbers 
+				
+				Notice that the format for entering the information scanf("%d %c %d", &i, &op, &j); 
+					contains whitespace between two format specifires, 
+					this tricks ADMITS WHITESPACE between numbers and operation 
+					(here the white space is skipped by scanf()). */
 #include<stdio.h>
 
 int main(void){ 
@@ -195,23 +209,125 @@ int main(void){
 	
 
 
+/* Example 5: following illustrates the maximum-field-width specifier: 
+				If 12345 is entered, i will be assigned 123, and j will have the value 45. 
+				The reason for this is that scanf() is told that i's field is only three characters long. 
+				The remainder of the input is then sent to j. */
+#include <stdio.h>
+
+int main(void){
+	int i, j; 
+
+	printf("Enter an integer: ");
+	scanf("%3d%d", &i, &j);
+	printf("%d %d", i, j);
+
+	return 0;
+}
 
 
 
-int i, j; 
-printf("Enter an integer: "); scanf("%3d%d", &i, &j);
-printf("%d %d", i, j);
-This illustrates the maximum-field-width specifier: If 12345 is entered, i will be assigned 123, and j will have the value 45. The reason for this is that scanf() is told that i's field is only three characters long. The remainder of the input is then sent to j.
 
+/* Examlpe 6: If any other character appears in the control string, scanf() reads and discards 
+				all matching characters until it reads the first character that does not match that character . */
 
-
-Notice that the format for entering the information scanf("%d %c %d", &i, &op, &j); contains whitespace between two format specifires, this tricks admits whitespace between numbers and operation (here the white space is skipped by scanf())
-
-[7]	If any other character appears in the control string, scanf() reads and discards all matching characters until it reads the first character that does not match that character .
 #include<stdio.h>
-int main(void){	int i, j;
-printf("Enter a decimal number: "); scanf("%d.%d", &i, &j);
-printf("left part: %d, right part: %d", i, j);
-return 0;}
 
-This program illustrates the effect of having non-whitespace characters in the control string. It allows you to enter a decimal value, but it assigns the digits to the left of the decimal point to one integer and those to the right of the decimal to another. The decimal point "." between the two %d specifiers causes the decimal point in the number to be matched and discarded.
+int main(void){	
+	int i, j;
+
+	printf("Enter a decimal number: "); 
+	scanf("%d.%d", &i, &j);
+	printf("left part: %d, right part: %d", i, j);
+
+	return 0;
+}
+
+/* This program illustrates the effect of having non-whitespace characters in the control string. 
+
+It allows you to enter a decimal value, but it assigns the digits to the left of the decimal point to one integer and 
+	those to the right of the decimal to another. 
+
+The decimal point "." between the two %d specifiers causes the decimal point in the number to be matched and discarded. */
+
+
+
+
+/* Example 7: Write a program that prompts for your name and then inputs your first, middle, and last names. 
+				Have the program read  no more than 20 characters for each part of your name. 
+				Finally, have the program redisplay your name. */
+#include <stdio.h>
+
+int main(void){
+	char first[21], middle[21], last[21];
+
+	printf("Enter your entire name: ");
+	scanf("%20s%20s%20s", first, middle, last);
+	printf("%s %s %s", first, middle, last);
+
+	return 0;
+}
+
+
+
+
+
+/* Example 8: Write a program that reads a floating-point number as a string using a 'scanset'. */
+#include <stdio.h>
+int main(void){
+	char num[80];
+
+	printf("Enter a floating point number: ");
+	scanf("%[0-9.]", num);
+	printf(num);
+
+	return 0;
+}
+
+
+
+
+/* Example 9: Is this fragment correct? If not why not? */
+char ch;
+scanf("%2c", &ch);
+// No, a character can only have a maximum field length of 1.
+
+
+
+
+/* Example 10: Write a program that inputs 
+					a string, 
+					a double, and 
+					an integer.
+				After these items have been read, have the program display how many characters were input. 
+				(Hint: use the %n specifier.) */
+#include <stdio.h>
+
+int main(void){
+	char str[80];
+	double d;
+	int i, num;
+
+	printf("Enter a string, a double, and an integer: ");
+	scanf("%s%lf%d%n", str, &d, &i, &num);
+	printf("Number of characters read: %d", num);
+
+	return 0;
+}
+
+
+
+
+/* Example 11: Write a program that converts a "hexadecimal" number entered
+				by the user into its corresponding "decimal" and octal equivalents. */
+#include <stdio.h>
+
+int main(void){
+	unsigned u;
+
+	printf("Enter hexadecimal number: ");
+	scanfC"%x", &u);
+	printf("Decimal equivalent: %u", u);
+
+	return 0;
+}
