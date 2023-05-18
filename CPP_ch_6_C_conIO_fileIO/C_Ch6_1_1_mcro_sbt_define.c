@@ -158,7 +158,7 @@ int main(void){
 
 
 
-/* Example 6: Write a program that defines a 'macro' called "COUNT" as the value 100. 
+/* Example 10: Write a program that defines a 'macro' called "COUNT" as the value 100. 
                 Have the program then use this macro to control a for loop that displays the numbers a through 99. */
 #include <stdio.h>
 #define COUNT 100
