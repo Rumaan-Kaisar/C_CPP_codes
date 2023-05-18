@@ -160,3 +160,19 @@ char str[80] = "this is a test";
 .
 putchar(str) :
 
+
+
+
+/* Example 6: What is the difference between getchar(), getche(), and getch()? */
+All these functions input a character from the keyboard. 
+getchar() often implemented using line-buffered I/O which makes its use in interactive environments undesirable.
+    It is a Standared Input function.
+
+getche() is an interactive equivalent to getchar().
+    It is a NON-STANDARD CONSOLE FUNCTION
+
+getch() is the same as getche() except that it does not echo the character typed.
+    It is a NON-STANDARD CONSOLE FUNCTION
+    
+    
+    
