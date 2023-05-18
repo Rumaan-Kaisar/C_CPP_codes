@@ -1,3 +1,17 @@
+
+-------------------    INTRO    -------------------
+/* C does not define any File I/O keywords. But C's STL contains a very rich set of File I/O functions.
+
+Most C compilers supply two complete sets of file I/O functions.
+    ANSI file system (or buffered file system).
+    UNIX-like file system (or unbuffered file system). This file system is not defined by the ANSI C standard.
+
+Here we only discuss the "ANSI file system". Because its supported by most of the systems. */
+ 
+ 
+ 
+ 
+
 6.8 STREAMS for file I/O in C
 The stream and the file : The C I/O system supplies a consistent interface to the programmer, independent of the actual I/O device being used. To accomplish this, C provides a level of abstraction between the programmer and the hardware. This abstraction is called a stream.
 
