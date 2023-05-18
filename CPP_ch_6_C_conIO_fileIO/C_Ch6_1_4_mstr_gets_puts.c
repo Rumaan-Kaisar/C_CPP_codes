@@ -154,3 +154,161 @@ But, it can only output strings.
 EOF is a macro that stands for "end-of-file". It is defined in STDIO.H.
     
     
+    
+
+/* Example 8: Write a program that is a "SIMPLE ELECTRONIC LIBRARY" card catalog. Have the program display this menu:
+
+                                Card Catalog:
+                                    1. Enter
+                                    2. Search by Author
+                                    3. Search by Title
+                                    4. Quit
+
+                                Choose your selection:
+
+                If you choose Enter, have the program repeatedly input the name, author, and publisher of a book. 
+                    Have this process continue until the user enters a blank line for the name of the book.
+
+                For searches, prompt the user for the specified author or title and
+                then, if a match is found, display the rest of the information. 
+
+                In the next chapter we'll learn how to save the catalog to a disk file (File I/O). 
+*/
+
+// Note: There are many ways you could have written this program. This one is simply representative
+
+/* =-=-=-=-=-=-=-=-=-=-=            An electronic card catalog             =-=-=-=-=-=-=-=-=-=-= */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
+
+// Function prototypes
+int menu(void);
+void display(int i);
+void author_search(void);
+void title_search(void);
+void enter(void);
+
+// global variables
+char names[MAX][80];    // author names
+char titles[MAX][80];   // titles
+char pubs[MAX][80];     //publisher
+
+int top= 0;             // last location used
+
+
+int main(void) {
+    int choice;
+
+    do{
+        choice = menu();
+
+        switch(choice) {
+            case 1: enter(); // enter books
+                    break;
+            case 2: author_search(); // search by author
+                    break;
+            case 3: title_search(); // search by title
+                    break;
+        }
+    } while(choice!=4);
+
+    return 0;
+}
+
+
+// Return a menu selection
+int menu(void){
+    char str[80];
+    int i;
+
+    printf("Card Catalog: \n");
+    printf(" 1. Enter\n");
+    printf(" 2. Search by Author\n");
+    printf(" 3. Search by Title\n");
+    printf(" 4. Quit\n");
+
+    do {
+        printf("Choose your selection: ");
+        gets(str);
+        i = atoi(str);
+        printf("\n") ;
+    } while(i<1 || i>4);
+
+    return i;
+}
+
+
+// Enter books into database.
+void enter(void){
+    int i;
+
+    for(i=top; i<MAX; i++) {
+        printf("Enter author name (hit-ENTER to quit): ");
+        gets(names[i]);
+        if(!*names[i]) break;
+        printf("Enter title: ");
+        gets(titles[i]);
+        printf("Enter publisher: ");
+        gets(pubs[i]);
+    }
+    top = i;
+}
+
+
+// Search by author
+void author_search(void){
+    char name[80];
+    int i, found;
+
+    printf("Name: ");
+    gets(name);
+
+    found = 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(name, names[i])){
+            display(i);
+            found = 1;
+            printf(" \n");
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Search by title
+void title_search(void){
+    char title[80];
+    int i, found;
+
+    printf("Title: ");
+    gets(title);
+
+    found = 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(title, titles[i])){
+            display(i) ;
+            found = 1;
+            printf("\n");
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Display catalog entry
+void display(int i){
+    printf("%s\n", titles[i]);
+    printf("by %s\n", names[i]);
+    printf("Published by %s\n", pubs[i]);
+}
+
+
+
