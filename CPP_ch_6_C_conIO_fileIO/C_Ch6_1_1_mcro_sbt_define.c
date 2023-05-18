@@ -155,3 +155,18 @@ int main(void){
 	return 0;
 }
 
+
+
+
+/* Example 6: Write a program that defines a 'macro' called "COUNT" as the value 100. 
+                Have the program then use this macro to control a for loop that displays the numbers a through 99. */
+#include <stdio.h>
+#define COUNT 100
+int main(void){
+    int i;
+
+    for(i=0; i<COUNT; i++) printf("%d ", i);
+
+    return 0;
+}
+
