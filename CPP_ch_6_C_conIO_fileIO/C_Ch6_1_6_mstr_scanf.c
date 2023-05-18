@@ -357,3 +357,54 @@ int main(void){
     return 0;
 }
 
+
+
+
+/* Example 14: Write a program that allows you to enter the batting averages for the players on a little league team. 
+                    (Assume there are exactly 9 players.) 
+                Have the user enter the 'first name' and 'batting average' of each player. 
+                Use a two-dimensional character array to hold the names and a one-dimensional double array to hold the batting averages. 
+                Once all the names are entered, have the program report the name and average of the players with the highest and lowest averages. 
+                Also, have the program display the team average. 
+*/
+#include <stdio.h>
+
+int main(void){
+    char name[9][80];
+    double b_avg[9];
+    int i, h, l;
+    double high, low, team_avg;
+
+    for(i=0; i<9; i++) {
+        printf("Entar name %d: ", i+1);
+        scanf("%s", name[i]);
+
+        printf("Enter batting average: ");
+        scanf("%lf", &b_avg[i]);
+
+        printf ("\n");
+    }
+
+    high = 0.0,
+    low = 1000.0,
+    team_avg = 0.0;
+
+    for(i=0; i<9; i++){
+        if(b_avg[i]>high){
+            h = i;
+            high = b_avg[i];
+        }
+        if(b_avg[i]<low){
+            l = i;
+            low = b_avg[i];
+        }
+        team_avg = team_avg + b_avg[i];
+    }
+
+    printf("The high is %s %f\n", name[h], b_avg[h]);
+    printf("The low is %s %f\n", name[l], b_avg[l]);
+    printf("The team average is %f", team_avg/9.0);
+
+    return 0;
+}
+
