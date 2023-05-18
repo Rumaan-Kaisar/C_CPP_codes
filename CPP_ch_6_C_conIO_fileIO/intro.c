@@ -6,28 +6,7 @@ You have already been using some of these functions.
  
 ---------------     Raw Mstry & skill     -------------
 
-
--------------     mastery     -------------
-Before proceeding you should be able to answer these questions and
-perform these exercises:
-1. What is the difference between getchar( ), getche( ), and
-getch( )?
-2. What is the difference between·the %e and the %E printf( )
-format specifiers?
-What is a scanset?
-4. Write a program, using scanf( ), that inputs your first name,
-birth date (using the format mmldd/yy), and telephone
-number. Redisplay the information on the screen to verify that
-it was input correctly.
-5. What is one advantage to using puts( ) over printf( ) when
-you only need to output a string? What is one disadvantage to
-puts( )?
-6. Write a program that defines a macro called COUNT as the
-value 100. Have the program then use this macro to control a
-for loop that displays the numbers a through 99.
-7. What is EOF, and where is it defined?
-
-
+  
 This section checks how well you have integrated the material in
 this chapter with that from earlier chapters.
 1. Write a program that allows you to enter the batting averages for
