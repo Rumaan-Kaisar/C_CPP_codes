@@ -139,3 +139,13 @@ int main(void) {
     return 0;
 }
 
+
+
+
+/* Example 6: What is one advantage to using puts() over printf() when
+                you only need to output a string? What is one disadvantage to puts()? */
+The pats() function is much smaller and faster than printf().
+But, it can only output strings.
+
+   
+    
