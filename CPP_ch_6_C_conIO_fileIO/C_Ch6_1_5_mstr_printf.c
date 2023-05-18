@@ -222,7 +222,7 @@ printf("%.2f", 1023.03)
     
     
     
-/* Example 2: What is the difference between the %e and the %E printf() format specifiers? */
+/* Example 8: What is the difference between the %e and the %E printf() format specifiers? */
 The %e specifier outputs a number in scientific notation using a lowercase 'e'. 
 The %E specifier outputs a number in scientific notation using an 'E'.
     
