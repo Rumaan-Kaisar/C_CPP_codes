@@ -333,3 +333,27 @@ int main(void){
 }
 
 
+
+
+/* Example 12: What is a scanset? */
+A scanset is a set of characters that scanf() matches with input. As long as the characters being read are part of the scanset, 
+scanf() continues to input them into the array pointed to by the scansets corresponding argument.
+
+
+	
+
+/* Example 13: Write a program, using scanf(), that inputs your first name, birth date (using the format mm/dd/yy), 
+                and telephone number. Redisplay the information on the screen to verify that it was input correctly. */
+#include <stdio.h>
+int main(void){
+    char name[80], date[80], phone[80];
+
+    printf("Enter first name, birthdate ");
+    printf("and phone number:\n");
+
+    scanf("%s%8s%8s", name, date, phone);
+    printf("%s %s %s", name, date, phone);
+
+    return 0;
+}
+
