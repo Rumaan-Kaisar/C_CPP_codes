@@ -149,3 +149,8 @@ But, it can only output strings.
 
    
     
+    
+/* Example 7: What is EOF, and where is it defined? */
+EOF is a macro that stands for "end-of-file". It is defined in STOIO.H.
+    
+    
