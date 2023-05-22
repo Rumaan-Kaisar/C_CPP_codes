@@ -228,3 +228,37 @@ The %E specifier outputs a number in scientific notation using an 'E'.
     
     
     
+
+/* Example 9: Write a program that prints a four-column table of the prime
+                numbers between 2 and 1000. Make sure that the columns are aligned. */
+
+#include <stdio.h>
+
+int isprime(int i);
+
+int main(void){
+    int i, count;
+
+    count = 0;
+
+    for(i=2; i<1001; i++){
+        if(isprime(i)) {
+            printf ("%10d", i);
+            count++;
+        }
+        if (count==4){
+            printf("\n");
+            count = 0;
+        }
+    }
+    return 0;
+}
+
+
+int isprime(int i){
+    int j;
+
+    for(j=2; j<=(i/2); j++) if(!(i%j)) return 0;
+    return 1;
+}
+
