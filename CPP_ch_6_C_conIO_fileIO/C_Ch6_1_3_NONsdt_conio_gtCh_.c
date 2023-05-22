@@ -139,13 +139,13 @@ int main(void){
 
 
 
-/* Example 5: What is the difference between getchar() and gctche() */
+/* Example 5: What is the difference between getchar() and getche() */
 /* 
     The getchar() function is defined by the "ANSI standard" and is used to input characters from the keyboard. 
         However, in most implementations, it uses 'line-buffered I/O', which makes it impractical for interactive use. 
 
     The getche() function is "not defined by the ANSI standard", but it is quite common and is
-        essentially an interactive version of gctchar( ). 
+        essentially an interactive version of getchar( ). 
 */
 
 
