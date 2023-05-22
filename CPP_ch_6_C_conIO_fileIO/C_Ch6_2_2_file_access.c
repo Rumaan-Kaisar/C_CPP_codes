@@ -20,7 +20,8 @@ fopen():
             FILE *file_pointer;
             file_pointer = fopen("file_name", "mode");
 
-IN the prototype the name of the file to open is pointed to by fname. It must be a valid file name, as defined by the operating system. The string pointed to by mode determines how the file may be accessed. ANSI C standard values for mode are shown in Table. 
+
+IN the prototype the name of the file to open is pointed to by "fname". It must be a valid file name, as defined by the operating system. The string pointed to by mode determines how the file may be accessed. ANSI C standard values for mode are shown in Table. 
 	The type FILE is defined in STDIO.H. It is a structure that holds various kinds of information about the file, such as its size, the current location of the file, and its access modes. It essentially identifies the file. (A structure is a group of variables accessed under one name.)
 
 	If the open operation is successful, fopen() returns a valid file pointer.  The fopen() function returns a pointer to the structure associated with the file by the open process. This pointer will be used with all other functions that operate on the file. It can't be altered or the object it points to.
