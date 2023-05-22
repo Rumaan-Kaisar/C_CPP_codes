@@ -451,3 +451,7 @@ int main(void){
 
 
 
+/* Example 17: Give one reason why you probably won't use scanf()'s %s option to read strings from the keyboard. */
+// When scanf() is reading a string, it stops when it encounters the first whitespace character.
+
+
