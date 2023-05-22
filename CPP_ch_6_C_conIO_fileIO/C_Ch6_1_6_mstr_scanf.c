@@ -408,3 +408,46 @@ int main(void){
     return 0;
 }
 
+
+
+
+/* Example 15: Write a program that inputs a double, a character, and a string not longer than 20 characters. 
+                Redisplay the values to confirm that they were input correctly. */
+
+#include <stdio.h>
+
+int main(void){
+    double d;
+    char ch;
+    char str[80];
+
+    printf("Enter a double, a character, and a string\n");
+    scanf("%lf%c%20s", &d, &ch, str);
+    printf("%f %c %s", d, ch, str);
+
+    return 0;
+}
+
+
+
+
+/* Example 16: Write a program that reads and discards leading digits and then reads a string. 
+                (Hint: Use a scanset to read past any leading digits.) */
+
+#include <stdio.h>
+
+int main(void){
+    char str[80];
+
+    printf("Enter leading digits followed by a string\n");
+    scanf("%*[0-9]%s", str);
+    printf("%s", str);
+
+    return 0;
+}
+// input: 908tuhkfugh90-97rve
+// output: tuhkfugh90-97rve
+
+
+
+
