@@ -1,6 +1,7 @@
 
--------------------    INTRO    -------------------
 /* 
+    -------------------    INTRO    -------------------
+    
     C does not define any File I/O keywords. But C's STL contains a very rich set of File I/O functions.
 
     Most C compilers supply two complete sets of file I/O functions.
