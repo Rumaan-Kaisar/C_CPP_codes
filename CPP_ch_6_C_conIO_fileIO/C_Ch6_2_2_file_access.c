@@ -146,6 +146,50 @@
 
     Note: 
         For GENERAL PURPOSE use only "r+" and "a+" for 'read/write/append' but be careful using "w"/"w+".
+
+
+
+
+    ----------------------    Flushing the buffer    ----------------------
+
+        In order to improve efficiency, most file system implementations write data to disk one sector at a time.
+            Therefore, data is buffered until it is physically written to disk. 
+            When you call fclose(), it automatically writes any information remaining in a "partially full buffer" to disk. 
+
+
+
+
+    ----------------------    fgetc, fputc : file Read/Write    ----------------------
+
+    Reading and Writing from/to a files : 
+    Once a file has been "opened", depending upon its "mode", you may read and/or write bytes (or characters) using these two functions:
+
+                int fgetc(FILE *fp);
+                int fputc(int ch, FILE *fp);
+
+
+    fgetc() : 
+        The fgetc() function "reads the NEXT byte" from the file described by "fp" as an "unsigned char" and returns it as an "integer". 
+                (The character is returned in the low-order byte.) 
+        If an error occurs, fgetc() returns EOF (int type EOF=-1).  
+        fgetc() also returns EOF (i.e -1) when the "END OF THE FILE" is reached. 
+        
+        Although fgetc() returns 'integer', your can assign it to a "char" since the 'low-order byte' contains the character read from the file.
+
+
+
+    fputc() : 
+        The fputc() function 'writes' the byte contained in the "low-order byte" of 'ch' to the file associated with 'fp' as an "unsigned char". 
+            Although ch is defined as an int, you may cal1 it using a char, which is the common procedure. 
+        
+        The fputc() returns the character written if successful or EOF if an error occurs.
+
+
+
+    Historical note:
+        The traditional names for fgetc() and fputc() are getc() and putc(). 
+        The ANSI C standard still defines these names, and they are essential1y interchangeable with fgetc() and fputc().
+        All other ANSI 'file system function names' begin with "f": so "f" was added to getc() and putc().         
 */
 
 
