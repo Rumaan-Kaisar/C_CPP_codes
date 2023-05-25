@@ -195,7 +195,15 @@
 
 
 
-/* Example 1:  writing and reading a file. */
+/* Example 1.1:  writing and reading a file. 
+                This program demonstrates the four file-system functions.
+                    First, it opens a file called MYFILE for output. 
+                    Next, it writes the string "OMG!! Whatz goin on?" to the file. 
+                    Then, it closes the file and 
+                    reopens it for read operations. 
+                    Finally, it displays the contents of the file on the screen and 
+                    closes the file.
+*/
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -247,7 +255,7 @@ int main(void){
     Notes:
         while(*p){if((fputc(*p, f_point)==EOF)){printf("Write-Error\n"); exit(1);} p++; } 
         
-        can be written as follows: using p++ inside fputc()
+        can be written as follows: using "p++" inside fputc()
             while(*p) if((fputc(*p++, f_point)==EOF)){printf("Write-Error\n"); exit(1);} 
 
 
@@ -268,8 +276,6 @@ int main(void){
     There is no need for a separate comparison step because the "assignment" and the "comparison" can be performed at the same time within the "if"
         for(;;) { if((ch = fgetc(f_point)) == EOF) break; putchar(ch); }
 
-
-
     Don't let the statement if((ch = fgetc(f_point)) == EOF) fool you.
         First, inside the if, the return value of 'fgetc()' is assigned to "ch". As you may recall, the assignment operation in C is an expression. 
         The entire value of (ch = fgetc(fp)) is equal to the return value of fgetc(). Therefore, it is this integer value that is tested against EOF.
@@ -284,6 +290,121 @@ int main(void){
 
         each character is read, assigned to ch, and tested against EOF, all within the expression of the "while" loop. 
 */
+    
+    
+
+
+/* Example 1.2: For most compilers, you can simply assign the value returned by fgetc() to a char and still check for EOF: as following */
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void){
+    char str[80]="OMG!! Whatz goin on?";
+
+    FILE *f_point;
+    char *p;
+    char ch;
+
+    // open the file for output, w - creartes a file
+    if((f_point=fopen("myfile", "w"))==NULL){
+        printf("File-Error\n"); 
+        exit(1);
+    }
+
+    // write str into the file/disc
+    p = str;
+    while(*p){
+        if((fputc(*p, f_point)==EOF)){
+            printf("Write-Error\n"); 
+            exit(1);
+        }
+    	p++; 
+    }
+
+    // closing the file after writing
+    fclose(f_point);
+
+
+    // Open the file for the input
+    if((f_point=fopen("myfile", "r"))==NULL){
+        printf("Opening-Error"); 
+        exit(1);
+    }
+
+    // read back the file
+        // using "char ch" instead of "int i"
+    for(;;){
+        // i=fgetc(f_point);
+        // if(i==EOF) break;
+        // putchar(i);
+        ch = fgetc(f_point);
+        if(ch == EOF) break;
+        putchar(ch);
+        }
+    fclose(f_point); // close the file aftre done reading
+
+    return 0;
+}
+
+/* 
+There is no need for a separate comparison step because the "assignment" and the "comparison" can be performed at the same time within the "if"
+    for(;;){ 
+        if((ch = fgetc(f_point)) == EOF) break; 
+        putchar(ch); 
+    }
+
+It can be written as more professionally:
+    while((ch = fgetc(f_point)) != EOF) putchar(ch); 
+
+*/
+
+
+
+
+/* Example 1.3: The more PROFESSIONAL version */
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void){
+    char str[80]="OMG!! Whatz goin on?";
+
+    FILE *f_point;
+    char *p;
+    char ch;
+
+    // open the file for output, w - creartes a file
+    if((f_point=fopen("myFile_2", "w"))==NULL){
+        printf("File-Error\n");
+        exit(1);
+    }
+
+    // write str into the file/disc: Notice increment p++ is inside "if"
+    p = str;
+    while(*p){
+        if((fputc(*p++, f_point)==EOF)){
+            printf("Write-Error\n");
+            exit(1);
+        }
+    }
+
+    // closing the file after writing
+    fclose(f_point);
+
+
+    // Open the file for the input
+    if((f_point=fopen("myFile_2", "r"))==NULL){
+        printf("Opening-Error");
+        exit(1);
+    }
+
+    // read back the file
+        // using "char ch" instead of "int i"
+    while((ch = fgetc(f_point)) != EOF) putchar(ch);
+    fclose(f_point); // close the file aftre done reading
+
+    return 0;
+}
+
 
 
 
