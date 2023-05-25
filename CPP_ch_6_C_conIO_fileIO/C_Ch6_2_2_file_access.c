@@ -195,65 +195,95 @@
 
 
 
-
-	Flushing the buffer : In order to improve efficiency, most file system implementations write data to disk one sector at a time. Therefore, data is buffered until a sector's worth of information has been output before the buffer is physically written to disk. When you call fclose(), it automatically writes any information remaining in a partially full buffer to disk. This is often referred to as flushing the buffer.
-
-Reading and Writing from/to a files : Once a file has been opened, depending upon its mode, you may read and/or write bytes (i.e., characters) using these two functions:
-
-int fgetc(FILE *fp);
-int fputc(int ch, FILE *fp);
-	fgetc() : The fgetc() function reads the next byte from the file described by fp as an unsigned char and returns it as an integer. (The character is returned in the low-order byte.) If an error occurs, fgetc() returns EOF (int type EOF=-1).  The fgetc() function also returns EOF (i.e -1) when the end of the file is reached. Although fgetc() returns an integer value, your program can assign it to a char variable since the low-order byte contains the character read from the file.
-	fputc() : The fputc() function writes the byte contained in the low-order byte of ch to the file associated with fp as an unsigned char. Although ch is defined as an int, you may cal1 it using a char, which is the common procedure. The fputc() function returns the character written if successful or EOF if an error occurs.
-
-Historical note
-The traditional names for fgetc() and fputc() are getc ) and putc(). The ANSI C standard still defines these names, and they are essential1y interchangeable with fgetc() and fputc(). One reason the new names were added was for consistency. Al1 other ANSI file system function names begin with "f": so "f" was added to getc() and putc(). 
-
-Example :  writing and reading a file.
+/* Example 1:  writing and reading a file. */
 #include<stdio.h>
 #include<stdlib.h>
-int main(void){char str[80]="Yo babbay. Fuck the file sys!! Aye?";
-FILE *f_point;
-char *p;
-int i;
-/*open the file for output*/
-if((f_point=fopen("myfile", "w"))==NULL){printf("File-Error\n"); exit(1);}
-/*write into the file*/
-p=str;
-while(*p){if((fputc(*p, f_point)==EOF)){printf("Write-Error\n"); exit(1);}
-    			p++; }
-fclose(f_point);
-/*Open the file for the input*/
-if((f_point=fopen("myfile", "r"))==NULL){printf("Opening-Error"); exit(1);}
-/*read from file and output*/
-for(;;){i=fgetc(f_point);
-           		if(i==EOF) break;
-            		putchar(i);}
-fclose(f_point);
-return 0;}
 
-	However while(*p){if((fputc(*p, f_point)==EOF)){printf("Write-Error\n"); exit(1);} p++; } can be written as :
-while(*p) if((fputc(*p++, f_point)==EOF)){printf("Write-Error\n"); exit(1);} 
-this is the ability of integrating operations, it makes C most powerful.
+int main(void){
+    char str[80]="OMG!! Whatz goin on?";
 
-	In this version, when reading from the file, the return value of fgetc() is assigned to an integer variable called i
-for(;;){i=fgetc(f_point); if(i==EOF) break; putchar(i);}
-The value of this integer is then checked to see if the end of the file has been reached.
-For most compilers, however, you can simply assign the value returned by fgetc() to a char and still check for EOF, as shown in the following fragment:
-Char ch;
-for(;;){ch=fgetc(f_point); if(ch==EOF) break; putchar(i);}
-The reason this approach works is that when a char is being compared to an int (the EOF , which is -1), the char value is automatically elevated to an equivalent int value.
+    FILE *f_point;
+    char *p;
+    int i;
 
-	There is no need for a separate comparison step because the assignment and the comparison can be performed at the same time within the if (Exactly what we did before for opening and closing a file), as shown here:
+    // open the file for output, w - creartes a file
+    if((f_point=fopen("myfile", "w"))==NULL){
+        printf("File-Error\n"); 
+        exit(1);
+    }
 
-for(;;) { if((ch = fgetc(f_point)) == EOF) break; putchar(ch); }
+    // write str into the file/disc
+    p = str;
+    while(*p){
+        if((fputc(*p, f_point)==EOF)){
+            printf("Write-Error\n"); 
+            exit(1);
+        }
+    	p++; 
+    }
 
-Don't let the statement if((ch = fgetc(f_point)) == EOF) fool you. Here’s what is happening. First, inside the if, the return value of fgetc() is assigned to ch. As you may recall, the assignment operation in C is an expression. The entire value of (ch = fgetc(fp)) is equal to the return value of fgetc( ). Therefore, it is this integer value that is tested against EOF.
+    // closing the file after writing
+    fclose(f_point);
 
-	those fragments written by a professional C programmer as follows:
 
-while((ch = fgetc(f_point)) != EOF) putchar(ch);
+    // Open the file for the input
+    if((f_point=fopen("myfile", "r"))==NULL){
+        printf("Opening-Error"); 
+        exit(1);
+    }
 
-Notice that now, each character is read, assigned to ch, and tested against EOF, all within the expression of the while loop that controls the input process. If you compare this with the original version, you can see how much more efficient this one is. In fact, the ability to integrate such operations is one reason C is so powerful. Later  we will explore such assignment statements more fully.
+    // read back the file
+    for(;;){
+        i=fgetc(f_point);
+        if(i==EOF) break;
+        putchar(i);
+        }
+    fclose(f_point); // close the file aftre done reading
+
+    return 0;
+}
+
+/* 
+    Notes:
+        while(*p){if((fputc(*p, f_point)==EOF)){printf("Write-Error\n"); exit(1);} p++; } 
+        
+        can be written as follows: using p++ inside fputc()
+            while(*p) if((fputc(*p++, f_point)==EOF)){printf("Write-Error\n"); exit(1);} 
+
+
+
+    In this version, when reading from the file, the return value of fgetc() is assigned to an 'integer' variable called 'i'
+        for(;;){i=fgetc(f_point); if(i==EOF) break; putchar(i);}
+
+
+
+    For most compilers, you can simply assign the value returned by fgetc() to a char and still check for EOF: as following
+        Char ch;
+        for(;;){ch=fgetc(f_point); if(ch==EOF) break; putchar(i);}
+
+        when a char is being compared to an int (the EOF , which is -1), the "char" is automatically ELEVATED to  "int"
+
+
+
+    There is no need for a separate comparison step because the "assignment" and the "comparison" can be performed at the same time within the "if"
+        for(;;) { if((ch = fgetc(f_point)) == EOF) break; putchar(ch); }
+
+
+
+    Don't let the statement if((ch = fgetc(f_point)) == EOF) fool you.
+        First, inside the if, the return value of 'fgetc()' is assigned to "ch". As you may recall, the assignment operation in C is an expression. 
+        The entire value of (ch = fgetc(fp)) is equal to the return value of fgetc(). Therefore, it is this integer value that is tested against EOF.
+
+        The fragment 
+
+            for(;;) { if((ch = fgetc(f_point)) == EOF) break; putchar(ch); } 
+
+            written by a "PROFESSIONAL C PROGRAMMER" as follows:
+
+                while((ch = fgetc(f_point)) != EOF) putchar(ch);
+
+        each character is read, assigned to ch, and tested against EOF, all within the expression of the "while" loop. 
+*/
 
 
 
