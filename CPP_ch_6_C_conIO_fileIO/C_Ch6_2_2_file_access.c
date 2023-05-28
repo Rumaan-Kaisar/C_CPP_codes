@@ -408,180 +408,162 @@ int main(void){
 
 
 
+/* Example 2: The following program takes two command-line arguments. 
+                    The first is the name of a file, 
+                    the second is a character. 
+            The program searches the specified file, looking for the character. 
+            If the file contains at least one of these characters, it reports this fact.
+            Notice how it uses argv to access the file name and the character for which to search. */
 
-------------    Example    ----------------
-
-Example 2: The following program takes two command-line arguments. The
-first is the name of a file, the second is a character. The program
-searches the specified file, looking for the character. If the me
-contains at least one of these characters, it reports this fact.
-Notice how it uses argv to access the file name and the
-character for which to search.
-
-/* Search speGified file for specified character. */
-~include <stdio.h>
-#include <stdlib.h>
-inL mainline argc, char ·argv[])
-)
-FILE: *fp;
-char chi
-/* see if correct number of command line arguments */
-if(argc!=3) {
-}
-printf ("Usage: find <file name> <ch>\n");
-exi t (1) ;
-... open file for input */
-if( (fp = fopen(arg.v(ll, Or") )==NULL) (
-printf(MCannot open file.\nM);
-exit(l) ;
-)
-/* look for character */
-while( (eh = fgetc{fp» != EOF)
-if (ch==*argv[2) {
-}
-printf("%c found-, ch};
-break;
-fclose (fp) ;
-return 0;
-
-/* Search speGified file for specified character. */
+// Search specified file for specified character. 
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
-{
-
+int main(int argc, char *argv[]) {
     FILE *fp;
     char ch;
     
-    /* see if correct number of command line arguments */
+    // see if correct number of command line arguments 
     if(argc!=3) {
-        printf ("Usage: find <file name> <ch>\n");
-        exit (1) ;
+        printf("Usage: find <file name> <ch>\n");
+        exit(1) ;
     }
     
-    
-    /*open file for input */
+    // open file for input
     if( (fp = fopen(argv[1], "r") )==NULL){
         printf("Cannot open file.\n");
         exit(1) ;
     }
     
-    /* look for character */
+    // look for character 
     while( (ch = fgetc(fp)) != EOF)
     if (ch==*argv[2]) {
         printf("%c found", ch);
         break;
     }
     
-    fclose (fp) ;
-    
-    return 0;
-}
-
-
-/* Example 3: Write a program that displays the contents of the text file
-specified on the command line. */
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[])
-{
-    FILE *fp;
-    char ch;
-    
-    /* see if filename is specified */
-    if(argc!=2){
-        
-        exit (1);
-    }
-    
-    
-    if((fp = fopen(argv[1], "r"))==NULL) {
-        printf("Cannot open file.\n");
-        exit(1) ;
-    }
-    
-    while((ch=fgetc(fp)) != EOF) putchar(ch);
-    
     fclose(fp) ;
     
     return 0;
 }
+// E:\1_Development_2.0\C_Cpp_codes\raw_test>FL_IO_3 myfile M
+// M found
 
 
+
+
+/* Example 3: Write a program that displays the contents of the text file
+                specified on the command line. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    FILE *fp;
+    char ch;
+
+    // see if filename is specified
+    if(argc!=2){
+        printf("File name is missing.\n");
+        exit(1);
+    }
+
+
+    if((fp = fopen(argv[1], "r"))==NULL) {
+        printf("Cannot open file.\n");
+        exit(1) ;
+    }
+
+    while((ch=fgetc(fp)) != EOF) putchar(ch);
+
+    fclose(fp) ;
+
+    return 0;
+}
+// E:\1_Development_2.0\C_Cpp_codes\raw_test>FL_IO_4 myfile
+// OMG!! Whatz goin on?
 
 
 
 
 /* Example 4: Write a program that reads a text file and counts how many
-times each letter from 'A' to 'Z' occurs. Have it display the results.
-(Do not differentiate between upper- and lowercase letters.) */
+                times each letter from 'A' to 'Z' occurs. Have it display the results.
+                (Do not differentiate between upper- and lowercase letters.) */
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 
 int count[26];
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     FILE *fp;
     char ch;
     int i;
-    
-    /* see if filename is specified */
+
+    // see if filename is specified
     if(argc!=2){
-        
-        exit (1);
+        printf("File name is missing.\n");
+        exit(1);
     }
-    
-    
+
+
     if((fp = fopen(argv[1], "r"))==NULL) {
         printf("Cannot open file.\n");
         exit(1) ;
     }
-    
+
     while((ch=fgetc(fp)) != EOF){
         ch=toupper(ch);
-        if(ch>='A' && ch<='Z')
-            count[ch-'A']++;
+        if(ch>='A' && ch<='Z') count[ch-'A']++;
     }
-    
+    // ch-'A' is only a numeric value, whatever cahracter value "ch" holding
+    // after subtracting "A"'s value, we get only the difference
+
+
     for(i=0;i<26;i++)
-        printf("%c occured %d times\n.", i+'A', count[i]);
-    
+    if(count[i]) 
+        printf("%c occured %d times\n", i+'A', count[i]);
+    // ch+'A' and printing it with "c" specifier we got a character
+
     fclose(fp) ;
-    
+
     return 0;
 }
 
+// E:\1_Development_2.0\C_Cpp_codes\raw_test>FL_IO_5 myfile
+// A occured 1 times
+// .G occured 2 times
+// .H occured 1 times
+// .I occured 1 times
+// .M occured 1 times
+// .N occured 2 times
+// .O occured 3 times
+// .T occured 1 times
+// .W occured 1 times
+// .Z occured 1 times
 
 
 
 
-
-
-/* Example 5: Write a program that copies the contents of one text file to
-another. Have the program accept three command-line arguments.
-The first is the name of the source file, the second is the name
-of the destination file, the third is optional. If present and ifit
-equals 'watch," have the program display each character as it
-copies the files; otherwise, do not have the program display any
-screen output. Ifthe destination file does not exist, create it. */
+/* Example 5: Write a program that copies the contents of one text file to another. 
+                Have the program accept three command-line arguments.
+                        The first is the name of the source file, 
+                        the second is the name of the destination file, 
+                        the third is optional. 
+                If present and if it equals 'watch," have the program display each character as it copies the files; 
+                otherwise, do not have the program display any screen output. Ifthe destination file does not exist, create it. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     FILE *from, *to;
     char ch, watch;
     
-    /* see if correct number of command line arguments */
+    // see if correct number of command line arguments 
     if(argc<3){
         printf("Usage: copy <source> <destination>.\n");
-        exit (1);
+        exit(1);
     }
     
     // open source file
@@ -596,14 +578,16 @@ int main(int argc, char *argv[])
         exit(1) ;
     }
     
-    if(argc==4 && !strcmp(argv[3],"watch"))
+    // optional argument shows the file in the console
+    if(argc==4 && !strcmp(argv[3], "watch"))
         watch=1;
     else 
         watch=0;
         
+
     // copy the file
     while((ch=fgetc(from)) != EOF){
-        fputc(ch,to);
+        fputc(ch, to);
         if(watch)
             putchar(ch);
     }
@@ -614,7 +598,9 @@ int main(int argc, char *argv[])
     
     return 0;
 }
-
+// E:\1_Development_2.0\C_Cpp_codes\raw_test>FL_IO_6 myfile myFile_2 watch
+// OMG!! Whatz goin on?
+// Copy This: Jojo Rabbit.
 
 
 
