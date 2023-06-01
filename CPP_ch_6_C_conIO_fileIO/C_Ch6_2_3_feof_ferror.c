@@ -67,58 +67,59 @@ while(!feof(fp)){
 
 
 /* Example 1: This program copies any type of file, binary or text. It takes two command-line arguments. 
-                        The first is the name of the source file
-                        the second is the name of the destination file. 
-            If the destination file does not exist, it is created. It includes full error checking. 
-            (You might want to compare this version with the copy program you wrote for text files in the preceding section.) */
-
-/* Copy a file. */
+                        The first is the "name of the SOURCE FILE"
+                        the second is the "name of the DESTINATION FILE". 
+            If the DESTINATION file does not exist, it is CREATED. It includes full error checking. 
+            (You might want to compare this version with the copy program you wrote for text files in the preceding section.) 
+*/
+// Copy a file.
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
-(
+int main(int argc, char *argv[]){
     FILE *from, *to;
     char ch;
     
-    /* see if correct number of command line arguments */
-    if (argc ! = 3) {
+    // see if correct number of command line arguments (CLI arg)
+    if (argc != 3) {
         printf("Usage: copy <source> <destination>\n");
-        exit (1) ;
+        exit (1);
     }
     
-    /* open source file */
-    if((from = fopen(argv[l], "rb")==NULL)
+    // open source file 
+    if((from = fopen(argv[1], "rb"))==NULL){
         printf("Cannot open source file.\n");
-        exit (1) ;
-    )
-    /* open destination file */
-    if(to = fopen (argv [2], "wb")==NULL){
+        exit(1) ;
+    }
+
+    // open destination file
+    if((to = fopen(argv[2], "wb"))==NULL){
         printf("Cannot open destination file.\n");
         exit(1);
-    )
-    /* copy the file */
-    
-    while ( !feof (from) {
+    }
+
+
+    // copy the file
+    while( !feof(from) ) {
         ch = fgetc(from);
-        if (ferror (from)) {
+        if(ferror(from)) {
             printf("Error reading source file.\n");
-            exit (1);
+            exit(1);
         }
         
-        if (!feof (from)) fputc (ch, to);
+        if(!feof(from)) fputc(ch, to);
         if(ferror(to)){
-            printf("Error closing destination file.\n");
+            printf("Error writing destination file.\n");
             exit(1);
         }
     }
     
     
-    if(fclose(from)==EOF) (
+    // closing the files
+    if(fclose(from)==EOF) {
         printf("Error closing source file.\n");
         exit(1);
-    )
-    
+    }
     
     if(fclose(to)==EOF){
         printf("Error closing destination file.\n");
@@ -128,54 +129,9 @@ int main(int argc, char *argv[])
     
     return 0;
 }   
-    
+// name this code-file "FL_IO_7cpy.c" then open CLI inside working folder, run following code in CLI
+// FL_IO_7cpy myfile fileio_cpy 
 
-/* Copy a file. */
-#include <stdio.h>
-#include <stdlib.h>
-int main(int argc, char *argv[])
-(
-FILE *from, ·to;
-char Chi
-/* see if correct number of command line arguments * /
-if (argc ! = 3) {
-)
-printf("Usage: copy <source> <destination>\n");
-exi t (1) ;
-/ * open source file * /
-if{(from = fopen{argv[l]. "rb")::::::NULL)
-printfC-Cannot open source file.\n");
-exi t (1) ;
-)
-J * open destination file */
-if«to = fopen (argv [2]' "wb"')==NULLI (
-printf("Cannot open destination file.\n"j;
-exit(1);
-)
-/* copy the file * j
-
-while ( ! feof (from» {
-ch = fgetc(from);
-if Iferror I from)) (
-)
-)
-printf(-Error reading source file.\nM);
-exit (1);
-if I! feof I from)) fputc Ich, to);
-if(ferror(to)} (
-)
-printf(-Error writing dest~nation file.\n-);
-exit(l);
-if(fclose(from)==EOF) (
-)
-printf{-Error closing source file.\n·);
-exit(1);
-iflfcloseltoi==EOFi (
-)
-printf(-Error closing destination file.\nM);
-exit(lJ;
-return .0;
-}
 
 
 
