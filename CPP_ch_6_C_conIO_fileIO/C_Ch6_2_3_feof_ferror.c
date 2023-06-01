@@ -135,132 +135,84 @@ int main(int argc, char *argv[]){
 
 
 
-/* Example 2: This program compares the two files whose names are specified on the command line. 
-                It either prints "Files are the same", or it displays the byte of the first mismatch. 
+/* Example 2: This program compares the two files whose names are specified on the command line.
+                It either prints "Files are the same", or it displays the byte of the first mismatch.
                 It also uses full error checking. */
 
-/* Compare files. */
+// Compare files.
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
-(
+int main(int argc, char *argv[]){
     FILE *fp1, *fp2;
     char ch1, ch2, same;
     unsigned long l;
-    
-    /* see if correct number of command line arguments */
+
+    // see if correct number of command line arguments
     if(argc!=3) {
         printf("Usage: compare <file 1> <file 2>\n");
-        exit (1) ;
+        exit(1);
     }
-    
-    /* open first file */
-    if((fp1 = fopen(argv[l], "rb"))==NULL} (
+
+    // open first file
+    if((fp1 = fopen(argv[1], "rb"))==NULL) {
         printf("Cannot open first file.\n");
-        exit(l);
+        exit(1);
     }
-    
-    /* open second file */
-    if((fp2 = fopen(argv [2],"rb")==NULL) (
+
+    // open second file
+    if((fp2 = fopen(argv[2], "rb"))==NULL) {
         printf("Cannot open second file.\n");
-        exit(l);
+        exit(1);
     }
-    
+
+
     l = 0;
     same = 1;
-    /* compare the fi1es */
-    while(!feof(fpl)){
+
+    // compare the fi1es
+    while(!feof(fp1)){
+
         ch1 = fgetc(fp1);
-        if (ferror ( fp1){
-        printf ("Error reading first file.\n");
-        exit(1);
+        if(ferror(fp1)){
+            printf("Error reading first file.\n");
+            exit(1);
         }
-        ch2= fgetc(fp2);
-        if (ferror ( fp2){
-        printf ("Error reading second file.\n");
-        exit(1);
+
+        ch2 = fgetc(fp2);
+        if(ferror(fp2)){
+            printf("Error reading second file.\n");
+            exit(1);
         }
-        
-        if(chl!=ch2){
+
+        if(ch1!=ch2){
             printf("Files differ at byte number %lu", l);
-            same = 0:
+            same = 0;
             break;
         }
+
         l++;
     }
-    
-        
-    if (same) printf("Files are the same.\n");
-    if(fclose(fpl)==EOF} (
-        printf("Error closing first file.\n"):
+
+
+    if(same) printf("Files are the same.\n");
+
+
+    // closing the files
+    if(fclose(fp1)==EOF) {
+        printf("Error closing first file. \n");
         exit(1);
     }
-    
-    
-    if (fclose(fp2)==EOF) {
-        printf ("Error closing second file. \n");
+
+    if(fclose(fp2)==EOF) {
+        printf("Error closing second file. \n");
         exit(1);
     }
-    
+
     return 0;
 }
-
-'* Compare files. *j
-#include <stdio.h>
-#include <stdlib.h>
-int main(int argc, char *argv[t)
-(
-FILE *fpl, *fp2;
-char chI. ch2, same;
-unsigned long 1;
-1* see if correct number of command line arguments */
-if(argc!=3) {
-printf(-Usage: compare <file 1> <file 2>\n-);
-exit (1) ;
-}
-/* open first file *'
-if((fpl = fopen(argv[lJ, "rb"}}=2NULL} (
-printf("Cannot open first file.\n");
-exit(l);
-}
-/* open second file *'
-if((fp2 = fopen(argv [2]. "rb"»&=NULL) (
-printf(-Cannot open second file.\n-);
-exH (1) ;
-}
-1 = 0;
-same '* compare = 1; the fi1es'*,
-while(!feof(fpl» (
-}
-chl = fgetc(fpl);
-if (ferror (fpl» (
-printf '-Error
-exit(l);
-reading first file.\nW);
-•
-ch2 = fgetc(fp2);
-if(ferror(fp2» (
-}
-printf(-Error reading second file.\n-);
-exit(l) ;
-if(chl!=ch2) .(
-}
-printf("Files differ at byte number 'lu", l);
-same 'II: 0:
-break;
-1++;
-if (same) printf("Files are the same.\n");
-if(fclose(fpl)==EOF} (
-}
-printf(-Error closing first file.\ne):
-exit(l):
-if (fclose(fp2)==EOF) (
-printf (-Error closiJ"".g second file. \n-) :
-exit(l)
-}
-return 0;
-}
+// name this code-file "FL_IO_8cmpr.c" then open CLI inside working folder, run following code in CLI
+// FL_IO_8cmpr myfile fileio_cpy
 
 
 
