@@ -112,8 +112,8 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// name the above file "FL_IO_str_1 myfile"
-/* 
+// name the above file "FL_IO_str_1"
+/*  Following write to "myfile"
     ...\C_Cpp_codes\raw_test>  FL_IO_str_1 myfile
     Enter a blank line to stop.
     : my name is MYFILE i am a text file,
@@ -128,9 +128,8 @@ int main(int argc, char *argv[]) {
 
 
 
-
-/* Example 2: This program demonstrates fprintf() and facanf(). 
-                It first writes a double, an int and a string to the file specified on the command line. 
+/* Example 2: This program demonstrates fprintf() and fsacanf(). 
+                It first writes a 'double', an 'int' and a 'string' to the file specified on the command line. 
                 Next, it reads them back and displays their values as verification. 
                 If you examine the file created by this program. you will see that it contains human-readable text. 
 
@@ -140,23 +139,20 @@ int main(int argc, char *argv[]) {
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     FILE *fp;
     double ld;
     int d;
     char str[80];
     
     //check for command line argument
-    if(argc != 2)
-    {
+    if(argc != 2){
         printf("Sepcify file name.\n");
         exit(1);
     }
     
-    //open file for output
-    if((fp==fopen(argv[1],"w"))==NULL)
-    {
+    //open file for output/write
+    if((fp=fopen(argv[1],"w"))==NULL){
         printf("Cannot open file.\n");
         exit(1);
     }
@@ -165,23 +161,26 @@ int main(int argc, char *argv[])
     fclose(fp);
     
     
-    
-    //open file for input
-    if((fp==fopen(argv[1],"r"))==NULL)
-    {
+    //open file for input/read
+    if((fp=fopen(argv[1],"r"))==NULL){
         printf("Cannot open file.\n");
         exit(1);
     }
     
-    fscanf(fp," %lf%d%s",&ld,&d,str);
-    printf("%f %d %s",ld,d,str);
+    fscanf(fp, "%lf%d%s", &ld, &d, str);
+    printf("%f %d %s", ld, d, str);
     fclose(fp);
     
     return 0;
 }
 
+// name the above file "FL_IO_str_2 myfile"
+/* 
+Following writes to "myfile" 
+    FL_IO_str_2 myfile 
+*/
 
-
+// ###########   needs to review following code
 
 /* Example 3: wrate a very simple telephone-directory program by allowing the directory to be saved to a disk fIle. 
                 Have the program present a menu that looks like this:
