@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 }
 
 // name the above file "FL_IO_str_1"
-/*  Following write to "myfile"
+/*  Following CREATES & WRITES to "myfile"
     ...\C_Cpp_codes\raw_test>  FL_IO_str_1 myfile
     Enter a blank line to stop.
     : my name is MYFILE i am a text file,
@@ -176,7 +176,7 @@ int main(int argc, char *argv[]){
 
 // name the above file "FL_IO_str_2 myfile"
 /* 
-Following writes to "myfile" 
+Following CREATES & WRITES to "myfile" 
     FL_IO_str_2 myfile 
 */
 
