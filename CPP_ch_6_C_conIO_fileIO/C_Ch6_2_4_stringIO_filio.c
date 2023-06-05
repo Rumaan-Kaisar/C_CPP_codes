@@ -63,9 +63,9 @@
 
 
 
-/* Example 1: This program demonstrates fputs() and fgets(). It reads lines entered by the user 
-                and writes them to the file specified on the command line. 
-                When the user enters a blank line, the input phase terminates, and the file is closed. 
+/* Example 1: This program demonstrates fputs() and fgets(). It reads lines entered by the user
+                and writes them to the file specified on the command line.
+                When the user enters a blank line, the input phase terminates, and the file is closed.
                 Next, the file is reopened for input, and the program uses fgets() to display the contents of the file. */
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,44 +74,56 @@
 int main(int argc, char *argv[]) {
     FILE *fp;
     char str[80];
-    
+
     //check for command line argument
     if(argc != 2){
         printf("Sepcify file name.\n");
         exit(1);
     }
-    
+
     // open file for output/write
-    if((fp==fopen(argv[1],"w"))==NULL){
+    if((fp=fopen(argv[1],"w"))==NULL){
         printf("Cannot open file.\n");
         exit(1);
     }
-    
+
     printf("Enter a blank line to stop.\n");
     do{
         printf(": ");
-        gets(str);
-        strcat(str,"\n"); //add new line
-        if(*str != '\n') fputs(str,fp);
-    }while(*str != '\n');
+        gets(str);  // input from user
+        strcat(str,"\n");   // add new line
+        if(*str != '\n') fputs(str,fp); // writing to file
+    } while(*str != '\n');
     fclose(fp);
-    
-    //open file for input
-    if((fp==fopen(argv[1],"r"))==NULL)
-    {
+
+    //open file for input/read
+    if((fp=fopen(argv[1], "r"))==NULL){
         printf("Cannot open file.\n");
         exit(1);
     }
-    
-    //read back the file
+
+    //read back the file, display to the console
     do{
-        fgets(str,79,fp);
-        if(!feof(fp)) printf(str);
-    }while(!feof(fp));
+        fgets(str, 79, fp); // reads from file
+        if(!feof(fp)) printf(str);  // writes to the console
+    } while(!feof(fp));
     fclose(fp);
-    
+
     return 0;
 }
+
+// name the above file "FL_IO_str_1 myfile"
+/* 
+    ...\C_Cpp_codes\raw_test>  FL_IO_str_1 myfile
+    Enter a blank line to stop.
+    : my name is MYFILE i am a text file,
+    : I live inside a PC
+    : I wanna go to the internet, to see the world
+    :
+    my name is MYFILE i am a text file,
+    I live inside a PC
+    I wanna go to the internet, to see the world 
+*/
 
 
 
