@@ -288,6 +288,7 @@ void load(void){
     }
 
     loc = 0;
+    // loading names and numbers from the file & re-building Phone-Book
     while(!feof(fp)){
         fscanf(fp,"%s%s", names[loc], numbers[loc]);
         loc++;
@@ -315,48 +316,37 @@ void save(void){
 
 
 
-// ###########   needs to review following code
-
-
-
-
-
 /* Example 4: Write a program that uses fgets() to display the contents of a text file , one screenful at a time. 
                 After each screen is displayed, have the program prompt the user for more. */
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     FILE *fp;
-    char ch, str[80];
+    char ch;
+    char str[80];
     int count;
 
-    // see if correct line of command line arguments
-    if(argc!=2)
-    {
+    // see if correct number of command line arguments
+    if(argc!=2){
         printf("Usage: display <file>\n");
         exit(1);
     }
 
     // open the file
-    if((fp=fopen(argv[1],"r"))==NULL)
-    {
+    if((fp = fopen(argv[1], "r")) == NULL){
         printf("Cannot open file.\n");
         exit(1);
     }
 
     count = 0;
-    while(!feof(fp))
-    {
-        fgets(str,79,fp);
+    while(!feof(fp)){
+        fgets(str, 79, fp);
         printf("%s", str);
         count++;
 
-        if(count==23)
-        {
+        if(count==23){
             printf("More? (y/n) ");
             gets(str);
             if(toupper(*str)=='N') break;
@@ -368,71 +358,5 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+// FL_IO_str_4 myfile
 
-
-
-/* Example 5: Write a program that copies a text file . 
-                Specify both the source and destination file names on the command line. 
-                Use fgets() and fputs() to copy the file. Include full error checking */
-                // Copy a file
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[])
-{
-    FILE *from, *to;
-    char str[128];
-
-    // see if correct line of command line arguments
-    if(argc<3)
-    {
-        printf("Usage: copy <source> <destination>\n");
-        exit(1);
-    }
-
-    // open source file
-    if((from=fopen(argv[1],"r"))==NULL)
-    {
-        printf("Cannot open source file.\n");
-        exit(1);
-    }
-
-    // open destination file
-    if((to=fopen(argv[2],"w"))==NULL)
-    {
-        printf("Cannot open destination file.\n");
-        exit(1);
-    }
-
-    // copy the file
-    while(!feof(from))
-    {
-        fgets(str,127,from);
-        if(ferror(from))
-        {
-            printf("Error on input.\n");
-            break;
-        }
-        if(!feof(from)) fputs(str,to);
-        if(ferror(to))
-        {
-            printf("Error on output.\n");
-            break;
-        }
-    }
-
-    if(fclose(from)==EOF)
-    {
-        printf("Error closing source file.\n");
-        exit(1);
-    }
-
-    if(fclose(to)==EOF)
-    {
-        printf("Error closing destination file.\n");
-        exit(1);
-    }
-
-    return 0;
-}
