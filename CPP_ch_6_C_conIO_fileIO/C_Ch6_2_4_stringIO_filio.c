@@ -183,9 +183,6 @@ Following CREATES & WRITES to "myfile"
 
 
 
-
-// ###########   needs to review following code
-
 /* Example 3: wrate a very simple telephone-directory program by allowing the directory to be saved to a disk fIle. 
                 Have the program present a menu that looks like this:
 
@@ -202,7 +199,8 @@ Following CREATES & WRITES to "myfile"
 #include <string.h>
 #include <stdlib.h>
 
-char names[100][40], numbers[100][40];
+char names[10][40], 
+numbers[10][40];
 
 int loc = 0;
 
@@ -212,8 +210,7 @@ void load(void);
 void save(void);
 void find(void);
 
-int main(void)
-{
+int main(void){
     int choice;
 
     do{
@@ -235,8 +232,7 @@ int main(void)
 
 
 // Get menu choice
-int menu(void)
-{
+int menu(void){
     int i;
     char str[80];
 
@@ -256,72 +252,70 @@ int menu(void)
     return i;
 }
 
-void enter(void)
-{
-    for( ;loc<10;loc++)
-    {
-        if(loc<10)
-        {
+
+void enter(void){
+    for( ; loc<10; loc++){
+        if(loc<10){
             printf("Enter name and phone number:\n");
             gets(names[loc]);
-            if(!*names[loc])
-                break;
+            if(!*names[loc]) break;
             gets(numbers[loc]);
         }
     }
 }
 
-void find(void)
-{
+
+void find(void){
     char name[80];
     int i;
 
     printf("Enter name: ");
     gets(name);
 
-    for(i=0;i<100;i++)
-    {
-        if(!strcmp(name,names[i]))
-            printf("%s %s\n",names[i],numbers[i]);
+    for(i=0; i<10; i++){
+        if(!strcmp(name, names[i]))
+            printf("%s %s\n",names[i], numbers[i]);
     }
 }
 
-void load(void)
-{
+
+void load(void){
     FILE *fp;
 
-    if((fp = fopen("phone","r"))==NULL)
-    {
+    if((fp = fopen("phone","r"))==NULL){
         printf("Cannot open file\n");
         exit(1);
     }
 
     loc = 0;
-    while(!feof(fp))
-    {
-        fscanf(fp,"%s%s",names[loc],numbers[loc]);
+    while(!feof(fp)){
+        fscanf(fp,"%s%s", names[loc], numbers[loc]);
         loc++;
     }
     fclose(fp);
 }
 
-void save(void)
-{
+
+void save(void){
     FILE *fp;
     int i;
 
-    if((fopen("phone","w"))==NULL)
-    {
+    if((fp = fopen("phone","w"))==NULL){
         printf("Cannot open file\n");
         exit(1);
     }
 
-    for(i=0;i<loc;i++)
-    {
-        fprintf(fp,"%s %s\n",names[i],numbers[i]);
+    for(i=0; i<loc; i++){
+        fprintf(fp,"%s %s\n", names[i], numbers[i]);
     }
+
     fclose(fp);
 }
+
+
+
+
+// ###########   needs to review following code
 
 
 
