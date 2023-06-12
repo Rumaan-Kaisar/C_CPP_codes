@@ -63,70 +63,145 @@
         
         you can think of size_t as being the same as unsigned or unsigned long. 
         But unsigned or unsigned long can change in different environment,  size_t is ENVIRONMENT INDEPENDENT.
+
+
+    Note:
+    When using fread() or fwrite() to input or output binary data, the file must be opened for binary operations. 
+        Forgetting this can cause hard-to-find problems.        
  */
 
 
 
 
-Example : The following program writes an integer to a file called MYFILE_BI using its internal, binary representation and then reads it back. (The program assumes that integers are 2 bytes long.)
+/* Example 1: The following program writes an integer to a file called "MYFILE_BI"
+                using its internal, binary representation and then reads it back.
+                (The program assumes that integers are 2 bytes long.) */
 
 #include<stdio.h>
 #include<stdlib.h>
-int main(void){FILE *f_point;
-int i, k;
 
-/*open the file for output*/
-if((f_point=fopen("myfile_bi", "wb"))==NULL){printf("File-Error\n"); exit(1);}
+int main(void){
+    FILE *f_point;
+    int i, k;
 
-i=100; 			/* value written through i*/
+    printf("size of int in this system: %d\n", sizeof(int));
 
-/*write into the file and using "!=1" instead of "==EOF" for error checking */
-if((fwrite(&i, 2, 1, f_point)!=1)){printf("Write-Error\n"); exit(1);}
-fclose(f_point);
+    // open the file for output
+    if((f_point = fopen("myfile_bi", "wb")) == NULL){
+        printf("File-Error\n");
+        exit(1);
+    }
 
-/*Open the file for the input*/
-if((f_point=fopen("myfile_bi", "rb"))==NULL){printf("Opening-Error"); exit(1);}
-
-/*read from file and output*/
-if((fread(&k, 2, 1, f_point)!=1)){printf("Read-Error\n"); exit(1);}
-printf(" i is %d ", k); 	/* value read through k*/
-fclose(f_point);
-return 0;}
-
-Notice how error checking is easily performed in this program by simply comparing the number of items written or read with that requested. But in some situations, however, you will still need to use feof() or ferror() to determine if the end of the file has been reached or if an error has occurred.
-The sizeof() keyword & its use : One thing wrong with the preceding example is that an assumption about the size of an integer has been made and this size is hardcoded into the program. Therefore, the program will not work properly with compilers that use 4-byte integers  [More generally, the size of many types of data changes between systems or is difficult to determine manually] . 
-For this reason, C includes the keyword sizeof, which is a compile-time operator that returns the size , in bytes, of a data type or variable. It takes the general forms :
-sizeof(type) 		or 	sizeof var_name
-For example, if floats are four bytes long and f is a float variable, both of the following expressions evaluate to 4:
-sizeof f 	or 	sizeof(float)
-	When using sizeof with a type, the type must be enclosed between parentheses. No parentheses are needed when using a variable name, although the use of parentheses in this context is not an error.
+    i = 100; 	// value written through i
 
 
+    // write into the file and using "!=1" instead of "==EOF" for error checking
+    /* if((fwrite(&i, 2, 1, f_point)!=1)){  // gives different result */
+    if((fwrite(&i, 4, 1, f_point)!=1)){
+        printf("Write-Error\n");
+        exit(1);
+    }
+    fclose(f_point);
 
-Example : An improved version of the preceding program is shown here, using sizeof.
+
+    // Open the file for the input/read
+    if((f_point = fopen("myfile_bi", "rb")) == NULL){
+        printf("Opening-Error");
+        exit(1);
+    }
+
+    // read from file and output
+    /* if((fread(&k, 2, 1, f_point)!=1)){  // gives different result */
+    if((fread(&k, 4, 1, f_point)!=1)){
+        printf("Read-Error\n");
+        exit(1);
+    }
+
+    printf(" i is %d ", k); 	// value read through k
+    fclose(f_point);
+
+    return 0;
+}
+
+// Notice the error checking performed by comparing the number of items written or read with that requested
+//     In some cases you will still need to use feof() or ferror() to determine if the EOF or an ERROR has occurred.
+
+
+
+
+
+/* 
+    ----------------    sizeof() & its use    ----------------
+
+    One thing WRONG with the PRECEDING EXAMPLE is that an "assumption about the size of an integer" has been made 
+        and this size is HARDCODED into the program. 
+
+    The program will not work properly with compilers that use 4-byte integers.
+    [More generally, the size of many types of data changes between systems or is difficult to determine manually] . 
+
+    In this situation use the keyword sizeof, which is a "COMPILE-TIME OPERATOR" that returns the 'size in bytes', of a data type or variable.
+    Using "sizeof" also ensure the portability of your code to new environments.  
+        It takes the general forms :
+            
+            sizeof(type) 		or 	
+            sizeof var_name
+
+    For example, if 'floats' are four bytes long and "f" is a float variable, both of the following expressions evaluate to 4:
+            sizeof f 	or 	
+            sizeof(float)
+
+        When using sizeof with a "TYPE", the TYPE must be enclosed between parentheses. 
+        No parentheses are needed when using a "variable name", although the use of parentheses in this context is not an error.
+
+*/
+
+
+
+
+/* Example 2: An improved version of the preceding program (Example 1: program writes an integer to a file called "MYFILE_BI_2") 
+                is shown here, using sizeof. */
+
 #include<stdio.h>
 #include<stdlib.h>
-int main(void){FILE *f_point;
-int i, k;
-/*open the file for output / append*/
-if((f_point=fopen("myfile_4", "ab+"))==NULL){printf("File-Error\n"); exit(1);}
 
-i=400; 			/* value written through i*/
+int main(void){
+    FILE *f_point;
+    int i, k;
 
-/*write into the file and using "!=1" instead of "==EOF" for error checking */
-if((fwrite(&i, sizeof(int), 1, f_point)!=1)){printf("Write-Error\n"); exit(1);}
-fclose(f_point);
+    // open the file for output / append
+    if((f_point=fopen("MYFILE_BI_2", "ab+"))==NULL){
+        printf("File-Error\n"); 
+        exit(1);
+    }
 
-/*Open the file for the input*/
-if((f_point=fopen("myfile_4", "rb"))==NULL){printf("Opening-Error"); exit(1);}
-/*read from file and output*/
-if((fread(&k, sizeof k, 1, f_point)!=1)){printf("Read-Error\n"); exit(1);}
-printf(" i is %d ", k); 	/* value read through k*/
-fclose(f_point);
-return 0;}
+    i=400; 		// value written through i
 
-Note
-	When using fread() or fwrite() to input or output binary data, the file must be opened for binary operations. Forgetting this can cause hard-to-find problems.
-	By using sizeof, not only do you save yourself the drudgery of computing the size of some object by hand, but you also ensure the portability of your code to new environments. 
+    // write into the file and using "!=1" instead of "==EOF" for error checking
+    // notice the use of "sizeof"
+    if((fwrite(&i, sizeof(int), 1, f_point)!=1)){
+        printf("Write-Error\n"); 
+        exit(1);
+    }
+    fclose(f_point);
 
-  
+    
+    // Open the file for the input/read
+    if((f_point=fopen("MYFILE_BI_2", "rb"))==NULL){
+        printf("Opening-Error"); 
+        exit(1);
+    }
+    
+    // read from file and output
+    // notice the use of "sizeof"
+    if((fread(&k, sizeof k, 1, f_point)!=1)){
+        printf("Read-Error\n"); 
+        exit(1);
+    }
+
+    printf(" i is %d ", k); 	// value read through k
+    fclose(f_point);
+    
+    return 0;
+}
+
+
