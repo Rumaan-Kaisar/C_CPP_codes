@@ -205,3 +205,186 @@ int main(void){
 }
 
 
+
+
+/* Example 3: This program fills a 'ten-element array' with "floating-point numbers",
+                writes them to a file, and then reads them back.
+
+                This program writes each element of the array "SEPARATELY".
+
+                Because binary data is being written using its internal format,
+                    the file must be opened for binary I/O operations.
+
+                The array is cleared between the "write" and "read" operations only
+                    to 'prove' that it is being filled by the &fread() statement.  */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+double d[10] = {    10.23, 19.87, 1002.23, 12.9, 0.897,
+                    11.45, 75.34, 0.0, 1.01, 875.875    };
+
+
+int main(void){
+    int i;
+    FILE *fp;
+
+    // open file for write to it
+    if((fp = fopen("myfile", "wb")) ==NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+
+    for(i=0; i<10; i++){
+        if(fwrite(&d[i], sizeof(double), 1, fp) != 1){
+            printf("Write error.\n");
+            exit(1);
+        }
+    }
+    fclose(fp);
+
+    // open file for read from it
+    if((fp = fopen("myfile", "rb")) ==NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+
+    // clear the array before fill it up with the data from the opened-file
+    for(i=0; i<10; i++) d[i] = -1.0;
+
+    // read the data from the file and fill the array
+    for(i=0; i<10; i++){
+        if(fread(&d[i], sizeof(double), 1, fp) != 1){
+            printf("Read error.\n");
+            exit(1);
+        }
+    }
+    fclose(fp) ;
+
+    // display re-filled array
+    for(i=0; i<10; i++) printf("%f", d[i]);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* Example 4: The following program does the same thing as above (Example 3: fills a 'ten-element array' 
+                with "floating-point numbers"), but here only one call to fwrite() and fread() is used
+                because the entire array is written in one step. which is much more efficient.  */
+
+
+'include <stdio.b>
+'include <stdlib.b>
+double d[lOJ = {
+) ;
+10.23. 19.87. 1002.23. 12.9. 0.897.
+11.45, 75.34. 0 . 0. 1.01. 875.875
+int mainevoid)
+{
+int i;
+FILE 'fp;'
+it«fp = fopen("myfile", "wb"I)==N\JLL) {
+printf("Cannot open file.\n");
+exit(l);
+)
+/* write the entire array in one step *'
+it (fwrite(d, s~zeof d, I, fp) != 1) {
+printf ( -Write error. \n· ) ;
+exit(l);
+)
+fclose(fp);
+if«fp = fopen("myfile", "rb"))==N\JLL) {
+printf("Cannot open file,\n");
+exit(l);
+)
+/* clear the array *'
+for(i=O; i<lO; i++) d[iJ = -1.0;
+'* read the entire array in one step *'
+if(fread(d, sizeof d, 1, fp) != 11 {
+printf (-Read error. \n-);
+
+exit(l) ;
+)
+~close(fp) ;
+/* display the array *1
+
+for(i=O; i<lO; i++) printf("%f" d[i]);
+return 0;
+.)
+
+
+
+
+/* Example 5: Write a program that allows a user to input as many double values as desired (up to 32.767) and 
+                writes them to a disk file as they are entered. Call this file "VALUES". 
+                Keep a 'count of the number of values entered'. and write this number to a file called "COUNT". */
+1. #include <stdio.h>
+#include <stdlib.h>
+int main (void)
+(
+)
+FILE *fp1, *fp2;
+double d;
+int i:
+if«fp1 ~ fopen("values", "wb"))~~NULL) {
+printf (·Cannot open file. \n·) ;
+exit (1) ;
+)
+H«fp2 ~ fopen("count", "wb"))~~NULL) (
+printf(-Cannot open file.\n-):
+exit (1) ;
+)
+d ~ 1.0;
+for(i=O; d!=O.O && i<32766; i++) {
+printf("Enter a number (0 to quit): .);
+scanf("%lf", &d);
+fwrite(&d, sizeof d, 1 , fpl);
+)
+fwrite(&i, sizeof i, 1, fp2};
+fclose(fp1);
+fclose (fp2) ;
+return 0;
+
+
+
+
+/* Example 6: Using the file you created in 'Exercise 5' (above example). 
+                write a program that first reads the number of items in VALUES from COUNT. 
+                Next, read the values in VALUES and display them. */
+#include <stdio.h>
+#include <stdlib.h>
+int main (void)
+(
+FILE *fpl. *fp2;
+double d;
+int i;
+i£«£p1 , £open("values", "rb"))==NULL) (
+print£("Cannot open £ile.\n");
+exit(l);
+)
+i£«£p2 = £open("count". "rb"))==NULL) (
+printf(-Cannot open file.\n-);
+exit(1) ;
+}
+fread(&i. sizeof i. 1, fp2); /* get count */
+fore; i>O: i--) (
+}
+£read(&d, sizeof d, 1, £pl);
+print£("'£\n", d);
+idose (£pl) ;
+£c1ose(fp2) ;
+return OJ
+}
+    
+
+  
