@@ -73,3 +73,8 @@
             There is no inherent restriction about random access on files containing text. 
             The restriction applies only to files "opened as text files".
 */
+
+
+// ///////  Review following =============
+
+
