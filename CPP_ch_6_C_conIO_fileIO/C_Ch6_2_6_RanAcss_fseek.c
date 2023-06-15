@@ -56,6 +56,11 @@
 
 
 
+    How you can "RANDOMLY ACCESS DATA OF ANY TYPE": 
+        You simply need to "multiply" the "size of the base data type" by its 'index' in the file.
+
+
+
     NOTES:
         In general, use 'random access' only on 'binary files'. 
             Because text files may have character translations performed on them.
