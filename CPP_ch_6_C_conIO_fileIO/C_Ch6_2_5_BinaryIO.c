@@ -1,4 +1,3 @@
-
 /* 
     --------------    BINARY I/O    --------------
     fprintf() and fscanf() are not efficient way to read and write numeric data. 
@@ -272,7 +271,6 @@ int main(void){
 
 
 
-
 /* Example 4: The following program does the same thing as above (Example 3: fills a 'ten-element array' 
                 with "floating-point numbers"), but here only one call to fwrite() and fread() is used
                 because the entire array is written in one step. which is much more efficient.  */
@@ -344,66 +342,87 @@ int main(void){
 
 
 
-/* Example 5: Write a program that allows a user to input as many double values as desired (up to 32.767) and 
-                writes them to a disk file as they are entered. Call this file "VALUES". 
-                Keep a 'count of the number of values entered'. and write this number to a file called "COUNT". */
-1. #include <stdio.h>
-#include <stdlib.h>
-int main (void)
-(
-)
-FILE *fp1, *fp2;
-double d;
-int i:
-if«fp1 ~ fopen("values", "wb"))~~NULL) {
-printf (·Cannot open file. \n·) ;
-exit (1) ;
-)
-H«fp2 ~ fopen("count", "wb"))~~NULL) (
-printf(-Cannot open file.\n-):
-exit (1) ;
-)
-d ~ 1.0;
-for(i=O; d!=O.O && i<32766; i++) {
-printf("Enter a number (0 to quit): .);
-scanf("%lf", &d);
-fwrite(&d, sizeof d, 1 , fpl);
-)
-fwrite(&i, sizeof i, 1, fp2};
-fclose(fp1);
-fclose (fp2) ;
-return 0;
 
-
-
-
-/* Example 6: Using the file you created in 'Exercise 5' (above example). 
-                write a program that first reads the number of items in VALUES from COUNT. 
-                Next, read the values in VALUES and display them. */
+/* Example 5: Write a program that allows a user to input as many double values as desired (up to 32767) and
+                writes them to a disk file as they are entered. Call this file "VALUES_BIN".
+                Keep a 'count of the number of values entered'. and write this number to a file called "COUNT_BIN". */
 #include <stdio.h>
 #include <stdlib.h>
-int main (void)
-(
-FILE *fpl. *fp2;
-double d;
-int i;
-i£«£p1 , £open("values", "rb"))==NULL) (
-print£("Cannot open £ile.\n");
-exit(l);
-)
-i£«£p2 = £open("count". "rb"))==NULL) (
-printf(-Cannot open file.\n-);
-exit(1) ;
-}
-fread(&i. sizeof i. 1, fp2); /* get count */
-fore; i>O: i--) (
-}
-£read(&d, sizeof d, 1, £pl);
-print£("'£\n", d);
-idose (£pl) ;
-£c1ose(fp2) ;
-return OJ
-}
-    
 
-  
+int main(void){
+    FILE *fp1, *fp2;
+    double d;
+    int i;
+
+    // open both files for wrting
+    if((fp1 = fopen("values_bin", "wb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    if((fp2 = fopen("count_bin", "wb")) == NULL){
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    d = 1.0;
+
+    for(i=0; d!=0.0 && i<32766; i++) {
+        printf("Enter a number (0 to quit): ");
+        scanf("%lf", &d);
+
+        // writng the values d
+        fwrite(&d, sizeof d, 1 , fp1);
+    }
+
+    // writing the value of count i in count_bin file
+    fwrite(&i, sizeof i, 1, fp2);
+
+    fclose(fp1);
+    fclose(fp2);
+
+    return 0;
+}
+
+
+
+
+/* Example 6: Using the file you created in 'Exercise 5' (above example).
+                write a program that first reads the number of items in VALUES_BIN from COUNT_BIN.
+                Next, read the values in VALUES and display them. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp1, *fp2;
+    double d;
+    int i;
+
+    // open both files for reading
+    if((fp1 = fopen("values_bin", "rb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    if((fp2 = fopen("count_bin", "rb")) == NULL){
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    fread(&i, sizeof i, 1, fp2);    // get count i from "count_bin" file
+    // printf("%d", i);
+
+    // print the values from "values_bin" file
+    for(; i > 0; i--){
+        fread(&d, sizeof d, 1 , fp1);
+        printf("%f\n", d);
+    }
+
+    fclose(fp1);
+    fclose(fp2);
+
+    return 0;
+}
+
+
