@@ -210,11 +210,9 @@ double d[10] = {
     };
 
 int main(void){
-
     long loc;
     double value;
     FILE *fp;
-
 
     // open the file for writing
     if((fp = fopen("myfile", "wb")) == NULL) {
