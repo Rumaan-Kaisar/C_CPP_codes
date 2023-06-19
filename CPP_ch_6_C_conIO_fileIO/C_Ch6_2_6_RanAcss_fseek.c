@@ -12,6 +12,8 @@
             fwrite().
 
 
+
+
     fseek():
         Used to access a file randomly (i.e. any where/any point of a file ).
         The prototype of fseek() is
@@ -44,6 +46,17 @@
             'origin' will be SEEK_SET and 
             'offset' will be 100.
 
+    0L:
+        Sometimes 0L is used
+        0L is a long integer value with all the bits set to ZERO - that's generally the definition of 0.
+
+        Note:   (~0L) is a long integer value with all the bits set to ONE according to TWO's complement.
+                The "~" means to 'invert all the bits', which leaves you with a 'long integer' with all the bits set to one.
+
+                The reason for using (~0L) instead of '-1L' is to be clearer about the intent - 
+                    - it's not meant to be used as a number at all, but rather as a collection of bits
+
+ 
 
 
     ftell():
@@ -72,10 +85,9 @@
         text-file - can be opened as a binary file. 
             There is no inherent restriction about random access on files containing text. 
             The restriction applies only to files "opened as text files".
+            
 */
 
-
-// ///////  Review following =============
 
 
 
@@ -83,116 +95,167 @@
                 byte within the file specified on the command line. */
 
 #include <stdio.h>
-#include <stdlih.h>
-int main(int argc, char *argv[])
-(
-)
-long lOCi
-FILE -fPi
-/ * see if file name is specified */
-H(argc!=2) (
-)
-print~{·File name missing.\n-);
-exit(!) ;
-if( (fp = fopen(argv(lJ , "rb"»==N1JLL) (
-printf(-Cannot open file . \n~);
-exitCl);
-)
-printf(~Enter byce to seek to: "I;
-scanf("%ld~, &loc);
-if ( f seek (fp, 10c, SEEK_SET» (
-printf("Seek error. \ n~);
-exi t (1) ;
-)
-printf("Va1ue at 10c 'ld is 'do, 10c, getc(fp);
-fclose (fp) ;
-returr. 0;
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    long loc;
+    FILE *fp;
+
+    // see if file name is specified
+    if(argc!=2){
+        printf("File name missing.\n");
+        exit(1);
+    }
+
+    // open for reading the file
+    if((fp = fopen(argv[1], "rb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    printf("Enter byte to seek to: ");
+    scanf("%ld", &loc);
+    if(fseek(fp, loc, SEEK_SET)){
+        printf("Seek error. \n");
+        exit(1);
+    }
+
+    printf("Value at loc %ld is %d", loc, getc(fp));
+    fclose(fp);
+
+    return 0;
+}
+
+// make the file name rand_io_1.c
+// myFile_2 is a pre-existed file (there's text inside it)
+// CLI commnads:
+    // rand_io_1 myFile_2
+    // Enter byte to seek to: 2
+        // Value at loc 2 is 71
 
 
 
-/* Example 2: Following uses ftell() and fseek() to copy the contents of one file into another in reverse order. 
-                Pay special attention to how the END of the "input/read file" is found. 
-                Since the program has sought to the EOF, the program "backs up one byte" so that 
+
+/* Example 2: Following uses ftell() and fseek() to copy the contents of one file into another in reverse order.
+                Pay special attention to how the END of the "input/read file" is found.
+                Since the program has sought to the EOF, the program "backs up one byte" so that
                     the 'current location' of the file associated with in is at the 'last actual character' in the file. */
 
-/* Copy a file in reverse order */
-.include <stdio.h>
+// Copy a file in reverse order
+#include <stdio.h>
 #include <stdlib.h>
-iot main(int argc. char *argv[)
 
-long loci
-FILE • in, ·out;
-char chi
-/ * see if correct number of command line arguments */
-if large! =3 l I
-}
-printf(-Usage: revcopy <source> <destination>.\n-);
-exit(1);
-ifllin = fopenlargv[l], "rb")}==NULL) (
-printf(·Cannot open input file.\n·);
-exit (1);
-}
-ifllout = fopen(argv[2], "",b"))==NULL) (
-printf(-Cannot open output file.\n-);
-exit(1) ;
-}
-I T find end of source file */
-fseeklin, OL, SEEK_END);
-lac = ftell(in);
-1* copy file in reverse order *'
-lac = lac-I; /* back up past end-af-file mark */
-while Iloc >= OLl (
-}
-fseeklin, loc, SEEK_SET);
-ch = fgetc(in);
-fputc{ch. out);
-loc--;
-fclose(in) ;
-fclose (out) ;
-return 0;
+int main(int argc, char *argv[]) {
+    long loc;
+    FILE *in, *out;
+    char ch;
+
+    // see if correct number of command line arguments
+    if(argc != 3){
+        printf("Usage: revcopy <source> <destination>.\n");
+        exit(1);
+    }
+
+    // open the first file for reding
+    if((in = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open input file. \n");
+        exit(1);
+    }
+
+    // open the second file for writing
+    if((out = fopen(argv[2], "wb")) == NULL){
+        printf("Cannot open input file. \n");
+        exit(1);
+    }
 
 
+    // find end of source file
+        // '0L' setes all bits to 0, its a long int, its besically defining the 0
+    fseek(in, 0L, SEEK_END);
+    loc = ftell(in);
 
-/* Example 3: This program writes ten double values to disk. It then asks you which one you want to see. 
-                This example shows: 
-                    How you can "RANDOMLY ACCESS DATA OF ANY TYPE": 
+
+    // copy file in reverse order
+    loc = loc-1;    // back up past end-af-file EOF mark
+    while(loc >= 0L) {
+        fseek(in, loc, SEEK_SET);
+        ch = fgetc(in);
+        fputc(ch, out);
+        loc--;
+    }
+
+
+    fclose(in) ;
+    fclose(out) ;
+
+    return 0;
+}
+
+// CLI commands
+// rand_io_2 myFile_2 myfile
+
+
+
+
+/* Example 3: This program writes ten double values to disk. It then asks you which one you want to see.
+                This example shows:
+                    How you can "RANDOMLY ACCESS DATA OF ANY TYPE":
                         You simply need to "multiply" the "size of the base data type" by its 'index' in the file. */
-iinclude <stdio.h>
-iinclude <stdlib.h>
-double d[101 = {
-},
-10.23, 19.87, 1002.23, 12.9, 0.897,
-11.45, 75.34, 0.0, 1.01, 875.875
-int main(void}
-{
-}
-long Icc;
-double value;
-FILE "'fp;
-if«fp = fopen("myfile", "wb"))==NULL) {
-printf ("Cannot open file. \n·) ;
-exit(l) ,
-}
-/ * write the entire array in one step *'
-H(fwrite(d, sizeof d, 1, fp} != 1) {
-printf("Write error.\n"l i
-exit (1);
-fclose (fp) ,
-if«fp = fopen("myfile", "rb"»==NULL) {
-printf("Cannot open file.\n");
-exit(l) ,
-}
-printf("Which element? .);
-scanf("'ld", &loc),
-if (fseek(fp, loc*sizeof(double) , SEEK-SET)) {
-printf(·Seek error.\n");
-exit(l) ,
-}
-fread(&value, sizeof(double) , 1, fp),
-~rintf("Element 'ld is 'f", loc, value),
-fclose(fp) ,
-return 0;
+#include <stdio.h>
+#include <stdlib.h>
 
+double d[10] = {
+        10.23, 19.87, 1002.23, 12.9, 0.897,
+        11.45, 75.34, 0.0, 1.01, 875.875
+    };
+
+int main(void){
+
+    long loc;
+    double value;
+    FILE *fp;
+
+
+    // open the file for writing
+    if((fp = fopen("myfile", "wb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    // write the entire array in one step
+    if(fwrite(d, sizeof d, 1, fp) != 1) {
+        printf("Write error.\n");
+        exit(1);
+        }
+    fclose(fp);
+
+    // open the file for reading
+    if((fp = fopen("myfile", "rb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    printf("Which element? ");
+    scanf("%ld", &loc);
+    // multiplying loc by size-of double
+    if(fseek(fp, loc*sizeof(double), SEEK_SET)) {
+        printf("Seek error.\n");
+        exit(1);
+    }
+
+    fread(&value, sizeof(double), 1, fp);
+    printf("Element %ld is %f", loc, value);
+    fclose(fp);
+
+    return 0;
+}
+
+
+
+
+
+
+// ///////  Review following =============
 
 
 Example 4: Write a program that uses fseek() to display every other byte
@@ -257,6 +320,5 @@ printf("Found value at 'ld\n". ftell(fp));
 felose(fp) ;
 return 0:
 }
-
 
 
