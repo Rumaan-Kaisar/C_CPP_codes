@@ -294,38 +294,47 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
+// rand_io_4 myfile
 
 
 
 
+/* Example 5: Write a program that searches a file, specified on the command line,
+                for a specific integer value (also specified on the command line). If this value is found,
+                have the program display its location, in bytes, relative to the start of the file. */
 
-Example 5: Write a program that searches a file, specified on the command
-line, for a specific integer value (also speCified on the command
-line). If this value is found, have the program display its
-location, in bytes, relative to the start of the file.
+#include <stdio.h>
+#include <stdlib.h>
 
-•include <stdio.h>
-linclude <stdlib.h>
-int main(int argc, char *argv[])
-(
-FILE *fp;
-unsigned char ch, val;
-if(argc!=3) {
+int main(int argc, char *argv[]){
+    FILE *fp;
+    unsigned char ch, val;
+
+    if(argc!=3) {
+        printf("Usage: find <filename> <value>");
+        exit(1);
+    }
+
+    // open file for reading
+    if((fp = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // numeric-char to int
+    val = atoi(argv[2]);
+
+    while(!feof(fp)) {
+        ch = fgetc(fp);
+        // printf("%c  and code is %d \n", ch, (int)ch);    /* to find the codes first */
+        // print the current location, "ch" is elivated to 'int'
+        if(ch == val) printf("Found value at %ld \n", ftell(fp));
+    }
+
+    fclose(fp);
+    return 0;
 }
-prin-tf (·Usage: find <filename> <value>-);
-exit(l) ;
-if«fp = fopen(argv[l). "rb"))==NULL) (
-printfC-Cannot open file.\n-);
-exit (1);
-}
-val = atoi(argv[2}};
-while ( ! feof (fp)) (
-eh = fgete (fp);
-if(eh == val)
-printf("Found value at 'ld\n". ftell(fp));
-}
-felose(fp) ;
-return 0:
-}
+
+// rand_io_5 myFile_2 33
 
 
