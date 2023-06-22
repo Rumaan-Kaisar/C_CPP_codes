@@ -80,7 +80,7 @@
 
 
     atoi():
-        converts string of numbers to actal int.
+        converts string of numbers to actual int.
         Returns the integer equivalent of the number represented by its string argument. 
         For example, atoi("100") returns the value 100.
         scanf() is incompatible with gets().
