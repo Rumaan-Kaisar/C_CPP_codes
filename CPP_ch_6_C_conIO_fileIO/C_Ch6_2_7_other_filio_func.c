@@ -47,13 +47,12 @@
             If you call fflush() using a NULL for fp, all 'existing disk buffers' are "flushed".
 */
 
-
 // Think of ways that rewind() and fflush() could be useful in real applications.
 
 
 /* Example 1: This program demonstrates remove(). It prompts the user for
-the file to erase and also provides a safety check in case the user
-entered the wrong name. */
+                the file to erase and also provides a safety check in case the user
+                entered the wrong name. */
 
 #include <stdio.h>
 ~inc:ude <stdlib.h>
@@ -71,7 +70,7 @@ return 0;
 
 
 /* Example 2: The following program demonstrates rewind() by displaying
-the contents of the file specified on the command line twice. */
+                the contents of the file specified on the command line twice. */
 
 #include <stdio.h>
 #include cstdlih.h>
@@ -100,14 +99,13 @@ return 0;
 
 
 
-/* Example 3: This fragment causes the buffer associated with fp to be flushed */
-to disk.
+/* Example 3: This fragment causes the buffer associated with fp to be flushed to disk. */
+
 FILE *fp;
 fflush(fp) ;
 
 
-/* Example 4: This program renames a file called MYFILE.TXT to
-YOURFILE.TXT. */
+/* Example 4: This program renames a file called MYFILE.TXT to YOURFILE.TXT. */
 #include <stdio.h>
 int main(void)
 (
@@ -120,7 +118,8 @@ return 0;
 
 
 /* Example 5: Improve the erase program (Example 1) so that it notifies the user if he or
-she tries to renlove a nonexistent file */
+                she tries to renlove a nonexistent file */
+
 #include <stdio.h>
 .include <stdlib.h>
 linclude <ctype.h>
@@ -138,6 +137,4 @@ if (remove (fname) )
 printfC-'nFile not found or write' protected.\n-);
 return 0;
 1
-
-
 
