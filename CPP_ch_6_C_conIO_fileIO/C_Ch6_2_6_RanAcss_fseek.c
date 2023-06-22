@@ -251,42 +251,51 @@ int main(void){
 
 
 
+/* Example 4: Write a program that uses fseek() to display every other byte in a text file.
+                (Remember, you must open the text file as a binary file in order for fseek() to work properly.)
+                Have the user specify the file on the command line. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    FILE *fp;
+    char ch;
+    long l;
+
+    if(argc!=2){
+        printf("You must specify the file.\n");
+        exit(1);
+    }
+
+    // open file for reading
+    if((fp = fopen(argv[1], "rb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1) ;
+    }
+
+    fseek(fp, 0, SEEK_END);     // find end of file
+    l = ftell (fp);     // determine the current location
+
+    // go back to the start of the file
+    fseek(fp, 0, SEEK_SET);
+    for( ; l>=0; l=l-2L){
+        // 2L defines 2 as a long.
+        ch = fgetc(fp);
+        putchar(ch);
+        fseek(fp, 1L, SEEK_CUR);
+    }
 
 
-// ///////  Review following =============
+    fclose(fp);
+
+    // what is "2L"?
+    printf("\n\n\t %ld \n", 2L);
+    return 0;
+}
 
 
-Example 4: Write a program that uses fseek() to display every other byte
-in a text file. (Remember, you must open the text file as a
-binary file in order for fseek( ) to work properly.) Have the
-user specify the file on the command line.
-1. 'include <stdio.h>
-.include <stdlib.h>
-int mainlint argc. char *argv[])
-(
-FILE -fp;
-char Chi
-long 1;
-if(argc!=2) (
-}
-printf(-You must specify the file.\n·);
-exit(l);
-if «fp = fopen(argv[l]. Orb") )== NULL) (
-printf(-Cannot open file.\n-);
-exit(1) ;
-}
-fseek(fp. O. SEEK_END); /. find' end of file ./
-1 = ftell (fp);
-/* go back to the start of the file */
-fseek(fp. O. SEEK_SET);
-for ( ; 1>=0; 1 = 1 - 2L) (
-}
-ch = fgetc (fp) ;
-putchar (chi ;
-fseek(fp. lL. SEEK_CUR);
-fclose (fp) ;
-return 0;
-}
+
 
 
 
