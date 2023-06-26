@@ -80,56 +80,70 @@ FL_IO_strm_1 > output_test
 
 
 
-    
-Input can also be redirected. For example, consider the
-following program:
+
+/* Example 2: Input can also be redirected. For example, consider the following program.
+                causes "STDIN" to be directed to the file called INPUT. 
+                Assuming that INPUT contained the ASCII representation for an integer,
+                the value of this integer will be read from the file and printed on the screen. */
 #include <stdio.h>
-int main (void)
-(
+
+int main (void){
+    int i;
+
+    scanf ("%d", &i);
+    printf ("%d", i);
+    return 0;
 }
-int i;
-scanf ("%d", &i);
-printf ("%d", i);
-return 0;
-Assuming it is called TEST, executing it as
+
+// Assuming it is called TEST, executing it as
 TEST < INPUT
-causes stdin to be directed to the file called INPUT. Assuming
-that INPUT contained the ASCII representation for an integer,
-the value of this integer will be read from the file and printed on
-the screen.
-3. As mentioned earlier in this book, when using gets( ) it is
-possible to overrun the array that is being used to receive the
-characters entered by the user because gets( ) provides no
-bounds checking. One way around this problem is to use
-fgets( ), specifying stdin for the input stream. Since fgets( )
-requires you to specify a maximum length, it is possible to
-pre'Vent an array overrun. The only trouble is that fgets( ) does
-not remove the newline character and gets( ) does. This means
-that you will have to manually remove it, as shown in the
-following program:
+
+// we named our source file "FL_IO_strm_2" and stored the output a file called "input_test"
+FL_IO_strm_2 < input_test
+
+
+
+// Note: from above 2 Examples notice usage of ">" for "output" and "<" for "input"
+
+
+
+
+/* Example 3: When using gets() it is possible to overrun the array that is being used to receive 
+                the characters entered by the user because gets() provides "no bounds checking". 
+
+                One way around this problem is to use
+                    fgets(), specifying 'stdin' for the "input stream". 
+                    Since fgets() requires you to specify a maximum length, it is possible to prevent an array overrun. 
+                    The only trouble is that fgets() does not remove the newline character and gets() does. 
+                    This means that you will have to manually remove it, as shown in the following program:     */
 #include <stdio.h>
 #include <string.h>
 
+int main(void){
+    char str[10];
+    int i;
 
+    printf("Enter a string: ");
+    fgets(str, 10, stdin);
 
-int main(void)
-(
+    // remove newline, if present
+    i = strlen(str)-1;
+    if(str[i]=='\n') str[i] = '\0';
+
+    printf ("This is your string: %s", str);
+
+    return 0;
 }
-char str[lO);
-int i;
-printf (-Enter a string: .. );
-fgets(str, 10, stdinl;
-/~ remove newline, if present */
-i = strlen(str)-l;
-if(str[i]=='ln'l str[i] = '10';
-printf ("This is your string: %s", str);
-return 0;
+
+// FL_IO_strm_3 < myFile_2ol
 
 
 
-1. Write a program that copies the contents of one text file to
-another. However, use only "console" 110 functions and
-redirection to accomplish the file copy.
+/* Example 4: Write a program that copies the contents of one text file to another. 
+                However, use only "console IO functions" and redirection to accomplish the file copy. */
+
+// -----------  review following
+
 /* Copy using- r_edirection.
 Execute like this:
 C>NAME < in > out
