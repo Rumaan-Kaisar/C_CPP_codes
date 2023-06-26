@@ -59,23 +59,28 @@
             You are free to use them, but 'not to change them'.
 */
 
-Consider this program:
+
+
+
+/* Example 1: Assume that this program is called "TEST". If you execute TEST normally, it displays the string on the screen. 
+                However, if an environment supports redirection of I/O, stdout can be redirected to a file. */
 #include <stdio.h>
-int main(voidl
-printf("This is an example of redirection.\n M ):
-return 0;
-)
-Assume that this program is called TEST. If you execute TEST
-normally, it displays the string on the screen. However, if an
 
-environment supports redirection of [/0, stdout can be
-redirected to a file. For example, in a DOS, OS/2, Windows, or
-UNIX environment, executing TEST like this
+int main(void){
+    printf("This is an example of redirection.\n");
+    return 0;
+}
+
+// For example, in a DOS, OS/2, Windows, or UNIX environment, executing TEST like this
 TEST > OUTPUT
-causes the output of TEST to be written to a file called OUTPUT.
-You might want to try this now for yourself.
+// causes the output of TEST to be written to a file called OUTPUT. You might want to try this now for yourself.
+
+// we named our source file "FL_IO_strm_1" and stored the output a file called "output_test"
+FL_IO_strm_1 > output_test
 
 
+
+    
 Input can also be redirected. For example, consider the
 following program:
 #include <stdio.h>
