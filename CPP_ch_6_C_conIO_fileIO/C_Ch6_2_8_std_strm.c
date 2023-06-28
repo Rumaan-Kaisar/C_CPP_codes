@@ -145,180 +145,238 @@ int main(void){
 
 // -----------  review following
 
-/* Copy using- r_edirection.
-Execute like this:
-C>NAME < in > out
-*'
-linclude <stdio.h>
-int main(void)
-{
-char Chi
-while ( !feof (stdin)) (
-scanf(·'c·, &ch);
-if(!feof(stdin}} printf("'c", ch};
-1
+
+
+
+
+/* Example 4: Write a program that copies the contents of one text file to another. 
+                However, use only "console IO functions" and redirection to accomplish the file copy. */
+
+/* 
+    Copy using- redirection.
+    Execute like this: 
+        C > NAME < in > out 
+*/
+
+#include <stdio.h>
+
+int main(void) {
+    char ch;
+    
+    while(!feof(stdin)) {
+        scanf("%c", &ch);
+        if(!feof(stdin)) printf("%c", ch);
+    }
+
+    return 0;
+}
+
+
+
+
+/* Example 5: On your own, experiment using fgets() to read strings entered from the keyboard. */
+
+
+
+
+// ------------ mastry
+
+
+// #####    Fil_IO/CLI    #####
+/* Example 1: Write a program that displays the contents of a text file (specified on the command line), one line at a time. 
+                After each line is displayed, ask the user ifhe or she wants to sec another line. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]) {
+    FILE *fp;
+    char str[80];
+
+    // see if file name is specified
+    if(argc != 2){
+        printf("File name missing. \n");
+        exit(1);
+    }
+
+    // open file for reading
+    if((fp = fopen(argv[1], "r")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    while(!feof(fp)){
+        fgets (str, 79, fp);
+        if(!feof(fp)) printf("%S", str);
+
+        printf("... More? (y/n)");
+        if(toupper(getchar())=='N') break;
+        printf ("\n");
+    }
+
+
+    fclose(fp);
+
+    return 0;
+}
+
+
+
+
+/* Example 2: Write a program that copies a text file. Have the user specify both file names on the command line. 
+                Have the copy program convert all LOWERCASE letters into UPPERCASE ones. */
+
+// Copy a file and convert to uppercase.
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]) {
+    FILE *from, *to;
+    char ch;
+
+    // see if correct number of command line arguments·
+    if(argc != 3){
+        printf("Usage.: copy <source> <destination>\n");
+        exit(1);
+    }
+
+    // open SOURCE file for reading
+    if((from = fopen(argv[1], "r")) == NULL) {
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open DESTINATION file for writing
+    if((to = fopen(argv[2], "w")) == NULL) {
+        printf("Cannot open destination file.\n");
+        exit(1);
+    }
+
+
+    // copy the file
+    while(!feof(from)) {
+        ch = fgetc(from);
+        if(!feof(from)) fputc(toupper(ch), to);
+    }
+
+    fclose(from);
+    fclose(to);
+
+    return 0;
+}
+
+
+
+
+/* Example 3: What do fprintf() and fscanf() do? 
+                The fprintf() and fscanf() functions operate exactly like
+                printf() and scanf(), except that they work with files.
+*/
+
+
+
+
+/* Example 4: Write a program that uses fwrite() to write 100 randomly generated integers to a file called RAND. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp;
+    int i, num;
+
+    // open for bin writing
+    if((fp = fopen("rand", "wb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // write the random numbers
+    for(i=0; i<100; i++) {
+        num = rand();
+        fwrite(&num, sizeof num, 1, fp);
+    }
+
+    fc1ose(fp);
+
+    return 0;
+}
+
+
+
+
+
+/* Example 5: Write a program that uses fread() to display the integers stored
+                in the file called RAND, created in previous Example. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp;
+    int i, num;
+
+    // open for bin reading
+    if((fp = fopen("rand", "rb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // print the numbers
+    for(i=0; i<100; i++) {
+        fread(&num, sizeof num, 1, fp);
+        printf("%d\n", num);
+    }
+
+    fc1ose(fp) ;
+    return 0;
+}
+
+
+
+// rand access
+/* Example 6: Using the file called RAND (from the previous example), write a program that uses fseek()
+                to allow the user to access and display the value of any integer in the file. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    FILE *fp;
+    long i;
+    int num;
+
+// open for bin reading
+if((fp = fopen("rand", "rb")) == NULL) {
+    printf("Cannot open file.\n");
+    exit(1);    
+}
+
+
+printf("Which number 0-99)?");
+scanf("%ld", &i);
+
+fseek(fp, i*sizeof(int), SEEK_SET);
+fread(&num, sizeof num, 1, fp);
+printf("%d\n", num);
+
+fclose(fp);
 return 0;
-)
-
-
-2. On your.own, experiment using fgets( ) to read strings entered
-from the keyboard.
 
 
 
+/* Example 7: How do the "console' I/O functions relate to the file system?
+                The 'console' I/O functions are simply special cases of the general file system  */
 
 
 
------------- mastry
-Before continuing, you should be able to answer these questions
-and complete these exercises:
-1. Write a program that displays the contents of a text file (specified
-on the command line), one line at a time. After each line is
-displayed, ask the user ifhe or she wants to sec another line.
-
-1. 'include <stdio.h>
-'include <stdlib.h>
-'include <ctype.h>
-.
-int main(int argc, char -argv[])
-(
-)
-FILE tip;
-char str(BO);
-I- see if file name is specified -I
-if(argc!=2) (
-)
-printf (-File name missing. \n·) ;
-exit (1);
-if «fp = fopen(argv(l], ·r·))==NULL) (
-printf(-Cannot open file.\n-);
-exit(l) i
-)
-while (! feof (fp» (
-fgets (str, 79, fp);
-)
-if(!feof(fp» printf(·\S·, str);
-printf (- ... More? (yin) .);
-if(toupper(getchar(»=='N') break;
-printf ( • \n·) ;
-fclose (fp) ;
-return 0;
-
-
-2. Write a program that copies a text file. Have the user specify
-both file na~es on the command line. Have the copy program
-convert all lowercase letters into uppercase ones.
-I- Copy a file and convert to uppercase. -/
-'include <stdio.h>
-'include <stdlib.h>
-'include <ctype.. h>
-int main(int argc, char *argv[l)
-{
-}
-FILE ·from, -to;
-char Chi
-/* see if correct number of command line ar~ents· */
-if (arge! =3) {
-}
-printf (·Usage.: copy <source> <destination>\n"');
-exit(l) ;
-/ * open source file * /
-if«from = fopen(argv[lL "r"»=.NULL) (
-printf("Cannot open source file.\n"):
-Qxit (1);
-}
-/ . ope~ destinat10n file * /
-if«to = fopen(argv[21. ·w")==NULLI {
-printf (·Cannot open destination file. \n") ;
-exit(l);
-}
-/* copy the file */
-while (! feoE (from) {
-ch = fgetc(from);
-if(!feof(from») fputc(toupper(chl. to);
-}
-fclose(from) ;
-fclose(to) ;
-return 0;
-
-3. What do fprintf( ) and fscanf( ) do?
-The fprintf( ) and fseanf( ) functions operate exactly like
-printf( ) and seanf( ), except that they work with files.
-
-
-4. Write a program that uses fwrite( ) to write 100 randomly
-generated integers to a file called RAND.
-'include <stdio.h>
-'include <stdlib.h>
-i~t main (void)
-(
-FILE *fp;
-int i, nwn;
-if«fp = fopen("rand", "wb"))==NULL) (
-printf{-Cannot open file,\n-);
-exit(l);
-}
-for(i=O: i<100; i++) (
-nurn = rand ( );
-fwrite(&num. sizeof nurn, 1, £p);
-}
-fc10se (fp) ;
-return 0;
 
 
 
-5. Write a program that uses fread( ) to display the integers stored
-in the file called RAND, created in Exercise 4.
-'include <stdio.h>
-jinclude <stdlib.h>
-int main(void)
-(
-}
-FILE '*fp;
-int i. nurn;
-H«fp = fopen("rand"\ "rb"))==NULL) (
-printf("Cannot open file.\n");
-exit (1);
-)
-for(i=O; i<100; i++) (
-fread(&num, sizeof nurn, 1, £p);
-printf("'d\n·, nurn);
-}
-fc1ose(fp) ;
-return 0;
-
-
-6. Using the file called RAND, write a program that uses fseek( )
-to allow the user to access and display the value·of any integer
-in the file.
-'include <stdio.h>
-'include <stdlib.h>
-int main{void)
-{
-,
-FILE *fp;
-long i;
-int num:
-if«fp = fopen('rand', 'rb'»==NULL) (
-printf(-Cannot open file.\n-);
-exit(l);
-)
-printf('Which number 10-99)? ');
-scanf(-'ld-, &i);
-fseek (fp, i * sizeof (int) I SEEK_SET);
-fread(&num, sizeof num, 1. fp);
-printf 1' \d\n', nurn);
-fclose 1fp) ;
-return 0;
+// ---------- CUMUL
 
 
 
-7. How do the "console' I/O functions relate to the file system?
-The 'console' I/O functions are simply special cases of the
-general file system .. ...
-
-
----------- cumul
 This section checks how well you have integrated the material in
 this chapter with that from earlier chapters.
 
@@ -326,6 +384,297 @@ this chapter with that from earlier chapters.
 that it stores its information in a disk file called CATALOG.
 When the program begins, have it read the catalog into memory.
 Also, add an option to save the information to disk.
+
+combine :
+/* Example 3: wrate a very simple telephone-directory program by allowing the directory to be saved to a disk fIle. 
+                Have the program present a menu that looks like this:
+
+                        1. Enter the names and numbers
+                        2. Find numbers
+                        3. Save directory to disk
+                        4. Load directory from disk
+                        5. Quit
+
+                The program should be capable of storing 100 names and numbers. (Use only first names if you like.) 
+                Use fprintf() to save the directory to disk and fscanf() to read it back into memory. */
+// A simple computerized telephone book.
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char names[10][40], 
+numbers[10][40];
+
+int loc = 0;
+
+int menu(void);
+void enter(void);
+void load(void);
+void save(void);
+void find(void);
+
+int main(void){
+    int choice;
+
+    do{
+        choice = menu();
+        switch(choice){
+            case 1: enter();
+                break;
+            case 2: find();
+                break;
+            case 3: save();
+                break;
+            case 4: load();
+                break;
+        }
+    } while(choice!=5);
+
+    return 0;
+}
+
+
+// Get menu choice
+int menu(void){
+    int i;
+    char str[80];
+
+    printf("1. Enter names and numbers\n");
+    printf("2. Find numbers\n");
+    printf("3. Save directory to disk\n");
+    printf("4. Load directory from disk\n");
+    printf("5. Quit\n");
+
+    do{
+        printf("Enter your choice\n");
+        gets(str);
+        i = atoi(str);
+        printf("\n");
+    } while(i<1 || i>5);
+
+    return i;
+}
+
+
+void enter(void){
+    for( ; loc<10; loc++){
+        if(loc<10){
+            printf("Enter name and phone number:\n");
+            gets(names[loc]);
+            if(!*names[loc]) break;
+            gets(numbers[loc]);
+        }
+    }
+}
+
+
+void find(void){
+    char name[80];
+    int i;
+
+    printf("Enter name: ");
+    gets(name);
+
+    for(i=0; i<10; i++){
+        if(!strcmp(name, names[i]))
+            printf("%s %s\n",names[i], numbers[i]);
+    }
+}
+
+
+void load(void){
+    FILE *fp;
+
+    if((fp = fopen("phone","r"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    loc = 0;
+    // loading names and numbers from the file & re-building Phone-Book
+    while(!feof(fp)){
+        fscanf(fp,"%s%s", names[loc], numbers[loc]);
+        loc++;
+    }
+    fclose(fp);
+}
+
+
+void save(void){
+    FILE *fp;
+    int i;
+
+    if((fp = fopen("phone","w"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    for(i=0; i<loc; i++){
+        fprintf(fp,"%s %s\n", names[i], numbers[i]);
+    }
+
+    fclose(fp);
+}
+
+
+/* Example 8: Write a program that is a "SIMPLE ELECTRONIC LIBRARY" card catalog. Have the program display this menu:
+
+                                Card Catalog:
+                                    1. Enter
+                                    2. Search by Author
+                                    3. Search by Title
+                                    4. Quit
+
+                                Choose your selection:
+
+                If you choose Enter, have the program repeatedly input the name, author, and publisher of a book. 
+                    Have this process continue until the user enters a blank line for the name of the book.
+
+                For searches, prompt the user for the specified author or title and
+                then, if a match is found, display the rest of the information. 
+
+                In the next chapter we'll learn how to save the catalog to a disk file (File I/O). 
+*/
+
+// Note: There are many ways you could have written this program. This one is simply representative
+
+/* =-=-=-=-=-=-=-=-=-=-=            An electronic card catalog             =-=-=-=-=-=-=-=-=-=-= */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
+
+// Function prototypes
+int menu(void);
+void display(int i);
+void author_search(void);
+void title_search(void);
+void enter(void);
+
+// global variables
+char names[MAX][80];    // author names
+char titles[MAX][80];   // titles
+char pubs[MAX][80];     //publisher
+
+int top= 0;             // last location used
+
+
+int main(void) {
+    int choice;
+
+    do{
+        choice = menu();
+
+        switch(choice) {
+            case 1: enter(); // enter books
+                    break;
+            case 2: author_search(); // search by author
+                    break;
+            case 3: title_search(); // search by title
+                    break;
+        }
+    } while(choice!=4);
+
+    return 0;
+}
+
+
+// Return a menu selection
+int menu(void){
+    char str[80];
+    int i;
+
+    printf("Card Catalog: \n");
+    printf(" 1. Enter\n");
+    printf(" 2. Search by Author\n");
+    printf(" 3. Search by Title\n");
+    printf(" 4. Quit\n");
+
+    do {
+        printf("Choose your selection: ");
+        gets(str);
+        i = atoi(str);
+        printf("\n") ;
+    } while(i<1 || i>4);
+
+    return i;
+}
+
+
+// Enter books into database.
+void enter(void){
+    int i;
+
+    for(i=top; i<MAX; i++) {
+        printf("Enter author name (hit-ENTER to quit): ");
+        gets(names[i]);
+        if(!*names[i]) break;
+        printf("Enter title: ");
+        gets(titles[i]);
+        printf("Enter publisher: ");
+        gets(pubs[i]);
+    }
+    top = i;
+}
+
+
+// Search by author
+void author_search(void){
+    char name[80];
+    int i, found;
+
+    printf("Name: ");
+    gets(name);
+
+    found = 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(name, names[i])){
+            display(i);
+            found = 1;
+            printf(" \n");
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Search by title
+void title_search(void){
+    char title[80];
+    int i, found;
+
+    printf("Title: ");
+    gets(title);
+
+    found = 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(title, titles[i])){
+            display(i) ;
+            found = 1;
+            printf("\n");
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Display catalog entry
+void display(int i){
+    printf("%s\n", titles[i]);
+    printf("by %s\n", names[i]);
+    printf("Published by %s\n", pubs[i]);
+}
+
+
+
+
+
 1 . / * An electronic card catalog. */
 'include <stdio.h>
 'incl~de <string.h>
@@ -663,4 +1012,3 @@ file system?
 6. The printf( ) and scanf( ) functions are part of the C file
 system. They are simply special case functions that
 automatically use stdin and stdout.
-
