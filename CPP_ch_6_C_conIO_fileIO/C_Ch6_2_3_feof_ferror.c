@@ -465,3 +465,46 @@ int main(int argc, char *argv[]){
 
 // Note: notice the usage of "rb" for READING and "wb" for WRITING
 
+
+
+
+/* Example 5: Write a program that displays the contents of a text file (specified on the command line), one line at a time.
+                After each line is displayed, ask the user ifhe or she wants to sec another line. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]) {
+    FILE *fp;
+    char str[80];
+
+    // see if file name is specified
+    if(argc != 2){
+        printf("File name missing. \n");
+        exit(1);
+    }
+
+    // open file for reading
+    if((fp = fopen(argv[1], "r")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    while(!feof(fp)){
+        fgets (str, 79, fp);
+        if(!feof(fp)) printf("%s", str);
+
+        printf("... More? (y/n)");
+        if(toupper(getchar())=='N') break;
+        printf ("\n");
+    }
+
+
+    fclose(fp);
+
+    return 0;
+}
+// FL_IO_ms1 fl_1
+
+
