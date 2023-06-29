@@ -424,3 +424,51 @@ int main(int argc, char *argv[]){
 }
 // FL_IO_str_4 myfile cpy_myfl
 
+
+
+
+/* Example 6: Write a program that copies a text file. Have the user specify both file names on the command line. 
+                Have the copy program convert all LOWERCASE letters into UPPERCASE ones. */
+
+// Copy a file and convert to uppercase.
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]) {
+    FILE *from, *to;
+    char ch;
+
+    // see if correct number of command line arguments·
+    if(argc != 3){
+        printf("Usage.: copy <source> <destination>\n");
+        exit(1);
+    }
+
+    // open SOURCE file for reading
+    if((from = fopen(argv[1], "r")) == NULL) {
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open DESTINATION file for writing
+    if((to = fopen(argv[2], "w")) == NULL) {
+        printf("Cannot open destination file.\n");
+        exit(1);
+    }
+
+
+    // copy the file
+    while(!feof(from)) {
+        ch = fgetc(from);
+        if(!feof(from)) fputc(toupper(ch), to);
+    }
+
+    fclose(from);
+    fclose(to);
+
+    return 0;
+}
+// FL_IO_ms2 fl_1 fl_3
+
+
