@@ -338,3 +338,94 @@ int main(int argc, char *argv[]){
 // rand_io_5 myFile_2 33
 
 
+
+
+// Binio : RandAccss  1 of 3
+/* Example 4: Write a program that uses fwrite() to write 100 randomly generated integers to a file called RAND. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp;
+    int i, num;
+
+    // open for bin writing
+    if((fp = fopen("rand", "wb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // write the random numbers
+    for(i=0; i<100; i++) {
+        num = rand();
+        fwrite(&num, sizeof num, 1, fp);
+    }
+
+    fclose(fp);
+
+    return 0;
+}
+
+
+
+
+// Binio : RandAccss 2 of 3
+/* Example 5: Write a program that uses fread() to display the integers stored
+                in the file called RAND, created in previous Example. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp;
+    int i, num;
+
+    // open for bin reading
+    if((fp = fopen("rand", "rb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // print the numbers
+    for(i=0; i<100; i++) {
+        fread(&num, sizeof num, 1, fp);
+        printf("%d\n", num);
+    }
+
+    fclose(fp) ;
+    return 0;
+}
+
+
+
+
+// Binio : RandAccss 3 of 3
+/* Example 6: Using the file called RAND (from the previous example), write a program that uses fseek()
+                to allow the user to access and display the value of any integer in the file. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    FILE *fp;
+    long i;
+    int num;
+
+    // open for bin reading
+    if((fp = fopen("rand", "rb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+
+    printf("Which number 0-99)?");
+    scanf("%ld", &i);
+
+    fseek(fp, i*sizeof(int), SEEK_SET);
+    fread(&num, sizeof num, 1, fp);
+    printf("%d\n", num);
+
+    fclose(fp);
+    return 0;
+}
+
+
