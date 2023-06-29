@@ -143,15 +143,6 @@ int main(void){
 /* Example 4: Write a program that copies the contents of one text file to another. 
                 However, use only "console IO functions" and redirection to accomplish the file copy. */
 
-// -----------  review following
-
-
-
-
-
-/* Example 4: Write a program that copies the contents of one text file to another. 
-                However, use only "console IO functions" and redirection to accomplish the file copy. */
-
 /* 
     Copy using- redirection.
     Execute like this: 
@@ -170,11 +161,15 @@ int main(void) {
 
     return 0;
 }
+// FL_IO_strm_4 < fl_1 > fl_2
 
 
 
 
 /* Example 5: On your own, experiment using fgets() to read strings entered from the keyboard. */
+
+
+
 
 
 
