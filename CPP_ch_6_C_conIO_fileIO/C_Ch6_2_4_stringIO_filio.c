@@ -678,7 +678,7 @@ void save(void){
 
 
 
-/* Example 2: Write a program that copies a file.
+/* Example 8: Write a program that copies a file.
                 Have the user specify both the "source" and "destination files" on the command line.
                 Have the program remove tab characters, substituting the appropriate number of spaces. */
 
@@ -731,13 +731,15 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
-// CLI: FL_IO_cpy_rep new_catalog rmvtb
+
 // why 8 is used: a tab is 8 spaces long, thats why count is between 0 and 8.
 
+// CLI: FL_IO_cpy_rep new_catalog rmvtb
 
 
 
-/* Example 3: On your own, create a small database to keep track of anything
+
+/* Example 9: On your own, create a small database to keep track of anything
                 you desire in your CD collection; for example. */
 
 
