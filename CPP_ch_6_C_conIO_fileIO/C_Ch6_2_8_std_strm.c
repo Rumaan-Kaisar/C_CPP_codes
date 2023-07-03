@@ -179,64 +179,9 @@ int main(void) {
 
 
 
-// ---------- CUMUL
+// -----------reviu
 
 
-
-
-
-2. Write a program that copies a file. Have the user specify both
-the source and destination files on the command line. Have the
-program remove tab characters, substituting the appropriate
-number of spaces.
-/* Copy a file and remove tabs. */
-iinclude <stdio.h>
-'include <stdlib.h>
-'include <string.h>
-int main(int argc, char *argv{])
-(
-FILE ·from. *to;
-char chi
-int tab. count;
-/ * see if correct number of command line arguments *1
-if(argc!=3) (
-)
-printfC-Usage: copy <source> <destination>\n-);
-exit(l) ;
-/ * open source file *1
-if«from = fopen(argv[l). "r")I==NULL) {
-print;f ("Cq,nnot ·open source file. Xn") ;
-exit(l);
-)
-1* open destination file *1
-if( (to = fopen(argv[2J. "W")I==NULL) (
-printfC-Cannot open destination file.\n-);
-exit(l);
-)
-1* copy the file *1
-count = 0;
-while(!feof(from» (
-ch = fgetc (from) ;
-if (ch== •\ t .) {
-.for (tab = count; tab<8: tab++)
-
-fputc (. '. to);
-count = 0;
-else {
-if (! feof (from» fputc (ch, to);
-count++:
-if(count==8 I I ch=='\n') count = 0;
-fclose (from) :
-fclose (to) ;
-return 0;
-
-
-3. On your own, create a small database to keep track of anything
-you desire-your CD collectiorl;" for el<ample:
-
-
-
------------reviu
 Before proceeding you should be able to answer these questions and
 perform these exercises:
 1. Write a program that copies a file. Have the user specifY both
