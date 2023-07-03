@@ -674,3 +674,70 @@ void save(void){
 
     fclose(fp);
 }
+
+
+
+
+/* Example 2: Write a program that copies a file.
+                Have the user specify both the "source" and "destination files" on the command line.
+                Have the program remove tab characters, substituting the appropriate number of spaces. */
+
+/*-=-=-=-=-=-=-=    Copy a file and remove tabs    -=-=-=-=-=-=-=*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    FILE *from, *to;
+    char ch;
+    int tab, count;
+
+    // see if correct number of command line arguments
+    if(argc!=3){
+        printf("Usage: copy <source> <destination>\n");
+        exit(1);
+    }
+
+    // open source file for reading
+    if((from = fopen(argv[1], "r"))==NULL) {
+        printf("Cannot open source file\n");
+        exit(1);
+    }
+
+    // open destination file for writing
+    if((to = fopen(argv[2], "w"))==NULL) {
+        printf("Cannot open destination file\n");
+        exit(1);
+    }
+
+
+    // copy the file
+    count = 0;
+    while(!feof(from)){
+        ch = fgetc(from);
+        if(ch=='\t') {
+            for(tab = count; tab < 8; tab++) fputc(' ', to);
+            count = 0;
+        }
+        else {
+            if(!feof(from)) fputc(ch, to);
+            count++;
+            if(count==8 || ch=='\n') count = 0;
+        }
+    }
+
+    fclose(from);
+    fclose(to) ;
+
+    return 0;
+}
+// CLI: FL_IO_cpy_rep new_catalog rmvtb
+// why 8 is used: a tab is 8 spaces long, thats why count is between 0 and 8.
+
+
+
+
+/* Example 3: On your own, create a small database to keep track of anything
+                you desire in your CD collection; for example. */
+
+
