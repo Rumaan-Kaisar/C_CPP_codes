@@ -604,3 +604,76 @@ int main(int argc, char *argv[]){
 
 
 
+
+/* Example 6: Write a program that copies a file (use Binary IO). Have the user specify both
+                the source and destination file names on the command line.
+                Include full error checking. */
+
+// Copy a file.
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+
+}
+
+FILE *from, *to;
+char ch;
+
+
+// Copy a file
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    FILE *from, *to;
+    char str[128];
+
+    // see if correct line of command line arguments
+    if(argc<3){
+        printf("Usage: copy <source> <destination>\n");
+        exit(1);
+    }
+
+    // open source file : use binIO
+    if((from = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open destination file: use binIO
+    if((to = fopen(argv[2], "wb")) == NULL){
+        printf("Cannot open destination file.\n");
+        exit(1);
+    }
+
+
+    // copy the file
+    while(!feof(from)){
+        ch = fgetc(from);
+        if(ferror(from)){
+            printf("Error on input.\n");
+            break;
+        }
+
+        if(!feof(from)) fputc(ch,to);
+        if(ferror(to)){
+            printf("Error on output.\n");
+            break;
+        }
+    }
+
+    if(fclose(from)==EOF){
+        printf("Error closing source file.\n");
+        exit(1);
+    }
+
+    if(fclose(to)==EOF){
+        printf("Error closing destination file.\n");
+        exit(1);
+    }
+
+    return 0;
+}
+// FL_IO_bincpy myfile bin_cpy_myfl
+
