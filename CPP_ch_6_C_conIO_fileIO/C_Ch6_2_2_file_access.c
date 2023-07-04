@@ -609,25 +609,13 @@ int main(int argc, char *argv[]){
                 the source and destination file names on the command line.
                 Include full error checking. */
 
-// Copy a file.
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[]){
-
-}
-
-FILE *from, *to;
-char ch;
-
-
 // Copy a file
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]){
     FILE *from, *to;
-    char str[128];
+    char ch;
 
     // see if correct line of command line arguments
     if(argc<3){
