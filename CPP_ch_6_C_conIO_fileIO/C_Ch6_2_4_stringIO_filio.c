@@ -743,3 +743,27 @@ int main(int argc, char *argv[]){
                 you desire in your CD collection; for example. */
 
 
+
+
+/* Example 10: Write a program using fprintf()  to create a file that contains this information:
+                                this is a string 1230.23 IFFF A
+                Use a string, a double, a hexadecimal integer, and character format specifiers and values. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    FILE *fp;
+
+    // open file
+    if((fp = fopen("myfile", "w"))==NULL){
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+
+    fprintf(fp, "%s %.2f %X %c", "this is a string", 1230.23, 0x1FFF, 'A');
+
+    fclose(fp);
+    return 0;
+}
