@@ -177,7 +177,7 @@ int main(void) {
 
 
 
-/* Example 6: How do functions like printf() and scanf() relate to the C file system?
+/* Example 7: How do functions like printf() and scanf() relate to the C file system?
 
                 These are special functions that automatically use the std streams: "stdin" and "stdout"
                     The printf() and scanf() functions are part of the C file system. 
@@ -187,7 +187,7 @@ int main(void) {
 
 
 
-/* Example 5: What are stdin, stdout, and stderr?
+/* Example 8: What are stdin, stdout, and stderr?
 
                 These are standared streams. 
                     'stdin', 'stdout', and 'stderr' are three streams that are opened automatically when your C program begins executing. 
@@ -328,17 +328,3 @@ return 0;
 
 
 
-
-5. What are stdin, stdout, and stderr?
-5. stdin, stdout, and stderr are three streams that are opened
-automatically when your C program begins executing. By
-default they refer to the console, but in operating systems that
-support 110 redirection, they can be redirected to other devices.
-
-
-6. How do functions like printf( ) and scanf( ) relate to the C
-file system?
-
-6. The printf( ) and scanf( ) functions are part of the C file
-system. They are simply special case functions that
-automatically use stdin and stdout.
