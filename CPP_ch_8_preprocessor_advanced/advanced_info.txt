@@ -1,0 +1,8 @@
+
+C_Ch8_1_adv_define_include
+C_Ch8_2_conDtnal_compile
+C_Ch8_3_error_undef_line_pragma
+C_Ch8_4_bultin_MACROS
+C_Ch8_5_the_#_##_OpRTR
+C_Ch8_6_func_pointers
+C_Ch8_7_dynmic_allocation
