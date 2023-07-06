@@ -426,3 +426,61 @@ int main(void){
 }
 
 
+
+
+/* Example 7: Write a program that contains a 20 element integer array. Initialize the array so that 
+                it contains the numbers 1 through 20. Using onlyy one fwrite() statement. 
+                Save this array to a file called TEMP. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    FILE *fp;
+    int count[20], i;
+
+    // open file for writing
+    if((fp = fopen("TEMP", "wb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    for(i=0; i<20; i++) count[i] = i+1;
+
+    // write once
+    fwrite(count, sizeof count, 1, fp);
+
+    fclose(fp) ;
+
+    return 0;
+}
+
+
+
+
+/* Example 8: Write a program that reads the TEMP file created in previous example
+                into an 'integer array' using only one fread() statement.
+                Display the contents of the array. */
+
+#include <stdio.h>
+#include <stdlib.h>
+int main (void){
+    FILE *fp;
+    int count[20], i;
+
+    //open file to read
+    if((fp = fopen("TEMP", "rb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    // read once
+    fread(count, sizeof count, 1, fp);
+
+    for(i=0; i<20; i++) printf("%d ", count[i]);
+
+    fclose(fp);
+
+    return 0;
+}
+
