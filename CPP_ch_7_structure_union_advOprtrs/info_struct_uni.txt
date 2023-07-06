@@ -1,0 +1,85 @@
+
+7.1 The Custom (User-defined) Data-types of C
+7.2 STRUCTURE Basics
+    7.2.1 Defining structures  
+    7.2.2 Declaring structure variables :
+    7.2.3 Structure variable initialization : 
+    7.2.4 Accessing members of a structure & use of "." operator 
+    7.2.5 Structures as arrays :
+    7.2.6 Arrays within Structures :
+    7.2.7 COPYING AND COMPARING STRUCTURE VARIABLES
+    7.2.8 Structures and Functions 
+    7.2.9 SIZE OF STRUCTURES
+
+    7.2.10 Declare Pointer to Structure 
+    7.2.11 NESTED STRUCTURES
+
+5.6 variable storage class specifire
+5.7 Access modifiers : const and volatile
+
+7.3 BIT FIELDS
+7.4 UNIONS
+7.4.1 Difference between structure and union 
+7.4.2 Assigning values to union members  
+7.5 ENUMERATIONS
+7.6 typedef
+7.7 Bitwise and Shift Operators 
+
+7.8 OPERATORs Advanced 
+7.8.1 The ternary operator  " ? : "  
+7.8.2 The Comma Operator :
+7.8.3 More Uses Of Assignment Operator
+7.8.4 The precedence of all C - OPERATORS
+    
+    
+
+
+
+=========================================
+
+C_Ch7_1_1 STRUCTURE Basics
+C_Ch7_1_2 Declare Pointer to Structure 
+C_Ch7_1_3 NESTED STRUCTURES
+
+
+
+C_Ch7_2_1 BIT FIELDS
+C_Ch7_2_2 UNIONS
+
+
+C_Ch7_3_1 variable storage class specifire
+C_Ch7_3_2 Access modifiers : const and volatile
+
+C_Ch7_4_1 ENUMERATIONS
+C_Ch7_4_2 typedef
+
+C_Ch7_5_1 Bitwise Operators
+C_Ch7_5_2 Shift Operators 
+C_Ch7_5_3 The ternary operator  " ? : "  
+C_Ch7_5_4 More Uses Of Assignment Operator
+C_Ch7_5_5 The Comma Operator :
+C_Ch7_5_6 The precedence of all C - OPERATORS
+
+
+
+---------    File structure    ---------
+
+C_Ch7_1_1_STRUCT
+C_Ch7_1_2_STRUCT_pointer 
+C_Ch7_1_3_nested_STRUCT
+
+C_Ch7_2_1_Bit_fild
+C_Ch7_2_2_UNION
+
+C_Ch7_3_1_storz_cls_spcifyr
+C_Ch7_3_2_acs_modfyr_constVolatile
+
+C_Ch7_4_1_ENUMERATIONS
+C_Ch7_4_2_typedef
+
+C_Ch7_5_1_Bitwise_OpRTR
+C_Ch7_5_2_Shift_OpRTR
+C_Ch7_5_3_ternary_OpRTR
+C_Ch7_5_4_adv_asigmnt_OpRTR
+C_Ch7_5_5_Comma_OpRTR
+C_Ch7_5_6_prcdns_of_OpRTR
