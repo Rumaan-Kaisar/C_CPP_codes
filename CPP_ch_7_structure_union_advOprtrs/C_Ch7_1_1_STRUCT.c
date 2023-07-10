@@ -100,7 +100,7 @@ struct catalog {
 					title[40]		40 byte
 					pub[40]			40 byte
 					date date		2  byte
-					ed				1  byte
+					ed			1  byte
 
 					Card = Total 123 byte.
 
@@ -170,7 +170,7 @@ struct catalog {
 	Hence, Most used form of structure variables DECLARATION:
 
 		Defining structure : 		
-				struct tag-name {	type member_1;
+						struct tag-name {	type member_1;
 									type member_2;
 									type member_3;
 									. . .
@@ -179,7 +179,7 @@ struct catalog {
 
 		Declaring structure variables : 
 			
-				struct tag_name var_list;
+						struct tag_name var_list;
 
 */
 
