@@ -1,127 +1,189 @@
-7.1 The Custom (User-defined) Data-types of C
-Custom data types are the data types which are created by programmers. The built-in data types are int, float, char etc. Custom data types are created by combining the built-in data types.
+/* 
+	-----------------    User-defined Data-types of C    -----------------
 
-In C we can define five kind of custom data-types :
- 
-[1]	Structure 
-[2]	Union
-[3]	Bit-field
-[4]	Enumeration
-[5]	Typedef 
- 
+	int, float, char data types are etc. Custom User-defined Data-types are created by combining the built-in data types.
 
-	int , float, char etc. are C's built-in data types (primary/fundamental data-type)  and structure, union etc. are C's combined(user-defined) data-type. 
-
-7.2 STRUCTURE Basics
-7.2.1 Defining structures  
-C supports a constructed data type known as structures, a mechanism for packing data of different types. A structure is a convenient tool for handling a group of logically related data items. 
-A structure is an aggregate(=collection) (or conglomerate) data type that is composed of two or more related variables called members. The members of a structure are also commonly referred to as fields or elements. We'll use these terms interchangeably. Structures are defined in C using this general form:
-struct tag-name {
-type member_1;
-type member_2;
-type member_3;
-. . .
-. . .
-type member_N;
-} variable-list;
-	Unlike an array in which each element is of the same type, each member of a structure can have its own type, which may differ from the types of the other members.
-	The keyword struct tells the compiler that a structure type is being defined.
-	The type of each member is a valid C type. 
-	The tag-name is essentially the type name of the structure. It is the user defined data-type-name like : int, char. We use the type name as we've used int or char.
-	The variable-list is where actual instances (the variables which use the structure data-type) of the structure are declared. 
-	Either the tag-name or the variable-list is optional, but one must be present (you will see why shortly). 
-	Generally, the information contained in a structure is logically related. For example, consider a structure to hold a person's address. Another structure might be used to support an inventory program in which each item's name, retail and wholesale cost, and the quantity on hand are stored.
-
-Difference between arrays and structures : 
-We have seen that arrays can he used to represent a group of data items that belong to the same type, such as int or float. However, we cannot use an array if we want to represent a collection of data items of different types using a single name. 
-Both the arrays and structures are classified as structured data types as they pro¬vide a mechanism that enable us to access and manipulate data in a relatively easy manner. But they differ in a number of ways.
-[1]	An array is a collection of related data elements of same type.  Structure can have elements of different types.
-[2]	An array is derived data type whereas a structure is a programmer -defined one.
-[3]	Any array behaves like a built-in data type. All we have to do is to declare an array variable and use it. But in the case of a structure, first we have to design and declare a data structure before the variables of that type are declared and used.
-[4]	Structures help to organize complex data in a more meaningful way. It is a powerful concept that we nay often need to use in our program design.
-
-Example :  The structure shown here defines fields that can hold card-catalog information:
-struct catalog {
-char name [40] ; 	/* author name */
-char title[40] ; 	/* title */
-char pub[40] ; 	/* publisher */
-unsigned date;	/* copyright date */
-unsigned char ed; 	/* edition */
-} card;
-	Here, catalog is the type name of the structure. It is not the name of a variable. 
-	The only variable defined by this fragment is card. 
-	It is important to understand that a structure declaration defines only a logical entity, which is a new data type. It is not until variables of that type are declared than an object of that type actually exists. Thus, catalog is a logical template; card has physical reality. 
-
-Table : How the card structure variable appears in memory (assuming 2-byre integers)
-name [40]																					…			40 byte
-title[40]																					…			40 byte
-pub[40]																					…			40 byte
-date date																	2byte
-ed									1byte
-Card = Total 123 byte.
-
-7.2.2 Declaring structure variables : 
-Once you have defined a structure type (with already existing variable-list or no variable-list), you can create additional variables of that type using this general form:
-struct tag-name additional_variable-list;
-Hence we can declare structure variable in two way either along with structure definition or separately after defining structure. Hence structure definition takes three forms :
+		In C we can define five kind of custom data-types :
+	
+			[1]	Structure 
+			[2]	Union
+			[3]	Bit-field
+			[4]	Enumeration
+			[5]	Typedef 
+	
 
 
-Form : 1	Form : 2	Form : 3
-struct tag-name {
-		type member_1;
-		type member_2;
-		type member_3;
-		. . .
-		. . .
-		type member_N;
-	} variable-list;	struct {
-		type member_1;
-		type member_2;
-		type member_3;
-		. . .
-		. . .
-		type member_N;
-	} variable-list;	struct tag-name {
-		type member_1;
-		type member_2;
-		type member_3;
-		. . .
-		. . .
-		type member_N;
-		};
-	tag-name and variable-list are present. 
-	New additional variables can be declared along with old variable-list. 		No tag-name is present. 
-	Additional variables cannot be declared after defining structure.		only tag-name is present. 
-	All variables can be declared after defining structure.
-	struct tag_name var_list;
-          is effective.
-	It defines new additional variables.		struct tag_name var_list;
-has no effect because no tag-name is present		struct tag_name var_list;
-          is effective.
-	It defines all variables.
 
-	For these reason either the tag-name or the variable-list is optional, but one must be present.  For example this statement declares three variables of type struct catalog:
-
-struct catalog var1, var2, var3;
-
-This is why it is not necessary to declare any variables when the structure type is defined. You can declare them separately, as needed.
-
-	If you know you only need a fixed number of structure variables, you do not need to specify the tag-name (form - 2). For example, this code creates two structure variables, but the structure itself is unnamed:
-struct { int a;
-  char Ch;
-} var1, var2;
-
-	In actual practice, we usually specify the tag name. And use "form-3". That is we don’t declare variable with structure-definition. We'll declare all structure variable using :  	struct tag_name var_list;
-
-
-Defining structure : 		struct tag-name {	type member_1;
+	-----------------    STRUCTURE Basics    -----------------
+	structures  
+		It is a mechanism for "packing" data of "different types".
+		A structure is an aggregate(=collection) (or conglomerate) data type that is composed of 
+			two or more related variables called members. 
+		
+		fields/elements/members
+			The members of a structure are also commonly referred to as fields or elements.
+		
+		General form:
+						struct tag-name {
+							type member_1;
 							type member_2;
 							type member_3;
 							. . .
 							. . .
-							type member_N;};
+							type member_N;
+						} variable-list;
 
-Declaring structure variables : 	struct tag_name var_list;
+
+		each member of a structure can have its own type, which may differ from the types of the other members.
+
+		The keyword struct tells the compiler that a "structure type" is being defined.
+
+		The type of each member must be a valid C type. 
+
+		The tag-name is essentially the "type-name" of the structure. 
+			It is the user defined data-type-name like : int, char. We use the type name as we've used 'int' or 'char'.
+
+		The "variable-list" is where actual 'instances' (the variables which use the structure data-type) of the structure are declared. 
+
+		Either the tag-name or the variable-list is optional, but one must be present.
+
+		Generally, the information contained in a structure is logically related. 
+			For example, consider a structure to hold a person's address.
+	
+		
+
+
+	-----------------    arrays vs structures    -----------------
+
+	Arrays can be used to represent a group of data items that belong to the same type, such as int or float. 
+		"structure" supports a collection of data items of "different types u"sing a "single name". 
+
+	Both the arrays and structures are classified as "structured data types" 
+
+	Any array behaves like a built-in data type. All we have to do is to declare an array variable and use it. 
+		But in the case of a structure, we have to design and declare a "DATA STRUCTURE" 
+			before the variables of that type are declared and used.
+			
+	Structures help to organize complex data in a more meaningful way.
+*/	
+
+
+/* Example 1:  The structure shown here defines fields that can hold card-catalog information: */
+
+struct catalog {
+	char name [40] ; 	// author name 
+	char title[40] ; 	// title 
+	char pub[40] ; 		// publisher 
+	unsigned date;		// copyright date 
+	unsigned char ed; 	// edition 
+} card;
+
+
+
+/* 
+	-----------------    OBJECT of a structure    -----------------
+
+	In previous example, 'catalog' is the "type name" of the structure. 
+		It is not the name of a variable. 
+
+	The only variable defined by this fragment is "card". 
+
+	It is important to understand that a "structure DEFINITION" defines only a "logical entity", which is a 'new data type'. 
+		When a variable of that type is declared an "OBJECT" of that type is created. 
+		(In C++ class are use the similar principle) 
+
+	Hence, 'catalog' is a logical template; 'card' has physical reality. 
+
+
+	=====    How the card structure variable appears in memory (assuming 2-byte integers)    =====
+					name [40]		40 byte
+					title[40]		40 byte
+					pub[40]			40 byte
+					date date		2  byte
+					ed				1  byte
+
+					Card = Total 123 byte.
+
+
+
+
+	-----------------    Variation of structure variables DECLARATION    -----------------
+
+	Once you have defined a structure type (with already existing variable-list or no variable-list), 
+		you can create additional variables of that type using this general form:
+
+				struct tag-name additional_variable_list;
+
+
+	Form 1: re-usable. 
+		'tag-name' and 'variable-list' are present. 
+		New additional variables can be declared along with old 'variable-list'.
+		
+				struct tag_name {
+						type member_1;
+						type member_2;
+						type member_3;
+						. . .
+						. . .
+						type member_N;
+					} variable-list;	
+	
+
+	Form 2: usable only once.
+		No tag-name is present. 
+		Additional variables cannot be declared after defining structure.	
+
+				struct {
+						type member_1;
+						type member_2;
+						type member_3;
+						. . .
+						. . .
+						type member_N;
+					} variable-list;	
+
+
+	Form 3: re-usable
+		Only "tag-name" is present.
+		all variables can be declares after defining the structure
+
+				struct tag_name {
+						type member_1;
+						type member_2;
+						type member_3;
+						. . .
+						. . .
+						type member_N;
+						};
+
+
+	For these reason either the tag-name or the variable-list is optional, but one must be present. 
+		For example this statement declares three variables of type struct catalog:
+
+			struct catalog var1, var2, var3;
+
+	It is not necessary to declare any variables when the structure type is defined. 
+		You can declare them separately, as needed.
+
+
+
+	Hence, Most used form of structure variables DECLARATION:
+
+		Defining structure : 		
+				struct tag-name {	type member_1;
+									type member_2;
+									type member_3;
+									. . .
+									. . .
+									type member_N;};
+
+		Declaring structure variables : 
+			
+				struct tag_name var_list;
+
+*/
+
+
 
 7.2.3 Structure variable initialization : 
 Like any other data type, a structure variable can, be initialized at compile time. We can initialize a structure variable in two different ways:
