@@ -96,6 +96,7 @@ struct catalog {
 
 
 	=====    How the card structure variable appears in memory (assuming 2-byte integers)    =====
+ 
 					name [40]		40 byte
 					title[40]		40 byte
 					pub[40]			40 byte
