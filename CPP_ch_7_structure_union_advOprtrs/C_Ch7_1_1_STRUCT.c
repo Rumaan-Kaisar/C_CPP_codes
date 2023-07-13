@@ -182,193 +182,351 @@ struct catalog {
 			
 						struct tag_name var_list;
 
+
+
+
+
+	-----------------    Initialization of Structure variables    -----------------
+	Like other data types, a structure variable can be initialized at compile time. It can be done in two different ways:
+
+	without tag-name: 
+		Initialize directly when we declaring a structure. In this case we don’t need tag-name to mention.
+
+			struct {	
+				type member_1;
+				type member_2;
+				type member_3;
+				. . .
+				. . .
+				type member_N;
+			} variable_name = {member_1_value, member_2_value, . . . , member_N_value };
+
+
+	split variable declaration (commonly used):
+
+				struct tag-name {	
+					type member_1;
+					type member_2;
+					type member_3;
+					. . .
+					. . .
+					type member_N; 
+				};
+
+
+				struct tag-name variable_name = {	
+													member_1_value, 
+													member_2_value, 
+													. . ., 
+													member_N_value 
+													};
+
+
+	Initialization restrictions:
+
+		[1]	compile-time initialization must have the following elements:
+				i.		The keyword "struct".
+				ii.		The structure "tag-name". 
+				iii.	The "name of the variable" to be declared.
+				iv.		The assignment operator "=" .
+				v.		A "set of values" for the members of the structure variable, 
+							separated by "commas" and enclosed in "curly braces". 
+				vi.		A terminating semicolon.
+
+		[2]	We cannot initialize individual members inside the structure template.
+		[3]	The "order of values"  must match the "order of members" in the structure definition.
+		[4]	It is permitted to have a partial initialization. 
+					We can initialize only the "first few members" and leave the remaining blank.
+					The "uninitialized" members should be "only at the end" of the list.
+
+				The uninitialized members will be assigned default values as follows:
+					Zero for integer and floating point numbers. 
+					'\0' for characters and strings. 
+
+	
+	Note:
+	"Each instance" of a structure contains "its own copy of the members" of the structure. For example, 
+
+			struct tag_name var1, var2, var3;
+
+		The 'title' field of 'var1' is completely separate from the 'title' field of 'var2'. 
+		The only relationship between var1, var2, and var3  is that they are all variables of the same type of structure.
+
+
+
+
+
+	-----------------    "." operator to access members of a structure    -----------------
+
+	'dot operator' or "member operator":
+		must specify both "structure variable name" and the "member name" separated by a period '.' For example, 
+
+			card.date = 1776;
+
+		assigns the "date" field the value 1776 :	
+
+ 		C programmers often refer to the period as the dot operator. 
+
+
+	Output data from a member of a structure:
+		printf("Copyright date: %u", card.date);
+
+
+	Input data to a member of a structure:
+		scanf("%u", &card.date);
+
+		Notice that the "&" goes before the 'structure name', not before the 'member name'.
+
+
+	I/O of string and individual character of a string to/from a member of a structure: 
+		
+			gets(card.name);
+			printf("%s", card.title);
+
+		To access an individual character in the "title" field, simply index "title".
+
+			printf("%c", card.title[2]);
+
+
+
+
+
+ 	---------------    Operations on individual members    ---------------	
+	The precedence of the "member operator" (dot operator) is higher than all arithmetic and relational operators 
+		therefore no parentheses are required. 
+				
+	Operations on individual members:  
+		A member with the dot operator along with its structure variable can be treated like any other variable name
+		 	Therefore can be manipulated using expressions and operators.  
+			We can also apply increment and decrement operators to numeric type members. 
+				For example  :  Consider
+
+				struct item{
+					int m; 
+					float x; 
+					char c;
+					} ver_1, ver_2;
+
+			We can perform the following operations:
+
+				if(ver_1.m > 4) ver_2.m++;	 	// logical operator & increment operator
+				float sum = ver_1.x + ver_2.x;
+
+
+
+
+
+	--------------    array & Structures    --------------
+	array of Structures:
+		Structures can be arrayed in the same fashion as other data types. 
+			For example, the following creates a 100-element array of structures of type catalog.
+
+				struct catalog cat[100];
+
+		Access:
+				cat[0];
+
+			To access a member within a specified structure of an array, follow the index with a period and the name of the member
+				cat[33].ed = 2;
+
+
+	Arrays within Structures:
+		The following structure declaration is valid:
+
+			struct marks{ 
+				int number; 
+				float subject[3]; 
+				};
+
+			struct marks student[2];
+
+		These elements can be accessed using appropriate subscripts. For example, 
+
+			student[1].subject[2];
+
+
+
+
+
+	------------------    COPYING AND COMPARING STRUCTURE VARIABLES    ------------------
+	Can assign the contents of one instance (variables) of a structure to another as long as they are both of the same type. 
+	For example, this fragment is perfectly valid:
+
+	struct s_type { 
+		int a; 
+		float f; 
+		} var1, var2;
+
+	var1.a = 10; 
+	var2.f = 100.23; 	// assigning values to members of var1
+
+	var2 = var1; 		// copying values of var1 to members of ver2
+
+	After this fragment executes, "var2" will contain exactly the same thing as "var1".
+
+
+	Two variables of the same structure type can be copied the same way as ordinary variables. 
+		If personl and person2 belong to the same structure, then the following statements are valid:	
+
+			person1 = person2;
+			person2 = person1;
+
+
+	Conditionals are not allowed on structure variables. The folloowing statements are not permitted
+		person1 == person2;
+		person1 != person2;
+
+
+	If we need to compare them, we may do so by comparing members individually. 
+		For Example following statements are valid: 
+
+	person1.member_1 == person2.member_1;
+	person1.member_2 <= person2.member_2;
+	person1.member_3 != person2.member_3;
+
+
+
+
+
+	------------------    Structures and Functions    ------------------
+	
+	we can pass structure values as arguments to functions. There are three methods 
+	[1]	pass "each member" of the structure as an actual argument of the function call. 
+			The actual arguments are then treated independently like ordinary vari¬ables. 
+			But it becomes UNMANAGEABLE and INEFFICIENT when the structure size is large.
+
+
+	[2]	Pass a copy of the "entire structure" to the called function. 
+			Structures may be passed as parameters to functions just like any other type of value. 
+			A function may also return a structure.
+
+		Since the function is working on a copy of the structure, original remains the unchanged
+		It is necessary for the function to 'return the entire structure' back to the calling function. 
+		All compilers may not support passing the entire structure as a parameter.
+
+
+	[3]	pass a pointer of the structure as an argument. In this case oroginal structure can be changed
+			The function can access indirectly the entire structure and work on it.
+			This is similar to the way arrays are passed to function. 
+			This method is more efficient as compared to the second one.
+
+	-----------    function returns structure    ----------- 
+	Now we focus on the second method :
+
+	function returns structure: 
+		The general format of structure returning function
+
+			struct structure_type_name function_name();
+
+
+		The called function takes the following form:
+
+			struct structure_type_name function_name() {
+				struct structure_type_name var_name;
+					. . .
+				// Assignment of structure variable's members
+					. . .
+				return var_name;
+			}
 */
 
 
 
-7.2.3 Structure variable initialization : 
-Like any other data type, a structure variable can, be initialized at compile time. We can initialize a structure variable in two different ways:
 
-	Along with structure declaration (without tag-name): We can initialize a structure variable directly when we declaring a structure. In this case we don’t need tag-name to mention. The general form is :
+/* Example 2: The following program, for example, loads the members of var1 
+				with the values 100 and 123.23 and then displays them on the screen. */
 
-struct {	type member_1;
-type member_2;
-type member_3;
-. . .
-. . .
-type member_N;
-} variable_name = {member_1_value, member_2_value, . . ., member_N_value };
+#include <stdio.h>
 
-	Separately (split variable declaration) : We can initialize a structure variable using structure tag-name as we declared structure-variables before. This is the most used way. The general form is :
+struct s_type { 
+	int i; 
+	double d; 
+} ;
 
-struct tag-name {	type member_1;
-type member_2;
-type member_3;
-. . .
-. . .
-type member_N; } ;
-. . . . . .
-. . . . . .
-struct tag-name variable_name = {member_1_value, member_2_value, . . ., member_N_value };
+struct s_type f(void); // function as a structure
 
-Rules and restrictions to initialize structure-variables :  There are a few rules to keep in mind while initializing structure variables at compile-time.
+int main(void){
+	struct s_type var1; 
 
-[1]	The compile-time initialization of a structure variable must have the following elements:
-i.	The keyword struct.
-ii.	The structure tag-name. 
-iii.	The name of the variable to be declared.
-iv.	The assignment operator = .
-v.	A set of values for the members of the structure variable, separated by commas and enclosed in curly braces. 
-vi.	A terminating semicolon.
-[2]	We cannot initialize individual members inside the structure template.
-[3]	The order of values enclosed in braces must match the order of members in the structure definition.
-[4]	It is permitted to have a partial initialization. We can initialize only the first few members and leave the remaining blank..The uninitialized members should be only at the end of the list.
-[5]	The uninitialized members will be assigned default values as follows:
-•	Zero for integer and floating point numbers. 
-•	'\0' for characters and strings. 
+	var1 = f() ; // calling the structure type function and assigned to var1
+	printf("%d %f", var1.i, var1.d); 
+
+	return 0;
+}
+
+struct s_type f(void){
+	struct s_type temp;
+
+	temp.i = 100; 
+	temp.d = 123.23;
 	
-7.2.4 Accessing members of a structure & use of "." operator 
-To access a member of a structure, you must specify both the structure variable name and the member name, separated by a period. For example, using card, the following statement assigns the date field the value 1776 :	card.date = 1776; 	C programmers often refer to the period as the dot operator. 
-	Output data from a member of a structure - variable : To output data from a member of a structure – variable we specify both the structure variable name and the member name, separated by a period inside the console output functions : printf(), putchar(), puts(). For example: To print the copyright date of previous catalog structure, 
-printf("Copyright date: %u", card.date);
-	Input data to a member of a structure – variable : To input data to a member of a structure - variable we specify both the structure variable name and the member name, separated by a period inside the console input functions : scanf(), getchar(), gets(). For example: To input the date, use a scanf() statement such as:
-scanf("%u", &card.date);
-	Notice that the "&" goes before the structure name, not before the member name.
-	I/O of string and individual character of a string to/from a member of a structure – variable : On a similar fashion, these statements input the author's name and output the title:
-gets(card.name);
-printf("%s", card.title);
+	return temp;
+}
 
-	To access an individual character in the "title" field, simply index "title". For example, the following statement prints the third letter: 
-printf("%c", card.title[2]);
 
-	Operations on individual members :  A member with the dot operator along with its structure variable can be treated like any other variable name and therefore can be manipulated using expressions and operators.  We can also apply increment and decrement operators to numeric type members.  The precedence of the member operator (dot operator) is higher than all arithmetic and relational operators and therefore no parentheses are required. For example  :  Consider
 
-struct item{int m; float x; char c;} ver_1, ver_2;
+/* 
+	---------------    Structure as function parameter    --------------- 
+	The general format of sending a copy of a structure to the called function is
 
-We can perform the following operations:
+		function_name (structure_variable_name);
 
-if(ver_1.m > 4) ver_2.m++;	 	/* logical operator & increment operator*/
-float sum = ver_1.x + ver_2.x;
 
-7.2.5 Structures as arrays :
-Structures can be arrayed in the same fashion as other data types. For example, the following structure definition creates a 100-element array of structures of type catalog:
-struct catalog cat[100];
-	To access an individual structure of the array, you must index the array name. For example, the following accesses the first structure of catalog type structure array cat: 	cat[0];
-	To access a member within a specified structure, follow the index with a period and the name of the member you want. For example, the following Statement loads the ed field (or member) of structure cat[33] of type catalog with the value of 2:     cat[33].ed = 2;
+	The called function takes the following form:
 
-7.2.6 Arrays within Structures :
-C permits the use of arrays as structure members. We have already used arrays of charac¬ters inside a structure. Similarly, we can use single-dimensional or multi-dimensional arrays of type int or float. For example, the following structure declaration is valid:
+		data_type function_name(struct structure_type_name var_name){
+			. . .
+			. . .
+			expression;
+		}
 
-struct marks{ int number; 
- float subject[3]; 
-} student[2];
+	Remember following points: 
+	I.	The called function must be declared for corresponding structure's type-name, appropriate to the data type it is expected to return. 
+			For example, if it is returning a copy of the entire structure, then it must be declared as "struct" with an appropriate "tag name".
 
-These elements can be accessed using appropriate subscripts. For example, 
+	II.	The structure variable used as the actual argument and the corresponding formal argument in the called function must be of the same struct type.
 
-student[1].subject[2];
+	III. The expression may be any simple variable or structure variable or an expression using simple variables.
 
-7.2.7 COPYING AND COMPARING STRUCTURE VARIABLES
-You may assign the contents of one instance (variables) of a structure to another as long as they are both of the same type. For example, this fragment is perfectly valid:
+	IV.	When a function returns a structure, it "must be assigned" to a structure of identical type in the calling function. 
+			And function "must be declared" as the 'corresponding structure type function'.
 
-struct s_type { int a; float f; } var1, var2;
-var1.a = 10; var2.f = 100.23; 	/*assigning values to members of var1*/
-var2 = var1; 				/*copying values of var1 to members of ver2 */
+	V.	The called functions must be declared in the calling function appropriately. 
+*/
 
-After this fragment executes, var2 will contain exactly the same thing as var1.
 
-	Two variables of the same structure type can be copied the same way as ordinary variables. If personl and person2 belong to the same structure, then the following statements are valid:	
-person1 = person2;
-person2 = person1;
-	However, the statements such as
-person1 == person2;
-person1 != person2;
 
-are not permitted. C does not permit any logical operations on structure variables. In case, we need to compare them, we may do so by comparing members individually. For Example these statements are valid: 
 
-person1.member_1 == person2.member_1;
-person1.member_2 <= person2.member_2;
-person1.member_3 != person2.member_3;
-
-Note
-A key concept to understand is that each instance of a structure contains its own copy of the members of the structure. For example, 
-
-struct tag_name var1, var2, var3;
-
-the title field of var1 is completely separate from the title field of var2. In fact, the only relationship that var1, var2, and var3 have with one another is that they are all variables of the same type of structure. There is no other linkage among the three.
-
-7.2.8 Structures and Functions 
-We know that the main philosophy of C language is the use of functions. And therefore, it is natural that C supports the passing of structure values as arguments to functions. There are three methods by which the values of a structure can be transferred from one function to
-[1]	The first method is to pass each member of the structure as an actual argument of the function call. 
-	The actual arguments are then treated independently like ordinary vari¬ables. 
-	But it becomes unmanageable and inefficient when the structure size is large.
-
-[2]	The second method involves passing of a copy of the entire structure to the called function. Structures may be passed as parameters to functions just like any other type of value. A function may also return a structure.
-
-	Since the function is working on a copy of the structure, any changes to structure members within the function are not reflected in the original structure (in the calling function). 
-	It is, therefore, necessary for the function to return the entire structure back to the calling function. 
-	All compilers may not support this method of passing the entire structure as a parameter.
-
-[3]	The third approach is to pass a pointer of the structure as an argu¬ment. In this case, the address location of the structure is passed to the called func¬tion. 
-	The function can access indirectly the entire structure and work on it.
-	This is similar to the way arrays are passed to function. 
-	This method is more efficient as compared to the second one.
- 
-Now we focus on the second method :
-function returns structure : The general format of structure returning function
-struct structure_type_name function_name ();
-The called function takes the following form:
-struct structure_type_name function_name ()
-{
-struct structure_type_name var_name;
-. . .
-Assignment of structure variable's members
-. . .
-return var_name;}
-example : The following program, for example, loads the members of  var1 with the values 100 and 123.23 and then displays them on the screen :
+/* Example 3: Structure parameter to a function */
 #include <stdio.h>
 
-struct s_type { int i; double d; } ;
+struct s_type { 
+	int i; 
+	double d; 
+};
 
-struct s_type f(void); /* function as a structure */
+void f(struct s_type temp); // structure as function parameter
 
-int main(void){struct s_type var1; 
-var1 = f() ; /* calling the structure type function and assigned to var1 */
-printf("%d %f", var1.i, var1.d); 
-return 0;}
+int main(void){
+	struct s_type var1;
 
-struct s_type f(void){struct s_type temp;
-temp.i = 100; temp.d = 123.23;
-return temp;}
+	// assigning values to struct. variable var1
+	var1.i = 99; 
+	var1.d = 98.6; 
 
-Structure as function parameter: The general format of sending a copy of a structure to the called function is
-function_name (structure_variable_name);
+	// passing structure-variable to function
+	f(var1); 
 
-The called function takes the following form:
-data_type function_name(struct structure_type_name var_name)
-{. . .
- . . .
- expression;}
-example : 
-#include <stdio.h>
+	return 0;
+}
 
-struct s_type { int i; double d; } ;
+// defining function that takes a structure-parameter
+void f(struct s_type temp){
+	printf("%d %f", temp.i, temp.d);
+}
 
-void f(struct s_type temp); /* structure as function parameter */
 
-int main(void){struct s_type var1;
-var1.i = 99; var1.d = 98.6; /*assigning values to struct. variable var1 */
-f(var1); /* passing structure-variable to function*/
-return 0;}
 
-/* defining function using structure-members */
-void f(struct s_type temp){printf("%d %f", temp.i, temp.d);}
-
-Remember following points 
-I.	The called function must be declared for corresponding structure's type-name, appropriate to the data type it is expected to return. For example, if it is returning a copy of the entire structure, then it must be declared as struct with an appropriate tag name.
-II.	The structure variable used as the actual argument and the corresponding formal argument in the called function must be of the same struct type.
-III.	The expression may be any simple variable or structure variable or an expression using simple variables.
-IV.	When a function returns a structure, it must be assigned to a structure of identical type in the calling function. And function must be declared as the corresponding structure type function.
-V.	The called functions must be declared in the calling function appropriately.
 
 7.2.9 SIZE OF STRUCTURES
 We normally use structures, unions, and arrays to create variables of large sizes. The actual size of these variables in terms of bytes may change from machine to machine. We may use the unary operator sizeof to tell us the size of a structure (or any variable). 
@@ -390,4 +548,3 @@ int main(void){printf("s_type is %d bytes long", sizeof(struct s_type));
 printf("\n s_type variable ver_s1 is %d bytes long", sizeof(ver_s1)); 
 printf("\n s_type array variable ver_sa is %d bytes long", sizeof(ver_sa));
 return 0;}
-
