@@ -603,3 +603,470 @@ int main(void){
 	return 0;
 }
 
+
+
+// -----------    ex    -------------
+1. This program demonstrates some ways to access structure
+members:
+'include <stdio.h>
+struct s_type {
+int i;
+char chi
+double d;
+char str[BO}:
+} 5;
+int main(void)
+(
+printf(-Enter an integer: .);
+scanf ( • %d: ., &s . i) ;
+printf(-Enter a character: .);
+scanf(- %c~. &s.ch):
+printf(·Enter a flo~ting point numbe=: .);
+scanf("'lf", &s.d);
+printf("Enter a string: .);
+scanf("%s", s.str)
+printf(-'d %c %f %s", s.i, s.ch. s.d, s.str);
+return 0;
+)
+
+
+
+2. When you need to know the size of a structure, you should use
+the sizeof compile-time operator. Do not try to manually add'up
+the number ofbytes in each field. There are three good reasons
+for this. First, as you learned in the preceding chapter, using
+sizeof ensures that your code is portable to different
+environments. Second, in some situations, the compiler may
+need to align certain types of data on even word boundaries. In
+this case, the size of the structure will be larger than the sum of
+its individual elements. Finally, for computers based on the
+8086 family of CPU. (such as the 80486 or the Pentium), there
+are several different ways the compiler can organize memory.
+Some of these ways cause pointers to take up twice the space
+they do when memory is arranged differently.
+When using sizeof with a structure type, you must precede
+the tag name with the keyword 8truct, as shown in this program:
+tinclude <stdio.h>
+struct s_type {
+int i;
+char ch:
+int *p;
+double d;
+} S;
+int rnain{void)
+(
+	printf("s__type is %d bytes long", sizeof(struct s_type));
+return 0;
+)
+
+
+3. To see how useful arrays of structures are, examine an
+improved version of the card-catalog program developed in ,he
+preceding two chapters. Notice how using a structure makes it
+easier to organize the information about each book. Also notice
+
+how the entire structure array is written and read from disk in a
+single operation.
+/* An electronic card catalog. */
+.include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX 100
+int menu (void) i
+void display(int i):
+void author_search (void) ;
+void title_search (void) ;
+v01d enter(void);
+void save(void);
+void 1oadCvoidJ ,
+struct catalog (
+char name (80 J; ,. author name .,
+char title[801, ,. title .,
+unsigned char pub[80] date; , ,,"" publisher copyright date "'
+] unsigned cat [1dAX] , char ed, ," edition "'
+int top = 0; /* last location used */
+int main (void)
+(
+int choice;
+load() ; 1* read in catalog * /
+do (
+choice =. menu();
+switch (choice) (
+"'
+case 1: enter(); '* enter books * /
+break,
+J
+CAse 2: author_search(); '* search by author */
+break;
+case 3: title_search(); /* search by ti~e *;
+break;
+case 4: save();)
+} while(choicel=S);
+return 0;
+)
+/* Return a menu selection. */
+menu (void)
+(
+int i;
+char str[80];
+printf(NCard catalog:\n");
+printE(" 1. Enter\n~);
+printE(" 2. Search by Author\n");
+printE(" 3. Search by Title\n");
+printE(" 4. Save catalog\n");
+printE(" 5. Quit\n");
+do (
+printf{~Choose your selection: ");
+gets (str);
+i = atai (str);
+printE("\n") ;
+) whUeli<l II i>5);
+return i;
+I1IIUC1URES lIND IINIONS
+10.1 MASTER STRUCTURE 8/ISICS
+/* Enter books into database. */
+void enter(void)
+(
+int i;
+char temp[a01;
+for{i=top; i<MAX; i++) {
+printf("Enter author name (ENTER to quit): It);
+gets(cat(i] .name);
+if(!*cat[ij . name) break;
+printf("Enter title: ");
+gets{cat[i).tit!e):
+printfC"Enter publisher: ");
+getslcat(iJ .pub);
+printi ("Enter copyright date: ");
+gets Itemp) ;
+cat[iJ . date = (unsigned) atOi(temp);
+307
+y308 WlCH YOURSELF
+'If C
+)
+)
+printf("Enter edition: ·)i
+gets (temp) ;
+catlij.ed = (unsigned char) atoi{temp);
+top = i;
+/* Search by author. */
+void author_search(voidl
+{
+)
+char name[BO);
+int i, found;
+printf ("Name: ~);
+gets (narne) ;
+found = D.
+for(i=O; i<top; i++)
+if(!strcmp.{narne. cat[ij.name») {
+display (i) ;
+found = 1;
+printf("\n") ;
+if (! found) printf ("Not Found\n") i
+;* search by title. */
+void title_search(voidl
+{
+)
+char title[8D];
+int i, found;
+printf("Title: 10);
+gets (title);
+found = 0;
+for(i=O; i<top; i++)
+if{!strcrnp(title. cat{i}.title) {
+display (i) ;
+found = 1;
+printf ( .. \n");
+)
+if{!found} printf("Not Found\n");'0. ,
+STRIJCllJRfSAND_
+MASTER STRUCTURE BASICS
+/* Display catalog entry. */
+void display(int i)
+(
+)
+printf{"%s\n", cat(i].title);
+priPtf("by %s\n", cat[i].name);
+printf("published by %s\n", cat[i] .pub);
+prlntf("Copyright: %u, %u edition\n", cat(i] .date,
+cat(ij.ed) ;
+/* Load the catalog file. */
+void load(void)
+(
+FILE *fp;
+if( (fp = fopen("catalog", "rb") )==NULL) (
+printf{"Catalog file not on disk.\n");
+return;
+)
+if(fread(&top, sizeof top, 1, fp) != 1) { /* read count */
+printf("Error reading count.\nn);
+exit(1) ;
+)
+if(fread(cat, sizeof cat, 1. fp) != 1) { /* read data */
+printf("Error reading catalog data.\n");
+exit(l) ;
+)
+fclose (fp) ;
+}
+/* Save the catalog file. */
+void save(void)
+(
+FILE *fp;
+if((fp = fopen("catalog", "wb"))==NULL) (
+printf("Cannot open catalog file.\n");
+exit (1);
+)310 TEACH YOUASElf
+... C
+)
+if (fwrite(&top. sizeof top. 1. fp) != l} ( /. write CO\mt */
+printf(-Error writing count.\n-);
+exit 11);
+)
+if(fwrite(cat, sizeof cat, 1, fp) != 1) { j* write data */
+printf(~Error writing catalog data.\n-);
+exit(1) ;
+)
+fclose (fp) ;
+4. In the preceding example, the entire catalog array is stored on
+disk, even if the array is not full. If you like, you can change the
+load( ) and save( ) routines as follows, SO that only structures
+actually holding data are stored on disk:
+.
+/* Load the catalog file. *'
+v.oid load (void)
+I
+)
+FILE ·fpi
+int i;
+ifllfp = fopenl"catalog", Orb") )==NULL) {
+printf (·Catalog file not on disk. \n·) ;
+return;
+)
+if(fr~ad(&top. sizeof top, 1, fp) != 1) { /* read count */
+printf(-Error reading count.\n M );
+exit(1) ;
+)
+for(i=O; i<=top; i++) /* read data */
+if(fread(&cat[i}. sizeof(struct catalog), 1, fp)!= 1) (
+printf(-Error reading catalog data.\n-);
+exit(!) ;
+)
+fclose (fp) ;10.1 MASTER STRUCTURE BASJCS
+1* Save the catalog file. */
+void save (void)
+(
+}
+FILE *fp;
+int i:
+if«fp = fopen("catalog", "wb"»==NULL) (
+printf(MCannot open catalog file.\n-) i
+exit(l) ;
+}
+if (fwrite(&top, sizeof top, 1, fp) != 1) ( 1* write count *j
+printf(ftError writing count.\nM);
+exit(1);
+}
+for(i=O; i<=tcp: i++) 1* write data *j
+if(fwrite(&cat{il. sizeof{struct catalog), 1. fp)!= 1) {
+prlntf(MError writing catalog data.\n-);
+exit(l);
+}
+fclose ( fp) ;
+5. The names of structure members will not conflict with other
+variables usmg the same names. Because the member name is
+linked with the structure name, it is separate from other
+variables of the same name. For example, this program prints
+10 100 101 on the screen.
+• include <stdio.h>
+int main (void)
+(
+struct s_type {
+int i;
+int j;
+} 5;
+int i;
+i = 10;312 _'fUP f
+... C
+)
+B.i = 100;
+B.j = 101;
+printf("d 'd 'd', i, B.i, B.j);
+return 0;
+The variable i and the structure member i have no relationship
+to each other.
+6. As stated earlier, a: function may return a structure to the calling
+procedure. The following program, for example, loads the
+members of...arl with the values 100 and 123.23 and then
+displays them on the screen:
+'include <stdio.h>
+at.....:t a_type (
+int i;
+double d;
+) ;
+st....ct s_type f(void);
+int main (void)
+(
+struct s_type varl;
+varl ~ fO;
+printf("d 'f', varl.i, varl.d);
+return 0;
+)
+.truct s_type f(void)
+(
+)
+struct s_type temp;
+temp. i = 100;
+temp.d = 123.23;
+return temp;
+•STRUCTURES AND UNIONS 313
+lal MASTER STRUCTURE BASICS
+7. This program passes a structure to a function:
+'include <stdio.h>
+struct s_type {
+int i;
+double d:
+} ;
+void f(struct s_type temp);
+int main(void)
+{
+}
+struct s_type varl;
+varl.i = 99;
+varl.d = 98.6;
+f (varl);
+return 0;
+void f(struct s_type temp)
+{
+printf(M%d tf M , temp.i. temp.d);
+)
+.:1'
+
+long 1;
+char str[aO];
+} 5;
+~ = 10:
+3. On your own, examine the header file STDIO.H and look at how
+the FILE structure is defined.
+
+
+
+// ===========    Exs    ============
+j* A simple computerized telephone book. */
+*include <stdio.h>
+iinclude <string.h>
+.include <stdlib.h>
+*define MAX 100
+struct phone_type {
+char name (40J ;
+int areacode;
+char number (9 J ;
+) phone (MAXJ ;
+int loc=O;
+int menu (void) ;
+void enter(void);
+void load (void) ;
+void save (void) ;
+void find(voidl;
+int main (void)
+(
+int choice;
+do {
+choice = menu ( ) :
+switch (choice) (
+case 1: enter();
+break:
+)
+case 2: find () :
+break;
+case 3: save () :
+break;
+case 4: load () :
+) while(choice!=S):
+return 0:
+/* Get menu choice . */
+menu (void)
+{
+J
+int i;
+char .tr(80J:
+printf (-1 . Enter names and numbers\n·);.
+printf("2. Find numbers\n"):
+printf(-3. Save directory to disk\n-);
+printf(-'. Load directory from disk\n-);
+printf("S. Quit\n"):
+do (
+printf("Bnter your choice: "):
+geta(atr):
+i • atoi (str):
+print! ("\rI") :
+J while (i<l II i>5):
+return i;
+,
+,
+void enter(void)
+{
+,
+char temp (80J :
+tor (: loc<lOO: locH) (
+if(loc<lOO) {
+printf (-Enter name: .):
+gets(phone[locJ .name):
+if(!*phone(loc).name) break;
+printf(-Enter area code: .);
+gets (temp);
+phone {loc] .areacode = atoi(temp);
+printf!"Enter number: .);
+gets (phone [loc] .number) ;
+,a'
+void find{void}
+(
+)
+char name [801 ;
+int i;
+printf("Enter name: .);
+gets (name) ;
+if(!*name) return;
+for(i=O; i<100; iT+,
+if (!strcmp(name. phone[i] .name»
+printf("%s !%d) %s\n", phone[i] .name,
+phone[i] .areacode. phone(iJ.n~~er);
+void load {void)
+(
+)
+FILE 'fp;
+if«fp = fopen("phone", "r"ll==NULL) (
+printf("Cannot open file.\n");
+exit(l);
+)
+loe = 0;
+while (! feof (fp» (
+)
+fseanf(fp, "'s%d's", phone[loe) . name,
+&phone{loc1.areacode. phone[loc] .number);
+loc++;
+felose (fp) :
+void save (void)
+{
+FILE "fp;
+int i;
+if ((fp = topen ("phone", "W")) -=NULL) (
+printf("Cannot open file. In");
+eXit(l);
+)
+for(iIl:O; i<loc; i++) (
+)
+fprintf(fp, "'s 'd '8" phone [i) .name ,
+Phone(iJ.areacode, phone[i).number);
+fclose (fp) ;
+
+
+
+2. The variable i is a member of structure a_type. Therefore, it
+cannot be used by itself. Instead, it must be accessed using 8 and
+the dot operator, as shown here.
+s.i ~ 10;
+
+
+
+
