@@ -8,6 +8,9 @@
 		Eg:
 		scanf("%d.%d", &i, &j);
 		Here "%d.%d" is the "CONTROL STRING" and '&i, &j'  are the varargs
+  
+		scanf() returns the number of fields assigned values. 
+			If an error occurs before any assignments are made, "EOF" is returned.
 
 
 	The "CONTROL-STRING" consists mostly of FORMAT SPECIFIERS. However, it can contain other characters. 
@@ -15,8 +18,40 @@
 			The specifiers are matched in order, from left to right, with the arguments. 
 			There must be as many arguments as there are specifiers. 
 
-		scanf() returns the number of fields assigned values. 
-			If an error occurs before any assignments are made, "EOF" is returned.
+		The control string defines the expected input format and helps `scanf` parse the input correctly.
+			Here are some commonly used control characters in the `scanf` control string:
+
+			- Space character `' '`: Skips over any whitespace characters (spaces, tabs, newlines) in the input stream.
+			- Asterisk character `'*'`: Suppresses assignment. The corresponding input value is read but not stored in a variable.
+			- Ampersand character `'&'`: Used to pass the address of a variable to `scanf` for assignment.
+			- Square brackets `'[]'`: Specifies a set of characters that are valid for input matching. For example, `[abc]` matches 'a', 'b', or 'c' in the input.
+			- Dash character `'-'` (within square brackets): Indicates a range of characters in the set. For example, `[a-z]` matches any lowercase letter.
+			- Caret character `'^'` (as the first character within square brackets): Inverts the character set. For example, `[^0-9]` matches any character that is not a digit.
+			- Percent character `'%'`: Matches a literal percent character in the input.
+
+		Here's an example that demonstrates the usage of control characters within the `scanf` control string:
+		
+				int num1, num2;
+				char name[20];
+				
+				scanf("%d %*f", &num1);           // Reads an integer and discards a floating-point number
+				scanf(" %d", &num2);              // Reads an integer, skips leading whitespace
+				scanf("%20[a-zA-Z ]", name);      // Reads up to 20 characters (including letters and spaces)
+
+
+			In the example above, the control string `"%d %*f"` reads an integer and discards a floating-point number. 
+				The space character before `%d` consumes any whitespace left in the input buffer. 
+				The `*` before `%f` suppresses assignment, so the value is read but not stored in a variable.
+			
+			The control string `" %d"` reads an integer and skips leading whitespace using the space character before `%d`.
+			
+			The control string `"%20[a-zA-Z ]"` reads up to 20 characters, including letters (both uppercase and lowercase) and spaces. 
+				The square brackets specify the valid character set for input matching.
+			
+			These are just a few examples of control characters used in the `scanf` control string. 
+				You can combine them and use them according to your specific input requirements.
+
+
 
 
 	You can specify a "MAXIMUM FIELD WIDTH" for all specifiers except %c (one character field)  and %n (to which the concept does not apply). 
