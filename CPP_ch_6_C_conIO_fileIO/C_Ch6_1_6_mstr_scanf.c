@@ -147,7 +147,7 @@ int main(void){
 	scanf("%d:", &s.i);		// notice ':'  after %d
 
 	printf("Enter a character: ");
-	scanf(" %c", &s.ch);	// notice ' '  before %c
+	scanf(" %c", &s.ch);	// notice ' '  before %c, it reads a character, with preceding space to consume whitespace
 
 	printf("Enter a floating point number: ");
 	scanf("%lf", &s.d);
