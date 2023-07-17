@@ -129,6 +129,19 @@
 
 // ------------------    scanf with special character    ------------------
 // notice the use of ':' after %d and space ' '  before %c
+	// if ':' is not used a space need to add before all format-specifier as below
+		// printf("Enter an integer: ");
+		// scanf("%d", &s.i);		// notice ':'  after %d
+	
+		// printf("Enter a character: ");
+		// scanf(" %c", &s.ch);	// notice ' ' space
+	
+		// printf("Enter a floating point number: ");
+		// scanf(" %lf", &s.d);	// notice ' ' space
+	
+		// printf("Enter a string: ");
+		// scanf(" %s", s.str); 	// notice ' ' space
+
 // in following example stucture is used
 
 /* Example 0: This program demonstrates some ways to access structure members. */
