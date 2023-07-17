@@ -112,6 +112,16 @@
 			To do this, precede the set with a ^ , for example, 	
 			
 			%[^0123456789] 		// When scanf() encounters this scanset, it will read any characters 'except' the digits 0 through 9.
+
+
+
+	------------------    Space usage    ------------------
+	Use white space between "format-specifier" as '%lf %c' to consume any whitespace or newline character left in the input buffer.
+	
+			float num;
+			char ch;
+			scanf("%f", &num);
+			scanf(" %c", &ch);    // Notice the space before %c to consume any whitespace or newline character left in the input buffer.
 */
 
 
