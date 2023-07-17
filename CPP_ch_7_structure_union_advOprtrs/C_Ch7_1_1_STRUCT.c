@@ -605,30 +605,43 @@ int main(void){
 
 
 
-// -----------    ex    -------------
-1. This program demonstrates some ways to access structure
-members:
-'include <stdio.h>
-struct s_type {
-int i;
-char chi
-double d;
-char str[BO}:
-} 5;
-int main(void)
-(
-printf(-Enter an integer: .);
-scanf ( • %d: ., &s . i) ;
-printf(-Enter a character: .);
-scanf(- %c~. &s.ch):
-printf(·Enter a flo~ting point numbe=: .);
-scanf("'lf", &s.d);
-printf("Enter a string: .);
-scanf("%s", s.str)
-printf(-'d %c %f %s", s.i, s.ch. s.d, s.str);
-return 0;
-)
 
+// ------------------    scanf with special character    ------------------
+// notice the use of ':' after %d and space ' '  before %c . These are "control strings"
+
+/* Example 5: This program demonstrates some ways to access structure members. */
+
+#include <stdio.h>
+
+struct s_type {
+	int i;
+	char ch;
+	double d;
+	char str[80];
+} s;
+
+int main(void){
+	printf("Enter an integer: ");
+	scanf("%d:", &s.i);		// notice ':'  after %d
+
+	printf("Enter a character: ");
+	scanf(" %c", &s.ch);	// notice ' '  before %c
+
+	printf("Enter a floating point number: ");
+	scanf("%lf", &s.d);
+
+	printf("Enter a string: ");
+	scanf("%s", s.str); 	// notice '&'  is not used because of being array
+
+	printf("%d %c %f %s", s.i, s.ch, s.d, s.str);
+	return 0;
+}
+
+
+
+
+
+// -----------    ex    -------------
 
 
 2. When you need to know the size of a structure, you should use
