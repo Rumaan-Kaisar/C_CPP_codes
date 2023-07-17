@@ -117,6 +117,41 @@
 
 
 
+// ------------------    scanf with special character    ------------------
+// notice the use of ':' after %d and space ' '  before %c
+// in following example stucture is used
+
+/* Example 0: This program demonstrates some ways to access structure members. */
+
+#include <stdio.h>
+
+struct s_type {
+	int i;
+	char ch;
+	double d;
+	char str[80];
+} s;
+
+int main(void){
+	printf("Enter an integer: ");
+	scanf("%d:", &s.i);		// notice ':'  after %d
+
+	printf("Enter a character: ");
+	scanf(" %c", &s.ch);	// notice ' '  before %c
+
+	printf("Enter a floating point number: ");
+	scanf("%lf", &s.d);
+
+	printf("Enter a string: ");
+	scanf("%s", s.str); 	// notice '&'  is not used because of being array
+
+	printf("%d %c %f %s", s.i, s.ch, s.d, s.str);
+	return 0;
+}
+
+
+
+
 /* Example 1: To see the effect of the %s specifier, try this program. 
 				When prompted, type "this is a test" and press ENTER. You will see only "this" redisplayed on the screen. 
 				This is because, when reading strings, scanf() stops when it encounters the 'first whitespace character'. */
