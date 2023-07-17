@@ -34,6 +34,10 @@
 						} variable-list;
 
 
+		Notice the use of ";" after "variable-list", 
+			we have to use it even if 'variable-list' is not present
+			the structue is considered as a statement like int/float/char declaration statement
+
 		each member of a structure can have its own type, which may differ from the types of the other members.
 
 		The keyword struct tells the compiler that a "structure type" is being defined.
@@ -527,24 +531,75 @@ void f(struct s_type temp){
 
 
 
+/* 
+	---------------    SIZE OF STRUCTURES    --------------- 
+	We normally use 
+						structures, 
+						unions, and 
+						arrays 
 
-7.2.9 SIZE OF STRUCTURES
-We normally use structures, unions, and arrays to create variables of large sizes. The actual size of these variables in terms of bytes may change from machine to machine. We may use the unary operator sizeof to tell us the size of a structure (or any variable). 
-	The expression :  	sizof(struct x)  	will evaluate the number of bytes required to hold all the members of the structure x. 
-	If y is a simple structure variable of type struct x, then the expression :	sizeof(y) 	would also give the same answer. 
-	If y[n] is an array variable of type struct then sizeof(y) would give the total number of bytes the array y[n] requires.
+	to create variables of large sizes.
 
-So using these information we can determine the number of records in a database. For example, the expression
-sizeof(y)/sizeof(x)
-would give the number of elements in the array y.
+	The actual size of these variables in terms of bytes may change from machine to machine.
 
-note 
-[1]	To know the size of a structure, you should use the sizeof compile-time operator. Do not try to manually add up the number of bytes in each field. 
-[2]	We need sizeof() because : in some situations, the compiler may need to align certain types of data on even word boundaries. In this case, the size of the structure will be larger than the sum of its individual elements. 
-[3]	When using sizeof with a structure type, you must precede the tag name with the keyword struct, as shown in this program:
+
+
+	use sizeof for struct, union , and array:
+		We may use the 'unary operator' sizeof to tell us the size of a structure (or any variable). The expression:
+
+				sizof(struct x)  	
+
+			will evaluate the number of bytes required to hold all the members of the structure x. 
+
+
+		If y is a simple structure variable of type struct x, then the expression :	
+			sizeof(y) 	
+		would also give the same answer. 
+
+
+		If y[n] is an array variable of type struct then sizeof(y) would give the total number of bytes the array y[n] requires.
+
+
+
+	Find no. of elements using sizeof:
+		Using sizeof we can determine the number of records in a database. For example, the expression
+
+			sizeof(y)/sizeof(x)
+
+		would give the number of elements in the array y.
+
+
+
+
+	NOTE 
+		To know the size of a structure, you should use the sizeof compile-time operator. 
+			Do not try to manually add up the number of bytes in each field. 
+
+		We need sizeof() because : in some situations, the compiler may need to align certain types of data on even word boundaries. 
+			In this case, the size of the structure will be larger than the sum of its individual elements. 
+
+		When using sizeof with a structure type, you must precede the tag name with the keyword struct, as shown in this program:
+*/
+
+
+
+
+/* Example 4: When using sizeof with a structure type, you must precede the tag name with the keyword struct, 
+				as shown in following program. */
 #include <stdio.h>
-struct s_type { int i; char ch; int *p; double d; } ver_s1, ver_sa[10];
-int main(void){printf("s_type is %d bytes long", sizeof(struct s_type)); 
-printf("\n s_type variable ver_s1 is %d bytes long", sizeof(ver_s1)); 
-printf("\n s_type array variable ver_sa is %d bytes long", sizeof(ver_sa));
-return 0;}
+
+struct s_type { 
+	int i; 
+	char ch; 
+	int *p; 
+	double d; 
+	} ver_s1, ver_sa[10];
+
+int main(void){
+	printf("s_type is %d bytes long", sizeof(struct s_type)); 
+	printf("\n s_type variable ver_s1 is %d bytes long", sizeof(ver_s1)); 
+	printf("\n s_type array variable ver_sa is %d bytes long", sizeof(ver_sa));
+
+	return 0;
+}
+
