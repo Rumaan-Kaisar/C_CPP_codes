@@ -945,8 +945,11 @@ void save(void){
 
 
 
+// -----------    ex    -------------
 
-4. In the preceding example, the entire catalog array is stored on
+
+
+Example 4: In the preceding example, the entire catalog array is stored on
 disk, even if the array is not full. If you like, you can change the
 load( ) and save( ) routines as follows, SO that only structures
 actually holding data are stored on disk:
@@ -991,7 +994,9 @@ prlntf(MError writing catalog data.\n-);
 exit(l);
 }
 fclose ( fp) ;
-5. The names of structure members will not conflict with other
+
+
+Example 5: The names of structure members will not conflict with other
 variables usmg the same names. Because the member name is
 linked with the structure name, it is separate from other
 variables of the same name. For example, this program prints
@@ -1013,7 +1018,9 @@ printf("d 'd 'd', i, B.i, B.j);
 return 0;
 The variable i and the structure member i have no relationship
 to each other.
-6. As stated earlier, a: function may return a structure to the calling
+
+
+Example 6: As stated earlier, a: function may return a structure to the calling
 procedure. The following program, for example, loads the
 members of...arl with the values 100 and 123.23 and then
 displays them on the screen:
@@ -1039,7 +1046,9 @@ temp.d = 123.23;
 return temp;
 •STRUCTURES AND UNIONS 313
 lal MASTER STRUCTURE BASICS
-7. This program passes a structure to a function:
+
+
+Example 7: This program passes a structure to a function:
 'include <stdio.h>
 struct s_type {
 int i;
@@ -1184,7 +1193,6 @@ fclose (fp) ;
 cannot be used by itself. Instead, it must be accessed using 8 and
 the dot operator, as shown here.
 s.i ~ 10;
-
 
 
 
