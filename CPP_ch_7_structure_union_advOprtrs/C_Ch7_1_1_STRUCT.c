@@ -661,6 +661,284 @@ int main(void){
 
 
 
+/* Example 7:  Following is an improved version of the card-catalog program developed previously,
+				it stores its information in a disk file called "CATALOG".
+
+				Notice how using a 'structure' makes it easier to organize the information about each book.
+				Also notice how the 'entire structure array' is written and read from disk in a 'single operation'.
+
+                When the program begins, have it read the catalog into memory.
+                Also, add an option to save the information to disk.
+
+                Card Catalog:
+                            1. Enter Books
+                            2. Search by author
+                            3. Search by Title
+                            4. Save catalog
+                            5. Quit
+
+
+                If you choose Enter, have the program repeatedly input the name, author, and publisher of a book.
+                    Have this process continue until the user enters a blank line for the name of the book.
+
+                For searches, prompt the user for the specified author or title and
+                then, if a match is found, display the rest of the information.
+
+                The program should be capable of storing 100 book info.
+*/
+
+/* =-=-=-=-=-=-=-=-=-=-=            An electronic card catalog             =-=-=-=-=-=-=-=-=-=-= */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+int menu(void);
+void enter(void);
+void load(void);
+void save(void);
+
+void display(int i);
+void author_search(void);
+void title_search(void);
+
+// instead all of these we'll use a structure
+// char names[MAX][80];    // author name
+// char titles[MAX][80];   // titles
+// char pubs[MAX][80];     // publisher
+
+// ---------------------    new code    ---------------------
+struct catalog{
+	char name[80]; 		// author name
+	char title[80];		// title
+	char pub[80];  		// publisher
+	unsigned date; 		// copyright date
+	unsigned char ed; 	// edition
+} cat[MAX];
+// notice how the array of "catalog structure" is created
+// -------------------    new code ends    -------------------
+
+
+int top = 0;    // last location used
+
+
+int main(void){
+    int choice;
+
+    load();  // open to read in catalog
+
+    do{
+        choice = menu();
+        switch(choice){
+            case 1: enter(); // enter books
+                break;
+            case 2: author_search(); // search by author
+                break;
+            case 3: title_search(); // search by, title
+                break;
+            case 4: save();
+                break;
+        }
+    } while(choice!=5);
+
+    return 0;
+}
+
+
+// Get menu choice, select a choice
+int menu(void){
+    int i;
+    char str[80];
+
+    printf("Card Catalog:\n");
+    printf("1. Enter Books\n");
+    printf("2. Search by author\n");
+    printf("3. Search by Title\n");
+    printf("4. Save catalog\n");
+    printf("5. Quit\n");
+
+    do{
+        printf("Choose your selection:\n");
+        gets(str);
+        i = atoi(str);
+        printf("\n");
+    } while(i<1 || i>5);
+
+    return i;
+}
+
+
+// Following codes are modified to access structure members
+// Enter books into Database (modified code 1 )
+void enter(void){
+    int i;
+	char temp[80];
+
+    // for( i=top; i<MAX; i++){
+    //     printf("Enter author name (ENTER to quit): ");
+    //     gets(names[i]);
+    //     if(!*names[i]) break;
+
+    //     printf("Enter title: ");
+    //     gets(titles[i]);
+
+    //     printf("Enter publisher: ");
+    //     gets(pubs[i]);
+    // }
+
+	// notice how structre members are accessed
+    for( i=top; i<MAX; i++){
+        printf("Enter author name (ENTER to quit): ");
+        gets(cat[i].name);
+        if(!*cat[i].name) break;
+
+        printf("Enter title: ");
+        gets(cat[i].title);
+
+        printf("Enter publisher: ");
+        gets(cat[i].pub);
+
+		printf("Enter copyright date: ");
+		gets(temp);
+		cat[i].date = (unsigned) atoi(temp);
+
+		printf("Enter edition: ");
+		gets(temp);
+		cat[i].ed = (unsigned char) atoi(temp);
+    }
+
+    top = i;
+}
+
+
+
+// Search by author (modified code 2 )
+void author_search(void){
+    char name[80];
+    int i, found;
+
+    printf("Name: ");
+    gets(name);
+
+    found= 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(name, cat[i].name)){
+            display(i) ;
+            found = 1;
+            printf( "\n" ) ;
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Search by TITLE	(modified code 3 )
+void title_search(void){
+    char title[80];
+    int i, found;
+
+    printf("Title: ");
+    gets(title);
+
+    found= 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(title, cat[i].title)){
+            display(i) ;
+            found = 1;
+            printf( "\n" ) ;
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Display catalog entry. (modified code 4 )
+void display(int i){
+    printf("%s\n", cat[i].title);
+    printf("By %s\n", cat[i].name);
+    printf("Published by %s \n", cat[i].pub);
+	printf("Copyright: %u, %u edition\n", cat[i].date, cat[i].ed);
+}
+
+
+// Load the catalog file (modified code 5 )
+void load(void){
+    FILE *fp;
+
+    if((fp = fopen("catalog2","r"))==NULL){
+        printf("Catalog file not on disk\n");
+        // exit(1); we don't use it because we won't terminate the program
+        return; // we use "return" to continue the "main" function
+    }
+
+	// ---------     old code    ----------
+	// fread(&top, sizeof top, 1, fp);		// read count
+	// fread(cat, sizeof names, 1, fp);
+    // fread(titles, sizeof titles, 1, fp);
+    // fread(pubs , sizeof pubs, 1, fp);
+
+
+	// ---------     new code    ----------
+    // read count: with ERR cheking
+	if(fread(&top, sizeof top, 1, fp) != 1){
+		printf("Error reading count.\n");
+		exit(1);
+	}
+
+	// READ DATA: i.e array of catalog-structures,
+		// "struct" keyward not necessary for "array of stucture"
+	if(fread(cat, sizeof cat, 1, fp) != 1){
+		printf("Error reading catalog DATA.\n");
+		exit(1);
+	}
+
+    fclose(fp);
+}
+
+
+// save the catalog file
+void save(void){
+    FILE *fp;
+
+    // open for writing
+    if((fp = fopen("catalog2","w"))==NULL){
+        printf("Cannot open catalog file\n");
+        exit(1);
+    }
+
+	// ---------     old code    ----------
+    // fwrite(&top, sizeof top, 1, fp); // write count
+    // fwrite(names, sizeof names, 1, fp);
+    // fwrite(titles, sizeof titles, 1, fp);
+    // fwrite(pubs, sizeof pubs, 1, fp);
+
+
+	// ---------     new code    ----------
+    // write count: with ERR cheking
+	if(fwrite(&top, sizeof top, 1, fp) != 1){
+		printf("Error writing count.\n");
+		exit(1);
+	}
+
+	// WRITE DATA: i.e array of catalog-structures,
+		// "struct" keyward not necessary for "array of stucture"
+	if(fwrite(cat, sizeof cat, 1, fp) != 1){
+		printf("Error writing catalog DATA.\n");
+		exit(1);
+	}
+
+    fclose(fp);
+}
+
+
+
+// ----------- review
 3. To see how useful arrays of structures are, examine an
 improved version of the card-catalog program developed in ,he
 preceding two chapters. Notice how using a structure makes it
