@@ -661,6 +661,7 @@ int main(void){
 
 
 
+
 /* Example 7:  Following is an improved version of the card-catalog program developed previously,
 				it stores its information in a disk file called "CATALOG".
 
@@ -938,175 +939,13 @@ void save(void){
 
 
 
-// ----------- review
-3. To see how useful arrays of structures are, examine an
-improved version of the card-catalog program developed in ,he
-preceding two chapters. Notice how using a structure makes it
-easier to organize the information about each book. Also notice
 
-how the entire structure array is written and read from disk in a
-single operation.
-/* An electronic card catalog. */
-.include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#define MAX 100
-int menu (void) i
-void display(int i):
-void author_search (void) ;
-void title_search (void) ;
-v01d enter(void);
-void save(void);
-void 1oadCvoidJ ,
-struct catalog (
-char name (80 J; ,. author name .,
-char title[801, ,. title .,
-unsigned char pub[80] date; , ,,"" publisher copyright date "'
-] unsigned cat [1dAX] , char ed, ," edition "'
-int top = 0; /* last location used */
-int main (void)
-(
-int choice;
-load() ; 1* read in catalog * /
-do (
-choice =. menu();
-switch (choice) (
-"'
-case 1: enter(); '* enter books * /
-break,
-J
-CAse 2: author_search(); '* search by author */
-break;
-case 3: title_search(); /* search by ti~e *;
-break;
-case 4: save();)
-} while(choicel=S);
-return 0;
-)
-/* Return a menu selection. */
-menu (void)
-(
-int i;
-char str[80];
-printf(NCard catalog:\n");
-printE(" 1. Enter\n~);
-printE(" 2. Search by Author\n");
-printE(" 3. Search by Title\n");
-printE(" 4. Save catalog\n");
-printE(" 5. Quit\n");
-do (
-printf{~Choose your selection: ");
-gets (str);
-i = atai (str);
-printE("\n") ;
-) whUeli<l II i>5);
-return i;
-I1IIUC1URES lIND IINIONS
-10.1 MASTER STRUCTURE 8/ISICS
-/* Enter books into database. */
-void enter(void)
-(
-int i;
-char temp[a01;
-for{i=top; i<MAX; i++) {
-printf("Enter author name (ENTER to quit): It);
-gets(cat(i] .name);
-if(!*cat[ij . name) break;
-printf("Enter title: ");
-gets{cat[i).tit!e):
-printfC"Enter publisher: ");
-getslcat(iJ .pub);
-printi ("Enter copyright date: ");
-gets Itemp) ;
-cat[iJ . date = (unsigned) atOi(temp);
-307
-y308 WlCH YOURSELF
-'If C
-)
-)
-printf("Enter edition: ·)i
-gets (temp) ;
-catlij.ed = (unsigned char) atoi{temp);
-top = i;
-/* Search by author. */
-void author_search(voidl
-{
-)
-char name[BO);
-int i, found;
-printf ("Name: ~);
-gets (narne) ;
-found = D.
-for(i=O; i<top; i++)
-if(!strcmp.{narne. cat[ij.name») {
-display (i) ;
-found = 1;
-printf("\n") ;
-if (! found) printf ("Not Found\n") i
-;* search by title. */
-void title_search(voidl
-{
-)
-char title[8D];
-int i, found;
-printf("Title: 10);
-gets (title);
-found = 0;
-for(i=O; i<top; i++)
-if{!strcrnp(title. cat{i}.title) {
-display (i) ;
-found = 1;
-printf ( .. \n");
-)
-if{!found} printf("Not Found\n");'0. ,
-STRIJCllJRfSAND_
-MASTER STRUCTURE BASICS
-/* Display catalog entry. */
-void display(int i)
-(
-)
-printf{"%s\n", cat(i].title);
-priPtf("by %s\n", cat[i].name);
-printf("published by %s\n", cat[i] .pub);
-prlntf("Copyright: %u, %u edition\n", cat(i] .date,
-cat(ij.ed) ;
-/* Load the catalog file. */
-void load(void)
-(
-FILE *fp;
-if( (fp = fopen("catalog", "rb") )==NULL) (
-printf{"Catalog file not on disk.\n");
-return;
-)
-if(fread(&top, sizeof top, 1, fp) != 1) { /* read count */
-printf("Error reading count.\nn);
-exit(1) ;
-)
-if(fread(cat, sizeof cat, 1. fp) != 1) { /* read data */
-printf("Error reading catalog data.\n");
-exit(l) ;
-)
-fclose (fp) ;
-}
-/* Save the catalog file. */
-void save(void)
-(
-FILE *fp;
-if((fp = fopen("catalog", "wb"))==NULL) (
-printf("Cannot open catalog file.\n");
-exit (1);
-)310 TEACH YOUASElf
-... C
-)
-if (fwrite(&top. sizeof top. 1. fp) != l} ( /. write CO\mt */
-printf(-Error writing count.\n-);
-exit 11);
-)
-if(fwrite(cat, sizeof cat, 1, fp) != 1) { j* write data */
-printf(~Error writing catalog data.\n-);
-exit(1) ;
-)
-fclose (fp) ;
+// ----------- review
+
+
+
+
+
 4. In the preceding example, the entire catalog array is stored on
 disk, even if the array is not full. If you like, you can change the
 load( ) and save( ) routines as follows, SO that only structures
