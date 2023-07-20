@@ -640,37 +640,25 @@ int main(void){
 
 
 
+/* Example 6: When you need to know the size of a structure, you should use the sizeof compile-time operator. 
+				Do not try to manually add'up the number of bytes in each field.
+				When using "sizeof" with a structure type, you must precede the tag name 
+				with the keyword "struct", as shown in this program: */
 
-// -----------    ex    -------------
+#include <stdio.h>
 
-
-2. When you need to know the size of a structure, you should use
-the sizeof compile-time operator. Do not try to manually add'up
-the number ofbytes in each field. There are three good reasons
-for this. First, as you learned in the preceding chapter, using
-sizeof ensures that your code is portable to different
-environments. Second, in some situations, the compiler may
-need to align certain types of data on even word boundaries. In
-this case, the size of the structure will be larger than the sum of
-its individual elements. Finally, for computers based on the
-8086 family of CPU. (such as the 80486 or the Pentium), there
-are several different ways the compiler can organize memory.
-Some of these ways cause pointers to take up twice the space
-they do when memory is arranged differently.
-When using sizeof with a structure type, you must precede
-the tag name with the keyword 8truct, as shown in this program:
-tinclude <stdio.h>
 struct s_type {
-int i;
-char ch:
-int *p;
-double d;
-} S;
-int rnain{void)
-(
+	int i;
+	char ch;
+	int *p;
+	double d;
+} s;
+
+int main(void){
 	printf("s__type is %d bytes long", sizeof(struct s_type));
-return 0;
-)
+	return 0;
+}
+
 
 
 3. To see how useful arrays of structures are, examine an
