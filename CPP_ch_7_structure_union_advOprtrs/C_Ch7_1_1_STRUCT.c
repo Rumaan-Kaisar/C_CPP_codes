@@ -639,6 +639,7 @@ int main(void){
 
 
 
+
 /* Example 6: When you need to know the size of a structure, you should use the sizeof compile-time operator. 
 				Do not try to manually add'up the number of bytes in each field.
 				When using "sizeof" with a structure type, you must precede the tag name 
