@@ -639,7 +639,6 @@ int main(void){
 
 
 
-
 /* Example 6: When you need to know the size of a structure, you should use the sizeof compile-time operator. 
 				Do not try to manually add'up the number of bytes in each field.
 				When using "sizeof" with a structure type, you must precede the tag name 
@@ -940,61 +939,80 @@ void save(void){
 
 
 
-// ----------- review
+/* Example 7: (Manage Space: decrease 25 Times) In the preceding example, the entire catalog array is stored on disk, 
+				even if the array is not full. 
+				
+				If you like, you can change the load() and save() routines as follows, 
+				So that only structures actually holding data are stored on disk: */
+
+
+// Load the catalog file (modified code 5 )
+void load(void){
+    FILE *fp;
+	int i;
+
+    if((fp = fopen("catalog2","rb"))==NULL){
+        printf("Catalog file not on disk\n");
+        return; // we use "return" to continue the "main" function
+    }
+
+    // read count: with ERR cheking
+	if(fread(&top, sizeof top, 1, fp) != 1){
+		printf("Error reading count.\n");
+		exit(1);
+	}
+
+	// READ DATA: i.e array of catalog-structures,
+		// NOTICE: "struct" keyward is necessary for each "structure"
+		// also notice the use of "&" to point the structures
+	for(i=0; i<top; i++) {
+		// access each structure from the array
+		if(fread(&cat[i], sizeof(struct catalog), 1, fp) != 1){
+			printf("Error reading catalog DATA.\n");
+			exit(1);
+		}
+	}
+
+    fclose(fp);
+}
+
+
+// save the catalog file
+void save(void){
+    FILE *fp;
+	int i;
+
+    // open for writing
+    if((fp = fopen("catalog2","wb"))==NULL){
+        printf("Cannot open catalog file\n");
+        exit(1);
+    }
+
+    // write count: with ERR cheking
+	if(fwrite(&top, sizeof top, 1, fp) != 1){
+		printf("Error writing count.\n");
+		exit(1);
+	}
+
+	// WRITE DATA: i.e array of catalog-structures,
+		// NOTICE: "struct" keyward is necessary for each "structure"
+		// also notice the use of "&"
+	for(i=0; i<top; i++) {
+		// access each structure from the array
+		if(fwrite(&cat[i], sizeof(struct catalog), 1, fp) != 1){
+			printf("Error writing catalog DATA.\n");
+			exit(1);
+		}
+	}
+
+    fclose(fp);
+}
+
 
 
 
 
 // -----------    ex    -------------
-
-
-
-Example 4: In the preceding example, the entire catalog array is stored on
-disk, even if the array is not full. If you like, you can change the
-load( ) and save( ) routines as follows, SO that only structures
-actually holding data are stored on disk:
-.
-/* Load the catalog file. *'
-v.oid load (void)
-I
-)
-FILE ·fpi
-int i;
-ifllfp = fopenl"catalog", Orb") )==NULL) {
-printf (·Catalog file not on disk. \n·) ;
-return;
-)
-if(fr~ad(&top. sizeof top, 1, fp) != 1) { /* read count */
-printf(-Error reading count.\n M );
-exit(1) ;
-)
-for(i=O; i<=top; i++) /* read data */
-if(fread(&cat[i}. sizeof(struct catalog), 1, fp)!= 1) (
-printf(-Error reading catalog data.\n-);
-exit(!) ;
-)
-fclose (fp) ;10.1 MASTER STRUCTURE BASJCS
-1* Save the catalog file. */
-void save (void)
-(
-}
-FILE *fp;
-int i:
-if«fp = fopen("catalog", "wb"»==NULL) (
-printf(MCannot open catalog file.\n-) i
-exit(l) ;
-}
-if (fwrite(&top, sizeof top, 1, fp) != 1) ( 1* write count *j
-printf(ftError writing count.\nM);
-exit(1);
-}
-for(i=O; i<=tcp: i++) 1* write data *j
-if(fwrite(&cat{il. sizeof{struct catalog), 1. fp)!= 1) {
-prlntf(MError writing catalog data.\n-);
-exit(l);
-}
-fclose ( fp) ;
-
 
 Example 5: The names of structure members will not conflict with other
 variables usmg the same names. Because the member name is
