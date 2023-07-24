@@ -1012,7 +1012,29 @@ void save(void){
 
 
 
+/* Example 8: The names of structure members will not conflict with other variables usmg the same names. 
+				Because the member name is linked with the structure name, 
+				it is separate from other variables of the same name. 
+				For example, this program prints 10 100 101 on the screen. */
+#include <stdio.h>
+int main(void){
+	struct s_type{
+		int i;
+		int j;
+	} s;
 
+	int i;
+
+	i = 10;
+
+	s.i = 100;
+	s.j = 101;
+
+	printf("%d %d %d", i, s.i, s.j);
+	return 0;
+}
+
+// Notice: The variable i and the structure member i have no relationship to each other.
 // -----------    ex    -------------
 
 Example 5: The names of structure members will not conflict with other
