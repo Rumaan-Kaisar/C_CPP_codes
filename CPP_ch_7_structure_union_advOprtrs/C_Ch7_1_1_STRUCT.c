@@ -1035,30 +1035,13 @@ int main(void){
 }
 
 // Notice: The variable i and the structure member i have no relationship to each other.
-// -----------    ex    -------------
 
-Example 5: The names of structure members will not conflict with other
-variables usmg the same names. Because the member name is
-linked with the structure name, it is separate from other
-variables of the same name. For example, this program prints
-10 100 101 on the screen.
-• include <stdio.h>
-int main (void)
-(
-struct s_type {
-int i;
-int j;
-} 5;
-int i;
-i = 10;312 _'fUP f
-... C
-)
-B.i = 100;
-B.j = 101;
-printf("d 'd 'd', i, B.i, B.j);
-return 0;
-The variable i and the structure member i have no relationship
-to each other.
+
+
+
+
+
+// -----------    ex    -------------
 
 
 Example 6: As stated earlier, a: function may return a structure to the calling
