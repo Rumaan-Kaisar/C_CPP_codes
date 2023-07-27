@@ -1012,6 +1012,9 @@ void save(void){
 
 
 
+
+// -----------    ex    -------------
+
 /* Example 8: The names of structure members will not conflict with other variables usmg the same names. 
 				Because the member name is linked with the structure name, 
 				it is separate from other variables of the same name. 
@@ -1038,68 +1041,240 @@ int main(void){
 
 
 
+---------------------    upload    ----------------------
 
 
 
-// -----------    ex    -------------
+/* Example 9: As stated earlier, a function may 'return a structure' to the calling procedure. 
+				Following program loads the members of 'var1' with the values 
+				100 and 123.23 and then displays them on the screen: */
 
+#include <stdio.h>
 
-Example 6: As stated earlier, a: function may return a structure to the calling
-procedure. The following program, for example, loads the
-members of...arl with the values 100 and 123.23 and then
-displays them on the screen:
-'include <stdio.h>
-at.....:t a_type (
-int i;
-double d;
-) ;
-st....ct s_type f(void);
-int main (void)
-(
-struct s_type varl;
-varl ~ fO;
-printf("d 'f', varl.i, varl.d);
-return 0;
-)
-.truct s_type f(void)
-(
-)
-struct s_type temp;
-temp. i = 100;
-temp.d = 123.23;
-return temp;
-•STRUCTURES AND UNIONS 313
-lal MASTER STRUCTURE BASICS
+struct s_type{
+	int i;
+	double d;
+};
 
+// function of struct 'type'
+struct s_type f(void);
 
-Example 7: This program passes a structure to a function:
-'include <stdio.h>
-struct s_type {
-int i;
-double d:
-} ;
-void f(struct s_type temp);
-int main(void)
-{
+int main(void){
+	struct s_type var1;
+
+	var1 = f();
+	printf("%d %f", var1.i, var1.d);
+
+	return 0;
 }
-struct s_type varl;
-varl.i = 99;
-varl.d = 98.6;
-f (varl);
-return 0;
-void f(struct s_type temp)
-{
-printf(M%d tf M , temp.i. temp.d);
-)
-.:1'
 
-long 1;
-char str[aO];
-} 5;
-~ = 10:
-3. On your own, examine the header file STDIO.H and look at how
-the FILE structure is defined.
 
+// function definition
+struct s_type f(void){
+	struct s_type temp;
+
+	temp.i = 100;
+	temp.d = 123.23;
+
+	return temp;
+}
+
+
+
+
+/* Example 10: This program passes a structure to a function: */
+#include <stdio.h>
+
+struct s_type{
+	int i;
+	double d;
+};
+
+// function of structure 'parameter'
+void f(struct s_type temp);
+
+int main(void){
+	struct s_type var1;
+
+	var1.i = 99;
+	var1.d = 198.69;
+
+	// passing struct argument to the function
+	f(var1);
+
+	return 0;
+}
+
+
+void f(struct s_type temp){
+	printf("%d %f " , temp.i, temp.d);
+}
+
+
+
+
+
+
+/* Example 11: In previous chapter, we wrote a program that created a telephone directory that was stored on disk. 
+				We now improve the program so that it uses an array of structures, each containing
+
+							a person's name,
+							area code, and 
+							telephone number. 
+							
+					Store the area code as an integer. 
+					Store the name and telephone number as strings. 
+				Make the array MAX elements long, where MAX is any convenient value that you choose.
+
+
+                Have the program present a menu that looks like this:
+
+                        1. Enter the names and numbers
+                        2. Find numbers
+                        3. Save directory to disk
+                        4. Load directory from disk
+                        5. Quit
+
+                The program should be capable of storing 100 names and numbers. (Use only first names if you like.) 
+                Use fprintf() to save the directory to disk and fscanf() to read it back into memory. */
+
+// A simple computerized telephone book.
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char names[10][40], 
+numbers[10][40];
+
+int loc = 0;
+
+int menu(void);
+void enter(void);
+void load(void);
+void save(void);
+void find(void);
+
+int main(void){
+    int choice;
+
+    do{
+        choice = menu();
+        switch(choice){
+            case 1: enter();
+                break;
+            case 2: find();
+                break;
+            case 3: save();
+                break;
+            case 4: load();
+                break;
+        }
+    } while(choice!=5);
+
+    return 0;
+}
+
+
+// Get menu choice
+int menu(void){
+    int i;
+    char str[80];
+
+    printf("1. Enter names and numbers\n");
+    printf("2. Find numbers\n");
+    printf("3. Save directory to disk\n");
+    printf("4. Load directory from disk\n");
+    printf("5. Quit\n");
+
+    do{
+        printf("Enter your choice\n");
+        gets(str);
+        i = atoi(str);
+        printf("\n");
+    } while(i<1 || i>5);
+
+    return i;
+}
+
+
+void enter(void){
+    for( ; loc<10; loc++){
+        if(loc<10){
+            printf("Enter name and phone number:\n");
+            gets(names[loc]);
+            if(!*names[loc]) break;
+            gets(numbers[loc]);
+        }
+    }
+}
+
+
+void find(void){
+    char name[80];
+    int i;
+
+    printf("Enter name: ");
+    gets(name);
+
+    for(i=0; i<10; i++){
+        if(!strcmp(name, names[i]))
+            printf("%s %s\n",names[i], numbers[i]);
+    }
+}
+
+
+void load(void){
+    FILE *fp;
+
+    if((fp = fopen("phone","r"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    loc = 0;
+    // loading names and numbers from the file & re-building Phone-Book
+    while(!feof(fp)){
+        fscanf(fp,"%s%s", names[loc], numbers[loc]);
+        loc++;
+    }
+    fclose(fp);
+}
+
+
+void save(void){
+    FILE *fp;
+    int i;
+
+    if((fp = fopen("phone","w"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    for(i=0; i<loc; i++){
+        fprintf(fp,"%s %s\n", names[i], numbers[i]);
+    }
+
+    fclose(fp);
+}
+
+
+
+
+
+/* Example 12: What is wrong with this fragment?
+
+		struct s_type{
+			int i;
+			long lg;
+			char str[80];
+		} s;
+
+		.
+		.
+		.
+
+		i = 10; 
+*/
 
 
 // ===========    Exs    ============
@@ -1219,4 +1394,9 @@ the dot operator, as shown here.
 s.i ~ 10;
 
 
-
+long 1;
+char str[aO];
+} 5;
+~ = 10:
+3. On your own, examine the header file STDIO.H and look at how
+the FILE structure is defined.
