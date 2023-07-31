@@ -1,22 +1,53 @@
 
-7.2.10 Declare Pointer to Structure 
-We declare a pointer to a structure in the same way that we declare a pointer to any other type of variable with the same manner we declare pointer with the same structure-type of the variable. For example, 
+// --------------------    pointer to a STRUCTURE    --------------------
 
-struct s_type {int i; char str[80];} s, *p;
+struct s_type {
+    int i; 
+    char str[80];
+} s, *p;
 
-the above fragment defines a structure called s_type and declares two variables. The first, s, is an actual structure variable. The second, p, is a pointer to structures of type s_type.
-	Then, 	p = &s; 	assigns to p the address of s.
-	To access an individual element of s using p you cannot use the dot operator. Instead, you must use the arrow operator as shown in the following
-p->i = 1
-This statement assigns the value 1 to element i of s through p. 
-arrow operator : The arrow operator is formed using a minus sign followed by a greater-than sign. There must be no spaces between the two.
-Why use pointer to structure : C passes structures to functions in their entirety. However, if the structure is very large, the passing of a structure can cause a considerable reduction in a program's execution speed. For this reason, when working with large structures, you might want to pass a pointer to a structure in situations that allow it instead of passing the structure itself.
+p = &s;
 
-Remember  :
-	When accessing a member using a structure variable, use the dot operator.
-	When accessing a member using a pointer, use the arrow operator. 
 
-Note : Application of structure-pointer  : Date and Time functions  
+
+/* 
+    It's the same way that we declare a pointer to any other type.
+        "p", is a pointer to structures of type 's_type'.
+        Then, 	p = &s; 	assigns to 'p' the address of 's'.
+
+
+    --------------------    ARROW OPERATOR "->"    --------------------
+
+    cannot use the dot to access INDIVIDUAL ELEMENT of 's' using 'p':
+        To access an individual element of 's' using 'p' you cannot use the dot operator. 
+        Instead, you must use the arrow operator "->" as shown in the following
+
+            p->i = 1
+
+        This statement assigns the value 1 to element i of s through p. 
+
+
+    arrow operator : 
+        The arrow operator is formed using a minus sign followed by a greater-than sign. There must be no spaces between the two.
+
+
+    Why use pointer to structure : 
+        C passes structures to functions in their entirety. 
+            If the structure is very large, the program's execution speed becomes slow. 
+            
+        For this reason, we want to pass a 'pointer to a structure' instead of passing the structure itself.
+
+
+    Remember:
+        When accessing a member using a structure variable, use the dot operator.
+        When accessing a member using a pointer, use the arrow operator. 
+
+*/
+
+
+    --------------------    Application of structure-pointer  : Date and Time functions     --------------------
+
+ 
 One very useful application of structure pointers is found in C's time and date functions. Several of these functions use a pointer to the current time and date of the system.
 	The time and date functions require the header TIME. H for their prototypes. This header file also defines four types and two macros. 
 	The type time_t is able to represent the system time and date as a long integer. This is called the calendar time. time_t represents the time and date of the system in an encoded implementation specific internal format. To obtain the calendar time of the system, you must use the time() function, whose prototype is:
