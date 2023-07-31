@@ -1041,9 +1041,6 @@ int main(void){
 
 
 
----------------------    upload    ----------------------
-
-
 
 /* Example 9: As stated earlier, a function may 'return a structure' to the calling procedure. 
 				Following program loads the members of 'var1' with the values 
@@ -1113,17 +1110,15 @@ void f(struct s_type temp){
 
 
 
-
-
-/* Example 11: In previous chapter, we wrote a program that created a telephone directory that was stored on disk. 
+/* Example 11: In previous chapter, we wrote a program that created a telephone directory that was stored on disk.
 				We now improve the program so that it uses an array of structures, each containing
 
 							a person's name,
-							area code, and 
-							telephone number. 
-							
-					Store the area code as an integer. 
-					Store the name and telephone number as strings. 
+							area code, and
+							telephone number.
+
+					Store the area code as an integer.
+					Store the name and telephone number as strings.
 				Make the array MAX elements long, where MAX is any convenient value that you choose.
 
 
@@ -1135,7 +1130,7 @@ void f(struct s_type temp){
                         4. Load directory from disk
                         5. Quit
 
-                The program should be capable of storing 100 names and numbers. (Use only first names if you like.) 
+                The program should be capable of storing 100 names and numbers. (Use only first names if you like.)
                 Use fprintf() to save the directory to disk and fscanf() to read it back into memory. */
 
 // A simple computerized telephone book.
@@ -1143,8 +1138,13 @@ void f(struct s_type temp){
 #include <string.h>
 #include <stdlib.h>
 
-char names[10][40], 
-numbers[10][40];
+#define MAX 100
+
+struct phone_type{
+	char name[40];
+	int areacode;
+	char number[9];
+} phone[MAX];
 
 int loc = 0;
 
@@ -1198,12 +1198,20 @@ int menu(void){
 
 
 void enter(void){
+	char temp[80];
+
     for( ; loc<10; loc++){
         if(loc<10){
-            printf("Enter name and phone number:\n");
-            gets(names[loc]);
-            if(!*names[loc]) break;
-            gets(numbers[loc]);
+            printf("Enter name:\n");
+            gets(phone[loc].name);
+            if(!*phone[loc].name) break;
+
+			printf("Enter area code:\n");
+			gets(temp);
+			phone[loc].areacode = atoi(temp);
+
+			printf("Enter number:\n");
+            gets(phone[loc].number);
         }
     }
 }
@@ -1216,9 +1224,11 @@ void find(void){
     printf("Enter name: ");
     gets(name);
 
+	if(!*name) return;
+
     for(i=0; i<10; i++){
-        if(!strcmp(name, names[i]))
-            printf("%s %s\n",names[i], numbers[i]);
+        if(!strcmp(name, phone[i].name))
+            printf("%s (%d) %s\n", phone[i].name, phone[i].areacode, phone[i].number);
     }
 }
 
@@ -1232,9 +1242,11 @@ void load(void){
     }
 
     loc = 0;
-    // loading names and numbers from the file & re-building Phone-Book
+    // loading names, areacode and numbers from the file & re-building Phone-Book
+    // notice the use of '&' to scan "areacode"
     while(!feof(fp)){
-        fscanf(fp,"%s%s", names[loc], numbers[loc]);
+        fscanf(fp,"%s%d%s", phone[loc].name, &phone[loc].areacode, phone[loc].number);
+        // printf("%s%d%s \n", phone[loc].name, &phone[loc].areacode, phone[loc].number);
         loc++;
     }
     fclose(fp);
@@ -1251,12 +1263,14 @@ void save(void){
     }
 
     for(i=0; i<loc; i++){
-        fprintf(fp,"%s %s\n", names[i], numbers[i]);
+        // notice the " " spaces after the specifiers, during write
+        fprintf(fp,"%s %d %s ", phone[i].name, phone[i].areacode, phone[i].number);
+        // save in following format:
+        // a 123 01901 b 234 01802 c 345 01703
     }
 
     fclose(fp);
 }
-
 
 
 
@@ -1276,127 +1290,14 @@ void save(void){
 		i = 10; 
 */
 
-
-// ===========    Exs    ============
-j* A simple computerized telephone book. */
-*include <stdio.h>
-iinclude <string.h>
-.include <stdlib.h>
-*define MAX 100
-struct phone_type {
-char name (40J ;
-int areacode;
-char number (9 J ;
-) phone (MAXJ ;
-int loc=O;
-int menu (void) ;
-void enter(void);
-void load (void) ;
-void save (void) ;
-void find(voidl;
-int main (void)
-(
-int choice;
-do {
-choice = menu ( ) :
-switch (choice) (
-case 1: enter();
-break:
-)
-case 2: find () :
-break;
-case 3: save () :
-break;
-case 4: load () :
-) while(choice!=S):
-return 0:
-/* Get menu choice . */
-menu (void)
-{
-J
-int i;
-char .tr(80J:
-printf (-1 . Enter names and numbers\n·);.
-printf("2. Find numbers\n"):
-printf(-3. Save directory to disk\n-);
-printf(-'. Load directory from disk\n-);
-printf("S. Quit\n"):
-do (
-printf("Bnter your choice: "):
-geta(atr):
-i • atoi (str):
-print! ("\rI") :
-J while (i<l II i>5):
-return i;
-,
-,
-void enter(void)
-{
-,
-char temp (80J :
-tor (: loc<lOO: locH) (
-if(loc<lOO) {
-printf (-Enter name: .):
-gets(phone[locJ .name):
-if(!*phone(loc).name) break;
-printf(-Enter area code: .);
-gets (temp);
-phone {loc] .areacode = atoi(temp);
-printf!"Enter number: .);
-gets (phone [loc] .number) ;
-,a'
-void find{void}
-(
-)
-char name [801 ;
-int i;
-printf("Enter name: .);
-gets (name) ;
-if(!*name) return;
-for(i=O; i<100; iT+,
-if (!strcmp(name. phone[i] .name»
-printf("%s !%d) %s\n", phone[i] .name,
-phone[i] .areacode. phone(iJ.n~~er);
-void load {void)
-(
-)
-FILE 'fp;
-if«fp = fopen("phone", "r"ll==NULL) (
-printf("Cannot open file.\n");
-exit(l);
-)
-loe = 0;
-while (! feof (fp» (
-)
-fseanf(fp, "'s%d's", phone[loe) . name,
-&phone{loc1.areacode. phone[loc] .number);
-loc++;
-felose (fp) :
-void save (void)
-{
-FILE "fp;
-int i;
-if ((fp = topen ("phone", "W")) -=NULL) (
-printf("Cannot open file. In");
-eXit(l);
-)
-for(iIl:O; i<loc; i++) (
-)
-fprintf(fp, "'s 'd '8" phone [i) .name ,
-Phone(iJ.areacode, phone[i).number);
-fclose (fp) ;
+/* 
+	The variable i is a member of structure s_type. Therefore, it
+	cannot be used by itself. Instead, it must be accessed using "s" and
+	the 'dot operator', as shown here.
+	s.i = 10;
+*/
 
 
 
-2. The variable i is a member of structure a_type. Therefore, it
-cannot be used by itself. Instead, it must be accessed using 8 and
-the dot operator, as shown here.
-s.i ~ 10;
 
-
-long 1;
-char str[aO];
-} 5;
-~ = 10:
-3. On your own, examine the header file STDIO.H and look at how
-the FILE structure is defined.
+// On your own, examine the header file STDIO.H and look at how the FILE structure is defined.
