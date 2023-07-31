@@ -1012,9 +1012,6 @@ void save(void){
 
 
 
-
-// -----------    ex    -------------
-
 /* Example 8: The names of structure members will not conflict with other variables usmg the same names. 
 				Because the member name is linked with the structure name, 
 				it is separate from other variables of the same name. 
@@ -1198,7 +1195,7 @@ int menu(void){
 
 
 void enter(void){
-	char temp[80];
+    char temp[80];
 
     for( ; loc<10; loc++){
         if(loc<10){
@@ -1206,11 +1203,11 @@ void enter(void){
             gets(phone[loc].name);
             if(!*phone[loc].name) break;
 
-			printf("Enter area code:\n");
-			gets(temp);
-			phone[loc].areacode = atoi(temp);
+            printf("Enter area code:\n");
+	    gets(temp);
+	    phone[loc].areacode = atoi(temp);
 
-			printf("Enter number:\n");
+	    printf("Enter number:\n");
             gets(phone[loc].number);
         }
     }
