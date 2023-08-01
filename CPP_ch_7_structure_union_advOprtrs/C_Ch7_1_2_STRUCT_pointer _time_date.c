@@ -103,23 +103,29 @@ p = &s;
 
 
 
-Example 1: Following program demonstrates time() and localtime() by displaying the current time of the system:
+/* Example 1: Following program demonstrates time() and localtime() by displaying the current time of the system: */
 
 #include <stdio.h>
 #include <time.h>
-int main(void)
-{struct tm *systime;
- time_t t;
- t = time(NULL);
- systime = localtime(&t);
- printf("Time is %.2d:%.2d:%.2d\n", systime->tm_hour, systime->tm_min, systime->tm_sec);
- printf("Date: %.2d/%.2d/%.2d", systime->tm_mon+1, systime->tm_mday, systime->tm_year);
- return 0;}
+int main(void) {
+    struct tm *systime;
+    time_t t;
+ 
+    t = time(NULL);
+    systime = localtime(&t);
+    
+    printf("Time is %.2d:%.2d:%.2d\n", systime->tm_hour, systime->tm_min, systime->tm_sec);
+    printf("Date: %.2d/%.2d/%.2d", systime->tm_mon+1, systime->tm_mday, systime->tm_year);
 
-Here is sample output produced by this program: 	Time is 10:32:49
-Date: 03115/97
+    return 0;
+}
+
+// Here is sample output produced by this program: 	Time is 10:32:49
+// Date: 03115/97
+
 	The type c1ock_t is defined the same as time_t. The header file also defines size_t.
 	The macros defined are NULL and CLOCKS_PER_SEC.
 	Another of C's time and date functions is called gmtime( ) . Its prototype is
 struct tm *gmtime(time_t *time);
 The gmtime() function works exactly like localtime() , except that it returns the Coordinated Universal Time (which is, essentially, Greenwich Mean Time) of the system.
+
