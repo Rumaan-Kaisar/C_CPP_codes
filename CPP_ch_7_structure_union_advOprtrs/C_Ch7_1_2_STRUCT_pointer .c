@@ -38,43 +38,72 @@ p = &s;
         For this reason, we want to pass a 'pointer to a structure' instead of passing the structure itself.
 
 
-    Remember:
+    Remember use of "." and "->":
         When accessing a member using a structure variable, use the dot operator.
         When accessing a member using a pointer, use the arrow operator. 
 
-*/
 
-##################    reviw    ################
+
 
     --------------------    Application of structure-pointer  : Date and Time functions     --------------------
 
- 
-One very useful application of structure pointers is found in C's time and date functions. Several of these functions use a pointer to the current time and date of the system.
-	The time and date functions require the header TIME. H for their prototypes. This header file also defines four types and two macros. 
-	The type time_t is able to represent the system time and date as a long integer. This is called the calendar time. time_t represents the time and date of the system in an encoded implementation specific internal format. To obtain the calendar time of the system, you must use the time() function, whose prototype is:
-time_t time(time_t *systime) ;
-The time() function returns the encoded calendar time of the system or -1 if no system time is available. It also places this encoded form of the time into the variable pointed to by systime. However, if systime is null, the argument is ignored.
-	The structure type tm holds date and time broken down into its elements. The tm structure is defined as shown here:
+    Several of C's TIME and DATE functions use a pointer to the "current time and date of the system"
+        The time and date functions require the header <TIME.H> for their prototypes. This header file also defines 'four types' and 'two macros'. 
 
-struct tm {	int tm_sec; 		/* seconds, 0-61 */
-int tm_min; 		/* minutes. 0-59 */
-int tm_hour; 		/* hours, 0-23 */
-int tm_mday; 		/* day of the month, 1-31*/
-int tm_mon; 		/* months since Jan, 0-11 */
-int tm-year; 		/* years from 1900 */
-int tm_wday; 		/* days since Sunday, 0-6 */
-int tm_yday; 		/* days since Jan 1, 0-365 */
-int tm_isdst;		/* Daylight Saving Time indicator */
-} ;
-The value of tm_isdst will be positive if Daylight Saving Time is in effect, 0 if it is not in effect, and negative if there is no information available. When the date and time are represented in this way, they are referred to as broken-down time.
+    time_t:
+        The type "time_t" is able to represent the system time and date as a long integer. This is called the "CALENDAR TIME". 
+        'time_t' represents the time and date of the system in an encoded implementation specific internal format. 
+        
+        time():
+            To obtain the CALENDAR TIME of the system, you must use the time() function, whose prototype is:
+    
+                    time_t time(time_t *systime) ;
 
-	Since the calendar time is represented using an implementation specified internal format, you must use another of C's time and date functions to convert it into a form that is easier to use.  Called localtime(). Its prototype is
+            time() returns the encoded CALENDAR TIME of the system or -1 if no system time is available. 
+                It also places this encoded form of the time into the variable pointed to by systime. 
+                However, if systime is null, the argument is ignored.
 
-struct tm *localtime(time_t *systime);
 
-The localtime() function returns a pointer to the broken-down form of systime. The structure that holds the broken-down time is internally allocated by the compiler and will be overwritten by each subsequent call.
 
-This program demonstrates time() and localtime() by displaying the current time of the system:
+    tm:
+    The following structure type 'tm' holds date and time broken down into its elements. 
+        This tm structure is defined inside <TIME.H>
+        The tm structure is defined as shown here:
+
+            struct tm {	
+                int tm_sec; 		// seconds, 0-61 
+                int tm_min; 		// minutes. 0-59 
+                int tm_hour; 		// hours, 0-23 
+                int tm_mday; 		// day of the month, 1-31
+                int tm_mon; 		// months since Jan, 0-11 
+                int tm-year; 		// years from 1900 
+                int tm_wday; 		// days since Sunday, 0-6 
+                int tm_yday; 		// days since Jan 1, 0-365 
+                int tm_isdst;		// Daylight Saving Time indicator 
+            } ;
+
+        The value of tm_isdst will be positive if Daylight Saving Time is in effect, 0 if it is not in effect, and negative if there is no information available. 
+        When the date and time are represented in this way, they are referred to as "BROKEN-DOWN TIME".
+
+
+
+    localtime():
+        Since the CALENDAR TIME is represented using an implementation specified internal format, 
+            you must use another of C's time and date functions to convert it into a form that is easier to use.  
+            Called localtime(). Its prototype is
+
+                struct tm *localtime(time_t *systime);
+
+        localtime() returns a pointer to the "BROKEN-DOWN-FORM" of systime. 
+            The structure that holds the broken-down time is internally allocated by the compiler and will be overwritten by each subsequent call.
+
+*/
+
+
+
+
+
+Example 1: Following program demonstrates time() and localtime() by displaying the current time of the system:
 
 #include <stdio.h>
 #include <time.h>
