@@ -97,8 +97,26 @@ p = &s;
         localtime() returns a pointer to the "BROKEN-DOWN-FORM" of systime. 
             The structure that holds the broken-down time is internally allocated by the compiler and will be overwritten by each subsequent call.
 
-*/
 
+
+
+    clock_t : 
+        The type clock_t is defined the same as time_t. The header file also defines size_t.
+
+
+    macros : 
+        The macros defined are NULL and CLOCKS_PER_SEC.
+
+
+    gmtime() : 
+        Another of C's time and date functions is called gmtime() . Its prototype is
+
+            struct tm *gmtime(time_t *time);
+
+        The gmtime() function works exactly like localtime(), except that it returns the 
+            Coordinated Universal Time (which is, essentially, Greenwich Mean Time) of the system.
+
+*/
 
 
 
@@ -121,11 +139,9 @@ int main(void) {
 }
 
 // Here is sample output produced by this program: 	Time is 10:32:49
-// Date: 03115/97
+// Date: 03/15/97
+// use following if year is 123 or 100+
+// printf("Date: %.2d/%.2d/%d", systime->tm_mon+1, systime->tm_mday, systime->tm_year-100);
 
-	The type c1ock_t is defined the same as time_t. The header file also defines size_t.
-	The macros defined are NULL and CLOCKS_PER_SEC.
-	Another of C's time and date functions is called gmtime( ) . Its prototype is
-struct tm *gmtime(time_t *time);
-The gmtime() function works exactly like localtime() , except that it returns the Coordinated Universal Time (which is, essentially, Greenwich Mean Time) of the system.
+
 
