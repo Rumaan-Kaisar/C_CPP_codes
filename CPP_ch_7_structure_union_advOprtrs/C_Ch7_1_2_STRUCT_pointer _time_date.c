@@ -114,7 +114,7 @@ p = &s;
             struct tm *gmtime(time_t *time);
 
         The gmtime() function works exactly like localtime(), except that it returns the 
-            Coordinated Universal Time (which is, essentially, Greenwich Mean Time) of the system.
+            Coordinated Universal Time (which is, essentially, GREENWICH MEAN TIME) of the system.
 
 */
 
@@ -144,4 +144,52 @@ int main(void) {
 // printf("Date: %.2d/%.2d/%d", systime->tm_mon+1, systime->tm_mday, systime->tm_year-100);
 
 
+
+
+/* Example 2: The following program illustrates how to use a pointer to a structure */
+#include <stdio.h>
+#include <string.h>
+
+struct s_type {
+    int i;
+    char str[80];
+};
+
+struct s_type s, *p;
+
+int main(void){
+    p = &s;
+
+    // assigning values using pointer p
+    s.i = 10;   /* this is functionally the same */
+    p->i = 10;  /* as this */
+    strcpy(p->str, "I like structures.");
+
+    printf("%d %d %s", s.i, p->i, p->str);
+
+    return 0;
+}
+
+
+
+
+/* Example 3: Following program fragment incorrect.
+                Since p is a 'pointer' to a 'structure', you must use the ARROW OPERATOR "->", 
+                not the dot operator ".", to access a member.
+*/
+
+struct s_type {
+    int a; 
+    int b;
+} s, *p;
+
+int main(void){
+    p = &s;
+    p.a = 100   // WRONG
+    p->a = 100  // CORRECT
+    .
+    .
+    .
+}
+p = &s;
 
