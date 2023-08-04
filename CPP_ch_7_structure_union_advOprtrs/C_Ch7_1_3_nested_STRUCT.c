@@ -34,196 +34,341 @@ line1.wkers[1].avg_units_per_hour = 12;
 
 
 
-Example 2: A nested structure can be used to improve the card catalog
-program. Here, the mechanical information about each book is
-stored in its own structure, which, in turn, is part of the catalog
-structure. The entire catalog program using this approach is
-shown here. Notice how the program now stores the length of
-the book in pages.
-/ - An electronic card catalog--3rd Improvement. */
-#include <stdic.h>
+/* Example 2: A nested structure can be used to improve the card catalog program. 
+                Here, the mechanical information about each book is stored in its own structure, 
+                which, in turn, is part of the catalog structure. 
+
+                It stores its information in a disk file called "CATALOG".
+
+                Notice how the program now stores the 'length of the book' in "pages".
+				
+				Notice how using a 'structure' makes it easier to organize the information about each book.
+				Also notice how the 'entire structure array' is written and read from disk in a 'single operation'.
+
+                When the program begins, have it read the catalog into memory.
+                Also, add an option to save the information to disk.
+
+                Card Catalog:
+                            1. Enter Books
+                            2. Search by author
+                            3. Search by Title
+                            4. Save catalog
+                            5. Quit
+
+
+                If you choose Enter, have the program repeatedly input the name, author, and publisher of a book.
+                    Have this process continue until the user enters a blank line for the name of the book.
+
+                For searches, prompt the user for the specified author or title and
+                then, if a match is found, display the rest of the information.
+
+                The program should be capable of storing 100 book info.
+*/
+
+/* =-=-=-=-=-=-=-=-=-=-=            An electronic card catalog             =-=-=-=-=-=-=-=-=-=-= */
+
+#include <stdio.h>
 #include <string.h>
-#i~clude <stdlib.h>
+#include <stdlib.h>
+
 #define MAX 100
-int menu (void) ;
-void display(int i);
-void author_search (void);
-void title~search(void);
+
+int menu(void);
 void enter(void);
+void load(void);
 void save(void);
-void load (void) i
-struct book_type (
-unsigned date; /. copyright
-unsigned char ed; /. edition 'f
-unsigned pages; f' length of
-)
-date ./
-book 'f320 TEACH YOURSElf
-~ C
-/* author name *j
-title */
-publisher -/
-catalog {
-name[80] ;
-title[80]; /-
-pub[80]; /-
-struct
-char
-char
-char
-struct book_type book; /* mechanical info wi
-) cat [MAX] ;
-int tOP = 0; '* last location used */
-int main(voidl
-{
-)
-int choice;
-load(); /* read in catalog */
-do {
-choice = menu () ;
-5witch (choice) (
-case 1: enter(); '* enter books */
-break;
-case 2: author_search(); /* search by author */
-break;
-case 3: title_search(); /* search by title */
-break;
-case 4.: save();
-)
-} while(choice!=51;
-returr. 0;
-'* Return a menu selection. */
-menu (void)
-{
-int i;
-char str(80};
-printf("Card catalog:\n");
-printf(" 1. Enter\n");
-printf{" 2. Search by Author\n");
-printf{" 3. Search by Title\n");
-printf'" 4.. Save catalog\n");
-printf'" 5. Quit'n");
-do {)
-STRUCnJRES AND UNIONS
-10.3 WORK WITH NESTED STRUCTURES
-printf(-Choose your selection: R);
-gets(str) ;
-i = atoi(str);
-pnntf("'n") ;
-) while(i<l II i>5);
-return i;
-/* Enter books into database. */
-void enter (void)
-(
-)
-int i;
-char temp(8D]:
-for (i=top; i<MAX; i++) {
-printf(NEnter author name (ENTER to quit): ~)
-gets(cat(i] .name):
-if(!*cat[i] .name) break;
-printf{"Enter title: ");
-gets(cat[i] .title):
-printf("Enter publisher: ");
-gets(cat(i] .pub) i
-)
-printf("Enter copyright date: ");
-gets (temp) ;
-cat[i] .book.date = (unsigned) atoi(temp);
-printf("Enter edition: ");
-gets (temp) ;
-cat[i].book.ed = (unsigned char) atoi(temp);
-printf("Enter number of pages: ");
-gets (temp) ;
-cat[i].book.pages = (unsigned) atoi(temp);
-top = i;
-/* Search by author. */
-void author_search (void)
-{
-char name [80] ;
-int i, found;
-printf ("Na.'lle: ");
-gets (name) ;
-321
-,.322 TEACH YOURSELF
-c,
-)
-found = 0;
-for(i=O; i<top; i++)
-if(!strcmp(name. cat{i] .narne» {
-display(i) ;
-found = 1;
-printf,-'n M ) ;
-)
-if(!foundl printf(MNot Found\n-);
-/'" Search by title. "'I
-void title_search(voidl
-{
-char titleIBO];
-int i. found;
-printftMTitle: .);
-gets{':.ltle);
-fCl1.:.nd = 0;
-for{i=O; i<top; i++)
-if(!strcmp(title. cat[ij.title» {
-(hsplay (i) ;
-found = 1;
-printf!"\n-) ;
-)
-if(!foundl printf(-Not Founc\n*);
-,- Display catalog entry. */
-void display(int il
-{
-)
-printf(-'s\n-, catli] .title);
-printf(-by %5\n-, cat[~J .name);
-printf(*Published by %s\n"', cat[i] .pub);
-printf(·Copyright: %u. edition: %u\n-,
-catli1.book.date. cat[i] .book.edl;
-p~intf(·Pages: %u\n-, catli] .book.pages);
-/* Load the catalog file. */}
-void load(void)
-(
-FILE ·fp;
-STRUCTURES AND UNIDNS 323
-1a3 WORK WITH NESTED STRUCTURES
-if«fp = fopen("catalog", "rb"))==NULL) (
-printf("Catalog file not on disk.\n");
-return;
+
+void display(int i);
+void author_search(void);
+void title_search(void);
+
+
+// Following structuer "book_type" will be Nested inside "catalog"
+struct book_type {
+	unsigned date; 		// copyright date
+	unsigned char ed; 	// edition
+    unsigned pages;     // length of book
+};
+
+struct catalog{
+	char name[80]; 		    // author name
+	char title[80];		    // title
+	char pub[80];  		    // publisher
+    struct book_type book;  // mechanical info wi
+};
+
+struct catalog cat[MAX];    // creating array of "catalog structure"
+
+
+int top = 0;    // last location used
+
+
+int main(void){
+    int choice;
+
+    load();  // open to read in catalog
+
+    do{
+        choice = menu();
+        switch(choice){
+            case 1: enter(); // enter books
+                break;
+            case 2: author_search(); // search by author
+                break;
+            case 3: title_search(); // search by, title
+                break;
+            case 4: save();
+                break;
+        }
+    } while(choice!=5);
+
+    return 0;
 }
-if(fread(&top, sizeof top, 1, fp) != 1) ( /* read count */
-printf("Error reading count.\n");
-exit{l);
+
+
+// Get menu choice, select a choice
+int menu(void){
+    int i;
+    char str[80];
+
+    printf("Card Catalog:\n");
+    printf("1. Enter Books\n");
+    printf("2. Search by author\n");
+    printf("3. Search by Title\n");
+    printf("4. Save catalog\n");
+    printf("5. Quit\n");
+
+    do{
+        printf("Choose your selection:\n");
+        gets(str);
+        i = atoi(str);
+        printf("\n");
+    } while(i<1 || i>5);
+
+    return i;
 }
-if(fread(cat, sizeof cat, 1, fp) != 1) { /* read data */
-printi (~Error reading catalog data. \n") ;
-exi t (I) ;
-fclose (fp) ;
-/* Save the catalog file. */
-void save(void)
-(
-FILE "fp;
-if({fp = fopen{"catalog", "wb."»==NULL) (
-printf("Cannot open catalog file.\n");
-exit(l) ;
+
+
+// Following codes are modified to access structure members
+// Enter books into Database (modified code 1 )
+void enter(void){
+    int i;
+	char temp[80];
+
+	// notice how structre members are accessed
+    for( i=top; i<MAX; i++){
+        printf("Enter author name (ENTER to quit): ");
+        gets(cat[i].name);
+        if(!*cat[i].name) break;
+
+        printf("Enter title: ");
+        gets(cat[i].title);
+
+        printf("Enter publisher: ");
+        gets(cat[i].pub);
+
+        // notice the acces of NESTED STURCTURE MEMBERS
+		printf("Enter copyright date: ");
+		gets(temp);
+		cat[i].book.date = (unsigned) atoi(temp);
+
+		printf("Enter edition: ");
+		gets(temp);
+		cat[i].book.ed = (unsigned char) atoi(temp);
+
+        printf("Enter number of pages: ");
+        gets(temp) ;
+        cat[i].book.pages = (unsigned) atoi(temp);
+    }
+
+    top = i;
 }
-if(fwrite(&top. sizeof top, 1, fp) != 1) { /* write count */
-printf{"Error writing count.\n");
-exit(l);
-}
-if(fwrite(cat, sizeof cat, 1. fp) != 1) ( /* write data */
-printf(·Error writing catalog data.\n");
-exit(!);324
-"
-TEACH YOURSELF
-C
-- . , 10.4 . '
-)
-)
 
 
 
-// ---------------    EXERCISE    ----------------
+// Search by author
+void author_search(void){
+    char name[80];
+    int i, found;
+
+    printf("Name: ");
+    gets(name);
+
+    found= 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(name, cat[i].name)){
+            display(i) ;
+            found = 1;
+            printf( "\n" ) ;
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Search by TITLE
+void title_search(void){
+    char title[80];
+    int i, found;
+
+    printf("Title: ");
+    gets(title);
+
+    found= 0;
+
+    for(i=0; i<top; i++){
+        if(!strcmp(title, cat[i].title)){
+            display(i) ;
+            found = 1;
+            printf( "\n" ) ;
+        }
+    }
+
+    if(!found) printf("Not Found\n");
+}
+
+
+// Display catalog entry. (modified code 2 )
+void display(int i){
+    printf("%s\n", cat[i].title);
+    printf("By %s\n", cat[i].name);
+    printf("Published by %s \n", cat[i].pub);
+	printf("Copyright: %u, %u edition\n", cat[i].book.date, cat[i].book.ed);
+    printf("Pages: %u\n", cat[i].book.pages);
+}
+
+
+// Load the catalog file
+void load(void){
+    FILE *fp;
+
+    if((fp = fopen("catalog2","r"))==NULL){
+        printf("Catalog file not on disk\n");
+        // exit(1); we don't use it because we won't terminate the program
+        return; // we use "return" to continue the "main" function
+    }
+
+    // read count: with ERR cheking
+	if(fread(&top, sizeof top, 1, fp) != 1){
+		printf("Error reading count.\n");
+		exit(1);
+	}
+
+	// READ DATA: i.e array of catalog-structures,
+		// "struct" keyward not necessary for "array of stucture"
+	if(fread(cat, sizeof cat, 1, fp) != 1){
+		printf("Error reading catalog DATA.\n");
+		exit(1);
+	}
+
+    fclose(fp);
+}
+
+
+// save the catalog file
+void save(void){
+    FILE *fp;
+
+    // open for writing
+    if((fp = fopen("catalog2","w"))==NULL){
+        printf("Cannot open catalog file\n");
+        exit(1);
+    }
+
+
+    // write count: with ERR cheking
+	if(fwrite(&top, sizeof top, 1, fp) != 1){
+		printf("Error writing count.\n");
+		exit(1);
+	}
+
+	// WRITE DATA: i.e array of catalog-structures,
+		// "struct" keyward not necessary for "array of stucture"
+	if(fwrite(cat, sizeof cat, 1, fp) != 1){
+		printf("Error writing catalog DATA.\n");
+		exit(1);
+	}
+
+    fclose(fp);
+}
+
+
+
+/* Note: (Manage Space: decrease 25 Times) In the preceding example, the entire catalog array is stored on disk, 
+				even if the array is not full. 
+				
+				If you like, you can change the load() and save() routines as follows, 
+				So that only structures actually holding data are stored on disk: */
+
+
+// Load the catalog file (modified code 5 )
+void load(void){
+    FILE *fp;
+	int i;
+
+    if((fp = fopen("catalog2","rb"))==NULL){
+        printf("Catalog file not on disk\n");
+        return; // we use "return" to continue the "main" function
+    }
+
+    // read count: with ERR cheking
+	if(fread(&top, sizeof top, 1, fp) != 1){
+		printf("Error reading count.\n");
+		exit(1);
+	}
+
+	// READ DATA: i.e array of catalog-structures,
+		// NOTICE: "struct" keyward is necessary for each "structure"
+		// also notice the use of "&" to point the structures
+	for(i=0; i<top; i++) {
+		// access each structure from the array
+		if(fread(&cat[i], sizeof(struct catalog), 1, fp) != 1){
+			printf("Error reading catalog DATA.\n");
+			exit(1);
+		}
+	}
+
+    fclose(fp);
+}
+
+
+// save the catalog file
+void save(void){
+    FILE *fp;
+	int i;
+
+    // open for writing
+    if((fp = fopen("catalog2","wb"))==NULL){
+        printf("Cannot open catalog file\n");
+        exit(1);
+    }
+
+    // write count: with ERR cheking
+	if(fwrite(&top, sizeof top, 1, fp) != 1){
+		printf("Error writing count.\n");
+		exit(1);
+	}
+
+	// WRITE DATA: i.e array of catalog-structures,
+		// NOTICE: "struct" keyward is necessary for each "structure"
+		// also notice the use of "&"
+	for(i=0; i<top; i++) {
+		// access each structure from the array
+		if(fwrite(&cat[i], sizeof(struct catalog), 1, fp) != 1){
+			printf("Error writing catalog DATA.\n");
+			exit(1);
+		}
+	}
+
+    fclose(fp);
+}
+
+
+
+
+// ---------------    EXERCISE : review    ----------------
 1. 
 
 
