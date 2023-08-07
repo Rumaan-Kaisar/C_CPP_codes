@@ -369,7 +369,7 @@ void save(void){
 
 
 
-/* Example 3: Improve the telephorle-directory program we wrote earlier in this chapter so that it includes each person's "mailing address".
+/* Example 3: Improve the "Telephone-Directory" program we wrote earlier in this chapter so that it includes each person's "mailing address".
                 Store the address in its own structure, called 'address', which is nested inside the directory structure.
 
 
