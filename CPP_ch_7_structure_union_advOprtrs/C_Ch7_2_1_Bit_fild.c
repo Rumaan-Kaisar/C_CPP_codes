@@ -1,11 +1,38 @@
-7.3 BIT FIELDS
-So far, we have been using integer fields of size 16 bits to store data. There are occasions where data items require much less than 16 bits space. In such cases, we waste memory space. 
-	To reduce memory loss we use bit field. 
-	A bit field is a set of adjacent bits whose size can be from l to 16 bits in length. A word can therefore be divided into a number of bit fields. 
-	The name and size of bit fields are defined using a structure.  That is a bit-fields is a variation on a structure member .  bit-fields is composed of one or more bits.
-	Using a bit-field, you can access by name one or more bits within a byte or word. To define a bit-field, use this general form:
-type name : size;
-Here, type is either int or unsigned. If you specify a signed bit-field, then the high-order bit is treated as a sign bit, if possible. The number of bits in the field is specified by size. Notice that a colon separates the name of the bit-field from its size in bits.
+
+
+------------    BIT FIELDS    ------------
+
+Previously we've used 'integer fields' of size '16 bits' to store data. 
+In some occation data items require much less than 16 bits space. In such cases, we waste memory space. 
+
+bit field;
+    To reduce memory loss we use bit field. 
+
+    A bit field is a "SET OF ADJACENT BITS" whose size can be from 1 to 16 bits in length. 
+        A word can therefore be divided into a number of bit fields. 
+
+    The 'name' and 'size' of BIT FIELDS are defined using a STRUCTURE.
+    
+
+BIT FIELDS & structure:
+    bit-fields are variation of structure member
+    A bit-fields is composed of one or more bits.
+
+    Using a bit-field, you can access by name 'one or more bits' within a "byte" or "word". 
+
+    syntax:
+            type name : size;
+    
+    type: type is either 'int' or 'unsigned'. 
+            If you specify a signed bit-field, then the high-order bit is treated as a sign bit, if possible. 
+            
+    size: The number of bits in the field is specified by size. 
+            Notice that a colon ':' separates the 'name of the bit-field' from its 'size in bits'.
+
+
+
+
+// --------------------    revw    --------------------            
 	Bit-fields are useful when you want to pack information into the smallest possible space. For example, here is a structure that uses bit-fields to hold inventory information.
 
 struct b_type{ unsigned department: 3; 	/* up to 7 departments */
@@ -65,4 +92,5 @@ scanf("%d %d", &dpt); 	/*assigning to other variable */
 inv[9].department = dpt; 	/*assigning other variable  to a bit-fild*/
 	We cannot use pointer to access a bit-field.
 	We cannot use array to a bit-field.
+
 
