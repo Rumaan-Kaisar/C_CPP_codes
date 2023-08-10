@@ -162,16 +162,17 @@ struct b_type{
 
 // ----------------      EXS       -----------------------
 
-Example 3: (It is not nece~sary to name every bit when using bit-fields. Here,
-for example, is a structure that uses bit-fields to access the first
-and last bit in a byte.
+/* Example 3: It is not necessary to 'name every bit' when using bit-fields. 
+                Following structure uses BIT-FIELDS to access the 'first' and 'last' bit in a "BYTE". 
+                The use of unnamed bit-fields makes it easy to reach the bits you are interested in. */
+
 struct b_type {
-unsigned first: 1;
-int : 6;
-unsigned last: 1;
-} ;
-The use ·of unnamed bit-fields makes it easy to reach the bits
-you are interested in.)
+    unsigned first : 1;
+    int : 6;
+    unsigned last : 1;
+};
+
+
 
 
 Example 4: To see how useful bit-fields can be when working with Boolean
