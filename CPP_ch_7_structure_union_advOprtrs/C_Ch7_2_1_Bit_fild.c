@@ -2,6 +2,8 @@
 /* 
     ------------    BIT FIELDS    ------------
 
+    BIT FIELDS (plural, its a structure where its members uses "bit-field"):
+
     Previously we've used 'integer fields' of size '16 bits' to store data. 
     In some occation data items require much less than 16 bits space. In such cases, we waste memory space. 
 
@@ -106,8 +108,3 @@ struct b_type{
     unsigned backordered: 1;    // 1 if backordered, 0 if not 
     unsigned lead_time: 3; 	    // order lead time in months 
 } inv[MAX_ITEM];
-
-
-
-
-
