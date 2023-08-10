@@ -259,19 +259,25 @@ bit-fields called a, b, and c. Make a and b three bits long and
 make c two bits long. Next, assign each a value and display the
 values.
 
-'include <stdio.h>
-)
-int mainCvoid}
-(
-int a, 3 ;
-int b, 3;
-int c, 2;
-) bvar;
-bvar.a =: -1;
-bvar.b = 3;
-bvar.c = 1;
-printfC·'d %d %d-, bvar.a, bvar.b, bvar.c};
-return 0;
+#include <stdio.h>
+
+int main(void){
+    // defining a BIT-FIELDS
+    struct b_type {
+        int a: 3;
+        int b: 3;
+        int c: 2;
+    } bvar;
+
+    // accessing members of the BIT-FIELDS "bvar"
+    bvar.a = -1;
+    bvar.b = 3;
+    bvar.c = 1;
+
+    printf("%d %d %d", bvar.a, bvar.b, bvar.c);
+
+    return 0;
+}
 
 
 
