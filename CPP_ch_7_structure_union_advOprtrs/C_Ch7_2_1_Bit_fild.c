@@ -172,28 +172,36 @@ struct b_type {
     unsigned last : 1;
 };
 
+                
 
 
+/* Example 4: To see how useful bit-fields can be when working with Boolean data, 
+                Following is a crude simulation of a spaceship flight recorder.
+                By packing all the relevant information into one byte,
+                comparatively little disk space is used to record a flight. */
 
-Example 4: To see how useful bit-fields can be when working with Boolean
-data, here is a crude simulation of a spaceship flight recorder.
-By packing all the relevant information into one byte,
-comparatively little disk space is used to record a flight.
-/* Simulation of a 100 minute spaceship
-flight recorder .
-./
+// ---------    Simulation of a 100 minute spaceship flight recorder    ---------
+
 #include <stdlib.h>
 #include <stdio.h>
-/* all fields indicate OK if 1,
-malfunctioning or low if 0 */
+
+
+// all fields indicate:
+    // OK if 1,
+    // malfunctioning or low if 0 
+
 struct telemetry {
-unsigned fuel: 1;
-unsigned radio: 1;
-unsigned tv: 1;
-unsigned' water: 1;
-unsigned food: 1;
-unsigned waste: 1;
-} flt_reed;
+    unsigned fuel : 1;
+    unsigned radio : 1;
+    unsigned tv : 1;
+    unsigned water : 1;
+    unsigned food : 1;
+    unsigned waste : 1;
+};
+
+struct telemetry flt_recd;
+
+
 void display(struct telemetry i);
 
 int main (void)
@@ -232,7 +240,7 @@ if(i.water) printf("Water supply OK\n");
 else printf("Water supply low\n");
 if(i.food) printf(qFood supply OK\n");
 else printf("Food supply low\n"):
-if(i.waste) printf("Waste containment OK\nM);
+if(i.waste) printf("Waste containment OK\n");
 
 
 else printf(~Waste containment failure\n-);
@@ -252,45 +260,6 @@ char waste;
 In this version, no bit-fields are used and the resulting file is at
 least 600 bytes long. As you can see, using bit-fieids can provide
 substantial space savings.
-
-
-
-Example 5: Write a program that creates a structure that contains three
-bit-fields called a, b, and c. Make a and b three bits long and
-make c two bits long. Next, assign each a value and display the
-values.
-
-#include <stdio.h>
-
-int main(void){
-    // defining a BIT-FIELDS
-    struct b_type {
-        int a: 3;
-        int b: 3;
-        int c: 2;
-    } bvar;
-
-    // accessing members of the BIT-FIELDS "bvar"
-    bvar.a = -1;
-    bvar.b = 3;
-    bvar.c = 1;
-
-    printf("%d %d %d", bvar.a, bvar.b, bvar.c);
-
-    return 0;
-}
-
-
-
-Example 6: Many compilers supply library functions that return the status
-of various hardware devices, such as a serial port or the
-keyboard, by encoding information in a bit-by-bit fashion. On
-your own, consult the user's manual for your compiler to see if
-it supports such functions. If it does, write some programs that
-read and decode the status of one or more devices.
-
-
-
 
 
 
