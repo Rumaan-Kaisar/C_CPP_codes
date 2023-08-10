@@ -160,3 +160,130 @@ struct b_type{
 
 
 
+// ----------------      EXS       -----------------------
+
+Example 3: (It is not nece~sary to name every bit when using bit-fields. Here,
+for example, is a structure that uses bit-fields to access the first
+and last bit in a byte.
+struct b_type {
+unsigned first: 1;
+int : 6;
+unsigned last: 1;
+} ;
+The use ·of unnamed bit-fields makes it easy to reach the bits
+you are interested in.)
+
+
+Example 4: To see how useful bit-fields can be when working with Boolean
+data, here is a crude simulation of a spaceship flight recorder.
+By packing all the relevant information into one byte,
+comparatively little disk space is used to record a flight.
+/* Simulation of a 100 minute spaceship
+flight recorder .
+./
+#include <stdlib.h>
+#include <stdio.h>
+/* all fields indicate OK if 1,
+malfunctioning or low if 0 */
+struct telemetry {
+unsigned fuel: 1;
+unsigned radio: 1;
+unsigned tv: 1;
+unsigned' water: 1;
+unsigned food: 1;
+unsigned waste: 1;
+} flt_reed;
+void display(struct telemetry i);
+
+int main (void)
+(
+)
+FILE *fPi
+int i;
+H{lfp = fopen{" flight" , "wb"»==NULL) (
+printf (~Cannot open file. ~n")';
+exit(l) ;
+)
+/ * Imagine that each minute a status report of
+the spaceship is recorded on disk.
+* 1
+for(i=O; i<100: i++) {
+fIt_reed,fuel = rand()%2:
+f1 t_recd. radio = rand ( ) %2;
+flt_reed.tv = rand(1%2 ;
+flc_reed.water = rand(1%2;
+flt~recd.food = rand()%2;
+flt_reed.waste = rand( ) %2 ;
+display(flt_recd) :
+fwrite(&flt_recd, sizeof flt_recd, 1, fp) i
+)
+fcloselfp) :
+return 0:
+void display(struct telemetry i)
+(
+if(i.fuel) printf(-Fuel OK\n-);
+else printf(MFuel low\n-):
+if(i.radio) printf("Radio OK\n-);
+else printf(-Radio failure\n M );
+if(i.tv) printf("TV system OK\n-);
+else printf(,"TV malfunction\n") i
+if(i.water) printf("Water supply OK\n");
+else printf("Water supply low\n");
+if(i.food) printf(qFood supply OK\n");
+else printf("Food supply low\n"):
+if(i.waste) printf("Waste containment OK\nM);
+
+
+else printf(~Waste containment failure\n-);
+printf(~\n·l ;
+Depending on how your compiler packs the bit-fields, after you
+run this program, the file on disk may be as short as 100 bytes
+long. Now try the program after modifying the telemetry
+structure as shown here:
+struct telemetry {
+char fuel;
+char radio;
+char tv;
+char water;
+char food;
+char waste;
+} fIt_reed;
+In this version, no bit-fields are used and the resulting file is at
+least 600 bytes long. As you can see, using bit-fieids can provide
+substantial space savings.
+
+
+
+Example 5: Write a program that creates a structure that contains three
+bit-fields called a, b, and c. Make a and b three bits long and
+make c two bits long. Next, assign each a value and display the
+values.
+
+'include <stdio.h>
+)
+int mainCvoid}
+(
+int a, 3 ;
+int b, 3;
+int c, 2;
+) bvar;
+bvar.a =: -1;
+bvar.b = 3;
+bvar.c = 1;
+printfC·'d %d %d-, bvar.a, bvar.b, bvar.c};
+return 0;
+
+
+
+Example 6: Many compilers supply library functions that return the status
+of various hardware devices, such as a serial port or the
+keyboard, by encoding information in a bit-by-bit fashion. On
+your own, consult the user's manual for your compiler to see if
+it supports such functions. If it does, write some programs that
+read and decode the status of one or more devices.
+
+
+
+
+
+
