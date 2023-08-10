@@ -129,3 +129,28 @@ struct b_type{
 
 
 
+
+/* 
+    // --------------    Accessig BIT-FIELDS    --------------
+    Accessing members of bit-field-structure (bit-fields) : 
+        refer to a bit-field (memebr of BIT-FIELDS) just like any other member of a structure. 
+            e.g. following assigns the value 3 to the 'department' field of item 10 (10th element of inv[n] array):
+
+                inv[9].department = 3;
+
+    Restrictions:  
+        No use of ADDRESS: Because the smallest addressable-unit of memory is a "BYTE", 
+            But BIT-FIELDS uses "BITS" you cannot obtain the address of a bit-field variable. 
+            i.e. we cannot use 
+                scanf() to read values into a bit-field. 
+            
+                    We may have to read into a 'temporary variable' and then assign its value to the bit-field. e.g. 
+
+                            scanf("%d %d", &dpt); 	// assigning to other variable 
+                            inv[9].department = dpt; 	// assigning other variable  to a bit-fild
+
+                    We cannot use 'pointer' to access a bit-field.
+                    We cannot use 'array' to a bit-field. 
+*/
+
+
