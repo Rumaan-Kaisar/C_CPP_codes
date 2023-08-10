@@ -108,3 +108,24 @@ struct b_type{
     unsigned backordered: 1;    // 1 if backordered, 0 if not 
     unsigned lead_time: 3; 	    // order lead time in months 
 } inv[MAX_ITEM];
+
+
+
+
+/*
+    It is possible to 'combine-normal structure elements' with bit field elements. 
+        Also we can mix bit-fields with other types of members in a structure's definition. for example : 
+*/
+
+// Example 2: Mixing bit-field  with other structure element
+struct b_type{ 
+    unsigned department: 3; 	    // bit-field variable  
+    unsigned instock: 1; 	        // bit-field variable  
+    unsigned backordered: 1;        // bit-field variable  
+    unsigned lead_time: 3; 	        // bit-field variable  
+    char name[20];		            // normal variable 
+    struct addr address;	        // structure variable 
+} inv[MAX_ITEM];
+
+
+
