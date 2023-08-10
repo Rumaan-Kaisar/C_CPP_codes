@@ -118,6 +118,7 @@ struct b_type{
         Also we can mix bit-fields with other types of members in a structure's definition. for example : 
 */
 
+
 // Example 2: Mixing bit-field  with other structure element
 struct b_type{ 
     unsigned department: 3; 	    // bit-field variable  
@@ -158,10 +159,6 @@ struct b_type{
 
 
 
-
-
-// ----------------      EXS       -----------------------
-
 /* Example 3: It is not necessary to 'name every bit' when using bit-fields. 
                 Following structure uses BIT-FIELDS to access the 'first' and 'last' bit in a "BYTE". 
                 The use of unnamed bit-fields makes it easy to reach the bits you are interested in. */
@@ -172,8 +169,12 @@ struct b_type {
     unsigned last : 1;
 };
 
-                
 
+
+
+
+
+// ----------------      EXS       -----------------------
 
 /* Example 4: To see how useful bit-fields can be when working with Boolean data, 
                 Following is a crude simulation of a spaceship flight recorder.
@@ -289,4 +290,18 @@ int main(void){
 
     return 0;
 }
+
+
+
+
+/* Example 6: Many compilers supply library functions that return the status of various hardware devices, 
+                such as a serial port or the keyboard, by encoding information in a bit-by-bit fashion. 
+                
+                On your own, consult the user's manual for your compiler to see if it supports such functions. 
+                If it does, write some programs that read and decode the status of one or more devices. 
+*/
+
+
+
+
 
