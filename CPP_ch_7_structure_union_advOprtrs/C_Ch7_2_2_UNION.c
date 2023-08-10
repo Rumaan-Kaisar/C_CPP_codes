@@ -1,19 +1,30 @@
 
-7.4 UNIONS
-Unions are another user defined data type. Unions are a concept borrowed from structures and therefore follow the same syntax as structures. An union ,is defined much like a structure. Its general form is
-union tag-name {
-type member_1;
-type member_2;
-type member_3;
-. . .
-. . .
-type member_N;
-} variable-names;
-Like a structure, either the tag-name or the variable-names may be present. Members may be of any valid C data type.
+/* 
+    ------------    UNIONS    ------------
 
-Variable declaration : we can declare variable using following or along with union-declaration (similar to structure) :
+    Unions are another user defined data type. 
+        It similar to structures and follow the same syntax.  Its general form is
 
-union tag-name variable_1, variable_2, . . . , variable_n;
+                union tag-name {
+                    type member_1;
+                    type member_2;
+                    type member_3;
+                    . . .
+                    . . .
+                    type member_N;
+                } variable-names;
+
+            Like a structure, either the 'tag-name' or the 'variable-names' may be present. 
+            Members may be of any valid C data type.
+
+
+
+        Variable declaration: 
+            we can declare variable using following or 'along with' union-declaration (similar to structure) :
+
+                union tag-name variable_1, variable_2, . . . , variable_n;
+
+*/
 
 	In C, a union is a single piece of memory that is shared by two or more variables. 
 	The variables that share the memory may be of different types. 
@@ -67,4 +78,3 @@ would produce erroneous output (which is machine dependent).
 	Unions may be used in all places where a structure is allowed. The notation for access¬ing a union member which is nested inside a structure remains the same as for the nested structures.
 
 Union variable initialization : Unions may be initialized when the variable is declared. But, unlike structures, it can be initialized only with a value of the same type as the first union member (we cannot initialize a union with its second or third or other member).For example,   	union item abc = {100};  is valid but the declaration 	union item abc = {10.75}; is invalid. This is because the type of the first member is int. 
-
