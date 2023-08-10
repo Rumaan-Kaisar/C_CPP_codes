@@ -3,6 +3,7 @@
     ------------    BIT FIELDS    ------------
 
     BIT FIELDS (plural, its a structure where its members uses "bit-field"):
+        BIT FIELDS is a structure and its each member is a bit-field
 
     Previously we've used 'integer fields' of size '16 bits' to store data. 
     In some occation data items require much less than 16 bits space. In such cases, we waste memory space. 
@@ -16,7 +17,7 @@
                 (However, many compilers use high-order to low-order.)
 
 
-    bit field;
+    bit field:
         To reduce memory loss we use bit field.
             Bit-fields are useful when you want to pack information into the SMALLEST POSSIBLE SPACE.
 
@@ -152,5 +153,10 @@ struct b_type{
                     We cannot use 'pointer' to access a bit-field.
                     We cannot use 'array' to a bit-field. 
 */
+
+
+
+
+
 
 
