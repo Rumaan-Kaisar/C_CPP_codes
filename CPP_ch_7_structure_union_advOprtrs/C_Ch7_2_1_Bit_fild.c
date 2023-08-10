@@ -72,7 +72,7 @@
         There are several specific points to observe:
             [1]	The first field always starts with the first bit of the word.
 
-            [2]	A bit field cannot overlap integer boundaries. i.e. cannot exceed "1 Byte"
+            [2]	A bit-field cannot overlap integer boundaries. i.e. cannot exceed "1 Byte", (a 'bit-field-structure' has no such bounderies)
                     a).	That is, the 'sum of lengths of all the fields in a structure' should not be more than the size of a word. 
                     b).	In case, it is more, the overlapping field is automatically forced to the beginning of the next word.
 
@@ -109,28 +109,5 @@ struct b_type{
 
 
 
-
-
-
-// ----------------    revw    ----------------
-
-	It is possible to combine-normal structure elements with bit field elements. Also we can mix bit-fields with other types of members in a structure's definition. for example :
-
-struct b_type{ unsigned department: 3; 	/* bit-field variable  */
-  unsigned instock: 1; 	/* bit-field variable  */
-  unsigned backordered: 1; /* bit-field variable  */
-  unsigned lead_time: 3; 	/* bit-field variable  */
-  char name[20];		/* normal variable */
-  struct addr address;	/* structure variable */
-} inv[MAX_ITEM];
-
-	Accessing members of bit-field : You refer to a bit-field just like any other member of a structure. The following statement, for example, assigns the value 3 to the department field of item 10 (10th element of inv[n] array):
-inv[9].department = 3;
-Restrictions :  Because the smallest addressable- unit of memory is a byte, you cannot obtain the address of a bit-field variable. That is ,
-	We cannot use scanf() to read values into a bit-field. We may have to read into a temporary variable and then assign its value to the bit-field. For example :
-scanf("%d %d", &dpt); 	/*assigning to other variable */
-inv[9].department = dpt; 	/*assigning other variable  to a bit-fild*/
-	We cannot use pointer to access a bit-field.
-	We cannot use array to a bit-field.
 
 
