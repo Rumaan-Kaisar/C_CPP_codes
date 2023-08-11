@@ -159,8 +159,8 @@ struct b_type{
 
 
 
-/* Example 3: It is not necessary to 'name every bit' when using bit-fields. 
-                Following structure uses BIT-FIELDS to access the 'first' and 'last' bit in a "BYTE". 
+/* Example 3: It is not necessary to 'name every bit' when using bit-fields.
+                Following structure uses BIT-FIELDS to access the 'first' and 'last' bit in a "BYTE".
                 The use of unnamed bit-fields makes it easy to reach the bits you are interested in. */
 
 struct b_type {
@@ -172,11 +172,7 @@ struct b_type {
 
 
 
-
-
-// ----------------      EXS       -----------------------
-
-/* Example 4: To see how useful bit-fields can be when working with Boolean data, 
+/* Example 4: To see how useful bit-fields can be when working with Boolean data,
                 Following is a crude simulation of a spaceship flight recorder.
                 By packing all the relevant information into one byte,
                 comparatively little disk space is used to record a flight. */
@@ -189,7 +185,7 @@ struct b_type {
 
 // all fields indicate:
     // OK if 1,
-    // malfunctioning or low if 0 
+    // malfunctioning or low if 0
 
 struct telemetry {
     unsigned fuel : 1;
@@ -202,65 +198,76 @@ struct telemetry {
 
 struct telemetry flt_recd;
 
-
+// function with STRUCT parameter
 void display(struct telemetry i);
 
-int main (void)
-(
-)
-FILE *fPi
-int i;
-H{lfp = fopen{" flight" , "wb"»==NULL) (
-printf (~Cannot open file. ~n")';
-exit(l) ;
-)
-/ * Imagine that each minute a status report of
-the spaceship is recorded on disk.
-* 1
-for(i=O; i<100: i++) {
-fIt_reed,fuel = rand()%2:
-f1 t_recd. radio = rand ( ) %2;
-flt_reed.tv = rand(1%2 ;
-flc_reed.water = rand(1%2;
-flt~recd.food = rand()%2;
-flt_reed.waste = rand( ) %2 ;
-display(flt_recd) :
-fwrite(&flt_recd, sizeof flt_recd, 1, fp) i
-)
-fcloselfp) :
-return 0:
-void display(struct telemetry i)
-(
-if(i.fuel) printf(-Fuel OK\n-);
-else printf(MFuel low\n-):
-if(i.radio) printf("Radio OK\n-);
-else printf(-Radio failure\n M );
-if(i.tv) printf("TV system OK\n-);
-else printf(,"TV malfunction\n") i
-if(i.water) printf("Water supply OK\n");
-else printf("Water supply low\n");
-if(i.food) printf(qFood supply OK\n");
-else printf("Food supply low\n"):
-if(i.waste) printf("Waste containment OK\n");
+
+int main(void){
+    FILE *fp;
+    int i;
+
+    if((fp = fopen("flight" , "wb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    // Imagine that each minute a status report of the spaceship is recorded on disk.
+    for(i=0; i<100; i++) {
+        flt_recd.fuel = rand()%2;
+        flt_recd.radio = rand()%2;
+        flt_recd.tv = rand()%2;
+        flt_recd.water = rand()%2;
+        flt_recd.food = rand()%2;
+        flt_recd.waste = rand()%2;
+
+        display(flt_recd);
+        fwrite(&flt_recd, sizeof flt_recd, 1, fp);
+    }
+
+    fclose(fp);
+
+    return 0;
+}
 
 
-else printf(~Waste containment failure\n-);
-printf(~\n·l ;
-Depending on how your compiler packs the bit-fields, after you
-run this program, the file on disk may be as short as 100 bytes
-long. Now try the program after modifying the telemetry
-structure as shown here:
+void display(struct telemetry i){
+    if(i.fuel) printf("Fuel OK\n");
+    else printf("Fuel low\n");
+
+    if(i.radio) printf("Radio OK\n");
+    else printf("Radio failure\n");
+
+    if(i.tv) printf("TV system OK\n");
+    else printf("TV malfunction\n");
+
+    if(i.water) printf("Water supply OK\n");
+    else printf("Water supply low\n");
+
+    if(i.food) printf("Food supply OK\n");
+    else printf("Food supply low\n");
+
+    if(i.waste) printf("Waste containment OK\n");
+    else printf("Waste containment failure\n");
+
+    printf("\n");
+}
+
+
+
+// Depending on how your compiler packs the bit-fields, after you run this program, the file on disk may be as short as 100 bytes long. 
+// Now try the program after modifying the telemetry structure as shown here:
+
+// No bit-field versioon
 struct telemetry {
-char fuel;
-char radio;
-char tv;
-char water;
-char food;
-char waste;
-} fIt_reed;
-In this version, no bit-fields are used and the resulting file is at
-least 600 bytes long. As you can see, using bit-fieids can provide
-substantial space savings.
+    char fuel;
+    char radio;
+    char tv;
+    char water;
+    char food;
+    char waste;
+} flt_recd;
+
+// In this version, no bit-fields are used and the resulting file is at least 600 bytes long.
 
 
 
