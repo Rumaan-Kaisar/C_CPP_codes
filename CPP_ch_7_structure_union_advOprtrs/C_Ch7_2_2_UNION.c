@@ -30,13 +30,28 @@
         The variables that share the memory may be of 'different types'. 
         However, 'only one variable' may be in use at 'any one time'. 
 
-        thus the member element of union shaere the same memory
+        Thus all the members of union shaere the same memory
+            a union may contain many members of different types, it can handle only one member at a time. 
 
 
 
     Why we need unions : 
         In some cases we may need 'more than one variables' but among them, we use only one variable at a time. 
             So in such cases we use unions instead of structures. 
+
+
+
+    Difference between structure and union 
+        In terms of storage(how they store data):
+            In 'structures', each member has its own storage location, 
+            All the members of a 'union' use the same location.
+
+        In terms of size:        
+            The size of a structure is determined by the sum or total of the sizes of all of its members . 
+            The size of an union is the size of its largest ember.
+
+
+
 */
 
 
