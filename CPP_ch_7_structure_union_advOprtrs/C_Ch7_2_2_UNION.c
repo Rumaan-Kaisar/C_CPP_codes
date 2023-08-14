@@ -24,19 +24,26 @@
 
                 union tag-name variable_1, variable_2, . . . , variable_n;
 
+
+
+    In C, a 'union' is a "single piece of memory" that is shared by two or more variables. 
+        The variables that share the memory may be of 'different types'. 
+        However, 'only one variable' may be in use at 'any one time'. 
+
+        thus the member element of union shaere the same memory
+
+
+
+    Why we need unions : 
+        In some cases we may need 'more than one variables' but among them, we use only one variable at a time. 
+            So in such cases we use unions instead of structures. 
 */
 
-	In C, a union is a single piece of memory that is shared by two or more variables. 
-	The variables that share the memory may be of different types. 
-	However, only one variable may be in use at any one time. 
-	A union is defined much like a structure. 
-	Like a structure, either the tag-name or the variable-names may be present. 
-	Members may be of any valid C data type.
 
-Note
-Why we need unions : In some cases we may need more than one variables but among them, we use only one variable at a time. So in such cases we use unions instead of structures. 
 
- 7.4.1 Difference between structure and union 
+
+
+Difference between structure and union 
 Though structure and unions are similar but there is major distinction between them in terms of storage(how they store data). 
 	In structures, each member has its own storage location, whereas all the members of a union use the same location. This implies that, although a union may contain many members of different types, it can handle only one member at a time. 
 	The size of a structure is determined by the sum or total of the sizes of all of its members . The size of an union is the size of its largest ember.
