@@ -50,28 +50,35 @@
             The size of a structure is determined by the sum or total of the sizes of all of its members . 
             The size of an union is the size of its largest ember.
 
-
-
 */
 
 
 
+// -----------------    Size of UNION vs STRUCTURE    -----------------
+
+// following 'union' and 'structure' contains three members, each with a different data type. 
+// since  only one location is allocated for a union variable, irrespective of its size.
+    // we can use only one member at a time 
+
+union item {
+    int m;      // 2 byte
+    float x;    // 4 byte
+    char c;     // 1 byte
+} ;	
+// since float takes the largest space in memory
+    // size of this union is 4 bytes
 
 
-Difference between structure and union 
-Though structure and unions are similar but there is major distinction between them in terms of storage(how they store data). 
-	In structures, each member has its own storage location, whereas all the members of a union use the same location. This implies that, although a union may contain many members of different types, it can handle only one member at a time. 
-	The size of a structure is determined by the sum or total of the sizes of all of its members . The size of an union is the size of its largest ember.
+struct item{
+    int m;      // 2 byte
+    float x;    // 4 byte
+    char c;     // 1 byte
+} ;
+// size of this stucture is 7 byte 
+    // since total space (sum) required by the members is 7 byte
 
-union item {int m; float x; char c;} code;	struct item{int m; float x; char c;} code;
-Storage of 4 bytes	Storage of seven bytes
-1001	1002	1003	1004	Here x is the largest member having size 4 byte, hence size of the union is 4 byte.	3001	3002	3003	3004	3005	3006	3007
-c=1byte			c=1byte	m=2byte	x=4byte
-m=2byte	m=2byte			Here size of the structure = size of c + size of m + size of x
-Hence, size of the structure is 7 byte. 
-x=4byte	x=4byte	x=4byte	x=4byte		
 
-Above declares a variable code of type union item. The union contains three members, each with a different data type. However, we can use only one of them at a time. This is due to the fact that only one location is allocated for a union variable, irrespective of its size.
+
 
 	The compiler allocates a piece of storage that is large enough to hold the largest vari¬able type in the union. In the declaration above, the member x requires 4 bytes which is the largest among the members. 
 
