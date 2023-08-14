@@ -50,6 +50,11 @@
             The size of a structure is determined by the sum or total of the sizes of all of its members . 
             The size of an union is the size of its largest ember.
 
+        UNIONS may be used in all places where a STRUCTURE is allowed. 
+
+Nested union inside structure:
+    The notation for accessing a 'union member' which is nested inside a structure remains the same as for the 'nested structures'.
+
 */
 
 
@@ -78,32 +83,76 @@ struct item{
     // since total space (sum) required by the members is 7 byte
 
 
+/*     Note:
+        The size of a union is fixed at compile time and is large enough to accommodate the largest member of the union. 
+            Assuming 4-byte flaoat, the union will be 4 bytes long even if it used to hold an 'int' value (though int is only 2 byte long)
+
+        Use the "sizeof" compile-time operator to determine the size of a union.
+
+        It won't be always largest member's size
+            In some environments, the compiler may pad the union so that it aligns on a word boundary.
+
+        Unions are very useful when you need to interpret data in two or more different ways. 
+*/
 
 
-	The compiler allocates a piece of storage that is large enough to hold the largest vari¬able type in the union. In the declaration above, the member x requires 4 bytes which is the largest among the members. 
 
 
-Note
-[1]	It is important to understand that the size of a union is fixed at compile time and is large enough to accommodate the largest member of the union. Assuming 4-byte flaoat, this means that code will be 4 bytes long. Even if code is currently used to hold an int value, it will still occupy 4 bytes of memory (though int is only 2 byte long). 
-[2]	As is the case with structures, you should use the "sizeof" compile-time operator to determine the size of a union. You should not simply assume that it will be the size of the largest element, because in some environments, the compiler may pad the union so that it aligns on a word boundary.
-[3]	Unions are very useful when you need to interpret data in two or more different ways.
+// ------------------    Assigning values to union members    ------------------  
+// We use ".", "->" the dot and arrow operators just as we dis for structures
 
-7.4.2 Assigning values to union members  
-To access a union member, we can use the same syntax that we use for structure members. That is,  code.m; code.x; code.c; are all valid member variables. Where : 		union item {int m; float x; char c;} sample;
-	To access a member of a union, use the dot and arrow operators just as you do for structures. For example, this statement assigns 123.098 to x of sample: 		sample.x = 123.098;
-	If you are accessing a union through a pointer, you must use the arrow operator. For example, assume that p points to sample. The following statement assigns m the value 101:		 p -> m = 101;
+union item {
+    int m; 
+    float x; 
+    char c;
+} sample;
 
-	Restrictions on accessing union members : 
-	During accessing, we should make sure that we are accessing the member whose value is currently stored. For example, the statements such as
+/* 
+    For example, this statement assigns 123.098 to x of sample: 		
 
-code.m = 379; 	/* int type variable m is used*/
-code.x = 7859.36; 	/* float type variable x is used and value of m is destroyed*/
-printf("%d", code.m); 	/* try to access destroyed variables value cause error*/
+            sample.x = 123.098;
 
-would produce erroneous output (which is machine dependent).
+    To access a union through a pointer, you must use the 'arrow' operator. 
+    For example, assume that" p" points to 'sample'. The following statement assigns m the value 101:		 
 
-	In effect, a union creates a storage location that can be used by any one of its members at a time. When a different member is assigned a new value, the new value supersedes the previous member’s value.
+            p -> m = 101;
 
-	Unions may be used in all places where a structure is allowed. The notation for access¬ing a union member which is nested inside a structure remains the same as for the nested structures.
+    Restrictions on accessing union members : 
+        Since we can use any "one" of its members at a time
+            we should make sure that we are accessing the member whose value is currently stored. 
+        
+        For example, following will cause an ERROR
 
-Union variable initialization : Unions may be initialized when the variable is declared. But, unlike structures, it can be initialized only with a value of the same type as the first union member (we cannot initialize a union with its second or third or other member).For example,   	union item abc = {100};  is valid but the declaration 	union item abc = {10.75}; is invalid. This is because the type of the first member is int. 
+        code.m = 379; 	        // int type variable m is used
+        code.x = 7859.36; 	    // float type variable x is used and value of m is destroyed
+        printf("%d", code.m); 	// try to access destroyed variables value cause error
+
+        would produce erroneous output (which is machine dependent).
+            Because When a different member is assigned a new value, the new value supersedes the previous member's value. 
+*/
+
+
+
+
+/* 
+    ------------------    Union variable initialization    ------------------  
+
+    Unions may be 'initialized' when the 'variable is declared'. 
+        But, unlike structures, it can be initialized only with a 'value of the same type as the first union member' 
+
+    E.G. cosider following union: 
+*/
+
+union item {
+    int m; 
+    float x; 
+    char c;
+};
+
+// we cannot initialize a union with its second or third or other member.For example,   	
+union item abc = {100};  // is valid 
+
+// but following is invalid	because the type of the first member of "union item" is int
+union item abc = {10.75};   // invalid
+
+
