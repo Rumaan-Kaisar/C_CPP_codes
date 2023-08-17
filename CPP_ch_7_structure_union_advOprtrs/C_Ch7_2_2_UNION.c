@@ -36,6 +36,9 @@
 
 
     Why we need unions : 
+        Unions are very useful when you need to interpret data in two or more different ways.
+            a value stored in a memory can be represented differently using different "data-types" of sharing variables
+
         In some cases we may need 'more than one variables' but among them, we use only one variable at a time. 
             So in such cases we use unions instead of structures. 
 
@@ -121,15 +124,49 @@ union item {
         Since we can use any "one" of its members at a time
             we should make sure that we are accessing the member whose value is currently stored. 
         
-        For example, following will cause an ERROR
+        For example, following will cause 'erroneous' output (not ERROR)
 
         code.m = 379; 	        // int type variable m is used
-        code.x = 7859.36; 	    // float type variable x is used and value of m is destroyed
-        printf("%d", code.m); 	// try to access destroyed variables value cause error
+        code.x = 7859.36; 	    // float type variable x is used
+        printf("%d", code.m); 	// try to access other variables value cause wrong output
 
-        would produce erroneous output (which is machine dependent).
+        would produce 'erroneous' output (which is machine dependent).
             Because When a different member is assigned a new value, the new value supersedes the previous member's value. 
+            
+            NOTE that: 
+                There will be no ERROR but the output will be different, because different data-type 
+                will represent the the stored data differently
 */
+
+
+
+
+/* Example 1: following will cause 'erroneous' output (not ERROR) */
+
+#include <stdio.h>
+
+int main(void){
+
+    union item {
+        int m;
+        float x;
+        char c;
+    } sample;
+
+    sample.m = 379; 	        // int type variable m is used
+    printf("\ntry to access using int: %d\n", sample.m); 	// try to access using int
+    printf("\ntry to access using float: %f\n", sample.x); 	// try to access using float
+    printf("\ntry to access using float but using int format specifier : %d\n", sample.x); 	// try to access using float
+    printf("\ntry to access using char: %c\n", sample.c); 	// try to access using char
+
+    sample.x = 7859.36; 	    // float type variable x is used
+    printf("\nstoring 7859.36 using the float variable: %f\n", sample.x); 	// store/update using float
+    printf("\nShowing 7859.36 using the int variable: %d\n", sample.m); 	// try to access using int
+    printf("\nShowing again 7859.36 using the float variable: %f\n", sample.x); 	// try to access using float
+
+    return 0;
+}
+
 
 
 
@@ -159,50 +196,63 @@ union item abc = {10.75};   // invalid
 
 
 
-// -----------    EXS    ----------------
+/* Example 2: Unions are very useful when you need to interpret data in two or more different ways. For example, 
+                The encode() function shown below uses a union to encode an integer by swapping its two low-order bytes. 
+                The same function can also be used to
+                'decode' an 'encoded integer' by swapping the already exchanged bytes back to their original positions. 
 
-Example 1: Unions are very useful when you need to interpret data in two
-or more different ways. For example, the encode( ) function
-shown below uses a union to encode an integer by swapping its
-two low-order bytes. The same function can also be used to
-decode an encoded integer by swapping the already exchanged
-bytes back to their original positions.
+                Same value in a single location is represented using different types.
+*/
 
 #include <stdio.h>
+
 int encode(int i);
-int main(void)
-(
-int i;
-i = encode (10) ; f* encode it */)
-printf("lO encoded is %d\n", il;
-i = encode(i); /* decode it *1
-printf("i decoded is %d-, i);
-return 0;
-STRUCTURES AND UNIONS 331
-10.5 CREATE UNIONS
-/* Encode an integer, decode an encoded integer. *1
-int encode{int i)
-{
-)
-union crypt_type {
-int num;
-char c (2];
-} crypt j
-unsigned char Chi
-crypt.num = i;
-j * swap bytes */
-ch = crypt.e(O];
-crypt.e[O] = crypt.e[l];
-crypt.e(l] = chi
-/ * return encoded integer *1
-return crypt.num;
-The program displays the following:
-10 encoded is 2560
-i decoded is 10
+
+int main(void){
+    int i;
+    i = encode (10) ; // encode it 
+    printf("10 encoded is %d\n", i);
+
+    i = encode(i); // decode it 
+    printf("i decoded is %d", i);
+
+    return 0;
+}
+
+
+// Encode an integer, decode an encoded integer.
+int encode(int i){
+    union crypt_type{
+        int num;
+        char c[2];
+    } crypt;
+
+    unsigned char ch;
+
+    crypt.num = i;  // union initialized, 'int value' is stored in "num"
+
+    // swap bytes: the stored "int" value accessed using "char" type variable
+    ch = crypt.c[0];
+    crypt.c[0] = crypt.c[1];
+    crypt.c[1] = ch;
+
+    // return encoded integer
+    return crypt.num;
+}
+
+// note: 
+    // the stored value can be accessed using "num" or "c[]" any time
+    // the value is represented/interpreted differently due to data-type variation
+
+// The program displays the following:
+// 10 encoded is 2560
+// i decoded is 10
 
 
 
 
+
+// -----------    EXS    ----------------
 Example 2: The following program uses the union of a structure containing
 bit-fields and a character to display the binary representation of
 a character typed at the keyboard:
