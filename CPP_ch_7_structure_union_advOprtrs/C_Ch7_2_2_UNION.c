@@ -167,6 +167,15 @@ int main(void){
     return 0;
 }
 
+// output:
+//     try to access using int: 379
+//     try to access using float: 0.000000
+//     try to access using float but using int format specifier : 0
+//     try to access using char: {
+//     storing 7859.36 using the float variable: 7859.359863
+//     Showing 7859.36 using the int variable: 1173723873
+//     Showing again 7859.36 using the float variable: 7859.359863
+
 
 
 
