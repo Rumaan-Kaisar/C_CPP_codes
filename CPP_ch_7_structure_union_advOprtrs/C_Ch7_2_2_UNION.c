@@ -167,15 +167,6 @@ int main(void){
     return 0;
 }
 
-// output:
-//     try to access using int: 379
-//     try to access using float: 0.000000
-//     try to access using float but using int format specifier : 0
-//     try to access using char: {
-//     storing 7859.36 using the float variable: 7859.359863
-//     Showing 7859.36 using the int variable: 1173723873
-//     Showing again 7859.36 using the float variable: 7859.359863
-
 
 
 
@@ -260,73 +251,84 @@ int encode(int i){
 
 
 
+/* Example 3: The following program uses the union of a structure containing "BIT-FIELDS" and 
+                a character to display the 'binary representation of a character' typed at the keyboard: 
+
+                When a key is pressed, its ASCII code is assigned to "key.ch", which is a char. 
+                This data is reinterpreted as a series of bit-fields, 8bit = 1byte is represented by 
+                    8 variables "a, b, c, d, e, f, g, h"; 
+                    since a char is 1 byte = 8 bit long, we used 8 variables
+                which allow the binary representation of the key to be displayed
+*/
+
+// This program displays the binary code for a character entered at the keyboard
+#include <stdio.h>
+#include <conio.h>
+
+// following is a bit-fields
+struct sample {
+    unsigned a: 1;
+    unsigned b: 1;
+    unsigned c: 1;
+    unsigned d: 1;
+    unsigned e: 1;
+    unsigned f: 1;
+    unsigned g: 1;
+    unsigned h: 1;
+};
+
+// following union uses bit-fields
+union key_type {
+    char ch;
+    struct sample bits;
+};
+
+union key_type key;
+
+
+int main(void){
+    printf("Strike a key: ");
+    key.ch = getche();
+    printf ("\nBinary code is: ");
+
+    // notie the 'bit-fields' accessed in reversed order
+    if(key.bits.h) printf("1 ");
+        else printf("0 ");
+    if(key.bits.g) printf("1 ");
+        else printf("0 ");
+    if(key.bits.f) printf("1 ");
+        else printf("0 ");
+    if(key.bits.e) printf("1 ");
+        else printf("0 ");
+    if(key.bits.d) printf("1 ");
+        else printf("0 ");
+    if(key.bits.c) printf("1 ");
+        else printf("0 ");
+    if(key.bits.b) printf("1 ");
+        else printf("0 ");
+    if(key.bits.a) printf("1 ");
+        else printf("0 ");
+
+    return 0;
+}
+
+
+// Sample output is shown here:
+// Strike a key: X
+// Binary code is: 0 1 0 1 1 0 0 0
+
+
+
 
 // -----------    EXS    ----------------
-Example 2: The following program uses the union of a structure containing
-bit-fields and a character to display the binary representation of
-a character typed at the keyboard:
+/* Example 4: Using a union composed of a double and an 8-byte character array, 
+                write a function that writes a double to a disk file, a character at a time. 
+                Write another function that reads this value from the file and reconstructs the value using the same union.
+                (Note: If the length of a double for your compiler is not 8 bytes, use an appropriately sized character array.) */
 
-/ * This program displays the binary code for a
-character entered at the keyboard .
-' /
 #include <stdio.h>
-#include <conio . h>
-struct sample (
-unsigned a: 1;
-unsigned b: 1;
+#include <stdlib.h>
 
-unsigned c, 1 ;
-unsigned d, 1;
-unsigned e, 1 ;
-unsigned f' 1 ;
-unsigned g' 1 ;
-unsigned h, 1 ;
-) ;
-union key_type {
-char chi
-struct sample bits;
-key; ,
-int main(void~
-(
-printf("Strike a key: ~);
-key.ch = getche();
-printf (~\nBinary code is: "l;
-if(key.bits.h) printf("l H);
-else printf("O "};
-if(key.bits.g) printf("l ~);
-else printf("O to);
-if(key.bits.f) printf("! ");
-else printf ("0 ");
-if(key.bits.e) printf("l ");
-else printf ("0 .. );
-if{key.bits.d) printf{"l ");
-else printf{"O ");
-if(key.bits.c) printf("l "J;
-else printf ("0 .. );
-if{key.bits.b) printf("l n);
-else printf("O M);
-if(key.bits.a) printf(~l ");
-else printf{"O ");
-return 0;
-When a key is pressed, its ASCII code is assigneq to !<ey.ch,
-which is a char. This data is reinterpreted as a serjf's ofbit-fields,
-which allow the binary representation of the key to be
-displayed. Sample output is shown here:Strike a key: X
-Binary code is: 0 1 0 1 1 0 0 0
-
-
-
-
-
-Example 3: Using a union composed of a double and an 8-byte character
-array, write a function that writes a double to a disk file, a
-character at a time. Write another function that reads this value
-from the file and reconstructs the value using the same union.
-(Note: If the length of a double for your compiler is not 8 bytes,
-use an appropriately sized character array.)
-
-1. tinclude <stdio. h>
-'include <stdlib.h>
 union u_type (
 'double d;
 unsigned char c [8) ;
@@ -368,18 +370,20 @@ return var.d:
 
 
 
-Example 4: Write a program that uses a union to convert an int into a long.
-Demonstrate that it works.
+/* Example 5: Write a program that uses a union to convert an int into a long. */
 
-2. *include <stdio.h>
-int rnain(void)
-{
-j
+#include <stdio.h>
+
+int main(void){
+
+}
+
+
 union t_type {
-long 1:
-lnt i:
+    long 1;
+    int i;
 } uvar;
-,
+
 uvar.l = OL; /* clear 1 */
 uvar.i = 100;
 printf(~%ld", uvar.l ) ;
