@@ -367,8 +367,8 @@ void uwrite(double num, FILE *fp){
     int i;
     union u_type var;
 
-    var.d = num;
-    for(i=0; i<8; i++) fputc(var.c[i], fp);
+    var.d = num;    // using 'double' to store value
+    for(i=0; i<8; i++) fputc(var.c[i], fp);     // using 'char' to write in the file
 }
 
 
@@ -376,10 +376,12 @@ double uread(FILE *fp){
     int i;
     union u_type var;
 
-    rewind(fp);
+    rewind(fp);     // resstting file position
+    
+    // using 'char' to read from the file
     for(i=0; i<8; i++) var.c[i] = fgetc(fp);
 
-    return var.d;
+    return var.d;   // returning the falue using "double"
 }
 
 /* 
