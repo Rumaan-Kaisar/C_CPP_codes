@@ -329,7 +329,6 @@ int main(void){
 
 
 
-// -----------    EXS    ----------------
 /* Example 4: Using a union composed of a double and an 8-byte character array, 
                 write a function that writes a double to a disk file, a character at a time. 
                 Write another function that reads this value from the file and reconstructs the value using the same union.
@@ -338,46 +337,65 @@ int main(void){
 #include <stdio.h>
 #include <stdlib.h>
 
-union u_type (
-'double d;
-unsigned char c [8) ;
-) ;
-double ureadCFILE 'fp);
-void uwrite(double num, FILE -fp):
-int main (void)
-C
-)
-FILE "fp;
-double d;
-if CCfp = fopenC "myfile", "wb+")) ==NULL) C
-printf(-Cannot open file.\n-}:
-exitCl);
-)
-uwriteClOO.23, fp);
-d = ureadCfp);
-printfC"'lf", d);
-return 0;
-void uwrite {double num, FILE -fp}
-(-
-int i;
-union u_type var;
-var.d = num;
-forli=O; i<8; i++) fputc(var.c{i], fp);
-)
-double ureadCFILE "fp)
-{
-int i;
-union u_type var;
-...
-'0.5 EXEIfCIS£S ...800 1EACM YOURSElF
-c
-rewind (fp) ;
-for(i=O; i<8; i++) var.c[iJ = fgetc(fp);
-return var.d:
-)
+union u_type{
+    double d;
+    unsigned char c[8];
+};
+
+double uread(FILE *fp);
+
+void uwrite(double num, FILE *fp);
+
+int main(void){
+    FILE *fp;
+    double d;
+
+    if ((fp = fopen("myfile_union", "wb+")) == NULL){
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    uwrite(100.23, fp);
+    d = uread(fp);
+    printf("%lf", d);
+
+    return 0;
+}
+
+
+void uwrite(double num, FILE *fp){
+    int i;
+    union u_type var;
+
+    var.d = num;
+    for(i=0; i<8; i++) fputc(var.c[i], fp);
+}
+
+
+double uread(FILE *fp){
+    int i;
+    union u_type var;
+
+    rewind(fp);
+    for(i=0; i<8; i++) var.c[i] = fgetc(fp);
+
+    return var.d;
+}
+
+/* 
+        ----------    C library function - rewind()    ----------
+
+        The C library function 
+            
+                void rewind(FILE *stream) 
+
+            sets the file position to the beginning of the file of the given stream.
+*/
 
 
 
+
+// -----------    EXS    ----------------
 
 /* Example 5: Write a program that uses a union to convert an int into a long. */
 
