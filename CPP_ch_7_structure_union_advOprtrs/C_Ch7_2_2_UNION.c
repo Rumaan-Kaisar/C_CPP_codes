@@ -404,79 +404,95 @@ double uread(FILE *fp){
 #include <stdio.h>
 
 int main(void){
+    union t_type {
+        long lg;
+        int i;
+    } uvar;
 
+    uvar.lg = 0L;   // clear lg
+    uvar.i = 100;
+
+    printf("%ld", uvar.lg);
+
+    return 0;
 }
 
 
-union t_type {
-    long 1;
-    int i;
-} uvar;
 
-uvar.l = OL; /* clear 1 */
-uvar.i = 100;
-printf(~%ld", uvar.l ) ;
-return 0:
 
 
 
 
 
 // ===============    MASTERY SKILLS CHECK    ===============
-At this point you should be able to answer these questions and
-perform these exercises:
-
-Example 1: In general terms what is a structure, and what is a union?
-A structure is a named group of related variables. A union
-.defines a memorylocation snared by two or more vanables of
-different types.
 
 
+/* Example 1: In general terms what is a 'structure', and what is a 'union'? 
+            Answer: 
+                A 'structure' is a named group of RELATED variables. 
+                A 'union' defines a MEMORY-LOCATION shared by two or more variables of DIFFERENT types.
+*/
 
 
-Example 2: Show how to create a structure type called s_type that contains
-these five members:
-char chi
-float d:
-int i;
-char str[80];
-double balance:
-Also, define one variable called s_var using this structure.
+
+
+/* Example 2: Show how to create a structure type called "s_type" that contains these five members:
+                char ch;
+                float d;
+                int i;
+                char str[80];
+                double balance;
+
+            Also, define one variable called "s_var" using this structure.
+*/
 
 struct s_type {
-char chi
-float d ;
-int i;
-char str[80};
-double balance;
-} s_var:
+    char ch;
+    float d;
+    int i;
+    char str[80];
+    double balance;
+} s_var;
 
 
 
 
-Example 3: What is wrong with this fragment>
-struct s_type {
-int a;
+/* Example 3: What is wrong with this fragment?
 
-char b;
-float bali
-} myvar, .p;
-p = &myvar;
-p.a = 10;
+                struct s_type {
+                    int a;
+                    char b;
+                    float bal;
+                } myvar, *p;
+                // notice the pointer
 
-Because p is a pointer to a structure, you must use the aITOW
-operator to reference an element, not the dot operator.
-
+                p = &myvar;
+                p.a = 10;   // wrong, use '->' 
 
 
+            Because p is a pointer to a structure, 
+            you must use the ARROW OPERATOR '->' to reference an element, not the dot operator.
+*/
 
-Example 4: Write a program that uses an array of structures to store
-employee names, telephone numbers, hours worked, and
-hourly wages. Allow for 10 employees. Have the program input
-the information and save it to a disk file. Call the file EMP.
+
+
+
+
+
+/* Example 4: Write a program that uses an 'array of structures' to store
+
+                    employee names, 
+                    telephone numbers, 
+                    hours worked, and
+                    hourly wages. 
+
+                Allow for 10 employees. Have the program input the information and 
+                save it to a disk file. Call the file 'EMP'. 
+*/
 
 #include <stdio.h>
-#include <stdl ib.h>
+#include <stdlib.h>
+
 struct s_type {
 char name [40 J ;
 char phone [14] ;
@@ -513,8 +529,8 @@ return 0;
 
 
 
-Example 5: Write a program that reads the EMP file created in Exercise 4
-and displays the information on the screen.
+/* Example 5: Write a program that reads the "EMP" file created in previous Exercise
+                and displays the information on the screen. */
 
 S. 'include <stdio. h>
 tinclude <stdlib.h>
@@ -543,17 +559,18 @@ return 0;}
 
 
 
-Example 6: What is a bit-field?
-A bit"field is a structure member that specifies its length in bits
+/* Example 6: What is a bit-field? 
+                A "bit field" is a 'structure member' that specifies its length in bits
+*/
 
 
 
 
-Example 7: Write a program that displays individually the values of the
-high- and low-order bytes of a short integer. (Hint: Use a union
-that contains as its two elements a short integer and a two-byte
-character array.)
-This section checks how well you have integrated the material 
+
+/* Example 7: Write a program that displays individually the values of the 'HIGH and LOW-order bytes' of a short integer. 
+                (Hint: Use a 'union' that contains as its two elements a short integer and a 'two-byte character array'.) 
+*/
+
 
 'include <stdio.h>
 }
@@ -577,20 +594,19 @@ return 0;
 
 // ===============    CUMULATIVE SKILLS CHECK    ===============
 
+/* Example 1: Write a program that contains two structure variables defined as:
 
-This section checks how well you have integrated the material in
-this chapter with that from earlier chapters.
+                    struct s_type {
+                        int i;
+                        char ch;
+                        double d;
+                    } var1, var2;
 
-Example 1: Write a program that contains two structure variables defined as:
-struct s_type {
-int i;
-char chi
-double d;
-} varl, var2;
-Have the program give each member of both structures initial
-values, but make sure that the values differ between the two
-structures. Using a function called struct_swap( ), have the
-program swap the contents ofvarl and var2.
+                Have the program give each member of both structures initial values, 
+                but make sure that the values differ between the two structures. 
+
+                Using a function called struct_swap(), have the program swap the contents of var1 and var2. 
+*/
 
 'include <stdio.h>
 struct B_type {
@@ -627,14 +643,16 @@ temp = *i:
 
 
 
-Example 2: As you know from Chapter 9, fgetc( ) returns an integer value,
-even though it only reads a character from a file. Write aSTRUCTURES AND UNIONS 335
-10.5 CREATE UNIONS
-program that copies one file to another. Assign the return value
-of fgetc( ) to a union that contains an integer and character
-member. Use the integer element to check for EOF. Write the
-character element to the destination file. Have the user specify
-both the source and destination tile names on the command line.
+/* Example 2: As you know from previous chapters, fgetc() returns an 'INTEGER VALUE', 
+                even though it only reads a character from a file. 
+
+                Write a program that copies one file to another. 
+                Assign the return value of fgetc() to a "UNION" that contains an integer and character member. 
+
+                Use the 'integer element' to check for EOF. 
+                Write the character element to the destination file. 
+                Have the user specify both the source and destination tile names on the command line (CLI). 
+*/
 
 j* Copy a file. *j
 'include <stdio.h>
@@ -686,32 +704,38 @@ return 0; •
 
 
 
-Example 3: What is wrong with this fragment?
-Sl:.ruct s_type {
-int a;
-int b: 2;
-int c: 6;
-} vari
-scanf ("%d", &var);
+/* Example 3: What is wrong with this fragment?
 
-You cannot use a structure as an argument to·acanf( ).
-However, you can use a structure element as an argument, as
-shown here. c
-scanf("'d·, &var.a):
+                    struct s_type {
+                        int a;
+                        int b: 2;
+                        int c: 6;
+                    } var;
+
+                    scanf("%d", &var);
+
+                You cannot use a structure as an argument to scanf().
+                However, you can use a structure element as an argument, as shown here:
+
+                                scanf("%d", &var.a);
+ */
 
 
 
 
-Example 4: In C, as you know, you cannot pass an array to a function as a
-parameter. (Only a pointer to an array can be passed.) However,
-there is one way around this restriction. If you enclose the array
-,
-within a structure, the array is passed using the standard
-call-by-value convention. Write a program that demonstrates
-this by passing a string inside a structure to a function, altering
-its contents inside the function and demonstrating that the
-original string is not altered after the function returns.
+/* Example 4: In C, as you know, you cannot pass an ARRAY to a function as a PARAMETER. 
+                (Only a pointer to an array can be passed.)
 
+                However, there is one way around this restriction. 
+                    If you enclose the array within a structure, 
+                    the array is passed using the standard "call-by-value" convention.
+
+                Write a program that demonstrates this by passing a string inside a structure to a function, 
+                    ALTERING its contents inside the function and 
+                    demonstrating that the 'original string' is NOT ALTERED after the function returns. 
+*/
+
+"
 'include <string.h»
 'include <&tdio.h>
 "
@@ -745,16 +769,14 @@ printf(·'s\n·, i.str)·
 
 
 
-
+"
 // ===============    REVIEW SKILLS CHECK    ===============
 
-Before proceeding, you should be able to answer these questions
-and perform these exercises.
 
-
-Example 1: Write a program that uses an array of structures (0 hold the
-squares and cubes of the numbers I through 10. Display the
-contents of the array.
+/* Example 1: Write a program that uses an array of structures to hold the 
+                squares and cubes of the numbers 1 through 10. 
+                Display the contents of the array. 
+*/
 
 Unclude <stdio : h>
 ,.
@@ -790,9 +812,9 @@ return 0,
 
 
 
-Example 2: Write a program that uses a union to display as a character the
-individual bytes that make up a short integer entered by the
-user.
+/* Example 2: Write a program that uses a 'union' to display as 'a character the individual bytes' 
+                that make up a 'short integer' entered by the user. 
+*/
 
 'include <stdio.b>
 union i_to_c (
@@ -811,38 +833,45 @@ return 0;
 
 
 
-Example 3: What does this fragment display? (Assume two-byte ints and
-eight-byte doubles.)
-union {
-int i;
-double d;
-} uvar;
-printf("%d", sizeof uvar) i
+/* Example 3: What does this fragment display? (Assume 'two-byte ints' and 'eight-byte doubles'.)
 
-The fragment displays 8, the size of the largest element of
-the union.
+                        union {
+                            int i;
+                            double d;
+                        } uvar;
 
+                        printf("%d", sizeof uvar) i
 
-
-
-Example 4: What IS wrong with this fragment?
-struct {
-int i;
-char str[80J;
-double balance;
-} svar;
-svar->i = 100;
-
-To access a structure member when actually uaing a etructure
-variable, you must use the dot operator. The arrow operator iI
-used when accesaing a member using a pointer to a structure.
+                Answer: The fragment displays 8, the size of the largest element of the union. 
+*/
 
 
 
+// copy it to "STRUCTURE" part
+/* Example 4: What IS wrong with this fragment?
 
-5. What is a bit-field?
+                        struct {
+                            int i;
+                            char str[80];
+                            double balance;
+                        } svar;
 
-Abit-field iI a structure element whole IIize II specified Inbits
+                        svar->i = 100; 
+                        
+                To access a structure member when actually uaing a 'structure variable', you must use the dot '.' operator. 
+                The arrow operator is used when 'accesaing a member' using a 'pointer' to a 'structure'.
+*/
+
+// UPDATE notes: copy it to "STRUCTURE" part 'NOTES'
+To access a structure member when actually uaing a 'structure variable', you must use the dot '.' operator. 
+The arrow operator is used when 'accesaing a member' using a 'pointer' to a 'structure'.
+
+
+
+
+/* Example 5: What is a bit-field? */
+
+A 'bit-field' is a structure element whose size is specified in bits
 
 
 
