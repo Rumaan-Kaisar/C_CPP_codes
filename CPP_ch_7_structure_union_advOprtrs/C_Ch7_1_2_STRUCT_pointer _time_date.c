@@ -193,3 +193,25 @@ int main(void){
 }
 p = &s;
 
+
+
+
+/* Example 4: What is wrong with this fragment?
+
+                struct s_type {
+                    int a;
+                    char b;
+                    float bal;
+                } myvar, *p;
+                // notice the pointer
+
+                p = &myvar;
+                p.a = 10;   // wrong, use '->' 
+
+
+            Because p is a pointer to a structure, 
+            you must use the ARROW OPERATOR '->' to reference an element, not the dot operator.
+*/
+
+
+
