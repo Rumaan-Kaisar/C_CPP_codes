@@ -427,3 +427,9 @@ int main(void){
 
 
 
+
+/* Example 6: What is a bit-field? 
+                A "bit field" is a 'structure member' that specifies its length in bits
+                It's just a structure element whose size is specified in bits
+*/
+
