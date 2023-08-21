@@ -1,3 +1,4 @@
+
 /* 
 	-----------------    User-defined Data-types of C    -----------------
 
@@ -1337,12 +1338,9 @@ struct s_type {
 */
 
 
-// On your own, examine the header file STDIO.H and look at how the FILE structure is defined.
 
 
-
-
-/* Example 4: Write a program that uses an 'array of structures' to store
+/* Example 15: Write a program that uses an 'array of structures' to store
 
                     employee names,
                     telephone numbers,
@@ -1401,9 +1399,7 @@ int main(void){
 
 
 
-
-
-/* Example 5: Write a program that reads the "EMP" file created in previous Exercise
+/* Example 16: Write a program that reads the "EMP" file created in previous Exercise
                 and displays the information on the screen. */
 
 #include <stdio.h>
@@ -1437,4 +1433,9 @@ int main(void){
 
     return 0;
 }
+
+
+
+
+// On your own, examine the header file STDIO.H and look at how the FILE structure is defined.
 
