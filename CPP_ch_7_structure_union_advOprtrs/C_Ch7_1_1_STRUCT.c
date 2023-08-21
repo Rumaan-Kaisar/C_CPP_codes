@@ -1398,3 +1398,43 @@ int main(void){
     return 0;
 }
 
+
+
+
+
+
+/* Example 5: Write a program that reads the "EMP" file created in previous Exercise
+                and displays the information on the screen. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct s_type {
+    char name[40];
+    char phone[14];
+    int hours;
+    double wage;
+} emp[10];
+
+
+int main(void){
+    FILE *fp;
+    int i;
+
+    if((fp = fopen("emp", "rb")) == NULL) {
+        printf("cannot open EMP file. \n");
+        exit(1);
+    }
+
+    // read from the file and close
+    fread(emp, sizeof emp, 1, fp);
+    for(i=0; i<10; i++){
+        printf("%s %s\n", emp[i].name , emp[i].phone);
+        printf("%d %f\n\n", emp[i].hours , emp[i].wage);
+    }
+    fclose(fp);
+
+    return 0;
+}
+
