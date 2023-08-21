@@ -120,6 +120,24 @@ p = &s;
 
 
 
+/* Example 0: What is wrong with this fragment?
+
+                    struct s_type {
+                        int a;
+                        int b: 2;
+                        int c: 6;
+                    } var;
+
+                    scanf("%d", &var);
+
+                You cannot use a structure as an argument to scanf().
+                However, you can use a structure element as an argument, as shown here:
+
+                                scanf("%d", &var.a);
+ */
+
+
+
 
 /* Example 1: Following program demonstrates time() and localtime() by displaying the current time of the system: */
 
