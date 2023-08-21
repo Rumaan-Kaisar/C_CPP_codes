@@ -433,3 +433,19 @@ int main(void){
                 It's just a structure element whose size is specified in bits
 */
 
+
+
+
+/* Example 7: What does this fragment display? (Assume 'two-byte ints' and 'eight-byte doubles'.)
+
+                        union {
+                            int i;
+                            double d;
+                        } uvar;
+
+                        printf("%d", sizeof uvar) i
+
+                Answer: The fragment displays 8, the size of the largest element of the union. 
+*/
+
+
