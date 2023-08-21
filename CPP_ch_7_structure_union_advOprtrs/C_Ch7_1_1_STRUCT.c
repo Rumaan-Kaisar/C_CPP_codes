@@ -1297,4 +1297,41 @@ void save(void){
 
 
 
+/* Example 13: Show how to create a structure type called "s_type" that contains these five members:
+                char ch;
+                float d;
+                int i;
+                char str[80];
+                double balance;
+
+            Also, define one variable called "s_var" using this structure.
+*/
+
+struct s_type {
+    char ch;
+    float d;
+    int i;
+    char str[80];
+    double balance;
+} s_var;
+
+
+
+
+/* Example 14: What IS wrong with this fragment?
+
+                        struct {
+                            int i;
+                            char str[80];
+                            double balance;
+                        } svar;
+
+                        svar->i = 100; 
+                        
+                To access a structure member when actually uaing a 'structure variable', you must use the dot '.' operator. 
+                The arrow operator is used when 'accesaing a member' using a 'pointer' to a 'structure'.
+*/
+
+
 // On your own, examine the header file STDIO.H and look at how the FILE structure is defined.
+
