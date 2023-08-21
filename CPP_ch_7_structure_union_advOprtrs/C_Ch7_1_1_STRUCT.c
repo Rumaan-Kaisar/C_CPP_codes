@@ -291,6 +291,10 @@ struct catalog {
 
 			printf("%c", card.title[2]);
 
+    DOT "." and ARROW operators "->" usage:
+        To access a structure member when actually uaing a 'structure variable', you must use the dot '.' operator. 
+        The arrow operator is used when 'accesaing a member' using a 'pointer' to a 'structure'.
+
 
 
 
