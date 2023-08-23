@@ -435,127 +435,25 @@ int main(void){
 // ===============    MASTERY SKILLS CHECK    ===============
 
 
-
-
-
-
-
-
-
-
-
-
-/* Example 4: Write a program that uses an 'array of structures' to store
-
-                    employee names, 
-                    telephone numbers, 
-                    hours worked, and
-                    hourly wages. 
-
-                Allow for 10 employees. Have the program input the information and 
-                save it to a disk file. Call the file 'EMP'. 
-*/
-
-#include <stdio.h>
-#include <stdlib.h>
-
-struct s_type {
-char name [40 J ;
-char phone [14] ;
-int hours:
-double walle;
-} emp[lO];
-int main (void)
-(
-FILE *fp;
-int i;
-char temp[eO];
-,
-if((fp = fopen('emp', 'wb'l)==NULL) {
-printf (·cannot open EMP file. \n-);
-exit(l);
-}
-)
-for(i=Oi i<10; i+.) (
-print£(-Enter name: .);
-gets (emp[i] . name) ;
-}
-printf(-Enter telephone number: .);
-gets (emp Ii] .pl)one) ;
-printf(-Enter hours worked: .);
-gets (te.'!Ip);
-emp[i] .hours = atoi(temp);
-printf(MEnter hourly wage: .);
-gets (temp) ;
-ernp [i 1.wage = atof (temp) ;
-fwrite(emp, sizeof emp, 1, fp);
-fclose (fp) ;
-return 0;
-
-
-
-
-/* Example 5: Write a program that reads the "EMP" file created in previous Exercise
-                and displays the information on the screen. */
-
-S. 'include <stdio. h>
-tinclude <stdlib.h>
-struct s_type {
-char name[40l;
-char phone[14l;
-int hours,
-double wage;
-) emp[l.O];
-int rnain(void)
-(
-FILE ·fp;
-int ii
-if«fp = fopen("emp·, "rb"))==NULL) {
-printf ("Cannot open EMP file. In") ;
-exit(l) ;
-J
-fread(emp. sizeof amp, 1, fp);
-for(i=O; 1<10; i+.} (
-}
-printf(",s 'sIn", emp[iJ .name , emp[i).phone);
-printf("'d 'flnln", emp[iJ .hours , emp[iJ .wage);
-fclose (fp) ,
-return 0;}
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Example 7: Write a program that displays individually the values of the 'HIGH and LOW-order bytes' of a short integer. 
                 (Hint: Use a 'union' that contains as its two elements a short integer and a 'two-byte character array'.) 
 */
 
+#include <stdio.h>
 
-'include <stdio.h>
+int main(void) {
+    union u_type {
+        short int i;
+        unsigned char c[2];
+    } uvar;
+
+    uvar.i = 99;
+
+    printf("High order byte: %u\n", uvar.c[1]);
+    printf("Low order byte: %u\n", uvar.c[0]);
+
+    return 0;
 }
-int main (void)
-{
-union u_type (
-short int ii
-unsigned char c{2] ;
-) uvar:
-uvar.i :: 99;
-printf("High order byte, 'uln", uvar.c[l));
-printf("Low order byte, 'uln", uvar.c[OJ );
-return 0;
-}
-
-
-
-
 
 
 
@@ -575,37 +473,47 @@ return 0;
                 Using a function called struct_swap(), have the program swap the contents of var1 and var2. 
 */
 
-'include <stdio.h>
-struct B_type {
-int i;
-char chi
-double d;
+#include <stdio.h>
+
+struct s_type {
+    int i;
+    char ch;
+    double d;
 } var1, var2;
-int main (void)
-(
-varl.i = 100;
-var2.i = 99;
-var1.ch =- 'a';
-var2.ch='b';
-var1.d = 1. 0;
-var2.d = 2.0;
-NJ.aa 80S
-CUMUVoTM SK1U.S a£CK ~
-printf(-varl: %d %c %f\n-, var1.i. varl.ch, varl.d):
-printf(-var2: %d %c %f\n-, var2.i. var2.ch. var2.d):
+
+
+int main(void) {
+    var1.i = 100;
+    var2.i = 99;
+
+    var1.ch = 'a';
+    var2.ch = 'b';
+
+    var1.d = 1.0;
+    var2.d = 2.0;
+
+    printf("var1: %d %c %f \n", var1.i, var1.ch, var1.d);
+    printf("var2: %d %c %f \n", var2.i, var2.ch, var2.d);
+
+    struct_swap(&varl, &var2);
+
+    printf("After swap: \n");
+    printf("var1: %d %c %f \n", var1.i, var1.ch, var1.d);
+    printf("var2: %d %c %f \n", var2.i, var2.ch, var2.d);
+
+    return 0;
 }
-struct_swap(&varl, &var2);
-printf« -After swap: \n-):
-printf (·varl: %d %c %f\n -. var1. i, varl. ch, varl. d) ;
-printf(-var2: %d %c %f-, var2.i. var2.ch. var2.d};
-return 0;
-void struct_swap(struct s_type *i. struct s_type *j)
-(
-)
-struct s..:,type temp;
-temp = *i:
-*i = *j;
-*j =- temp;
+
+
+void struct_swap(struct s_type *i, struct s_type *j){
+    struct s_type temp;
+    temp = *i;
+    *i = *j;
+    *j = temp;
+}
+
+
+
 
 
 
@@ -621,57 +529,52 @@ temp = *i:
                 Have the user specify both the source and destination tile names on the command line (CLI). 
 */
 
-j* Copy a file. *j
-'include <stdio.h>
-
-linallJl;le <stdlib.b>
-- - .... 1
-,
-.--
-"
-int main(int argc, char '*argvIl:)
-{
-FILE "'from. ·to;
-union u_type {
-int i;
-char chi
-} uvar;
-, •
-/* see if correct number of command line arguments *j
-if(argc!=31 {
-printf("Usage: copy <source> <qestination>\n");
-exit(ll;
-)
-'* open source file */
-if«from = fopen(argv(l}. "rb" "==NULL) {
-printf("Cannot open source f~le.\n·);
-exit(l);
-)
-••
-'" /* open des.tl.llt\tlOll flle *1
-.' if «to = fop;'n(argv[2}. "..b" "==NULL) {
-printf ("Cannot opell d.e,stin.ation {ile. \n") ;
-exit (11;
-) .,
-,* forcopy ( ; i.) (the , file *' t
-uvar. i = £getc (from) ;
-if (uvar.i==EOF) break;
-fputc (uvar. ch, to);
-,
-"
-• ,
--
-~ j:;') <> Co
-fclose (from) ;
-fclose(tol; ,
-return 0; •
-) •
+// Copy a file.
+#include <stdio.h>
+#include <stdlib.h>
 
 
+int main(int argc, char *argv[]) {
+
+    FILE *from, *to;
+
+    union u_type {
+        int i;
+        char ch;
+    } uvar;
 
 
+    // see if correct number of command line arguments
+    if(argc!=3) {
+        printf("Usage: copy <source> <Destination>\n");
+        exit(1);
+    }
+
+    // open source file
+    if((from = fopen(argv[1], "rb")) == NULL) {
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open destination flle
+    if((to = fopen(argv[2], "wb")) == NULL) {
+        printf("Cannot open destination file.\n");
+        exit(1);
+    }
+
+    // copy the file
+    for( ; ; ) {
+        uvar.i = fgetc(from);
+        if(uvar.i==EOF) break;
+        fputc(uvar.ch, to);
+    }
 
 
+    fclose(from);
+    fclose(to);
+
+    return 0;
+}
 
 
 
@@ -688,41 +591,34 @@ return 0; •
                     demonstrating that the 'original string' is NOT ALTERED after the function returns. 
 */
 
-"
-'include <string.h»
-'include <&tdio.h>
-"
-s~ruct B_type (
-char str(80);
+
+#include <string.h>
+#include <stdio.h>
+
+struct s_type (
+    char str[80];
 } var;
-11
-void f(struct
-int main (..void)
-(
-1 •
-"_type
-• U , •
-• , ,
-• L
-i J ; f • , ,
-(
-strcpy(var.str, "this is original string");
-f '( var} ;
-.- ~
-printf("'s". var.strl: -
-.
-return 0;
+
+void f(struct s_type arr)
+
+
+int main(void) {
+    strcpy(var.str, "this is original string");
+    f(var};
+    printf("%s", var.str);
+
+    return 0;
 }
-void f(struct s_type i)
-(
+
+
+void f(struct s_type arr){
+    strcpy(arr.str, "new string");
+    printf("%s\n", arr.str);
 }
-strcpy(i.str, "new string") ;
-printf(·'s\n·, i.str)·
-6 '
 
 
 
-"
+
 // ===============    REVIEW SKILLS CHECK    ===============
 
 
@@ -731,36 +627,34 @@ printf(·'s\n·, i.str)·
                 Display the contents of the array. 
 */
 
-Unclude <stdio : h>
-,.
-• ,
-!
-S.eruct. nWlLt.ype
-i~t ~i .~
-int sqr;
-,
-int cu.be:
-} ·.nums (1'01.
-int main (void)
-(
-int i;
-'1:
-" ,
-j
-,
-o 1
-" !) , t I
-foX"(i=l; i<1,1[ i++) { J , 1 ...' 3
-nums[i-l].i = i;
+#include <stdio.h>
 
-nu..(i-l).~ - i·i,
-nuaa(i-l).CUbe - i·i·i,
-for(i-O, i<10: i++) (
-printf("\d ", nu..(i).i):
-printf("td ", nuaa(i).~):
-printf("td\n", nu..li) .CUbe) :
+struct num_type {
+    int j;
+    int sqr;
+    int cube;
+} nums[10];
+
+
+int main(void){
+    int i;
+
+    for(i=1; i<11, i++) {
+        nums[i-1].j = i;
+        nums[i-1].sqr = i*i;
+        nums[i-1].cube = i*i*i;
+    }
+
+    // print the values
+    for(i=0; i<10, i++) {
+        printf("%d ", nums[i-1].j);
+        printf("%d ", nums[i-1].sqr);
+        printf("%d\n", nums[i-1].cube);
+    }
+
+
+    return 0;
 }
-return 0,
 
 
 
@@ -769,30 +663,21 @@ return 0,
                 that make up a 'short integer' entered by the user. 
 */
 
-'include <stdio.b>
-union i_to_c (
-char c(2):
-ahort int i:
-} ic:
-int main (void)
-I
-)
-printf(-Enter an integer .,:
-scanf(-'bd-, ~ic . i) :
-printf("Cbaracter representation of each ~e: tc tc",
-ic .cIO), ic .cll)) :
-return 0;
+#include <stdio.h>
 
+union i_to_c {
+    char c[2];
+    short int i;
+} ic;
 
+int main(void){
+    printf("Enter an integer: ");
+    scanf("%d", &ic.i);
 
+    printf("Character representation of each byte: %c %c", ic.c[0], ic.c[1]);
 
-
-
-
-
-
-
-
+    return 0;
+}
 
 
 
