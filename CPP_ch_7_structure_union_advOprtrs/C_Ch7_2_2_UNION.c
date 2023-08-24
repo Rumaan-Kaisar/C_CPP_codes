@@ -449,3 +449,26 @@ int main(void){
 */
 
 
+
+
+/* Example 8: Write a program that uses a 'union' to display as 'a character the individual bytes'
+                that make up a 'short integer' entered by the user.
+*/
+
+#include <stdio.h>
+
+union i_to_c {
+    char c[2];
+    short int i;
+} ic;
+
+int main(void){
+    printf("Enter an integer: ");
+    scanf("%hd", &ic.i);
+
+    printf("Character representation of each byte: %c %c", ic.c[0], ic.c[1]);
+
+    return 0;
+}
+
+
