@@ -233,3 +233,37 @@ p = &s;
 
 
 
+
+/* Example 5: Write a program that uses an array of structures to hold the
+                squares and cubes of the numbers 1 through 10.
+                Display the contents of the array.
+*/
+
+#include <stdio.h>
+
+struct num_type {
+    int j;
+    int sqr;
+    int cube;
+} nums[10];
+
+
+int main(void){
+    int i;
+
+    for(i=1; i<11; i++) {
+        nums[i-1].j = i;
+        nums[i-1].sqr = i*i;
+        nums[i-1].cube = i*i*i;
+    }
+
+    // print the values
+    for(i=0; i<10; i++) {
+        printf("%d ", nums[i-1].j);
+        printf("%d ", nums[i-1].sqr);
+        printf("%d\n", nums[i-1].cube);
+    }
+
+    return 0;
+}
+
