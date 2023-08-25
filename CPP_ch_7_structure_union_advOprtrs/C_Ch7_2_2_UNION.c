@@ -494,3 +494,67 @@ int main(void) {
     return 0;
 }
 
+
+
+
+/* Example 10: As you know from previous chapters, fgetc() returns an 'INTEGER VALUE',
+                even though it only reads a character from a file.
+
+                Write a program that copies one file to another.
+                Assign the return value of fgetc() to a "UNION" that contains an integer and character member.
+
+                Use the 'integer element' to check for EOF.
+                Write the character element to the destination file.
+                Have the user specify both the source and destination tile names on the command line (CLI).
+*/
+
+// Copy a file.
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(int argc, char *argv[]) {
+
+    FILE *from, *to;
+
+    union u_type {
+        int i;
+        char ch;
+    } uvar;
+
+
+    // see if correct number of command line arguments
+    if(argc!=3) {
+        printf("Usage: copy <source> <Destination>\n");
+        exit(1);
+    }
+
+    // open source file
+    if((from = fopen(argv[1], "rb")) == NULL) {
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open destination flle
+    if((to = fopen(argv[2], "wb")) == NULL) {
+        printf("Cannot open destination file.\n");
+        exit(1);
+    }
+
+    // copy the file
+    for( ; ; ) {
+        uvar.i = fgetc(from);
+        if(uvar.i==EOF) break;
+        fputc(uvar.ch, to);
+    }
+
+
+    fclose(from);
+    fclose(to);
+
+    return 0;
+}
+// save the source code as copy.c
+// CLI: > copy file1 file2
+
+
