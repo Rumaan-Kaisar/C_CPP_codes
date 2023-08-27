@@ -1,53 +1,89 @@
+/* 
+    ------------    variable storage class specifire    ------------
 
-5.6 variable storage class specifire (Advanced topic)
-Variables in C not only have data types, they also have a storage class. There are four types of variable storage class :
- 
-[1]	Automatic variables,
-[2]	External variables,
-[3]	Register  variables,
-[4]	Static variables.
- 
+    variable storage class specifire:
+        Variables in C not only have "data types", they also have a "storage class". There are four types of variable storage class :
+    
+            [1]	Automatic variables,
+            [2]	External variables,
+            [3]	Register  variables,
+            [4]	Static variables.
+    
+    Four type modifiers/specifiers:
+        For the four different 'variable storage class', C defines 'four type modifiers' that affect how a variable is stored. They are
+    
+            [1]	auto
+            [2]	extern
+            [3]	register
+            [4]	static
+    
+        These 'specifiers' precede the 'type name'. That is 
 
-For the four different variable storage class, C defines four type modifiers that affect how a variable is stored. They are
- 
-[1]	auto
-[2]	extern
-[3]	register
-[4]	static
- 
-These specifiers precede the type name. That is 
-storage_class  data_type  variable_name ;	Example :   extern int count; 
+                                storage_class  data_type  variable_name;
+            Example :   
+                                extern int count; 
 
-[1]	auto  : The specifier auto is completely unnecessary. Automatic variables are simply local variables, which are auto by default. 
 
-[2]	extern :  As the size of a program grows, it takes longer to compile. For this reason, C allows us to break a program into two or more files. We can separately compile these files and then link them together  ( the actual method of separate compilation and linking will be explained in the instructions that accompany your compiler). 
-	Global data may need to be accessed by two or more files that form a program. But global data can only be defined once.
-	In this case, each source file must inform the compiler about the global data it uses. To accomplish this you will need to use the keyword extern. 
-To understand why, consider the following program, which is split between two files:
 
- 
-/* FILE #1 */
+
+    auto : 
+        The specifier 'auto' is completely UNNECESSARY. 
+        Automatic variables are simply 'local variables', which are "auto by Default". 
+
+
+
+
+    extern 
+        extern is used for multi file source code to access GLOBAL data.
+
+        As the size of a program grows, it takes 'longer' to COMPILE. 
+            For this reason, C allows us to break a program into two or more files. 
+        
+        We can SEPARATELY COMPILE these files and then link them together  
+            (the actual method of separate compilation and linking will be explained in the instructions that accompany your compiler). 
+
+        GLOBAL DATA may need to be accessed by two or more files that form a program. But 'global data' can only be defined 'once'.
+            In this case, each source file must 'inform the compiler about the global data' it uses. 
+            To accomplish this you will need to use the keyword extern. 
+*/
+
+
+
+
+/* Example 1: To understand why we need 'extern', consider the following program, which is split between two files. */
+
+/* FILE #1: ("main.c" file) */
 #include <stdio.h>
-int count;
-void f1 (void) ;
+
+int count;  // Global Data
+
+void f1(void);  // function prototype
+
 int main(void){ 
     int i;
-    f1(); /* set count's value */
+    f1();       // set count's value
     for(i=0; i<count; i++) printf("%d", i);
-return 0;}
-/* FILE #2 */
+
+    return 0;
+}
+
+
+
+/* FILE #2 ("fl.c" function definition) */
 void f1(void){
-    	extern int count; /* Global count */
-count = 17 ;}
+    extern int count; // Accessing GLOBAL data count using "extern"
+    count = 17;
+}
 
 
+/* 
+    By placing extern in front of count's declaration in FILE #2, you are telling the compiler that 'count' is an integer defined elsewhere. 
+        In other words, using 'extern' informs the compiler about the existence and the type of the variable it precedes, 
+            but it does not cause storage for that variable. 
+*/
 
- 
-	By placing extern in front of count's declaration in FILE #2, you are telling the compiler that count is an integer defined elsewhere. In other words, using extern informs the compiler about the existence and the type of the variable it precedes, but it does not cause storage for that variable.
-
-	To link multiple files in code::block, use project, create new project (console), put the source code files in the project name folder. Compile,  run the whole .cbp file.
-
-If we didn’t use extern two errors would occur : 
+// rev 1 start
+If we didn't use extern two errors would occur : 
 Error 1 : If we directly use : /* FILE #2 */ void f1(void){count = 17 ;} an error will be reported because count is not defined. 
 Error 2  :   If we even define count as /* FILE #2 */ void f1(void){ int count; count = 17 ;} many linkers will report a duplicate-symbol error, which means that count is defined twice, and the linker doesn't know which to use.
 
@@ -60,6 +96,47 @@ int main(void){ 	extern int count; /* this refers to global count *1
 count = 10;
 printf("%d", count);
 return 0;}
+
+// rev 1 end
+
+
+
+//-------------------------    Linking multple source files    -------------------------
+
+// How to Link Multiple C++ Files with G++:
+    // first install "GCC compiler" or "codeBlocks with GCC"
+    // we have installed "codeBlocks with GCC"
+    // find the intalled path, then find the "bin" folder where the "compilers" stored
+    // copy the path, its usually: 'C:\Program Files\CodeBlocks\MinGW\bin\'
+    // add this path to "user variable" and "system variable" to your SYSTEM's "Environment Variables" (place the at the top of the list)
+    // alwways run CLI in "C:\Users\name" i.e. in system-user directory
+
+// Use fillowing command to link: "main.c" and "fl.c"
+        // if source files are in 'C:\Users\name':
+        g++ main.c fl.c -o main
+
+// if the files are in another destination:
+        // if source files are in   'H:\shared_docs\codes_C_CPP\raw_runs\multi_file'
+        g++ H:\shared_docs\codes_C_CPP\raw_runs\multi_file\main.c H:\shared_docs\codes_C_CPP\raw_runs\multi_file\fl.c -o H:\shared_docs\codes_C_CPP\raw_runs\multi_file\main
+
+// for c++ compilation
+        g++ main.cpp function_file.cpp -o main
+        // -o main : it means we want the output file as one "main.exe"
+
+
+
+
+// To link multiple files in code::block: 
+    // use 'project', 
+    // create new project (console), 
+    // put the source code files in the project name folder. 
+    // Compile,  
+    // run the whole .cbp file.
+
+
+
+
+
 [3]	register : When you specify a register variable you are telling the compiler that you want access to that variable to be as fast as possible. In early version of C it causes the variables to be held in a register of the CPU. (This is how the name register came about.) By using a register of the CPU, extremely fast access times are achieved.
 	In modern versions of C, the requirement that register variables must be held in a CPU register was removed. Instead, the ANSI C standard stipulates that a register variable will be stored in such a way as to minimize access time. This means that,
 	 register variables of type int and char continue to be held in a CPU register.
@@ -111,4 +188,3 @@ printf("%d", count);
  
 
 Because count is declared as static in FILE #2, no name conflicts arise. The printf() statement in FILE #1 displays 10 and the printf() statement in FILE #2 displays 5 because the two counts are different variables.
-
