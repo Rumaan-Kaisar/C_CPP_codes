@@ -294,3 +294,215 @@ printf("%d", count);
     // The printf() statement in FILE #1 displays 10 and the printf() statement in FILE #2 displays 5 
     // because the two counts are different variables.
 
+
+
+
+
+
+I. To get an idea about how much faster access to a register
+variable is, try the foHowing program. It makes use of another of
+C's standard library functions caHed c1ock( ), which returns the
+",number of system clock ticks since the program began
+execution. It has this prototype:
+clock_t clock(void);
+It uses the TIME.H header. TIME.H also defines the c1ock_t
+type, which is more or less the same as long. To time an event
+using c1ock{ ), call it immediately before the event you wish to
+time and save its return value. Next, call it a second time after
+the event finishes and subtract the starting value from the
+ending value. This is the approach used by the program to time
+how long it takes two loops to execute. One set of loops is
+controlled by a register variable, 'the other is controlled by a
+non-register variable.
+'include <stdio.h>
+.include <time.h>
+int i; /* This will not be transformed into a
+register variable because it is global.* /
+int main(void)
+(
+~ register int j:
+I
+int k;
+clock_t start, finish;
+start '= clock();
+for(k=Oi k<100; k++)
+for(i~O; i<32000; i+.)
+finish = clock();
+pr~ntf( · Non-register loop: tId ticKs \ n- , finish - start);
+start = clock();
+for l k=O; k<lOO; k++l
+for(j=O; j<32000 ; j++l;
+finish = clock() ;
+printf (-Register 'loop: tId ticKs \ n-, finish - start);
+return 0;ADVANCW DATA TYPES AND OPERATDRS 345
+For most compilers, the register-controlled loop will execute
+about twice as fast as the non-register controlled loop.
+The non-register variable is global because, when feasible,
+virtually all compilers will automatically convert local variables
+not specified as register types into register types as an
+automatic optimization. If you do not see the predicted results,
+it may mean that the compiler has automatically optimized i
+into a register variable, too. Although you can't declare global
+variables as register, there is notbing that prevents a compiler
+from optimizing your program to this effeet. If you don't see
+much difference between the two loops, try creating extra global
+variables prior to i so that it will not be automatically optimized.
+2. As you know, the compiler can optimize access speed for
+only a limited number of register variables in anyone function
+(perhaps as few as two). However, this does not mean that your
+program can only have a few register variables. Because of the
+way a C program executes, each function may utilize the
+maximum number of register variables. For example, for the
+average compiler, all the variables shown in the next program
+will be optimized for speed:
+#include <stdio.h>
+void f2 (void) :
+void f (void) ;
+int main (void)
+(
+register int a , b;
+)
+void f (void)
+(
+register int i, j;c
+void f2(voidl
+(
+register int j. k;
+)
+3. Local static variables have several uses. One is to al1o-;'" a
+function to perform various ininalizations only once, when it is
+first called. For example, consider this function :
+void myfunc(void)
+(
+}
+static inc first = 1;
+if{f~rst) { j* initialize the system */
+rewH~d (fp) ;
+)
+a = 0;
+lee = 0,
+fprintf(~System IniLialized~);
+first = 0;
+Because first is static, it will hold its value between calls. Thus,
+the initialization code will be executed only the first time the
+function is called.
+4. Another interesting use for a local static variable is to control a
+recursive function. For example. this program prints the
+numbers 1 through 9 on the screen:
+#include <stdio.h>
+void f (void) ;
+int main (void)
+(
+t();
+return 0;
+}ADVANCUI DATA TYPES AND OPERATORS 347
+void f (void)
+(
+)
+static int stop=O:
+stop++;
+if(stop==10) return;
+printf("%d ", stop);
+f(); /* recursive call *1
+11.' USE THE STORAGE ClASS SPEC/FifRS
+Notice how stop is used to prevent a recursive call to C( ) when
+it equals 10.
+5. Here is another example of using extern to allow global data to
+be accessed by two files:
+FILE #1:
+fiinclude <stdio.h>
+char str[80];
+void getname(void);
+int main (void)
+(
+getname () ;
+printf"{ -Hello %s·. str);
+return 0;
+)
+FILE #Z,
+'include <stdio.h>
+extern char str[BO]:
+void getname(void)
+(
+)
+printf("Enter your first name: .. ,; .
+gets (str);
+~TEACH YOURSElF
+C
+EXERCISES
+
+
+
+------------   exs   -------------
+
+
+
+1. Assume that your compiler will actually optimize access time of
+only two register variables per function. In this program, which
+two variables are the best ones to be made into register variables?
+#include <stdio.h>
+#include <conio.h>
+int main (void)
+{
+)
+int i. j, k, m;
+do ("
+printf t -Enter a value: .);
+scanf ("M', &i);
+m = 0;
+for(j=O; j<i; j++)
+for (k=Oi k<100i k++ )
+m = k + mi
+while t i>O) ;
+return 0;
+
+1. The best variables to make into resIatm" types are k and m,
+because they are accessed most frequently
+
+
+
+linclude <stdio.h>
+,
+void .~it(int value),
+int ....in(void)
+(
+}
+sWlLit(lO) ,
+sum_it (20) ,
+sWILit(30) ,
+sWILit(40);
+return OJ
+void s~it{int value)
+(
+static int sum=O;
+sum = sum + value;
+printf(-CUrrent value: 'd\n·, sum);
+}
+
+
+
+
+2. Write a program that contains a function called sum_it( ) that
+has this .prototype:
+void sum_it (int value);
+Have this function use a local static integer variable to maintain
+and display a running total of the values of the parameters iUs
+called with. for example, if sum_it( ) is called three times with
+the values 3,6, 4, then sum_it( ) will display 3, 9, and 13.
+
+
+
+
+3. Try the program descnbed in Example :.. Be sure to actually use
+two files. If you are unsure how to compile and link a program
+consisting of two files, check your compiler's user manual.
+
+
+
+
+What is wrong with this fragment?
+register int i;
+int .p;
+p = &i;
+
+4. You cannot obtain the address of a register variabl
