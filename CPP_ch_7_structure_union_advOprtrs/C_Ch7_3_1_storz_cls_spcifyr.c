@@ -214,11 +214,26 @@ int main(void){
     static : 
         Recall how a local variable act: a local variable is created upon entry into its function and destroyed upon exit. And a global variable is active in whole program.
 
+        -----------------    static LOCAL variable    -----------------
+
         Use of static modifier on local variables:  
             When you use the static modifier, you cause the contents of a local variable to be preserved between function calls 
                 (That is it will not destroy when function exit and it act like a global variable inside its own function). 
 
         Unlike normal local variables, which are 'initialized each time a function is entered', a static local variable is "INITIALIZED only ONCE". 
+
+        The advantage to using a 'static local variable' over a 'global': 
+            The 'static local' variable is still known to and accessible by only the function in which it is declared.
+            Global variables active outside any function.
+
+
+        -----------------    static GLOBAL variable    -----------------
+
+        Use of static modifier on global variables :  
+            The 'static' modifier may also be used on 'global variables' (more like a local variable for its own file). 
+            It causes the GLOBAL VARIABLE to be known to and accessible by ONLY the functions in the SAME FILE in which it is declared. 
+            This static global variable has 'NO EFFECT ON OTHER FILE' (when we work with different files) which use the 'same named global variable'.
+
 */
 
 
@@ -251,26 +266,31 @@ count is : 1 count is : 1 . . . .  count is : 1. Which is obvious and we explain
 
 
 
----------29-aug-2023---------
-So why didn’t we use a global variable in the previous example? The answer is : The advantage to using a static local variable over a global one is that the static local variable is still known to and accessible by only the function (global variables active outside any function) in which it is declared.
 
-	Use of static modifier on global variables :  The static modifier may also be used on global variables ( more like a local variable for its own file). It causes the global variable to be known to and accessible by only the functions in the same file in which it is declared. This static global variable has no effect on other file (when we work with different files) which use the same named global variable.
-This means that there are no name conflicts if a static global variable in one file has the same name as another global variable in a different file of the same program. 
-For example, consider these two fragments, which are parts of the same program:
 
- 
-FilE #1
-int count;
+/* Example 3: no name conflicts arise if a static global variable in one file has the same name as another global variable 
+                in a different file of the same program. 
+                For example, consider these two fragments, which are parts of the same program: */
+
+
+// FilE #1
+int count;  // global variable
 . . .
 . . .
 count = 10;
 printf("%d", count);
-FilE #2
-static int count;
+
+
+
+// FilE #2
+static int count;   // static global variable (using same name of File#1's global var)
 . . .
 . . .
 count = 5:
 printf("%d", count);
  
 
-Because count is declared as static in FILE #2, no name conflicts arise. The printf() statement in FILE #1 displays 10 and the printf() statement in FILE #2 displays 5 because the two counts are different variables.
+// Because count is declared as static in FILE #2, no name conflicts arise. 
+    // The printf() statement in FILE #1 displays 10 and the printf() statement in FILE #2 displays 5 
+    // because the two counts are different variables.
+
