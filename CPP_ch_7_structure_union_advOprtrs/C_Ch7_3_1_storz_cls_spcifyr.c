@@ -298,56 +298,96 @@ printf("%d", count);
 
 
 
+/* Example 4: (Calculate the access time) In following program, we try to calculate the access time to a register variable.
 
-I. To get an idea about how much faster access to a register
-variable is, try the foHowing program. It makes use of another of
-C's standard library functions caHed c1ock( ), which returns the
-",number of system clock ticks since the program began
-execution. It has this prototype:
-clock_t clock(void);
-It uses the TIME.H header. TIME.H also defines the c1ock_t
-type, which is more or less the same as long. To time an event
-using c1ock{ ), call it immediately before the event you wish to
-time and save its return value. Next, call it a second time after
-the event finishes and subtract the starting value from the
-ending value. This is the approach used by the program to time
-how long it takes two loops to execute. One set of loops is
-controlled by a register variable, 'the other is controlled by a
-non-register variable.
-'include <stdio.h>
-.include <time.h>
-int i; /* This will not be transformed into a
-register variable because it is global.* /
-int main(void)
-(
-~ register int j:
-I
-int k;
-clock_t start, finish;
-start '= clock();
-for(k=Oi k<100; k++)
-for(i~O; i<32000; i+.)
-finish = clock();
-pr~ntf( · Non-register loop: tId ticKs \ n- , finish - start);
-start = clock();
-for l k=O; k<lOO; k++l
-for(j=O; j<32000 ; j++l;
-finish = clock() ;
-printf (-Register 'loop: tId ticKs \ n-, finish - start);
-return 0;ADVANCW DATA TYPES AND OPERATDRS 345
-For most compilers, the register-controlled loop will execute
-about twice as fast as the non-register controlled loop.
-The non-register variable is global because, when feasible,
-virtually all compilers will automatically convert local variables
-not specified as register types into register types as an
-automatic optimization. If you do not see the predicted results,
-it may mean that the compiler has automatically optimized i
-into a register variable, too. Although you can't declare global
-variables as register, there is notbing that prevents a compiler
-from optimizing your program to this effeet. If you don't see
-much difference between the two loops, try creating extra global
-variables prior to i so that it will not be automatically optimized.
-2. As you know, the compiler can optimize access speed for
+                    -------------    clock()    -------------
+
+                Use clock() from C's standard library.
+                    It returns the number of system clock ticks since the program began execution. It's prototype:
+
+                            clock_t clock(void);
+
+                    It uses the <TIME.H> header. <TIME.H> also defines the 'clock_t type', which is more or less the same as 'long'.
+
+
+                To time an event:
+                    using clock(), call it immediately before 'the event you wish to time' and save its returned value.
+                    Next, call it a second time 'after the event finishes 'and subtract the 'starting' value from the 'ending' value.
+
+
+                Now we use this approach in this program to calculate the execution time of two loops
+                    One loop will use normal "non-register" variable.
+                    Another loop will use "register" variable. It'll controlled by a register variable.
+
+
+                since there is a LIMIT of using register variables
+                    we used only 'one register variable' for the nested loop
+ */
+
+#include <stdio.h>
+#include <time.h>
+int a;  // extra variables
+int b;  // extra variables
+int c;  // extra variables
+int d;  // extra variables
+
+int i;  // This will not be transformed into a REGISTER VARIABLE because it is GLOBAL
+
+int main(void){
+    register int j;     // REGISTER variable
+    int k;
+    clock_t start, finish;
+
+    start = clock();
+    for(k=0; k<10000; k++)
+        for(i=0; i<32000; i++);     // just running the loops
+    finish = clock();
+    printf("Non-register loop: %ld ticKs \n", finish - start);
+
+    start = clock();
+    for(k=0; k<10000; k++)
+        for(j=0; j<32000; j++);     // applying a REGISTER variable j to control this nested loop
+    finish = clock();
+    printf("Register loop: %ld ticKs \n", finish - start);
+
+    return 0;
+}
+
+// Output:
+// Non-register loop: 664 ticKs
+// Register loop: 114 ticKs
+
+
+/*
+    NOTES:
+        Automatic optimization for any local variable:
+            virtually all compilers will automatically convert local variables not specified as register types
+                into register types as an 'automatic optimization'.
+
+        The non-register variable usually global.
+
+        If you do not see the predicted results,
+        it may mean that the compiler has automatically optimized global variable i into a register variable, too.
+
+        Although you 'can't declare GLOBAL variables as REGISTER',  there is nothing that
+            prevents a compiler from optimizing your program to this effeet.
+
+        If you don't see much difference between the two loops,
+            try creating "extra global variables" prior to i so that it will not be automatically optimized.
+
+
+        For most compilers, the register-controlled loop will execute about twice as fast as the non-register controlled loop.
+*/
+
+
+
+
+
+
+
+-----------------    rev below    -----------------
+
+Example 2: As you know, the compiler can optimize access speed for
 only a limited number of register variables in anyone function
 (perhaps as few as two). However, this does not mean that your
 program can only have a few register variables. Because of the
@@ -369,7 +409,10 @@ void f2(voidl
 (
 register int j. k;
 )
-3. Local static variables have several uses. One is to al1o-;'" a
+
+
+
+Example 3: Local static variables have several uses. One is to al1o-;'" a
 function to perform various ininalizations only once, when it is
 first called. For example, consider this function :
 void myfunc(void)
@@ -386,7 +429,10 @@ first = 0;
 Because first is static, it will hold its value between calls. Thus,
 the initialization code will be executed only the first time the
 function is called.
-4. Another interesting use for a local static variable is to control a
+
+
+
+Example 4: Another interesting use for a local static variable is to control a
 recursive function. For example. this program prints the
 numbers 1 through 9 on the screen:
 #include <stdio.h>
@@ -407,7 +453,10 @@ f(); /* recursive call *1
 11.' USE THE STORAGE ClASS SPEC/FifRS
 Notice how stop is used to prevent a recursive call to C( ) when
 it equals 10.
-5. Here is another example of using extern to allow global data to
+
+
+
+Example 5: Here is another example of using extern to allow global data to
 be accessed by two files:
 FILE #1:
 fiinclude <stdio.h>
@@ -437,7 +486,7 @@ EXERCISES
 
 
 
-1. Assume that your compiler will actually optimize access time of
+Example 1: Assume that your compiler will actually optimize access time of
 only two register variables per function. In this program, which
 two variables are the best ones to be made into register variables?
 #include <stdio.h>
@@ -482,7 +531,7 @@ printf(-CUrrent value: 'd\n·, sum);
 
 
 
-2. Write a program that contains a function called sum_it( ) that
+Example 2: Write a program that contains a function called sum_it( ) that
 has this .prototype:
 void sum_it (int value);
 Have this function use a local static integer variable to maintain
@@ -493,7 +542,7 @@ the values 3,6, 4, then sum_it( ) will display 3, 9, and 13.
 
 
 
-3. Try the program descnbed in Example :.. Be sure to actually use
+Example 3: Try the program descnbed in Example :.. Be sure to actually use
 two files. If you are unsure how to compile and link a program
 consisting of two files, check your compiler's user manual.
 
@@ -505,4 +554,7 @@ register int i;
 int .p;
 p = &i;
 
-4. You cannot obtain the address of a register variabl
+Example 4: You cannot obtain the address of a register variabl
+
+
+
