@@ -197,11 +197,15 @@ int main(void){
                         the compiler is free to make register variables into regular variables.
 
 
+        The way a C program executes, EACH FUNCTION may utilize the MAXIMUM number of REGISTER variables.
+
+
         You must choose carefully which variables you modify with register.  
             use it for a frequently used variable, such as the variable that CONTROLS a LOOP, into a register variable.  
                 The more times a variable is accessed, the greater the increase in performance when its access time is decreased.
                 
             Generally, you can assume that 'at least two variables per function' can be truly optimized for access speed.
+
 
         pointers vs register:
             Restriction of using pointers: 
@@ -386,99 +390,139 @@ int main(void){
 
 
 -----------------    rev below    -----------------
+/* Example 5: The compiler can optimize access speed for only a limited number of register variables in any one function (perhaps as few as two). 
 
-Example 2: As you know, the compiler can optimize access speed for
-only a limited number of register variables in anyone function
-(perhaps as few as two). However, this does not mean that your
-program can only have a few register variables. Because of the
-way a C program executes, each function may utilize the
-maximum number of register variables. For example, for the
-average compiler, all the variables shown in the next program
-will be optimized for speed:
+                However, this does not mean that your program can only have a few register variables.
+                Because of the way a C program executes, EACH FUNCTION may utilize the MAXIMUM number of REGISTER variables. 
+
+                For example, for the average compiler, all the variables shown in the next program will be optimized for speed:
+*/
+
 #include <stdio.h>
-void f2 (void) :
-void f (void) ;
-int main (void)
-(
-register int a , b;
-)
-void f (void)
-(
-register int i, j;c
-void f2(voidl
-(
-register int j. k;
-)
+
+void f2(void);
+void f(void);
 
 
-
-Example 3: Local static variables have several uses. One is to al1o-;'" a
-function to perform various ininalizations only once, when it is
-first called. For example, consider this function :
-void myfunc(void)
-(
+int main(void){
+    register int a, b;
+    .
+    .
+    .
 }
-static inc first = 1;
-if{f~rst) { j* initialize the system */
-rewH~d (fp) ;
-)
-a = 0;
-lee = 0,
-fprintf(~System IniLialized~);
-first = 0;
-Because first is static, it will hold its value between calls. Thus,
-the initialization code will be executed only the first time the
-function is called.
+
+
+void f(void){
+    register int i, j;
+    .
+    .
+    .
+}
+
+
+void f2(void){
+    register int j, k;
+    .
+    .
+    .
+}
 
 
 
-Example 4: Another interesting use for a local static variable is to control a
-recursive function. For example. this program prints the
-numbers 1 through 9 on the screen:
+
+
+/* Example 6: Local static variables have several uses. 
+                One is to allow a function to perform various 'initializations' only once, when it is first called. 
+                For example, consider following function : 
+                
+                Because 'first' is 'static', it will hold its value between function-calls. 
+                    Thus, the initialization code will be executed only the first time the function is called.
+*/
+
+
+void myfunc(void){
+    static int first = 1;
+
+    if(first) { // initialize the system
+        rewind(fp);
+        a = 0;
+        loc = 0;
+        fprintf("System IniLialized");
+        first = 0;
+    }
+    .
+    .    
+    .    
+    .    
+}
+
+
+
+
+
+/* Example 4: Another interesting use for a 'local static variable' is  to control a recursive function. 
+                For example. this program prints the numbers 1 through 9 on the screen: 
+*/
+
 #include <stdio.h>
-void f (void) ;
-int main (void)
-(
-t();
-return 0;
-}ADVANCUI DATA TYPES AND OPERATORS 347
-void f (void)
-(
-)
-static int stop=O:
-stop++;
-if(stop==10) return;
-printf("%d ", stop);
-f(); /* recursive call *1
-11.' USE THE STORAGE ClASS SPEC/FifRS
-Notice how stop is used to prevent a recursive call to C( ) when
-it equals 10.
+void f(void);
+
+int main (void){
+    f();
+
+    return 0;
+}
+
+
+void f(void){
+    static int stop=0;
+    stop++;
+    if(stop==10) return;
+    printf("%d ", stop);
+    f();    // recursive call
+}
+
+// Notice how stop is used to prevent a recursive call to f() when it equals 10.
 
 
 
-Example 5: Here is another example of using extern to allow global data to
-be accessed by two files:
-FILE #1:
-fiinclude <stdio.h>
+
+/* Example 5: Here is another example of using extern to allow global data to be accessed by two files: */
+
+// FILE #1:
+#include <stdio.h>
+
 char str[80];
 void getname(void);
-int main (void)
-(
-getname () ;
-printf"{ -Hello %s·. str);
-return 0;
-)
-FILE #Z,
-'include <stdio.h>
-extern char str[BO]:
-void getname(void)
-(
-)
-printf("Enter your first name: .. ,; .
-gets (str);
-~TEACH YOURSElF
-C
-EXERCISES
+
+int main(void){
+    getname();
+    printf("Hello %s", str);
+    
+    getchar();  // to prevent exit immediately
+
+    return 0;
+}
+
+
+// FILE #2:
+#include <stdio.h>
+
+extern char str[80];
+
+void getname(void){
+    printf("Enter your first name: ");
+    gets(str);
+}
+
+
+// CLI: g++ H:\shared_docs\codes_C_CPP\raw_runs\multi_file\main_xtrn.c H:\shared_docs\codes_C_CPP\raw_runs\multi_file\getname.c -o H:\shared_docs\codes_C_CPP\raw_runs\multi_file\getname2
+
+// CLI: g++     FILE#1      FILE#2      -o      output_file_name
+
+
+
+
 
 
 
