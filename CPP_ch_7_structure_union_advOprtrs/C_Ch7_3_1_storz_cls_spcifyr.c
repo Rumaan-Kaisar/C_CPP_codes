@@ -387,9 +387,6 @@ int main(void){
 
 
 
-
-
------------------    rev below    -----------------
 /* Example 5: The compiler can optimize access speed for only a limited number of register variables in any one function (perhaps as few as two). 
 
                 However, this does not mean that your program can only have a few register variables.
@@ -460,7 +457,7 @@ void myfunc(void){
 
 
 
-/* Example 4: Another interesting use for a 'local static variable' is  to control a recursive function. 
+/* Example 7: Another interesting use for a 'local static variable' is  to control a recursive function. 
                 For example. this program prints the numbers 1 through 9 on the screen: 
 */
 
@@ -487,7 +484,7 @@ void f(void){
 
 
 
-/* Example 5: Here is another example of using extern to allow global data to be accessed by two files: */
+/* Example 8: Here is another example of using extern to allow global data to be accessed by two files: */
 
 // FILE #1:
 #include <stdio.h>
@@ -524,81 +521,71 @@ void getname(void){
 
 
 
+/* Example 9: Assume that your compiler will actually optimize access time of only 'two register variables' per function. 
+                In this program, which two variables are the best ones to be made into register variables? 
 
+                The answer is: Make k and m as register variable, because they are accessed most frequently
 
-------------   exs   -------------
-
-
-
-Example 1: Assume that your compiler will actually optimize access time of
-only two register variables per function. In this program, which
-two variables are the best ones to be made into register variables?
+*/
 #include <stdio.h>
 #include <conio.h>
-int main (void)
-{
-)
-int i. j, k, m;
-do ("
-printf t -Enter a value: .);
-scanf ("M', &i);
-m = 0;
-for(j=O; j<i; j++)
-for (k=Oi k<100i k++ )
-m = k + mi
-while t i>O) ;
-return 0;
 
-1. The best variables to make into resIatm" types are k and m,
-because they are accessed most frequently
+int main(void) {
+    int i, j, k, m;
 
+    do {
+        printf("Enter a value: ");
+        scanf ("%d", &i);
 
+        m = 0;
+        for(j=0; j<i; j++)
+            for(k=0; k<100; k++) m = k + m;
+    } while(i>0);
 
-linclude <stdio.h>
-,
-void .~it(int value),
-int ....in(void)
-(
-}
-sWlLit(lO) ,
-sum_it (20) ,
-sWILit(30) ,
-sWILit(40);
-return OJ
-void s~it{int value)
-(
-static int sum=O;
-sum = sum + value;
-printf(-CUrrent value: 'd\n·, sum);
+    return 0;
 }
 
 
 
 
-Example 2: Write a program that contains a function called sum_it( ) that
-has this .prototype:
-void sum_it (int value);
-Have this function use a local static integer variable to maintain
-and display a running total of the values of the parameters iUs
-called with. for example, if sum_it( ) is called three times with
-the values 3,6, 4, then sum_it( ) will display 3, 9, and 13.
+/* Example 10: Write a program that contains a function called sum_it( ) that has this prototype:
+
+                        void sum_it(int value);
+
+                Have this function use a "local static integer variable" to maintain and display
+                    a running total of the values of the parameters it is called with.
+
+                For example, if sum_it() is called three times with the values 3, 6, 4,
+                    then sum_it() will display 3, 9, and 13.
+*/
+
+#include <stdio.h>
+
+void sum_it(int value);
+
+int main(void) {
+    sum_it(10);
+    sum_it(20);
+    sum_it(30);
+    sum_it(40);
+
+    return 0;
+}
+
+void sum_it(int value){
+    static int sum = 0;
+    sum = sum + value;
+    printf("Current value: %d\n", sum);
+}
 
 
 
 
-Example 3: Try the program descnbed in Example :.. Be sure to actually use
-two files. If you are unsure how to compile and link a program
-consisting of two files, check your compiler's user manual.
 
+/* Example 11: What is wrong with this fragment?
+                You cannot obtain the address of a register variable. */
 
-
-
-What is wrong with this fragment?
 register int i;
-int .p;
-p = &i;
-
-Example 4: You cannot obtain the address of a register variabl
-
-
+int *p;
+p = &i;     // wrong: cannot get address of a register variable
 
