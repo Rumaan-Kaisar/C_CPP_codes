@@ -149,6 +149,7 @@ for(;;) {
 
 
 
+
 /* Example 4: One good time to use const is when you want to embed a 'version control number' into a program. 
                 By using a const variable to hold the version, you prevent it from accidentally being changed. 
 
@@ -160,11 +161,12 @@ for(;;) {
 
 const double version = 6.01;
 
-int main(void)
-(
-printf(-Version '.2f-, version):
-return 0;
+int main(void){
+    printf("Version %.2f", version);
+
+    return 0;
 }
+
 
 
 
@@ -173,22 +175,28 @@ return 0;
                 The function returns a pointer to "to". Demonstrate your version of mystrcpy() in a program. 
 */
 
-'include <stdio.h>
-char *mystrcpy(char *to, const char *from);
-int main(void)
-{
-    chlr 'p, str(80],
+#include <stdio.h>
 
-    P = mystrcpy(STR, *TESTING);
-printfC-'. 'S·, P. str};
-return 0:
-)
-char *mystrcpy(char *to. const char *from)
-{
-char -temp ;
-temp == to;
-while (*from) *to++ == -from++;
-*to = '\0' ; /* null termdnator */
-return temp:
-)
+char *mystrcpy(char *to, const char *from);
+
+int main(void){
+    char *p, str[80];
+
+    p = mystrcpy(str, "TESTING");
+    printf("%s, %s", p, str);
+
+    return 0;
+}
+
+
+char *mystrcpy(char *to, const char *from){
+    char *temp;
+
+    temp = to;
+
+    while(*from) *to++ = *from++;   // copying
+    *to = '\0' ; // null termdnator
+
+    return temp;
+}
 
