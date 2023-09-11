@@ -1,5 +1,5 @@
 /* 
-    -------------    ENUMERATIONS    -------------
+    -------------    ENUMERATIONS (named integer constants)    -------------
     A list of 'named integer constants' called an enumeration. 
         These constants can then be used 'any place' an 'integer' can.
 
@@ -97,6 +97,86 @@ int main(void) {
     comp = CPU; // acessing 2nd member
 
     printf("%d", comp);
+    return 0;
+}
+
+
+
+
+/* Example 2: It takes a little work to display the string equivalent of an enumerated constant.
+                Remember, enumerated constants are not strings; they are named integer constants.
+                The following program uses a switch statement to output the 'string equivalent' of an ENUMERATED VALUE.
+
+                The program uses C's random-number generator to choose a means of transportation.
+                It then displays the means on the screen. (This program is for people who can't make up their minds!) */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+enum transport {
+    car, train, airplane, bus
+} tp;
+
+int main(void) {
+    printf("Press a key to select transport: ");
+
+    // generate a new random number each time the program is run
+    while (!kbhit()) rand();
+
+    getch(); // read and discard character */
+
+    tp = rand()%4;
+
+    switch(tp) {
+        case car: printf("car");
+                    break;
+        case train: printf("train");
+                    break;
+        case airplane: printf("airplane");
+                    break;
+        case bus: printf("bus");
+    }
+
+    return 0;
+}
+
+
+
+
+/* Example 3: In some cases, there is an easier way to obtain a string equivalent of an enumerated value.
+                As long as you do not initialize any of the constants,
+                    you can create a two-dimensional string array that contains the string equivalents
+                    of the enumerated values in the same order that the constants appear in the enumeration.
+                    You can then index the array using an enumeration value to obtain its corresponding string.
+
+                The following version of the transportation choosing program, for example, uses this approach:
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+enum transport {
+    car, train, airplane, bus
+} tp;
+
+// Following is a two-dimensional string array that contains the string equivalents of "enum transport"
+char trans[][20] = {
+    "car", "train", "airplane", "bus"
+};
+
+int main(void) {
+    printf("Press a key to select transport: ");
+
+    // generate a new random number each time the program is run
+    while (!kbhit()) rand();
+
+    getch(); // read and discard character */
+
+    tp = rand()%4;
+    printf("%s", trans[tp]);
+
     return 0;
 }
 
