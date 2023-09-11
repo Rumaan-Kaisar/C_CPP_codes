@@ -199,7 +199,13 @@ scanf("%d", &num);
 
 
 /* Example 5:  Create an enumeration of the coins of the U.S. from penny to dollar. */
-enum money {penny, nickel. quarter, half_dollar. dollar}:
+enum money {
+    penny, 
+    nickel, 
+    quarter, 
+    half_dollar, 
+    dollar
+};
 
 
 
