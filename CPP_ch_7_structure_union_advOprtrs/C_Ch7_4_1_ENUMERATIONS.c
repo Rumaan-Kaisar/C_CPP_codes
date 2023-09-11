@@ -180,3 +180,34 @@ int main(void) {
     return 0;
 }
 
+
+
+
+/* Example 4: Remember, the names of enumerated constants are known only to the program, 
+                not to any library functions. For example, given the fragment 
+*/
+
+enum numbers {zero, one, two, three} num;
+
+printf("Enter a number: ");
+scanf("%d", &num);
+
+// you cannot respond to scanf() by entering 'one'.
+// scanf() is a library function and doesn't know about "enum numbers"
+
+
+
+
+/* Example 5:  Create an enumeration of the coins of the U.S. from penny to dollar. */
+enum money {penny, nickel. quarter, half_dollar. dollar}:
+
+
+
+
+/* Example 6:  Is this fragment correct? If not, why not? */
+
+enum cars {Ford, Chrysler, GM} make;
+make = GM;
+printf("car is %s", make);  // wrong! its not a "string", enum's are named int
+
+
