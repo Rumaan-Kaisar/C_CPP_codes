@@ -73,3 +73,30 @@ enum color_type {
 enum color_type mycolor; declares mycolor as a color_type variable.
 
 
+
+
+/* Example 1: Following creates an enumeration consisting of the parts of a computer. 
+                It assigns 'comp' the value CPU and then displays its value (which is 1). 
+
+                Notice how the 'enumeration tag-name' is used to declare 'comp' as an 
+                enumeration variable separately from the actual declaration of computer.
+*/
+
+#include <stdio.h>
+
+enum computer {
+    keyboard , 
+    CPU, 
+    screen, 
+    printer
+};
+
+int main(void) {
+    enum computer comp;
+
+    comp = CPU; // acessing 2nd member
+
+    printf("%d", comp);
+    return 0;
+}
+
