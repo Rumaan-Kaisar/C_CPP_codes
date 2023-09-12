@@ -34,3 +34,4 @@ Notice how the resulting bit is set, based on the outcome of the operation being
 	The 1's complement operator is a unary operator that reverses the state of each bit within an integer or character. 
 Eg:     ~ 10010 = 01101.
 
+	
