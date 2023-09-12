@@ -109,3 +109,18 @@ int main(void) {
 }
 
 
+
+
+/* Example 5: What is wrong with this fragment? */
+
+typedef balance float;
+
+/* 
+    The typedef statement is out of order. 
+        The correct form of typedefis
+
+            typedef oldname newname;
+*/
+
+
+
