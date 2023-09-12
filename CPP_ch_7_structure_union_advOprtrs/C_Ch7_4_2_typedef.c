@@ -90,3 +90,22 @@ mynums num; // declare a variable
 
 
 
+
+/* Example 4: Show how to make 'UL' a new name for unsigned long.
+                Show that it works by writing a short program that declares a variable using UL, 
+                assigns it a value, and displays the value on the screen. */
+
+#include <stdio.h>
+
+typedef unsigned long UL;
+
+int main(void) {
+    UL count;
+
+    count = 312323;
+    printf("%lu", count);
+    
+    return 0;
+}
+
+
