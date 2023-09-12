@@ -61,3 +61,15 @@ int main(void) {
 
 
 
+
+/* Example 2: The new name created by one typedef can be used in a subsequent typedef to create another name. */
+typedef int height;
+typedef height length;  // using one defined-name to define another
+typedef length depth;
+
+depth d;
+
+// Here, d is still an integer
+
+
+
