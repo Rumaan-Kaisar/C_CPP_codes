@@ -42,3 +42,22 @@
 */
 
 
+
+
+/* Example 1: For example., in the following program, 'smallint' is a 'new_name' for a "signed char" and is used to declare i. */
+#include <stdio.h>
+
+typedef signed char smallint; 	// renaming the data-type signed char
+
+int main(void) {	
+    smallint i; 	// Renamed data-type
+
+    for(i=0; i<10; i++) printf("%d", i);
+    
+    return 0;
+}
+
+
+
+
+
