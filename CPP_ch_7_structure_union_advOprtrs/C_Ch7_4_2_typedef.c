@@ -73,3 +73,20 @@ depth d;
 
 
 
+
+/* Example 3: In addition to the the basic types, you can use typedef on more complicated types. 
+                For example, the following is perfectly valid: */
+enum e_type {
+    one, 
+    two, 
+    three 
+}
+
+typedef enum e_type mynums;    // 'enurn e_type' as data-type
+
+mynums num; // declare a variable
+
+// Here, num is a variable of type e_type.
+
+
+
