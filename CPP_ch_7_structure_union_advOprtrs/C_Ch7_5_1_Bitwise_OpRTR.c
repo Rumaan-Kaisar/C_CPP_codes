@@ -1,3 +1,4 @@
+
 /* 
     ---------------    Bitwise Operators    ---------------
     Bitwise Operators : 
@@ -190,13 +191,6 @@ int main(void){
 
 
 
-
-// ################# FULL
-// # copy:  neg_encd
-// #        
-// #        
-// ################# (17-sep-23 for 18-sep-23)
-
 /* Example 5: The following program makes i into a negative number by setting its high-order bit.
                 (Again, 16-bit short integers are assumed.) */
 
@@ -265,8 +259,6 @@ int main(int argc, char *argv[]){
 
 
 
-// -----------    rev    -----------
-
 /* Example 7: A better method of coding a file uses the 'XOR' operation combined wah a user-defined key. 
                 Write a program that encodes a file using this method. Have the user specify the file
                 to code as well as a single character key on the command line.
@@ -276,54 +268,56 @@ int main(int argc, char *argv[]){
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
+    FILE *in, *out;
+    unsigned char ch;
 
+    if(argc!=4){
+        printf("Usage: code <in> <out> <key>\n");
+        exit(1);
+    }
+
+    // read
+    if((in = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open input file.\n");
+        exit(1);
+    }
+
+    // write
+    if((out = fopen(argv[2], "wb")) == NULL) {
+        printf("Cannot open output file.\n");
+        exit(1);
+    }
+
+    // putting the encoded characters into 'out' file
+    while(!feof(in)) {
+        ch = fgetc(in);
+        ch = *argv[3] ^ ch; // applying 'XOR'
+        if(!feof(in)) fputc(ch, out);
+    }
+
+    // closing the files
+    fclose(in) ;
+    fclose (out);
+
+    return 0;
 }
 
-FILE *in, *out;
-unsigned char ch;
-
-if(argc!=4){
-    printf("Usage: code <in> <out> <key>\n");
-    exit(1);
-}
-
-// read
-if((in = fopen(argv[1], "rb")) == NULL){
-    printf("Cannot open input file.\n");
-    exit(1);
-}
-
-// write
-if((out = fopen(argv[2], "wb")) == NULL) {
-    printf("Cannot open output file.\n");
-    exit(1);
-}
-
-
-
-while(!feof(in)) {
-
-}
-ch = fgetc(in);
-ch = *argv(3) ^ ch;
-if(!feof(in) ) fputc(ch. out);
-fclose (in) ;
-fclose (out) ;
-return 0;
+// save-compile the code as : 'opr_adv_btw7.c'
+// CLI:      opr_adv_btw7 XOR_encd XOR_encoded 7
+// CLI:      opr_adv_btw7 XOR_encoded XOR_decoded 7
 
 
 
 
-
-Example 8: What is the outcome of these operations?
-A 1010 001 J [< OIOJ J JOJ
-B OIOJ 1I0J I J Il J lOll
-C. OIOJ 01 JO A IOJO 101 J
+/* Example 8: What is the outcome of these operations? 
+                A. 1010 0011 & 0101 1101
+                B. 0101 1101 | 1111 1011
+                C. 0101 0110 ^ 1010 1011
+*/
 
 a. 0000 0001
-b. lUI lUI
-c. lUI 1101
-
+b. 1111 1111
+c. 1111 1101
 
 
 
@@ -338,14 +332,16 @@ c. lUI 1101
                 Since the parity bit is not part of the information being transferred, 
                     show how you can clear the high-order bit of a character value. */
 
-char chi
+char ch;
 .
 .
 .
-/ - To zero high order bit. AND with 127, which
+
+/* 
+    To zero high order bit, 'AND' with '127', which in binary is 0111 1111. 
+    This causes the high order bit to be 'zeroed' and all other bits left untouched. 
 */
-in binary is 0111 1111. This causes the h i ghorder bit to b~ zeroed and all other bits left
-untouched.
+
 ch = ch & 127;
 
 
