@@ -191,94 +191,121 @@ int main(void){
 
 
 
+// ################# FULL
+// # copy:  neg_encd
+// #        
+// #        
+// ################# (17-sep-23 for 18-sep-23)
 
-Example 5: The following program makes i into a negative number
-by setting its high-order bit. (Again, 16-bit short integers
-are assumed.)
+/* Example 5: The following program makes i into a negative number by setting its high-order bit.
+                (Again, 16-bit short integers are assumed.) */
+
 #include <stdio.h>
-int rnain(void)
-(
-short i;
+int main(void){
+    short i;
 
-i :: 1;
-i=iI32768;
-printf("%hd", il;
-return 0;
-It displays - 32 ,767
+    i = 1;
+    i = 1 | 32768;  // applying 'OR'
 
+    printf("%hd", i);
 
-
-
-
-
-Example 1: One very easy way to encode a file is to reverse the state of each
-bit using the N operator. Write a program that encodes a file
-using this method. (To decode the file, simply run the program
-a second time.) Have the user specify the name of the file on
-_ -the command line.
-
-'includ~ <stdio.h>
-'include <stdlib.h>
-int mainCint argc, char ·argv[1)
-{
-FILE *in. ·out;
-unsigned char chi
-if(argc!=3) (
-printf(-Usage: code <in> <out>\p~);
-exit (1);
-) .'
+    return 0;
 }
-if «in = fopen (argv [1] , "rb")) ==NULL) (
-printf{-Cannot open input file.\n-);
-exit(l);
-}
-if«out = fopen(argv[2], "wb"})==NULL) (
-printf(·Cannot open output file.\n-);
-exit(l);
-}
-while ( !feof (in)) (
-}
-ch = fgetc (in) ;
-if(!feof(in)) fputc(-ch,
-fclose(in) ;
-fclose{out) ;
-return 0;
+// It displays '-32767'
 
 
 
 
+/* Example 6: One very easy way to encode a file is to reverse the state of each bit using the '~' operator.
+                Write a program that encodes a file using this method.
+                (To decode the file, simply run the program a second time.)
+                Have the user specify the name of the file on the command line. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+    FILE *in, *out;
+    unsigned char ch;
+
+    if(argc!=3) {
+        printf("Usage: code <in> <out>\n");
+        exit(1);
+    }
+
+    // read
+    if((in = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open input file.\n");
+        exit(1);
+    }
+
+    // write
+    if((out = fopen(argv[2], "wb")) == NULL) {
+        printf("Cannot open output file.\n");
+        exit(1);
+    }
+
+    // putting the encoded characters into 'out' file
+    while(!feof(in)) {
+        ch = fgetc(in);
+        if(!feof(in)) fputc(~ch, out);
+    }
+
+    // closing the files
+    fclose(in);
+    fclose(out);
+
+    return 0;
+}
+
+// save-compile the code as : 'opr_adv_4_btw6.c'
+// CLI:      opr_adv_4_btw6 neg_encd neg_encoded
+// CLI:      opr_adv_4_btw6 neg_encoded neg_decoded
 
 
-Example 2: A better method of coding a file uses the XOR operation
-combmed wah a user-defined key. Write a program that
-encodes a file using this method. Have the user speCJfy the file
-to code as "'ell as a single character key on the command line.
-(To decode the me, run the program a second time using the
-Silme key.)
 
-'include <stdio. h>
-'include <stdlib.h>
+
+// -----------    rev    -----------
+
+/* Example 7: A better method of coding a file uses the 'XOR' operation combined wah a user-defined key. 
+                Write a program that encodes a file using this method. Have the user specify the file
+                to code as well as a single character key on the command line.
+                (To decode the file, run the program a second time using the same key.) */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+
 }
-int main(int argc, char *argv[])
-!
-FILE *in, "out:
-unsigned char Chi
-if(argc!=4) !
+
+FILE *in, *out;
+unsigned char ch;
+
+if(argc!=4){
+    printf("Usage: code <in> <out> <key>\n");
+    exit(1);
 }
-printf(~Usage: code <in> <out> <key>\n-):
-eXit(l);
-if(! in = fopen(argv[l]. "rb"))==NULL) !
-printfC-Cannot open input file.\nW);
-exit!l);
+
+// read
+if((in = fopen(argv[1], "rb")) == NULL){
+    printf("Cannot open input file.\n");
+    exit(1);
 }
-if«out. fopen (argv[2]. "wb"))==NULLI !
-printf(-Cannot open output file.\n-);
-exit(l);
+
+// write
+if((out = fopen(argv[2], "wb")) == NULL) {
+    printf("Cannot open output file.\n");
+    exit(1);
 }
-while! ! feof (in)) !
-ch = fgetc (in) ;
+
+
+
+while(!feof(in)) {
+
 }
-ch = *argv(3) ~ chi
+ch = fgetc(in);
+ch = *argv(3) ^ ch;
 if(!feof(in) ) fputc(ch. out);
 fclose (in) ;
 fclose (out) ;
@@ -288,7 +315,7 @@ return 0;
 
 
 
-Example 3: What is the outcome of these operations?
+Example 8: What is the outcome of these operations?
 A 1010 001 J [< OIOJ J JOJ
 B OIOJ 1I0J I J Il J lOll
 C. OIOJ 01 JO A IOJO 101 J
@@ -301,14 +328,15 @@ c. lUI 1101
 
 
 
-Example 4: Sometimes, the high-order bit of a byte is used as a panty bIt by
-modem programs. It is used to verify the integrity of each byte
-transferred. There are two types of parity: even and odd. If even
-parity is used, the parity bit is used to ensure that each byte has
-an even number of 1 bits. If odd parity is used, the parity bit is
-used to ensure that each byte has an odd number of 1 bits. Since
-the parity bit is not part of the information being transferred,
-show how you can clear the high-order bit of a character value
+/* Example 9: Sometimes, the high-order bit of a byte is used as a 'parity bit' by 'modem programs'. 
+                It is used to 'verify' the 'integrity' of each byte transferred. 
+
+                There are two types of 'parity': 'even' and 'odd'. 
+                    If even parity is used, the parity bit is used to ensure that each byte has an even number of 1 bits.
+                    If odd parity is used, the parity bit is used to ensure that each byte has an odd number of 1 bits. 
+
+                Since the parity bit is not part of the information being transferred, 
+                    show how you can clear the high-order bit of a character value. */
 
 char chi
 .
