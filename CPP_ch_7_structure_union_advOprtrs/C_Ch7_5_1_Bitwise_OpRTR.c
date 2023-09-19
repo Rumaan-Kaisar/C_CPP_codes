@@ -57,7 +57,7 @@
 
 
 
-	Difference between logical operators and bitwise operators : 
+    Difference between logical operators and bitwise operators : 
 
         There are no Logical XOR  and Complement of 1. 
         Also there is no BITWISE  negation (not) operator.
