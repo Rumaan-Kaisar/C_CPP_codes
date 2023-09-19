@@ -55,6 +55,32 @@
         The 1's complement operator is a unary operator that reverses the state of each bit within an integer or character. 
         Eg:     ~ 10010 = 01101.
 
+
+
+	Difference between logical operators and bitwise operators : 
+
+        There are no Logical XOR  and Complement of 1. 
+        Also there is no BITWISE  negation (not) operator.
+
+        Logical  operator gives 0 or 1 as output but 
+            BITWISE operator gives any integer as output . 
+            eg:
+                x=1 ⇒   x=   0 0 0 0  0 0 0 1
+                y=2 ⇒   y=   0 0 0 0  0 0 1 0
+
+                Bitwise-AND '&' :    0 0 0 0  0 0 0 0 ⇒ 0
+
+                Logical-AND '&&':	 (x && y) = (1 && 2) = (1 && 1) = 1 , since 1 and 2 both positive.
+
+
+            another example:
+                x=3 ⇒   x=   0 0 0 0  0 0 1 1
+                y=4 ⇒   y=   0 0 0 0  0 1 0 0
+
+                Bitwise-OR '|' :    0 0 0 0  0 1 1 1 ⇒ 7
+
+                Logical-OR '||':	 (x || y) = (3 || 4) = (1 || 1) = 1 , since 3 and 4 both positive.
+	
 */
 
 
