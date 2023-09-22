@@ -44,41 +44,91 @@ int main(void) {
 
 
 
-2.(The next program is a computerized coin toss. It waits for you to
-press a key and then prints either Heads or Tails.
+/* Example 2: This program is a computerized coin toss.
+                It waits for you to press a key and then prints either Heads or Tails. */
 #include <stdio.h>
 #include <stdlib.h>
-tiinclude <conio.h>
-int main(void)
-int i;
-while(!kbhit(» rand();
-i = rand() %2 ? 1: 0;
-it (i) printf{"Heads");
-else printf ("Tails");
-return 0;
-The coin-toss program can be written in a more efficient
-way. There is no technical reason that the? operator need
-assign its value to any variable. Therefore, the coin toss program
-can be written as:
+#include <conio.h>
+
+int main(void){
+    int i;
+
+    while(!kbhit()) rand();
+    // because rand() gives 41, 18467, 6334 for 1st, 2nd, 3rd calls
+    // and this series is fixed
+    // hence rand() is called repeatedly inside this WHILE-LOOP untill a key is pressed
+        // so that each time we get a different random number
+
+    i = rand()%2 ? 1 : 0;   // here rand() gives the next random-number after the last call inside the While-loop
+
+    if(i) printf("Heads");
+    else printf ("Tails");
+
+    getche();
+    return 0;
+}
+
+
+
+// The coin-toss program can be written in a more efficient way. There is no technical reason that the ? operator need assign its value to any variable. 
 #include <stdio.h>
 #include <stdlib.h>
-#include'<conio.h>
-int main(void)
-(
-while(!kbhit(» rand();
-rand()%2 ? printf(-Heads")
-return 0;
-)
-printf(-Tails") ;
-Remember, since a call to a function is a valid C expression, it is
-perfectly valid to call printf( ) in the? statement)
+#include <conio.h>
+
+int main(void){
+    int i;
+
+    while(!kbhit()) rand(); // rand() is called repeatedly untill a key is pressed
+
+    // rand() gives the next random-number after the last call inside the While-loop
+    rand()%2 ? printf("Heads") : printf("Tails"); 
+
+    getche();
+    return 0;
+}
+// Remember, since a call to a function is a valid C expression, it is perfectly valid to call printf( ) in the? statement
 
 
-1. One particularly good use for the? operator is to provide a
-means of preventing a division-by-zero error. Write a program
-that inputs two integers from the user and displays the result of
-dividing the first by the second. Use? to avoid division by zero.
-2. Convert the following statement into its equivalent? statement.
-if(a>b) count = laO;
-else count = 0;
 
+
+/* Example 3: One particularly good use for the '?' operator is to provide a means of preventing a division-by-zero error.
+                Write a program that inputs two integers from the user and
+                displays the result of dividing the first by the second. Use? to avoid division by zero. */
+#include <stdio.h>
+int main(void) {
+    int i, j, answer;
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &i, &j);
+
+    answer = j ? i/j : 0;   // avoid MathErr
+    printf("%d", answer);
+
+    return 0;
+}
+
+
+
+
+/* Example 4: Convert the following statement into its equivalent '?' statement. 
+
+                if(a>b) count = 100;
+                else count = 0;
+*/
+count = (a>b) ? 100 : 0;
+
+
+
+
+
+// NOOTE: C++ program to demonstrate use of kbhit()
+#include <stdio.h>
+#include <conio.h>
+ 
+int main() {
+    while(!kbhit()) printf("Press a key\n");
+ 
+    return 0;
+}
+
+// "Press a key" will keep printing on the  console until the user presses a key on the keyboard.
