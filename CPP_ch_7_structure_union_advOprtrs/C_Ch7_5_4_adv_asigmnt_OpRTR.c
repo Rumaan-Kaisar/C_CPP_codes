@@ -43,44 +43,53 @@ int main(void) {
 
 
 
-
-
-Example 2: The next program counts to 98 by twos. Notice that it uses C
-shorthand to increment the loop-control variable by two each
-iteration.
+/* Example 2: The next program counts to 98 by twos. Notice that it uses C shorthand 
+                to increment the loop-control variable by two each iteration. */
 #include <stdio.h>
-int main(void)
-(
-}
-int i:
-/* count by 25 */
-for(i=O: i<100: i+=2)
-printf(-%d -, i);
-return 0;
+int main(void) {
+    int i;
 
+    // count by 25
+    for(i=0; i<100; i+=2) printf("%d", i);
 
-
-Example 3: The following program uses the left-shift operator in shorthand
-form to multiply the value ofi by 2, three times. (The resulting
-value is 8.)
-#include <stdio.h>
-int main(void)
-(
-int i = 1;
-i «= 3; /* multiply by 2, 3 times *j
-printf("%d", i);
-return 0;
+    return 0;
 }
 
 
-Example 4: Compile and run the program in Example 1 to prove to yourself
-that the multiple-assignment statement works.
 
-Example 5: How is the following statement written using C shorthand?
-x = x & y;
 
-Example 6: Write a program that displays all the even multiples of 17 from
-17 to 1000. Use C shorthand.
+/* Example 3: The following program uses the left-shift operator in shorthand form 
+                to multiply the value of i by 2, three times. (The resulting value is 8.) */
+#include <stdio.h>
 
+int main(void) {
+    int i = 1;
+
+    i <<= 3; // multiply by 2, 3 times
+    printf("%d", i);
+
+    return 0;
+}
+
+
+
+
+/* Example 5: How is the following statement written using C shorthand?
+                x = x & y; */
+x &= y;
+
+
+
+
+/* Example 6: Write a program that displays all the even multiples of 17 from 17 to 1000. Use C shorthand. */
+#include <stdio.h>
+
+int main(void) {
+    int i;
+
+    for(i=17; i<=1000; i+=17) printf("%d\n", i);
+
+    return 0;
+}
 
 
