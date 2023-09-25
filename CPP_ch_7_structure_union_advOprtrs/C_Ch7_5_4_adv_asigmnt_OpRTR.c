@@ -29,20 +29,23 @@
 */
 
 
-1. The following program illustrates the multiple-assignment
-statement:
+/* Example 1: The following program illustrates the multiple-assignment statement. */
 #include <stdio.h>
-int main(voidl
-(
-int i. j, k;
-i = j = k = 99;
-printf("%d %d %d". i. j. kl;
-return 0;
-)
+int main(void) {
+    int i, j, k;
+
+    i = j = k = 99;
+    printf("%d %d %d", i, j, k);
+
+    return 0;
+}
 
 
 
-2. The next program counts to 98 by twos. Notice that it uses C
+
+
+
+Example 2: The next program counts to 98 by twos. Notice that it uses C
 shorthand to increment the loop-control variable by two each
 iteration.
 #include <stdio.h>
@@ -57,7 +60,7 @@ return 0;
 
 
 
-3. The following program uses the left-shift operator in shorthand
+Example 3: The following program uses the left-shift operator in shorthand
 form to multiply the value ofi by 2, three times. (The resulting
 value is 8.)
 #include <stdio.h>
@@ -70,13 +73,13 @@ return 0;
 }
 
 
-1. Compile and run the program in Example 1 to prove to yourself
+Example 4: Compile and run the program in Example 1 to prove to yourself
 that the multiple-assignment statement works.
 
-2. How is the following statement written using C shorthand?
+Example 5: How is the following statement written using C shorthand?
 x = x & y;
 
-3. Write a program that displays all the even multiples of 17 from
+Example 6: Write a program that displays all the even multiples of 17 from
 17 to 1000. Use C shorthand.
 
 
