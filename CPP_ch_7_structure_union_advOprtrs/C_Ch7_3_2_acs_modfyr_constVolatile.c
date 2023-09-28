@@ -200,3 +200,15 @@ char *mystrcpy(char *to, const char *from){
     return temp;
 }
 
+
+
+
+/* Example 6: What do the 'const' and 'volatile' modifiers do? 
+                'const' tells the compiler that no statement of the program can modify the variable
+                    Also, a 'conat pointer' parameter may not be used to modify the object pointed to by the pointer.
+
+                'volatile' tells the compiler that any variable it precedes may have its value changed 
+                    in ways not explicitly specified by the program.
+*/
+
+
