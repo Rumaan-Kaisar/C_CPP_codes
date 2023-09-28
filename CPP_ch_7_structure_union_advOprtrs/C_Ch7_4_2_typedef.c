@@ -121,3 +121,11 @@ typedef balance float;
 */
 
 
+
+
+/* Example 4: Is this statement valid? If so, what does it do? */
+
+typedef long double bigfloat;
+
+// Yes, the statement is valid. It creates another name for the type long double.
+
