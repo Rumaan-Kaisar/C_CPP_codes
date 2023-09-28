@@ -217,3 +217,15 @@ make = GM;
 printf("car is %s", make);  // wrong! its not a "string", enum's are named int
 
 
+
+
+/* Example 7: What is an ENUMERATION? Show an example that enumerates the planets. 
+                An enumeration is a list of named integer constants. 
+                Here is one that enumerates the planets.
+*/
+
+enum planets {
+    Mercury, Venus, Earth, Mars, Jupiter, Saturn, Neptune, Uranus, Pluto
+};
+
+
