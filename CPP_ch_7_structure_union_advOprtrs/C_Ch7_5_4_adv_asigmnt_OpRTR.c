@@ -93,3 +93,11 @@ int main(void) {
 }
 
 
+
+
+/* Example 7: Show how this statement can be rewritten:
+                    c = c+ 10; 
+*/
+c += 10;
+
+
