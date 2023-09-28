@@ -128,6 +128,44 @@ int main(void) {
 
 
 
+/* Example 5: Write a program that inputs two characters and compares corresponding 'bits'.
+                Have the program display the 'number of each bit' in which a match occurs.
+                    For example, if the two integers are
+                            1001 0110
+                            1110 1010
+                the program will report that bits 7, 1, and 0 match. From Right to left index
+                (Use the bitwise operators to solve this problem.)
+*/
+
+#include <stdio.h>
+#include <conio.h>
+
+int main(void) {
+    char ch1, ch2;
+    char mask, i;
+
+    printf("Enter two characters: ");
+    ch1 = getche();
+    ch2 = getche();
+    printf("\n");
+
+    mask = 1;
+    for(i=0; i<8; i++) {
+        // find matching 1 in bits
+        // notice the use of 'Logical-and' & 'bitwise-and'
+        if((mask & ch1) && (mask & ch2)) printf("bits %d has the same 1's \n", i);
+        // to find all matching 0's and 1's use following with '==' instead
+        if((mask & ch1) == (mask & ch2)) printf("bits %d the same\n", i);
+        mask <<= 1; // making left-shift
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+
 // ----------------    ROTATE operator    ----------------
 
 /* Example 5: C does not have a ROTATE operator.
