@@ -591,7 +591,7 @@ p = &i;     // wrong: cannot get address of a register variable
 
 
 
-/* Example 12: What does the register specifier do? 
+/* Example 12: What does the 'register' specifier do? 
                 The register specifier causes the C compiler to provide 
                 the fastest access possible for the variable it precedes.
 */
@@ -599,7 +599,7 @@ p = &i;     // wrong: cannot get address of a register variable
 
 
 
-/* Example 13: Write a program that sums the numbers 1 to J00. 
+/* Example 13: Write a program that sums the numbers 1 to 100. 
                 Make the program execute as fast as possible (use register). */
 #include <stdio.h>
 
