@@ -581,11 +581,35 @@ void sum_it(int value){
 
 
 
-
 /* Example 11: What is wrong with this fragment?
                 You cannot obtain the address of a register variable. */
 
 register int i;
 int *p;
 p = &i;     // wrong: cannot get address of a register variable
+
+
+
+
+/* Example 12: What does the register specifier do? 
+                The register specifier causes the C compiler to provide 
+                the fastest access possible for the variable it precedes.
+*/
+
+
+
+
+/* Example 13: Write a program that sums the numbers 1 to J00. 
+                Make the program execute as fast as possible (use register). */
+#include <stdio.h>
+
+int main(void){
+    register int i, sum;
+
+    sum = 0;
+    for(i=1; i<101; i++) sum += i;
+    printf ("%d", sum) ;
+
+    return 0;
+}
 
