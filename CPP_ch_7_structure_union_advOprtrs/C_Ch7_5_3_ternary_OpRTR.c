@@ -120,6 +120,17 @@ count = (a>b) ? 100 : 0;
 
 
 
+/* Example 5: Rewrite this statement using the ? operator. 
+                    if(!done) count = 100;
+                    else count = 0;
+*/
+
+count = done ? 0 : 100;
+
+// value = condition ? true : false;
+
+
+
 
 // NOOTE: C++ program to demonstrate use of kbhit()
 #include <stdio.h>
@@ -132,4 +143,5 @@ int main() {
 }
 
 // "Press a key" will keep printing on the  console until the user presses a key on the keyboard.
+
 
