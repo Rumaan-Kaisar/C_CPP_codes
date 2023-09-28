@@ -168,7 +168,7 @@ int main(void) {
 
 // ----------------    ROTATE operator    ----------------
 
-/* Example 5: C does not have a ROTATE operator.
+/* Example 6: C does not have a ROTATE operator.
                 A ROTATE is similar to a shift, except that the 'bit shifted off one end' is inserted onto the other.
 
                 For example, 1010 0000 'rotated left' one place is 0100 0001.
