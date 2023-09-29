@@ -45,6 +45,17 @@
         GLOBAL DATA may need to be accessed by two or more files that form a program. But 'global data' can only be defined 'once'.
             In this case, each source file must 'inform the compiler about the global data' it uses. 
             To accomplish this you will need to use the keyword extern. 
+
+
+
+
+    ---------    register FILE type    ---------
+    This fragment is valid
+                    
+                    register FILE *fP;
+
+                Any type of variable can be specified using register.
+                However, on some types, it may have no effect.
 */
 
 
