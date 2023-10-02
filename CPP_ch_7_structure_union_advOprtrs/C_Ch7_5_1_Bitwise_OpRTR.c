@@ -373,6 +373,20 @@ ch = ch & 127;
 
 
 
+/* Example 10: What is the outcome of these operations? 
+
+                a. 1101 1101 & 1110 0110
+                b. 1101 1101 | 1110 0110
+                c. 1101 1101 ^ 1110 0110
+Ans: 
+    a. 1100 0100
+    b. 1111 1111
+    c. 0011 1011
+*/
+
+
+
+
 /* 
     Letter	ASCII Code	Binary
 
