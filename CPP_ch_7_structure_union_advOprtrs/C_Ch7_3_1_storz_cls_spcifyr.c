@@ -633,3 +633,16 @@ int main(void){
                 variable is defined elsewhere, but allows the current file to refer to it.
 */
 
+
+
+
+/* Example 15: What is the major advantage gained when a variable is declared using register? 
+
+ANS:
+    Modifying a variable with register causes the compiler to store the variable in such a way 
+        that access to it is as fast as possible.
+
+    For 'integer' and 'character' types, this typically means storing it in a register of the CPU.
+*/
+
+
