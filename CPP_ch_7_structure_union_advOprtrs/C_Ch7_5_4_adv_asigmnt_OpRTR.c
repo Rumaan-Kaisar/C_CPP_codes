@@ -101,3 +101,22 @@ int main(void) {
 c += 10;
 
 
+
+
+/* Example 8: How can these statements be written differently?
+                a = 1;
+                b = 1;
+                c = 1;
+
+                if(a<b) max = 100;
+                else max = 0;
+
+                i = i * 2;
+*/
+
+// ANS:
+a = b = c = 1;
+max = a<b ? 100 : 0;
+i *= 2;
+
+
