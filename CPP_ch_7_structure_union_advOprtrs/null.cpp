@@ -117,6 +117,292 @@ int main(void) {
 
 
 
+// ---------    CUMULATIVE (rev-below)    ---------
+
+/* Example 1: Write a program that swaps the 'low-order four bits of a byte' with the 'high-order four bits'.
+                Demonstrate that your routine works by displaying the contents of the byte before and after,
+                    using the show_binary() function developed earlier.
+                (Change show_hinary() so that it works on an eight-bit quantity, however.) */
+
+#include <stdio.h>
+
+void show_binary(unsigned u);
+
+int main(void){
+    unsigned char ch, t1, t2;
+
+    ch = 100;
+    printf("%d\n", ch);
+    show_binary(ch);
+
+    t1 = ch;
+    t2 = ch;
+
+    t1 <<= 4;   // left shifing 4 bits
+    t2 >>= 4;   // right shifing 4 bits
+
+    ch = t1 | t2;   // unify sifted bits to make the 'swapped bits'
+
+    show_binary(ch);
+    printf("%d", ch);
+
+    return 0;
+}
+
+
+void show_binary (unsigned u){
+    unsigned n;
+
+    for(n=128; n>0; n /= 2) {
+        if(u & n) printf("l ");     // applying bitwise &
+        else printf("0 ");
+    }
+    printf("\n");
+}
+
+
+
+
+/* Example 2: Earlier we wrote a program that encoded files using the 1's complement operator.
+                Write a program that reads a text file encoded using this method
+                    and displays its decoded contents.
+                Leave the actual file encoded, however. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    FILE *in;
+    unsigned char ch;
+
+    if(argc!=2) {
+        printf("Usage: code <in>\n");
+        exit(1);
+    }
+
+    if((in = fopen(argv[1], "rb"))==NULL) {
+        printf("Cannot open input file.\n");
+        exit(1);
+    }
+
+
+    while (!feof(in)) {
+        ch = fgetc(in);
+        if(!feof(in)) putchar(~ch);
+    }
+
+    fclose(in);
+
+    return 0;
+}
+
+// adv_cumul_4_1sc neg_encoded
+
+
+
+
+
+/* Example 4: Optimize the telephorle-directory program we wrote earlier using STRUCTURE
+                by selecting appropriate 'local variables' to become "register types". */
+
+/* Improve the telephorle-directory program we wrote earlier in this chapter so that it includes each person's "mailing address".
+                Store the address in its own structure, called 'address', which is nested inside the directory structure.
+
+
+                we wrote a program that created a telephone directory that was stored on disk.
+				    It uses an array of structures, each containing
+
+							a person's name,
+							area code, and
+							telephone number.
+
+					Store the area code as an integer.
+					Store the name and telephone number as strings.
+				Make the array MAX elements long, where MAX is any convenient value that you choose.
+
+
+                Have the program present a menu that looks like this:
+
+                        1. Enter the names and numbers
+                        2. Find numbers
+                        3. Save directory to disk
+                        4. Load directory from disk
+                        5. Quit
+
+                The program should be capable of storing 100 names and numbers. (Use only first names if you like.)
+                Use fprintf() to save the directory to disk and fscanf() to read it back into memory. */
+
+// A simple computerized telephone book.
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+struct address {
+    char street[40];
+    char city[40];
+    char state[3];
+    char zip[12];
+};
+
+struct phone_type{
+	char name[40];
+	int areacode;
+	char number[9];
+    struct address addr;
+};
+
+struct phone_type phone[MAX];   // creating array of "phone_type structure"
+
+int loc = 0;
+
+int menu(void);
+void enter(void);
+void load(void);
+void save(void);
+void find(void);
+
+int main(void){
+    register int choice;    // 'register' update
+
+    do{
+        choice = menu();
+        switch(choice){
+            case 1: enter();
+                break;
+            case 2: find();
+                break;
+            case 3: save();
+                break;
+            case 4: load();
+                break;
+        }
+    } while(choice!=5);
+
+    return 0;
+}
+
+
+// Get menu choice
+int menu(void){
+    register int i;     // 'register' update
+    char str[80];
+
+    printf("1. Enter names and numbers\n");
+    printf("2. Find numbers\n");
+    printf("3. Save directory to disk\n");
+    printf("4. Load directory from disk\n");
+    printf("5. Quit\n");
+
+    do{
+        printf("Enter your choice\n");
+        gets(str);
+        i = atoi(str);
+        printf("\n");
+    } while(i<1 || i>5);
+
+    return i;
+}
+
+
+void enter(void){
+    char temp[80];
+
+    for( ; loc<10; loc++){
+        if(loc<10){
+            printf("Enter name:\n");
+            gets(phone[loc].name);
+            if(!*phone[loc].name) break;
+
+            printf("Enter area code:\n");
+	        gets(temp);
+	        phone[loc].areacode = atoi(temp);
+
+	        printf("Enter number:\n");
+            gets(phone[loc].number);
+
+            // input address info
+            printf("Enter street address: ");
+            gets(phone[loc].addr.street);
+
+            printf("Enter city: ");
+            gets(phone[loc].addr.city);
+
+            printf("Enter State: ");
+            gets(phone[loc].addr.state);
+
+            printf("Enter zip code: ");
+            gets(phone[loc].addr.zip);
+        }
+    }
+}
+
+
+void find(void){
+    char name[80];
+    register int i;     // 'register' update
+
+    printf("Enter name: ");
+    gets(name);
+
+	if(!*name) return;
+
+    for(i=0; i<10; i++){
+        if(!strcmp(name, phone[i].name)){
+            printf("%s (%d) %s\n", phone[i].name, phone[i].areacode, phone[i].number);
+            printf("%s\n%s %s %s\n", phone[i].addr.street, phone[i].addr.city, phone[i].addr.state, phone [i].addr.zip);
+        }
+    }
+}
+
+
+void load(void){
+    FILE *fp;
+
+    if((fp = fopen("phone","rb"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    loc = 0;
+    // loading the array of structure
+    // notice the use of '&' to read array
+    while(!feof(fp)){
+        fread(&phone[loc], sizeof phone[loc], 1, fp);
+        // ----------    old code    -----------
+        // fscanf(fp,"%s%d%s", phone[loc].name, &phone[loc].areacode, phone[loc].number);
+        // printf("%s%d%s \n", phone[loc].name, &phone[loc].areacode, phone[loc].number);
+        loc++;
+    }
+    fclose(fp);
+}
+
+
+void save(void){
+    FILE *fp;
+    register int i;     // 'register' update
+
+    if((fp = fopen("phone","wb"))==NULL){
+        printf("Cannot open file\n");
+        exit(1);
+    }
+
+    for(i=0; i<loc; i++){
+        fwrite(&phone[i], sizeof phone[i], 1, fp);  // write the array of structure
+        // ----------    old code    -----------
+        // notice the " " spaces after the specifiers, during write
+        // fprintf(fp,"%s %d %s ", phone[i].name, phone[i].areacode, phone[i].number);
+        // save in following format:
+        // a 123 01901 b 234 01802 c 345 01703
+    }
+
+    fclose(fp);
+}
+
+
+
+
 
 // shift opr
 /* Example 6: What do the << and >> operators do?
