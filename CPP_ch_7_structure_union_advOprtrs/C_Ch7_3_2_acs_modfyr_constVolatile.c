@@ -212,3 +212,12 @@ char *mystrcpy(char *to, const char *from){
 */
 
 
+
+
+/* Example 7: What is wrong with this function? */
+void myfunc(const int *i) {
+    *i = *i / 2;
+}
+// It's wrong because i is declared as "const", the function cannot modify any object pointed to by it.
+
+
