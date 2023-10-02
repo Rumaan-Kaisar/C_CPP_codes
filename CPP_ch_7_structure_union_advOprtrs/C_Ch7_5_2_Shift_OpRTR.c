@@ -235,3 +235,46 @@ void rotate(unsigned char *c){
 
 
 
+
+/* Example 7: Write a program that swaps the 'low-order four bits of a byte' with the 'high-order four bits'.
+                Demonstrate that your routine works by displaying the contents of the byte before and after,
+                    using the show_binary() function developed earlier.
+                (Change show_hinary() so that it works on an eight-bit quantity, however.) */
+
+#include <stdio.h>
+
+void show_binary(unsigned u);
+
+int main(void){
+    unsigned char ch, t1, t2;
+
+    ch = 100;
+    printf("%d\n", ch);
+    show_binary(ch);
+
+    t1 = ch;
+    t2 = ch;
+
+    t1 <<= 4;   // left shifing 4 bits
+    t2 >>= 4;   // right shifing 4 bits
+
+    ch = t1 | t2;   // unify sifted bits to make the 'swapped bits'
+
+    show_binary(ch);
+    printf("%d", ch);
+
+    return 0;
+}
+
+
+void show_binary (unsigned u){
+    unsigned n;
+
+    for(n=128; n>0; n /= 2) {
+        if(u & n) printf("l ");     // applying bitwise &
+        else printf("0 ");
+    }
+    printf("\n");
+}
+
+
