@@ -624,3 +624,12 @@ int main(void){
     return 0;
 }
 
+
+
+
+/* Example 14: What is the extern type specifier for? 
+                extern is used to inform the compiler about global variables defined in a different file. 
+                Placing extern in front of a variable's declaration tells the compiler that the
+                variable is defined elsewhere, but allows the current file to refer to it.
+*/
+
