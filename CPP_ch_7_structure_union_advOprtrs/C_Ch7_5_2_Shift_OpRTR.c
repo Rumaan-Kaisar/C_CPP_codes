@@ -121,6 +121,24 @@ int main(void) {
 
 
 
+/* Example 3 (small): Write a program that uses the 'left and right shift' operators
+                to double and halve a number entered by the user. */
+#include <stdio.h>
+
+int main(void) {
+    int i;
+
+    printf("Enter a number: ");
+    scanf ("%d", &i);
+    printf("Doubled: %d\n", i << 1);
+    printf("Halved: %d\n", i >> 1);
+
+    return 0;
+}
+
+
+
+
 /* Example 4: What do the << and >> operators do?
                 The <<  and >> are the left and right shift operators, respectively. 
                 They shift the bits. */
