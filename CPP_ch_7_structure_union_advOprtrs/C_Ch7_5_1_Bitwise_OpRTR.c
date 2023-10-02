@@ -285,7 +285,45 @@ int main(int argc, char *argv[]){
 
 
 
-/* Example 7: A better method of coding a file uses the 'XOR' operation combined wah a user-defined key. 
+/* Example 7: Earlier we wrote a program that encoded files using the 1's complement operator.
+                Write a program that reads a text file encoded using this method
+                    and displays its decoded contents.
+                Leave the actual file encoded, however. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    FILE *in;
+    unsigned char ch;
+
+    if(argc!=2) {
+        printf("Usage: code <in>\n");
+        exit(1);
+    }
+
+    if((in = fopen(argv[1], "rb"))==NULL) {
+        printf("Cannot open input file.\n");
+        exit(1);
+    }
+
+
+    while (!feof(in)) {
+        ch = fgetc(in);
+        if(!feof(in)) putchar(~ch);
+    }
+
+    fclose(in);
+
+    return 0;
+}
+
+// adv_cumul_4_1sc neg_encoded
+
+
+
+
+/* Example 8: A better method of coding a file uses the 'XOR' operation combined wah a user-defined key. 
                 Write a program that encodes a file using this method. Have the user specify the file
                 to code as well as a single character key on the command line.
                 (To decode the file, run the program a second time using the same key.) */
@@ -335,7 +373,7 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 8: What is the outcome of these operations? 
+/* Example 9: What is the outcome of these operations? 
                 A. 1010 0011 & 0101 1101
                 B. 0101 1101 | 1111 1011
                 C. 0101 0110 ^ 1010 1011
@@ -348,7 +386,7 @@ c. 1111 1101
 
 
 
-/* Example 9: Sometimes, the high-order bit of a byte is used as a 'parity bit' by 'modem programs'. 
+/* Example 10: Sometimes, the high-order bit of a byte is used as a 'parity bit' by 'modem programs'. 
                 It is used to 'verify' the 'integrity' of each byte transferred. 
 
                 There are two types of 'parity': 'even' and 'odd'. 
@@ -373,7 +411,7 @@ ch = ch & 127;
 
 
 
-/* Example 10: What is the outcome of these operations? 
+/* Example 11: What is the outcome of these operations? 
 
                 a. 1101 1101 & 1110 0110
                 b. 1101 1101 | 1110 0110
