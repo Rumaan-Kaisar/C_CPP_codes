@@ -19,6 +19,9 @@
         Only relatively simple operations can be made into 'function-like macros'. 
 
         Also, because code is duplicated, the resulting program might be longer than it would be if a function were used.
+
+    
+    NOTICE we didn't use ';' for any of those following examples for '#define or #include'
 */            
 
 
@@ -200,34 +203,52 @@ int main(void) {
 
 
 
-The next program uses quotes in the #include directive.
+/* Example 4: The next program uses 'quotes' in the #include directive. 
+                While NOT AS EFFICIENT as using the angle brackets, the #include 
+                statement will still find and include the STDlO.H header fIle.
+
+                If your compiler does not find STOIO.H.
+                recheck the installation instructions that came with your compiler.
+*/
 #include "stdio.h"
-int main(void)
-(
-printf("This is a test~);
-return 0;
+
+int main(void) {
+    printf("This is a test");
+
+    return 0;
 }
-While not as efficient as using the angle brackets, the #include
-statement will still find and include the STDlO.H header fIle.
 
 
-3. It is permissible to use both forms of the #include directive in
-the same program. For example,
+
+
+/* Example 5: It is permissible to use both forms of the #include directive in the same program. For example, */
 #include <stdio.h>
-#include ~stdlib.h~
-int rnain(voidl
-(
-printf("This is a random number: %d-, rand();
-return 0;
+#include "stdlib.h"
+
+int main(void) {
+    printf("This is a random number: %d", rand());
+
+    return 0;
 }
 
 
 
-1. Correct the RANGE( ) macro by adding parentheses in the
-proper locations.
-2. Write a program that uses a parameterized macro to compute
-the absolute value of an integer. and demonstrate its use in a
-program.
-3. Compile Example 2. If your compiler does not find STOIO.H.
-recheck the installation instructions that came with your
-compiler.
+
+/* Example 6: Correct the RANGE( ) macro by adding parentheses in the proper locations. */
+#define RANGE(i, min, max) ((i)<(min)) || ((i)>(max)) ? 1 : 0
+
+
+
+
+/* Example 7: Write a program that uses a parameterized macro to compute
+                the ABSOLUTE VALUE of an integer and demonstrate its use in a program. */
+#include <stdio.h>
+
+#define ABS(i) (i)<0 ? -(i) : i
+
+int main(void) {
+    printf("%d %d", ABS(-1), ABS(2));
+
+    return 0;
+}
+
