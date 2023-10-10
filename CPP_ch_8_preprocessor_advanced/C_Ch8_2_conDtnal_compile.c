@@ -119,93 +119,116 @@
 
 
 #include <stdio.h>
-/* define CHAR_SET as either 256 or 128 */
-y'define CHAR-SET 256
-int main (void)
-I
-int i;
-.if CHAR-SET ==256
-printf I·Displaying ASCII character set plus extensions. \n·) ;
-'else
-printfl·Displaying only ASCII character set.\n·):
-.endif
-I
-for(i=O: i<CHAR-SET: i++)
-printf(-'c·, i');
 
-return 0:
+// define CHAR_SET as either 256 or 128 
+#define CHAR_SET 256
+
+int main(void) {
+    int i;
+
+#if CHAR_SET == 256
+    printf ("Displaying ASCII character set plus extensions. \n");
+#else
+    printf("Displaying only ASCII character set.\n");
+#endif
+
+    for(i=0; i<CHAR_SET; i++) printf("%c", i);
+
+    return 0;
+}
+// Notice the indentation
 
 
 
 
-/* Example 2: A good use of #ifdef is for imbedding debugging information into your programs. 
-                For example, here is a program that copies the contents ofone file into another: 
+/* Example 2: A good use of #ifdef is for imbedding debugging information into your programs.
+                For example, here is a program that copies the contents ofone file into another:
 */
 
 // Copy a file.
-'include <stdio.h>
-'include <stdlib.h>
-'define DEBUG
-int main(int argc, char ""argv[])
-I
-FILE ·from. ""to:
-char Chi
-'* see if correct number of command line arguments */
-iflargc!=3) I
-I
-printf(-Usage: copy <source> <destination>\n-);
-exitt1):
-'* open source file *'
-if«from = fopen(argv[11. ·rb·»==NULL) I
-printf(·Cannot open source fi1e.\n:):
-exit(1):
-I
+#include <stdio.h>
+#include <stdlib.h>
 
-// open destination file 
-if I Ito = fopen largv[2], "wb"» ==NULL) {
-printE (~Cannot open destination file. \n");
-exit(!);
-)
-/* copy the file */
-while ( ! feaf (from» (
-ch = fgetc (from) ;
-if (ferror (from» (
-)
-princf("Error reading source file.\n");
-exit(!);
-if(!feof(from» {
-fpute (ch, to);
+#define DEBUG
+
+int main(int argc, char *argv[]) {
+
+    FILE *from, *to;
+    char ch;
+
+    //see if correct number of command line arguments
+    if(argc!=3){
+        printf("Usage: copy <source> <destination>\n");
+        exit(1);
+    }
+
+    // open source file
+    if((from = fopen(argv[1], "rb"))==NULL) {
+        printf("Cannot open source file.\n");
+        exit(1);
+    }
+
+    // open destination file
+    if((to = fopen(argv[2], "wb"))==NULL) {
+        printf("Cannot open destination file. \n");
+        exit(1);
+    }
+
+    // copy the file
+    while(!feof(from)) {
+        ch = fgetc(from);
+        if(ferror(from)){
+            printf("Error reading source file.\n");
+            exit(1);
+        }
+
+        if(!feof(from)) {
+            fputc(ch, to);
 #ifdef DEBUG
-putchar (ch);
+            putchar(ch);
 #endif
-)
-,
-,
-)
-if(ferror(to»)- {
-)
-printE ("Error writing destination file. \0") ;
-exit(!):
-fclose (trom) ;
-fclose(to) ;
-return 0;
-If DEBUG is defined, the program displays each byte as it is
-transferred. This can be helpful during the development phase.
-Once the program is finished, the statement defining DEBUG is
-removed, and the output is not displayed. However, if the
-program ever misbehaves in the future, DEBUG can be defin~d
-again, and output will again be shown on the screen. While this
-might seem like a lot of work for such a simple program, in
-actual practice programs may have many debugging statements,
-and this procedure can greatly facilitate the development and
-testing cycle.
+        }
 
-As shown in this program, to simply define a macro name,
-you do not have /0 associate any character sequence with it
+        if(ferror(to)) {
+            printf("Error writing destination file. \n");
+            exit(1);
+        }
+    }
 
-"
+    fclose(from);
+    fclose(to);
+
+    return 0;
+}
+
+// ppcr_1_dbg <source> <destination>
+// ppcr_1_dbg neg_decoded neg_decoded_copied
 
 
+/* 
+    If DEBUG is defined, the program displays each byte as it is transferred. 
+        This can be helpful during the development phase.
+
+    Once the program is finished, the statement defining DEBUG is removed, and the output is not displayed. 
+
+    However, if the program ever misbehaves in the future, DEBUG can be defined again, 
+        and output will again be shown on the screen. 
+        
+    While this might seem like a lot of work for such a simple program, 
+        in actual practice programs may have many debugging statements,
+        and this procedure can greatly facilitate the development and testing cycle.
+
+    Note:
+        As shown in this program, to simply define a macro name, you do not have to associate any character sequence with it
+*/
+
+
+
+
+
+
+
+// -----------    rev    ----------
 
 /* Example 3: Continuing with the debugging theme, it is possible to use 
                 the #if to allow several levels of debugging code to be easily managed.
