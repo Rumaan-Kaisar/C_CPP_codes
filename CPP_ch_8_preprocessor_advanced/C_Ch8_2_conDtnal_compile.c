@@ -104,18 +104,20 @@
 
 
 
-Example 1: Sometimes you will want a program's behavior to depend on
-a value ciefined within the program. Although examples that
-are both short and meaningful are hard to find, the following
-program gives the flavor of it. This program can be compiled
-to display either the ASCII character set by itself, or the full
-extended set, depending on the value of CHAR_SET. As you
-know, the ASCII character set defines characters for the values 0
-through 127. However, most computers reserve the values 128
-through 255 for foreign-language characters and mathematical
-and other special symbols. (You might want to try this program
-with CHAR_SET set to 256. You will see some very interesting
-characters')
+/* Example 1: Sometimes you will want a program's behavior to depend on a value ciefined within the program. 
+                Although examples that are both short and meaningful are hard to find, 
+                    the following program gives the flavor of it.
+
+                This program can be compiled to display either the ASCII character set by itself, 
+                    or the full extended set, depending on the value of CHAR_SET. 
+
+                As you know, the ASCII character set defines characters for the values 0 through 127.  
+                However, most computers reserve the values 128 through 255 for foreign-language characters 
+                    and mathematical and other special symbols.
+                (You might want to try this program with CHAR_SET set to 256. You will see some very interesting characters.) 
+*/
+
+
 #include <stdio.h>
 /* define CHAR_SET as either 256 or 128 */
 y'define CHAR-SET 256
@@ -129,17 +131,18 @@ printfl·Displaying only ASCII character set.\n·):
 .endif
 I
 for(i=O: i<CHAR-SET: i++)
-printf(-'c·, i);
+printf(-'c·, i');
 
 return 0:
 
 
 
 
-Example 2: A good use ofjJjfclefis for imbedding debugging information
-into your programs. For example, here is a program that copies
-the contents ofone file into another:
-/* Copy a file. */
+/* Example 2: A good use of #ifdef is for imbedding debugging information into your programs. 
+                For example, here is a program that copies the contents ofone file into another: 
+*/
+
+// Copy a file.
 'include <stdio.h>
 'include <stdlib.h>
 'define DEBUG
@@ -158,7 +161,7 @@ printf(·Cannot open source fi1e.\n:):
 exit(1):
 I
 
-/*open destination file */
+// open destination file 
 if I Ito = fopen largv[2], "wb"» ==NULL) {
 printE (~Cannot open destination file. \n");
 exit(!);
@@ -200,14 +203,17 @@ testing cycle.
 As shown in this program, to simply define a macro name,
 you do not have /0 associate any character sequence with it
 
+"
 
 
 
+/* Example 3: Continuing with the debugging theme, it is possible to use 
+                the #if to allow several levels of debugging code to be easily managed.
 
-Example 3: Continuing with the debugging th~me, it is possible to use the
-Hif to allow several levels ofdebugging code to be easily managed.
-For·example, here is one of the encryption programs from the
-answers to Chapter II that supports three debugging levels:
+                For example, here is one of the encryption programs from previous chapter 
+                    that supports three debugging levels:
+*/
+
 #include <stdio.h>
 #include <std!ib.h>
 / * DEBUG leve ls:
@@ -257,10 +263,9 @@ return 0;
 
 
 
+"
 
-
-Example 4: The following fragment illustrates the "elif. It displays NUM I S
-2 on the screen.
+/* Example 4: The following fragment illustrates the #elif. It displays 'NUM is 2' on the screen. */
 #define NUM 2
 tiE NOM == 1
 printf("NUM is 1");
@@ -275,8 +280,7 @@ printf(~NUM is 4");
 
 
 
-Example 5: Here, the defined operator is used to determine if
-TESTPROJECT is defined.
+/* Example 5: Here, the defined operator is used to determine if TESTPROJECT is defined. */
 'include <stdio.h>
 #define TESTPROJECT 29
 iif defined TESTPROJECT
@@ -288,18 +292,25 @@ I'"eturn .0 :- __
 }
 #endi f
 
+"
 
+/* 
+Example 6: Write a program that defines three macros called 
+                        INT, 
+                        FLOAT, and 
+                        PWR_TYPE. 
 
+                Define INT as 0, 
+                FLOAT as 1, and
+                PWR_TYPE as either INT or FLOAT. 
 
-Example 6: Write a program that defines three macros called INT, FLOAT,
-and PWR_TYPE. Define INT as 0, FLOAT as J, and
-PWR_TYPE as either INT or FLOAT. Have the program
-request two numbers from the user and display the result of
-the first number raised to the second number. Using #if and
-depending upon the value of PWR_TYPE, have both numbers
-be integers, or allow the first number to be a double.
+                Have the program request two numbers from the user and 
+                    display the result of the first number raised to the second number.
 
+                Using #if and depending upon the value of PWR_TYPE, 
+                    have both numbers be integers, or allow the first number to be a double.
 
+*/
 1. #include <stdio.h>
 #define INT 0
 #define FLOAT 1
@@ -335,15 +346,26 @@ return 0;
 
 
 
-Example 7: Is this fragment correct' If not, show one ,;'ay to fix it.
+/* Example 7: Is this fragment correct' If not, show one way to fix it. 
 
-#define MIKE
-#ifdef !MIKE
-#endif
-No. You cannot use an expression like IMIKE with #ifdef. Here
-are two possible solutions.
-*i fndef MIKE
-#endif
-/* or */
-#if !defined MIKE
-tend!f
+                        #define MIKE
+                        #ifdef !MIKE
+                        .
+                        .
+                        .
+                        #endif
+
+
+                No. You cannot use an expression like "!MIKE" with #ifdef. 
+                Here are two possible solutions:
+
+                        #ifndef MIKE
+                        #endif
+
+                        // or
+                        #if !defined MIKE
+                        #endif                        
+*/
+
+
+
