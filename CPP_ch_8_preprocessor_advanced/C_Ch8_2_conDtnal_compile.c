@@ -239,12 +239,15 @@ int main(int argc, char *argv[]) {
 
 #include <stdio.h>
 #include <std!ib.h>
-/ * DEBUG leve ls:
-0/
-0: no debug
-1. d".splay byte read flom source file
-2. d~.s play byte wr~tten to destination file
-3: display bytr::s read and hyt.es written
+
+/* 
+    DEBUG levels:
+        0. no debug
+        1. display byte read flom source file
+        2. display byte written to destination file
+        3. display bytes read and bytes written 
+*/
+
 ijdefin-::) DEBUG ::
 int mainline arqc, char *argv[] I
 (
