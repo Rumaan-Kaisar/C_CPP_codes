@@ -227,18 +227,21 @@ int main(int argc, char *argv[]) {
 
 
 
-
-// -----------    rev    ----------
-
 /* Example 3: Continuing with the debugging theme, it is possible to use 
                 the #if to allow several levels of debugging code to be easily managed.
 
                 For example, here is one of the encryption programs from previous chapter 
                     that supports three debugging levels:
+                    coding a file uses the 'XOR' operation combined wah a user-defined key. 
+                    Have the user specify the file to code as well as a single character key on the command line.
+                (To decode the file, run the program a second time using the same key.)
 */
 
-#include <stdio.h>
-#include <std!ib.h>
+
+// Macro Substitution : #define is used
+    // Recall C_Ch6_1_1_mcro_sbt_define.c
+    // by changing value 0, 1, 2, 3 in " #define DEBUG 2 " we can set the DEBUG LEVELS
+
 
 /* 
     DEBUG levels:
@@ -248,48 +251,70 @@ int main(int argc, char *argv[]) {
         3. display bytes read and bytes written 
 */
 
-ijdefin-::) DEBUG ::
-int mainline arqc, char *argv[] I
-(
-FILE *in, "o~r:;
-unsigned char chi
-j* see if correct number of command line arguments */
-if(argc!.::4) [
-)
-printf (·Usage: code <in> <out> <key> ~) ;
-exit (1);
-I~ open input file */
-if{(in = fopen{arg'l[l] "rb"»==NULL) {
-)
-printf("Cannot open ~pput file.\n")i
-exit(!);
-/w open output file */
-if«out = fopen(argv[2}, "wh") )==NULL) (
-printf("Cannot open output file.\n~ ) ;
-exit(l);
-)
-while(!feof(in» {
+#include <stdio.h>
+#include <stdlib.h>
 
-ch = fgetc (in) ;
-THE C PREPROCESSOR AND SOME ADVANCED TOPICS
-12,2 UNDERSTAND CONDITIONAL COMPILAnON
-DEBUG == 1 I I DEBUG == 3
-putchar feb) ;
-Itendif
-ch = *argv(31 A chi
-/tif DEBUG >:: 2
-putchar (eh) ;
+#define DEBUG 2
+
+int main(int argc, char *argv[]) {
+    FILE *in, *out;
+    unsigned char ch;
+
+    // check correct number of command line arguments
+    if(argc!=4){
+        printf("Usage: code <in> <out> <key>\n");
+        exit(1);
+    }
+
+    // read
+    if((in = fopen(argv[1], "rb")) == NULL){
+        printf("Cannot open input file.\n");
+        exit(1);
+    }
+
+    // write
+    if((out = fopen(argv[2], "wb")) == NULL) {
+        printf("Cannot open output file.\n");
+        exit(1);
+    }
+
+    // putting the encoded characters into 'out' file
+    while(!feof(in)) {
+        ch = fgetc(in);
+        // 0. no debug
+        // 1. display byte read from source file
+        // 2. display byte written to destination file
+        // 3. display bytes read and bytes written 
+// display bytes read from source file
+#if (DEBUG == 1) || (DEBUG == 3)
+        putchar(ch);
 #endif
-)
-if(!feof(in» fputc(ch, out);
-)
-fclose (in) ;
-fclose(outl;
-return 0;
+        ch = *argv[3] ^ ch; // applying 'XOR'
+// display bytes will be witten to output file
+#if (DEBUG >= 2)
+        putchar(ch);    // display changes
+#endif
+        if(!feof(in)) fputc(ch, out);   // write to the file 
+    }
+
+    // closing the files
+    fclose(in) ;
+    fclose (out);
+
+    return 0;
+}
+
+// save-compile the code as : 'opr_adv_btw7.c'
+// CLI:      ppcr_cndtnCMP XOR_encd ppcr_XOR_encoded 5
+// CLI:      ppcr_cndtnCMP ppcr_XOR_encoded ppcr_XOR_decoded 5
 
 
 
-"
+
+
+
+
+// -----------    rev    ----------
 
 /* Example 4: The following fragment illustrates the #elif. It displays 'NUM is 2' on the screen. */
 #define NUM 2
