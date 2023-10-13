@@ -100,6 +100,12 @@
             statement sequence associated with an #ifndef directive is compiled only if the macro-name is not defined.
             (alternative to !defined ).
 
+
+    NOTE:
+        In conditional compilation you should debug for each case
+            compiler just NEGLECT the other test-cases during compilation
+                any EROOR will remain uncaught for neglected test cases
+
 */
 
 
@@ -312,41 +318,41 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-// -----------    rev    ----------
-
 /* Example 4: The following fragment illustrates the #elif. It displays 'NUM is 2' on the screen. */
 #define NUM 2
-tiE NOM == 1
-printf("NUM is 1");
-#ellf NUM == 2
-printf ("NUM is 2");
-#elif NOM == 3
-printf{"NUM is )N);
-#eliE NOM == 4
-printf(~NUM is 4");
+.
+.
+.
+#if NUM == 1
+    printf("NUM is 1");
+#elif NUM == 2
+    printf ("NUM is 2");
+#elif NUM == 3
+    printf("NUM is 3");
+#elif NUM == 4
+    printf("NUM is 4");
 #endif
 
 
 
 
 /* Example 5: Here, the defined operator is used to determine if TESTPROJECT is defined. */
-'include <stdio.h>
+#include <stdio.h>
+
 #define TESTPROJECT 29
-iif defined TESTPROJECT
-int main (void)
-(
-printf(~This is a test.\n");
 
-I'"eturn .0 :- __
+#if defined TESTPROJECT
+int main(void) {
+    printf("This is a test.\n");
+
+    return 0;
 }
-#endi f
+#endif
 
-"
 
-/* 
-Example 6: Write a program that defines three macros called 
+
+
+/* Example 6: Write a program that defines three macros called 
                         INT, 
                         FLOAT, and 
                         PWR_TYPE. 
@@ -362,38 +368,86 @@ Example 6: Write a program that defines three macros called
                     have both numbers be integers, or allow the first number to be a double.
 
 */
-1. #include <stdio.h>
+// cause error for FLOAT test case
+#include <stdio.h>
+
 #define INT 0
 #define FLOAT 1
-_define PWR_TYPE INT
-int main(void)
-(
-int e:
-#if PWR_TYPE==FLOAT
-double base. result;
-#elif PWR_TYPE==INT
-int base, result;
-lendif
-.if PWR_TYPE==FLOAT
-printf("Enter floating point base: ");
-scanf('%lf', &base);
+#define PWR_TYPE INT
 
+int main(void) {
+    int e;
+#if PWR_TYPE == FLOAT
+    double base. result;    // makes ERROR
+#elif PWR_TYPE == INT
+    int base, result;
+#endif
+
+#if PWR_TYPE == FLOAT
+    printf("Enter floating point base: ");
+    scanf("%lf", &base);
 #elif PWR_TYPE==INT
-printf{·Enter integer base: .):
-scanf ("'d", &base);
-iendif
-printf("Enter integer exponent (greater than 0): .);
-scanf ("'d", &e);
-result = 1;
-fore; e; e--)
-result = result • base:
-#if PWR_TYPE==FLOAT
-printf("Result: %f-, result);
-#elif PWR_TYPE==INT
-printf(-Result: %d-, result);
-tendif
-return 0;
+    printf("Enter integer base: ");
+    scanf("%d", &base);
+#endif
+
+    printf("Enter integer exponent (greater than 0): ");
+    scanf ("%d", &e);
+
+    // calculate exponent
+    result = 1;
+    for(; e; e--) result = result * base;
+
+#if PWR_TYPE == FLOAT
+    printf("Result: %f", result);
+#elif PWR_TYPE == INT
+    printf("Result: %d", result);
+#endif
+
+    return 0;
 }
+
+
+// ------------    Corrected FLOAT-case    ------------
+
+#include <stdio.h>
+
+#define INT 0
+#define FLOAT 1
+#define PWR_TYPE FLOAT
+
+int main(void) {
+    int e;
+#if PWR_TYPE == FLOAT
+    double base, result;    // corrected
+#elif PWR_TYPE == INT
+    int base, result;
+#endif
+
+#if PWR_TYPE == FLOAT
+    printf("Enter floating point base: ");
+    scanf("%lf", &base);
+#elif PWR_TYPE==INT
+    printf("Enter integer base: ");
+    scanf("%d", &base);
+#endif
+
+    printf("Enter integer exponent (greater than 0): ");
+    scanf ("%d", &e);
+
+    // calculate exponent
+    result = 1;
+    for(; e; e--) result = result * base;
+
+#if PWR_TYPE == FLOAT
+    printf("Result: %f", result);
+#elif PWR_TYPE == INT
+    printf("Result: %d", result);
+#endif
+
+    return 0;
+}
+
 
 
 
@@ -411,10 +465,14 @@ return 0;
                 Here are two possible solutions:
 
                         #ifndef MIKE
+                        .
+                        .
                         #endif
 
                         // or
                         #if !defined MIKE
+                        .
+                        .
                         #endif                        
 */
 
