@@ -59,62 +59,64 @@
 */
 
 
-1. This program demonstrates the #error directive.
+/* Example 1: This program demonstrates the #error directive. 
+                As soon as the #error directive is encountered, compilation stops.*/
 #include <stdio.h>
-int main (void)
-(
-int i:
-i :Ie 10 ;
-.error This is an error message.
-printf( -'d-, i, : /* this line will not be compiled *1
-return 0;
-)
-As soon as the #error directive is encountered, compilation
-stops.
 
+int main(void) {
+    int i;
 
+    i = 10;
 
-
-2. The next program demonstrates the #undef directive. As the
-.,program states, only the first printf( ) statement is compiled.
-'include <stdio.h>
-Idefine DOG
-int main (void)
-(
-.ifdef DOG
-printf("DOG is defined . \n");
-.endif
-.undef cpo
-'ifdef DOG
-printfC MThis line is not compiled. 'n-);
-.endif
-return 0:
+// notice no quotation mark "" used
+#error This is an error message.
+    printf("%d", i); // this line will not be compiled 
+    
+    return 0;
 }
 
 
 
 
-3. The following program demonstrates the #1ine directive. Since
-virtually all implementations of#error display the line number
-and name of the file, it is used here to verify that -uae did, in
-fact, perform its function correctly. (In the next section, you will
-see how a C program can directly access the line number and
-file name).
-'include <stdio.h>
-int main (void)
+/* Example 2: The next program demonstrates the #undef directive. 
+                As the program states, only the first printf() statement is compiled. */
+#include <stdio.h>
 
-(
-int i;
+#define DOG
 
-/* reset line number to 1000 and file name to
-myprog.c
-*line "' 1000 -myprog.c·
-#error Check the line number and fi~e name.
-return 0;
-)
+int main(void) {
+#ifdef DOG
+    printf("DOG is defined . \n");
+#endif
+
+#undef DOG
+
+#ifdef DOG
+    printf("This line won't compile. \n");
+#endif
+
+    return 0;
+}
 
 
-4. Although the ANSI C standard does not specifY any #pragma
-directives, on your own check your compiler's user manual and
-learn about any supported by your system.
+
+
+/* Example 3: The following program demonstrates the #line directive. 
+                Since virtually all implementations of #error display the line number and name of the file, 
+                it is used here to verify that #line did, in fact, perform its function correctly. 
+                (In the next section, you will see how a C program can directly access the line number and file name). */
+#include <stdio.h>
+
+int main(void) {
+    int i;
+
+// reset line number to 1000 and file name to myprog.c
+#line 1000 "myprog.c"
+#error Check the line number and file name.
+    return 0;
+}
+
+
+/* Example 4: Although the ANSI C standard does not specify any #pragma directives, 
+                on your own check your compiler's user manual and learn about any supported by your system. */
 
