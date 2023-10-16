@@ -10,6 +10,8 @@
                 __ TIME __
                 __ STDC __
  
+        These are mainly used to create TIME and DATE STAMP
+
     __LINE__
         defines an 'integer value' that is equivalent to the LINE NUMBER of the 'source line' currently being compiled.
         
@@ -34,29 +36,29 @@
 */
 
 
+
+
 /* Example 1: This program demonstrates the macros __LINE__, __FILE__, __DATE__, and __TIME__. */
 
 #include <stdio.h>
 
 int main(void) {
+    printf("Compiling %s, line: %d, on %s, at %s", __FILE__, __LINE__, __DATE__, __TIME__);
 
+    return 0;
 }
 
-printf("Compil i ng %5, line: %d, on %5, at ~s·,
-__FILE__ • __LINE__ • __DATE__ •
-__TIME__};
 
-return 0;
 
-It is important to understand that the values of the macros are
-fixed at compile time. For example. if the above program is
-called T.C. and it is compiled on March 18. 1997. at 10 A.M..
-it will always display this output no matter when the
-program 1S run,
-Compiling T.C, line: 6. on Mar ~8 1997. at 10:00:00
+/* 
+    It is important to understand that the values of the macros are fixed at compile time. 
+        For example. if the above program is called 't.c'. and it is compiled on March 18, 1997. at 10 A.M.,
+        it will always display this output no matter when the program is run,
 
-The main use of these macros is to create a time and date stamp,
-which shows when the program was compiled.
+                Compiling t.c, line: 6, on Mar 18, 1997. at 10:00:00
+
+    The main use of these macros is to create a TIME and DATE STAMP, which shows 'when the program was compiled'. 
+*/
 
 
 
@@ -66,21 +68,17 @@ which shows when the program was compiled.
                 When you do this, you are actually changing the values of __LlNE__ and __FILE__. 
             
                 This program sets __LlNE__ to 100 and __FILE__ to 'myprog.c' */
-#include <st~io_h>
-int main/void)
-(
-#line 100 ~myprog.c~
-)
-printf(-Compiling %s, line, %d, on %5, at %5",
-__FILE__ • __LINE__ . __DATE__ •
-___
-TIME__I:
-return 0;
-The program displays the following output, assuming it was
-compiled on March 18, 1997, at 10 AM.
-Compiling myprog.c. line: 101. on Mar 18 199i at 10:00:00
+#include <stdio.h>
 
+int main(void) {
 
+#line 100 "myprog.c"
+    printf("Compiling %s, line: %d, on %s, at %s", __FILE__, __LINE__, __DATE__, __TIME__);
 
+    return 0;
+}
+
+// The program displays the following output, assuming it was compiled on March 18, 1997, at 10 AM.
+// Compiling myprog.c, line: 101, on Mar 18 1997 at 10:00:00
 
 
