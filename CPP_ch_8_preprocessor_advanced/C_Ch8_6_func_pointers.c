@@ -79,26 +79,84 @@ int sum(int a, int b){
 
 
 
-2. Although the program in Example 1 illustrates the mechanics of
-using function pointers, it does not even hint at their power.
-The following example, however, will give you a taste.
-One of the most important uses of function pointers occurs
-when a function-pointer array is created. Each element in the
-array can point to a different function. To call any specific
-function, the array is simply indexed. A function pointer array
-allows very efficient code to be written when a variety of
-different functions need to be called under differing
-circumstances. Function-pointer arrays are typically used when
-writing systems software, such as compilers, assemblers, and
-interpreters. However, they are not limited to these applications.
-While meaningful and short examples of function-pointer arrays
-are difficult to find, the program shown next gives you an idea
-of their value. Like the program in Example 1, this program
-prompts the user for two numbers. Next, it asks the user to
-enter the number of the operation to perform. This number is
-then used to index the function-pointer array to execute the
-proper function. Finally, the result is displayed.
-*include <stdio.h>
+/* --------------    function pointer array    -------------- */
+
+/* Example 2: The following program will give you a taste of full power of "function pointer"
+                One important uses of function pointers occurs when a "FUNCTION-POINTER ARRAY" is created.
+                    Each element in the array can point to a different function.
+                    To call any specific function, the array is simply indexed.
+
+                'Function-pointer arrays' are typically used when writing systems software, such as
+                        a.  compilers,
+                        b.  assemblers, and
+                        c.  interpreters.
+
+                Like the program in Example 1, this program prompts the user for two numbers.
+                    Next, it asks the user to enter the 'number of the operation to perform'.
+                    This number is then used to index the function-pointer array to execute the proper function.
+                    Finally, the result is displayed.
+*/
+
+#include <stdio.h>
+
+int sum(int a, int b);
+int subtract(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+
+int (*p[4]) (int x, int y);     // function-pointer array
+
+int main (void) {
+    int result;
+    int i, j, op;
+
+    p[0] = sum;        // get address of sum()
+    p[1] = subtract;   // get address of subtract()
+    p[2] = mul;        // get address of mul()
+    p[3] = div;        // get address of div()
+
+    printf("Enter two numbers: ");
+    scanf("%d%d", &i, &j);
+
+    printf("O: Add, 1: Subtract, 2: Multiply, 3: Oivide\n");
+
+    do {
+        printf("Enter number of operation: ");
+        scanf("%d", &op);
+    } while(op<0 || op>3);
+
+    result = (*p[op]) (i, j);
+    printf("%d", result);
+
+    return 0;
+}
+
+
+int sum(int a, int b) {
+    return a+b;
+}
+
+int subtract(int a, int b) {
+    return a-b;
+}
+
+int mul(int a, int b) {
+    return a*b;
+}
+
+int div(int a, int b) {
+    if(b) return a/b;
+    else return 0;
+}
+
+
+
+
+
+// #####    rev    #######
+
+
+#include <stdio.h>
 intL sum(int a, jot b);
 IntL subt.ract(jnt a, mt b);
 mt mul(int a, intL b);
@@ -242,63 +300,8 @@ it into the program.
 
 
 
-ofthei( value. Like the program in Example 1, this program
-prompts the user for two numbers. Next, it asks the user to
-enter the number of the operation to perform. This numbet is
-then used to index the function-pointer array to execute the
-proper funCtion. Finally, the result is displayed.
-'include <stdio.h>
-int sum(int a, int b) ;
-int subtract (int a, int b) ;
-int mul (int a, int b) ;
-int div(int a, int b) ;
-int (*p[4}) (int x. int y);
-int main (void)
-(
-int result:
-int i, j. op;
-p [0 J = sum: f' get address of sum()
-p [1 J = subtract; f' get address of
-p [2 J = mul, f' get address of mul I)
-p [3 J = div; f' Qet address of
-printf{DEnter two numbers: ");
-scanfl"%d%d" , &i, &j);
-divl)
-'f
-subtract (I 'f
-'f
-'f
-printf("O: Add, 1: Subtract, 2: Multiply, 3: Oivide\n-);
-do I
-)
-printf(nEnter number of operation: .);
-scanf(·'d-, &op);
-) whilelop<O II op>3);
-result = I'p[op») Ii, i);
-printf(-'d-, result);
-return 0;
-int sum(int a, int b)
-(
-return a+b;
-)
-int subtract(int a, int bl
 
-{
-return a-b;
-}
-int mul{int a,
-{
-return a*bi
-}
-int div(int a,
-(
-if(b) return
-else return
-)
-int b)
-lnt b)
-a l b:
-0:
+
 TIIlC~AllDSOME-Mc:m-
 126 UNOERSTNoIO RJNCTION POIN1fIIS
 When you study this code, it becomes clear that using a
