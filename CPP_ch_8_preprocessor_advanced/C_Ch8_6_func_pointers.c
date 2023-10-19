@@ -52,6 +52,196 @@
 */
 
 
+
+/* Example 1: This program fills in the details and demonstrates the function pointer. 
+                The program calls sum() indirectly using "p", and displays the result.
+*/
+#include <stdio.h>
+
+int sum(int a, int b);
+
+int main(void) {
+    int (*p) (int x, int y);    // function pointer
+    int result;
+
+    p = sum; // get address of sun()
+    result = (*p) (10, 20);
+
+    printf("%d", result);
+
+    return 0;
+}
+
+int sum(int a, int b){
+    return a+b;
+}
+
+
+
+
+2. Although the program in Example 1 illustrates the mechanics of
+using function pointers, it does not even hint at their power.
+The following example, however, will give you a taste.
+One of the most important uses of function pointers occurs
+when a function-pointer array is created. Each element in the
+array can point to a different function. To call any specific
+function, the array is simply indexed. A function pointer array
+allows very efficient code to be written when a variety of
+different functions need to be called under differing
+circumstances. Function-pointer arrays are typically used when
+writing systems software, such as compilers, assemblers, and
+interpreters. However, they are not limited to these applications.
+While meaningful and short examples of function-pointer arrays
+are difficult to find, the program shown next gives you an idea
+of their value. Like the program in Example 1, this program
+prompts the user for two numbers. Next, it asks the user to
+enter the number of the operation to perform. This number is
+then used to index the function-pointer array to execute the
+proper function. Finally, the result is displayed.
+*include <stdio.h>
+intL sum(int a, jot b);
+IntL subt.ract(jnt a, mt b);
+mt mul(int a, intL b);
+irit div(intL a, jot b);
+lot (*p[41) (lot x, intL y)
+intL main (void)
+mt result;
+mt i, j, op;
+P(01 = sum; /* get address of sum]) */
+P(11 = subtract; /* get address of subtract() *1
+p121 = mul; /* get address of mul() 1
+p [31 = div; I get address of div() *1
+printf('Enter two numbers:
+scanf(%d%d', &i, &j);
+printf("O: Add, 1: Subtract, 2; Multiply, 3; Divide\n);
+do
+printf(Enter number of operation:
+scanf('%d, &op);
+while(op<0 H op>3);
+result = (*p[op)) (1, j);
+printf('%d", result);
+return 0;
+lot sum(int & intb)
+return a+b;
+mt subtract(int a, mt b)
+
+
+return a-b;
+mt mul(int a, mt b)
+return a*b;
+mt div(int a, mt b)
+if(b) return a/b;
+else return 0;
+When you study this code, it becomes clear that using a
+function-pointer array to call the appropriate function is more
+efficient than using a switch( ) statement.
+Before leaving this example, we can use it to illustrate
+one more point: function-pointer arrays can be initialized, just
+like any other array. The following version of the program
+shows this. -
+*include <stdio.}i>
+mt sum(int a, mt b);
+mt subtract(int a, mt b);
+jot mul(int a, jot b);
+jot div(int a, jot b);
+1* initialize the pointer array *1
+mt (*p(4)) (mt x, jilt y ) = C
+sum, subtract, mul, div
+mt main (void)
+jot result;
+mt 1, j, op;
+printf(Enter two numbers: );
+scanf(%d%d', &i, &j);
+printf(0: Add, 1: Subtract, 2: Multiply, 3: Divide\n);
+do
+printf("Enter number of operation: );
+
+
+scanf("%d, &op);
+while(op<O 11 op>3)
+result = (*p[op]) (i,
+printf("%d, result);
+return 0;
+mt sum(int a, intb)
+return a+b;
+mt subtract(int a, mt b)
+return a-b;
+mt mul(int a, mt b) -
+return a*b;
+mt div(int a, mt b)
+if(b) return a/b;
+else return 0;
+3. One of the most common uses of a function pointer occurs
+when utilizing another of C's standard library functions, qsort().
+The qsort() function is a generic sort routine that can sort any
+type of singly dimensioned array, using the Quicksort algorithm.
+Its prototype is
+void qsort(void *array, sizej number, size_t size,
+mt ('compconst void a, const void Sb));
+Here, array is a pointer to the first element in the array to be
+sorted. The number of elements in the array is specified by
+number, and the size of each element of the array is specified by
+
+
+size. (Remember, size _t is defined by the C compiler and is
+loosely the same as unsigned.) The final parameter is a pointer
+to a function (which you create) that compares two elements of
+the array and returns the following results:
+a < b returns a negative value
+== *b returns a zero
+*a > 'b returns a sitive value
+The qsort() function has no return value. It uses the STDLII3.1I
+header file.
+The following program loads a 100-element integer array
+with random numbers, sorts it, and displays the sorted form.
+Notice the necessary type casts within the comp( ) function,
+#include <stdio.h>
+#include <stdlib.h>
+irit comp(const void i, const void j);
+mt main(void)
+inC sort(1001, i;
+for(i=O; 1<100; 14+)
+sortEil = rand));
+qsort(sort 100, sizeof(irit), comp);
+for(i=0; 1<100; 1+4)
+printf("%d\n sort[il);
+return 0;
+mt comp(const void i, corist void *j)
+return *(int)i - *(int*)j;
+
+1. Compile and run all of the example programs. Experiment with
+them, making minor changes.
+2 Another of Cs standard library functions is called bscarch( ).
+This function searches a sorted arra y, given a key. It returns a
+pointer to the f irst entry in the array that matches the ke y . if no
+match is found, a null pointer is returned. its prototype is
+void bsearch(const void key, const void array, size_t number, size_t size,
+nt comp)(const void 'a, const void 'b));
+All the parameters to bsearcb( ) are the same as for qsort( )
+except the first, which is a pointer to key, the object being
+sought. The comp( ) function operates the same for bscarch( )
+as it does t'r cjsort( ).
+Modify :he program in Example 3 so that after the a , : iv is
+sorted, the riser is prompted to enter a number. Next, USili
+bsearch ( ) search the sorted array and report if a match is
+Ibund.
+3. Add a fume ion called modulus( ) to the final version ofthe
+arithrneth. arograrn in Example 2. Have the function return the
+result of a b. Add this option to the menu and full y integrate
+it into the program.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ofthei( value. Like the program in Example 1, this program
 prompts the user for two numbers. Next, it asks the user to
 enter the number of the operation to perform. This numbet is
