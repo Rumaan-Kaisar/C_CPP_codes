@@ -79,7 +79,10 @@ int sum(int a, int b){
 
 
 
-/* --------------    function pointer array    -------------- */
+/* --------------    function pointer array    -------------- 
+    Using a "function-pointer array" to call the appropriate function 
+        is more efficient than using a switch() statement.
+*/
 
 /* Example 2: The following program will give you a taste of full power of "function pointer"
                 One important uses of function pointers occurs when a "FUNCTION-POINTER ARRAY" is created.
@@ -152,104 +155,105 @@ int div(int a, int b) {
 
 
 
-
-// #####    rev    #######
-
+/* Example 3: function-pointer arrays can be initialized, just like any other array. 
+                The following version of above program shows this. */
 
 #include <stdio.h>
-intL sum(int a, jot b);
-IntL subt.ract(jnt a, mt b);
-mt mul(int a, intL b);
-irit div(intL a, jot b);
-lot (*p[41) (lot x, intL y)
-intL main (void)
-mt result;
-mt i, j, op;
-P(01 = sum; /* get address of sum]) */
-P(11 = subtract; /* get address of subtract() *1
-p121 = mul; /* get address of mul() 1
-p [31 = div; I get address of div() *1
-printf('Enter two numbers:
-scanf(%d%d', &i, &j);
-printf("O: Add, 1: Subtract, 2; Multiply, 3; Divide\n);
-do
-printf(Enter number of operation:
-scanf('%d, &op);
-while(op<0 H op>3);
-result = (*p[op)) (1, j);
-printf('%d", result);
-return 0;
-lot sum(int & intb)
-return a+b;
-mt subtract(int a, mt b)
+
+int sum(int a, int b);
+int subtract(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+
+// Initialized function-pointer array. 
+// Get address of all: sum(), subtract(), mul(), div()
+int (*p[4]) (int x, int y) = { sum, subtract, mul, div };
+
+int main (void) {
+    int result;
+    int i, j, op;
+
+    printf("Enter two numbers: ");
+    scanf("%d%d", &i, &j);
+
+    printf("O: Add, 1: Subtract, 2: Multiply, 3: Divide\n");
+
+    do {
+        printf("Enter number of operation: ");
+        scanf("%d", &op);
+    } while(op<0 || op>3);
+
+    result = (*p[op]) (i, j);
+    printf("%d", result);
+
+    return 0;
+}
 
 
-return a-b;
-mt mul(int a, mt b)
-return a*b;
-mt div(int a, mt b)
-if(b) return a/b;
-else return 0;
-When you study this code, it becomes clear that using a
-function-pointer array to call the appropriate function is more
-efficient than using a switch( ) statement.
-Before leaving this example, we can use it to illustrate
-one more point: function-pointer arrays can be initialized, just
-like any other array. The following version of the program
-shows this. -
-*include <stdio.}i>
-mt sum(int a, mt b);
-mt subtract(int a, mt b);
-jot mul(int a, jot b);
-jot div(int a, jot b);
-1* initialize the pointer array *1
-mt (*p(4)) (mt x, jilt y ) = C
-sum, subtract, mul, div
-mt main (void)
-jot result;
-mt 1, j, op;
-printf(Enter two numbers: );
-scanf(%d%d', &i, &j);
-printf(0: Add, 1: Subtract, 2: Multiply, 3: Divide\n);
-do
-printf("Enter number of operation: );
+int sum(int a, int b) {
+    return a+b;
+}
+
+int subtract(int a, int b) {
+    return a-b;
+}
+
+int mul(int a, int b) {
+    return a*b;
+}
+
+int div(int a, int b) {
+    if(b) return a/b;
+    else return 0;
+}
 
 
-scanf("%d, &op);
-while(op<O 11 op>3)
-result = (*p[op]) (i,
-printf("%d, result);
-return 0;
-mt sum(int a, intb)
-return a+b;
-mt subtract(int a, mt b)
-return a-b;
-mt mul(int a, mt b) -
-return a*b;
-mt div(int a, mt b)
-if(b) return a/b;
-else return 0;
-3. One of the most common uses of a function pointer occurs
+
+
+
+// ###########    rev    ###########
+/* ------------    qsort()    ------------ 
+
+
+*/
+
+
+
+Example 4: (Quick Sort) One of the most common uses of a function pointer occurs
 when utilizing another of C's standard library functions, qsort().
-The qsort() function is a generic sort routine that can sort any
-type of singly dimensioned array, using the Quicksort algorithm.
-Its prototype is
-void qsort(void *array, sizej number, size_t size,
-mt ('compconst void a, const void Sb));
-Here, array is a pointer to the first element in the array to be
-sorted. The number of elements in the array is specified by
-number, and the size of each element of the array is specified by
+
+/* 
+    The qsort() function is a generic sort routine that can sort any type of 
+    'singly dimensioned array', using the "Quicksort algorithm".
+    Its prototype is: 
+
+*/
+
+'
+void qsort(void *array, size_t number, size_t size, int (*comp)(const void *a, const void *b));
+
+array:  is a pointer to the first element in the 'array to be sorted'. 
+number: number of elements in the array
+size:   size of each element of the array
+(Remember, size _t is a data-type defined by the C compiler and is loosely the same as unsigned.) 
+
+Notice the final parameter is a "function-pointer": 
+    
+            int (*comp)(const void *a, const void *b)
+
+    This pointer to a function (which you create) compares two elements of the array 
+        and returns the following results:
+
+*a < *b returns a negative value
+*a == *b returns a zero
+*a > *b returns a positive value
+
+The qsort() function has no return value. 
+It uses the <STDLIB.H> header file.
 
 
-size. (Remember, size _t is defined by the C compiler and is
-loosely the same as unsigned.) The final parameter is a pointer
-to a function (which you create) that compares two elements of
-the array and returns the following results:
-a < b returns a negative value
-== *b returns a zero
-*a > 'b returns a sitive value
-The qsort() function has no return value. It uses the STDLII3.1I
-header file.
+
+
 The following program loads a 100-element integer array
 with random numbers, sorts it, and displays the sorted form.
 Notice the necessary type casts within the comp( ) function,
@@ -302,56 +306,8 @@ it into the program.
 
 
 
-TIIlC~AllDSOME-Mc:m-
-126 UNOERSTNoIO RJNCTION POIN1fIIS
-When you study this code, it becomes clear that using a
-function-pointer array to call the appropriate function is more
-efficient than using a switch( ) statement.
-Before leaving this example, we can use it to illustrate
-one more point: function-pointer arrays can be initialized, just
-like any other array. The following version of the program
-shows this.
-'include <stdio .h>
-int sum (int a, int b) :
-int subtract (int a , int b) :
-int mul (int a, int b) :
-int div(int a, int b) :
-/ * initialize the pointer array */
-int ('p[4]) (int x, int y) = ( .
-sum, subtract. mul , div
-) :
-int main (void)
-(
-int result;
-int i. j, op;
-printf(-Enter two numbers: .);
-scanf(-'d%d·, &i. &j);
-printf("O: Add, 1: Subtract, 2: Multiply, 3: Divide\n"),
-do (
-printf(-Enter number of operation: .);
 
-scanf("%d", &Op);
-) while(op<O I I op>3 ) ;
-resul t = ('p [op)) (i. j);
-printf("%d~, result);
-return 0;
-int sum(int a, int b)
-(
-return a+b;
-)
-i nt subtract(int a, int b)
-(
-return a-b;
-)
-int mul(inL a, int b)
-(
-. return a·bi
-)
-int div(int a, int b)
-(
-)
-iftb) return a l b:
-else return 0;
+
 3. One of the most common uses of a function pointer occurs
 when utilizing another of C's standard library functions, qsort{ ).
 The q80rt( ) function is a generic sort routine that can sort any
