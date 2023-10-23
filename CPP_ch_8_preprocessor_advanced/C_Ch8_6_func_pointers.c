@@ -210,167 +210,99 @@ int div(int a, int b) {
 
 
 
+/*  ------------    qsort() : QuickSort    ------------ 
+    qsort() function uses a FUNCTION POINTER during its utilaztion.
 
-// ###########    rev    ###########
-/* ------------    qsort()    ------------ 
-
-
-*/
-
-
-
-Example 4: (Quick Sort) One of the most common uses of a function pointer occurs
-when utilizing another of C's standard library functions, qsort().
-
-/* 
     The qsort() function is a generic sort routine that can sort any type of 
     'singly dimensioned array', using the "Quicksort algorithm".
     Its prototype is: 
-
 */
 
-'
 void qsort(void *array, size_t number, size_t size, int (*comp)(const void *a, const void *b));
 
-array:  is a pointer to the first element in the 'array to be sorted'. 
-number: number of elements in the array
-size:   size of each element of the array
-(Remember, size _t is a data-type defined by the C compiler and is loosely the same as unsigned.) 
+/* 
+    array:  is a pointer to the first element in the 'array to be sorted'. 
+    number: number of elements in the array
+    size:   size of each element of the array
+    (Remember, size _t is a data-type defined by the C compiler and is loosely the same as unsigned.)  
 
-Notice the final parameter is a "function-pointer": 
-    
-            int (*comp)(const void *a, const void *b)
+    Notice the final parameter is a "function-pointer": 
+        
+                int (*comp)(const void *a, const void *b)
 
-    This pointer to a function (which you create) compares two elements of the array 
-        and returns the following results:
+        This pointer to a function (which you create) compares two elements of the array 
+            and returns the following results:
 
-*a < *b returns a negative value
-*a == *b returns a zero
-*a > *b returns a positive value
+    *a < *b returns a negative value
+    *a == *b returns a zero
+    *a > *b returns a positive value
 
-The qsort() function has no return value. 
-It uses the <STDLIB.H> header file.
+    The qsort() function has no return value. 
+    It uses the <STDLIB.H> header file.
+*/
 
 
 
 
-The following program loads a 100-element integer array
-with random numbers, sorts it, and displays the sorted form.
-Notice the necessary type casts within the comp( ) function,
+/* Example 4: Load a 100-element integer array with random numbers, sorts it, and displays the sorted form.
+                Notice the necessary type casts within the comp() function, */
 #include <stdio.h>
 #include <stdlib.h>
-irit comp(const void i, const void j);
-mt main(void)
-inC sort(1001, i;
-for(i=O; 1<100; 14+)
-sortEil = rand));
-qsort(sort 100, sizeof(irit), comp);
-for(i=0; 1<100; 1+4)
-printf("%d\n sort[il);
-return 0;
-mt comp(const void i, corist void *j)
-return *(int)i - *(int*)j;
 
-1. Compile and run all of the example programs. Experiment with
-them, making minor changes.
-2 Another of Cs standard library functions is called bscarch( ).
-This function searches a sorted arra y, given a key. It returns a
-pointer to the f irst entry in the array that matches the ke y . if no
-match is found, a null pointer is returned. its prototype is
-void bsearch(const void key, const void array, size_t number, size_t size,
-nt comp)(const void 'a, const void 'b));
-All the parameters to bsearcb( ) are the same as for qsort( )
-except the first, which is a pointer to key, the object being
-sought. The comp( ) function operates the same for bscarch( )
-as it does t'r cjsort( ).
-Modify :he program in Example 3 so that after the a , : iv is
-sorted, the riser is prompted to enter a number. Next, USili
-bsearch ( ) search the sorted array and report if a match is
-Ibund.
-3. Add a fume ion called modulus( ) to the final version ofthe
-arithrneth. arograrn in Example 2. Have the function return the
-result of a b. Add this option to the menu and full y integrate
-it into the program.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3. One of the most common uses of a function pointer occurs
-when utilizing another of C's standard library functions, qsort{ ).
-The q80rt( ) function is a generic sort routine that can sort any
-type of singly dimensioned array, using the Quicksort algorithm.
-Its prototype is
-void qsort(void 'array, size_t number, size_t size,
-int (,comp)(const void '8. const void 'b));
-Here, array is a pointeno the first element in the array to be
-sorted. The number of elements in the array is specified by
-number, and the size of each element of the array is specified by
-
-size. (Remember, size_t is defined by the C compiler and is
-loosely the same as unsigned.) The final parameter is a pointer
-to a function (which you create) that compares twO elements of
-the array and returns the following results:
-·a <·b
-·a ==·b
-·a >·b
-returns a negative value
-returns a zero
-returns a positive value
-The qsort( ) function has no return value. It uses the STDLlB.H
-header file.
-The following program loads a JDO-element integer·array
-with random numbers, sorts it, and displays the sorted form.
-Notice the necessary type casts within the comp( ) function.
-#include <stdio.h>
-;include <stdlib.h>
 int comp(const void *i, const void *j);
-int main(void)
-(
-int sort[lOO], i;
-fOl"(j:=O; i<100; i+ .... )
-sort[ij := randr);
-qsort(sort, 100, sizeof(int), comp):
-)
-for (i=l); i<100; i++)
-printf{'"%d\n",sort[i]};
-return 0;
-int comp(const void
-(
-canst void *j)
-return *(int*)i - *iint*)j;
-)
 
-1. Compile and run all of the example programs. Experiment with
-them, making 1111nor changes.
-2. Another of C's standard library functions is called bsearch ( ) .
-This functlon searches a sorted a rray, gIven d key. It returns a
-pointer to the first entry in the array thot matches the key If no
-match is found, a null pointer is returned. Its prowtype is
-void 'bsearch(consl VOid ' key, const void ' array, slze_t number. size_t Size,
-Inl (, comp)(const void ' a, const void ' b));
-All the pa rameters to b search( ) arc the same as for qsort( )
-except the first. \\'hieh is a pOInter to kelj, the object bc:ing
-,,,ught. The comp( ) fun, tlon operates the same for bscarch( )
-", it does for qsort( ) .
-.\lnd;fy the prugraln In L...dlr'pl~ 3 so that anf"r the iiff<-ly is
-sOIlPd the tl~er IS prompted to cntpr a number :\'C\t. using
-hscarch( ). search the s()rH~d arr.JY and repan ji a nla~ch is
-found
-3. Add a function call~d modulus( ) to the tinal verSion of the
-.nithmctic progranl In Example 2. Ha\'e the functIOn return the
-result of a % h . Ada tll1S optIOn to the menu dnd fully integrate
-it lnW the progcam.
+int main(void) {
+    int sort[100], i;
+
+    // load 100 random numbers from the 'random number list' to sort[100]
+    for(i=0; i<100; i++) sort[i] = rand();
+
+    qsort(sort, 100, sizeof(int), comp);
+
+    // print the result
+    for(i=0; i<100; i++) printf("%d\n",sort[i]);
+
+    return 0;
+}
+
+// comparison function
+int comp(const void *i, const void *j) {
+    return *(int*)i - *(int*)j;
+}
+
+
+
+
+
+/*  ------------    bscarch() : BinarySearch    ------------ 
+    Another of C's standard library functions is called bscarch().
+    
+    This function searches a SORTED ARRAY, given a 'KEY'. 
+
+    It returns a pointer to the 'first entry' in the array that matches the KEY,
+        if no match is found, a null pointer is returned, its prototype is:
+*/
+    void *bsearch(const void *key, const void *array, size_t number, size_t size, int(*comp)(const void *a, const void *b));
+/*
+    All the parameters to bsearcb() are the same as for qsort() except the first, 
+        which is a 'pointer to key', the object being sought. 
+    
+    The comp() function operates the same for bscarch() as it does for qsort().
+*/
+
+
+
+
+/* Example 5: Modify the program in 'Example 4' (Quick-sort) so that after the array is sorted, 
+                the user is prompted to enter a number. 
+                Next, USili bsearch() search the sorted array and report if a match is found.
+*/
+
+
+
+/* Example 6: Add a fume ion called modulus() to the second version of the previous arithmetic program (Example 3). 
+                Have the function return the result of 'a%b'.
+                Add this option to the menu and fully integrate it into the program. */
+
+
 
