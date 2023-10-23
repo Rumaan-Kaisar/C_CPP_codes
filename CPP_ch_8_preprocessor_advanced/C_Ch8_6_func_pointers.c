@@ -295,14 +295,101 @@ int comp(const void *i, const void *j) {
 
 /* Example 5: Modify the program in 'Example 4' (Quick-sort) so that after the array is sorted, 
                 the user is prompted to enter a number. 
-                Next, USili bsearch() search the sorted array and report if a match is found.
+                Next, using bsearch() search the sorted array and report if a match is found.
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+
+int comp(const void *i, const void *j);
+
+int main(void) {
+    int sort[100], i, key;
+    int *p;
+
+    // load 100 random numbers from the 'random number list' to sort[100]
+    for(i=0; i<100; i++) sort[i] = rand();
+
+    qsort(sort, 100, sizeof(int), comp);
+
+    // print the result
+    for(i=0; i<100; i++) printf("%d\n",sort[i]);
+
+    // Search a nuber
+    printf("Enter number to find: ");
+    scanf("%d", &key);
+    p = bsearch(&key, sort, 100, sizeof(int), comp);
+    if(p) printf("Number is in array.\n");
+    else printf("Number not found.\n");
+
+    return 0;
+}
+
+// comparison function
+int comp(const void *i, const void *j) {
+    return *(int*)i - *(int*)j;
+}
 
 
-/* Example 6: Add a fume ion called modulus() to the second version of the previous arithmetic program (Example 3). 
+
+
+/* Example 6: Add a fume ion called modulus() to the second version of the previous arithmetic program (Example 3).
                 Have the function return the result of 'a%b'.
                 Add this option to the menu and fully integrate it into the program. */
+#include <stdio.h>
 
+int sum(int a, int b);
+int subtract(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+int modulus(int a, int b);
+
+// Initialized function-pointer array.
+// Get address of all: sum(), subtract(), mul(), div(), modulus()
+int (*p[5]) (int x, int y) = { sum, subtract, mul, div, modulus };
+
+int main (void) {
+    int result;
+    int i, j, op;
+
+    printf("Enter two numbers: ");
+    scanf("%d%d", &i, &j);
+
+    printf("O: Add, 1: Subtract, 2: Multiply, 3: Divide\n");
+    printf("4: Modulus\n");
+
+    do {
+        printf("Enter number of operation: ");
+        scanf("%d", &op);
+    } while(op<0 || op>4);
+
+    result = (*p[op]) (i, j);
+    printf("%d", result);
+
+    return 0;
+}
+
+
+int sum(int a, int b) {
+    return a+b;
+}
+
+int subtract(int a, int b) {
+    return a-b;
+}
+
+int mul(int a, int b) {
+    return a*b;
+}
+
+int div(int a, int b) {
+    if(b) return a/b;
+    else return 0;
+}
+
+int modulus(int a, int b) {
+    if(b) return a%b;
+    else return 0;
+}
 
 
