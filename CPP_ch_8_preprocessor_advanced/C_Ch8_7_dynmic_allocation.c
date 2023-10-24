@@ -17,7 +17,7 @@
             So, it the application compiled in computers with the minimum amount memory
                 it won't allow other users having pc with more memory to edit larger documents. 
 
-        If memory is ALLOCATED DYNAMICALLY (as needed until memory is exhausted), h
+        If memory is ALLOCATED DYNAMICALLY (as needed until memory is exhausted), 
             any user may make full use of the memory in the system. 
 
 
