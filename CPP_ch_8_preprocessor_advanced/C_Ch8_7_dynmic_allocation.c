@@ -51,6 +51,8 @@
 
         [2]	When a program terminates, all 'allocated memory' is automatically released.
 
+        [3] Overrun: the boundaries of allocated memory can be overrun just like an Array. 
+
 
 
     ---------------    check for a valid malloc-pointer    ---------------
@@ -162,6 +164,7 @@ available to the program
 
 
 
+
 /* ----------    Buffer and Dynamic allocation    ----------
     dynamic allocation is used to create buffers for file I/O when we are using fread() and, or fwritc(). 
         Often, we only need a buffer for a short period of time, 
@@ -169,16 +172,19 @@ available to the program
 */
 
 
-Example 4: The following program shows how dynamic allocation can be used to create a buffer. 
-The program allocates enough space to hold ten floating-point values. 
+/* Example 4: The following program shows how dynamic allocation can be used to create a buffer. 
+                The program allocates enough space to hold 'ten FLOATING-POINT values'. 
 
-It then assigns ten ranclom n umbe rs to
-the allocated memory, indexing the pointer as an array. Next,
-it writes the values to disk and frees the memory. Fi nally, it
-reallocates memory, reads the tile and displays the ranclom
-numbers. Although there is no need to free and then reallocate
-the memory that serves as a file buffer in this short exa m ple, it
-illustrates the hasic idea.
+                It then assigns ten random numbers to the allocated memory, 'indexing the pointer as an array'. 
+                Next, it 'writes' the values to disk and 'frees the memory'. 
+                Finally, it re-allocates memory, reads the file and displays the random numbers. 
+
+                Although there is no need to free and then reallocate 
+                    the memory that serves as a file buffer in this short example, 
+                    it illustrates the basic idea. 
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h >
 i nt main(vo id )
@@ -229,11 +235,12 @@ THE C PREPROCESSOR AND SOME ADVANCED TOPICS
 for(i=O; i<10; i++) printf{ft%f" p[ii);
 free (p) ;
 return 0;
+"
 
 
 
-Example 5: Just as array boundaries can he overrun, so can the boundaries
-of allocated memory. For example, this fragment is syntactically
+// ----------    memory overflow/overrun    ----------
+Example 5: Just as array boundaries can be overrun, so can the boundaries of allocated memory. For example, this fragment is syntactically
 valid, but wrong.
 p = malloc(lO);
 for(i=O; i<100; i) plil = i;
