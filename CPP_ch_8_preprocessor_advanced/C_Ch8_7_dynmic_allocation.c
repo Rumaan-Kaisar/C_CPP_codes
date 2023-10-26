@@ -103,13 +103,16 @@ if(!p) {
 
 
 
-Example 2: The following program allocates 80 bytes and assigns a
-character pointer to it. This creates a dynamic character array.
-It then uses the allocated memory to input a stri~ using gets( ).
-Finally, the string is redisplayed and the pointe,",s freed. (As
-stated earlier, all memory is freed when the program ends, so
-the call to free( ) is included in this program simply to
-demonstrate its use.)
+/* Example 2: The following program allocates '80 bytes' and assigns a 'character pointer' to it. 
+                This creates a "DYNAMIC CHARACTER ARRAY".
+
+                It then uses the allocated memory to input a strig using gets().
+                Finally, the string is redisplayed and the pointer is freed.
+
+                (actually, all memory is freed when the program ends, there is no ned for free()
+                Here we used free() only to demonstrate its use.) */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 int main(voidl
@@ -129,8 +132,9 @@ ret.urn 0;
 
 
 
-Example 3: The next program tells you approximately hoI\' much free
-memory is available to your program.
+
+// check the available memry
+/* Example 3: This program tells you approximately how much free memory is available to your program. */
 ~inc:ude <stdio.h>
 #include <st.dlib.h>
 int ma::.n(·,fOid)
@@ -154,16 +158,21 @@ memory until an allocation request fails. When malloc( )
 returns null, the heap is exhausted. Hence, the value on
 "cpresents (within 1000 bytes) the amount of free memory
 available to the program
+"
 
 
 
-Example 4: One good use for dvnamic allocation is to create buffe rs for file
-I 0 when you are using fread( ) and, or fwritc( ) . Often, vou
-only n""d a buffer for a short perioe! of time, so it makes sense
-to allocate it whe n needed and free it \\'hen done. The fo llowi ng
-program shows how dynamic allocation can be used to crc<ltc
-a butkr. The program allocates enough space to holcl te n
-floating-point values. It then assigns ten ranclom n umbe rs to
+/* ----------    Buffer and Dynamic allocation    ----------
+    dynamic allocation is used to create buffers for file I/O when we are using fread() and, or fwritc(). 
+        Often, we only need a buffer for a short period of time, 
+        so it makes sense to allocate it when needed and free it when done.  
+*/
+
+
+Example 4: The following program shows how dynamic allocation can be used to create a buffer. 
+The program allocates enough space to hold ten floating-point values. 
+
+It then assigns ten ranclom n umbe rs to
 the allocated memory, indexing the pointer as an array. Next,
 it writes the values to disk and frees the memory. Fi nally, it
 reallocates memory, reads the tile and displays the ranclom
