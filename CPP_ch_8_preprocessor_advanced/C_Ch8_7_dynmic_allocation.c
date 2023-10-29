@@ -174,7 +174,7 @@ int main(void) {
 
 
 
-// ----------------    rev    -------------
+
 
 /* ----------    Buffer and Dynamic allocation    ----------
     dynamic allocation is used to create buffers for file I/O when we are using fread() and, or fwritc(). 
@@ -183,72 +183,95 @@ int main(void) {
 */
 
 
-/* Example 4: The following program shows how dynamic allocation can be used to create a buffer. 
-                The program allocates enough space to hold 'ten FLOATING-POINT values'. 
 
-                It then assigns ten random numbers to the allocated memory, 'indexing the pointer as an array'. 
-                Next, it 'writes' the values to disk and 'frees the memory'. 
-                Finally, it re-allocates memory, reads the file and displays the random numbers. 
 
-                Although there is no need to free and then reallocate 
-                    the memory that serves as a file buffer in this short example, 
-                    it illustrates the basic idea. 
+/* Example 4: The following program shows how dynamic allocation can be used to create a buffer.
+                The program allocates enough space to hold 'ten FLOATING-POINT values'.
+
+                It then assigns ten random numbers to the allocated memory, 'indexing the pointer as an array'.
+                Next, it 'writes' the values to disk and 'frees the memory'.
+                Finally, it re-allocates memory, reads the file and displays the random numbers.
+
+                Although there is no need to free and then reallocate
+                    the memory that serves as a file buffer in this short example,
+                    it illustrates the basic idea.
 */
 
-
 #include <stdio.h>
-#include <stdlib.h >
-i nt main(vo id )
-{
-int i;
-double *p;
-FILE '"fp;
-/ '" get memory * /
-p = malloctlO * sizeof(double));
-iEl:p) {
-printf("Allocation Error");
-exit(l) ;
+#include <stdlib.h>
+
+int main(void) {
+    int i;
+    double *p;
+    FILE *fp;
+
+    // get memory
+    p = malloc(10 * sizeof(double));
+    if(!p) {
+        printf("Allocation Error");
+        exit(1);
+    }
+
+    // generate 10 random numbers
+    for(i=0; i<10; i++) p[i] = (double)rand();
+
+    // open file to write
+    if((fp = fopen("arry_file", "wb")) == NULL) {
+        printf("Cannot open file.\n");
+        exit(1);
+    }
+
+    // write the entire array in one step
+    if(fwrite(p, 10*sizeof(double) , 1, fp) != 1) {
+        printf("Write Error.\n");
+        exit(1);
+    }
+
+    // close the file and free memory
+    fclose(fp);
+    free(p); // memory not needed now
+
+    /*
+        imagine something transpires here
+        .
+        .
+        .
+    */
+
+    // get memory again
+    p = malloc(10 * sizeof(double));
+    if(!p) {
+        printf("Allocation Error");
+        exit(1);
+    }
+
+    // open for reading
+    if((fp = fopen("arry_file", "rb")) == NULL) {
+        printf("Cannot open file. \n");
+        exit(1);
+    }
+
+    // read the entire array in one step, store it again in p
+    if(fread(p, 10*sizeof(double), 1, fp) != 1) {
+        printf("Read Error.\n");
+        exit(1);
+    }
+
+    // close the file
+    fclose(fp);
+
+    // display the array
+    for(i=0; i<10; i++) printf("%f", p[i]);
+
+    free(p); // relese memory
+
+    return 0;
 }
-/* generate 10 random numbers */
-for(i=O; i<10; i++)
-p[i] = (double) rand();
-if«fp = fopen("myfile", "wb"))==NULL)
-printf(MCannot open file.\n")i
-exit(l);
-}
-/* write the entire array in one step */
-if(fwrite(p, lO*sizeof(double) , I, fp) != 1) (
-printf("Write Error.\n");
-exit(l) ;
-}
-fclose (fp) i
-free(p); /'" memory not needed now " I
-I '
-imagine something transpires here
-'f
-I~ get memory again */
-p = malloc(lO .. sizeof(double»
-if(!p) {
-print f (M Allocat ion Error");
-exit(1) ;
-if«fp = fopen("myfile", "rb"))==NULL) (
-printf("Cannot open file. \n");
-exit(l) ;
-}
-/* read the entire array in one step */
-if{fread(p, lO*sizeof(double) , 1,' fp) != 1)
-printf("Read Error.\n");
-exit (1);
-fclose (fp) ;
-THE C PREPROCESSOR AND SOME ADVANCED TOPICS
-127 MASTER DYNAMIC ALLOCAnON
-/* display the array */
-for(i=O; i<10; i++) printf{ft%f" p[ii);
-free (p) ;
-return 0;
-"
 
 
+
+
+// ----------------    rev    -------------
 
 // ----------    memory overflow/overrun    ----------
 Example 5: Just as array boundaries can be overrun, so can the boundaries of allocated memory. For example, this fragment is syntactically
