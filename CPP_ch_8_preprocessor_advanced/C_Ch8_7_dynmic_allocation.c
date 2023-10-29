@@ -17,7 +17,7 @@
             So, it the application compiled in computers with the minimum amount memory
                 it won't allow other users having pc with more memory to edit larger documents. 
 
-        If memory is ALLOCATED DYNAMICALLY (as needed until memory is exhausted), h
+        If memory is ALLOCATED DYNAMICALLY (as needed until memory is exhausted),
             any user may make full use of the memory in the system. 
 
 
@@ -114,25 +114,33 @@ if(!p) {
                 (actually, all memory is freed when the program ends, there is no ned for free()
                 Here we used free() only to demonstrate its use.) */
 
-
 #include <stdio.h>
 #include <stdlib.h>
-int main(voidl
-(
-)
-char *p;
-p = malloe (80);
-ifl!p) (
-)
-printf ("Allocation Failed");
-exit{l);
-printfl-Enter a string: ~);
-gets(p) ;
-printf (PI;
-free(p) ;
-ret.urn 0;
+
+int main(void) {
+    char *p;
+
+    p = malloc(80);
+    if(!p) {
+        printf("Allocation Failed");
+        exit(1);
+    }
+
+    // inputting the string
+    printf("Enter a string: ");
+    gets(p);
+    printf(p);
+
+    // freeing allocated memory
+    free(p);
+    // when program terminated, this memory autometically freed
+
+    return 0;
+}
 
 
+
+// ----------------    rev    -------------
 
 
 // check the available memry
