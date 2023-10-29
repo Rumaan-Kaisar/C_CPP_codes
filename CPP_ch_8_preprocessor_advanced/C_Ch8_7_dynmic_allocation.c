@@ -105,6 +105,7 @@ if(!p) {
 
 
 
+
 /* Example 2: The following program allocates '80 bytes' and assigns a 'character pointer' to it. 
                 This creates a "DYNAMIC CHARACTER ARRAY".
 
@@ -140,38 +141,40 @@ int main(void) {
 
 
 
-// ----------------    rev    -------------
 
+// ##########    check the available memry    ##########
 
-// check the available memry
-/* Example 3: This program tells you approximately how much free memory is available to your program. */
-~inc:ude <stdio.h>
-#include <st.dlib.h>
-int ma::.n(·,fOid)
-(
-.~.
-char ~,
-long 1;
-1 = 0;
+/* Example 3: This program tells you approximately how much free memory is available to your program. 
+                The program works by allocating 1000-byte-Long chunks of memory until an allocation request fails. 
+                When malloc() returns null, the 'heap' is exhausted. 
+                Hence, the value on 'l_g' represents (within 1000 bytes) the amount of free memory available to the program.
+*/
+#include <stdio.h>
+#include <stdlib.h>
 
-do (
-p = rnalloc{lOOO);
-iElp) 1 += 1000;
-} while{p);
-THE C PREPROCESSOR AND SOME ADVANCED TOPICS
-12. 7 MASTER DYNAMfC ALLOC4 nON
-printf("Approximately 'tld bytes of free memory.", 1);
-return 0;
+int main(void) {
+    char *p;
+    long l_g;
+
+    l_g = 0;
+
+    // allocate 1000 bytes each-time untill p returns null-pointer
+    do {
+        p = malloc(1000);
+        if(p) l_g += 1000;
+    } while(p);
+
+    printf("Approximately %ld bytes of free memory.", l_g);
+    
+    return 0;
 }
-The program works by allocating IOOO-byte-iong chunks of
-memory until an allocation request fails. When malloc( )
-returns null, the heap is exhausted. Hence, the value on
-"cpresents (within 1000 bytes) the amount of free memory
-available to the program
-"
+
+// output: Approximately 2017941816 bytes of free memory.
 
 
 
+
+// ----------------    rev    -------------
 
 /* ----------    Buffer and Dynamic allocation    ----------
     dynamic allocation is used to create buffers for file I/O when we are using fread() and, or fwritc(). 
