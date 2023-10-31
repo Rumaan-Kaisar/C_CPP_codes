@@ -393,3 +393,28 @@ int modulus(int a, int b) {
 }
 
 
+
+
+/* Example 7: Write a program that sorts the string "this is a test of qsort".
+                Display the sorted output. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int comp(const void *i, const void *j);
+
+int main(void) {
+    char str[] = "this is a test of qsort";
+    qsort(str, strlen(str), 1, comp);
+    printf (str);
+
+    return 0;
+}
+
+int comp(const void *i , const void *j) {
+    return *(char*)i - *(char*)j;
+}
+
+// output: aefhiiooqrsssstttt
+
+
