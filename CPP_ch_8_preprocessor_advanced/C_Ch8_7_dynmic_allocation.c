@@ -309,7 +309,7 @@ int main(void) {
 
 
 
-/* Example 3: What's wrong with this fragment? */
+/* Example 7: What's wrong with this fragment? */
 char *p;
 *p = malloc(10);
 gets(p) ;
@@ -325,5 +325,31 @@ gets(p) ;
 
     Also, the value returned by malloc( ) is 'not verified' as a VALID POINTER. 
 */
+
+
+
+
+/* Example 8: Write a program that 'dynamically allocates' memory for one DOUBLE.
+                Have the program assign that location the value 99.01,
+                display the value, and then free the memory. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    double *p;
+
+    p = malloc(sizeof(double));
+    if(!p) {
+        printf ("Allocation Error");
+        exit(1);
+    }
+
+    *p = 99.01;
+    printf("%f", *p);
+    free(p);
+
+    return 0;
+}
 
 
