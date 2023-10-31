@@ -271,19 +271,18 @@ int main(void) {
 
 
 
-// ----------------    rev    -------------
-
 // ----------    memory overflow/overrun    ----------
-Example 5: Just as array boundaries can be overrun, so can the boundaries of allocated memory. For example, this fragment is syntactically
-valid, but wrong.
-p = malloc(lO);
-for(i=O; i<100; i) plil = i;
+/* Example 5: Just as array boundaries can be overrun, so can the boundaries of allocated memory. 
+                For example, this fragment is syntactically valid, but wrong. */
+p = malloc(10);
+for(i=0; i<100; i) p[i] = i;
 
 
 
-Example 1: Compile and run the example programs.
 
 
+
+// -------  rev  ----------
 
 Example 2: Vlritc a program that creates a tenRelernent dynamic integer
 array. Next, using pointer arithmetIc or array indexing, c1ssign
