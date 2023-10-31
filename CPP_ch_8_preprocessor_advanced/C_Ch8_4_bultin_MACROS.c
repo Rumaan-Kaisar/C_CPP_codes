@@ -82,3 +82,11 @@ int main(void) {
 // Compiling myprog.c, line: 101, on Mar 18 1997 at 10:00:00
 
 
+
+
+/* Example 3: What is __FILE__ and what does it represent? 
+                __FILE__ is a 'predefined macro' that contains the name of the
+                'source file' currently being compiled.
+*/
+
+
