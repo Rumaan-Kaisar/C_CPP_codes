@@ -478,3 +478,37 @@ int main(void) {
 
 
 
+
+/* Example 8: Using an #ifdef, show how to conditionally compile this
+                fragment of code based upon whether DEBUG is defined or not. 
+
+                        if(!(j%2)) {
+                            printf("j = %d\n", j);
+                            j = 0;
+                        }
+*/
+#if DEBUG
+if(!(j%2)) {
+    printf("j = %d\n", j);
+    j = 0;
+}
+#endif
+
+
+
+
+/* Example 9: Using the fragment from previous Exercise, show how you can
+                conditionallv compile the code when DEBUG is defined as 1.
+                (Hint: Use #if).
+*/
+
+#define DEBUG 1
+
+#if DEBUG == 1
+if(!(j%2)) {
+    printf("j = %d\n", j);
+    j = 0;
+}
+#endif
+
+
