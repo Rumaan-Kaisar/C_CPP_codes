@@ -120,3 +120,10 @@ int main(void) {
 /* Example 4: Although the ANSI C standard does not specify any #pragma directives, 
                 on your own check your compiler's user manual and learn about any supported by your system. */
 
+
+
+
+/* Example 5: How do you undefine a macro? */
+// To undefine a macro name use #undef
+
+
