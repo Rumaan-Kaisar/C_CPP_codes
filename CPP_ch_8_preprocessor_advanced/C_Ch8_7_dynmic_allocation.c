@@ -280,130 +280,50 @@ for(i=0; i<100; i) p[i] = i;
 
 
 
+/* Example 6: Write a program that creates a ten-element 'DYNAMIC integer array'. 
+                Next, using pointer arithmetic or array indexing, assign
+                    the values 1 through 10 to the integers that comprise the array.
+                
+                Finally, display the values and free the memory.
+*/
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(void) {
+    int *p, i;
 
-// -------  rev  ----------
+    p = malloc(10*sizeof(int));
+    if(!p) {
+        printf("Allocation Error");
+        exit(1);
+    }
 
-Example 2: Vlritc a program that creates a tenRelernent dynamic integer
-array. Next, using pointer arithmetIc or array indexing, c1ssign
-the values I through 10 to the integers that wmprisc the arra\'.
-Finally, display the values and free the memory.
+    for(i=0; i<10; i++) p[i] = i+1;
+    for(i=0; i<10; i++) printf("%d", *(p+i));
 
+    free(p);
 
-
-Example 3: What's wrong \·"ith this fragment?
-char "p;
-'p = mallocllO);
-gets (p) ;
-
-
-
-
-"
-/* --------    mastery    -------- */
-
-At this point yoti should be able to answer these qttestions and
-perform these exercises:
-
-
-Example 1: What is the difference between using quotes and angle brackets
-\vith the #include directive?
-
-
-Example 2: Using an #ifdef, show how to conditionally compile this
-fragment of code hased upon whether DEBUG is defined or not.
-if l ! (j %2)) {
-)
-print.f("J = %d\n", J);
-J = 0;
-
-
-Example 3:L'smg the tragmcm from ExerCIse 2, show how you can
-conditionallv compile the cncie when DEBUG is defined as 1.
-(Hint: Use #if).
--I. Hov,' do VOll undefine a macro?
-
-
-Example 5: \"lhat is __FILE__ and what does it repre!:.f'nt:'
-
-
-6. What do the # and ## preprocessor operators do:'
-
-
-Example 7: Write a prugr<lm that sorts the string "this is a test ofqsort".
-Display the sorted output.
-
-
-Example 8: Write a program that dynamically allocates mem(lfY for one
-double. Have the program assign that locanon the value ~9.01,
-display the value, and then free the memory
+    return 0;
+}
 
 
 
 
+/* Example 3: What's wrong with this fragment? */
+char *p;
+*p = malloc(10);
+gets(p) ;
 
-"
-/* --------    cumul    -------- */
+/* 
+    The statement
 
-This section checks how well you have integrated the material in
-this ch<lptcr with that from "<lrlier ch<lpters.
+        *p = malloc(10);
 
-Example 1: Section 10.1, Example 3, presents .1 computerized card-catalog
-program tllat liSt'S an array \)f structures to hold infornlation on
-books. Change this program so that only an array of structure
+    should be
 
-pointers is created, and use dynamically allocated memory to
-actually hold the information for each book as it is entered. This
-way, less memory is used when information on only a few
-books is stored.
+        p = malloc(10);
 
-
-
-Example 2: Show the macro eqUivalent of this function;
-char code_it(char c)
-(
-return -Ci
-)
-Demonstrate that your macro version works in a program.
-,
+    Also, the value returned by malloc( ) is 'not verified' as a VALID POINTER. 
+*/
 
 
-
-Example 3: On your own, look over the programs that you have written in
-the course of working through this book. Try to find places
-where you can;
-.. Use conditional compilation.
-• Replace a short function with a f~tion.like macro.
-.. Replace statically allocated arrays with dynamic arrays.
-... Use function pointers.
-
-
-
-Example 4: On your own, study the user's manual or online documentation
-for your C compiler, paying special attention to the description
-of its standard library functions. The C standard library contains
-several hundred library functions that can make your
-programming tasks easier. Also, Appendix A in this book
-discusses some of the most common library functions.
-
-
-
-Example 5: Now that you have finished this book, go back and skim through
-each chapter, thinking about how each aspect of C relates to the
-rest of it. As you will see, C is a highly integrated language, in
-which one feature complements another. The connection
-between pointers ahd arrays, for example, is pure elegance.
-
-
-
-Example 6: C is a language best learned by doing! Continue to write
-programs in C and to study other programmers' programs. You
-will be surprised at how quickly C will become second nature!
-
-
-
-7. Finally, you now have the necessary foundation in C to a1\ow
-you to move on to C++;C'sobject-orientedextension. If C++ .
-programming is in your future, proceed to Teach Yoursel{C++,
-(Berkeley, CA, Osborne/McGraw-Hill). It picks up where this
-book leaves off.
