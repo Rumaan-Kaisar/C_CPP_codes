@@ -131,3 +131,12 @@ int main(void) {
 }
 
 
+
+
+/* Example 6: What do the # and ## preprocessor operators do? 
+
+                # operator makes the argument it precedes into a "QUOTED STRING". 
+                ## operator CONCATENATES two arguments
+*/
+
+
