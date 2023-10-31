@@ -1,51 +1,133 @@
 
+/* --------    mastery    -------- */
+
+
+/* Example 1: What is the difference between using quotes and angle brackets with the #include directive?
+
+                When you specif'y the file name within angle brackets <>, 
+                    the compiler searches for the file in an implementation-defined manner. 
+
+                When you enclose the file name within double quotes "",
+                    the compiler first tries some other implementation-defined manner to find the file. 
+                    If that fails, it restarts the search as if you had enclosed the file name wIthin angle brackets.
+*/
+
+
+
+
+/* Example 2: Using an #ifdef, show how to conditionally compile this
+                fragment of code based upon whether DEBUG is defined or not. 
+
+                        if(!(j%2)) {
+                            printf("j = %d\n", j);
+                            j = 0;
+                        }
+*/
+#if DEBUG
+if(!(j%2)) {
+    printf("j = %d\n", j);
+    j = 0;
+}
+#endif
+
+
+
+
+/* Example 3: Using the fragment from previous Exercise, show how you can
+                conditionallv compile the code when DEBUG is defined as 1.
+                (Hint: Use #if).
+*/
+
+#define DEBUG 1
+
+#if DEBUG == 1
+if(!(j%2)) {
+    printf("j = %d\n", j);
+    j = 0;
+}
+#endif
+
+
+
+
+/* Example 4: How do you undefine a macro? */
+// To undefine a macro name use #undef
+
+
+
+
+/* Example 5: What is __FILE__ and what does it represent? 
+                __FILE__ is a 'predefined macro' that contains the name of the
+                'source file' currently being compiled.
+*/
+
+
+
+
+/* Example 6: What do the # and ## preprocessor operators do? 
+
+                # operator makes the argument it precedes into a "QUOTED STRING". 
+                ## operator CONCATENATES two arguments
+*/
+
+
+
+
+/* Example 7: Write a program that sorts the string "this is a test of qsort".
+                Display the sorted output. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int comp(const void *i, const void *j);
+
+int main(void) {
+    char str[] = "this is a test of qsort";
+    qsort(str, strlen(str), 1, comp);
+    printf (str);
+
+    return 0;
+}
+
+int comp(const void *i , const void *j) {
+    return *(char*)i - *(char*)j;
+}
+
+// output: aefhiiooqrsssstttt
+
+
+
+
+/* Example 8: Write a program that 'dynamically allocates' memory for one DOUBLE.
+                Have the program assign that location the value 99.01,
+                display the value, and then free the memory. */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    double *p;
+
+    p = malloc(sizeof(double));
+    if(!p) {
+        printf ("Allocation Error");
+        exit(1);
+    }
+
+    *p = 99.01;
+    printf("%f", *p);
+    free(p);
+
+    return 0;
+}
+
+
+
+
 
 
 
 // -------  rev  ----------
-/* --------    mastery    -------- */
-
-At this point yoti should be able to answer these qttestions and
-perform these exercises:
-
-
-Example 1: What is the difference between using quotes and angle brackets
-\vith the #include directive?
-
-
-Example 2: Using an #ifdef, show how to conditionally compile this
-fragment of code hased upon whether DEBUG is defined or not.
-if l ! (j %2)) {
-)
-print.f("J = %d\n", J);
-J = 0;
-
-
-Example 3:L'smg the tragmcm from ExerCIse 2, show how you can
-conditionallv compile the cncie when DEBUG is defined as 1.
-(Hint: Use #if).
--I. Hov,' do VOll undefine a macro?
-
-
-Example 5: \"lhat is __FILE__ and what does it repre!:.f'nt:'
-
-
-6. What do the # and ## preprocessor operators do:'
-
-
-Example 7: Write a prugr<lm that sorts the string "this is a test ofqsort".
-Display the sorted output.
-
-
-Example 8: Write a program that dynamically allocates mem(lfY for one
-double. Have the program assign that locanon the value ~9.01,
-display the value, and then free the memory
-
-
-
-
-
-"
 /* --------    cumul    -------- */
 
 This section checks how well you have integrated the material in
