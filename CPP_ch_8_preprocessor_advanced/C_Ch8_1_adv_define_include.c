@@ -252,3 +252,17 @@ int main(void) {
     return 0;
 }
 
+
+
+
+/* Example 8: What is the difference between using quotes and angle brackets with the #include directive?
+
+                When you specif'y the file name within angle brackets <>, 
+                    the compiler searches for the file in an implementation-defined manner. 
+
+                When you enclose the file name within double quotes "",
+                    the compiler first tries some other implementation-defined manner to find the file. 
+                    If that fails, it restarts the search as if you had enclosed the file name wIthin angle brackets.
+*/
+
+
