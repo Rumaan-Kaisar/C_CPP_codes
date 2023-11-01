@@ -73,17 +73,6 @@
 */
 
 
-/* #############    Finishing Tips    ############# */
-
-//     Go back and skim through each chapter, thinking about how each aspect of C relates to the rest of it. 
-//         As you will see, C is a highly integrated language, in which one feature complements another. 
-//         The connection between pointers and arrays, for example, is pure elegance.
-
-//     Practice more: C is a language best learned by doing! Continue to write programs in C and to study other programmer's codes. 
-    
-//     Finally, you now have the necessary foundation in C to allow you to move on to C++, C’s object-oriented extension. 
-    
-
 
 
 /* ---------------    check for a valid malloc-pointer    --------------- */
@@ -351,5 +340,34 @@ int main(void) {
 
     return 0;
 }
+
+
+
+
+/* #############    Finishing Tips    ############# */
+
+//     Go back and skim through each chapter, thinking about how each aspect of C relates to the rest of it. 
+//         As you will see, C is a highly integrated language, in which one feature complements another. 
+//         The connection between pointers and arrays, for example, is pure elegance.
+
+
+//     Practice more: C is a language best learned by doing! Continue to write programs in C and to study other programmer's codes.
+
+
+// The previous programs that we worked:
+        // we can use "conditionmal compilation"
+        // Replace a short function with a "function-like macro"
+        // Replace 'statically allocated' arrays with "dynamic arrays"
+        // Use "function pointers".
+    
+
+// Learn STL (standard library functions):
+        // study the user's manual or online documentation for your C/C++ compiler, Learn of its standard library functions. 
+        // The C standard library contains several hundred library functions that can make your programming tasks easier.
+        // Also you can list the most common library functions.
+
+
+//     Finally, you now have the necessary foundation in C to allow you to move on to C++, C’s object-oriented extension. 
+
 
 
