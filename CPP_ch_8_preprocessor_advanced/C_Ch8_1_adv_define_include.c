@@ -266,3 +266,29 @@ int main(void) {
 */
 
 
+
+
+/* Example 9: Show the macro equivalent of this function:
+
+                        char code_it(char c) {
+                            return ~c;
+                        }
+
+                Demonstrate that your macro version works in a program. 
+*/
+
+#include <stdio.h>
+
+#define CODE_IT(ch) ~ch     // macro function
+
+int main(void) {
+    int ch;
+
+    printf("Enter a character: ");
+    ch = getchar();
+    printf("%c coded is %c", ch, CODE_IT(ch));
+
+    return 0;
+}
+
+
