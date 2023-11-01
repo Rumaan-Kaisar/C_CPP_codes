@@ -1,11 +1,43 @@
-C Keyword Summary
-There are 32 keywords in C. All keywords are in lowercase. Following table list the keywords alphabetically. However the summery of those keywords are in GroupWise 
 
-auto	const 	double 	float 	int 	short 	struct 	unsigned 
-break	continue 	else 	for 	long 	signed 	switch 	void 
-case	default 	enum 	goto 	regiser	sizeof 	typedef 	volatile 
-char 	do 	extern 	if 	return	static 	union 	while
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Keyword Summary        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+There are 32 keywords in C. All keywords are in lowercase. 
+
+        auto	 	 	 	 	 	 	 
+        break	 	 	 	 	 	 	 
+        case	 	 	 		 	 	 
+        char 	 	 	 		 	 	
+        const
+        continue
+        default
+        do
+        double
+        else
+
+                enum
+                extern
+                float
+                for
+                goto
+                if
+                int
+                long
+                regiser
+                return
+
+                        short
+                        signed
+                        sizeof
+                        static
+                        struct
+                        switch
+                        typedef
+                        union
+                        unsigned
+                        void
+
+                                volatile
+                                while
 
 
 Keyword	Control      :      Keyword Summery and general form	Example
