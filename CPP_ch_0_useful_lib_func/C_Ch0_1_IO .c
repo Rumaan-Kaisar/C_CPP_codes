@@ -1,5 +1,8 @@
+/* 
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        STANDARD & non-STANDARD CONSOLE i/o        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-    -------------------    Standard CONSOLE i/o    -------------------
+    ----------------    STANDARD CONSOLE FUNCTIONS    ----------------
+
     -------------------    getchar(), putchar() & EOF    -------------------
     EOF: 
         when error occurs while reading/writing an input/output in the case of int returning type function, 
@@ -34,7 +37,7 @@
             If the output operation is successful, putchar() returns the character written. If an output error occurs, EOF is returned. 
             
             putchar() is faster and more efficient than printf()
-
+ */
 
 
 /* Example 1: Line Buffering : getchar() is generally implemented using line buffering.
@@ -61,27 +64,11 @@ int main(void){
 }
 
 
-/* Example 3: The following program illustrates the fact that you can use C's backslash character constants '\n' with putchar(). 
-                This program displays
-                A
-                B
-                on the screen  */
-#include <stdio.h>
-
-int main(void){
-    putchar('A');
-    putchar('\n');
-    putchar('B');
-
-    return 0;
-}
-
-
-
 
 
 /*     
     ----------------    NON-STANDARD CONSOLE FUNCTIONS    ----------------
+
             getche()
             getch()
             kbhit()
@@ -140,8 +127,6 @@ int main(void){
 
 
 
-
-
 /* Example 1: The getch() function lets you take greater control of the screen because
                 you can determine what is displayed each time a key is struck.
                 For example, this program reads characters until a 'q' is typed.
@@ -163,13 +148,13 @@ int main(void) {
 
 
 
-// strings
-
 
 /*     
-    ---------------    String IO    ---------------
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        String IO        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
                 gets()
                 puts()
+
     Prototypes:
         char *gets(char *str); // "pointer-function" returns char type & char type "pointer-parameter"
         int puts(char *str);   // " function" returns int type & char type "pointer-parameter"
@@ -226,7 +211,7 @@ int main(void){
 
 
 
-/* Example 3: Compile the program shown in Example 2, above. Note the size
+/* Example 2: Compile the program shown in Example 2, above. Note the size
                 of the compiled code. Next, convert it so that it uses puts(), instead of printf( ).
                 You will find that the printf() version is several byte, larger. */
 #include <stdio.h>
@@ -245,7 +230,10 @@ int main(void){
 
 
 
+
 /* 
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        printf() & scanf()        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    
     ------------------    printf() : Details    ------------------
     The printf() function has this prototype:
 
@@ -342,14 +330,6 @@ int main(void){
             %[-][minimum-field-width][.][precision] format-specifier
 
             for example , %15.2f  tells printf() to output a double value using a field width of 15, with 2 digits after the decimal point.
-
-
-
-
-    rand():
-        uses STDLIB.H
-        to generate the random numbers.  
-        rand() returns a random integer value each time it is called.
 
 */
 
@@ -538,8 +518,11 @@ int main(void){
 
 
 
-// ----------    file IO    ----------
 
+
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    file IO    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /* 
     ----------------------    File Access & Modify    ----------------------
@@ -734,7 +717,7 @@ int main(void){
 */
 
 
-/* Example 1.1:  writing and reading a file. 
+/* Example 3:  writing and reading a file. 
                 This program demonstrates the four file-system functions.
                     First, it opens a file called MYFILE for output. 
                     Next, it writes the string "OMG!! Whatz goin on?" to the file. 
@@ -834,8 +817,6 @@ int main(void){
 
 
 
-
-
 /* 
     ---------------    End of file [EOF]    ---------------
     End of file [EOF] feof() And file error checking ferror()
@@ -874,6 +855,10 @@ int main(void){
 
 
 
+
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        String/TEXT file IO        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /* 
     --------------------    String/TEXT I/O in a File    --------------------
@@ -940,7 +925,7 @@ int main(void){
 
 
 
-/* Example 1: This program demonstrates fputs() and fgets(). It reads lines entered by the user
+/* Example 4: This program demonstrates fputs() and fgets(). It reads lines entered by the user
                 and writes them to the file specified on the command line.
                 When the user enters a blank line, the input phase terminates, and the file is closed.
                 Next, the file is reopened for input, and the program uses fgets() to display the contents of the file. */
@@ -1005,6 +990,9 @@ int main(int argc, char *argv[]) {
 
 
 
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        BINARY I/O        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /* 
     --------------    BINARY I/O    --------------
@@ -1080,7 +1068,7 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 1: The following program writes an integer to a file called "MYFILE_BI"
+/* Example 5: The following program writes an integer to a file called "MYFILE_BI"
                 using its internal, binary representation and then reads it back.
                 (The program assumes that integers are 2 bytes long.) */
 
@@ -1137,6 +1125,9 @@ int main(void){
 
 
 
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        SIZEOF        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /* 
     ----------------    sizeof() & its use    ----------------
 
@@ -1165,7 +1156,7 @@ int main(void){
 
 
 
-/* Example 2: An improved version of the preceding program (Example 1: program writes an integer to a file called "MYFILE_BI_2") 
+/* Example 6: An improved version of the preceding program (Example 1: program writes an integer to a file called "MYFILE_BI_2") 
                 is shown here, using sizeof. */
 
 #include<stdio.h>
@@ -1213,6 +1204,9 @@ int main(void){
 
 
 
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        RANDOM ACCESS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /* 
     ----------------    Random access    ----------------
@@ -1307,7 +1301,7 @@ int main(void){
 
 
 
-/* Example 1: The following program uses fseek() to report the value of any
+/* Example 7: The following program uses fseek() to report the value of any
                 byte within the file specified on the command line. */
 
 #include <stdio.h>
@@ -1352,7 +1346,7 @@ int main(int argc, char *argv[]){
 
 
 
-/* Example 2: Following uses ftell() and fseek() to copy the contents of one file into another in reverse order.
+/* Example 8: Following uses ftell() and fseek() to copy the contents of one file into another in reverse order.
                 Pay special attention to how the END of the "input/read file" is found.
                 Since the program has sought to the EOF, the program "backs up one byte" so that
                     the 'current location' of the file associated with in is at the 'last actual character' in the file. */
@@ -1414,6 +1408,8 @@ int main(int argc, char *argv[]) {
 
 
 
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        MISC-file I/O functions        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 /* 
     ----------------    Other important File-System functions    ----------------
 
@@ -1467,65 +1463,9 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 1: This program demonstrates remove(). It prompts the user for
-                the file to erase and also provides a safety check in case the user
-                entered the wrong name. */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-int main(void){
-    char fname[80];
-
-    printf("Enter name of file to erase: ");
-    gets(fname);
-    printf("Are you sure? (YIN) ");
-
-    if(toupper(getchar())=='Y') remove(fname);
-
-    return 0;
-}
 
 
-
-
-/* Example 2: The following program demonstrates rewind() by displaying
-                the contents of the file specified on the command line twice. */
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[]){
-    FILE *fp;
-
-    // see if file name is specified
-    if(argc!=2) {
-        printf("File name missing. \n");
-        exit(1);
-    }
-
-    // open file for reading
-    if((fp = fopen(argv[1], "r")) == NULL) {
-        printf("Cannot open file. \n");
-        exit(1);
-    }
-
-    // show it once
-    while(!feof(fp)) putchar(getc(fp));
-
-    rewind(fp);
-
-    // show it twice.
-    // since in previus statement rewind() is used, location is now set to 'start'
-    while(!feof(fp)) putchar(getc(fp));
-
-    fclose(fp);
-
-    return 0;
-}
-
-
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=        STANDARD STREAMS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /* 
     ---------------    THE STANDARD STREAMS    ---------------
@@ -1591,7 +1531,7 @@ int main(int argc, char *argv[]){
 
 
 
-/* Example 1: Assume that this program is called "TEST". If you execute TEST normally, it displays the string on the screen. 
+/* Example 9: Assume that this program is called "TEST". If you execute TEST normally, it displays the string on the screen. 
                 However, if an environment supports redirection of I/O, stdout can be redirected to a file. */
 #include <stdio.h>
 
@@ -1610,7 +1550,7 @@ FL_IO_strm_1 > output_test
 
 
 
-/* Example 2: Input can also be redirected. For example, consider the following program.
+/* Example 10: Input can also be redirected. For example, consider the following program.
                 causes "STDIN" to be directed to the file called INPUT. 
                 Assuming that INPUT contained the ASCII representation for an integer,
                 the value of this integer will be read from the file and printed on the screen. */
@@ -1637,7 +1577,7 @@ FL_IO_strm_2 < input_test
 
 
 
-/* Example 3: When using gets() it is possible to overrun the array that is being used to receive 
+/* Example 11: When using gets() it is possible to overrun the array that is being used to receive 
                 the characters entered by the user because gets() provides "no bounds checking". 
 
                 One way around this problem is to use
