@@ -40,57 +40,156 @@ There are 32 keywords in C. All keywords are in lowercase.
                                 while
 
 
-Keyword	Control      :      Keyword Summery and general form	Example
-if
-	The general form of the if statement is
-		if(condition){ statement block 1 }
-		else { statement block 2 }
-If single statements are used, the braces are not needed. The else is optional. The condition may be any expression. If that expression evaluates to any value other than 0, then statement block 1 will be executed; otherwise, if it exists, statement block 2 will be executed.	
+// Keyword	Control
+// Keyword Summery and general form
+// Example
 
-ch = getche();
-if (ch=='q'){	printf("Prog. Terminated");
-	exit(0); }
-else proceed() ;
 
-else	 See the if section.	
-for	The for loop allows automatic initialization and incrementation of a counter variable. The general form is:           for(initialization; condition; increment) { statement block }
-The braces are not necessary for only one statement. Although the for allows a number of variations, generally the initialization is used to set a counter variable to its starting value. The condition is generally a relational statement that checks the counter variable against a termination value, and the increment increments (or decrements) the counter value. The loop repeats until the condition becomes false.	The following code will print hello 10 times.
-for( t=O; t<10; t++) printf("Hello \n");
-do	The do loop is one of three loop constructs in available in C. The general form:
-do{ statement block } while(condition);
-The braces are not necessary for only one statement. The do loop repeats as long as the condition is true. The do loop is the only loop in C that will always have at least one iteration because the condition rs tested at the bottom of the loop.	do {ch=getche();} while(ch!='q');
-while	The while loop has the general form:
-while(condition){ statement block }
-The braces are not necessary for only one statement. The loop will repeat as long as the condition is true. The while tests its condition at the top of the loop. Therefore, if the condition is false to begin with, the loop will not execute at all. The condition may be any expression.
-reads characters until end-of-file	t = 0;
-while ( !feof(fp)) {s[t] = getc(fp);
-t++;}
+/* 
+    if, else:
 
-switch	The switch statement is C's multi-path branch statement. It is used to route execution in one of several ways. The general form :                 switch(value) {	case constant_1:statement sequence; break;
-				case constant_2: statement sequence; break;
-				case constant_3: statement sequence: break;
-. . . 
- . . .
-				default : statement sequence; break;}
-Each statement-sequence may be one or many statements long. The default portion is optional. The expression controlling the switch and all case constants must be of integral or character types.
-The switch works by checking the value of int-expression against the constants. As soon as a match is found, that set of statements is executed. 
-If the break statement is omitted, execution will continue into the next case. cases are similar to labels. Execution will continue until a break statement is found or the switch ends.	ch = getche();
-switch(ch) {
-          case 'e': enter(); break;
-          case 'l': list(); break;
-          case 's': sort'(); break;
-          case 'q': exit(O); break;
-          default: printf("Unknon cmd\n");
-          printf("Try Again \n");
-	}
+        The general form of the 'if-else' statement is
 
-case	case is covered in conjunction with switch.	
-default	default is used in the switch statement to signal a default block of code to be executed If no matches are found in the switch. 	
-continue
-	continue is used to bypass portions of code in a loop and forces the conditional expression to be evaluated. The call to process() will not occur until ch contains the character s and char entry won't stop until s is entered.	while(ch=getche()) {
-if(ch != 's') continue; 
-process(ch); }
-break
+            if(condition){ 
+                statement block 1 
+            }
+            else { 
+                statement block 2 
+            }
+
+        If single statements are used, the braces are not needed. 
+        The else is optional. 
+        The 'condition' may be any expression. 
+        If that expression evaluates to any value other than 0, then statement block 1 will be executed; 
+            otherwise, if it exists, statement block 2 will be executed.	
+
+        Example: 
+            ch = getche();
+            if (ch=='q'){	printf("Prog. Terminated");
+                exit(0); }
+            else proceed() ;
+
+
+
+    for	:
+        The for loop allows 'automatic initialization' and incrementation of a counter variable. The general form is:
+
+            for(initialization; condition; increment) { 
+                statement block 
+            }
+
+        The braces are not necessary for only one statement. 
+        Although the for allows a number of variations, 
+            generally the initialization is used to set a counter variable to its starting value. 
+        The condition is generally a 'relational statement' that checks the counter variable against a termination value, 
+            and the increment increments (or decrements) the counter value. 
+        The loop repeats until the condition becomes false.	
+
+        Example:
+            The following code will print hello 10 times.
+
+            for( t=O; t<10; t++) printf("Hello \n");
+
+
+
+    do :
+        The do loop is one of three loop constructs in available in C. The general form:
+
+            do{ statement block } while(condition);
+
+        The braces are not necessary for only one statement. 
+        The do loop repeats as long as the condition is true. 
+        
+        The do loop is the only loop in C that will "always have at least ONE ITERATION" 
+            because the condition is tested at the bottom of the loop.	
+            
+        Example: 
+            do {ch=getche();} while(ch!='q');
+
+
+
+    while :
+        The while loop has the general form:
+
+            while(condition){ 
+                statement block 
+            }
+
+        The braces are not necessary for only one statement. 
+        The loop will repeat as long as the condition is true. 
+        The while tests its condition "AT THE TOP" of the loop. 
+        Therefore, if the condition is false to begin with, the loop will not execute at all. 
+        The condition may be any expression.
+
+        reads characters until end-of-file (EOF)	
+
+        Example:
+            t = 0;
+            while (!feof(fp)) {
+                s[t] = getc(fp);
+                t++;
+            }
+
+
+
+    switch, case, default :
+        The switch statement is C's multi-path branch statement. 
+        It is used to route execution in one of several ways. 
+        The general form :                 
+        
+            switch(value) {	
+                case constant_1: statement sequence; break;
+                case constant_2: statement sequence; break;
+                case constant_3: statement sequence: break;
+                        . . . 
+                        . . .
+                default : statement sequence; break;
+            }
+        
+        Each statement-sequence may be one or many statements long. 
+        "default" portion is optional. 
+        The expression controlling the switch and all case constants must be of 'int' or 'char' types.
+
+        The switch works by checking the value of int-expression against the constants. 
+            As soon as a match is found, that set of statements is executed. 
+
+        break: If the break statement is omitted, execution will continue into the next case. 
+        cases are similar to labels. 
+        Execution will continue until a break statement is found or the switch ends.	
+
+        Example:
+            ch = getche();
+            switch(ch) {
+                case 'e': enter(); break;
+                case 'l': list(); break;
+                case 's': sort(); break;
+                case 'q': exit(O); break;
+                default: printf("Unknon cmd\n");
+                printf("Try Again \n");
+            }
+
+
+
+    continue :
+        continue is used to BYPASS PORTIONS of code in a loop and forces the conditional expression to be evaluated. 
+        
+        Example: 
+            The call to process() will not occur until ch contains the character s and char entry won't stop until s is entered.
+        
+            while(ch=getche()) {
+                if(ch != 's') continue; 
+                process(ch); 
+            }
+
+*/
+
+	
+
+
+
+
+
+break :
 	break is used to exit from a do, for, or while loop, bypassing the normal loop condition. It is also used to exit from a switch statement (in a switch, break effectively keeps program execution from "falling through" to the next case).	while(x<1OO){	x = get_new_x( );
 / * key hit on keyboard */	if (kbhit()) break ; 
 		process(x) ; }
