@@ -46,7 +46,8 @@ There are 32 keywords in C. All keywords are in lowercase.
 
 
 /* 
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        Control-flow        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        CONTROL-FLOW        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
     if, else:
 
         The general form of the 'if-else' statement is
@@ -216,6 +217,116 @@ There are 32 keywords in C. All keywords are in lowercase.
             lab_1: printf("right");
         
 
+
+
+
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        DATA-TYPE        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    int
+        int is the type specifier used to declare integer variables. 
+        
+        Eg: to declare count as an integer 	
+        
+            int count
+
+
+
+    char
+        char is a data type used to declare character variables. 
+        In C, a character is one byte long.	
+        
+        Eg:
+            char ch
+
+
+
+    float
+        float is a data type specifier used to declare floating-point variables. 
+
+        Eg:    
+            To declare f to be of type float:	f loat f
+
+
+
+    double
+        double is a data type specifier used to declare double-precision floating-point variables. 
+
+        Eg:    
+            To declare d to be of type double 	double d
+        
+        
+
+
+
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MODIFIER (data-type)        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    short
+        short is a data type modifier used to declare small integers. 
+        
+        Eg: to declare sh to be a short integer 
+
+            short int sh;
+
+
+
+    long
+        long is a data type modifier used to declare long integer and long double variables. 
+        
+        Eg: to declare count as a long int	
+
+            long int count;
+
+
+
+    signed
+        The signed type modifier is most commonly used to specify a signed char data type.	
+        
+        Eg:
+            signed char ch;
+
+
+
+    unsigned 
+        The unsigned type modifier tells the compiler to create a variable that holds only unsigned (i.e., positive) values. 
+        
+        Eg: to declare big to be an unsigned integer you would write
+
+            unsigned int big;
+
+
+
+    // --------    Access Modifier    --------
+    const 
+        The const modifier tells the compiler that the contents of a variable cannot be changed. 
+        It is also used to prevent a function from modifying the object pointed to by one of its arguments.	Access Modifiers
+
+        Eg:
+            const  int  i=10;
+
+
+
+    volatile
+        The volatile modifier tells the compiler that a variable may have its contents altered in ways not explicitly defined by the program. 
+        Variables that are changed by the hardware, such as real-time clocks, interrupts, or other inputs are examples.		
+        
+        Eg:
+            volatile  unsigned  u;
+
+
+
+    typedef
+        The typedef statement allows you to create a new name for an existing data type. The general form 
+
+            typedef type-specifier new-name;	
+
+        Eg: ' balance ' in place of ' float ' :
+
+            typedef float balance;
+
+
+
 */
 
 	
@@ -229,26 +340,11 @@ There are 32 keywords in C. All keywords are in lowercase.
 
 
 
-int	int is the type specifier used to declare integer variables. Eg: to declare count as an integer 	int count;
-char 		char is a data type used to declare character variables. In C, a character is one byte long.	char ch;
-float	float is a data type specifier used to declare floating-point variables. To declare f to be of type float:	f loat f;
-double	double is a data type specifier used to declare double-precision floating-point variables. To declare d to be of type double 	double d;
-	Data type Modifier        :      Keyword Summery and general form	Example
-short	short is a data type modifier used •to declare small integers. Eg: to declare sh to be a short integer 	short int sh;
-long	long is a data type modifier used to declare long integer and long double variables. Eg: to declare count as a long int	long int count;
-signed	The signed type modifier is most commonly used to specify a signed char data type.	signed char ch;
-unsigned 
-	The unsigned type modifier tells the compiler to create a variable that holds only unsigned (i.e., positive) values. Eg: to declare big to be an unsigned integer you would write	unsigned int big;
-const 
-	The const modifier tells the compiler that the contents of a variable cannot be changed. It is also used to prevent a function from modifying the object pointed to by one of its arguments.	Access Modifiers
-	const  int  i=10;
-volatile
-	The volatile modifier tells the compiler that a variable may have its contents altered in ways not explicitly defined by the program. Variables that are changed by the hardware, such as real-time clocks, interrupts, or other inputs are examples.		volatile  unsigned  u;
-typedef
-	The typedef statement allows you to create a new name for an existing data type. The general form 
-typedef type-specifier new-name;	statement	' balance ' in place of ' float ' :
-typedef float balance;
-	Structure        :      Keyword Summery and general form	Example
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        STRUCTURE        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+        
 struct
 	The struct statement is used to create aggregate data types, called structures, that are made up of one or more members. The general form:
 	struct struct-name {type member';
@@ -278,7 +374,13 @@ enum color c;
 int main(void){ c = red;
 if (c==red) printf("is red\n");
 return 0; }
-	Memory mangmnt        :      Keyword Summery and general form	Example
+	
+    
+    
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MEMORY mangmnt        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
 auto	auto is used to create temporary variables that are created upon entry into a block and destroyed upon exit. The use of auto is optional since local variables are auto by default.
 In the example, the variable t is created only if the user strikes an a. Outside the if block, t is completely unknown; and any reference to it would generate a compile-time syntax error.	if(getche()=='a'){  auto int t;
 	for(t=O; t<'a'; t++)printf("%d", t);
@@ -295,7 +397,12 @@ with separately compiled files that share the same global data and are linked to
 register
 	The register modifier requests that a variable be stored in the way that allows the fastest possible access. In the case of characters or integers, this usually means a register of the cpu. 	declare i to be a register integer:
 register int i;
-	Miscellanious        :      Keyword Summery and general form	Example
+
+
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MISCELLANIOUS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
 void
 	The void type specifier is primarily used to declare void functions (functions that do not return values). It is also used to create void pointers (pointers to void) that are generic pointers capable of pointing to any type of object and to specify an empty parameter list.	void func_1( );
 sizeof
