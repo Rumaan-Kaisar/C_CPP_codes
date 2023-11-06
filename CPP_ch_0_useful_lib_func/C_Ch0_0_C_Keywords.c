@@ -40,12 +40,13 @@ There are 32 keywords in C. All keywords are in lowercase.
                                 while
 
 
-// Keyword	Control
+// Keyword	
 // Keyword Summery and general form
 // Example
 
 
 /* 
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        Control-flow        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     if, else:
 
         The general form of the 'if-else' statement is
@@ -181,6 +182,40 @@ There are 32 keywords in C. All keywords are in lowercase.
                 process(ch); 
             }
 
+
+
+    break :
+        break is used to exit from a do, for, or while loop, BYPASSING the normal loop condition. 
+        It is also used to EXIT from a switch statement 
+            (in a switch, break effectively keeps program execution from "falling through" to the next case).	
+        
+        Example:
+            while(x<1OO){	
+                x = get_new_x();
+                // key hit on keyboard
+                if (kbhit()) break; 
+                process(x);
+            }
+
+
+
+    goto :
+        The goto causes program execution to JUMP to the LABEL specified in goto.  The general form:
+
+            goto label;
+                . . . . .
+            label:
+
+        All labels must end in a colon and must not conflict with keywords or function names. 
+        A goto can branch only within the CURRENT function, and 'not from one function to another'.	
+        
+        Example: The following example will prim the message "right" but not the "wrong":
+
+            goto lab_1;
+            printf("wrong");
+            lab_1: printf("right");
+        
+
 */
 
 	
@@ -189,20 +224,11 @@ There are 32 keywords in C. All keywords are in lowercase.
 
 
 
-break :
-	break is used to exit from a do, for, or while loop, bypassing the normal loop condition. It is also used to exit from a switch statement (in a switch, break effectively keeps program execution from "falling through" to the next case).	while(x<1OO){	x = get_new_x( );
-/ * key hit on keyboard */	if (kbhit()) break ; 
-		process(x) ; }
-goto
-	The goto causes program execution to jump to the label specified in goto.  The general form:
-goto label;
-. . . . .
-label:
-All labels must end in a colon and must not conflict with keywords or function names. Furthermore, a goto can branch only within the current function, and not from one function to another.	The following example will prim the message "right" but not the "wrong":
-	goto lab_1;
-	printf("wrong");
-	lab_1: printf("right");
-	Data type specifier      :      Keyword Summery and general form	Example
+
+
+
+
+
 int	int is the type specifier used to declare integer variables. Eg: to declare count as an integer 	int count;
 char 		char is a data type used to declare character variables. In C, a character is one byte long.	char ch;
 float	float is a data type specifier used to declare floating-point variables. To declare f to be of type float:	f loat f;
