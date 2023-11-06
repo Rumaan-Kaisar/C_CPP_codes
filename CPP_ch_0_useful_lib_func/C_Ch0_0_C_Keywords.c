@@ -327,6 +327,72 @@ There are 32 keywords in C. All keywords are in lowercase.
 
 
 
+
+
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        STRUCTURE        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+            
+    struct :
+        The struct statement is used to create aggregate data types, called structures, 
+        that are made up of one or more members. The general form:
+        
+                struct struct-name {
+                    type member1 ;
+                    type member2 ;
+                    . . . . 
+                    type memberN ; 
+                } variable-list;
+
+        The individual members are referenced using the dot or arrow operators.	
+
+        Eg:
+            struct catalog {
+                char name [40] ; 	// author name 
+                char title[40] ; 	// title 
+                char pub[40] ; 	// publisher 
+                unsigned date;	// copyrit date 
+                unsigned char ed; 	// edition 
+            } card;
+
+
+
+    union :
+        The union keyword creates an aggregate type in which two or more variables share the same memory location. 
+        The form of the declaration and the way a member is accessed are the same as for struct. The general form is:
+
+                union union-name {
+                    type member1 ;
+                    type member2 ;
+                        . . .
+                    type member N ;  
+                } variable-list;	
+        
+        Eg: 
+            union item {
+                int m; 
+                float x; 
+                char c;
+            } code;
+
+
+
+    enum :
+        The enum type specifier is used to create enumeration types. 
+        An enumeration is simply a 'list of named integer constants'. 
+        
+        Eg: the code declares an enumeration called color that consists of three constants: red, green, and yellow.
+        
+        enum color {red, green, yellow};
+
+        enum color c;
+
+        int main(void){ 
+            c = red;
+            if (c==red) printf("is red\n");
+            return 0; 
+        }
+        
+    
 */
 
 	
@@ -341,50 +407,16 @@ There are 32 keywords in C. All keywords are in lowercase.
 
 
 
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        STRUCTURE        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-        
-struct
-	The struct statement is used to create aggregate data types, called structures, that are made up of one or more members. The general form:
-	struct struct-name {type member';
-			type member2 ;
-			. . . . 
-			type memberN ; } variable-list;
-The individual members are referenced using the dot or arrow operators.	struct catalog {
-char name [40] ; 	/* author name */
-char title[40] ; 	/* title */
-char pub[40] ; 	/* publisher */
-unsigned date;	/* copyrit date */
-unsigned char ed; 	/* edition */
-}card;
-union
-	The union keyword creates an aggregate type in which two or more variables share the same memory location. The form of the declaration and the way a member is accessed are the same as for struct. The general form is
-	union union-name {type member1 ;
-			type member2 ;
-			. . .
-			type member N ;  } variable-list;	union item {int m; 
-float x; 
-char c;} code;
-
-enum
-	The enum type specifier is used to create enumeration types. An enumeration is simply a list of named integer constants. For example, the code declares an enumeration called color that consists of three constants: red, green, and yellow.
-	enum color {red, green, yellow};
-enum color c;
-int main(void){ c = red;
-if (c==red) printf("is red\n");
-return 0; }
-	
-    
     
 
     =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MEMORY mangmnt        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-
-auto	auto is used to create temporary variables that are created upon entry into a block and destroyed upon exit. The use of auto is optional since local variables are auto by default.
+auto
+auto is used to create temporary variables that are created upon entry into a block and destroyed upon exit. The use of auto is optional since local variables are auto by default.
 In the example, the variable t is created only if the user strikes an a. Outside the if block, t is completely unknown; and any reference to it would generate a compile-time syntax error.	if(getche()=='a'){  auto int t;
 	for(t=O; t<'a'; t++)printf("%d", t);
 	break;}
+
 static
 	The static keyword is a data type modifier that causes the compiler to create permanent storage for the local variable that it precedes. This enables the specified variable to maintain its value between function calls. static can also be used on global variables to limit their scope to the file in which they are declared.	to declare last_time as a static integer:
 
@@ -397,6 +429,8 @@ with separately compiled files that share the same global data and are linked to
 register
 	The register modifier requests that a variable be stored in the way that allows the fastest possible access. In the case of characters or integers, this usually means a register of the cpu. 	declare i to be a register integer:
 register int i;
+
+
 
 
 
