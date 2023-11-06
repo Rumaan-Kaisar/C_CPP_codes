@@ -447,10 +447,10 @@ There are 32 keywords in C. All keywords are in lowercase.
 
             register int i;
 
-    
-*/
 
-	
+
+
+
 
     =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MISCELLANIOUS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     
@@ -483,23 +483,8 @@ There are 32 keywords in C. All keywords are in lowercase.
             
             printf("%d", sizeof(short int));
 
- 
-
-
-
-
-
-
-
-
-
-
     
-
-
-
-   
-
+*/
 
 
 
