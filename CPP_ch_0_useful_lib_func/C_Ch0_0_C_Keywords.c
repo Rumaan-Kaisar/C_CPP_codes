@@ -392,11 +392,98 @@ There are 32 keywords in C. All keywords are in lowercase.
             return 0; 
         }
         
+
+
+
+
+
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MEMORY managemnt        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    auto :
+        auto is used to create 'temporary variables' that are created upon entry into a block and destroyed upon exit. 
+        The use of auto is optional since 'local variables' are auto by default.
+
+
+        Eg: the variable t is created only if the user strikes an a. 
+            Outside the if block, t is completely unknown; and any reference to it would generate a compile-time syntax error.	
+        
+            if(getche()=='a'){
+                auto int t;
+                for(t=0; t<'a'; t++) printf("%d", t);
+                break;
+            }
+
+
+
+    static :
+        The static keyword is a data type modifier that causes the compiler 
+            to create permanent storage for the local variable that it precedes. 
+        
+        This enables the specified variable to maintain its value between function calls. 
+        static can also be used on GLOBAL variables to 'limit their SCOPE' to the file in which they are declared.	
+        
+        EG: To declare last_time as a static integer:
+
+            static int last_time;
+
+
+
+    extern :
+        The extern data type modifier tells the compiler that a variable is defined elsewhere in the program. 
+        This is often used in CONJUNCTION with separately compiled files that share the same global data and are linked together. 
+        In essence, it notifies the compiler of a variable without redefining it.	
+        
+        EG: As an example, if 'first' were declared in another file as an integer, the following declaration would be used in subsequent files:
+        
+            extern int first;
+
+
+
+    register :
+        The register modifier requests that a variable be stored in the way that allows the fastest possible access. 
+        In the case of characters or integers, this usually means a register of the cpu. 	
+        
+        EG: declare i to be a register integer:
+
+            register int i;
+
     
 */
 
 	
 
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MISCELLANIOUS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    
+    // type specifier
+    void :
+        The void type specifier is primarily used to declare void functions (functions that do not return values). 
+        It is also used to create void pointers (pointers to void) that are generic pointers 
+            -these pointers capable of pointing to 'ANY TYPE OF OBJECt' and to specify an 'EMPTY PARAMETER LIST'.
+        
+        EG:
+            void func_1( );
+
+
+
+    // statement
+    return :
+        The return statement forces a return from a function and can be used to transfer a value back to the calling routine. 
+        Keep in mind that as soon as a return is encountered, the function will return, skipping any other code in the function.int mul(int a, int b){
+                return a*b;}
+
+
+
+    // operator
+    sizeof :
+        The sizeof keyword is a 'COMPILE-TIME OPERATOR' that returns the 'length of the variable or type' it precedes. 
+        If it precedes a type, the type must be enclosed in parentheses. 
+        The sizeof statement's principal use is in helping to generate portable code when that code depends on the size of the C built-in data types.		 
+        
+        EG: following will print 2 for most C implementations.
+            
+            printf("%d", sizeof(short int));
+
+ 
 
 
 
@@ -409,41 +496,10 @@ There are 32 keywords in C. All keywords are in lowercase.
 
     
 
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MEMORY mangmnt        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-auto
-auto is used to create temporary variables that are created upon entry into a block and destroyed upon exit. The use of auto is optional since local variables are auto by default.
-In the example, the variable t is created only if the user strikes an a. Outside the if block, t is completely unknown; and any reference to it would generate a compile-time syntax error.	if(getche()=='a'){  auto int t;
-	for(t=O; t<'a'; t++)printf("%d", t);
-	break;}
-
-static
-	The static keyword is a data type modifier that causes the compiler to create permanent storage for the local variable that it precedes. This enables the specified variable to maintain its value between function calls. static can also be used on global variables to limit their scope to the file in which they are declared.	to declare last_time as a static integer:
-
-	static int last_time;
-
-extern
-	The extern data type modifier tells the compiler that a variable is defined elsewhere in the program. This is often used in conjunction
-with separately compiled files that share the same global data and are linked together. In essence, it notifies the compiler of a variable without redefining it.	As an example, if first were declared in another file as an integer, the following declaration would be used in subsequent files:
-	extern int first;
-register
-	The register modifier requests that a variable be stored in the way that allows the fastest possible access. In the case of characters or integers, this usually means a register of the cpu. 	declare i to be a register integer:
-register int i;
 
 
+   
 
 
-
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-        MISCELLANIOUS        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-void
-	The void type specifier is primarily used to declare void functions (functions that do not return values). It is also used to create void pointers (pointers to void) that are generic pointers capable of pointing to any type of object and to specify an empty parameter list.	void func_1( );
-sizeof
-	The sizeof keyword is a compile-time operator that returns the length of the variable or type it precedes. If it precedes a type, the type must be enclosed in parentheses. The sizeof statement's principal use is in helping to generate portable code when that code depends on the size of the C built-in data types.	operator	 printf("%d", sizeof(short int));
-will print 2 for most C implementations.
-return
-	The return statement forces a return from a function and can be used to transfer a value back to the calling routine. Keep in mind that as soon as a return is encountered, the function will return, skipping any other code in the function.	statement	int mul(int a, int b){
-	         return a*b;}
 
 
