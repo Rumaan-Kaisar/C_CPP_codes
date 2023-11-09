@@ -130,30 +130,110 @@ char *strchr(const char *str, int ch);
 */
 
 
-int strcmp(const char *str1, cost char *str2);	strcmp() function lexicographically compares two null-terminated strings and returns an integer based on the outcome, as:	Result	Meaning	
-/* if(strcmp(s, "pass " )) {
-printf (" Invalid PW");
-return 0;}
-		less than 0 	str1 < str2 	
-		0	str1 = str2 	
-		greater than 0	str1 > str2	 */
+int strcmp(const char *str1, cost char *str2);
+/* 
+    strcmp() function LEXICOGRAPHICALLY compares two null-terminated strings and returns an integer based on the outcome, as:	
+
+    less than 0 	    str1 < str2 	
+		0	            str1 = str2 	
+	greater than 0	    str1 > str2	
+
+    Example:
+            if(strcmp(s, "pass " )) {
+                printf (" Invalid PW");
+                return 0;
+            }
+*/
+
 
 size_t strlen(const char *str);	
-/* strlen() rerums the length of the null-terminated string pointed to by str. The null is not counted. The size_type is defined in string.h .	strcpy(s, "hello"); 
-printf("%d", strlen(s)); */
+/* 
+    strlen() rerums the length of the null-terminated string pointed to by str. 
+        The null is not counted. 
+        The 'size_type' is a type defined in string.h .	
+        
+    Example: 
+        strcpy(s, "hello"); 
+        printf("%d", strlen(s)); 
+*/
+
+
+
 
 char *strtok(char *str1, const char *str2);
-/* Example:  The | summer | soldier
-	strtok() returns a pointer to the next token in the string pointed to by str1. The characters making up the string pointed to by str2 are the delimiters that separate each token. A null pointer is returned when there are no more tokens.	char *p;
-p = strtok("The summer soldier", ",")
-printf(p); 
-do{ p = strtok('\0' , ",") 
-if(p) printf("|%s", p); } while(p) */
+/* 
+	strtok() returns a pointer to the next token in the string pointed to by str1. 
+        The characters making up the string pointed to by str2 are the delimiters that separate each token. 
+        A null pointer is returned when there are no more tokens.	char *p;
+*/
+// Example 1:  The | summer | soldier
+#include <string.h>
+#include <stdio.h>
+
+int main(void) {
+    char *p;
+    char str[] = "The summer soldier, the sunshine patriot";
+
+    p = strtok(str, " ,");
+
+    printf(p);
+    do{
+        p = strtok( '\0', ", ");
+        if(p) printf("|%s", p);
+    } while(p);
+
+    return 0;
+}
+
+
+/* Example 2: C program for splitting a string using strtok() */
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[] = "Geeks-for-Geeks";
+
+    // Returns first token
+    char* token = strtok(str, " - ");
+
+    // Keep printing tokens while one of the
+    // delimiters present in str[].
+    while (token != NULL) {
+        printf(" % s\n", token);
+        token = strtok(NULL, " - ");
+    }
+
+    return 0;
+}
+
+
+
 
 char *strstr(const char *str1, const char *str2);
-/* Example:  " is a test "	strstr() returns a pointer to the first occurrence of the string pointed to by str2 in the string pointed to by str1 (except str2's null terminator). It returns a null pointer for no match. 	char *p;
-p = strstr("this is a test", "is");
-printf(p); */
+/*
+    strstr() returns a 'pointer to the first occurrence' of the string pointed to by str2 
+        in the string pointed to by str1 (except str2's null terminator). 
+        It returns a null pointer for no match.
+*/
+
+/* Example: This program displays the message 'is is a test', because 'is' already appears in 'This'*/
+#include <string.h>
+#include <stdio.h>
+
+int main(void) {
+    char *p;
+    char str[] = "This is a test";
+
+    p = strstr(str, "is");
+    printf(p);
+
+    return 0;
+}
+
+
+
+
 
 
 
