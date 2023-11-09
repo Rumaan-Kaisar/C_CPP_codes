@@ -94,8 +94,16 @@ putchar(toupper('t')); */
 
 
 char *strcat(char *strl, const char *str2);	
-/* strcat() concatenates a copy of str2 to str1 (ensure that str1 is large enough to hold both its original contents those of str2) and terminates str1 with a null. The null terminator originally ending str1 is overwritten by the first character of str2. str2 is untouched by the operation. The strcat() function returns str1.	gets(s1); gets(s2) ;
-strcat(s2. s1); */
+/* 
+    strcat() concatenates a copy of str2 to str1 (ensure that str1 is large enough to hold both its original contents those of str2) 
+        and terminates str1 with a null. The null terminator originally ending str1 is overwritten by the first character of str2. 
+        str2 is untouched by the operation. The strcat() function returns str1.	
+        
+    Example: 
+            gets(s1); 
+            gets(s2);
+            strcat(s2. s1); 
+*/
 
 char *strcpy(char *str1, const char *str2);	
 /* strcpy() is used to copy the contents of str2 into str1: str2 must be a pointer to a null-terminated string. strcpy()returns a pointer to str1. If str1 and str2 overlap, the behavior of strcpy() is undefined.	char str[80]; 
