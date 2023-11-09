@@ -106,6 +106,8 @@ char *strcat(char *strl, const char *str2);
 */
 
 
+
+
 char *strcpy(char *str1, const char *str2);	
 /* 
     strcpy() is used to copy the contents of str2 into str1: str2 must be a pointer to a null-terminated string. 
@@ -116,6 +118,30 @@ char *strcpy(char *str1, const char *str2);
             char str[80]; 
             strcpy(str, "hello"); 
 */
+/* Example: The following code uses strcat() and strcpy() */
+#include <string.h>
+#include <stdio.h>
+
+int main(void) {
+    char s1[10], s2[10], s[10];
+    char str[] = "hello";
+
+    printf("enter two strings :\n");
+
+    // strcat
+    gets(s1);
+    gets(s2);
+    strcat(s2, s1);
+    printf("%s \n", s2);
+
+    // strcpy
+    strcpy(s, s1);
+    printf("%s \n", s);
+
+    return 0;
+}
+
+
 
 
 char *strchr(const char *str, int ch);	
@@ -128,6 +154,20 @@ char *strchr(const char *str, int ch);
             p = strchr("test", ' ' );
             printf(p); 
 */
+// Example: This prints the string 'is a test':
+#include <string.h>
+#include <stdio.h>
+
+int main(void) {
+    char *p;
+
+    p = strchr("this is a test", ' ' );
+    printf(p);
+
+    return 0;
+}
+
+
 
 
 int strcmp(const char *str1, cost char *str2);
@@ -144,6 +184,36 @@ int strcmp(const char *str1, cost char *str2);
                 return 0;
             }
 */
+/* Example: The following 'password()' function can be used as a password verification routine.
+                It will return a on failure and I on success. */
+#include <string.h>
+#include <stdio.h>
+
+int password(void);
+
+int main(void) {
+    int i;
+
+    i = password();
+    if(i) printf("Success!!!");
+
+    return 0;
+}
+
+int password(void) {
+    char s[80];
+    printf("Enter password: ");
+    gets(s);
+
+    if (strcmp(s, "pass")) {
+        printf(" Invalid Password\n");
+        return 0;
+    }
+
+    return 1;
+}
+
+
 
 
 size_t strlen(const char *str);	
@@ -152,10 +222,23 @@ size_t strlen(const char *str);
         The null is not counted. 
         The 'size_type' is a type defined in string.h .	
         
-    Example: 
-        strcpy(s, "hello"); 
-        printf("%d", strlen(s)); 
+    Example:
+            strcpy(s, "hello"); 
+            printf("%d", strlen(s)); 
 */
+/* Example: The following code fragment will print 5 on the screen: */
+#include <string.h>
+#include <stdio.h>
+
+int main(void) {
+    char s[10];
+    char str[] = "hello";
+
+    strcpy(s, str);
+    printf("%d", strlen(s));
+
+    return 0;
+}
 
 
 
@@ -230,12 +313,5 @@ int main(void) {
 
     return 0;
 }
-
-
-
-
-
-
-
 
 
