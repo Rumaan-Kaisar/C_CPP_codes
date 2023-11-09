@@ -105,14 +105,30 @@ char *strcat(char *strl, const char *str2);
             strcat(s2. s1); 
 */
 
+
 char *strcpy(char *str1, const char *str2);	
-/* strcpy() is used to copy the contents of str2 into str1: str2 must be a pointer to a null-terminated string. strcpy()returns a pointer to str1. If str1 and str2 overlap, the behavior of strcpy() is undefined.	char str[80]; 
-strcpy(str, "hello"); */
+/* 
+    strcpy() is used to copy the contents of str2 into str1: str2 must be a pointer to a null-terminated string. 
+        strcpy()returns a pointer to str1. 
+        If str1 and str2 overlap, the behavior of strcpy() is undefined.
+        
+    Example:
+            char str[80]; 
+            strcpy(str, "hello"); 
+*/
+
 
 char *strchr(const char *str, int ch);	
-/* strchr() returns a pointer to the first occurrence of the low-order byte of ch in the string pointed to by str. If no match is found, a null pointer is returned.	char *p;
-p = strchr("test", ' ' )
-printf(p); */
+/* 
+    strchr() returns a pointer to the FIRST OCCURRENCE of the low-order byte of ch in the string pointed to by str. 
+        If no match is found, a null pointer is returned.
+    
+    Example:
+            char *p;
+            p = strchr("test", ' ' );
+            printf(p); 
+*/
+
 
 int strcmp(const char *str1, cost char *str2);	strcmp() function lexicographically compares two null-terminated strings and returns an integer based on the outcome, as:	Result	Meaning	
 /* if(strcmp(s, "pass " )) {
