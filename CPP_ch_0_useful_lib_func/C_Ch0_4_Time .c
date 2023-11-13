@@ -1,5 +1,13 @@
 
-Time And Date Functions
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Time And Date Functions        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+// --------    Trigonometric    --------
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Time And Date Functions        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
 The time and date functions require the header time.h for their prototypes. This header file also defines four types and two macros. The type time_t is able to represent the system time and date as a long integer. This is called the calendar time.  The structure type tm holds date and time broken down into its elements. The tm structure is defined as shown here:
 	The value of tm_isdst will be +ve if Daylight Saving is in effect, 0 if it is not in effect, and -ve if there is no information available. When the date and time are represented in this way, they are referred to as broken-down time.
 	The type clock_t is defined the same as time_t. The header file also defines size_t.
