@@ -93,7 +93,7 @@ char *ctime(const time_t *time);
         given a pointer to the 'CALENDAR TIME'. ctime() is equivalent to: asctime(localtime(time))
 
     The 'CALENDAR TIME' is generally obtained through a call to time().
-    
+
     The buffer used by ctime() to hold the 'formatted output string' is 
         a statically allocated 'character array' and is overwritten each time the function is called. 
     To save the contents of the string, you need to copy it elsewhere.	
@@ -105,20 +105,26 @@ char *ctime(const time_t *time);
 */
     
 
+double difftime(time_t time2,  time_t time1);
+/* difftime() returns the "DIFFERENCE, in SECONDS", between time1 and time2. i.e, time2 – time1.  
 
+    Example: Following calculates the number of seconds that it takes for the empty for loop to go from 0 to 500000.
 
+    int main(void) { 
+        time_t start, end;     
+        long unsigned int t;
 
-
-double difftime(time_t time2, 
-time_t time1);	difftime() returns the difference, in seconds, between timel and time2. i.e, time2 – time1. The given program times the number of seconds that it takes for the empty for loop to go from 0 to 500000.	int main(void) { time_t start, end;     long unsigned int t;
         start = time(NULL); 
         for(t=0; t<500000L; t++); end = time(NULL);
-        printf("Loop required %f seconds.\n”, difftime(end, start)); 
-        return 0; }
+
+        printf("Loop required %f seconds.\n", difftime(end, start)); 
+        return 0;
+    }
+*/
 
 
-
-time_t time(time_t *systime);	time() returns the system's current calendar time. If the system has no time-keeping mechanism, then -1 is returned.
+time_t time(time_t *systime);
+/* time() returns the system's current calendar time. If the system has no time-keeping mechanism, then -1 is returned. */
 time() can be called either with a null pointer or with a pointer to a variable of type time_t. The argument will be assigned the calendar time due to using type time_t.	struct tm *ptr; time_t lt;
 lt = time(NULL); 
 ptr = localtime(&lt);
