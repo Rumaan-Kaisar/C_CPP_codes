@@ -1,26 +1,45 @@
 
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Time And Date Functions        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Time And Date Functions        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    The time and date functions require the header <time.h> for their prototypes. 
+        This header file also defines four TYPES and two MACROS. 
+        
+        The 'type time_t' is able to represent the 'system time and date' as a long integer. 
+            This is called the calendar time.  
+        
+        The 'structure type tm' holds date and time broken down into its elements. 
+            The 'tm structure' is defined as shown here:
+
+        The type clock_t is defined the same as time_t. 
+        The header file also defines size_t.
+        The 'macros' defined are NULL and CLOCKS_PER_SEC.
+*/
+
+
+struct tm { 	
+    int tm_sec; 	// seconds, 0-61 
+	int tm_min; 	// minutes, 0-59 
+	int tm_hour; 	// hours, 0-23 
+	int tm_mday; 	// day of the month, 1-31
+	int tm_mon; 	// months since Jan, 0-11 
+	int tm_year; 	// years from 1900 
+	int tm_wday; 	// days since Sunday, 0-6 
+	int tm_yday; 	// days since Jan 1, 0-365 
+	int tm_isdst; 	// Daylight Saving indicator 
+};
+
+/* 
+    The value of 'tm_isdst' will be 
+        +ve if Daylight Saving is in effect, 
+        0 if it is not in effect, and 
+        -ve if there is no information available. 
+        
+        When the date and time are represented in this way, they are referred to as 'broken-down time'.
+*/
 
 
 
-// --------    Trigonometric    --------
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         Time And Date Functions        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-
-
-The time and date functions require the header time.h for their prototypes. This header file also defines four types and two macros. The type time_t is able to represent the system time and date as a long integer. This is called the calendar time.  The structure type tm holds date and time broken down into its elements. The tm structure is defined as shown here:
-	The value of tm_isdst will be +ve if Daylight Saving is in effect, 0 if it is not in effect, and -ve if there is no information available. When the date and time are represented in this way, they are referred to as broken-down time.
-	The type clock_t is defined the same as time_t. The header file also defines size_t.
-	The macros defined are NULL and CLOCKS_PER_SEC.	struct tm { 	int tm_sec; 	/* seconds, 0-61 */
-		int tm_min; 	/* minutes, 0-59 */
-		int tm_hour; 	/* hours, 0-23 */
-		int tm_mday; 	/* day of the month, 1-31*/
-		int tm_mon; 	/* months since Jan, 0-11 */
-		int tm_year; 	/* years from 1900 */
-		int tm_wday; 	/* days since Sunday, 0-6 */
-		int tm_yday; 	/* days since Jan 1, 0-365 */
-		int tm_isdst; 	/* Daylight Saving indicator */
-	    };
 
 
 Header Function	Description       #include <time.h>    must be  included before use	Example
