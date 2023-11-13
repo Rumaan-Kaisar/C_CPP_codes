@@ -1,4 +1,8 @@
-Dynamic allocation
+
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         DYNAMIC ALLOCATION        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+DYNAMIC ALLOCATION
+*/
 Two primary ways a C program can store information in the main memory of the computer. The first uses global and local variables—including arrays and structures. The second way information can be stored is with C’s dynamic allocation system. In this method, storage for information is allocated from the free memory area (called the heap) as it is needed. Dynamic allocation system is in stdlib.h, here the type size_t is defined. This type is used extensively by the allocation functions and is essentially the equivalent of unsigned.
 Header Function	Description       #include <stdlib.h>    must be  included before use	Example
 #include <stdlib.h>
