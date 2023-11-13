@@ -5,7 +5,7 @@
         This header file also defines four TYPES and two MACROS. 
         
         The 'type time_t' is able to represent the 'system time and date' as a long integer. 
-            This is called the calendar time.  
+            This is called the "CALENDAR TIME".  
         
         The 'structure type tm' holds date and time broken down into its elements. 
             The 'tm structure' is defined as shown here:
@@ -86,13 +86,25 @@ clock_t clock(void);
 
 
 char *ctime(const time_t *time);
-ctime() returns a pointer to a string of the form 
-day month date hours:minutes:seconds year\n\0
-given a pointer to the calendar time. The calendar time is generally obtained through a call to time(). ctime() is equivalent to: asctime(localtime(time))
-The buffer used by crime() to hold the formatted output string is a statically allocated character array and is overwritten each time the function is called. To save the contents of the string, you need to copy it elsewhere.	
-time_t It;
-It = time(NULL);
-printf( ctime(&lt) );
+/* ctime() returns a 'pointer to a string' of the form:
+
+            day month date hours:minutes:seconds year\n\0
+
+        given a pointer to the 'CALENDAR TIME'. ctime() is equivalent to: asctime(localtime(time))
+
+    The 'CALENDAR TIME' is generally obtained through a call to time().
+    
+    The buffer used by ctime() to hold the 'formatted output string' is 
+        a statically allocated 'character array' and is overwritten each time the function is called. 
+    To save the contents of the string, you need to copy it elsewhere.	
+
+    Eg:
+        time_t It;
+        It = time(NULL);
+        printf( ctime(&lt) );    
+*/
+    
+
 
 
 
