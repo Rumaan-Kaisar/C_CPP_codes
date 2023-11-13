@@ -124,18 +124,33 @@ double difftime(time_t time2,  time_t time1);
 
 
 time_t time(time_t *systime);
-/* time() returns the system's current calendar time. If the system has no time-keeping mechanism, then -1 is returned. */
-time() can be called either with a null pointer or with a pointer to a variable of type time_t. The argument will be assigned the calendar time due to using type time_t.	struct tm *ptr; time_t lt;
-lt = time(NULL); 
-ptr = localtime(&lt);
-printf(asctime(ptr))
+/* time() returns the system's current calendar time. 
+    If the system has no time-keeping mechanism, then -1 is returned. 
+
+    time() can be called either with a 'null pointer' or with a 'pointer to a variable of type time_t'. 
+    The argument will be assigned the 'CALENDAR TIME' due to using type time_t.	
+
+    Eg:
+        struct tm *ptr; time_t lt;
+        lt = time(NULL); 
+        ptr = localtime(&lt);
+        printf(asctime(ptr));
+*/
 
 
+struct tm *localtime(const time_t *time);
+/* localtime() returns a pointer to the 'broken-down form of tm structure'. 
+    The time is represented in 'local time' which is obtained through a call to the time(). 
+    This structure 'statically allocated' and is overwritten each call time the function is called. 
+        So copy it elsewhere.	
+    Eg:    
+        struct tm *local;
+        time_t t;
 
-struct tm *localtime(const time_t *time);	localtime() returns a pointer to the broken-down form of tm structure. The time is represented in local time which is obtained through a call to the time(). This structure statically allocated and is overwritten each call time the function is called. So copy it elsewhere.	struct tm *local;   time_t t;
-t = time(NULL); 
-local = localtime(&t);
-printf("Local'time: %s", asctime(local));
+        t = time(NULL); 
+        local = localtime(&t);
+        printf("Local'time: %s", asctime(local)); 
+*/
 
 
 
