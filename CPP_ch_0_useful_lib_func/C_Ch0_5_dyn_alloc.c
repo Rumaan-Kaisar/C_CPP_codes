@@ -18,10 +18,30 @@
 #include <stdlib.h>
 
 
-void *calloc(size_t num, size_t size);	calloc() returns a pointer to the allocated memory. Allocated memory is equal to num *size. i.e, calloc() allocates sufficient memory for an array of num objects of size size and returns a pointer to the first byte of the allocated region. A null pointer is returned for not enough memory.	
-p = calloc(1OO, sizeof(float));
+void *calloc(size_t num, size_t size);	
+/* calloc() returns a pointer to the allocated memory.  Allocated memory is equal to 'num*size'. 
+    i.e, calloc() allocates sufficient memory for an array of 'num' objects of size 'size' and returns a pointer to the first byte of the allocated region. 
+    A null pointer is returned for not enough memory. 
 
-void free( void *ptr)	free() de-allocates the memory pointed to by ptr. It is called only with a pointer that was previously allocated using malloc() or calloc() etc. Invalid pointer destroy the memory management mechanism and cause a system crash.	for(i=0; i<100; i++) 
+    Eg: This function returns a pointer to a dynamically allocated array of 100 floats:.
+
+        float *get_mem(void) {
+            float *p;
+
+            p = calloc(100, sizeof(float));
+            if(!p) {
+
+            }
+            printf("Allocation error - aborting.\n");
+            exit(1);
+
+            return p;
+        }
+*/
+
+
+void free( void *ptr)
+free() de-allocates the memory pointed to by ptr. It is called only with a pointer that was previously allocated using malloc() or calloc() etc. Invalid pointer destroy the memory management mechanism and cause a system crash.	for(i=0; i<100; i++) 
 free(str[i]);
 void *malloc(size_t size);	malloc() returns a pointer to the first byte of a region of memory of size size that has been allocated from the heap. (Remember, the heap is a region of free memory managed by C‘s dynamic allocation subsystem.) A null pointer is returned if there is insufficient memory in the heap.  Always verify that the return value is not a null pointer before attempting to use it. null pointer will usually result in a system crash.	if((p = malloc(sizeof(struct addr)))==NULL)
     {
