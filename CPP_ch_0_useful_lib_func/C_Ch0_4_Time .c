@@ -153,9 +153,19 @@ struct tm *localtime(const time_t *time);
 */
 
 
+strut tm *gmtime(const time_t *time);
+/* gmtime() returns a pointer to the broken-down form of tm structure. 
+    The time is represented in "Coordinated Universal Time" (i.e., Greenwich Mean Time aka GMT). 
+    The time value is generally obtained through a call to time(). 
 
-strut tm *gmtime(const time_t *time);	gmtime() returns a pointer to the broken-down form of tm structure. The time is represented in Coordinated Universal Time (i.e., Greenwich Mean Time). The time value is generally obtained through a call to time(). This structure statically allocated and is overwritten each call time the function is called. So copy it elsewhere.	struct tm *gmt;   time_t t;
-t = time(NULL); 
-gmt = gmtime(&t);
-printf("GMT time: %s", asctime(gmt));
+    This structure statically allocated and is overwritten each call time the function is called. 
+    So copy it elsewhere.	
+
+    Eg:
+        struct tm *gmt;
+        time_t t;
+        
+        t = time(NULL); 
+        gmt = gmtime(&t);
+        printf("GMT time: %s", asctime(gmt)); */
 
