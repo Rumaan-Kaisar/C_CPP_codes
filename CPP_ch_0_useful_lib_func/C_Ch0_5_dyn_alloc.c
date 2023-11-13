@@ -1,11 +1,23 @@
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-         DYNAMIC ALLOCATION        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-DYNAMIC ALLOCATION
+    Two primary ways a C program can store information in the main memory of the computer. 
+        The first uses global and local variables — including arrays and structures. 
+        The second way information can be stored is with C's DYNAMIC ALLOCATION system.
+
+    dynamic allocation:
+        In this method, storage for information is allocated from the free memory area (called the heap) as it is needed. 
+        Dynamic allocation system is in <stdlib.h>, the type size_t is defined here. 
+            This type is used extensively by the 'allocation functions' and is essentially the equivalent of 'unsigned'.
 */
-Two primary ways a C program can store information in the main memory of the computer. The first uses global and local variables—including arrays and structures. The second way information can be stored is with C’s dynamic allocation system. In this method, storage for information is allocated from the free memory area (called the heap) as it is needed. Dynamic allocation system is in stdlib.h, here the type size_t is defined. This type is used extensively by the allocation functions and is essentially the equivalent of unsigned.
-Header Function	Description       #include <stdlib.h>    must be  included before use	Example
+
+
+
+// #include <stdlib.h>    must be  included before use
+
 #include <stdlib.h>
+
+
 void *calloc(size_t num, size_t size);	calloc() returns a pointer to the allocated memory. Allocated memory is equal to num *size. i.e, calloc() allocates sufficient memory for an array of num objects of size size and returns a pointer to the first byte of the allocated region. A null pointer is returned for not enough memory.	
 p = calloc(1OO, sizeof(float));
 
