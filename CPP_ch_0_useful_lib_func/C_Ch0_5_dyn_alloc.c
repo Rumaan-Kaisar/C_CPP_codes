@@ -75,21 +75,31 @@ void free(void *ptr)
 
 
 
-
-
 void *malloc(size_t size);
-malloc() returns a pointer to the first byte of a region of memory of size size that has been allocated from the heap. (Remember, the heap is a region of free memory managed by C‘s dynamic allocation subsystem.) A null pointer is returned if there is insufficient memory in the heap.  Always verify that the return value is not a null pointer before attempting to use it. null pointer will usually result in a system crash.	if((p = malloc(sizeof(struct addr)))==NULL)
-    {
-          printf("Allocation error - aborting.\n");
-          exit(0); 
-     }
+/* malloc() returns a pointer to the first byte of a region of memory of size 'size' that has been allocated from the heap. 
+    (Remember, the heap is a region of free memory managed by C's dynamic allocation subsystem.) 
+    A null pointer is returned if there is insufficient memory in the heap.  
 
+    Always verify that the return value is not a 'null pointer' before attempting to use it. 
+    'null pointer' will usually result in a SYSTEM CRASH.	
+
+    Example: 
+        if((p = malloc(sizeof(struct addr))) == NULL) {
+            printf("Allocation error - aborting.\n");
+            exit(0); 
+        }
+*/
 
 
 void *realloc(void *ptrt size_t size);
-realloc() changes the size of the allocated memory pointed to by ptr to that specified by size. size may greater or less than the original. A pointer to the memory block is returned since it may be necessary for realloc() to move the block to increase its size. Contents of the old block are copied into the new block—no information is lost. A null pointer is returned if there is not enough free memory in the heap. Verify the success of real1oc().	char *p;     p = malloc(17);
+/* realloc() changes the size of the allocated memory pointed to by 'ptr' to that specified by 'size'. 
+'size' may greater or less than the original. 
+A pointer to the memory block is returned since it may be necessary for realloc() to move the block to increase its size. Contents of the old block are copied into the new block—no information is lost. A null pointer is returned if there is not enough free memory in the heap. Verify the success of real1oc().	char *p;     p = malloc(17);
 if(!p) {   printf("Alloc error");   exit(1);
             }
 strcpy(p, "this is 16 chars');
 p = realloc(p,18);
+
+ */
+
 
