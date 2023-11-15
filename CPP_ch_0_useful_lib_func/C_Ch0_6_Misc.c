@@ -7,14 +7,31 @@
 
 
 // --------    TERMINATOR functions    --------
+
 void abort(void);
-/* abort() causes immediate termination of a program. Whether it closes any open files is defined by the implementation, but generally it won’t.	for(;;) if(getche()=='A') abort(); 
+/* abort() causes 'immediate termination of a program'. 
+    Whether it closes any open files is defined by the implementation, but generally it won’t.	
+
+    Example: In this program, if the user enters 'A', the program will terminate.
+
+    #include <stdlib.h>
+    #include <conio.h>
+
+    int main(void) {
+            for(;;) if(getche()=='A') abort(); 
+
+        return 0;
+    }
 */
+
 
 
 void exit(int status);
 /* exit() causes immediate normal termination of a program. The value of status is passed to the calling process, (usually the operating system, if the environment supports). By convention, if  the value of status is 0, normal program termination is assumed. A nonzero value may be used to indicate an error. You may also use the predefined macros EXIT_SUCCESS and EXIT_FAILURE as arguments to exit().	if(ch=='Q') exit(0);
 */
+
+
+
 
 // --------    Absolute value functions    --------
 int abs(int num);	abs()  returns the absolute value of the integer num.	gets(num); return abs(atoi(num));
