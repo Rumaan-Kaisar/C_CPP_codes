@@ -91,15 +91,53 @@ void *malloc(size_t size);
 */
 
 
+
 void *realloc(void *ptrt size_t size);
 /* realloc() changes the size of the allocated memory pointed to by 'ptr' to that specified by 'size'. 
-'size' may greater or less than the original. 
-A pointer to the memory block is returned since it may be necessary for realloc() to move the block to increase its size. Contents of the old block are copied into the new block—no information is lost. A null pointer is returned if there is not enough free memory in the heap. Verify the success of real1oc().	char *p;     p = malloc(17);
-if(!p) {   printf("Alloc error");   exit(1);
-            }
-strcpy(p, "this is 16 chars');
-p = realloc(p,18);
+    'size' may greater or less than the original. 
+    
+    A pointer to the memory block is returned since it may be necessary for realloc() 'to move the block to increase its size'. 
+    Contents of the 'old block' are copied into the new block — "no information is lost". 
+    
+    A null pointer is returned if there is not enough free memory in the heap. 
+    
+    Verify the success of real1oc().	
+    
 
- */
+    Example: This program first allocates 17 characters, copies the string "this is 16 chars" into the space, 
+                and then uses realloc() to increase the size to 18 in order to place a period at the end.
+
+        #include <stdlib.h>
+        #include <stdio.h>
+        #include <string.h>
+
+        int main(void) {
+            char *p;     
+
+            p = malloc(17);
+            if(!p) {
+                printf("Allocation error");
+                exit(1);
+            }
+
+            strcpy(p, "this is 16 chars");
+
+            p = realloc(p, 18); // increasing space
+            if(!p) {
+                printf("Allocation error");
+                exit(1);
+            }
+
+            strcat(p, ".") ;
+            printf(p);
+
+            free(p) ;
+
+            return 0;
+        }
+
+*/
+
+
 
 
