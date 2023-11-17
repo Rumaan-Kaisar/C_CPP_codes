@@ -61,17 +61,45 @@ long labs(long num);
 
 
 
+
 // --------    convertion functions    --------
-double atof(const char *str);	atof() converts the string pointed to by str into a double value. str must contain a valid float number. Otherwise 0 is returned. The number may be terminated by any character that cannot be part of a valid floating-point number. This includes whitespace characters, punctuation (other than periods), and characters other than ’E’ or ’e’. Thus, atof(100.00HELLO) returns  100.00.	
-printf("%f", atof(num));
+double atof(const char *str);
+/* atof() converts the STRING pointed to by 'str' into a DOUBLE value. 
+    "str" must contain a 'valid float number'. Otherwise 0 is returned.
+
+    The number may be 'terminated by any character' that cannot be part of a valid floating-point number. 
+        This includes 'whitespace' characters, 'punctuation' (other than periods), and characters other than 'E' or 'e'. 
+    
+    Eg:        
+        Thus, atof(100.00HELLO) returns  100.00.
+        printf("%f", atof(num));
+*/
 
 
-int atoi(const char *str);	atoi() converts the string pointed to by str into an int value. str must contain a valid integer number. Otherwise 0 is returned . The number may be terminated by any character that cannot be part of a integer number. This includes whitespace characters, punctuation, and other characters. Thus, atoi(123.23) returns 123 and 0.23 ignored.	
-printf("%d", atoi(num));
+int atoi(const char *str);
+/* atoi() converts the STRING pointed to by 'str' into an INT value. 
+    "str" must contain a valid integer number. Otherwise 0 is returned.
+    
+    The number may be terminated by any character that cannot be part of a integer number. 
+        This includes 'whitespace' characters, 'punctuation', and other characters. 
+    
+    Eg: 
+        Thus, atoi(123.23) returns 123 and 0.23 ignored.	
+        printf("%d", atoi(num));
+*/
 
 
-long atol(const char *str);	atol() converts the string pointed to by str into an long int value. str must contain a valid long integer number. Otherwise 0 is returned . The number may be terminated by any character that cannot be part of an integer number. This includes whitespace characters, punctuation, and other characters. Thus, atol(123.23) returns 123 and 0.23 ignored.	
-printf("%ld", atol(num));
+long atol(const char *str);
+/* atol() converts the STRING pointed to by 'str' into an LONG INT value. 
+    "str" must contain a valid long integer number. Otherwise 0 is returned.
+    
+    The number may be terminated by any character that cannot be part of an integer number.
+        This includes 'whitespace' characters, 'punctuation', and other characters. 
+    
+    Eg: 
+        Thus, atol(123.23) returns 123 and 0.23 ignored.	
+        printf("%ld", atol(num));
+*/
 
 
 
