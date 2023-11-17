@@ -25,19 +25,39 @@ void abort(void);
 */
 
 
-
 void exit(int status);
-/* exit() causes immediate normal termination of a program. The value of status is passed to the calling process, (usually the operating system, if the environment supports). By convention, if  the value of status is 0, normal program termination is assumed. A nonzero value may be used to indicate an error. You may also use the predefined macros EXIT_SUCCESS and EXIT_FAILURE as arguments to exit().	if(ch=='Q') exit(0);
+/* exit() causes "immediate normal termination" of a program. 
+
+    The value of 'status' is passed to the calling process, (usually the operating system, if the environment supports). 
+        By convention, if  the value of "status = 0", NORMAL program TERMINATION is assumed. 
+        A 'NONZERO' value may be used to indicate an ERROR. 
+        
+        You may also use the "predefined macros": EXIT_SUCCESS and EXIT_FAILURE as arguments to exit().	
+
+    eg:
+        if(ch=='Q') exit(0);
 */
 
 
 
 
 // --------    Absolute value functions    --------
-int abs(int num);	abs()  returns the absolute value of the integer num.	gets(num); return abs(atoi(num));
+int abs(int num);
+/* abs()  returns the absolute value of the integer num.	
+
+    Eg: 
+        gets(num);
+        return abs(atoi(num)); 
+*/
 
 
-long labs(long num);	labs() returns the absolute value of the long int num.	gets(num); return labs(atol(num));
+long labs(long num);
+/* labs() returns the absolute value of the long int num.	g
+
+    Eg: 
+        ets(num); 
+        eturn labs(atol(num)); 
+*/
 
 
 
