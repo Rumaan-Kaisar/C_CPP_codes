@@ -118,14 +118,9 @@ int rand(void);
 
         int main(void) {
             int i;
-            for(i=0; i<10; i++) printf("%d", rand());
+            for(i=0; i<10; i++) printf("%d ", rand());
         }
 */
-
-
-
-
-
 
 
 void srand(unsigned seed);
@@ -159,31 +154,142 @@ void srand(unsigned seed);
 
 
 
-
-
-
-
-// ---------------------------------------------------------            rev            ---------------------------------------------------------
 // --------    DSA functions    --------
-void qsort(void *base, size_t num, size_t size,
-        int(*compare)(const void*, const void*));
+// qsort() : QuickSort
+void qsort(
+            void *base, 
+            size_t num, 
+            size_t size, 
+            int(*compare)(const void*, const void*)
+);
 
-Function pointed to by compare is used to compare two elements in the array. It must return the values:	qsort() function sorts the array pointed to by base using a Quicksort (developed by C.A.R. Hoare). The Quicksort is generally considered the best general-purpose sorting algorithm. Upon termination, the array will be sorted. The number of elements in the array is specified by num and the size (in bytes) of each element is described by size. (The size_t type is defined in STDLIB.H and is equivalent of unsigned.) . The array is sorted in ascending order, with the lowest address containing the lowest element.	int comp(const void *i, const void *j)
-int num[5]= {8, 7, 6, 2, 0};
-int main(void){
-  int i;
-  qsort(num, 5, sizeof(int), comp); 
-  printf("Sorted array: ");
-  for(i=0; i<10; i++) printf("%d ", num[i]); 
-return 0;}
-// compare the integers
-int comp(const void *i, const void *j){
-return *(int *)i – *(int *)j;     }
--ve : arg1 < arg2	0 : arg1= arg2	+ve : arg1 > arg2		
-The form of compare must be
-int function_name(const void *arg1, const void *argl2)		
+/* qsort() function uses a FUNCTION POINTER during its utilaztion.
+
+    The qsort() function is a 'generic sort routine' that can sort any type of 
+        'singly dimensioned array', using the "Quicksort algorithm (developed by C.A.R. Hoare)".
+        Upon termination, the array will be sorted.
+        The array is sorted in ASCENDING ORDER, with the 'lowest address' containing the lowest element.
+
+    base:  is a pointer to the first element in the 'array to be sorted'. 
+    number: number of elements in the array
+    size:   size of each element of the array (in bytes)
+    (Remember, size _t is a data-type defined by the C compiler in STDLIB.Hand is loosely the same as 'unsigned'.)  
+
+    Notice the final parameter is a "function-pointer": 
+        
+                int (*compare)(const void *a, const void *b)
+
+        This pointer to a function (which you create) compares two elements of the array 
+            and returns the following results:
+
+                *a < *b returns a negative value
+                *a == *b returns a zero
+                *a > *b returns a positive value
+
+    The qsort() function has no return value. 
+    It uses the <STDLIB.H> header file.
 
 
+    Eg: This program sorts a list of integers and displays the result
+
+        #include <stdio.h>
+        #include <stdlib.h>
+
+        int comp(const void *i, const void *j);
+
+        int num[10] = {1, 3, 6, 5, 8, 7, 9, 6, 2, 0};
+
+        int main(void) {
+            int i;
+
+            // load 100 random numbers from the 'random number list' to sort[100]
+            printf("Original array: \n");
+            for(i=0; i<10; i++) printf("%d ", num[i]);
+            printf ("\n");
+
+            // sorting
+            qsort(num, 10, sizeof(int), comp);
+
+            // print the result
+            printf("Sorted array: ");
+            for(i=0; i<10; i++) printf("%d ", num[i]);
+
+            return 0;
+        }
+
+        // comparison function: compare the integers
+        int comp(const void *i, const void *j) {
+            return *(int *)i - *(int *)j;
+        }	 
+*/	
+
+
+
+
+
+
+
+// bscarch() : BinarySearch
+void *bsearch(
+    const void *key, 
+    const void *array, 
+    size_t number, 
+    size_t size, 
+    int(*comp)(const void *a, const void *b)
+);
+
+/* Another of C's standard library functions is called bscarch().
+    
+    This function searches a SORTED ARRAY, given a 'KEY'. 
+
+    It returns a pointer to the 'first entry' in the array that matches the KEY,
+        if no match is found, a null pointer is returned
+
+    All the parameters to bsearcb() are the same as for qsort() except the first, 
+        which is a 'pointer to key', the object being sought. 
+    
+    The comp() function operates the same for bscarch() as it does for qsort().
+*/
+
+
+
+
+/* Example 5: Modify the program in 'Example 4' (Quick-sort) so that after the array is sorted, 
+                the user is prompted to enter a number. 
+                Next, using bsearch() search the sorted array and report if a match is found.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int comp(const void *i, const void *j);
+
+int main(void) {
+    int sort[100], i, key;
+    int *p;
+
+    // load 100 random numbers from the 'random number list' to sort[100]
+    for(i=0; i<100; i++) sort[i] = rand();
+
+    qsort(sort, 100, sizeof(int), comp);
+
+    // print the result
+    for(i=0; i<100; i++) printf("%d\n",sort[i]);
+
+    // Search a nuber
+    printf("Enter number to find: ");
+    scanf("%d", &key);
+    p = bsearch(&key, sort, 100, sizeof(int), comp);
+    if(p) printf("Number is in array.\n");
+    else printf("Number not found.\n");
+
+    return 0;
+}
+
+// comparison function
+int comp(const void *i, const void *j) {
+    return *(int*)i - *(int*)j;
+}
 
 
 
