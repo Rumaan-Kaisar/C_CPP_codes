@@ -253,6 +253,44 @@ void *bsearch(
 
 
 
+Eg: This program reads characters entered at the keyboard and 
+    determines whether they belong to the alphabet.
+
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
+
+char *alpha = -abcdefghijklrnnopqrstuvwxyz - ;
+int comp (const void *ch, const void *s);
+
+int main(void) {
+
+}
+{
+char ch;
+char *p;
+
+do {
+
+}
+printf("Enter a character: ");
+scanfC-%c%*c-,&ch);
+ch = tolower CchI ;
+SOME COMMON CUIIWIY FUNCTIOIII
+A5 MISCELlANEOUS RJNC7IONS
+p = bsearch(&ch, alpha, 26, 1, comp);
+if(p) printf('is in alphabet.\n');
+else printfC-is not in alphabet.\n");
+) while (p) ;
+return 0;
+)
+/ * compare two characters */
+int comp(const void *ch, const void ·s)
+(
+return ·(char *)ch - *(char *)s;
+)
+
+
 
 /* Example 5: Modify the program in 'Example 4' (Quick-sort) so that after the array is sorted, 
                 the user is prompted to enter a number. 
