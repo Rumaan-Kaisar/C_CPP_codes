@@ -226,9 +226,6 @@ void qsort(
 
 
 
-
-
-
 // bscarch() : BinarySearch
 void *bsearch(
     const void *key, 
@@ -242,130 +239,70 @@ void *bsearch(
     
     This function searches a SORTED ARRAY, given a 'KEY'. 
 
-    It returns a pointer to the 'first entry' in the array that matches the KEY,
+    It returns a pointer to the 'first entry' in the "array" that matches the KEY,
         if no match is found, a null pointer is returned
 
     All the parameters to bsearcb() are the same as for qsort() except the first, 
         which is a 'pointer to key', the object being sought. 
     
     The comp() function operates the same for bscarch() as it does for qsort().
+
+
+    Eg: This program reads characters entered at the keyboard and
+        determines whether they belong to the alphabet.
+
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <stdio.h>
+
+        char *alphabets = "abcdefghijklmnopqrstuvwxyz";
+        int comp (const void *ch, const void *s);
+
+        int main(void) {
+            char ch;
+            char *p;
+
+            do {
+                printf("Enter a character: ");
+                scanf("%c%*c", &ch);    // '%*c' is used for loop & carrige return
+                ch = tolower(ch);
+
+                p = bsearch(&ch, alphabets, 26, 1, comp);
+                if(p) printf("is in alphabet.\n");
+                else printf("is not in alphabet.\n");
+            } while (p) ;
+
+            return 0;
+        }
+
+
+        // compare two characters
+        int comp(const void *ch, const void *s) {
+            return *(char *)ch - *(char *)s;
+        }
 */
 
 
 
-Eg: This program reads characters entered at the keyboard and 
-    determines whether they belong to the alphabet.
-
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdio.h>
-
-char *alpha = -abcdefghijklrnnopqrstuvwxyz - ;
-int comp (const void *ch, const void *s);
-
-int main(void) {
-
-}
-{
-char ch;
-char *p;
-
-do {
-
-}
-printf("Enter a character: ");
-scanfC-%c%*c-,&ch);
-ch = tolower CchI ;
-SOME COMMON CUIIWIY FUNCTIOIII
-A5 MISCELlANEOUS RJNC7IONS
-p = bsearch(&ch, alpha, 26, 1, comp);
-if(p) printf('is in alphabet.\n');
-else printfC-is not in alphabet.\n");
-) while (p) ;
-return 0;
-)
-/ * compare two characters */
-int comp(const void *ch, const void ·s)
-(
-return ·(char *)ch - *(char *)s;
-)
-
-
-
-/* Example 5: Modify the program in 'Example 4' (Quick-sort) so that after the array is sorted, 
-                the user is prompted to enter a number. 
-                Next, using bsearch() search the sorted array and report if a match is found.
-*/
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int comp(const void *i, const void *j);
-
-int main(void) {
-    int sort[100], i, key;
-    int *p;
-
-    // load 100 random numbers from the 'random number list' to sort[100]
-    for(i=0; i<100; i++) sort[i] = rand();
-
-    qsort(sort, 100, sizeof(int), comp);
-
-    // print the result
-    for(i=0; i<100; i++) printf("%d\n",sort[i]);
-
-    // Search a nuber
-    printf("Enter number to find: ");
-    scanf("%d", &key);
-    p = bsearch(&key, sort, 100, sizeof(int), comp);
-    if(p) printf("Number is in array.\n");
-    else printf("Number not found.\n");
-
-    return 0;
-}
-
-// comparison function
-int comp(const void *i, const void *j) {
-    return *(int*)i - *(int*)j;
-}
 
 
 
 
-void *bsearch(const void *key, const void *base, 
-           size_t num, size_t size, 
-int(*compare)(const void *, const void *));
-
-Function pointed to by compare is used to compare two elements in the array with the key. It must return values:
-	bsearch() performs a binary search on the sorted array pointed to by base and returns a pointer to the first member that matches the key pointed to by key. The number of elements in the array is specified by num and the size (in bytes) of each element is described by size. (size_t type e defined in STDLIB.H and equivalent of unsigned). The array must be sorted in ascending order, with the lowest address containing the lowest element. If the array does not contain the key, then a null pointer is returned.	char *alph = "abcdefghijklmnopqrstuvwxyz";
-int comp(const void *ch, const void *s);
-int main(void){char ch, *p;
-    do { printf("Enter a character: "); 
-    scanf("%c%*c",&ch); ch = tolower(ch);
-    p = bsearch(&ch, alph, 26, 1, comp) 
-if(p) printf("is in alphabet.\n"); 
-else printf("is not in alphabet.\n") } while(p);
-return 0;} 
-int comp(const void *ch, const void *s){
-return *(char *)ch – *(char *)s;     }
--ve : arg1 < arg2	0 : arg1= arg2	+ve : arg1 > arg2		
-The form of compare must be
-int function_name(const void *arg1, const void *argl2)	
-
-
-
+// ------------------------------------         rev         ------------------------------------
 
 // --------    <setjmp.h> : JUMP between FUNCTIONS   --------
 
 #include <setjmp.h>    // must be  included before use	
 
-void longjmp(jmp_buf envbuf, 
-		int  val);	longjmp() causes program execution to resume at the point of the last call to setjmp(). These two functions are the way ANSI C provides for a jump between functions. Notice that the header SETJMP.H is required.
-               The longjmp() function operates by resetting the stack as described in envbuf, which must have been set by a prior call to setjmp(). This causes program execution to resume at the statement following the setjmp() invocation—the computer is ’tricked’ into thinking that it never left the function that called setjmp(). (As a somewhat graphic explanation, the longjmp() function ’warps’ across time and (memory) space to a previous point in your program, without having to perform the normal function-return process.)
-               The buffer envbuf is of type jmp_buf, which is defined in the header SETJMP.H. The buffer must have been set through a call to setjmp() prior to calling longjmp().
-               The value of val becomes the return value of setjmp() and may be interrogated to determine where the long jump came from. The only value not allowed is 0.
-               It is important to understand that the longjmp() function must be called before the function that called setjmp() returns. If not, the result is technically undefined. In actuality, a crash will almost certainly occur.
-               By far the most common use of longjmp() is to return from a deeply nested set of routines when a catastrophic error occurs.	#include <setjmp.h>
+void longjmp(jmp_buf envbuf, int  val);
+
+
+longjmp() causes program execution to resume at the point of the last call to setjmp(). These two functions are the way ANSI C provides for a jump between functions. Notice that the header SETJMP.H is required.
+The longjmp() function operates by resetting the stack as described in envbuf, which must have been set by a prior call to setjmp(). This causes program execution to resume at the statement following the setjmp() invocation—the computer is ’tricked’ into thinking that it never left the function that called setjmp(). (As a somewhat graphic explanation, the longjmp() function ’warps’ across time and (memory) space to a previous point in your program, without having to perform the normal function-return process.)
+The buffer envbuf is of type jmp_buf, which is defined in the header SETJMP.H. The buffer must have been set through a call to setjmp() prior to calling longjmp().
+The value of val becomes the return value of setjmp() and may be interrogated to determine where the long jump came from. The only value not allowed is 0.
+It is important to understand that the longjmp() function must be called before the function that called setjmp() returns. If not, the result is technically undefined. In actuality, a crash will almost certainly occur.
+By far the most common use of longjmp() is to return from a deeply nested set of routines when a catastrophic error occurs.	#include <setjmp.h>
 #include <stdio.h>
 
 void f2(void);
@@ -384,6 +321,45 @@ int main(void){ char first=1; int i;
 void f2(void){  printf("2");
 	          longjmp(ebuf, 3);   }
 
-#include <setjmp.h> 
-int  setjmp(jmp_buf envbuf);	setjmp() saves the contents of the system stack in the buffer envbuf for later use by longjmp(). setjmp() returns 0 upon invocation. However, longjmp() passes an argument to setjmp() when it executes, and it is this value (always nonzero) that will appear to be the value of setjmp() after a call to longjmp().	
 
+#include <setjmp.h> 
+int  setjmp(jmp_buf envbuf);
+
+/* setjmp() saves the 'contents' of the 'system stack' in the buffer 'envbuf' for later use by longjmp(). 
+    setjmp() returns 0 upon invocation. 
+    The buffer "envbuf" is of type 'jmp_buf', which is defined in the header <setjmp.h>.
+    However, longjmp() passes an argument to setjmp() when it executes, 
+        and it is this value (always nonzero) that will appear to be the value of setjmp() after a call to longjmp(). 
+*/
+
+Eg: This program prints '1 2 3':
+
+#include <setjmp.h>
+#include <stdio.h>
+
+void f2(void);
+
+jump_buf ebuf;
+
+int main(void) {
+    char first=1;
+    int i;
+
+    printf("1 ");
+    i = setjrnp(ebuf);
+    if(first) {
+        first = !first;
+        f2( );
+        printf("this will not be printed");
+    }
+
+    printf("%d", i);
+
+    return 0;
+}
+
+
+void f2(void) {
+    printf("2 ");
+    longjmp(ebuf, 3);
+}
