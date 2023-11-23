@@ -286,97 +286,78 @@ void *bsearch(
 
 
 
-
-
-// ------------------------------------         rev         ------------------------------------
-
 // --------    <setjmp.h> : JUMP between FUNCTIONS   --------
 
 #include <setjmp.h>    // must be  included before use	
 
 void longjmp(jmp_buf envbuf, int  val);
-
-/* longjmp() causes program execution to resume at the point of the last call to setjmp(). 
-    These two functions are the way ANSI C provides for a "JUMP BETWEEN FUNCTIONS". 
-    Notice that the header <setjmp.h> is required.
-
-    The longjmp() function operates by resetting the 'STACK' as described in 'envbuf', 
-        which must have been set by a prior call to setjmp(). 
-        This causes 'program execution 'to RESUME at the 'statement following the setjmp() invocation'
-            — the computer is "tricked" into thinking that it never left the function that called setjmp(). 
-                (the longjmp() function "WARPS" across time and (memory) space to a previous point in your program, 
-                    without having to perform the normal function-return process.)
-
-    The buffer "envbuf" is of type "jmp_buf", which is defined in the header <SETJMP.H>. 
-        The buffer must have been set through a call to setjmp() prior to calling longjmp().
-
-    The value of "val" becomes the 'return value' of setjmp() and may be interrogated to determine where the long jump came from. 
-        The only value not allowed is 0.
-
-    It is important to understand that the longjmp() function "must be called before the function that called setjmp() returns". 
-        If not, the result is technically UNDEFINED. In actuality, a CRASH will almost certainly occur.
-
-    By far the most common use of longjmp() is to "return from a deeply nested set of routines" when a catastrophic error occurs.
-*/
-
-#include <setjmp.h>
-#include <stdio.h>
-
-void f2(void);
-jmp_buf ebuf;
-
-int main(void){ char first=1; int i;
-           printf("1") ; 
-           i = setjmp(ebuf) ; 
-           if(first) {first = !first; 
-	        f2();
-	        printf("Not printed"); 
-	        }
-           printf("%d",i); 
-           return 0;}
-
-void f2(void){  printf("2");
-	          longjmp(ebuf, 3);   }
-
-
-#include <setjmp.h> 
 int  setjmp(jmp_buf envbuf);
 
-/* setjmp() saves the 'contents' of the 'system stack' in the buffer 'envbuf' for later use by longjmp(). 
-    setjmp() returns 0 upon invocation. 
-    The buffer "envbuf" is of type 'jmp_buf', which is defined in the header <setjmp.h>.
-    However, longjmp() passes an argument to setjmp() when it executes, 
-        and it is this value (always nonzero) that will appear to be the value of setjmp() after a call to longjmp(). 
+/* 
+    longjmp() causes program execution to resume at the point of the last call to setjmp(). 
+        These two functions are the way ANSI C provides for a "JUMP BETWEEN FUNCTIONS". 
+        Notice that the header <setjmp.h> is required.
+
+        The longjmp() function operates by resetting the 'STACK' as described in 'envbuf', 
+            which must have been set by a prior call to setjmp(). 
+            This causes 'program execution 'to RESUME at the 'statement following the setjmp() invocation'
+                — the computer is "tricked" into thinking that it never left the function that called setjmp(). 
+                    (the longjmp() function "WARPS" across time and (memory) space to a previous point in your program, 
+                        without having to perform the normal function-return process.)
+
+        The buffer "envbuf" is of type "jmp_buf", which is defined in the header <SETJMP.H>. 
+            The buffer must have been set through a call to setjmp() prior to calling longjmp().
+
+        The value of "val" becomes the 'return value' of setjmp() and may be interrogated to determine where the long jump came from. 
+            The only value not allowed is 0.
+
+        It is important to understand that the longjmp() function "must be called before the function that called setjmp() returns". 
+            If not, the result is technically UNDEFINED. In actuality, a CRASH will almost certainly occur.
+
+        By far the most common use of longjmp() is to "return from a deeply nested set of routines" when a catastrophic error occurs.
+
+
+
+    setjmp() saves the 'contents' of the 'system stack' in the buffer 'envbuf' for later use by longjmp(). 
+        setjmp() returns 0 upon invocation. 
+        The buffer "envbuf" is of type 'jmp_buf', which is defined in the header <setjmp.h>.
+        However, longjmp() passes an argument to setjmp() when it executes, 
+            and it is this value (always nonzero) that will appear to be the value of setjmp() after a call to longjmp(). 
+
+
+    Eg: This program prints '1 2 3':
+
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        void f2(void);
+
+        jmp_buf ebuf;
+
+        int main(void) {
+            char first=1;
+            int i;
+
+            printf("1 ");
+            i = setjmp(ebuf);
+            if(first) {
+                first = !first;
+                f2( );
+                printf("this will not be printed");
+            }
+
+            printf("%d", i);
+
+            return 0;
+        }
+
+
+        void f2(void) {
+            printf("2 ");
+            longjmp(ebuf, 3);
+        }
+
 */
 
-Eg: This program prints '1 2 3':
-
-#include <setjmp.h>
-#include <stdio.h>
-
-void f2(void);
-
-jump_buf ebuf;
-
-int main(void) {
-    char first=1;
-    int i;
-
-    printf("1 ");
-    i = setjrnp(ebuf);
-    if(first) {
-        first = !first;
-        f2( );
-        printf("this will not be printed");
-    }
-
-    printf("%d", i);
-
-    return 0;
-}
 
 
-void f2(void) {
-    printf("2 ");
-    longjmp(ebuf, 3);
-}
