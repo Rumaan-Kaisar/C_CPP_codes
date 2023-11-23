@@ -297,7 +297,10 @@ void *bsearch(
 void longjmp(jmp_buf envbuf, int  val);
 
 
-longjmp() causes program execution to resume at the point of the last call to setjmp(). These two functions are the way ANSI C provides for a jump between functions. Notice that the header SETJMP.H is required.
+longjmp() causes program execution to resume at the point of the last call to setjmp(). 
+    These two functions are the way ANSI C provides for a "JUMP BETWEEN FUNCTIONS". 
+    Notice that the header <setjmp.h> is required.
+
 The longjmp() function operates by resetting the stack as described in envbuf, which must have been set by a prior call to setjmp(). This causes program execution to resume at the statement following the setjmp() invocation—the computer is ’tricked’ into thinking that it never left the function that called setjmp(). (As a somewhat graphic explanation, the longjmp() function ’warps’ across time and (memory) space to a previous point in your program, without having to perform the normal function-return process.)
 The buffer envbuf is of type jmp_buf, which is defined in the header SETJMP.H. The buffer must have been set through a call to setjmp() prior to calling longjmp().
 The value of val becomes the return value of setjmp() and may be interrogated to determine where the long jump came from. The only value not allowed is 0.
