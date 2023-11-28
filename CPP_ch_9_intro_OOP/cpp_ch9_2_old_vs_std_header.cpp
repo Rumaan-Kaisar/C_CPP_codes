@@ -1,4 +1,7 @@
-9.2 Old Header And Standard Header Declaration Of C++
+
+----------------------     HEADER : Old vs Standard     ----------------------
+
+ 
 The differences between old-style and modern code involve two new features: new-style headers and the namespace statement. The first version, shown here, reflects the old-style coding.
 
 /*	A traditional - style C++ program .	*/
