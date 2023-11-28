@@ -1,4 +1,7 @@
 
+
+----------------------     Object Oriented Programming : OOP     ----------------------
+
 By using a high-level language, a programmer was able to write programs that were several thousand lines long. However, the method of programming used early on was an ad hoc, anything-goes approach. While this is fine for relatively short programs, it yields unreadable (and unmanageable) "spaghetti code" when applied to larger programs. Structured programming then solves this problem. 
 
 	Structured programming relies on well-defined control structures, code blocks, the absence (or at least minimal use) of the GOTO, and stand-alone subroutines that support recursion and local variables. The essence of structured programming is the reduction of a program into its constituent elements. Using structured programming, the average programmer can create and maintain programs that are up to 50,000 lines long. Although structured programming has yielded excellent results when applied to moderately complex programs, even it fails at some point, after a program reaches a certain size : the problems were about data abstraction, code reusability and maintenance. 
@@ -7,7 +10,7 @@ By using a high-level language, a programmer was able to write programs that wer
  
 	ENCAPSULATION : Encapsulation is the mechanism that binds together code and the data it manipulates, and keeps both safe from outside interference and misuse like a self-contained "black box". When code and data are linked together in this fashion, an object is created. 
 	Within an object, code, data, or both may be private to that object or public. 
-	Private code or data is known to and accessible only by another part of the object. That is, private code or data cannot be accessed by a piece of the program that exists outside the object.
+	Private code or data is known to and accessible oanly by another part of the object. That is, private code or data cannot be accessed by a piece of the program that exists outside the object.
 	When code or data is public, other parts of the program can access it even though it is defined within an object. 
 	Typically, the public parts of an object are used to provide a controlled interface to the private elements of the object.
 	For all intents and purposes, an object is a variable of a user-defined type (more like a structure type variables. In C++ classes are more like structures and objects are more like variables ). 
