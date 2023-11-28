@@ -1,4 +1,5 @@
-9.7 C++ Keywords
+
+----------------------     C++ Keywords     ----------------------
 C++ supports all 32 of the keywords defined by C and adds 30 of its own. The entire set of keywords defined by C++ is shown in table below. Also early versions of C++ defined the overload keyword, but it is now obsolete.
 
 C++ Keywords
