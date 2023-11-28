@@ -1,3 +1,6 @@
+
+----------------------     C vs C++     ----------------------
+
 9.6 Difference between C and C++
 	Void is not essential for empty parameter : In C, when a function takes no parameters, its prototype has the word void inside its function parameter list. For example, in C, if a function called f1() takes no parameters (and returns a char), its prototype will look like this: 	char f1(void);
 However, in C++, the void is optional. Therefore, in C++, the prototype for f1() is usually written like this:      char f1();
