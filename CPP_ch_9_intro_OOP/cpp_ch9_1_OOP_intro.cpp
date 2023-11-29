@@ -1,12 +1,42 @@
 
+/* ----------------------     Object Oriented Programming : OOP     ----------------------
 
-----------------------     Object Oriented Programming : OOP     ----------------------
+Using OOP we can manage a very large programs.
 
-By using a high-level language, a programmer was able to write programs that were several thousand lines long. However, the method of programming used early on was an ad hoc, anything-goes approach. While this is fine for relatively short programs, it yields unreadable (and unmanageable) "spaghetti code" when applied to larger programs. Structured programming then solves this problem. 
+Structured programming:
+	Structured programming relies on:
+        well-defined control structures, 
+        code blocks, 
+        the absence (or at least minimal use) of the GOTO, and 
+        stand-alone subroutines that support recursion and local variables. 
+        
+        The essence of structured programming is the 'reduction of a program into its constituent elements'. 
+        Using structured programming, the average programmer can create and maintain programs that are up to 50,000 lines long. 
+        
+        To moderately complex programs 'Structured programming' fails at some point, after a program reaches a certain size :
+            the problems were about 
+                data abstraction, 
+                code reusability and 
+                maintenance. 
+	
+OOP:    
+    object-oriented programming was invented to write 'complex programs'.
+    OOP also allows more MANAGABLE codes
 
-	Structured programming relies on well-defined control structures, code blocks, the absence (or at least minimal use) of the GOTO, and stand-alone subroutines that support recursion and local variables. The essence of structured programming is the reduction of a program into its constituent elements. Using structured programming, the average programmer can create and maintain programs that are up to 50,000 lines long. Although structured programming has yielded excellent results when applied to moderately complex programs, even it fails at some point, after a program reaches a certain size : the problems were about data abstraction, code reusability and maintenance. 
-	To allow more complex programs to be written object-oriented programming was invented. OOP takes the best of the ideas embodied in structured programming and combines them with powerful new concepts that allow us to organize our programs more effectively. OOP lets us to decompose a problem into its constituent parts. Each component becomes a self-contained object that contains its own instructions and data that relate to that object. In this way, complexity is reduced and the programmer can manage larger programs.
-	All OOP languages, including C++, share three common defining traits:  encapsulation, polymorphism and inheritance
+    OOP takes the best of the ideas embodied in 'structured programming' and combines them with 
+        powerful new concepts that allow us to "ORGANIZE" our programs more EFFECTIVELY. 
+        OOP lets us to 'decompose a problem' into its 'CONSTITUENT PARTS'. 
+    
+    Each component becomes a 'self-contained object' that contains its own 'instructions' and 'data' that relate to that object. 
+        In this way, "complexity is reduced" and the programmer can 'manage larger programs'.
+
+	All OOP languages, including C++, share three common defining traits: 
+
+                ENCAPSULATION, 
+                POLYMORPHISM and 
+                INHERITANCE
+ 
+
  
 	ENCAPSULATION : Encapsulation is the mechanism that binds together code and the data it manipulates, and keeps both safe from outside interference and misuse like a self-contained "black box". When code and data are linked together in this fashion, an object is created. 
 	Within an object, code, data, or both may be private to that object or public. 
@@ -28,3 +58,4 @@ For example, in C,  the absolute value action requires three distinct function n
 	Inheritance is important because it allows an object to support the concept of hierarchical classification. Most information is made manageable by hierarchical classification. (More like set and their subsets). For example, think about the description of a house. A house is a part of the general class called building. In turn, building is part of the more general class structures. In each case, the child class inherits all those qualities associated with the parent and adds to them its own defining characteristics. 
 	Through inheritance, it is possible to describe an object by stating what general class (or classes) it belongs to along with those specific traits that make it unique. 
 
+ */
