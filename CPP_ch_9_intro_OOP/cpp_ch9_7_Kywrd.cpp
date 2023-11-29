@@ -1,16 +1,76 @@
 
-----------------------     C++ Keywords     ----------------------
-C++ supports all 32 of the keywords defined by C and adds 30 of its own. The entire set of keywords defined by C++ is shown in table below. Also early versions of C++ defined the overload keyword, but it is now obsolete.
+// ----------------------     C++ Keywords     ----------------------
+    // C++ supports all 32 of the keywords defined by C and adds 30 of its own (Total 62). 
+    // Early versions of C++ defined the overload keyword, but it is now obsolete.
 
-C++ Keywords
-asm	const¬_cast	explicit	int	register	switch	union
-auto	continue	extern	long	reinterpret_cast	template	unsigned
-bool	default	false	mutable	return	this	using
-break	delete	float	namespace 	short	throw	virtual
-case 	do 	for	new	signed	true	void
-catch 	double 	friend	operator	sizeof	try	volatile
-char 	dynamic_cast	goto	private	static	typedef	wchar_t
-class 	else	if	protected	static_cast	typeid	while
-const 	enum	inline	public	struct	typename	
+
+asm
+auto
+bool
+break
+case 
+catch
+char 
+class
+const
+
+        const_cast
+        continue
+        default
+        delete
+        do 	   
+        double 
+        dynamic_cast
+        else
+        enum
+
+                explicit	
+                extern	
+                false	
+                float	
+                for	
+                friend	
+                goto	
+                if	
+                inline	
+
+                        int	
+                        long	
+                        mutable	
+                        namespace 	
+                        new	
+                        operator	
+                        private	
+                        protected	
+                        public	
+
+                                register	
+                                reinterpret_cast	
+                                return	
+                                short	
+                                signed	
+                                sizeof	
+                                static	
+                                static_cast	
+                                struct	
+
+                                        switch	
+                                        template	
+                                        this	
+                                        throw	
+                                        true	
+                                        try	
+                                        typedef	
+                                        typeid	
+                                        typename	        
+
+                                                union
+                                                unsigned
+                                                using
+                                                virtual
+                                                void
+                                                volatile
+                                                wchar_t
+                                                while
 
 
