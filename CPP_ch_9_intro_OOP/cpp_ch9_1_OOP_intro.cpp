@@ -1,49 +1,61 @@
 
 /* ----------------------     Object Oriented Programming : OOP     ----------------------
 
-Using OOP we can manage a very large programs.
+    Using OOP we can manage a very large programs.
 
-Structured programming:
-	Structured programming relies on:
-        well-defined control structures, 
-        code blocks, 
-        the absence (or at least minimal use) of the GOTO, and 
-        stand-alone subroutines that support recursion and local variables. 
-        
-        The essence of structured programming is the 'reduction of a program into its constituent elements'. 
-        Using structured programming, the average programmer can create and maintain programs that are up to 50,000 lines long. 
-        
-        To moderately complex programs 'Structured programming' fails at some point, after a program reaches a certain size :
-            the problems were about 
-                data abstraction, 
-                code reusability and 
-                maintenance. 
-	
-OOP:    
-    object-oriented programming was invented to write 'complex programs'.
-    OOP also allows more MANAGABLE codes
+    Structured programming:
+        Structured programming relies on:
+            well-defined control structures, 
+            code blocks, 
+            the absence (or at least minimal use) of the GOTO, and 
+            stand-alone subroutines that support recursion and local variables. 
+            
+            The essence of structured programming is the 'reduction of a program into its constituent elements'. 
+            Using structured programming, the average programmer can create and maintain programs that are up to 50,000 lines long. 
+            
+            To moderately complex programs 'Structured programming' fails at some point, after a program reaches a certain size :
+                the problems were about 
+                    data abstraction, 
+                    code reusability and 
+                    maintenance. 
 
-    OOP takes the best of the ideas embodied in 'structured programming' and combines them with 
-        powerful new concepts that allow us to "ORGANIZE" our programs more EFFECTIVELY. 
-        OOP lets us to 'decompose a problem' into its 'CONSTITUENT PARTS'. 
+
+
+    OOP:    
+        object-oriented programming was invented to write 'complex programs'.
+        OOP also allows more MANAGABLE codes
+
+        OOP takes the best of the ideas embodied in 'structured programming' and combines them with 
+            powerful new concepts that allow us to "ORGANIZE" our programs more EFFECTIVELY. 
+            OOP lets us to 'decompose a problem' into its 'CONSTITUENT PARTS'. 
+        
+        Each component becomes a 'self-contained object' that contains its own 'instructions' and 'data' that relate to that object. 
+            In this way, "complexity is reduced" and the programmer can 'manage larger programs'.
+
+        All OOP languages, including C++, share three common defining traits: 
+
+                    ENCAPSULATION, 
+                    POLYMORPHISM and 
+                    INHERITANCE
     
-    Each component becomes a 'self-contained object' that contains its own 'instructions' and 'data' that relate to that object. 
-        In this way, "complexity is reduced" and the programmer can 'manage larger programs'.
 
-	All OOP languages, including C++, share three common defining traits: 
 
-                ENCAPSULATION, 
-                POLYMORPHISM and 
-                INHERITANCE
- 
+    ENCAPSULATION : 
+        Encapsulation is the mechanism that 'binds together CODE and the DATA' it manipulates, and 
+            keeps both safe from outside interference and misuse like a self-contained "black box". 
+            As a result an OBJECT is created. 
 
- 
-	ENCAPSULATION : Encapsulation is the mechanism that binds together code and the data it manipulates, and keeps both safe from outside interference and misuse like a self-contained "black box". When code and data are linked together in this fashion, an object is created. 
-	Within an object, code, data, or both may be private to that object or public. 
-	Private code or data is known to and accessible oanly by another part of the object. That is, private code or data cannot be accessed by a piece of the program that exists outside the object.
-	When code or data is public, other parts of the program can access it even though it is defined within an object. 
-	Typically, the public parts of an object are used to provide a controlled interface to the private elements of the object.
-	For all intents and purposes, an object is a variable of a user-defined type (more like a structure type variables. In C++ classes are more like structures and objects are more like variables ). 
+        Within an object, code, data, or both may be 'PRIVATE' to that object or 'PUBLIC'. 
+            Private code or data is known to and accessible oanly by another part of the object. 
+                cannot be accessed outside the object.
+            Public code or data are accessable to other parts of the program.
+
+        Typically, the PUBLIC parts of an object are used to "provide a controlled interface" to the PRIVATE elements of the object.
+
+        An "object" is can be treated as a variable of a 'user-defined type' (like a structure type variables)
+            In C++ CLASSES are more like 'structures' and OBJECTS are more like 'variables' 
+
+
 
 	POLYMORPHISM : "To morph" means "to change". So "Morph = shape shifting" and "Morphism = shape shifting property". Polymorphism (from the Greek, meaning "many forms") is the quality that allows one name to be used for two or more related but technically different purposes. As it relates to OOP, polymorphism allows one name to specify a general class of actions. Within a general class of actions, the specific action to be applied is determined by the type of data. It allows us to handle greater complexity by allowing the creation of standard interfaces to related activities.
 
