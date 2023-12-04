@@ -38,46 +38,53 @@
 */
 
 
+
+
 /* Example 1: Example of 'Function overloading'.
-                The C standard library contains the functions abs(), labs(), and fabs(), 
-                    which return the absolute value of an integer, a long integer, and a floating-point value, respectively. 
-                    
-                    In C++, you can 'overload one name' for the three types of data, as this example illustrates: 
+                The C standard library contains the functions abs(), labs(), and fabs(),
+                    which return the absolute value of an integer, a long integer, and a floating-point value, respectively.
+
+                    In C++, you can 'overload one name' for the three types of data, as this example illustrates:
+                
+                However, abs() is already defined in C++, that's why abs(-10) will invoke the library abs()
+                    function, not ours, and won't print "Absolute of -10 : In integer abs() = 10"
+                That's why we'll change our function name abs() to abs_val()
 */
 
 #include <iostream>
 // using namespace std;
 
-// Overloading three abs() functions with different types 
-int abs(int n);
-long abs(long n);
-double abs(double n);
+// Overloading three abs() functions with different types
+int abs_valu(int n);
+long abs_valu(long n);
+double abs_valu(double n);
 
-int main(){ 
-    std::cout<<"Absolute of -10 : "<<abs(-10)<<"\n";
-    std::cout<<"Absolute of -10L : "<<abs(-10L)<<"\n";
-    std::cout<<"Absolute of -10.01 : "<<abs(-10.01)<<"\n";
+int main(){
+    std::cout<<"Absolute of -10 : "<<abs_valu(-10)<<"\n";
+    std::cout<<"Absolute of -10L : "<<abs_valu(-10L)<<"\n";
+    std::cout<<"Absolute of -10.01 : "<<abs_valu(-10.01)<<"\n";
 
     return 0;
 }
 
 // abs() for ints
-int abs(int n){ 
-    cout<< "\n In integer abs() = ";
+int abs_valu(int n){
+    std::cout<< "\n In integer abs() = ";
     return n<0 ? -n : n;
 }
 
 // abs() for longs
-long abs(long n){
-    cout<< "\n In long abs() = ";
+long abs_valu(long n){
+    std::cout<< "\n In long abs() = ";
     return n<0 ? -n : n;
 }
 
 // abs() for doubles
-double abs(double n){
-    cout<< "\n In double abs() = ";
+double abs_valu(double n){
+    std::cout<< "\n In double abs() = ";
     return n<0 ? -n : n;
 }
+
 
 // As you can see, this program defines three functions called abs()-one for each data type.
 // Inside main(), abs() is called using 'three different types of arguments'. 
