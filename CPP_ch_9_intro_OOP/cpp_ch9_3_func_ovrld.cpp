@@ -102,41 +102,38 @@ double abs_valu(double n){
 
 
 
+/* Example 2: Here is another example of function overloading. In this case, the function date() is
+                overloaded to accept the date either as a 'string' or as "three integers". 
+                In both cases, the function displays the data passed to it. */
+#include <iostream >
+// using namespace std;
+
+void date(char *date);  // date as a string
+void date(int month, int day, int year ); // date as numbers
+
+int main() {
+    date(" 8/23/99 ");
+    date(8, 23, 99);
+
+    return 0;
+}
+
+// Date as string .
+void date(char *date){
+    std::cout << " Date : " << date << "\n";
+}
+
+// Date as integers.
+void date(int month, int day, int year){
+    std::cout << " Date : " << month << "/";
+    std::cout << day << "/" << year << "\n";
+}
+
+
 
 
 
 // -------------   rev   -------------
-
-/* Example 2: Here is another example of function overloading. In this case, the function date() is
-                overloaded to accept the date either as a string or as three integers. In both cases, the
-                function displays the data passed to it. */
-# include <iostream >
-using namespace std ;
-void date ( char * date ); // date as a string
-void date ( int month , int day , int year ); // date as numbers
-int main ()
-{
-date (" 8/23/99 ");
-date (8, 23, 99) ;
-return 0;
-}
-// Date as string .
-void date ( char * date )
-{
-cout << " Date : " << date << "\n";
-}
-// Date as integers .
-void date ( int month , int day , int year )
-{
-cout << " Date : " << month << "/";
-cout << day << "/" << year << "\n";
-}
-This example illustrates how function overloading can provide the most natural interface
-to a function. Since it is very common for the date to be represented as either a string
-or as three integers containing the month, day, and year, you are free to select the most
-convenient form relative to the situation at hand.
-
-
 
 /* Example 3: So far, you have seen overloaded functions that differ in the data types of their arguments.
                 However, overloaded functions can also differ in the number of arguments, as this example illustrates */
