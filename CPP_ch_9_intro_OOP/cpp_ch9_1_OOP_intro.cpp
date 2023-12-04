@@ -57,7 +57,7 @@
 
 
 
-    POLYMORPHISM : 
+	POLYMORPHISM : 
         "To morph" means "to change". So "Morph = shape shifting" and "Morphism = shape shifting property". 
             Polymorphism (from the Greek, meaning "many forms")
         
@@ -84,7 +84,7 @@
                 makes the general activity of obtaining the absolute value of a number more complex than it actually is.
 	
 
-	Operator overloading : 
+        Operator overloading : 
             Polymorphism can be applied to operators, too. 
             Virtually all programming languages contain a limited application of polymorphism as it relates to the arithmetic operators. 
                 For example, in C, the '+ sign' is used to add integers, long integers, characters, and floating-point values. 
