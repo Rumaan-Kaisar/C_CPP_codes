@@ -111,7 +111,7 @@ double abs_valu(double n){
 void date(char *date);  // date as a string
 void date(int month, int day, int year ); // date as numbers
 
-int main() {
+int main(){
     date(" 8/23/99 ");
     date(8, 23, 99);
 
@@ -132,72 +132,95 @@ void date(int month, int day, int year){
 
 
 
+/* Example 3: So far, you have seen overloaded functions that differ in the "DATA TYPES" of their arguments.
+                However, overloaded functions can also differ in the "NUMBER OF ARGUMENTS" */
 
-// -------------   rev   -------------
+#include <iostream>
+// using namespace std;
 
-/* Example 3: So far, you have seen overloaded functions that differ in the data types of their arguments.
-                However, overloaded functions can also differ in the number of arguments, as this example illustrates */
+void f1(int a);
+void f1(int a, int b);
 
-# include <iostream >
-using namespace std ;
-void f1( int a);
-void f1( int a, int b);
-int main ()
-{
-f1 (10) ;
-f1 (10 , 20) ;
-return 0;
-}
-void f1( int a)
-{
-cout << "In f1( int a)\n";
-}
-void f1( int a, int b)
-{
-cout << "In f1( int a, int b)\n";
+int main(){
+    f1(10);
+    f1(10 , 20);
+
+    return 0;
 }
 
+// notice the number of arguments
+void f1(int a){
+    std::cout << "In f1( int a)\n";
+}
 
-/* Example 4: It is important to understand that the return type alone is not a sufficient difference to
-                allow function overloading. If two functions differ only in the type of data they return,
-                the compiler will not always be able to select the proper one to call. For example, this
-                fragment is incorrect because it is inherently ambiguous. */
+void f1(int a, int b){
+    std::cout << "In f1( int a, int b)\n";
+}
+
+
+
+
+/* Example 4: It is important to understand that the return type alone is not a sufficient difference to allow function overloading. 
+                If two functions differ only in the type of data they return,   the compiler will not always be able to select the proper one to call. 
+                For example, this fragment is incorrect because it is inherently ambiguous. */
 
 // This is incorrect and will not compile .
 int f1( int a);
 double f1( int a);
 . . .
 f1 (10) ; // which function does the compiler call ???
-As the comment indicates, the compiler has o way of knowing which version of f1() to
-call.
+// As the comment indicates, the compiler has no way of knowing which version of f1() to call.
 
 
 
-EXERCISES
-/* Example 1: Create a function called sroot() that returns the square root of its argument. Overload
-                sroot() three ways: have it return the square root of an integer, a long integer, and a
-                double. (To actually compute the square root, you can use the standard library function
-                sqrt().) */
+
+// -------------   rev   -------------
+
+/* Example 1: Create a function called sroot() that returns the square root of its argument. 
+                Overload sroot() three ways: 
+                    have it return the square root of 
+                        an integer, 
+                        a long integer, and 
+                        a double. 
+                
+                To actually compute the square root, you can use the standard library function sqrt()
+*/
+
+
 
 
 /* Example 2: The C++ standard library contains these three functions: 
-                double atof ( const char *s);
-                int atoi ( const char *s);
-                long atol ( const char *s);
-                These functions return the numeric value contained in the string pointed to by s. Specifically, atof() returns a double, atoi() returns an integer, and atol() returns a long.
-                Why is it not possible to overload these functions? */
+ 
+                        double atof ( const char *s);   // atof() returns a double, 
+                        int atoi ( const char *s);      // atoi() returns an integer, and 
+                        long atol ( const char *s);     // atol() returns a long.
+                
+                These functions return the numeric value contained in the string pointed to by 's'. 
+                
+                Why is it NOT POSSIBLE to "overload" these functions? 
+*/
 
 
-/* Example 3: Create a function called min() that returns the smaller of the two numeric arguments
-                used to call the function. Overload min() so it accepts characters, integers, and doubles
-                as arguments. */
 
 
-/* Example 4: Create a function called sleep() that pauses the computer for the number of seconds
-                specified by its single argument. Overload sleep() so it can be called with either an
-                integer or a string representation of an integer. For example, both of these calls to sleep()
-                will cause the computer to pause for 10 seconds:
-                sleep (10) ;
-                sleep ("10");
-                Demonstrate that your functions work by including them in a short program. (Feel free
-                to use a delay loop to pause the computer. */
+/* Example 3: Create a function called min() that returns the smaller of the two numeric arguments used to call the function. 
+                Overload min() so it accepts char, int, and double as arguments.
+*/
+
+
+
+
+/* Example 4: Create a function called sleep() that "PAUSES THE COMPUTER" for the number of seconds specified by its single argument.
+                Overload sleep() so it can be called with either an int or a 'string representation of an integer'. 
+                
+                For example, both of these calls to sleep() will cause the computer to pause for 10 seconds:
+
+                        sleep (10) ;
+                        sleep ("10");
+                
+                Demonstrate that your functions work by including them in a short program. 
+                (Feel free to use a DELAY LOOP to pause the computer. 
+*/
+
+
+
