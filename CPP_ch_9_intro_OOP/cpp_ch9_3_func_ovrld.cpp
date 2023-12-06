@@ -245,40 +245,43 @@ The functions atof(), atoi(), atol() cannot be overloaded because
 
 
 
-// -------------   rev   -------------
 /* Example 3: Create a function called min() that returns the smaller of the two numeric arguments used to call the function. 
                 Overload min() so it accepts char, int, and double as arguments.
 */
-// Overload the min () function .
-# include <iostream >
-# include <cctype >
-using namespace std ;
-char min ( char a, char b);
-int min ( int a, int b);
-double min ( double a, double b);
-int main ()
-{
-    cout << " Min is: " << min (’x’, ’a’) << "\n";
-cout << " Min is: " << min (10 , 20) << "\n";
-cout << " Min is: " << min (0.2234 , 99.2) << "\n";
-return 0;
+
+// Overload the min () function.
+#include <iostream>
+#include <cctype>
+
+// using namespace std;
+
+char min(char a, char b);
+int min(int a, int b);
+double min(double a, double b);
+
+int main(){
+    std::cout << " Min is: " << min('x', 'a') << "\n";
+    std::cout << " Min is: " << min(10 , 20) << "\n";
+    std::cout << " Min is: " << min(0.2234 , 99.2) << "\n";
+
+    return 0;
 }
+
 // min () for chars
-char min ( char a, char b)
-{
-return tolower (a)<tolower (b) ? a : b;
+char min(char a, char b){
+    return tolower(a)<tolower(b) ? a : b;
 }
+
 // min () for ints
-int min ( int a, int b)
-{
-return a<b ? a : b;
+int min(int a, int b){
+    return a<b ? a : b;
 }
+
 // min () for doubles
-double min ( double a, double b)
-{
-return a<b ? a : b;
+double min(double a, double b){
+    return a<b ? a : b;
 }
-4
+
 
 
 
@@ -294,38 +297,51 @@ return a<b ? a : b;
                 (Feel free to use a DELAY LOOP to pause the computer. 
 */
 
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
-// Overload sleep to accept integer or char * argument
-void sleep ( int n);
-void sleep ( char *n);
-// Change this value to fit your processor speed .
-# define DELAY 100000
-int main ()
-{
-cout << ".";
-sleep (3) ;
-cout << ".";
-sleep ("2");
-cout << ".";
-return 0;
-}
-// Sleep () with integer argument .
-void sleep ( int n)
-{
-long i;
+#include <iostream>
+#include <cstdlib>
 
-for ( ; n; n --)
-for (i =0; i< DELAY ; i++);
+// using namespace std;
+
+// Overload sleep to accept integer or char * argument
+void sleep(int n);
+void sleep(char *n);    // uses string 
+
+// Change this value to fit your processor speed .
+#define DELAY 100000
+
+int main(){
+    std::cout << ".";
+    sleep(30000);   // as int
+    std::cout << ".";
+    sleep("50000"); // as string
+    std::cout << ".";
+
+    return 0;
 }
+
+
+// Sleep () with integer argument .
+void sleep(int n){
+    long i;
+
+    for( ; n; n--){
+        for(i=0; i<DELAY; i++);
+    }
+    std::cout << "\ndone! int.";
+}
+
+
 // Sleep () with char * argument .
-void sleep ( char *n)
-{
-long i;
-int j;
-j = atoi (n);
-for ( ; j; j --)
-for (i =0; i< DELAY ; i++);
+void sleep(char *n){
+    long i;
+    int j;
+
+    j = atoi(n); // char or str to int
+    for ( ; j; j--){
+        for(i=0; i<DELAY; i++);
+    }
+    std::cout << "\nChar done!.";
 }
+
+
 
