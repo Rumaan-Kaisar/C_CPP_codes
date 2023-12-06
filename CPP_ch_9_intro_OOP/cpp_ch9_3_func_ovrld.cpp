@@ -174,9 +174,7 @@ f1 (10) ; // which function does the compiler call ???
 
 
 
-// -------------   rev   -------------
-
-/* Example 1: Create a function called sroot() that returns the square root of its argument. 
+/* Example 5: Create a function called sroot() that returns the square root of its argument. 
                 Overload sroot() three ways: 
                     have it return the square root of 
                         an integer, 
@@ -185,11 +183,52 @@ f1 (10) ; // which function does the compiler call ???
                 
                 To actually compute the square root, you can use the standard library function sqrt()
 */
+#include <iostream>
+#include <cmath>
+
+// using namespace std ;
+
+// Overload sroot() for integers , longs , and doubles
+    // NOTICE: return-type and argument-type both differs
+int sroot(int i);
+long sroot(long i);
+double sroot(double i);
+
+int main(){
+    std::cout << " Square root of 90.34 is : " << sroot(90.34);
+    std::cout << "\n";
+    std::cout << " Square root of 90L is : " << sroot(90L);
+    std::cout << "\n";
+    std::cout << " Square root of 90 is : " << sroot(90);
+    std::cout << "\n";
+
+    return 0;
+}
+
+
+// Return square root of integer.
+int sroot(int i){
+    std::cout << " computing integer root \n";
+    return (int) sqrt((double)i);
+}
+
+// Return square root of long.
+long sroot(long i){
+    std::cout << " computing long root \n";
+    return (long) sqrt((double)i);
+}
+
+// Return square root of double.
+double sroot(double i){
+    std::cout << " computing double root \n";
+    return sqrt(i);
+}
+// Notice sqrt() always use 'double' type hence we used type-cast
 
 
 
 
-/* Example 2: The C++ standard library contains these three functions: 
+/* Example 6: The C++ standard library contains these three functions: 
  
                         double atof ( const char *s);   // atof() returns a double, 
                         int atoi ( const char *s);      // atoi() returns an integer, and 
@@ -199,14 +238,47 @@ f1 (10) ; // which function does the compiler call ???
                 
                 Why is it NOT POSSIBLE to "overload" these functions? 
 */
+The functions atof(), atoi(), atol() cannot be overloaded because 
+    they differ only in the "type of data they return". 
+    Function overloading requires that either the type or the number of arguments differs.
 
 
 
 
+// -------------   rev   -------------
 /* Example 3: Create a function called min() that returns the smaller of the two numeric arguments used to call the function. 
                 Overload min() so it accepts char, int, and double as arguments.
 */
-
+// Overload the min () function .
+# include <iostream >
+# include <cctype >
+using namespace std ;
+char min ( char a, char b);
+int min ( int a, int b);
+double min ( double a, double b);
+int main ()
+{
+    cout << " Min is: " << min (’x’, ’a’) << "\n";
+cout << " Min is: " << min (10 , 20) << "\n";
+cout << " Min is: " << min (0.2234 , 99.2) << "\n";
+return 0;
+}
+// min () for chars
+char min ( char a, char b)
+{
+return tolower (a)<tolower (b) ? a : b;
+}
+// min () for ints
+int min ( int a, int b)
+{
+return a<b ? a : b;
+}
+// min () for doubles
+double min ( double a, double b)
+{
+return a<b ? a : b;
+}
+4
 
 
 
@@ -222,5 +294,38 @@ f1 (10) ; // which function does the compiler call ???
                 (Feel free to use a DELAY LOOP to pause the computer. 
 */
 
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+// Overload sleep to accept integer or char * argument
+void sleep ( int n);
+void sleep ( char *n);
+// Change this value to fit your processor speed .
+# define DELAY 100000
+int main ()
+{
+cout << ".";
+sleep (3) ;
+cout << ".";
+sleep ("2");
+cout << ".";
+return 0;
+}
+// Sleep () with integer argument .
+void sleep ( int n)
+{
+long i;
 
+for ( ; n; n --)
+for (i =0; i< DELAY ; i++);
+}
+// Sleep () with char * argument .
+void sleep ( char *n)
+{
+long i;
+int j;
+j = atoi (n);
+for ( ; j; j --)
+for (i =0; i< DELAY ; i++);
+}
 
