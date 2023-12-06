@@ -245,7 +245,7 @@ The functions atof(), atoi(), atol() cannot be overloaded because
 
 
 
-/* Example 3: Create a function called min() that returns the smaller of the two numeric arguments used to call the function. 
+/* Example 7: Create a function called min() that returns the smaller of the two numeric arguments used to call the function. 
                 Overload min() so it accepts char, int, and double as arguments.
 */
 
@@ -285,7 +285,7 @@ double min(double a, double b){
 
 
 
-/* Example 4: Create a function called sleep() that "PAUSES THE COMPUTER" for the number of seconds specified by its single argument.
+/* Example 8: Create a function called sleep() that "PAUSES THE COMPUTER" for the number of seconds specified by its single argument.
                 Overload sleep() so it can be called with either an int or a 'string representation of an integer'. 
                 
                 For example, both of these calls to sleep() will cause the computer to pause for 10 seconds:
