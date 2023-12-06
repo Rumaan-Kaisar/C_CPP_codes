@@ -320,7 +320,7 @@ int main(){
 }
 
 
-// Sleep () with integer argument .
+// sleep() with integer argument .
 void sleep(int n){
     long i;
 
@@ -331,7 +331,7 @@ void sleep(int n){
 }
 
 
-// Sleep () with char * argument .
+// sleep() with char * argument .
 void sleep(char *n){
     long i;
     int j;
