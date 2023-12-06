@@ -344,4 +344,15 @@ void sleep(char *n){
 }
 
 
+// ISSUE:
+// warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
 
+// I solved it with following code using (char*):
+/*  
+    simply changing:
+            sleep("50000"); // as string
+        to:
+            sleep((char*)"50000"); // as string 
+*/
+
+// https://stackoverflow.com/questions/56524609/warning-iso-c-forbids-converting-a-string-constant-to-char-wwrite-string
