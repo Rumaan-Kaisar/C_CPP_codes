@@ -14,38 +14,44 @@ Typically, C++ programmers use 'C-like comments' for "multiline commentaries" an
 
 
 
-/* Example 1: Here is a program that contains both C and C++-style comments:
- */
+/* Example 1: Here is a program that contains both C and C++-style (single line) comments: */
+
 /*
-This is a C- like comment .
-This program determines whether
-an integer is odd or even
+    Multi-line comment:
+        This is a C- like comment.
+        This program determines whether
+        an integer is odd or even
 */
-# include <iostream >
-using namespace std ;
-int main ()
-{
-int num ; // this is a C++ single - line comment
-// read the number
-cout << " Enter number to be tested : ";
-cin >> num ;
-// see if even or odd
-if (( num %2) ==0)
-cout << " Number is even \n";
-else
-cout << " Number is odd \n";
-return 0;
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int num;    // this is a C++ single-line comment
+
+    // read the number
+    cout << " Enter number to be tested : ";
+    cin >> num ;
+
+    // see if even or odd
+    if((num %2) ==0) cout << " Number is even \n";
+    else cout << " Number is odd \n";
+
+    return 0;
 }
 
 
 
 
 /* Example 2: While multiline comments cannot be nested, it is possible to nest a single-line comment
-within a multiline comment. For example, this is perfectly valid: */
+                within a multiline comment. For example, this is perfectly valid: */
+
 /*
-This is a multiline comment
-inside of which // is nested a single - line comment .
-Here is the end of the multiline comment .
+    This is a multiline comment
+    inside of which 
+        // is nested a single-line comment .
+
+        Here is the end of the multiline comment .
 */
 
 
@@ -55,4 +61,4 @@ Here is the end of the multiline comment .
                 a C++-style, single-line comment) is valid: */
 
 // This is a strange /* way to do a comment */
-
+Ans: The comment, although strange, is valid. LOL
