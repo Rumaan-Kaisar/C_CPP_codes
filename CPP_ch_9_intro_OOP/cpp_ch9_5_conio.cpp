@@ -204,65 +204,125 @@ int main(){
 
 // Buffering
 
-/* Example 5: By default, when you use >>, all input is line buffered. This means that no information
-                is passed to your C++ program until you press ENTER. (In C, the scanf() function is line
-                buffered, so this style of input should not be new to you.) To see the effect of line-buffered
-                input, try this program: */
+/* Example 5: By default, when you use >>, all input is line BUFFERED. 
+                This means that no information is passed to your C++ program until you press ENTER. 
+                (In C, the scanf() function is line buffered, so this style of input should not be new to you.) 
+                To see the effect of line-buffered input, try this program: 
 
+                When you test this program, 
+                    you will have to press ENTER (carrige return) after each key you type 
+                    in order for the corresponding character to be sent to the program.
+*/
 #include <iostream>
 // using namespace std;
 
 int main(){
     char ch;
 
-    cout << "Enter keys , x to stop .\n";
-do
-{
-cout << ": ";
-cin >> ch;
-}
-while (ch != ’x’);
-return 0;
-}
+    std::cout << "Enter keys , x to stop .\n";
 
+    do{
+        std::cout << ": ";
+        std::cin >> ch;
+    } while(ch != 'x');
 
-
-
-When you test this program, you will have to press ENTER after each key you type in order
-for the corresponding character to be sent to the program.
-
-
-
-
-Example 6. Write a program that inputs the number of hours that an employee works and the employee’s wage. Then display the employee’s gross pay. (Be sure to prompt for input.)
-
-
-Example 7. Write a program that converts feet to inches. Prompt the user for feet and display the
-equivalent number of inches. Have your program repeat this process until the user enters
-0 for the number of feet.
-
-
-Example 8. Here is a C program. Rewrite it so it uses C++-style I/O statements.
-# include <stdio .h>
-int main ( void )
-{
-int a, b, d, min ;
-printf (" Enter two numbers : ");
-scanf ("%d%d", &a, &b);
-min = a > b ? b : a;
-for (d = 2; d< min ; d++)
-if ((( a%d) ==0) && ((b%d) ==0) )
-break ;
-if(d== min )
-{
-printf ("No common denominators \n");
-return 0;
-}
-printf (" The lowest common denominator is %d\n", d);
-return 0;
+    return 0;
 }
 
 
+
+
+/* Example 6. Write a program that inputs the number of hours that an 'employee works and the employees wage'. 
+                Then display the' employees gross pay'. (Be sure to prompt for input.) */
+# include <iostream >
+// using namespace std ;
+
+int main(){
+    double hours , wage;
+
+    std::cout << "Enter hours worked : ";
+    std::cin >> hours;
+
+    std::cout << "Enter wage per hour : ";
+    std::cin >> wage;
+
+    std::cout << "Pay is $" << wage*hours;
+
+    return 0;
+}
+
+
+
+
+/* Example 7. Write a program that converts 'feet to inches'. 
+                Prompt the user for feet and display the equivalent number of inches. 
+                Have your program repeat this process until the user enters 0 for the number of feet. */
+#include <iostream >
+// using namespace std;
+
+int main(){
+    double feet ;
+
+    do{
+        std::cout << " Enter feet (0 to quit ): ";
+        std::cin >> feet;
+        std::cout << (feet * 12) << " inches \n";
+    } while(feet != 0.0);
+
+    return 0;
+}
+
+
+
+
+/* Example 8. Here is a C program. Rewrite it so it uses C++-style I/O statements. */
+// --------    C version    --------
+#include <stdio.h>
+
+int main(void){
+    int a, b, d, min;
+
+    printf(" Enter two numbers : ");
+    scanf("%d%d", &a, &b);
+
+    min = a > b ? b : a;
+
+    for(d = 2; d< min; d++) if( ((a%d)==0) && ((b%d)==0) ) break;
+
+    if(d==min){
+        printf("No common denominators \n");
+        return 0;
+    }
+
+    printf("The lowest common denominator is %d\n", d);
+
+    return 0;
+}
+
+
+// --------    C++ version    --------
+// This program computes the lowest common denominator .
+#include <iostream>
+
+int main(){
+    int a, b, d, min;
+
+    std::cout << " Enter two numbers : ";
+    std::cin >> a >> b;
+
+    min = a > b ? b : a;
+
+    for(d = 2; d< min; d++) if( ((a%d)==0) && ((b%d)==0) ) break;
+
+    if(d==min){
+        std::cout << "No common denominators \n";
+        return 0;
+    }
+
+    std::cout << "The lowest common denominator is " << d << " \n";
+
+    return 0;
+}
 
 
 
