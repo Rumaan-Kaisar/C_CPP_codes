@@ -15,3 +15,6 @@ cpp_ch9_5_cpp_conio
 cpp_ch9_6_c_vs_cpp
 cpp_ch9_7_cpp_Kywrd
 
+cpp "class" will be discussed in next chapter
+
+
