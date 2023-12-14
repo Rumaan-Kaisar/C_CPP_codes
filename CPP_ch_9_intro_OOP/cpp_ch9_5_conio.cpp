@@ -200,8 +200,6 @@ int main(){
 
 
 
-// --------    rev    --------
-
 // Buffering
 
 /* Example 5: By default, when you use >>, all input is line BUFFERED. 
@@ -234,7 +232,7 @@ int main(){
 
 /* Example 6. Write a program that inputs the number of hours that an 'employee works and the employees wage'. 
                 Then display the' employees gross pay'. (Be sure to prompt for input.) */
-# include <iostream >
+# include <iostream>
 // using namespace std ;
 
 int main(){
@@ -257,7 +255,7 @@ int main(){
 /* Example 7. Write a program that converts 'feet to inches'. 
                 Prompt the user for feet and display the equivalent number of inches. 
                 Have your program repeat this process until the user enters 0 for the number of feet. */
-#include <iostream >
+#include <iostream>
 // using namespace std;
 
 int main(){
@@ -323,9 +321,5 @@ int main(){
 
     return 0;
 }
-
-
-
-
 
 
