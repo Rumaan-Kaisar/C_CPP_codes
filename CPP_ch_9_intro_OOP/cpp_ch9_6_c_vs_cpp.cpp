@@ -73,3 +73,129 @@
 
 */
 
+
+
+
+/* Example 1: In a C program, it is common practice to declare main() as shown here if it takes no command-line arguments:
+                                int main(void)
+                However, in C++, the use of void is redundant and unnecessary. We normally use 'int main()' 
+*/
+
+
+
+
+/* Example 2: Following short C++ program will not compile because the function sum() is not PROTOTYPED.
+                also notice no 'return type' is declared 
+*/
+// This program will not compile
+#include <iostream>
+// using namespace std;
+// int sum(int a, int b);
+
+int main(){
+    int a, b, c;
+    
+    std::cout << " Enter two numbers : ";
+    std::cin >> a >> b;
+    
+    c = sum (a, b);
+    std::cout << " Sum is: " << c;
+    
+    return 0;
+}
+
+// This function needs a prototype
+sum (int a, int b){
+    return a+b;
+}
+
+
+// ----  Correct version  ----
+#include <iostream>
+// using namespace std;
+int sum(int a, int b);
+
+int main(){
+    int a, b, c;
+    
+    std::cout << " Enter two numbers : ";
+    std::cin >> a >> b;
+    
+    c = sum (a, b);
+    std::cout << " Sum is: " << c;
+    
+    return 0;
+}
+
+// This function needs a prototype
+int sum (int a, int b){
+    return a+b;
+}
+
+
+
+
+Example 3: Here is a short program that illustrates how local variables can be declared anywhere
+within a block:
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int i; // local var declared at start of block
+cout << " Enter number : ";
+cin >> i;
+// compute factorial
+int j, fact =1; // vars declared after action statement
+for (j=i; j >=1; j --)
+fact = fact * j;
+cout << " Factorial is " << fact ;
+return 0;
+}
+The declaration of j and fact near the point of first use is of little value in this short
+example; however, in large functions, the ability to declare variables close to the point of
+their first use can help clarify your code and prevent unintentional side effects.
+
+
+
+
+4. The following program creates a Boolean variable called outcome and assigns it the value
+false. It then uses this variable in an if statement.
+# include <iostream >
+using namespace std ;
+int main ()
+{
+bool outcome ;
+outcome = false ;
+if( outcome )
+cout << " true ";
+else
+cout << " false ";
+return 0;
+}
+As you should expect, the program displays false.
+
+
+
+
+Example 1: The following program will not compile as a C++ program. Why not?
+// This program has an error .
+# include <iostream >
+using namespace std ;
+int main ()
+{
+f();
+return 0;
+}
+void f()
+{
+cout << " this won ’t work ";
+}
+
+
+
+
+Example 2: On your own, try declaring local variables at various points in a C++ program. Try the
+same in a C program, paying attention to which declarations generate errors.
+
+
+
