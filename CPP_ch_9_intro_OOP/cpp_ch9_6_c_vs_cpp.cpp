@@ -135,67 +135,71 @@ int sum (int a, int b){
 
 
 
-Example 3: Here is a short program that illustrates how local variables can be declared anywhere
-within a block:
-# include <iostream >
-using namespace std ;
-int main ()
-{
-int i; // local var declared at start of block
-cout << " Enter number : ";
-cin >> i;
-// compute factorial
-int j, fact =1; // vars declared after action statement
-for (j=i; j >=1; j --)
-fact = fact * j;
-cout << " Factorial is " << fact ;
-return 0;
+/* Example 3: Here is a short program that illustrates how local variables can be declared anywhere within a block. 
+
+                The declaration of 'j' and 'fact' near the point of first use is of little value in this short example; 
+                    however, in large functions, the ability to declare variables close to the point of 
+                    their first use can help 'clarify your code' and prevent unintentional side effects.
+*/
+#include <iostream>
+// using namespace std;
+
+int main(){
+    int i; // local var declared at start of block
+
+    std::cout << " Enter number : ";
+    std::cin >> i;
+
+    // compute factorial
+    int j, fact =1;     // vars declared after action statement
+    for(j=i; j >=1; j--) fact = fact * j;
+    std::cout << " Factorial is " << fact;
+
+    return 0;
 }
-The declaration of j and fact near the point of first use is of little value in this short
-example; however, in large functions, the ability to declare variables close to the point of
-their first use can help clarify your code and prevent unintentional side effects.
 
 
 
 
-4. The following program creates a Boolean variable called outcome and assigns it the value
-false. It then uses this variable in an if statement.
-# include <iostream >
-using namespace std ;
-int main ()
-{
-bool outcome ;
-outcome = false ;
-if( outcome )
-cout << " true ";
-else
-cout << " false ";
-return 0;
+/* Example 4: The following program creates a Boolean variable called 'outcome' and 
+                assigns it the value 'false'. It then uses this variable in an if statement. 
+
+                The program displays 'false'.
+*/
+#include <iostream>
+// using namespace std;
+
+int main(){
+    bool outcome;
+
+    outcome = false;
+    if(outcome) 
+        std::cout << " true ";
+    else 
+        std::cout << " false ";
+
+    return 0;
 }
-As you should expect, the program displays false.
 
 
 
 
-Example 1: The following program will not compile as a C++ program. Why not?
+/* Example 5: The following program will not compile as a C++ program. Why not? 
+                Because the function 'f()' is not prototyped */
+
 // This program has an error .
-# include <iostream >
-using namespace std ;
-int main ()
-{
-f();
-return 0;
-}
-void f()
-{
-cout << " this won ’t work ";
+#include <iostream>
+// using namespace std ;
+// void f();    // prtotype
+
+int main(){
+    f();
+
+    return 0;
 }
 
-
-
-
-Example 2: On your own, try declaring local variables at various points in a C++ program. Try the
-same in a C program, paying attention to which declarations generate errors.
-
+void f(){
+    std::cout << " this won ’t work ";
+}
 
 
