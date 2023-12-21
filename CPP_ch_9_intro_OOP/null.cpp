@@ -31,10 +31,10 @@ int main(){
     std::cout << " Enter exponent : ";
     std::cin >> e;
 
-    r = 1;
+    result = 1;
     for( ; e; e --) result = result * b;
 
-    cout << " Result : " << result;
+    std::cout << " Result : " << result;
 
     return 0;
 }
@@ -92,7 +92,7 @@ void rev_str(char *s){
 
 // Reverse string, put result into out .
 void rev_str(char *in, char *out){
-    inti, j;
+    int i, j;
     
     for(i=strlen(in)-1, j=0;    i>=0;   i--,j++) out[j] = in[i];
     out[j] = '\0' ; // null - terminate result
@@ -123,17 +123,18 @@ int f(int r){
 // old style
 #include <iostream.h>
 
-int f(int a);
+int f(int r);
 
 int main(){
-    std::cout << f (10) ;
+    cout << f(10);
 
     return 0;
 }
 
-int f(int a){
-    return a*3.1416;
+int f(int r){
+    return 2*r*3.1416;
 }
+
 
 
 
@@ -171,9 +172,9 @@ int main(){
                 (A rotate is similar to a 'shift' except that the bit shifted off one end is shifted onto the other end.)
 
                 In C "OCTAL" is started with '0', '0123' is equivalent to "83"
-                Hexadecimal is started with '0x', '0x123' is equivalent to "291"
+                HEXADECIMAL is started with '0x', '0x123' is equivalent to "291"
 */
-#include <iostream >
+#include <iostream>
 // using namespace std;
 
 int rotate(int i);
@@ -183,17 +184,17 @@ int main(){
     int a;
     long b;
 
-    a = 0123
-    std::cout << a;
+    a = 0123;   // using an OCTAL number
+    std::cout << a << std::endl;
 
-    a = 0x123
-    std::cout << a;
+    a = 0x123;  // using a HEXADECIMAL number
+    std::cout << a << std::endl;
 
     a = 0x8000 ;
     b = 8;
-    std::cout << rotate (a);
+    std::cout << rotate(a);
     std::cout << "\n";
-    std::cout << rotate (b);
+    std::cout << rotate(b);
 
     return 0;
 }
