@@ -53,3 +53,43 @@ ob2.set_a(99); /* sets ob2 's version of a to 99 */
  
 	Each object of a class has its own copy of every variable declared within the class. Previous statements set ob1's copy of a to 10 and ob2's copy to 99. This means that ob1's a is distinct and different from the a linked to ob2.
 EXAMPLES
+
+
+
+
+
+/* Example 2: Create a class that holds 'name' and 'address' information. 
+                Store all the information in 'character strings' that are "private" members of the class. 
+
+                Include a "public function" that stores the 'name' and 'address'. 
+                Also include a "public function" that displays the 'name' and 'address'. 
+                (Call these functions store() and display().)
+*/
+
+
+
+
+/* Example 4: What is wrong with the following fragment? */
+#include <iostream>
+using namespace std;
+
+class myclass{
+    int i;
+    
+    public:
+        . 
+        . 
+        .
+};
+
+int main(){
+    myclass ob;
+    ob.i = 10;
+    . 
+    . 
+    . 
+}
+
+
+
+
