@@ -203,3 +203,10 @@ void f(){
 }
 
 
+
+
+/* Example 6: What is the bool data type? 
+                The bool data type stores Boolean values. 
+                The only values an object of type bool can have are true and false.
+*/
+
