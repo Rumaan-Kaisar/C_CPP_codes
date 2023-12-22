@@ -122,3 +122,37 @@
 */
 
 
+
+
+/* Example 1: Given the following new-style C++ program, show how to change it into its old-style form. */
+#include <iostream>
+// using namespace std;
+
+int f(int r);
+
+int main(){
+    std::cout << f(10);
+
+    return 0;
+}
+
+int f(int r){
+    return 2*3.1416*r;
+}
+
+
+
+// old style
+#include <iostream.h>
+
+int f(int r);
+
+int main(){
+    cout << f(10);
+
+    return 0;
+}
+
+int f(int r){
+    return 2*r*3.1416;
+}
