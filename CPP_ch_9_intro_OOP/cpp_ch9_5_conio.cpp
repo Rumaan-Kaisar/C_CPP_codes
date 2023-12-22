@@ -349,3 +349,22 @@ int main(){
 }
 
 
+
+
+/* Example 10: Write a program that uses C++ style I/O to prompt the user 
+                for a string and then display its length. 
+*/
+#include <iostream>
+#include <cstring>
+// sing namespace std;
+
+int main(){
+    char s[80];
+
+    std::cout << " Enter a string : ";
+    std::cin >> s;
+    std::cout << " Length : " << strlen(s) << "\n";
+
+    return 0;
+}
+
