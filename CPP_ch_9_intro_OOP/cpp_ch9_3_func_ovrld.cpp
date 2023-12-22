@@ -417,3 +417,60 @@ void rev_str(char *in, char *out){
     out[j] = '\0' ; // null - terminate result
 }
 
+
+
+
+/* Example 10: Create an overloaded rotate() function that 'left-rotates the bits' in its argument and returns the result. 
+                Overload it so it accepts 'ints' and 'longs'. 
+                (A rotate is similar to a 'shift' except that the bit shifted off one end is shifted onto the other end.)
+
+                In C "OCTAL" is started with '0', '0123' is equivalent to "83"
+                HEXADECIMAL is started with '0x', '0x123' is equivalent to "291"
+*/
+#include <iostream>
+// using namespace std;
+
+int rotate(int i);
+long rotate(long i);
+
+int main(){
+    int a;
+    long b;
+
+    a = 0123;   // using an OCTAL number
+    std::cout << a << std::endl;
+
+    a = 0x123;  // using a HEXADECIMAL number
+    std::cout << a << std::endl;
+
+    a = 0x8000 ;
+    b = 8;
+    std::cout << rotate(a);
+    std::cout << "\n";
+    std::cout << rotate(b);
+
+    return 0;
+}
+
+
+int rotate (int i){
+    int x;
+
+    if(i & 0x8000) x = 1;   // bitwise AND
+    else x = 0;
+
+    i = i << 1; // using bitwise-shift operator
+    i += x;
+    return i;
+}
+
+
+long rotate(long i){
+    int x;
+
+    if(i & 0x80000000) x = 1;// bitwise AND
+    i = i << 1; // using bitwise-shift operator
+    i += x;
+    return 0;
+}
+
