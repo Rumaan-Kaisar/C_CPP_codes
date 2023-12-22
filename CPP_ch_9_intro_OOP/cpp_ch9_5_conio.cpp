@@ -323,3 +323,29 @@ int main(){
 }
 
 
+
+
+/* Example 9: Write a program that uses 'C++ style I/O' to input two integers from the keyboard and
+                then displays the result of raising the first to the power of the second. 
+                (For example, if the user enters 2 and 4, the result is (2^4), or 16.) */
+
+#include <iostream>
+// using namespace std;
+
+int main(){
+    int b, e, result;
+
+    std::cout << " Enter base : ";
+    std::cin >> b;
+    std::cout << " Enter exponent : ";
+    std::cin >> e;
+
+    result = 1;
+    for( ; e; e --) result = result * b;
+
+    std::cout << " Result : " << result;
+
+    return 0;
+}
+
+
