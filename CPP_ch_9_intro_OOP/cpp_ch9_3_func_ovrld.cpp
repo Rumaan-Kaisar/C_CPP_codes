@@ -356,3 +356,64 @@ void sleep(char *n){
 */
 
 // https://stackoverflow.com/questions/56524609/warning-iso-c-forbids-converting-a-string-constant-to-char-wwrite-string
+
+
+
+
+
+/* Example 9: Create a function called rev_str() that reverses a string. 
+                Overload rev_str() so it can be called with either one character array or two. 
+                    When it is called with 'one string', have that one string contain the reversal. 
+                    When it is called with 'two strings', return the reversed string in the second argument. 
+
+                For example:
+
+                    char s1[80], s2[80];
+                    strcpy(s1 , " hello ");
+                    rev_str(s1 , s2);   // reversed string goes in s2 , s1 untouched
+                    rev_str(s1);    // reversed string is returned in s1
+*/
+#include <iostream>
+#include <cstring>
+// using namespace std;
+
+// Overload string reversal function .
+void rev_str(char *s); // reverse string in place
+void rev_str(char *in , char *out ); // put reversal into out
+
+
+int main(){
+    char s1[80] , s2[80];
+
+    strcpy(s1 , " This is a test ");    
+    rev_str(s1 , s2);
+    std::cout << s2 << "\n";
+
+    rev_str(s1);
+    std::cout << s1 << "\n";
+    
+    return 0;
+}
+
+
+// Reverse string , put result in s.
+void rev_str(char *s){
+    char temp[80];
+    int i, j;
+
+    // reversing
+    for(i= strlen(s)-1, j=0;    i>=0;   i--, j++) temp[j] = s[i];
+    temp[j] = '\0'; // null - terminate result
+
+    strcpy(s, temp);
+}
+
+
+// Reverse string, put result into out .
+void rev_str(char *in, char *out){
+    int i, j;
+    
+    for(i=strlen(in)-1, j=0;    i>=0;   i--,j++) out[j] = in[i];
+    out[j] = '\0' ; // null - terminate result
+}
+
