@@ -115,3 +115,19 @@
 */
 
 
+
+
+/* Example 1: Give brief descriptions of polymorphism, encapsulation, and inheritance. 
+
+                "Polymorphism" is the mechanism by which one general interface can be used 
+                    to access many specific implementations. 
+
+                "Encapsulation" provides a 'protected linkage' between code and its related data. 
+                    Access to encapsulated routines can be tightly controlled, 
+                    thus preventing unwanted tampering. 
+
+                "Inheritance" is the process by which one object can acquire the traits (properties) of another. 
+                    Inheritance is used to support a system of hierarchical classification.
+*/
+
+
