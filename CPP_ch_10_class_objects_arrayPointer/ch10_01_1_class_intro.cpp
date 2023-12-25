@@ -1,13 +1,21 @@
 
-// ----------------------     CLASS intro     ----------------------
+/* ----------------------     CLASS intro     ---------------------- 
+    Class is the core feature of C++ and OOP.
+    The class is the mechanism that is used to create 'objects'. 
+
+    A class is declared using the 'class' keyword. 
+        The syntax of a class declaration is similar to that of a 'structure' 
+        (actually class is a kind of "structure" with more feature). 
+*/
+
+// General form:
+class class_name {
+    // private functions and variables
+    public :
+        // public functions and variables
+} object_list;
 
 
-The class is at the heart of many C++ features. The class is the mechanism that is used to create objects.  A class is declared using the class keyword. The syntax of a class declaration is similar to that of a structure (actually class is a kind of structure with more feature). Its general form is shown here:
-class class_name{
-/* private functions and variables */
-public :
-/* public functions and variables */
-} object_list ;
 	Similar to a structure declaration in a class declaration, the object-list and class_name are optional.  From a practical point of view class_name is virtually always needed. The reason for this is that the class_name becomes a new type name that is used to declare objects of the class.
 	Private and public members : Functions and variables declared inside a class declaration are said to be members of that class.
 	By default, all functions and variables declared inside a class are private to that class. This means that they are accessible, only by other members of that class. 
