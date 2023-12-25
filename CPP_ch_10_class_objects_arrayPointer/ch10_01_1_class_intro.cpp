@@ -50,31 +50,76 @@ class myclass{
         int get_a();		// prototype 
 };
 
+/* 
+    Above class has one private variable, called 'a', and 
+        two public functions, set_a() and get_a(). 
+
+        Since 'a' is private, it is not accessible by any code outside "myclass". 
+        since 'set_a()' and 'get_a()' are members of myclass, they can directly access  'a'.
+        
+        Further, 'set_a()' and 'get_a()' are declared as 'public members of myclass' and 
+            can be called by any other part of the program that contains myclass.
 
 
 
-	This class has one private variable, called a, and two public functions, set_a() and get_a(). Functions that are declared to be part of a class are called member functions. Notice that set_a(int num ); and int get_a(); are function prototype declaration inside the class.
-	Since a is private, it is not accessible by any code outside myclass. since set_a() and get_a() are members of myclass, they can directly access  a. 
-	Further, set_a() and get_a() are declared as public members of myclass and can be called by any other part of the program that contains myclass.
-	Defining the member functions: Although the prototypes of the functions set_a() and get_a() are declared by myclass, they are not yet defined.
-	To define a member function, you must link the type name of the class with the name of the function. You do this by preceding the function name with the class name followed by two colons. 
-	The two colons are called the scope resolution operator. 
-	In general, to define a member function you must use this form:
-ret_type class_name :: func_name ( parameter_list ) {
-/* body of function */
+    member functions:
+        Functions that are declared to be part of a class are called "member functions". 
+        Notice that set_a(int num ); and int get_a(); are 'function prototype' declaration inside the class.
+
+
+
+    Defining the member functions: 
+        Although the prototypes of the functions 'set_a()' and 'get_a()' are declared by myclass, they are 'not yet defined'.
+        To define a member function, you must "LINK" the 'type_name of the class' with the name of the function. 
+        You do this by preceding the function name with the class name followed by two colons '::' . 
+            The two colons are called the "SCOPE RESOLUTION OPERATOR". 
+*/
+
+
+// --------    Defining the member functions of a CLASS    --------
+
+ret_type class_name :: func_name(parameter_list) {
+    // body of function
 }
-Here class_name is the name of the class to which the function belongs and ret_type is the return type of the function which must be the same return type of the prototype declared inside the class.
 
-For example, here member functions set_a() and get_a() are defined:
-void myclass :: set_a( int num ) {	a = num;	}
-int myclass :: get_a() { 	return a;	}
-	Crating object of a class : This is similar to declaring a structure variable in C. Since class is similar to structure and object is similar to variable. The declaration of a class did not define any objects of type of that class - it only defines the type of object that will be created when one is actually declared. 
-To create an object, use the class name as a type specifier 
+// class_name: is the name of the class to which the function belongs 
+// ret_type: is the return type of the function which must be the 'same return type of the prototype' declared inside the class.
 
-class_name object_name1, object_name2, . . . , object_nameN;
 
-For example, this line declares two objects of type myclass:
-myclass ob1 , ob2 ; 		/* these are objects of type myclass */
+/* Example 1: For example, here member functions set_a() and get_a() are defined: */
+void myclass :: set_a(int num) {
+    	a = num;	
+}
+
+int myclass :: get_a() {
+     	return a;	
+}
+
+
+
+
+/* --------    object of a class    --------
+    Crating object of a class : 
+        This is similar to declaring a 'structure variable' in C. 
+            Since 'class is similar to structure' and "object is similar to variable". 
+        
+        The 'declaration of a class' did not define any objects of type of that class 
+            - it only defines the type of object that will be created when one is actually declared. 
+    
+    
+        To create an object, use the 'class_name' as a "type specifier" :
+
+                class_name object_name1, object_name2, . . . , object_nameN; 
+*/
+
+/* Example 2: For example, this line declares two objects of type myclass: */
+myclass ob1 , ob2; 		// these are objects of type myclass 
+
+
+
+
+// ----    rev    ----
+
 	A class declaration is a logical abstraction that defines a new type. It determines what an object of that type will look like, 
 	An object declaration creates a physical entity of that type. That is, an object occupies memory space, but a type definition does not.
 	Like variables, there is local objects and global objects.
