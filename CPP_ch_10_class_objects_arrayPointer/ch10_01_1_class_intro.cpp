@@ -16,16 +16,42 @@ class class_name {
 } object_list;
 
 
-	Similar to a structure declaration in a class declaration, the object-list and class_name are optional.  From a practical point of view class_name is virtually always needed. The reason for this is that the class_name becomes a new type name that is used to declare objects of the class.
-	Private and public members : Functions and variables declared inside a class declaration are said to be members of that class.
-	By default, all functions and variables declared inside a class are private to that class. This means that they are accessible, only by other members of that class. 
-	To declare public class members, the public keyword is used, followed by a colon. All functions and variables declared after the public specifier are accessible both by other members of the class and by any other part of the program that contains the class. Here is a simple class declaration:
+
+/* 
+    Ways of class Declaration:
+        In a class declaration, the 'object-list' and 'class_name' are optional. (Similar to structure)
+
+        From a practical point of view 'class_name' is virtually always needed. 
+            the 'class_nam'e acts like a DATA-TYPE name that is used to declare 'objects of the class'.
+
+
+
+    Private and public members : 
+        'Functions' and 'variables' declared inside a class declaration are said to be 'members' of that class.
+
+        private by default: 
+            By default, all functions and variables declared inside a class are private to that class. 
+            they are accessible, only by other 'members of that class'. 
+
+        public: 
+            To declare public class members, the 'public' keyword is used, followed by a 'colon : '. 
+            All functions and variables declared 'after the public specifier' are accessible both by 
+                other members of the class and by any other part of the program that contains the class. 
+*/
+
+
+// Here is a simple class declaration: 
 class myclass{
-/* private to myclass */
-int a;
-public:
-void set_a(int num );	/* prototype */
-int get_a();};		/* prototype */
+    // (default) private to myclass 
+    int a;
+
+    public:
+        void set_a(int num );	// prototype 
+        int get_a();		// prototype 
+};
+
+
+
 
 	This class has one private variable, called a, and two public functions, set_a() and get_a(). Functions that are declared to be part of a class are called member functions. Notice that set_a(int num ); and int get_a(); are function prototype declaration inside the class.
 	Since a is private, it is not accessible by any code outside myclass. since set_a() and get_a() are members of myclass, they can directly access  a. 
