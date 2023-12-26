@@ -86,6 +86,8 @@ ret_type class_name :: func_name(parameter_list) {
 // ret_type: is the return type of the function which must be the 'same return type of the prototype' declared inside the class.
 
 
+
+
 /* Example 1: For example, here member functions set_a() and get_a() are defined: */
 void myclass :: set_a(int num) {
     	a = num;	
@@ -112,27 +114,46 @@ int myclass :: get_a() {
                 class_name object_name1, object_name2, . . . , object_nameN; 
 */
 
+
+
+
 /* Example 2: For example, this line declares two objects of type myclass: */
 myclass ob1 , ob2; 		// these are objects of type myclass 
 
 
 
+/* 
+    // ----    CLASS & its OBJECT    ----
+    A 'class declaration' is a "Logical ABSTRACTION" that defines a NEW TYPE. 
+        It determines what an 'object of that type' will look like.
 
-// ----    rev    ----
+    An 'object declaration' creates a "Physical ENTITY" of that type. 
+        i.e. an object occupies "memory space", but a type definition does not.
 
-	A class declaration is a logical abstraction that defines a new type. It determines what an object of that type will look like, 
-	An object declaration creates a physical entity of that type. That is, an object occupies memory space, but a type definition does not.
-	Like variables, there is local objects and global objects.
-	Accessing members of an object: Once an object of a class has been created, your program can reference its public members by using the dot (period) operator in much the same way that structure members are accessed.
 
-Assuming the preceding object declaration, the following statement calls set_a() for objects ob1 and ob2:
- 
-ob1.set_a(10); /* sets ob1 's version of a to 10 */ 
-ob2.set_a(99); /* sets ob2 's version of a to 99 */ 
- 
-	Each object of a class has its own copy of every variable declared within the class. Previous statements set ob1's copy of a to 10 and ob2's copy to 99. This means that ob1's a is distinct and different from the a linked to ob2.
-EXAMPLES
 
+    // ----    local & global OBJECT    ----
+    Like variables, there is 'local objects' and 'global objects'.
+
+
+
+    // ----    accessing object members    ----
+    Accessing members of an object: 
+        your program can reference an objects "public members" by using the dot '.' (period) operator
+        its the same way that structure members are accessed.
+
+    'Each object' of a class has its 'own copy of every variable' declared within the class. 
+        statements in following example set ob1's copy of 'a' to 10 and ob2's copy to 99. 
+        This means that ob1's 'a' is DISTINCT and DIFFERENT from the 'a' linked to ob2.
+*/
+
+
+
+
+/* Example 3: Assuming the preceding object declaration, the following statement calls "set_a()" for objects 'ob1' and 'ob2': */
+
+ob1.set_a(10);      // sets ob1's version of 'a' to 10
+ob2.set_a(99);      // sets ob2's version of 'a' to 99
 
 
 
