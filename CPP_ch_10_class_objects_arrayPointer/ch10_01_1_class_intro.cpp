@@ -158,18 +158,56 @@ ob2.set_a(99);      // sets ob2's version of 'a' to 99
 
 
 
-/* Example 2: Create a class that holds 'name' and 'address' information. 
+/* Example 4: Create a class that holds 'name' and 'address' information. 
                 Store all the information in 'character strings' that are "private" members of the class. 
 
                 Include a "public function" that stores the 'name' and 'address'. 
                 Also include a "public function" that displays the 'name' and 'address'. 
                 (Call these functions store() and display().)
 */
+# include <iostream >
+# include <cstring >
+using namespace std ;
+class addr
+{
+char name [40];
+char street [40];
+char city [30];
+char state [3];
+char zip [10];
+public :
+void store ( char *n, char *s, char *c, char *t, char *z);
+void display ();
+};
+void addr :: store ( char *n, char *s, char *c, char *t, char *z)
+{
+strcpy (name , n);
+strcpy ( street , s);
+strcpy (city , c);
+strcpy (state , t);
+strcpy (zip , z);
+}
+void addr :: display ()
+{
+cout << name << "\n";
+cout << street << "\n";
+cout << city << "\n";
+cout << state << "\n";
+cout << zip << "\n\n";
+}
+int main ()
+{
+addr a;
+a. store ("C. B. Turkle ", "11 Pinetree Lane ", " Wausau ", "In
+", " 46576 ");
+a. display ();
+return 0;
+}
 
 
 
 
-/* Example 4: What is wrong with the following fragment? */
+/* Example 5: What is wrong with the following fragment? */
 #include <iostream>
 using namespace std;
 
@@ -184,12 +222,12 @@ class myclass{
 
 int main(){
     myclass ob;
-    ob.i = 10;
+    ob.i = 10;  // i is 'private' to myclass and cannot be accessed inside main()
     . 
     . 
     . 
 }
 
-
+// Answer: The integer i is 'private' to myclass and cannot be accessed inside main()
 
 
