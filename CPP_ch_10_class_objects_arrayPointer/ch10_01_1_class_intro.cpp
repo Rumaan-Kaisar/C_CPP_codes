@@ -255,7 +255,7 @@ int main(){
 
 
 
-/* Example 6: This program demonstrates myclass. It 'sets' the value of 'a' of ob1 and ob2 
+/* Example 6: This program demonstrates 'myclass'. It 'sets' the value of 'a' of ob1 and ob2 
                 and then displays a's value for each object. */
 #include <iostream>
 // using namespace std;
@@ -336,42 +336,49 @@ int main(){
 
 
 
-// ----  rev  ----
-Example 8: Just as there can be public member functions, there can be public member variables
-as well. For example, if a were declared in the public section of myclass a could be
-referenced by any part of the program, as shown here:
+/* Example 8: Just as there can be 'public member functions', there can be 'public member variables' as well. 
+                For example, if a were declared in the public section of 'myclass', 
+                'a' could be referenced by any part of the program, as shown here. 
+                
+                In this example, since 'a' is declared as a public member of 'myclass', it is directly accessible from main(). 
+
+                Notice how the dot operator '.' is used to access 'a'. 
+                    In general, when you are calling a 'member function' or accessing a 'member variable' from outside its class, the
+                    object's name followed by the dot operator '.' followed by the" member's name" 
+                    is required to fully specify which object's member you are referring to.
+                
+*/
+
 // This fragment contains an error
-# include <iostream >
-using namespace std ;
-class myclass
-{
-public :
-// now a is public
-int a;
-// and there is no need for set_a () or get_a ()
 
+#include <iostream>
+// using namespace std;
+
+class myclass{
+    public:
+        // now a is public
+        int a;
+        // and there is no need for set_a() or get_a()
 };
-int main ()
-{
-myclass ob1 , ob2 ;
-// here a is accessed directly
-ob1 .a = 10;
-ob2 .a = 99;
-cout << ob1 .a << "\n";
-cout << ob2 .a << "\n";
-return 0;
+
+int main(){
+    myclass ob1, ob2;
+
+    // here a is accessed directly
+    ob1.a = 10;
+    ob2.a = 99;
+    std::cout << ob1.a << "\n";
+    std::cout << ob2.a << "\n";
+
+    return 0;
 }
-In this example, since a is declared as a public member of myclass, it is directly accessible
-from main(). Notice how the dot operator is used to access a. In general, when you are
-calling a member function or accessing a member variable from outside its class, the
-object’s name followed by the dot operator followed by the member’s name is required to
-fully specify which object’s member you are referring to.
 
 
 
 
-Example 9: To get a taste of the power of objects, let’s look at a more practical example. This program
-creates a class called stack that implements a stack that can be used to store characters:
+// ----  rev  ----
+/* Example 9: To get a taste of the power of objects, let’s look at a more practical example. This program
+creates a class called stack that implements a stack that can be used to store characters: */
 # include <iostream >
 using namespace std ;
 # define SIZE 10
@@ -459,17 +466,112 @@ EXERCISES
 
 
 
-Example 10: Create a class called card that maintains a library card catalog entry. Have the class
+/* Example 10: Create a class called card that maintains a library card catalog entry. Have the class
 store a book’s title, author, and number of copies on hand. Store the title and author
 as strings and the number on hand as an integer. Use a public member function called
 store() to store a book’s information and a public member function called show() to
-display the information. Include a short main() function to demonstrate the class.
+display the information. Include a short main() function to demonstrate the class. */
+
+# include <iostream >
+# include <cstring >
+using namespace std ;
+class card
+{
+char title [80]; // book title
+char author [40]; // author
+int number ; // number in library
+public :
+void store ( char *t, char *name , int num );
+void show ();
+};
+void card :: store ( char *t, char *name , int num )
+{
+strcpy (title , t);
+strcpy ( author , name );
+number = num ;
+}
+void card :: show ()
+{
+cout << " Title : " << title << "\n";
+cout << " Author : " << author << "\n";
+cout << " Number on hand : " << number << "\n";
+}
+int main ()
+{
+card book1 , book2 , book3 ;
+book1 . store (" Dune ", " Frank Herbert ", 2);
+book2 . store (" The Foundation Trilogy ", " Isaac Asimov ", 2);
+book3 . store (" The Rainbow ", "D. H. Lawerence ", 1);
+book1 . show ();
+book2 . show ();
+book3 . show ();
+return 0;
+}
 
 
 
 
-Example 11: Create a queue class that maintains a circular queue of integers. Make the queue size 100
-integers long. Include a short main() function that demonstrates its operation.
+/* Example 11: Create a queue class that maintains a circular queue of integers. Make the queue size 100
+integers long. Include a short main() function that demonstrates its operation. */
+ # include <iostream >
+using namespace std ;
+# define SIZE 100
+class q_type
+{
+int queue [ SIZE ]; // holds the queue
+int head , tail ; // indices of head and tail
+public :
+void init (); // initialize
+void q( int num ); // store
+int deq (); // retrieve
+};
+// Initialize
+void q_type :: init ()
+{
+head = tail = 0;
+}
+// Put value on the queue .
+void q_type ::q( int num )
+{
+if( tail +1== head || ( tail +1== SIZE && ! head ))
+{
+cout << " Queue is full \n";
+return ;
+}
+tail ++;
+if( tail == SIZE )
+tail = 0; // cycle around
+queue [ tail ] = num ;
+}
 
-
-
+// Remove a value from a queue .
+int q_type :: deq ()
+{
+if( head == tail )
+{
+cout << " Queue is empty \n";
+return 0; // or some other error indicator
+}
+head ++;
+if( head == SIZE )
+head = 0; // cycle around
+return queue [ head ];
+}
+int main ()
+{
+q_type q1 , q2;
+int i;
+q1. init ();
+q2. init ();
+for (i =1; i <=10; i ++)
+{
+q1.q(i);
+q2.q(i*i);
+}
+for (i =1; i <=10; i ++)
+{
+cout << " Dequeue 1: " << q1.deq () << "\n";
+cout << " Dequeue 2: " << q2.deq () << "\n";
+}
+return 0;
+}
