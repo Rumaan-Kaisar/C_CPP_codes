@@ -204,7 +204,7 @@ void addr::display(){
 
 
 int main(){
-    addr a;
+    addr a;     // 'a' is an object of class 'addr'
 
     a.store("C. B. Turkle ", "11 Pinetree Lane ", " Wausau ", "In", " 46576 ");
     // To avoid warning: ISO C++ forbids converting a string constant to 'char*'
