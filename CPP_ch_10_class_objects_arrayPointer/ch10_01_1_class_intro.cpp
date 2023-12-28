@@ -165,44 +165,66 @@ ob2.set_a(99);      // sets ob2's version of 'a' to 99
                 Also include a "public function" that displays the 'name' and 'address'. 
                 (Call these functions store() and display().)
 */
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class addr
-{
-char name [40];
-char street [40];
-char city [30];
-char state [3];
-char zip [10];
-public :
-void store ( char *n, char *s, char *c, char *t, char *z);
-void display ();
+#include <iostream>
+#include <cstring>
+// using namespace std;
+
+
+class addr {
+    // following are all private
+    char name[40];
+    char street[40];
+    char city[30];
+    char state[3];
+    char zip[10];
+
+    public:
+        // fn prototypes
+        void store(char *nm, char *stt, char *cty, char *ste, char *zp);
+        void display();
 };
-void addr :: store ( char *n, char *s, char *c, char *t, char *z)
-{
-strcpy (name , n);
-strcpy ( street , s);
-strcpy (city , c);
-strcpy (state , t);
-strcpy (zip , z);
+
+
+// fn definitions
+void addr::store( char *nm, char *stt, char *cty, char *ste, char *zp){
+    strcpy(name, nm);
+    strcpy(street, stt);
+    strcpy(city, cty);
+    strcpy(state, ste);
+    strcpy(zip, zp);
 }
-void addr :: display ()
-{
-cout << name << "\n";
-cout << street << "\n";
-cout << city << "\n";
-cout << state << "\n";
-cout << zip << "\n\n";
+
+void addr::display(){
+    std::cout << name << "\n";
+    std::cout << street << "\n";
+    std::cout << city << "\n";
+    std::cout << state << "\n";
+    std::cout << zip << "\n\n";
 }
-int main ()
-{
-addr a;
-a. store ("C. B. Turkle ", "11 Pinetree Lane ", " Wausau ", "In
-", " 46576 ");
-a. display ();
-return 0;
+
+
+int main(){
+    addr a;
+
+    a.store("C. B. Turkle ", "11 Pinetree Lane ", " Wausau ", "In", " 46576 ");
+    // To avoid warning: ISO C++ forbids converting a string constant to 'char*'
+    // a.store((char*)"C. B. Turkle ", (char*)"11 Pinetree Lane ", (char*)" Wausau ", (char*)"In", (char*)" 46576 ");
+    a.display();
+
+    return 0;
 }
+
+
+// ISSUE:
+// warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+
+// I solved it with following code using (char*):
+/*  
+    simply changing:
+            sleep("50000"); // as string
+        to:
+            sleep((char*)"50000"); // as string 
+*/
 
 
 
@@ -222,12 +244,12 @@ class myclass{
 
 int main(){
     myclass ob;
-    ob.i = 10;  // i is 'private' to myclass and cannot be accessed inside main()
+    ob.i = 10;  // 'i' is 'private' to 'myclass' and cannot be accessed inside main()
     . 
     . 
     . 
 }
 
-// Answer: The integer i is 'private' to myclass and cannot be accessed inside main()
+// Answer: The integer 'i' is 'private' to 'myclass' and cannot be accessed inside main()
 
 
