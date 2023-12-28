@@ -253,3 +253,223 @@ int main(){
 // Answer: The integer 'i' is 'private' to 'myclass' and cannot be accessed inside main()
 
 
+
+
+/* Example 6: This program demonstrates myclass. It 'sets' the value of 'a' of ob1 and ob2 
+                and then displays a's value for each object. */
+#include <iostream>
+// using namespace std;
+
+class myclass{
+    // private to myclass
+    int a;
+
+    public:
+        void set_a(int num);
+        int get_a();
+};
+
+// fn definition
+void myclass::set_a(int num){
+    a = num;
+}
+
+int myclass::get_a(){
+    return a;
+}
+
+
+int main(){
+    myclass ob1 , ob2;
+
+    ob1.set_a(10);
+    ob2.set_a(99);
+    std::cout << ob1.get_a() << "\n";
+    std::cout << ob2.get_a() << "\n";
+
+    return 0;
+}
+
+
+
+
+/* Example 7: In 'myclass' from the preceding example, 'a' is private. 
+                only 'member functions' of myclass can access it directly. 
+                (This is one reason why the 'public function' get_a() is required.) 
+
+                If you try to access a private member of a class from some part of your program that 
+                    is not a member of that class, a COMPILE-TIME-ERROR will result. 
+
+                For example, assuming that myclass is defined as shown in the preceding example, 
+                    the following main() function will cause an error: 
+*/
+
+// This fragment contains an error
+#include <iostream>
+// using namespace std;
+
+int main(){
+    myclass ob1 , ob2;
+
+    ob1.a = 10; // ERROR ! cannot access private member
+    ob2.a = 99; // by non-member functions.
+    std::cout << ob1.get_a() << "\n";
+    std::cout << ob2.get_a() << "\n";
+
+    return 0;
+}
+
+
+/* 
+    error: ‘int myclass::a’ is private within this context
+    
+    now, move 'a' into public, the ERR resolvs, as below:
+
+    class myclass{
+        public:
+            int a;
+            void set_a(int num);
+            int get_a();
+    };
+*/
+
+
+
+
+// ----  rev  ----
+Example 8: Just as there can be public member functions, there can be public member variables
+as well. For example, if a were declared in the public section of myclass a could be
+referenced by any part of the program, as shown here:
+// This fragment contains an error
+# include <iostream >
+using namespace std ;
+class myclass
+{
+public :
+// now a is public
+int a;
+// and there is no need for set_a () or get_a ()
+
+};
+int main ()
+{
+myclass ob1 , ob2 ;
+// here a is accessed directly
+ob1 .a = 10;
+ob2 .a = 99;
+cout << ob1 .a << "\n";
+cout << ob2 .a << "\n";
+return 0;
+}
+In this example, since a is declared as a public member of myclass, it is directly accessible
+from main(). Notice how the dot operator is used to access a. In general, when you are
+calling a member function or accessing a member variable from outside its class, the
+object’s name followed by the dot operator followed by the member’s name is required to
+fully specify which object’s member you are referring to.
+
+
+
+
+Example 9: To get a taste of the power of objects, let’s look at a more practical example. This program
+creates a class called stack that implements a stack that can be used to store characters:
+# include <iostream >
+using namespace std ;
+# define SIZE 10
+// Declare a stack class for characters
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+void init (); // initialize stack
+void push ( char ch); // push character on stack
+char pop (); // pop character from stack
+};
+// Initialize the stack
+void stack :: init ()
+{
+tos = 0;
+}
+// Push a character
+void stack :: push ( char ch)
+{
+if( tos == SIZE )
+
+{
+cout << " stack is full ";
+return ;
+}
+stck [ tos ] = ch;
+tos ++;
+}
+// Pop a character
+char stack :: pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty ";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+}
+int main ()
+{
+stack s1 , s2; // create two stacks
+int i;
+// initialize the stacks
+s1. init ();
+s2. init ();
+s1. push (’a’);
+s2. push (’x’);
+s1. push (’b’);
+s2. push (’y’);
+s1. push (’c’);
+s2. push (’z’);
+for (i =0; i <3; i ++)
+cout << " Pop s1: " << s1.pop () << "\n";
+for (i =0; i <3; i ++)
+cout << " Pop s2: " << s2.pop () << "\n";
+return 0;
+}
+This program displays the following output:
+Pop s1: c
+Pop s1: b
+Pop s1: a
+Pop s2: z
+Pop s2: y
+
+
+
+
+Pop s2: x
+Let’s take a close look at this program now. The class stack contains two private variables:
+stck and tos. The array stck actually holds the characters pushed onto the stack, and tos
+contains the index to the top of the stack. The public stack functions are init(), push(),
+and pop(), which initialize the stack, push a value, and pop a value, respectively.
+Inside main(), two stacks, s1 and s2, are created, and three characters are pushed onto
+each stack. It is important to understand that each stack object is separate from the
+other. That is, the characters pushed onto s1 in no way affect the characters pushed onto
+s2. Each object contains its own copy of stck and tos. This concept is fundamental to
+understanding objects. Although all objects of a class share their member functions, each
+object creates and maintains its own data.
+
+
+EXERCISES
+
+
+
+Example 10: Create a class called card that maintains a library card catalog entry. Have the class
+store a book’s title, author, and number of copies on hand. Store the title and author
+as strings and the number on hand as an integer. Use a public member function called
+store() to store a book’s information and a public member function called show() to
+display the information. Include a short main() function to demonstrate the class.
+
+
+
+
+Example 11: Create a queue class that maintains a circular queue of integers. Make the queue size 100
+integers long. Include a short main() function that demonstrates its operation.
+
+
+
