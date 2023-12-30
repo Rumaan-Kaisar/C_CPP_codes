@@ -376,7 +376,6 @@ int main(){
 
 
 
-// ----  rev  ----
 /* Example 9: To get a taste of the power of objects, let’s look at a more practical example. 
                 This program creates a class called 'stack' that implements 
                 a stack that can be used to store characters: */
@@ -475,12 +474,23 @@ int main(){
 
 
 
+// ----  rev  ----
+/* Example 10: Create a class called 'card' that maintains a library card catalog entry. 
 
-/* Example 10: Create a class called card that maintains a library card catalog entry. Have the class
-store a book’s title, author, and number of copies on hand. Store the title and author
-as strings and the number on hand as an integer. Use a public member function called
-store() to store a book’s information and a public member function called show() to
-display the information. Include a short main() function to demonstrate the class. */
+                Have the class store a 
+                    book’s title, 
+                    author, and 
+                    number of copies on hand. 
+                    
+                    Store the 'title' and 'author' as strings and 
+                    the 'number on hand' as an integer. 
+                    
+                    Use a public member functions called 
+                        store() to store a book’s information and  
+                        show() to display the information. 
+                        
+                    Include a short main() function to demonstrate the class. 
+*/
 
 # include <iostream >
 # include <cstring >
