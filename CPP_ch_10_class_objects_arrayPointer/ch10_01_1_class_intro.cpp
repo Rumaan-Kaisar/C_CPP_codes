@@ -377,92 +377,102 @@ int main(){
 
 
 // ----  rev  ----
-/* Example 9: To get a taste of the power of objects, let’s look at a more practical example. This program
-creates a class called stack that implements a stack that can be used to store characters: */
-# include <iostream >
-using namespace std ;
-# define SIZE 10
+/* Example 9: To get a taste of the power of objects, let’s look at a more practical example. 
+                This program creates a class called 'stack' that implements 
+                a stack that can be used to store characters: */
+#include <iostream>
+// using namespace std;
+
+#define SIZE 10
+
 // Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-void init (); // initialize stack
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
+class stack{
+    char stck[SIZE];     // holds the stack
+    int tos;   // index of top of stack
+    
+    public :
+        void init();    // initialize stack
+        void push(char ch);     // push character on stack
+        char pop();     // pop character from stack
 };
+
+
 // Initialize the stack
-void stack :: init ()
-{
-tos = 0;
+void stack::init(){
+    tos = 0;
 }
+
+
 // Push a character
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
+void stack::push(char ch){
+    if(tos==SIZE){
+        std::cout << " stack is full ";
+        return;
+    }
 
-{
-cout << " stack is full ";
-return ;
+    stck[tos] = ch;
+    tos++;
 }
-stck [ tos ] = ch;
-tos ++;
-}
+
+
 // Pop a character
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty ";
-return 0; // return null on empty stack
+char stack::pop(){
+    if(tos ==0){
+        std::cout << " Stack is empty ";
+        return 0; // return null on empty stack
+    }
+    
+    tos--;
+    return stck[tos];
 }
-tos --;
-return stck [ tos ];
+
+
+int main(){
+    stack s1, s2; // create two stacks
+    int i;
+
+    // initialize the stacks
+    s1.init();
+    s2.init();
+    s1.push('a');
+    s2.push('x');
+    s1.push('b');
+    s2.push('y');
+    s1.push('c');
+    s2.push('z');
+
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
+
+    return 0;
 }
-int main ()
-{
-stack s1 , s2; // create two stacks
-int i;
-// initialize the stacks
-s1. init ();
-s2. init ();
-s1. push (’a’);
-s2. push (’x’);
-s1. push (’b’);
-s2. push (’y’);
-s1. push (’c’);
-s2. push (’z’);
-for (i =0; i <3; i ++)
-cout << " Pop s1: " << s1.pop () << "\n";
-for (i =0; i <3; i ++)
-cout << " Pop s2: " << s2.pop () << "\n";
-return 0;
-}
-This program displays the following output:
-Pop s1: c
-Pop s1: b
-Pop s1: a
-Pop s2: z
-Pop s2: y
+
+// This program displays the following output:
+// Pop s1: c
+// Pop s1: b
+// Pop s1: a
+// Pop s2: z
+// Pop s2: y
+// Pop s2: x
+
+/* 
+    The class 'stack' contains two private variables: 'stck' and 'tos'. 
+        The array 'stck' actually holds the characters pushed onto the stack, 
+        'tos' contains the index to the top of the stack. 
+        
+        The public 'stack' functions are init(), push(), and pop(), which initialize the stack, push a value, and pop a value, respectively.
+    
+        Inside main(), two stacks, 's1' and 's2', are created, and three characters are pushed onto each stack. 
+        
+        It is important to understand that 'each stack object' is "SEPARATE" from the other. 
+            i.e. the characters pushed onto 's1' in no way affect the characters pushed onto s2. 
+        Each object contains its own copy of 'stck' and 'tos'. 
+        
+        This concept is fundamental to understanding objects. 
+            Although 'all objects of a class' share their member functions, each object creates and maintains its own data.
+ */
 
 
-
-
-Pop s2: x
-Let’s take a close look at this program now. The class stack contains two private variables:
-stck and tos. The array stck actually holds the characters pushed onto the stack, and tos
-contains the index to the top of the stack. The public stack functions are init(), push(),
-and pop(), which initialize the stack, push a value, and pop a value, respectively.
-Inside main(), two stacks, s1 and s2, are created, and three characters are pushed onto
-each stack. It is important to understand that each stack object is separate from the
-other. That is, the characters pushed onto s1 in no way affect the characters pushed onto
-s2. Each object contains its own copy of stck and tos. This concept is fundamental to
-understanding objects. Although all objects of a class share their member functions, each
-object creates and maintains its own data.
-
-
-EXERCISES
 
 
 
