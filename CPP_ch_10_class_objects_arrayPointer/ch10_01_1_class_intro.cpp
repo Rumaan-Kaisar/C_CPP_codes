@@ -474,7 +474,7 @@ int main(){
 
 
 
-// ----  rev  ----
+
 /* Example 10: Create a class called 'card' that maintains a library card catalog entry. 
 
                 Have the class store a 
@@ -492,106 +492,118 @@ int main(){
                     Include a short main() function to demonstrate the class. 
 */
 
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class card
-{
-char title [80]; // book title
-char author [40]; // author
-int number ; // number in library
-public :
-void store ( char *t, char *name , int num );
-void show ();
+#include <iostream>
+#include <cstring>
+// using namespace std;
+
+class card{
+    char title[80];  // book title
+    char author[40]; // author
+    int number;      // number in library
+
+    public:
+        void store(char *t, char *name, int num);
+        void show();
 };
-void card :: store ( char *t, char *name , int num )
-{
-strcpy (title , t);
-strcpy ( author , name );
-number = num ;
+
+void card::store(char *t, char *name, int num){
+    strcpy(title, t);
+    strcpy(author , name);
+    number = num ;
 }
-void card :: show ()
-{
-cout << " Title : " << title << "\n";
-cout << " Author : " << author << "\n";
-cout << " Number on hand : " << number << "\n";
-}
-int main ()
-{
-card book1 , book2 , book3 ;
-book1 . store (" Dune ", " Frank Herbert ", 2);
-book2 . store (" The Foundation Trilogy ", " Isaac Asimov ", 2);
-book3 . store (" The Rainbow ", "D. H. Lawerence ", 1);
-book1 . show ();
-book2 . show ();
-book3 . show ();
-return 0;
+
+void card::show(){
+    std::cout << " Title : " << title << "\n";
+    std::cout << " Author : " << author << "\n";
+    std::cout << " Number on hand : " << number << "\n";
 }
 
 
+int main(){
+    card book1, book2, book3;
+
+    book1.store(" Dune ", " Frank Herbert ", 2);
+    book2.store(" The Foundation Trilogy ", " Isaac Asimov ", 2);
+    book3.store(" The Rainbow ", "D. H. Lawerence ", 1);
+    book1.show();
+    book2.show();
+    book3.show();
+
+    return 0;
+}
 
 
-/* Example 11: Create a queue class that maintains a circular queue of integers. Make the queue size 100
-integers long. Include a short main() function that demonstrates its operation. */
- # include <iostream >
-using namespace std ;
-# define SIZE 100
-class q_type
-{
-int queue [ SIZE ]; // holds the queue
-int head , tail ; // indices of head and tail
-public :
-void init (); // initialize
-void q( int num ); // store
-int deq (); // retrieve
+
+
+/* Example 11: Create a 'queue class' that maintains a circular queue of integers. 
+                Make the queue size 100 integers long. 
+                Include a short main() function that demonstrates its operation. 
+*/
+#include <iostream>
+// using namespace std;
+
+#define SIZE 100
+
+class q_type{
+    int queue[SIZE];    // holds the queue
+    int head, tail ;    // indices of head and tail
+
+    public:
+        void init();    // initialize
+        void q(int num);    // store
+        int deq();      // retrieve
 };
+
 // Initialize
-void q_type :: init ()
-{
-head = tail = 0;
-}
-// Put value on the queue .
-void q_type ::q( int num )
-{
-if( tail +1== head || ( tail +1== SIZE && ! head ))
-{
-cout << " Queue is full \n";
-return ;
-}
-tail ++;
-if( tail == SIZE )
-tail = 0; // cycle around
-queue [ tail ] = num ;
+void q_type::init(){
+    head = tail = 0;
 }
 
-// Remove a value from a queue .
-int q_type :: deq ()
-{
-if( head == tail )
-{
-cout << " Queue is empty \n";
-return 0; // or some other error indicator
+// Put value on the queue .
+void q_type::q(int num){
+    if(tail+1 == head || ( (tail+1== SIZE) && (!head) )){
+        std::cout << " Queue is full \n";
+        return;
+    }
+
+    tail++;
+
+    if(tail == SIZE) tail = 0; // cycle around
+    queue[tail] = num ;
 }
-head ++;
-if( head == SIZE )
-head = 0; // cycle around
-return queue [ head ];
+
+// Remove a value from a queue.
+int q_type::deq(){
+    if(head == tail){
+        std::cout << " Queue is empty \n";
+        return 0; // or some other error indicator
+    }
+
+    head++;
+
+    if(head == SIZE) head = 0; // cycle around
+    return queue[head];
 }
-int main ()
-{
-q_type q1 , q2;
-int i;
-q1. init ();
-q2. init ();
-for (i =1; i <=10; i ++)
-{
-q1.q(i);
-q2.q(i*i);
+
+
+int main(){
+    q_type q1, q2;
+    int i;
+
+    q1.init();
+    q2.init();
+
+    for(i =1; i<=10; i++){
+        q1.q(i);
+        q2.q(i*i);
+    }
+
+    for(i =1; i<=10; i++){
+        std::cout << " Dequeue 1: " << q1.deq() << "\n";
+        std::cout << " Dequeue 2: " << q2.deq() << "\n";
+    }
+
+    return 0;
 }
-for (i =1; i <=10; i ++)
-{
-cout << " Dequeue 1: " << q1.deq () << "\n";
-cout << " Dequeue 2: " << q2.deq () << "\n";
-}
-return 0;
-}
+
+
