@@ -561,7 +561,10 @@ void q_type::init(){
 
 // Put value on the queue .
 void q_type::q(int num){
-    if(tail+1 == head || ( (tail+1== SIZE) && (!head) )){
+    if((tail+1 == head )|| ( (tail+1== SIZE) && (!head) )){
+        // no dequeue case: "((tail+1== SIZE) && (!head))" checks 'head = 0' and 'tail = SIZE-1'
+        // dequeue case: because of "cycle around"  'tail' is one-less than 'head'
+            // thats why we used '(tail+1 == head )'
         std::cout << " Queue is full \n";
         return;
     }
@@ -607,3 +610,23 @@ int main(){
 }
 
 
+
+
+
+// ----  understand qeue  ----
+// A 'Queue' has two pointers to track:
+    // Head : tracks 'Dequeue'
+    // Tail : tracks 'Queue'
+
+/*  
+    Algorithm
+        1. START
+        2. Check if the queue is full.
+        3. If the queue is full, produce overflow error and exit.
+        4. If the queue is not full, increment rear pointer to point 
+        the next empty space.
+        5. Add data element to the queue location, where the rear 
+        is pointing.
+        6. return success.
+        7. END 
+*/
