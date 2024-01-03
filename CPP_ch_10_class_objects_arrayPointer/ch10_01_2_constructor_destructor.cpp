@@ -51,16 +51,18 @@ class class_name{
 #include <iostream>
 // using namespace std;
 
-class myclass{int a;
+class myclass{
+        int a;
     public :
         myclass(); // constructor
         void show();    
 };
 
 
-int main() {
-    myclass ob; /* object declaration */
-    ob.show();  /* calling function */
+int main(){
+    myclass ob; // object declaration
+
+    ob.show();  // calling function
             
     return 0;
 }
@@ -102,22 +104,43 @@ void myclass :: show(){
 
 /* Example 2: destructor & construuctor in actioin for Local & Global object */
 
-class myclass{  int a;
-public : myclass(); 	/* constructor */
-~myclass(); /* destructor */              void show();    };
+#include <iostream>
+// using namespace std;
 
-myclass :: myclass() {
-cout << "In constructor \n";	a = 10; }
-myclass :: ~myclass() {
-cout << "Destructing. . .. \n";}
+class myclass{  
+        int a;
+    public : 
+        myclass(); 	// constructor 
+        ~myclass(); // destructor               
+        void show();    
+};
 
-void myclass :: show() {cout << a <<"\n";  }
 
-int main() { 	myclass ob; /* object declaration */
-ob.show();  /* calling function */
-            return 0;}
- 
+int main(){
+    myclass ob; // object declaration
 
+    ob.show();  // calling function
+            
+    return 0;
+}
+
+
+// member function definition
+myclass :: myclass(){ 
+    std::cout << "In constructor \n"; 
+    a = 10; 
+}
+
+myclass :: ~myclass(){
+    std::cout << "Destructing. . .. \n";
+}
+
+void myclass :: show(){
+    std::cout << a <<"\n";
+}
+
+
+/* 
 Difference between variable and object declaration: 
 
 It is important to understand that in C++, a variable declaration statement is an "action statement." When you are programming in C, it is easy to think of declaration statements as simply establishing variables. However, in C++, because an object might have a constructor, a variable (i.e. object ) declaration statement may, in fact, cause a considerable number of actions to occur.
@@ -125,3 +148,4 @@ It is important to understand that in C++, a variable declaration statement is a
 
 Other use Restriction: Having a constructor or destructor perform actions not directly related to the initialization or orderly destruction of an object makes for very poor programming style and should be avoided. Technically, a constructor or a destructor can perform any type of operation. The code within these functions does not have to initialize or reset anything related to the class for which they are defined. For example, a constructor for the preceding examples could have computed pi to 100 places. 
 
+ */
