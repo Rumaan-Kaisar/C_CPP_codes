@@ -46,7 +46,11 @@ class class_name{
 */
 
 
-/* Example 1: construuctor in actioin for Local & Global object */
+
+/* Example 1: construuctor in actioin for Local & Global object 
+                
+                'myclass ob;' line cause "Object Initialization" and prints 'In constructor'
+*/
 
 #include <iostream>
 // using namespace std;
@@ -102,7 +106,15 @@ void myclass :: show(){
 
 
 
-/* Example 2: destructor & construuctor in actioin for Local & Global object */
+/* Example 2: destructor & construuctor in actioin for Local & Global object 
+
+                'myclass ob;' line cause "Object Initialization" and prints 'In constructor'
+                    exiting the main() function destroys object and prints 'Destructing. . ..'
+
+                also notice when extra_fn() called, new object 'ob2' is initialized and prints 'In constructor'
+                    "Inside extra_fn" is printed by extra_fn() 
+                    after exitig extra_fn() the 'scope' is lost and 'ob2' is destroyes and prints 'Destructing. . ..'
+*/
 
 #include <iostream>
 // using namespace std;
@@ -115,12 +127,21 @@ class myclass{
         void show();    
 };
 
+void extra_fn(){
+    myclass ob2;
+    std::cout << "Inside extra_fn\n";
+}
 
 int main(){
     myclass ob; // object declaration
 
-    ob.show();  // calling function
-            
+    std::cout << std::endl;
+    extra_fn();
+    std::cout << std::endl;
+
+    ob.show();  // calling the member function of 'ob'
+    std::cout << "Inside main\n";
+
     return 0;
 }
 
@@ -140,12 +161,35 @@ void myclass :: show(){
 }
 
 
+// 'std::endl' and '\n' both seem to do the same thing but there is a subtle difference between them. 
+    // "std::cout << std::endl" inserts a 'new line and flushes the stream(output buffer)', 
+    // whereas std::cout <<"\n "just inserts a new line.
+
+// Therefore, "std::cout << std::endl;" can be said equivalent to- std::cout << "\n" << flush; 
+
+
+
+
 /* 
-Difference between variable and object declaration: 
+    ------------    'variable declaration' VS 'object declaration'    ------------
+    In C++, a variable declaration statement is an "action statement".
+    
+    In 'C', it is easy to think of 'declaration statements' as simply 'establishing' variables. 
+        
+    However, in C++, because an 'object' might have a CONSTRUCTOR, 
+        a "variable (i.e. object ) declaration" statement may, in fact, cause a considerable 'number of actions' to occur.
 
-It is important to understand that in C++, a variable declaration statement is an "action statement." When you are programming in C, it is easy to think of declaration statements as simply establishing variables. However, in C++, because an object might have a constructor, a variable (i.e. object ) declaration statement may, in fact, cause a considerable number of actions to occur.
 
 
-Other use Restriction: Having a constructor or destructor perform actions not directly related to the initialization or orderly destruction of an object makes for very poor programming style and should be avoided. Technically, a constructor or a destructor can perform any type of operation. The code within these functions does not have to initialize or reset anything related to the class for which they are defined. For example, a constructor for the preceding examples could have computed pi to 100 places. 
 
- */
+    Other usage Restriction: 
+        Don't use a constructor or destructor to perform actions "not directly related to the INITIALIZATION or orderly DESTRUCTION of an object" 
+        
+        Technically, a constructor or a destructor can perform any type of operation. 
+            The code within these functions does not have to 'initialize' or 'reset anything' related to the class for which they are defined. 
+            For example, a constructor for the preceding examples could have computed 'pi' to 100 places. 
+
+*/
+
+
+
