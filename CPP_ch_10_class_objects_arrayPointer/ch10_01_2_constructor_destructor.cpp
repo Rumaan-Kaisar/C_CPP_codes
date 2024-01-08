@@ -195,10 +195,12 @@ void myclass :: show(){
 
 
 
-/* Example 3: You should recall that the stack class created in Chapter 1 required an initialization
-function to set the stack index variable. This is precisely the sort of operation that a
-constructor function was designed to perform . Here is an improved version of the stack
-class that uses a constructor to automatically initialize a stack object when it is created: */
+/* Example 3: Recall the "stack class" we created in previous section required an initialization function to set the stack index variable.
+                Constructor function was designed to perform this sort of operation. 
+
+                Following is an improved version of the 'stack class' 
+                    that uses a constructor to 'automatically initialize' a stack object when it is created 
+*/
 
 # include <iostream >
 using namespace std ;
@@ -271,10 +273,14 @@ the object is brought into existence.
 
 
 
-/* Example 4: Here is an example that shows the need for both a constructor and a destructor function.
-It creates a simple string class, called strtype, that contains a string and its length. When
-a strtype object is created, memory is allocated to hold the string and its initial length
-is set to 0. When strtype object is destroyed, that memory is released. */
+/* Example 4: Following program need both "constructor" and "destructor" function.
+                It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
+
+                When a 'strtype' object is created, 
+                    'memory' is allocated to hold the string and its initial length is set to 0. 
+
+                When strtype object is destroyed, that memory is released. 
+*/
 
 # include <iostream >
 # include <cstring >
@@ -345,12 +351,20 @@ this book in which C library functions are used.
 
 
 
-/* Example 5: Here is an interesting way to use an object’s constructor and destructor. This program
-uses an object of the timer class to time the interval between when an object of type
-timer is created and when it is destroyed. When the object’s destructor is called, the
-elapsed time is displayed. You could use an object like this to time the duration of a
-program or the length of time a function spends within a block. Just make sure that the
-object goes out of scope at the point at which you want the timing interval to end. */
+/* Example 5: Here is an interesting way to use an object’s constructor and destructor. 
+
+                This program uses an object of the 'timer class' to time the interval between: 
+                    when an object of type 'timer' is 'created' and when it is 'destroyed'. 
+
+                When the object’s destructor is called, the 'elapsed time is displayed'. 
+
+                You could use an object like this to:
+                    # time the 'duration of a program' or 
+                    # the length of time a function spends 'within a block'. 
+
+                Just make sure that the object 'goes out of scope' 
+                    at the point at which you want the timing interval to end. 
+*/
 
 # include <iostream >
 # include <ctime >
@@ -390,20 +404,124 @@ by CLOCKS PER SEC converts the value to seconds.
 
 
 
-/* Example 6: Rework the queue class that you developed as an exercise in Chapter 1 by replacing its
-initialization function with a constructor. */
+/* Example 6: Following is the Rework of the 'queue class' that we developed in previous section 
+                by replacing its initialization function with a constructor. 
+*/
+
+#include <iostream >
+using namespace std ;
+# define SIZE 100
+class q_type
+{
+int queue [ SIZE ]; // holds the queue
+int head , tail ; // indices of head and tail
+public :
+q_type (); // constructor
+void q( int num ); // store
+int deq (); // retrieve
+};
+// Constructor
+q_type :: q_type ()
+{
+head = tail = 0;
+}
+// Put value on the queue .
+void q_type ::q( int num )
+{
+if( tail +1== head || ( tail +1== SIZE && ! head ))
+{
+cout << " Queue is full \n";
+return ;
+}
+tail ++;
+if( tail == SIZE )
+tail = 0; // cycle around
+queue [ tail ] = num ;
+}
+// Remove a value from a queue .
+int q_type :: deq ()
+{
+if( head == tail )
+{
+cout << " Queue is empty \n";
+return 0; // or some other error indicator
+}
+head ++;
+if( head == SIZE )
+head = 0; // cycle around
+return queue [ head ];
+}
+int main ()
+{
+q_type q1 , q2;
+int i;
+for (i =1; i <=10; i ++)
+{
+q1.q(i);
+q2.q(i*i);
+}
+for (i =1; i <=10; i ++)
+{
+cout << " Dequeue 1: " << q1.deq () << "\n";
+cout << " Dequeue 2: " << q2.deq () << "\n";
+}
+return 0;
+}
 
 
+/* Example 7: Create a class called 'stopwatch' that emulates a stopwatch that keeps track of elapsed time. 
+                Use a CONSTRUCTOR to initially set the elapsed time to 0. 
+                Provide two member functions called start() and stop() that turn on and off the timer, respectively. 
+                Include a member function called show() that displays the elapsed time. 
+                Also, have the DESTRUCTOR function automatically display elapsed time when a stopwatch object is destroyed. 
+                (To simplify, report the time in seconds.) 
+*/
 
-
-
-/* Example 7: Create a class called stopwatch that emulates a stopwatch that keeps track of elapsed
-time. Use a constructor to initially set the elapsed time to 0. Provide two member
-functions called start() and stop() that turn on and off the timer, respectively. Include
-a member function called show() that displays the elapsed time. Also, have the destructor
-function automatically display elapsed time when a stopwatch object is destroyed. (To
-simplify, report the time in seconds.) */
-
+// Stopwatch emulator
+# include <iostream >
+# include <ctime >
+using namespace std ;
+class stopwatch
+{double begin , end ;
+public :
+stopwatch ();
+~ stopwatch ();
+void start ();
+void stop ();
+void show ();
+};
+stopwatch :: stopwatch ()
+{
+begin = end = 0.0;
+}
+stopwatch ::~ stopwatch ()
+{
+cout << " Stopwatch object being destroyed ... ";
+show ();
+}
+void stopwatch :: start ()
+{
+begin = ( double ) clock () / CLOCKS_PER_SEC ;
+}
+void stopwatch :: stop ()
+{
+end = ( double ) clock () / CLOCKS_PER_SEC ;
+}
+void stopwatch :: show ()
+{
+cout << " Elapsed time : " << end - begin ;
+cout << "\n";
+}
+int main ()
+{
+stopwatch watch ;
+long i;
+watch . start ();
+for (i =0; i <320000; i++); // time a for loop
+watch . stop ();
+watch . show ();
+return 0;
+}
 
 
 
@@ -416,5 +534,6 @@ public :
 double sample (); // error , why ?
 };
 
+A constructor cannot have a return type.
 
 
