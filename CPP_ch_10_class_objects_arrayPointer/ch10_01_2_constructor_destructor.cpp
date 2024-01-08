@@ -165,7 +165,7 @@ void myclass :: show(){
     // "std::cout << std::endl" inserts a 'new line and flushes the stream(output buffer)', 
     // whereas std::cout <<"\n "just inserts a new line.
 
-// Therefore, "std::cout << std::endl;" can be said equivalent to- std::cout << "\n" << flush; 
+// Therefore, "std::cout << std::endl;" can be said equivalent to- std::cout << "\n" << flush;
 
 
 
@@ -190,6 +190,231 @@ void myclass :: show(){
             For example, a constructor for the preceding examples could have computed 'pi' to 100 places. 
 
 */
+
+
+
+
+
+/* Example 3: You should recall that the stack class created in Chapter 1 required an initialization
+function to set the stack index variable. This is precisely the sort of operation that a
+constructor function was designed to perform . Here is an improved version of the stack
+class that uses a constructor to automatically initialize a stack object when it is created: */
+
+# include <iostream >
+using namespace std ;
+# define SIZE 10
+// Declare a stack class for characters .
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+stack (); // constructor
+void push ( char ch); // push character on stack
+char pop (); // pop character from stack
+};
+// Initialize the stack .
+stack :: stack ()
+{
+cout << " Constructing a stack \n";
+tos = 0;
+}
+// Push a character
+void stack :: push ( char ch)
+{
+if( tos == SIZE )
+{
+cout << " Stack is full \n";
+return ;
+}
+stck [ tos ] = ch;
+tos ++;
+}
+// Pop a character
+char stack :: pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty \n";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+}
+int main ()
+{
+// Create two stacks that are automatically initialized .
+stack s1 , s2;
+
+int i;
+s1. push (’a’);
+s2. push (’x’);
+s1. push (’b’);
+s2. push (’y’);
+s1. push (’c’);
+s2. push (’z’);
+for (i =0; i <3; i ++)
+cout << " Pop s1: " << s1.pop () << "\n";
+for (i =0; i <3; i ++)
+cout << " Pop s2: " << s2.pop () << "\n";
+return 0;
+}
+As you can see, now the initialization task is performed automatically by the constructor
+function rather than by a separate function that must be explicitly called by the program.
+This is an important point. When an initialization is performed automatically when an
+object is created, it eliminates any prospect that, by error, the initialization will not be
+performed. This is another way that objects help reduce program complexity. You, as the
+programmer, don’t need to worry about initialization-it is performed automatically when
+the object is brought into existence.
+
+
+
+
+
+/* Example 4: Here is an example that shows the need for both a constructor and a destructor function.
+It creates a simple string class, called strtype, that contains a string and its length. When
+a strtype object is created, memory is allocated to hold the string and its initial length
+is set to 0. When strtype object is destroyed, that memory is released. */
+
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+# define SIZE 25
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype (); // constructor
+~ strtype (); // destructor
+void set ( char * ptr );
+void show ();
+};
+// Initialize a string object .
+strtype :: strtype ()
+{
+p = ( char *) malloc ( SIZE );
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+} *
+p = ’\0 ’;
+len = 0;
+}
+// Free memory when destroying string object .
+strtype ::~ strtype ()
+{
+cout << " Freeing p\n";
+free (p);
+}
+void strtype :: set ( char *ptr )
+{
+if( strlen (p) >= SIZE )
+{
+cout << " String too big \n";
+return ;
+}
+strcpy (p, ptr );
+len = strlen (p);
+}
+void strtype :: show ()
+{
+cout << p << " - length : " << len ;
+cout << "\n";
+}
+int main ()
+{
+strtype s1 , s2;
+s1. set (" This is a test .");
+s2. set ("I like C ++. "):
+s1. show ();
+s2. show ();
+return 0;
+}
+The program uses malloc and free() to allocate and free memory. While this is perfectly
+valid, C++ does provide another way to dynamically manage memory, as you will see
+later in this book.
+Note: The preceding program uses the new-style headers for the C library functions used
+by the program. As mentioned in Chapter 1, if your compiler does not support these
+headers, simply substitute the standard C header files. This applies to other programs in
+this book in which C library functions are used.
+
+
+
+
+
+/* Example 5: Here is an interesting way to use an object’s constructor and destructor. This program
+uses an object of the timer class to time the interval between when an object of type
+timer is created and when it is destroyed. When the object’s destructor is called, the
+elapsed time is displayed. You could use an object like this to time the duration of a
+program or the length of time a function spends within a block. Just make sure that the
+object goes out of scope at the point at which you want the timing interval to end. */
+
+# include <iostream >
+# include <ctime >
+using namespace std ;
+class timer
+{
+clock_t start ;
+public :
+timer (); // constructor
+~ timer (); // destructor
+};
+timer :: timer ()
+{
+start = clock ();
+}
+timer ::~ timer ()
+{
+clock_t end ;
+end = clock ();
+cout << " Elapsed time : " << (end - start ) / CLOCKS_PER_SEC
+<< "\n";
+}
+int main ()
+{
+timer ob;
+char c;
+// delay ...
+cout << " Press a key followed by ENTER : ";
+cin >> c;
+return 0;
+}
+This program uses the standard library function clock(), which returns the number of
+clock cycles that have taken place since the program started running. Dividing this value
+by CLOCKS PER SEC converts the value to seconds.
+
+
+
+
+
+/* Example 6: Rework the queue class that you developed as an exercise in Chapter 1 by replacing its
+initialization function with a constructor. */
+
+
+
+
+
+/* Example 7: Create a class called stopwatch that emulates a stopwatch that keeps track of elapsed
+time. Use a constructor to initially set the elapsed time to 0. Provide two member
+functions called start() and stop() that turn on and off the timer, respectively. Include
+a member function called show() that displays the elapsed time. Also, have the destructor
+function automatically display elapsed time when a stopwatch object is destroyed. (To
+simplify, report the time in seconds.) */
+
+
+
+
+
+/* Example 8: What is wrong with the constructor shown in the following fragment? */
+class sample
+{
+double a, b, c;
+public :
+double sample (); // error , why ?
+};
 
 
 
