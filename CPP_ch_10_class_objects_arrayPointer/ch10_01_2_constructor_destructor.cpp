@@ -366,7 +366,16 @@ int main(){
 /* Note: The preceding program uses the new-style headers for the C library functions used by the program.
             If your compiler does not support these headers, simply substitute the standard C header files. 
 
-            Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
+            type cast !!! why? : 
+                Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
+                
+                In C, you don't need to cast the return value of malloc(). 
+                    [Recall 'C_Ch8_7_dynmic_allocation.c', "Example 2"]
+                    The "pointer to void" i.e 'void *' returned by malloc() is automagically converted to the correct type. 
+                
+                However, in C++ compiler, 'a cast is NEEDED'.
+                    C++ is not C. Their type systems are totally different. 
+                    Observations about C++'s type system do not necessarily apply to C. In fact, they rarely do.
 */
 
 
