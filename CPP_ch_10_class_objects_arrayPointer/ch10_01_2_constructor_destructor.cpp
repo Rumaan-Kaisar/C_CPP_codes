@@ -181,7 +181,6 @@ void myclass :: show(){
 
 
 
-
     Other usage Restriction: 
         Don't use a constructor or destructor to perform actions "not directly related to the INITIALIZATION or orderly DESTRUCTION of an object" 
         
@@ -190,7 +189,6 @@ void myclass :: show(){
             For example, a constructor for the preceding examples could have computed 'pi' to 100 places. 
 
 */
-
 
 
 
@@ -250,6 +248,7 @@ char stack::pop(){
 }
 
 
+// -=-=-  main function  -=-=-
 int main(){
     stack s1, s2; // create two stacks that are automatically initialized.
     int i;
@@ -283,9 +282,6 @@ int main(){
 
 
 
-
-// ----  rev  ----
-
 /* Example 4: Following program need both "constructor" and "destructor" function.
                 It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
 
@@ -293,77 +289,91 @@ int main(){
                     'memory' is allocated to hold the string and its initial length is set to 0. 
 
                 When strtype object is destroyed, that memory is released. 
+                
+                The program uses malloc and free() to allocate and free memory. While this is perfectly valid, 
+                    C++ does provide another way to dynamically manage memory, which we will see later.
 */
 
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-# define SIZE 25
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype (); // constructor
-~ strtype (); // destructor
-void set ( char * ptr );
-void show ();
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+#define SIZE 25
+
+// class definition
+class strtype{
+        char *p;
+        int len;
+
+    public:
+        strtype();  // constructor
+        ~strtype(); // destructor
+        void set(char *ptr);
+        void show();
 };
-// Initialize a string object .
-strtype :: strtype ()
-{
-p = ( char *) malloc ( SIZE );
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-} *
-p = ’\0 ’;
-len = 0;
+
+
+// -=-=-    implementing member function    -=-=-
+
+// constructor: Initialize a string object .
+strtype::strtype(){
+    p = (char *)malloc(SIZE);    // malloc() returns a POINTER
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+
+    *p = '\0';
+    len = 0;
 }
-// Free memory when destroying string object .
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-free (p);
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
 }
-void strtype :: set ( char *ptr )
-{
-if( strlen (p) >= SIZE )
-{
-cout << " String too big \n";
-return ;
+
+
+void strtype::set(char *ptr){
+    if(strlen(p) >= SIZE){
+        std::cout << " String too big \n";
+        return;
+    }
+    strcpy(p, ptr);
+    len = strlen(p);
 }
-strcpy (p, ptr );
-len = strlen (p);
+
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
 }
-void strtype :: show ()
-{
-cout << p << " - length : " << len ;
-cout << "\n";
+
+
+int main(){
+    strtype s1 , s2;
+
+    s1.set("This is a test.");
+    s2.set("I like C ++.");
+    s1.show();
+    s2.show();
+
+    return 0;
 }
-int main ()
-{
-strtype s1 , s2;
-s1. set (" This is a test .");
-s2. set ("I like C ++. "):
-s1. show ();
-s2. show ();
-return 0;
-}
-The program uses malloc and free() to allocate and free memory. While this is perfectly
-valid, C++ does provide another way to dynamically manage memory, as you will see
-later in this book.
-Note: The preceding program uses the new-style headers for the C library functions used
-by the program. As mentioned in Chapter 1, if your compiler does not support these
-headers, simply substitute the standard C header files. This applies to other programs in
-this book in which C library functions are used.
+
+
+/* Note: The preceding program uses the new-style headers for the C library functions used by the program.
+            If your compiler does not support these headers, simply substitute the standard C header files. 
+
+            Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
+*/
 
 
 
 
 
+// -- rev --
 /* Example 5: Here is an interesting way to use an object’s constructor and destructor. 
 
                 This program uses an object of the 'timer class' to time the interval between: 
