@@ -33,7 +33,10 @@ class class_name{
             Any initialization that needs to be 'performed on an object' can be done automatically by the constructor function.
 
         A constructor function has the 'same name as the class' of which it is a part 
+        
+        Return type of constructor:
             it has 'no return type'. It is 'illegal' for a constructor to have a 'return type'.
+            Observe following examples ()
 
     
     The constructor is called when the object is created. 
@@ -366,7 +369,7 @@ int main(){
 /* Note: The preceding program uses the new-style headers for the C library functions used by the program.
             If your compiler does not support these headers, simply substitute the standard C header files. 
 
-            type cast !!! why? : 
+            type cast! why? : 
                 Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
                 
                 In C, you don't need to cast the return value of malloc(). 
@@ -381,8 +384,6 @@ int main(){
 
 
 
-
-// -- rev --
 /* Example 5: Here is an interesting way to use an object’s constructor and destructor. 
 
                 This program uses an object of the 'timer class' to time the interval between: 
@@ -398,40 +399,47 @@ int main(){
                     at the point at which you want the timing interval to end. 
 */
 
-# include <iostream >
-# include <ctime >
-using namespace std ;
-class timer
-{
-clock_t start ;
-public :
-timer (); // constructor
-~ timer (); // destructor
-};
-timer :: timer ()
-{
-start = clock ();
-}
-timer ::~ timer ()
-{
-clock_t end ;
-end = clock ();
-cout << " Elapsed time : " << (end - start ) / CLOCKS_PER_SEC
-<< "\n";
-}
-int main ()
-{
-timer ob;
-char c;
-// delay ...
-cout << " Press a key followed by ENTER : ";
-cin >> c;
-return 0;
-}
-This program uses the standard library function clock(), which returns the number of
-clock cycles that have taken place since the program started running. Dividing this value
-by CLOCKS PER SEC converts the value to seconds.
+#include <iostream>
+#include <ctime>
 
+class timer{
+        clock_t start;  // 'clock_t' type time varibale 
+
+    public:
+        timer();    // constructor
+        ~timer();   // destructor
+};
+
+// constructor & destructor def
+timer::timer(){
+    start = clock();    // Recall 'CPP_ch_0_useful_lib_func, C_Ch0_4_Time .c'
+}
+
+timer::~timer(){
+    clock_t end;
+
+    end = clock();
+    std::cout << " Elapsed time : " << (end - start) << std::endl;
+    std::cout << " Elapsed time in second: " << (end - start) / CLOCKS_PER_SEC << std::endl;
+    // Convert to seconds: divide value by the CLOCKS_PER_SEC macro
+}
+
+
+int main(){
+    timer ob;   // object of timer class
+    char c;
+
+    // delay ...
+    std::cout << " Press a key followed by ENTER : ";
+    std::cin >> c;
+
+    return 0;
+}
+
+/* 
+    Note: clock() returns the 'number of system clock cycles' that have occurred since the PROGRAM began EXECUTION. 
+        Convert to seconds: To compute the number of seconds, divide this value by the CLOCKS_PER_SEC macro. 
+*/
 
 
 
@@ -439,68 +447,89 @@ by CLOCKS PER SEC converts the value to seconds.
 /* Example 6: Following is the Rework of the 'queue class' that we developed in previous section 
                 by replacing its initialization function with a constructor. 
 */
+#include <iostream>
 
-#include <iostream >
-using namespace std ;
-# define SIZE 100
-class q_type
-{
-int queue [ SIZE ]; // holds the queue
-int head , tail ; // indices of head and tail
-public :
-q_type (); // constructor
-void q( int num ); // store
-int deq (); // retrieve
+#define SIZE 100
+
+class q_type{
+    int queue[SIZE];    // holds the queue
+    int head, tail ;    // indices of head and tail
+
+    public:
+        // void init();    // initialize. 'OLD code'
+        q_type();      // constructor: auto initialization
+        void q(int num);    // store
+        int deq();          // retrieve
 };
-// Constructor
-q_type :: q_type ()
-{
-head = tail = 0;
-}
+
+/*  // OLD code: Initialize
+
+    void q_type::init(){
+        head = tail = 0;
+    } 
+*/
+
+// Constructor: Auto initialization
+q_type::q_type(){
+        head = tail = 0;
+} 
+
 // Put value on the queue .
-void q_type ::q( int num )
-{
-if( tail +1== head || ( tail +1== SIZE && ! head ))
-{
-cout << " Queue is full \n";
-return ;
+void q_type::q(int num){
+    if((tail+1 == head )|| ( (tail+1== SIZE) && (!head) )){
+        // no dequeue case: "((tail+1== SIZE) && (!head))" checks 'head = 0' and 'tail = SIZE-1'
+        // dequeue case: because of "cycle around"  'tail' is one-less than 'head'
+            // thats why we used '(tail+1 == head )'
+        std::cout << " Queue is full \n";
+        return;
+    }
+
+    tail++;
+
+    if(tail == SIZE) tail = 0; // cycle around
+    queue[tail] = num ;
 }
-tail ++;
-if( tail == SIZE )
-tail = 0; // cycle around
-queue [ tail ] = num ;
-}
-// Remove a value from a queue .
-int q_type :: deq ()
-{
-if( head == tail )
-{
-cout << " Queue is empty \n";
-return 0; // or some other error indicator
-}
-head ++;
-if( head == SIZE )
-head = 0; // cycle around
-return queue [ head ];
-}
-int main ()
-{
-q_type q1 , q2;
-int i;
-for (i =1; i <=10; i ++)
-{
-q1.q(i);
-q2.q(i*i);
-}
-for (i =1; i <=10; i ++)
-{
-cout << " Dequeue 1: " << q1.deq () << "\n";
-cout << " Dequeue 2: " << q2.deq () << "\n";
-}
-return 0;
+
+// Remove a value from a queue.
+int q_type::deq(){
+    if(head == tail){
+        std::cout << " Queue is empty \n";
+        return 0; // or some other error indicator
+    }
+
+    head++;
+
+    if(head == SIZE) head = 0; // cycle around
+    return queue[head];
 }
 
 
+int main(){
+    q_type q1, q2;
+    int i;
+
+    // old code: no need initialization anymoore. Done by the 'constructor' autometically
+    // q1.init();
+    // q2.init();
+
+    for(i =1; i<=10; i++){
+        q1.q(i);
+        q2.q(i*i);
+    }
+
+    for(i =1; i<=10; i++){
+        std::cout << " Dequeue 1: " << q1.deq() << "\n";
+        std::cout << " Dequeue 2: " << q2.deq() << "\n";
+    }
+
+    return 0;
+}
+
+
+
+
+
+// -- rev --
 /* Example 7: Create a class called 'stopwatch' that emulates a stopwatch that keeps track of elapsed time. 
                 Use a CONSTRUCTOR to initially set the elapsed time to 0. 
                 Provide two member functions called start() and stop() that turn on and off the timer, respectively. 
