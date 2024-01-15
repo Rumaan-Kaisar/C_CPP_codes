@@ -528,73 +528,95 @@ int main(){
 
 
 
-
-// -- rev --
 /* Example 7: Create a class called 'stopwatch' that emulates a stopwatch that keeps track of elapsed time. 
+                
                 Use a CONSTRUCTOR to initially set the elapsed time to 0. 
+                
                 Provide two member functions called start() and stop() that turn on and off the timer, respectively. 
                 Include a member function called show() that displays the elapsed time. 
+                
                 Also, have the DESTRUCTOR function automatically display elapsed time when a stopwatch object is destroyed. 
                 (To simplify, report the time in seconds.) 
 */
 
 // Stopwatch emulator
-# include <iostream >
-# include <ctime >
-using namespace std ;
-class stopwatch
-{double begin , end ;
-public :
-stopwatch ();
-~ stopwatch ();
-void start ();
-void stop ();
-void show ();
-};
-stopwatch :: stopwatch ()
-{
-begin = end = 0.0;
-}
-stopwatch ::~ stopwatch ()
-{
-cout << " Stopwatch object being destroyed ... ";
-show ();
-}
-void stopwatch :: start ()
-{
-begin = ( double ) clock () / CLOCKS_PER_SEC ;
-}
-void stopwatch :: stop ()
-{
-end = ( double ) clock () / CLOCKS_PER_SEC ;
-}
-void stopwatch :: show ()
-{
-cout << " Elapsed time : " << end - begin ;
-cout << "\n";
-}
-int main ()
-{
-stopwatch watch ;
-long i;
-watch . start ();
-for (i =0; i <320000; i++); // time a for loop
-watch . stop ();
-watch . show ();
-return 0;
-}
+#include <iostream>
+#include <ctime>
 
 
+class stopwatch {
+        double begin, end;
 
-
-/* Example 8: What is wrong with the constructor shown in the following fragment? */
-class sample
-{
-double a, b, c;
-public :
-double sample (); // error , why ?
+    public:
+        stopwatch();
+        ~stopwatch();
+        void start();
+        void stop();
+        void show();
 };
 
-A constructor cannot have a return type.
+
+
+
+stopwatch :: stopwatch(){
+    begin = end = 0.0;
+}
+
+
+stopwatch ::~ stopwatch(){
+    std::cout << " Stopwatch object being destroyed ... ";
+    show();
+}
+
+
+void stopwatch::start(){
+    begin = (double)clock() / CLOCKS_PER_SEC;
+}
+
+
+void stopwatch::stop(){
+    end = (double)clock() / CLOCKS_PER_SEC;
+}
+
+
+void stopwatch::show(){
+    std::cout << " Elapsed time : " << end - begin;
+    std::cout << "\n";
+}
+
+
+int main(){
+    stopwatch watch ;
+    long i;
+
+    watch.start();
+    for(i =0; i<320000; i++); // time a for loop
+    watch.stop();
+    watch.show();
+
+    return 0;
+}
+
+/* 
+    // another for loop to test
+        for(i =0; i<3200000000; i++){
+            if(!(i%60000)) {
+                watch.stop();
+                watch.show();
+            }
+        }
+*/
+
+
+
+
+/* Example 8: What is wrong with the 'constructor' shown in the following fragment? */
+class sample{
+        double a, b, c;
+    public:
+        double sample(); // error , why ?
+};
+
+// ans: A constructor cannot have a return type.
 
 
