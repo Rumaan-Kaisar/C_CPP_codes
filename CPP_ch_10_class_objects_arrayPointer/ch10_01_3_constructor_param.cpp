@@ -87,52 +87,50 @@ myclass ob = myclass(4);
 
 
 
+/* Example 2: (multi-argument constructor) It is quite common-to pass a constructor more than one argument. 
+                Here  myclass() is passed two arguments. 
+                Here 4 is passed to x and 7 is passed to y.  
+                
+                You can pass any number of arguments as you like (up to the limit set by the compiler, of course).
+*/
+#include <iostream>
 
-
-
-// ----  rev  ----
-
-
-
-Example 1: It is possible-in fact, quite common-to pass a constructor more than one argument. Here
-myclass() is passed two arguments:
-# include <iostream >
-using namespace std ;
-class myclass
-{
-int a, b;
-public :
-myclass ( int x, int y); // constructor
-void show ();
+class myclass{
+        int a, b;
+    public:
+        myclass(int x, int y); // constructor
+        void show();
 };
-myclass :: myclass ( int x, int y)
-{
-cout << "In constructor \n";
-a = x;
-b = y;
+
+myclass::myclass(int x, int y){
+    std::cout << "In constructor \n";
+    a = x;
+    b = y;
 }
-void myclass :: show ()
-{
-cout << a << ’ ’ << b << "\n";
-}
-int main ()
-{
-myclass ob (4, 7);
-ob. show ();
-return 0;
+
+void myclass::show(){
+    // dispaly both a, b
+    std::cout << a << ' ' << b << "\n";
 }
 
 
+int main(){
+    myclass ob(4, 7);
+    ob. show();
+    
+    return 0;
+}
 
 
-Here 4 is passed to x and 7 is passed to y. This same general approach is used to pass
-any number of arguments you like (up to the limit set by the compiler, of course).
 
 
 
 
 
-Example 2: Here is another version of the stack class that uses a parameterized constructor to pass a
+---- 
+
+
+Example 3: Here is another version of the stack class that uses a parameterized constructor to pass a
 "name" to a stack. This single-character name is used to identify the stack that is being
 referred to when an error occurs.
 # include <iostream >
@@ -205,7 +203,7 @@ when it is important to know which object generates an error.
 
 
 
-Example 3: Here is a different way to implement the strtype class (developed earlier) that uses a
+Example 4: Here is a different way to implement the strtype class (developed earlier) that uses a
 parameterized constructor function:
 # include <iostream >
 # include <cstring >
@@ -257,7 +255,7 @@ In this version of strtype, a string is given an initial value using the constru
 
 
 
-Example 4: Although the previous examples have used constants, you can pass an object’s constructor
+Example 5: Although the previous examples have used constants, you can pass an object’s constructor
 any valid expression, including variables. For example, this program uses user input to
 construct an object:
 # include <iostream >
@@ -303,7 +301,7 @@ EXERCISES
 
 
 
-Example 5: Change the stack class so it dynamically allocates memory for the stack. Have the size
+Example 6: Change the stack class so it dynamically allocates memory for the stack. Have the size
 of the stack specified by a parameter to the constructor function. (Don’t forget to free
 this memory with a destructor function.)
 
@@ -387,7 +385,7 @@ return 0;
 
 
 
-Example 6: Create a class called t and d that is passed the current system time and date as a
+Example 7: Create a class called t and d that is passed the current system time and date as a
 parameter to its constructor when it is created. Have the class include a member function
 that displays this time and date on the screen. (Hint: Use the standard time and date
 functions found in the standard library to find and display the time and date.)
@@ -427,7 +425,7 @@ return 0;
 
 
 
-Example 7: Create a class called box whose constructor function is passed three double values, each
+Example 8: Create a class called box whose constructor function is passed three double values, each
 of which represents the length of one side of a box. Have the box class compute the
 volume of the box and store the result in a double variable. Include a member function
 called vol() that displays the volume of each box object.
