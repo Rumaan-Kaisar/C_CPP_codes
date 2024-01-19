@@ -201,60 +201,101 @@ int main(){
 
 
 
-// ----  rev  ----
+
 /* Example 4: Here is a different way to implement the 'strtype class' (developed earlier) 
-                that now uses a parameterized constructor function. */
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
+                that now uses a parameterized constructor function. 
+                
+                'strtype class'creates a simple string class, called 'strtype', that contains a 'string and its length'. 
 
+                When a 'strtype' object is created, 
+                    'memory' is allocated to hold the string and its initial length is set to 0. 
 
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype ();
-void show ();
+                When strtype object is destroyed, that memory is released. 
+                
+                The program uses malloc and free() to allocate and free memory. While this is perfectly valid, 
+                    C++ does provide another way to dynamically manage memory, which we will see later.
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+// #define SIZE 25      'no need'
+
+// class definition
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char * ptr);  // constructor
+        ~strtype(); // destructor
+        // void set(char *ptr);     'no need'
+        void show();
 };
-strtype :: strtype ( char *ptr )
-{
-len = strlen ( ptr );
-p = ( char *) malloc (len +1);
-if (!p)
 
+// constructor: Initialize a string object with parameter.
+strtype::strtype(char * ptr){
+    len = strlen(ptr);  // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){ // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
 
+    strcpy(p, ptr); // copy string to p
 
-{
-cout << " Allocation error \n";
-exit (1) ;
+    // -- old code --
+    // *p = '\0';
+    // len = 0;
 }
-strcpy (p, ptr );
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
 }
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-free (p);
+
+
+/* -- old code --   'no need'
+void strtype::set(char *ptr){
+    if(strlen(p) >= SIZE){
+        std::cout << " String too big \n";
+        return;
+    }
+    strcpy(p, ptr);
+    len = strlen(p);
+} 
+*/
+
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
 }
-void strtype :: show ()
-{
-cout << p << " - length : " << len ;
-cout << "\n";
+
+
+// In this version of strtype, a string is given an initial value using the constructor function.
+int main(){
+    // strtype s1 , s2;
+    // initialize with string, as parameters
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    // s1.set("This is a test.");   'no need'
+    // s2.set("I like C ++.");      'no need'
+    s1.show();
+    s2.show();
+
+    return 0;
 }
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++. ");
-s1. show ();
-s2. show ();
-return 0;
-}
-In this version of strtype, a string is given an initial value using the constructor function.
 
 
 
 
 
+
+// ----  rev  ----
 Example 5: Although the previous examples have used constants, you can pass an object’s constructor
 any valid expression, including variables. For example, this program uses user input to
 construct an object:
