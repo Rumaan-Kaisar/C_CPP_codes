@@ -425,86 +425,87 @@ int main(){
 
 
 
+/* Example 7: Create a class called "t_and_d" that is passed the current 'system time' and 'date' 
+                as a PARAMETER to its CONSTRUCTOR when it is created. 
+                
+                Have the class include a member function that displays this 'time and date' on the "screen". 
+                (Hint: Use the standard time and date functions found in the standard library to find and display the time and date.) 
+*/
 
+#include <iostream>
+#include <ctime>
 
-
-
-
-
-Example 7: Create a class called t and d that is passed the current system time and date as a
-parameter to its constructor when it is created. Have the class include a member function
-that displays this time and date on the screen. (Hint: Use the standard time and date
-functions found in the standard library to find and display the time and date.)
-
-2. # include <iostream >
-# include <ctime >
-using namespace std ;
-class t_and_d
-{
-time_t systime ;
-public :
-t_and_d ( time_t t); // constructor
-void show ();
+class t_and_d{
+        time_t systime ;
+    public:
+        t_and_d(time_t t); // constructor
+        void show ();
 };
-t_and_d :: t_and_d ( time_t t)
-{
-systime = t;
-}
-void t_and_d :: show ()
 
-{
-cout << ctime (& systime );
-}
-int main ()
-{
-time_t x;
-x = time ( NULL );
-t_and_d ob(x);
-ob. show ();
-return 0;
+
+// constructor
+t_and_d::t_and_d(time_t t){
+    systime = t;
 }
 
 
+void t_and_d::show(){
+    std::cout << ctime(&systime);   
+}
+
+
+int main(){
+    time_t x;
+
+    x = time(NULL); // getting time from system
+    t_and_d ob(x);  // pass the 'system-time' during object creation
+    ob.show();
+
+    return 0;
+}
 
 
 
 
+/* Example 8: Create a class called 'box' whose constructor function is passed three double values, 
+                each of which represents the length of one side of a box. 
 
+                Have the 'box class' compute the 'volume' of the box and store the result in a 'double variable'. 
+                Include a member function called vol() that 'displays' the volume of each box object. 
+*/
 
-Example 8: Create a class called box whose constructor function is passed three double values, each
-of which represents the length of one side of a box. Have the box class compute the
-volume of the box and store the result in a double variable. Include a member function
-called vol() that displays the volume of each box object.
+#include <iostream>
 
-3. # include <iostream >
-using namespace std ;
-class box
-{
-double l, w, h;
-double volume ;
-public :
-box ( double a, double b, double c);
-void vol ();
+class box{
+            double l, w, h;
+            double volume ;
+    public:
+        box(double a, double b, double c);
+        void vol();
 };
-box :: box ( double a, double b, double c)
-{
-l = a;
-w = b;
-h = c;
-volume = l * w * h;
-}
-void box :: vol ()
-{
-cout << " Volume is: " << volume << "\n";
-}
-int main ()
-{
-box x(2.2 , 3.97 , 8.09) , y(1.0 , 2.0 , 3.0) ;
-x. vol ();
-y. vol ();
-return 0;
 
-C++
+
+// constructor
+box::box(double a, double b, double c){
+    l = a;
+    w = b;
+    h = c;
+    volume = l*w*h;
+}
+
+
+void box::vol(){
+    std::cout << " Volume is: " << volume << "\n";
+}
+
+
+int main(){
+    box x(2.2, 3.97, 8.09), y(1.0, 2.0, 3.0);
+
+    x.vol();
+    y.vol();
+
+    return 0;
 }
 
 
