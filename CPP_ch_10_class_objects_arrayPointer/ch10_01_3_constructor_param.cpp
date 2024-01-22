@@ -200,8 +200,6 @@ int main(){
 
 
 
-
-
 /* Example 4: Here is a different way to implement the 'strtype class' (developed earlier) 
                 that now uses a parameterized constructor function. 
                 
@@ -227,7 +225,7 @@ class strtype{
         char *p;
         int len;
     public:
-        strtype(char * ptr);  // constructor
+        strtype(char *ptr);  // constructor
         ~strtype(); // destructor
         // void set(char *ptr);     'no need'
         void show();
@@ -294,49 +292,46 @@ int main(){
 
 
 
+/* Example 5: You can pass an object’s constructor any valid expression, including variables. 
+                For example, this program uses 'user input' to construct an object: */
+#include <iostream>
 
-// ----  rev  ----
-Example 5: Although the previous examples have used constants, you can pass an object’s constructor
-any valid expression, including variables. For example, this program uses user input to
-construct an object:
-# include <iostream >
-using namespace std ;
-class myclass
-{
-int i, j;
-public :
-myclass ( int a, int b);
-void show ();
+class myclass{
+        int i, j;
+    public:
+        myclass(int a, int b);  // variable parameters
+        void show();
 };
-myclass :: myclass ( int a, int b)
-{
-cout << "In constructor \n";
-i = a;
-j = b;
+
+myclass::myclass(int a, int b){
+    std::cout << "In constructor \n";
+    i = a;
+    j = b;
 }
-41TEACH YOURSELF
-C++
-void myclass :: show ()
-{
-cout << i << ’ ’ << j << "\n";
+
+void myclass::show(){
+    std::cout << i << ' ' << j << "\n";
 }
-int main ()
-{
-int x, y;
-cout << " Enter two integers : ";
-cin >> x >> y;
-// use variables to construct ob
-myclass ob(x, y);
-ob. show ();
-return 0;
-}
-This program illustrates an important point about objects. They can be constructed as
-needed to fit the exact situation at the time of their creation. As you learn more about
-C++, you will see how useful constructing objects "on the fly" is.
 
 
+int main(){
+    int x, y;
 
-EXERCISES
+    std::cout << " Enter two integers : ";
+    std::cin >> x >> y;
+    
+    // use variables to construct 'ob'
+    myclass ob(x, y);
+    ob.show();
+
+    return 0;
+}
+
+
+/* important point about objects: 
+    They can be constructed as needed to fit the exact situation at the time of their creation. 
+    As you learn more about C++, you will see how useful constructing objects "on the fly" is. 
+*/
 
 
 
