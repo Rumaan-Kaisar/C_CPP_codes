@@ -337,84 +337,94 @@ int main(){
 
 
 
-Example 6: Change the stack class so it dynamically allocates memory for the stack. Have the size
-of the stack specified by a parameter to the constructor function. (Don’t forget to free
-this memory with a destructor function.)
+/* Example 6: Change the stack class so it 'dynamically allocates memory' for the stack. 
+                Have the 'size' of the stack specified by a 'parameter' to the constructor function. 
+                (Don’t forget to free this memory with a destructor function.) */
 
-1. // Dynamically allocated stack .
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
-// Declare a stack class for characters
-class stack
-{
-char * stck ; // holds the stack
-int tos ; // index of top of stack
-int size ; // size of stack
-public :
-stack ( int s); // constructor
-~ stack (); // destructor
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
+#include <iostream>
+#include <cstdlib>
+// "cstdlib" is used here for memory allocation
+
+// #define SIZE 10
+
+// Declare a stack class for characters .
+class stack {
+        // char stck[SIZE];    // holds the stack (old)
+        char *stck;    // holds the stack. Use pointer intead of array
+        int tos;        // index of top of stack
+        int size;       // size of stack
+    public:
+        stack(int s);            // constructor. Notice the parameter 's' for stack size
+        ~stack();            // constructor. Notice the parameter
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
 };
-// Initialize the stack
-stack :: stack ( int s)
-{
-cout << " Constructing a stack \n";
-tos = 0;
-stck = ( char *) malloc (s);
-if (! stck )
-{
-cout << " Allocation error \n";
-exit (1) ;
+
+
+// constructor: Initialize the stack using 's'
+stack::stack(int s){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+
+    // allocate memory using 's'
+    stck = (char *)malloc(s); // notice type-cast.
+    if(!stck){  // allocation error check
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    size = s;
 }
-size = s;
+
+
+// destructor
+stack::~stack(){
+    // free allocated memory
+    free(stck);
 }
-stack ::~ stack ()
-{
-free ( stck );
+
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == size){    // NEW: use 'size' instead of global 'SIZE'
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
 }
-// Push a character .
-void stack :: push ( char ch)
-{
-if( tos == size )
-{
-cout << " Stack is full \n";
-return ;
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
 }
-stck [ tos ] = ch;
-tos ++;
+
+
+// -=-=-  main function  -=-=-
+int main(){
+    stack s1(10), s2(10); // NEW: create two stacks with their size
+    int i;
+
+    s1.push('a');
+    s2.push('x');
+    s1.push('b');
+    s2.push('y');
+    s1.push('c');
+    s2.push('z');
+
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
+
+    return 0;
 }
-423TEACH YOURSELF
-C++
-// Pop a character .
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-}
-int main ()
-{
-// Create two stacks that are automatically initialized .
-stack s1 (10) , s2 (10) ;
-int i;
-s1. push (’a’);
-s2. push (’x’);
-s1. push (’b’);
-s2. push (’y’);
-s1. push (’c’);
-s2. push (’z’);
-for (i =0; i <3; i ++)
-cout << " Pop s1: " << s1.pop () << "\n";
-for (i =0; i <3; i ++)
-cout << " Pop s2: " << s2.pop () << "\n";
-return 0;
-}
+
+
+
+
 
 
 
