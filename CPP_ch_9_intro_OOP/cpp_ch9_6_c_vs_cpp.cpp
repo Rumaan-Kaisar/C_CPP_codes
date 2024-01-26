@@ -71,6 +71,25 @@
             This still holds in C++ because 'any nonzero value' is automatically converted into "false" when used in a BOOLEAN EXPRESSION. 
             The reverse also occurs: 'true' is converted to "1" and 'false' is converted to "0" when a 'bool value' is used in an INTEGER EXPRESSION. 
 
+
+
+    ------------    A Few More Differences Between C and C++    ------------
+
+    char to int elivation:
+        In C, a char constant is automatically elevated to an int, whereas in C++, it is not.
+
+    upgrade on register variable:
+        In C, you cannot take the address of a register variable. In C++, you can.
+
+    In C, it is not an error to declare a 'global variable' several times. In C++, this is an error.
+
+    In C, an identifier will have at least '31 significant characters'. In C++, all characters are considered significant. 
+        However,extremely long identifiers are unwieldy and are seldom needed.
+
+    In C, you can call main() from within a program, although this would be unusual. In C++, this is not allowed.
+
+    In C, the type wchar_t is defined with a typedef. In C++, wchar_t is a keyword.
+    
 */
 
 
@@ -205,8 +224,5 @@ void f(){
 
 
 
-/* Example 6: What is the bool data type? 
-                The bool data type stores Boolean values. 
-                The only values an object of type bool can have are true and false.
-*/
+
 
