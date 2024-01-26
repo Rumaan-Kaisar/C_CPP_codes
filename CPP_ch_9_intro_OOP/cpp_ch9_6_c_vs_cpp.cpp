@@ -89,7 +89,7 @@
     In C, you can call main() from within a program, although this would be unusual. In C++, this is not allowed.
 
     In C, the type wchar_t is defined with a typedef. In C++, wchar_t is a keyword.
-    
+
 */
 
 
@@ -224,5 +224,9 @@ void f(){
 
 
 
+/* Example 6: What is the bool data type? 
+                The bool data type stores Boolean values. 
+                The only values an object of type bool can have are true and false.
+*/
 
 
