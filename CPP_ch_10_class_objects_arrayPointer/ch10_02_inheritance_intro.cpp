@@ -137,9 +137,70 @@ class PrivateDerived: private Base {
 
 
 
-----  rev  ----
+/* Examplpe 2: Derived class can call BASE class's 'public' member functions directly. */
 
-/* 	Derived class can call base class public member functions directly. For example consider the following function. 
-int :: mul(){	return j*get_i(); }
-Notice that it calls get_i(), which is a member of the base class Bs, not of Drv, without linking it to any specific object (without base class it won't be possible). 
-However, the reason that mul() must call get_i() instead of accessing i directly is that the private members of a base class (in this case,i) remain private (due to encapsulation) to it and not accessible by any derived class.  */
+// A simple example of inheritance .
+#include <iostream>
+
+// Define base class .
+class B{
+        int i;
+    public:
+        void set_i(int n);
+        int get_i();
+};
+
+// Define derived class .
+class D : public B{
+        int j;
+    public:
+        void set_j(int n);
+        int mul();
+};
+
+
+// Set value i in base
+void B::set_i(int n){
+    i = n;
+}
+
+// Return value of i in base .
+int B::get_i(){
+    return i;
+}
+
+// Set value of j in derived .
+void D::set_j(int n){
+    j = n;
+}
+
+// Return value of base ’s i times derived ’s j.
+int D::mul(){
+    // derived class can call base class public member functions
+    return j*get_i();
+}
+
+
+int main(){
+    D ob;
+
+    ob.set_i(10);   // load i in base
+    ob.set_j(4);    // load j in derived
+    std::cout << ob. mul();    // displays 40
+
+    return 0;
+}
+
+/* Notice carefully
+                        int D::mul(){	
+                            return j*get_i(); 
+                        }
+    
+    Look at the definition of mul(). 
+        Notice that it calls get_i(), which is a member of the base B, not of D, 'without linking' it to any specific object. 
+        This is possible because the 'public members of B' become 'public members of D'. Since we used 'public inheritance'
+
+    The reason that mul() must call get_i(), because 'i' is still priveate to D, and not accessable from D
+
+    Remember: To maintain encapsulation, private members of a class are not accessible to derived classes.
+*/
