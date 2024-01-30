@@ -137,7 +137,7 @@ class PrivateDerived: private Base {
 
 
 
-/* Examplpe 2: Derived class can call BASE class's 'public' member functions directly. */
+/* Example 2: Derived class can call BASE class's 'public' member functions directly. */
 
 // A simple example of inheritance .
 #include <iostream>
@@ -204,3 +204,165 @@ int main(){
 
     Remember: To maintain encapsulation, private members of a class are not accessible to derived classes.
 */
+
+
+
+
+
+
+// ----  rev  ----
+
+
+
+/* Example 3: Here is a program that defines a generic base class called fruit that describes certain
+                characteristics of fruit. This class is inherited by two derived classes Apple and Orange.
+                These classes supply specific information to fruit that are related to these type of fruit. */
+// An example of class inheritance .
+# include <iostream >
+# include <cstring >
+using namespace std ;
+enum yn {no , yes };
+enum color {red , yellow , green , orange };
+void out ( enum yn x);
+char *c[] = {" red ", " yellow ", " green ", " orange "};
+// Generic fruit class .
+class fruit
+{
+// in this base , all elements are public
+public :
+enum yn annual ;
+enum yn perennial ;
+enum yn tree ;
+enum yn tropical ;
+enum color clr ;
+char name [40];
+};
+// Derive Apple class .
+class Apple : public fruit
+{
+enum yn cooking ;
+enum yn crunchy ;
+enum yn eating ;
+public :
+void seta ( char *n, enum color c, enum yn ck , enum yn
+crchy , enum yn e);
+void show ();
+};
+// Derive orange class .
+class Orange : public fruit
+{
+enum yn juice ;
+enum yn sour ;
+enum yn eating ;
+public :
+void seto ( char *n, enum color c, enum yn j, enum yn sr ,
+enum yn e);
+void show ();
+45TEACH YOURSELF
+C++
+};
+void Apple :: seta ( char *n, enum color c, enum yn ck , enum yn
+crchy , enum yn e)
+{
+strcpy (name , n);
+annual = no;
+perennial = yes ;
+tree = yes ;
+tropical = no;
+clr = c;
+cooking = ck;
+crunchy = crchy ;
+eating = e;
+}
+void Orange :: seto ( char *n, enum color c, enum yn j, enum yn
+sr , enum yn e)
+{
+strcpy (name , n);
+annual = no;
+perennial = yes ;
+tree = yes ;
+tropical = yes ;
+clr = c;
+juice = j;
+sour = sr;
+eating = e;
+}
+void Apple :: show ()
+{
+cout << name << " apple is: " << "\n";
+cout << " Annual : "; out ( annual );
+cout << " Perennial : "; out ( perennial );
+cout << " Tree : "; out ( tree );
+cout << " Tropical : "; out ( tropical );
+cout << " Color : " << c[clr ] << "\n";
+cout << " Good for cooking : "; out ( cooking );
+cout << " Crunchy : "; out ( crunchy );
+cout << " Good for eating : "; out ( eating );
+cout << "\n";
+}
+void Orange :: show ()
+{
+cout << name << " orange is: " << "\n";
+cout << " Annual : "; out ( annual );
+cout << " Perennial : "; out ( perennial );
+cout << " Tree : "; out ( tree );
+46INTRODUCING CLASSES
+2.3. INTRODUCING INHERITANCE
+cout << " Tropical : "; out ( tropical );
+cout << " Color : " << c[clr ] << "\n";
+cout << " Good for juice : "; out ( juice );
+cout << " Sour : "; out ( juice );
+cout << " Good for eating : "; out ( eating );
+cout << "\n";
+}
+void out ( enum yn x)
+{
+if(x== no)
+cout << "no\n";
+else
+cout << " yes \n";
+}
+int main ()
+{
+Apple a1 , a2;
+Orange o1 , o2;
+a1. seta (" Red Delicious ", red , no , yes , yes );
+a2. seta (" Jonathan ", red , yes , no , yes );
+o1. seto (" Navel ", orange , no , no , yes );
+o2. seto (" Valencia ", orange , yes , yes , no);
+a1. show ();
+a2. show ();
+o1. show ();
+o2. show ();
+return 0;
+}
+As you can see, the base class fruit defines several characteristics that are common to all
+types of fruit. (Of course, in order to keep this example short enough to fit conveniently
+in a book, the fruit class is somewhat simplified.) For example, all fruit grows on either
+annual or perennial plants, such as vines or bushes. All fruit has a color and a name.
+This base class is then inherited by the Apple and Orange classes. Each of these classes
+supplies information specific to its type of fruit.
+This example illustrates the basic reason for inheritance. Here, a base class is created
+that defines the general traits associated with all fruit. It is left to the derived classes to
+supply those traits that are specific to each individual case.
+This program illustrates another important fact about inheritance. A base class is not
+exclusively "owned" by a derived class. A base class can be inherited by any number of
+classes.
+EXERCISE
+
+
+/* Example 4: Given the following base class,
+47TEACH YOURSELF
+C++
+class area_cl
+{
+public :
+double height ;
+double width ;
+};
+create two derived classes called rectangle and isosceles that inherit area cl. Have
+each class include a function called area() that returns the area of a rectangle or isosceles
+triangle, as appropriate. Use parameterized constructors to initialize height and widt
+
+
+ */
