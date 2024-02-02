@@ -366,72 +366,71 @@ int main(){
 
 
 
-// ----  rev  ----
-
 /* Example 4: Given the following base class,
-47TEACH YOURSELF
-C++
-class area_cl
-{
-public :
-double height ;
-double width ;
+
+                    class area_cl{
+                        public:
+                            double height;
+                            double width;
+                    };
+
+                Create two derived classes called 'rectangle' and 'isosceles' that inherit "area_cl". 
+                Have each class include a function called area() 
+                    that returns the area of a rectangle or isosceles triangle, as appropriate. 
+                
+                Use parameterized constructors to initialize height and width
+*/
+
+#include <iostream>
+
+class area_c1{
+    public:
+        double height;
+        double width;
 };
-create two derived classes called rectangle and isosceles that inherit area cl. Have
-each class include a function called area() that returns the area of a rectangle or isosceles
-triangle, as appropriate. Use parameterized constructors to initialize height and widt
+
+// derived classes
+class rectangle:public area_c1{
+    public:
+        rectangle(double h, double w);
+        double area();
+};
+
+class isosceles:public area_c1{
+    public:
+        isosceles(double h, double w);
+        double area();
+};
 
 
- */
+// member functions of derived class
+rectangle::rectangle(double h, double w){
+    height = h;
+    width = w;
+}
+
+isosceles::isosceles(double h, double w){
+    height = h;
+    width = w;
+}
+
+double rectangle::area(){
+    return width*height;
+}
+
+double isosceles::area(){
+    return 0.5*width*height;
+}
 
 
-1. # include <iostream >
-using namespace std ;
-class area_c1
-{
-public :
-double height ;
-double width ;
-};
-class rectangle : public area_c1
-{
-public :
-rectangle ( double h, double w);
-double area ();
-};
-class isosceles : public area_c1
-{
-public :
-isosceles ( double h, double w);
-double area ();
-};
-rectangle :: rectangle ( double h, double w)
-{
-height = h;
-width = w;
-}
-isosceles :: isosceles ( double h, double w)
-{
-height = h;
-width = w;
-}
-double rectangle :: area ()
-{
-return width * height ;
-}
-double isosceles :: area ()
-{
-return 0.5 * width * height ;
-}
-int main ()
-426ANSWERS
-2.5 EXERCISES
-{
-rectangle b (10.0 , 5.0) ;
-isosceles i(4.0 , 6.0) ;
-cout << " Rectangle : " << b. area () << "\n";
-cout << " Triangle : " << i. area () << "\n";
-return 0;
+int main(){
+    rectangle b(10.0, 5.0);
+    isosceles i(4.0, 6.0);
+
+    std::cout << "Rectangle : " << b.area() << "\n";
+    std::cout << "Triangle : " << i.area() << "\n";
+
+    return 0;
 }
 
 
