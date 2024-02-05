@@ -54,9 +54,45 @@ int main(){
 
 
 
+
+/* Example 1(full version): Here is a simple example that uses an object pointer: */
+#include <iostream>
+
+class myclass{
+        int a;
+    public:
+        myclass(int x); // constructor
+        int get();
+};
+
+myclass::myclass(int x){
+    a = x;
+}
+
+int myclass::get(){
+    return a;
+}
+
+int main(){
+    myclass ob(120); 	// create object
+    myclass *ptr;       //  create pointer to object
+
+    ptr = &ob; // put address of 'ob' into 'ptr'
+    std::cout << " Access value using object : " << ob.get();  // dot-operator '.' is used
+    std::cout << "\n";
+    std::cout << " Access value using pointer : " << ptr->get(); // arrow-operator '->' is used
+
+    return 0; 
+}
+
+
+
+
 /* Example 2: following demostrates the pointer arithmetics for an 'object pointer' 
                 Notice an inline function is used as a constructor
 */
+#include <iostream>
+
 class samp{
         int a, b;
    public : 
@@ -85,14 +121,11 @@ int main() {
         p++;  // advance to next object 
     }
 
-    . . .
-    . . .
+    // . . .
+    // . . .
 
     return 0;
 }
- 
+
 // Each time p is incremented, it points to the next object in the array.
-
-
-
 
