@@ -35,32 +35,59 @@ int main(){
     return 0; 
 }
 
+/*  Notice how the declaration
+            myclass *ptr;
+        creates a pointer to an object of myclass.
+    
+    The address of 'ob' is put into 'ptr' by using this statement:
+            ptr = &ob;
+
+    following shows how the 'members of an object' can be accessed through a Pointer as using :
+            p->get()
+
+    'Pointer arithmetic' using an object pointer is the same as it is for any other data type: 
+        it is performed relative to the 'type' of the object. 
+        For example, when an object pointer is 'INCREMENTED', it points to the 'next object'. 
+        When an object pointer is 'DECREMENTED', it points to the previous object.
+        Consider following example
+*/
 
 
-// ----  rev  ----
-	Notice how the declaration          myclass *p; 	creates a pointer to an object of myclass. 
-	The address of ob is put into p by using this statement:       p = &ob;
-	Finally, the program shows how the members of an object can be accessed through a Pointer as using :      p->get()  .
 
-	Pointer arithmetic using an object pointer is the same as it is for any other data type: it is performed relative to the type of the object. For example, when an object pointer is incremented, it points to the next object. When an object pointer is decremented, it points to the previous object.
- 
-class samp { int a, b;
-/* inline function as constructor */
-   public : samp(int n, int m) { a=n; b=m; } 
-     int get_a() { return a; }
-     int get_b() { return b; }   };
+/* Example 2: following demostrates the pointer arithmetics for an 'object pointer' 
+                Notice an inline function is used as a constructor
+*/
+class samp{
+        int a, b;
+   public : 
+        samp(int n, int m) { a=n; b=m; } // inline function as constructor
+        int get_a() { return a; }
+        int get_b() { return b; }   
+};
+
 int main() {
-samp ob[4] = {samp(1, 2), samp(3, 4),
-samp(5, 6), samp(7, 8) };
-int i;
-samp *p;
-p = ob;  /* get starting address of array */ 
-for (i=0; i <4; i++){
-cout << p->get_a () << ' ';
-cout << p->get_b () << "\n";
-p++;  /* advance to next object */ }
-. . . . . }
+    // array of 4 objects
+    samp ob[4] = {
+        samp(1, 2), 
+        samp(3, 4),
+        samp(5, 6), 
+        samp(7, 8) 
+    };
+
+    int i;
+    samp *p;
+
+    p = ob;  // get starting address of array
+
+    for(i=0; i<4; i++){
+        std::cout << p->get_a() << ' ';
+        std::cout << p->get_b() << "\n";
+        p++;  // advance to next object 
+    }
+. . .;
+. . . ;
+}
  
-	Each time p is incremented, it points to the next object in the array.
+// Each time p is incremented, it points to the next object in the array.
 
 
