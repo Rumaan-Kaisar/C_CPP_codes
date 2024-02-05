@@ -84,10 +84,15 @@ int main() {
         std::cout << p->get_b() << "\n";
         p++;  // advance to next object 
     }
-. . .;
-. . . ;
+
+    . . .
+    . . .
+
+    return 0;
 }
  
 // Each time p is incremented, it points to the next object in the array.
+
+
 
 
