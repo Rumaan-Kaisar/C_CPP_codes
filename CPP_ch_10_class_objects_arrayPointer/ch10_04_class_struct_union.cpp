@@ -1,14 +1,41 @@
 
+/*  ----------------    structures-unions and classes    ----------------
+    
+    Structures:
+        General form of a structure in C++ :
 
-10.4 Relation between STRUCTURES-UNIONS and CLASSES
-	Structures: The class and the structure have virtually identical capabilities.  In C++ structures include member functions, including constructor and destructor functions,. In fact, the only difference between a structure and a class is that, by default, the members of a class are private but the members of a structure are public.  Because in C all structure members are public by default. General form of a structure in C++ :
-struct type_name {
-/* public function and data members */ 
-private :
-/* private function and data members */  
-} object_list ;
-	In C++  both struct and class create new class types.
-	Notice that a new keyword is introduced. It is private, and it tells the compiler that the member that follow are private to that class  (applicable for both class and structure).
+            struct type_name {
+                    // PUBLIC function and data members
+                private :
+                    // PRIVATE function and data members
+            } object_list;
+
+
+    Note:
+        by default members of a STRUCTURE are "public"
+        by default members of a CLASS are "private"
+
+
+
+    Relation between STRUCTURES-UNIONS and CLASSES:
+        The 'class' and the 'structure' have virtually IDENTICAL capabilities.  
+        In C++ structures include 'member functions', including constructor and destructor functions. 
+
+        Only difference between a 'structure' and a 'class' is: 
+            by default, the members of a CLASS are 'private' but 
+            the members of a STRUCTURE are 'public'. Because in C all structure members are public by default. 
+
+        In C++  both 'struct' and 'class' create new class types.
+
+
+
+    private:
+        it tells the compiler that the members that follow are 'private to that class'  (applicable for both class and structure).
+
+
+
+----  rev [5-feb-24]  ----
+
 	Unions: In C++, a union defines a class type that can contain both functions and data as members. For a union all members are public by default until the private specifier is used. 
 	In a union, however, all data members share the same memory location (just as in C). 
 	Unions can contain constructor and destructor functions. 
@@ -20,8 +47,8 @@ private :
 	Finally, unions cannot have virtual member functions. (Virtual functions are described later.)
 	Anonymous union: An anonymous union special type of union that does not have a type name, and no variables can be declared for this sort of union. Instead, it tells the compiler that its members will share the same memory location.
 	However, in all other, respects, the members act and are treated like normal variables. That is, the members are accessed directly, without the dot operator syntax.  For example, examine this fragment:
-union  { int i; char ch [4]; }; 	/* an anonymous union */
-i = 10; ch [0] = 'X'; 		/* access i and ch directly */ 
+union  { int i; char ch [4]; }; 	// an anonymous union
+i = 10; ch [0] = 'X'; 		// access i and ch directly
 Here i and ch are accessed directly because they are not part of any object. They share the same memory space.
 	Anonymous union is that it gives you a simple way to tell the compiler that you want two or more variables to share the same memory location. 
 	Aside from this special attribute, members of an anonymous union behave like other variables.
@@ -32,3 +59,6 @@ Here i and ch are accessed directly because they are not part of any object. The
 Note
 [1]	Although structures have the same capabilities as classes, most programmers restrict their use of structures to adhere to their C-like form and do not use them to include function members.
 [2]	We reserve the use of struct for objects that have no function members.
+
+
+ */
