@@ -67,28 +67,45 @@
 
     -=-=-=-    anonymous union    -=-=-=-
 
-    ----  rev [6-feb-24]  ----
-    
     Anonymous union: 
         An anonymous union special type of union that "does not have a TYPE name", and 
-        No variables can be declared for this sort of union. 
+        No 'variables' can be declared for this sort of union. 
         Instead, it tells the compiler that its 'members' will share the "same memory location".
         
-        However, in all other, respects, the members act and are treated like normal variables. That is, the members are accessed directly, without the dot operator syntax.  For example, examine this fragment:
-union  { int i; char ch [4]; }; 	// an anonymous union
-i = 10; ch [0] = 'X'; 		// access i and ch directly
-Here i and ch are accessed directly because they are not part of any object. They share the same memory space.
-	Anonymous union is that it gives you a simple way to tell the compiler that you want two or more variables to share the same memory location. 
-	Aside from this special attribute, members of an anonymous union behave like other variables.
-	Anonymous unions have all of the restrictions that apply to normal unions, plus these additions.
-	A global anonymous union must be declared static. 
-	An anonymous union cannot contain private members. 
-	The names of the members of an anonymous union must not conflict with other identifiers within the same scope.
-Note
-[1]	Although structures have the same capabilities as classes, most programmers restrict their use of structures to adhere to their C-like form and do not use them to include function members.
-[2]	We reserve the use of struct for objects that have no function members.
+        However, in all other, respects, the 'members' act and are treated like "normal variables". 
+        i.e. the members are "accessed DIRECTLY," without the dot '.' operator syntax.  
+        
+        Anonymous union tells the compiler that you want 'two or more variables' to share the "same memory" location.
+
+        For example, examine this fragment:
+
+                union {    // an anonymous union
+                    int i; 
+                    char ch[4]; 
+                }; 	
+
+                // access i and ch directly
+                i = 10; 
+                ch[0] = 'X'; 		
+
+            Here 'i' and 'ch' are accessed directly because they are 'not part of any object'. 
+                They share the same memory space.
 
 
-----  rev [5-feb-24]  ----
+    restrictions:
+        Anonymous unions have all of the restrictions that apply to normal unions, plus these additions.
+        A 'global anonymous union' must be declared "static". 
+        An anonymous union CANNOT contain 'PRIVATE' members. 
+        The NAMES of the members of an anonymous union 'must not conflict' with other identifiers within the same scope.
 
- */
+
+    Note
+        [1]	Although structures have the same capabilities as classes, 
+                most programmers restrict their use of 'structures' to "adhere to their C-like form" and do not use them to include function members.
+
+        [2]	We reserve the use of struct for objects that have 'no function members'.
+
+*/
+
+
+
