@@ -109,10 +109,10 @@
 
 
 
-Example 1: Here is a short program that uses struct to create a class:
+/* Example 1: Here is a short program that uses struct to create a class */
 # include <iostream >
 # include <cstring >
-using namespace std ;
+
 // use struct to define a class type
 struct st_type
 {
@@ -153,10 +153,10 @@ a complete type.
 
 
 
-Example 2: Here is the same program, rewritten using a class:
+/* Example 2: Here is the above program, rewritten using a class */
 
 # include <cstring >
-using namespace std ;
+
 class cl_type
 {
 double balance ;
@@ -189,10 +189,10 @@ return 0;
 
 
 
-Example 3: Here is an example that used a union to display the binary bit pattern, byte by byte,
-contained within a double value.
+/* Example 3: Following program uses a UNION to display the 'binary bit pattern', 
+                byte by byte, contained within a double value. */
 # include <iostream >
-using namespace std ;
+
 union bits
 {
 bits ( double n);
@@ -229,14 +229,15 @@ return 0;
 
 
 
-Example 4: Both structures and unions can have constructors and destructors. The following example
-shows the strtype class reworked as a structure. It contains both a constructor and a
-destructor function.
+/* Example 4: Both STRUCTURES and UNIONS can have 'constructors' and 'destructors'. 
+                The following example shows the 'strtype class' reworked as a STRUCTURE. 
+                It contains both a constructor and a destructor function. */
+
 # include <iostream >
 # include <cstring >
 # include <cstdlib >
 
-using namespace std ;
+
 struct strtype
 {
 strtype ( char * ptr );
@@ -276,11 +277,13 @@ return 0;
 }
 
 
-Example 5: This program uses an anonymous union to display the individual bytes that comprise a
-double. (This program assumes that doubles are 8 bytes long.)
+
+
+/* Example 5: Following program uses an 'anonymous union' to display the individual bytes that comprise a double. 
+                (This program assumes that doubles are 8 bytes long.) */
 // Using an anonymous union .
 # include <iostream >
-using namespace std ;
+
 
 int main ()
 {
@@ -305,11 +308,99 @@ other variable known to its scope.
 
 
 
-Example 6: Rewrite the stack class presented in Section 2.1 so it uses a structure rather than a class.
+/* Example 6: Rewrite the 'stack class' presented in "ch10_01_2" so it uses a STRUCTURE rather than a CLASS.
+
+
+Recall the "stack class" we created in previous section required an initialization function to set the stack index variable.
+                Constructor function was designed to perform this sort of operation. 
+
+                Following is an improved version of the 'stack class' that can be used to store characters
+                    that uses a constructor to 'automatically initialize' a stack object when it is created 
+*/
+
+#include <iostream>
+
+
+#define SIZE 10
+
+
+// Declare a stack class for characters .
+class stack {
+        char stck[ SIZE];   // holds the stack
+        int tos;            // index of top of stack
+    
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
+};
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack. No 'void init();' required
+    // implementing constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+}
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+// -=-=-  main function  -=-=-
+int main(){
+    stack s1, s2; // create two stacks that are automatically initialized.
+    int i;
+
+    // No need to initialize the stacks
+    // s1.init();  // no need 
+    // s2.init();  // no need
+
+    s1.push('a');
+    s2.push('x');
+    s1.push('b');
+    s2.push('y');
+    s1.push('c');
+    s2.push('z');
+
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
+
+    return 0;
+}
+
+
+/* 
+    Notice, 'the initialization task is performed automatically' by the constructor function 
+        rather than by a separate function that must be explicitly called by the program.
+
+    Constructor function makes sure that the inilialization is performed.
+    The programmer, don’t need to worry about initialization-it is performed automatically when the object is brought into existence.
+ */
+
 
 1. // Stack class using a structure .
 # include <iostream >
-using namespace std ;
+
 # define SIZE 10
 // Declare a stack class for characters using a structure .
 struct stack
@@ -370,10 +461,10 @@ return 0;
 
 
 
-Example 7: Use a union class to swap the low- and high-order bytes of an integer (assuming 16-bit
-integers; if your computer uses 32-bit integers, swap the bytes of a short int).
+/* Example 7: Use a union class to swap the 'low' and 'high-order' bytes of an 'integer' (assuming 16-bit integers); 
+                if your computer uses 32-bit integers, swap the bytes of a 'short int'. */
 # include <iostream >
-using namespace std ;
+
 union swapbytes
 {
 unsigned char c [2];
@@ -404,8 +495,13 @@ return 0;
 
 
 
-Example 8: Explain what an anonymous union is and how it differs from a normal 'union'.
-An anonymous union is the syntactic mechanism that allows two variables to share the
-same memory space. The members of an anonymous union are accessed directly, without
-reference to an object. They are at the same scope level as the union itself.
+/* Example 8: Explain what an anonymous union is and how it differs from a normal 'union'. 
+
+                An anonymous union is the 'syntactic mechanism' that allows 
+                    two variables to share the same memory space. 
+
+                The members of an anonymous union are accessed directly, without reference to an object. 
+                    members are at the same scope level as the union itself.
+*/
+
 
