@@ -191,39 +191,43 @@ int main(){
 
 
 
-/* Example 2: Here is the above program, rewritten using a class */
+/* Example 2: Here is the above program, rewritten using a class 
+                The only change is: re-arranging the 'public' and 'private' members
+*/
+#include <iostream>
+#include <cstring>
 
-# include <cstring >
-
-class cl_type
-{
-double balance ;
-char name [40];
-public :
-cl_type ( double b, char *n);
-void show ();
+// making a CLASS using STRUCTURE: use struct to define a class type
+struct cl_type {
+        double balance;
+        char name[40];
+    public:
+        cl_type(double b, char *n); // constructor
+        void show();
 };
-cl_type :: cl_type ( double b, char *n)
-{
-balance = b;
-strcpy (name , n);
+
+cl_type::cl_type(double b, char *n){
+    balance = b;
+    strcpy(name, n);
 }
-void cl_type :: show ()
-{
-cout << " Name : " << name ;
-cout << ": $" << balance ;
-if( balance <0.0)
-cout << "**";
-cout << "\n";
+
+void cl_type::show(){
+    std::cout << " Name : " << name;
+    std::cout << ": $" << balance;
+    if(balance < 0.0) std::cout << "**";
+    std::cout << "\n";
 }
-int main ()
-{
-cl_type acc1 (100.12 , " Johnson ");
-cl_type acc2 ( -12.34 , " Hedricks ");
-acc1 . show ();
-acc2 . show ();
-return 0;
+
+
+int main(){
+    cl_type acc1(100.12 , " Johnson ");
+    cl_type acc2( -12.34 , " Hedricks ");
+    acc1.show();
+    acc2.show();
+
+    return 0;
 }
+
 
 
 
