@@ -109,46 +109,84 @@
 
 
 
-/* Example 1: Here is a short program that uses struct to create a class */
-# include <iostream >
-# include <cstring >
+/* Example 1: Here is a short program that uses 'struct' to create a class */
+#include <iostream>
+#include <cstring>
 
-// use struct to define a class type
-struct st_type
-{
-st_type ( double b, char *n);
-void show ();
-private :
-double balance ;
-char name [40];
+// making a CLASS using STRUCTURE: use struct to define a class type
+struct st_type {
+        // following members are "public" by default
+        st_type(double b, char *n); // constructor
+        void show();
+    private:    // following members are "private"
+        double balance;
+        char name[40];
 };
-st_type :: st_type ( double b, char *n)
-{
-balance = b;
-strcpy (name , n);
+
+st_type::st_type(double b, char *n){
+    balance = b;
+    strcpy(name, n);
 }
-void st_type :: show ()
-{
-cout << " Name : " << name ;
-cout << ": $" << balance ;
-if( balance <0.0)
-cout << "**";
-cout << "\n";
+
+void st_type::show(){
+    std::cout << " Name : " << name;
+    std::cout << ": $" << balance;
+    if(balance < 0.0) std::cout << "**";
+    std::cout << "\n";
 }
-int main ()
-{
-st_type acc1 (100.12 , " Johnson ");
-st_type acc2 ( -12.34 , " Hedricks ");
-acc1 . show ();
-acc2 . show ();
-return 0;
+
+
+int main(){
+    st_type acc1(100.12 , " Johnson ");
+    st_type acc2( -12.34 , " Hedricks ");
+    acc1.show();
+    acc2.show();
+
+    return 0;
 }
-Notice that, as stated, the members of a structure are public by default. The private
-keyword must be used to declare private members.
-Also, notice one difference between C-like structures and C++-like structures. In C++,
-the structure tag-name also becomes a complete type name that can be used to declare
-objects. In C, the tag-name requires that the keyword struct precede it before it becomes
-a complete type.
+
+
+Notice,
+    the members of a structure are public by default. 
+    The private keyword must be used to declare private members.
+
+
+
+/* 
+------------    Differences Between the C and C++ Structures    ------------
+C Structures:
+    Only 'data members' are allowed, it cannot have 'member functions'.
+    Cannot have 'static' members.
+    Cannot have a 'constructor' inside a structure.
+    'Direct Initialization' of data members is not possible.
+    Writing the ‘struct’ keyword is necessary to declare structure-type variables (objects).
+    Do not have access modifiers (public, private).
+    Only 'pointers to structs' are allowed.
+    'Sizeof' operator will generate 0  for an empty structure.
+    Data Hiding is not possible.
+
+
+C++ Structures:
+	Can hold both: member functions and data members.
+	Can have 'static' members.
+	'Constructor' creation is allowed.
+	'Direct Initialization' of data members is possible.
+	Writing the ‘struct’ keyword is not necessary to declare structure-type variables (objects).
+	Supports access modifiers (public, private).
+	Can have both 'pointers' and 'references' to the struct.
+	'Sizeof' operator will generate 1 for an empty structure.
+	Data Hiding is possible.
+
+
+Difference between 'C-like structures' and "C++-like structures" object declaration:
+object declaration:
+    C:      struc tag_name obj_name;
+            In C, the tag-name 'st_type' requires the keyword "struct" precede it before it becomes a complete type.
+    
+    C++:    tag_name obj_name;
+            The structure tag-name 'st_type' also becomes a complete type name that can be used to declare objects. 
+
+*/
 
 
 
