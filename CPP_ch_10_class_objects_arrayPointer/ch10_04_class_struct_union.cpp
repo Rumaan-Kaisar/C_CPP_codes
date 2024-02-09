@@ -145,46 +145,46 @@ int main(){
     return 0;
 }
 
-
-Notice,
-    the members of a structure are public by default. 
-    The private keyword must be used to declare private members.
-
+// Notice,
+// the members of a structure are public by default. 
+// The private keyword must be used to declare private members.
 
 
-/* 
-------------    Differences Between the C and C++ Structures    ------------
-C Structures:
-    Only 'data members' are allowed, it cannot have 'member functions'.
-    Cannot have 'static' members.
-    Cannot have a 'constructor' inside a structure.
-    'Direct Initialization' of data members is not possible.
-    Writing the ‘struct’ keyword is necessary to declare structure-type variables (objects).
-    Do not have access modifiers (public, private).
-    Only 'pointers to structs' are allowed.
-    'Sizeof' operator will generate 0  for an empty structure.
-    Data Hiding is not possible.
 
 
-C++ Structures:
-	Can hold both: member functions and data members.
-	Can have 'static' members.
-	'Constructor' creation is allowed.
-	'Direct Initialization' of data members is possible.
-	Writing the ‘struct’ keyword is not necessary to declare structure-type variables (objects).
-	Supports access modifiers (public, private).
-	Can have both 'pointers' and 'references' to the struct.
-	'Sizeof' operator will generate 1 for an empty structure.
-	Data Hiding is possible.
+
+/*  ------------    Differences Between the C and C++ Structures    ------------
+    C Structures:
+        Only 'data members' are allowed, it cannot have 'member functions'.
+        Cannot have 'static' members.
+        Cannot have a 'constructor' inside a structure.
+        'Direct Initialization' of data members is not possible.
+        Writing the ‘struct’ keyword is necessary to declare structure-type variables (objects).
+        Do not have access modifiers (public, private).
+        Only 'pointers to structs' are allowed.
+        'Sizeof' operator will generate 0  for an empty structure.
+        Data Hiding is not possible.
 
 
-Difference between 'C-like structures' and "C++-like structures" object declaration:
-object declaration:
-    C:      struc tag_name obj_name;
-            In C, the tag-name 'st_type' requires the keyword "struct" precede it before it becomes a complete type.
-    
-    C++:    tag_name obj_name;
-            The structure tag-name 'st_type' also becomes a complete type name that can be used to declare objects. 
+    C++ Structures:
+        Can hold both: member functions and data members.
+        Can have 'static' members.
+        'Constructor' creation is allowed.
+        'Direct Initialization' of data members is possible.
+        Writing the ‘struct’ keyword is not necessary to declare structure-type variables (objects).
+        Supports access modifiers (public, private).
+        Can have both 'pointers' and 'references' to the struct.
+        'Sizeof' operator will generate 1 for an empty structure.
+        Data Hiding is possible.
+
+
+    Difference between 'C-like structures' and "C++-like structures" object declaration:
+    object declaration:
+        C:      struc tag_name obj_name;
+                In C, the tag-name 'st_type' requires the keyword "struct" precede it before it becomes a complete type.
+        
+        C++:    tag_name obj_name;
+                The structure tag-name 'st_type' also becomes a complete type name that can be used to declare objects. 
 
 */
 
