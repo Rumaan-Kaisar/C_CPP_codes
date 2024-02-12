@@ -233,41 +233,127 @@ int main(){
 
 /* Example 3: Following program uses a UNION to display the 'binary bit pattern', 
                 byte by byte, contained within a double value. */
-# include <iostream >
+#include <iostream>
 
-union bits
-{
-bits ( double n);
-void show_bits ();
-double d;
-unsigned char c[ sizeof ( double )];
+union bits{
+    bits(double n);
+    void show_bits();
+    double d;
+    unsigned char c[sizeof(double)];
 };
-52INTRODUCING CLASSES
-2.5. CLASSES, STRUCTURES, AND UNIONS ARE RELATED
-bits :: bits ( double n)
-{
-d = n;
+
+bits::bits(double n){
+    d = n;
 }
-void bits :: show_bits ()
-{
-int i, j;
-for (j = sizeof ( double ) -1; j >=0; j --)
-{
-cout << " Bit pattern in byte " << j << ": ";
-for (i = 128; i; i >>= 1)
-if(i & c[j])
-cout << "1";
-else
-cout << "0";
-cout << "\n";
+
+
+// print the bit-pattern
+void bits::show_bits(){
+    int i, j;
+    for(j = sizeof(double)-1; j >=0; j --){
+        std::cout << " Bit pattern in byte " << j << ": ";
+        for (i = 128; i; i >>= 1){   // bitwise right shift
+            if(i & c[j]) std::cout << "1";  // checking the bits using 'bitwise AND'
+            else std::cout << "0";
+        }
+        std::cout << "\n";
+    }
 }
+
+
+int main(){
+    bits ob(1991.829);
+    ob.show_bits();
+    
+    return 0;
 }
-int main ()
-{
-bits ob (1991.829) ;
-ob. show_bits ();
-return 0;
-}
+
+// The output of this program is:
+Bit pattern in byte 7: 01000000
+Bit pattern in byte 6: 10011111
+Bit pattern in byte 5: 00011111
+Bit pattern in byte 4: 01010000
+Bit pattern in byte 3: 11100101
+Bit pattern in byte 2: 01100000
+Bit pattern in byte 1: 01000001
+Bit pattern in byte 0: 10001001
+
+/*  ------------    ChatGPT's explantion    ------------
+    This program demonstrates how to find the bit-pattern of a double value by using a union to access its memory representation.
+
+    Let's break down the program step by step:
+
+    1. Union Declaration:
+            union bits {
+                bits(double n);
+                void show_bits();
+                double d;
+                unsigned char c[sizeof(double)];
+            };
+
+        This declares a union named bits which contains:
+            A constructor 'bits(double n)' that initializes the 'double member d' with the given value 'n'.
+            A member function show_bits() which prints the bit pattern of the stored double.
+            A double member d to hold the value.
+            An array of unsigned char named 'c' with size equal to the 'size of double'. 
+                note: This array is used to access the individual bytes of the double value.
+
+
+
+    2. Constructor Implementation:    
+            bits::bits(double n){
+                d = n;
+            }
+
+        This constructor initializes the 'double member d' with the value passed to the constructor.   
+
+
+
+
+    3. show_bits() Function:
+
+            void bits::show_bits(){
+                int i, j;
+                for(j = sizeof(double)-1; j >=0; j --){
+                    std::cout << " Bit pattern in byte " << j << ": ";
+                    for (i = 128; i; i >>= 1){   // bitwise right shift
+                        if(i & c[j]) std::cout << "1";
+                        else std::cout << "0";
+                    }
+                    std::cout << "\n";
+                }
+            }
+
+        This function prints the bit pattern of the stored double.
+
+        It iterates through each byte of the double 
+            (from most significant 'byte' to least significant 'byte') using the loop variable j.
+
+        Inside the loop, it iterates through each 'bit' of the "byte" 
+            (from most significant 'bit' to least significant 'bit') using the loop variable i.
+
+        It checks whether the 'bit is set or not' by performing a bitwise AND operation (i & c[j]) with the byte c[j]. 
+            If the result is non-zero, the bit is set, and it prints 1; otherwise, it prints 0.
+
+
+
+    4. Main function
+
+            int main(){
+                bits ob(1991.829);
+                ob.show_bits();
+                return 0;
+            }
+
+        In the main() function, an object 'ob' of type bits is created and initialized with the value '1991.829' using the constructor.
+        The show_bits() function is called on this object to print the bit pattern of the stored double value.
+
+
+    So, overall, this program uses a 'union' to access the memory representation of a double value and prints its "bit pattern byte by byte". 
+    It demonstrates how the 'internal representation' of a double value can be accessed and manipulated at the 'byte level'.
+
+*/
+
 
 
 
