@@ -415,33 +415,35 @@ int main(){
 
 
 /* Example 5: Following program uses an 'anonymous union' to display the individual bytes that comprise a double. 
-                (This program assumes that doubles are 8 bytes long.) */
+                (This program assumes that doubles are 8 bytes long.) 
+                
+                Notice, both 'value' and 'bytes' are accessed as if they were 'normal variables' and not part of a UNION. 
+                Even though they are declared as being part of an "anonymous union",
+                their names are at the "same scope level" as any other local variable declared at the same point. 
+                    This is why a 'member' of an anonymous union 'cannot have the same name' as any other variable known to its scope.
+*/
 // Using an anonymous union .
-# include <iostream >
+#include <iostream>
 
+int main(){
+    union {
+        unsigned char bytes[8];
+        double value;
+    };
 
-int main ()
-{
-union
-{
-unsigned char bytes [8];
-double value ;
-};
-int i;
-value = 859345.324;
-// display the bytes within a double
-for (i =0; i <8; i ++)
-cout << ( int ) bytes [i] << " ";
-return 0;
+    int i;
+    
+    value = 859345.324;
+    // display the bytes within a double, using char array 'bytes[8]' of the 'anonymous union'
+    for (i=0; i<8; i++) std::cout << (int)bytes[i] << " ";
+
+    return 0;
 }
-As you can see, both value and bytes are accessed as if they were normal variables and
-not part of a union. Even though they are declared as being part of an anonymous union,
-their names are at the same scope level as any other local variable declared at the same
-point. This is why a member of an anonymous union cannot have the same name as any
-other variable known to its scope.
 
 
 
+
+// ----  rev[13-feb-24]  ----
 
 /* Example 6: Rewrite the 'stack class' presented in "ch10_01_2" so it uses a STRUCTURE rather than a CLASS.
 
