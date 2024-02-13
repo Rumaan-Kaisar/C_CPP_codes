@@ -358,50 +358,57 @@ Bit pattern in byte 0: 10001001
 
 
 /* Example 4: Both STRUCTURES and UNIONS can have 'constructors' and 'destructors'. 
-                The following example shows the 'strtype class' reworked as a STRUCTURE. 
-                It contains both a constructor and a destructor function. */
+                The following example shows the 'strtype class' reworked as a STRUCTURE (ch10_01_3_constructor_param.cpp). 
+                It contains both a constructor (with params) and a destructor function. 
+                
+                It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
+                The program uses malloc and free() to allocate and free memory.
+*/
 
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 
-
-struct strtype
-{
-strtype ( char * ptr );
-~ strtype ();
-void show ();
-private :
-char *p;
-int len ;
+// structure definition, notice 'public' and 'private' locations swap
+struct strtype{
+        strtype(char *ptr);  // constructor
+        ~strtype(); // destructor
+        void show();
+    private:
+        char *p;
+        int len;
 };
-strype :: strype ( char * ptr )
-{
-len = strlen ( ptr );
-p = ( char *) malloc (len +1);
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
+
+// constructor: Initialize a string object with parameter.
+strtype::strtype(char * ptr){
+    len = strlen(ptr);  // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){ // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+    strcpy(p, ptr); // copy string to p
 }
-strcpy (p, ptr );
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
 }
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-free (p);
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
 }
-void strtype :: show ()
-{
-cout << p << " - length : " << len ;
-cout << "\n";
-}
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++");
-s1. show ();
-s2. show ();
-return 0;
+
+
+int main(){
+    strtype s1("This is a test ."), s2("I like C++. ");
+    s1.show();
+    s2.show();
+    return 0;
 }
 
 
