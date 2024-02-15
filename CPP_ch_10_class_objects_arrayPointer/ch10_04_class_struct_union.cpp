@@ -443,33 +443,23 @@ int main(){
 
 
 
-// ----  rev[13-feb-24]  ----
-
 /* Example 6: Rewrite the 'stack class' presented in "ch10_01_2" so it uses a STRUCTURE rather than a CLASS.
-
-
-Recall the "stack class" we created in previous section required an initialization function to set the stack index variable.
-                Constructor function was designed to perform this sort of operation. 
-
-                Following is an improved version of the 'stack class' that can be used to store characters
-                    that uses a constructor to 'automatically initialize' a stack object when it is created 
+                Use Constructor function for initialization
+                The only change is: re-arranging the 'public' and 'private' members
 */
 
 #include <iostream>
 
-
 #define SIZE 10
 
-
 // Declare a stack class for characters .
-class stack {
-        char stck[ SIZE];   // holds the stack
-        int tos;            // index of top of stack
-    
-    public:
+struct stack {
         stack();            // constructor. Notice no 'void init();' required
         void push(char ch); // push character on stack
-        char pop();         // pop character from stack
+        char pop();         // pop character from stack    
+    private:
+        char stck[SIZE];   // holds the stack
+        int tos;    // index of top of stack
 };
 
 
@@ -508,10 +498,6 @@ int main(){
     stack s1, s2; // create two stacks that are automatically initialized.
     int i;
 
-    // No need to initialize the stacks
-    // s1.init();  // no need 
-    // s2.init();  // no need
-
     s1.push('a');
     s2.push('x');
     s1.push('b');
@@ -523,76 +509,6 @@ int main(){
     for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
 
     return 0;
-}
-
-
-/* 
-    Notice, 'the initialization task is performed automatically' by the constructor function 
-        rather than by a separate function that must be explicitly called by the program.
-
-    Constructor function makes sure that the inilialization is performed.
-    The programmer, don’t need to worry about initialization-it is performed automatically when the object is brought into existence.
- */
-
-
-1. // Stack class using a structure .
-# include <iostream >
-
-# define SIZE 10
-// Declare a stack class for characters using a structure .
-struct stack
-{
-stack (); // constructor
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
-private :
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-};
-// Initialize the stack
-stack :: stack ()
-{
-cout << " Constructing a stack \n";
-tos = 0;
-}
-// Push a character .
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return ;
-}
-stck [ tos ] = ch;
-tos ++;
-}
-// Pop a character .
-char stack :: pop ()
-{
-    if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-}
-int main ()
-{
-// Create two stacks that are automatically initialized .
-stack s1 , s2;
-int i;
-s1. push (’a’);
-s2. push (’x’);
-s1. push (’b’);
-s2. push (’y’);
-s1. push (’c’);
-s2. push (’z’);
-for (i =0; i <3; i ++)
-cout << " Pop s1: " << s1.pop () << "\n";
-for (i =0; i <3; i ++)
-cout << " Pop s2: " << s2.pop () << "\n";
-return 0;
 }
 
 
