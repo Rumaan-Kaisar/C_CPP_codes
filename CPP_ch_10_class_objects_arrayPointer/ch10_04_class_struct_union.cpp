@@ -231,6 +231,43 @@ int main(){
 
 
 
+
+/*  ------------    UNION vs OOP    ------------
+    C++ union is a LIMITED form of the 'class type'.
+        It can contain: 
+            access specifiers (public, protected, private), 
+            member data, and 
+            member functions, including constructors and destructors. 
+            
+        The "only purpose" of an union is to provide a data type, not an object.
+
+
+    Unions cannot participate in a inheritance/polymorphic relationship
+        It "CANNOT contain": 
+            virtual functions
+            static data members. 
+        
+        It "CANNOT be used" as: 
+            base class, 
+            nor can it have base classes. 
+            
+        Default access of members in a union is 'public'.
+
+
+    It is even possible to template unions. In that sense, unions provide almost identical degree of encapsulation.
+
+
+    Can it be used as some kind of OOP construct?
+        The answer is No, a union is not an OO construct.
+        The single most important feature of OO is polymorphism, but unions cannot participate in a 
+            inheritance relationship (cannot be a base of a different type, cannot have bases itself) 
+            or have virtual functions. 
+
+*/
+
+
+
+
 /* Example 3: Following program uses a UNION to display the 'binary bit pattern', 
                 byte by byte, contained within a double value. */
 #include <iostream>
@@ -559,23 +596,6 @@ int main(){
                 The members of an anonymous union are accessed directly, without reference to an object. 
                     members are at the same scope level as the union itself.
 */
-
-
-// Union vs OOP
-
-
-C++ union is a limited form of the class type. It can contain access specifiers (public, protected, private), member data, and member functions, including constructors and destructors. It cannot contain virtual functions or static data members. It cannot be used as a base class, nor can it have base classes. Default access of members in a union is public.
-
-It is even possible to template unions (see e.g. Templates - The Complete Guide). In that sense, unions provide almost identical degree of encapsulation.
-
-
-Unions can be used as a type just like a class and structure(with some restrictions).It can have member functions. 
-
-Can it be used as some kind of OOP construct?
-
-No, a union is not an OO construct.
-
-The single most important feature of OO is polymorphism, but unions cannot participate in a inheritance relationship (cannot be a base of a different type, cannot have bases itself) or have virtual functions. The only purpose of an union is to provide a data type, not an object.
 
 
 
