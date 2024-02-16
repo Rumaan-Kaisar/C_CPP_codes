@@ -44,4 +44,33 @@
     If any in-line restriction is 'violated', the compiler is free to generate a 'normal function' 
         (i.e. the function is compiled as a normal function and the inline request is ignored.). 
 
- */
+*/
+
+
+
+
+// ----  rev[16-2-24]  ----
+/*  
+
+C++ provides inline functions to reduce the function call overhead. An inline function is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of the inline function call. This substitution is performed by the C++ compiler at compile time. An inline function may increase efficiency if it is small.
+
+Syntax:
+
+    inline return-type function-name(parameters) {
+        // function code
+    }  
+
+
+
+    Normal function:
+        in this case fn() stays outside main()
+
+        start: main() -> flow ctrl transfer -> fn() -> stop
+                or -> stop
+
+
+    In-line function:
+        in this case fn() goes inside main(), there is no 'flow ctrl transfer' outside main()
+
+        start: main() ->  fn() -> stop
+*/
