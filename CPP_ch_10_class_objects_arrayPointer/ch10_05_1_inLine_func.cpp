@@ -49,16 +49,25 @@
 
 
 
-// ----  rev[16-2-24]  ----
-/*  
 
-C++ provides inline functions to reduce the function call overhead. An inline function is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of the inline function call. This substitution is performed by the C++ compiler at compile time. An inline function may increase efficiency if it is small.
+/*  ------------    Inline vs normal functions    ------------
+    C++ provides inline functions to reduce the 'function call overhead'. 
+        An inline function is a function that is expanded in line when it is called. 
 
-Syntax:
+    When the inline function is called whole code of the inline function gets 
+        "inserted or substituted" at the point of the inline function call. 
 
-    inline return-type function-name(parameters) {
-        // function code
-    }  
+    This substitution is performed by the C++ COMPILER at "compile time". 
+
+    An inline function 'may increase efficiency' if it is SMALL.
+
+
+
+    Syntax:
+
+        inline return-type function-name(parameters) {
+            // function code
+        }  
 
 
 
@@ -76,49 +85,85 @@ Syntax:
 */
 
 
-// ChatGPT
-An inline function in C++ is a function that is expanded in place at the point of call, rather than being called like a regular function. When a function is declared as inline, the compiler replaces each call to that function with the corresponding function body. This process is called inline expansion.
 
-To declare a function as inline in C++, you use the inline keyword before the function declaration, like so:
+/*  ------------    Advantage and Dsiadvantage of in-line functions (ChatGPT)    ------------
+    An inline function in C++ is 'expanded in place' at the point of call, rather than being called like a regular function. 
 
-inline int add(int a, int b) {
-    return a + b;
-}
-
-Benefits of using inline functions:
-
-Performance Improvement: By eliminating the overhead of function calls (such as pushing arguments onto the stack, jumping to the function, and returning), inline functions can lead to performance improvements, especially for small, frequently-called functions.
-
-Reduced Function Call Overhead: Since the function body is inserted directly at the call site, there's no need to save and restore the program state, leading to reduced overhead associated with function calls.
-
-Optimization Opportunities: The compiler has more visibility into the function body, which may enable additional optimizations, such as constant propagation, dead code elimination, and loop unrolling.
-
-Avoidance of Linker Errors: In C++, functions defined in header files that are included in multiple source files can lead to linker errors due to multiple definitions. Declaring such functions as inline can help avoid such errors by allowing multiple definitions of the same function across translation units, as long as they are identical.
-
-However, it's important to note that the inline keyword is just a suggestion to the compiler, and the compiler may choose to ignore it. Whether a function is actually inlined or not depends on various factors, including the size of the function, optimization settings, and the compiler's heuristics.
-
-Additionally, inline functions may increase code size, especially if the function body is large or if the function is called from multiple places. Therefore, it's typically best to use inline functions for small, frequently-called functions, and let the compiler decide whether to inline larger functions.
+    inline expansion:
+        When a function is declared as inline, the compiler "replaces" each call to that function "with the corresponding function body". 
+        This process is done during compile time
 
 
+    ----  Advantage  ----
+    Performance Improvement: 
+        By eliminating the overhead of function calls, such as: 
+            pushing arguments onto the stack, 
+            jumping to the function, and 
+            returning), 
+
+        inline functions can improve performance if:
+            the funcion is small and
+            frequently-called
 
 
-While inline functions can offer performance benefits in certain situations, there are also potential disadvantages to consider:
+    Reduced Function Call Overhead: 
+        Since the function body is inserted directly at the call site, 
+            there's no need to save and restore the program state, 
+            leading to reduced overhead associated with function calls.
 
-Code Bloat: Inlining a function involves copying its code to every call site. If the function is large or called from many places, this can lead to increased code size, which may negatively impact memory usage and cache performance.
 
-Compiler Heuristics: The decision of whether to inline a function is ultimately up to the compiler, even if you use the inline keyword. Some compilers may choose not to inline a function even if it's marked as inline, depending on optimization settings, function size, and other factors.
+    Optimization Opportunities: 
+        The compiler has more visibility into the function body, which may enable additional optimizations, such as 
+            constant propagation, 
+            dead code elimination, and 
+            loop unrolling.
 
-Debugging Complexity: Inlined functions can complicate debugging, as the function call stack may not accurately reflect the program's execution flow. This can make it more difficult to trace the program's behavior during debugging sessions.
 
-Increased Compilation Time: Inlining functions can lead to longer compilation times, especially for large projects with many inline function calls. This is because the compiler needs to process and generate code for each inline function at every call site.
+    Avoidance of "Linker Errors": 
+        In C++, functions defined in header files that are included in multiple source files can lead to 'linker error's due to 'multiple definitions'.
+        Declaring such functions as inline can help avoid such errors by allowing multiple definitions of the same function across translation units, as long as they are identical.
 
-Binary Size Increase: Inlined functions can increase the size of the binary executable, which may be undesirable in resource-constrained environments or for applications where minimizing file size is a priority.
 
-Potential for Duplicated Code: Inlining functions can lead to code duplication if the same function is inlined in multiple places. This can increase maintenance overhead and make it harder to ensure consistency across the codebase.
 
-Limited Optimization Opportunities: Inlining functions may limit certain optimization opportunities, such as function-level optimizations and interprocedural optimizations, which rely on separate function bodies.
 
-Overall, while inline functions can offer performance benefits in specific scenarios, it's essential to use them judiciously and consider their potential impact on code size, compilation times, and debugging complexity.Inlining should primarily be applied to small, frequently-called functions where the benefits outweigh the potential drawbacks.
+    ----  Disadvantages  ----
+    Note that the 'inline' keyword is just a suggestion to the compiler, and the compiler 'may choose to ignore' it. 
+        Whether a function is actually inlined or not depends on various factors, including: 
+            the size of the function, 
+            optimization settings, and the 
+            compiler's heuristics.
+
+    It's typically best to use inline functions for small, frequently-called functions
+
+
+    Code Bloat: 
+        Inlining a function involves copying its code to every call site. 
+        If the function is large or called from many places, this can lead to increased code size, 
+        affectiing 'memory usage' and 'cache' performance.
+
+    Compiler Heuristics: 
+        the compiler 'may choose to ignore' inline keyword depending on optimization settings, function size, and other factors.
+
+    Debugging Complexity: 
+        Inlined functions can complicate debugging, as the function call stack may not accurately reflect the "program's execution flow".
+        
+    Increased Compilation Time: 
+        for large projects with many inline function calls cause more compile time
+        compiler needs to "process and GENERATE code" for each inline function at every call site.
+
+    Binary Size Increase: 
+        Inlined functions can increase the size of the binary executable, 
+        which may be undesirable where minimizing file size is a priority.
+
+    Potential for Duplicated Code: 
+        Inlining functions can lead to code duplication if the same function is inlined in multiple places. 
+        This can increase maintenance overhead and make it harder to ensure consistency across the codebase.
+
+    Limited Optimization Opportunities: 
+        Inlining functions may limit certain optimization opportunities, such as 
+            function-level optimizations and interprocedural optimizations, which rely on separate function bodies.
+
+*/
 
 
 
