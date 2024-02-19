@@ -49,6 +49,19 @@
 
 
 
+/*  ------------    inline vs macro    ------------
+    using inline provides a more structured way to 'expand short functions in line'. 
+        For example, when you are creating a parameterized macro, it is easy to forget the extra parentheses.
+
+
+    an in-line function might be able to be 'optimized more thoroughly' by the compiler than a MACRO expansion. 
+
+    C++ PROGRAMMERS virtually never use 'parameterized macros', instead relying on inline 
+        to avoid the overhead of a function call associated with a short function.
+*/
+
+
+
 
 /*  ------------    Inline vs normal functions    ------------
     C++ provides inline functions to reduce the 'function call overhead'. 
@@ -83,6 +96,9 @@
 
         start: main() ->  fn() -> stop
 */
+
+
+
 
 
 
@@ -166,4 +182,33 @@
 */
 
 
-
+// ----  rev  ----
+To declare an in-line function, simply precede the function’s definition with the inline specifier.
+For example, this short program shows how to declare an in-line function:
+// Example of an in - line function
+# include <iostream >
+using namespace std ;
+55TEACH YOURSELF
+C++
+inline int even ( int x)
+{
+return !(x %2) ;
+}
+int main ()
+{
+if( even (10) )
+cout << "10 is even \n";
+if( even (11) )
+cout << "11 is even \n";
+return 0;
+|
+In this example, the function even(), which returns true if its argument is even, is declared as
+being-in-line. This means that the line
+if( even (10) )
+cout << "10 is even \n";
+is functionally equivalent to:
+if (!(10 @2))
+cout << "10 is even \n";
+This example also points out another important feature of using inline: an in-line function
+must be defined before it is first called. If it isn’t, the compiler has no way to know that it is
+supposed to be expanded in-line. This is why even() was defined before main()
