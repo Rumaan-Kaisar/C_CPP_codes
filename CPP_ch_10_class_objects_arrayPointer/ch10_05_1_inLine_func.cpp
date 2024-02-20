@@ -182,33 +182,35 @@
 */
 
 
-// ----  rev  ----
-To declare an in-line function, simply precede the function’s definition with the inline specifier.
-For example, this short program shows how to declare an in-line function:
-// Example of an in - line function
-# include <iostream >
-using namespace std ;
-55TEACH YOURSELF
-C++
-inline int even ( int x)
-{
-return !(x %2) ;
+
+
+/* Example 1: To declare an in-line function, simply precede the function’s definition with the inline specifier.
+                For example, this short program shows how to declare an in-line function: */
+
+#include <iostream>
+
+inline int even(int x){
+    return !(x %2);
 }
-int main ()
-{
-if( even (10) )
-cout << "10 is even \n";
-if( even (11) )
-cout << "11 is even \n";
-return 0;
-|
-In this example, the function even(), which returns true if its argument is even, is declared as
-being-in-line. This means that the line
-if( even (10) )
-cout << "10 is even \n";
-is functionally equivalent to:
-if (!(10 @2))
-cout << "10 is even \n";
-This example also points out another important feature of using inline: an in-line function
-must be defined before it is first called. If it isn’t, the compiler has no way to know that it is
-supposed to be expanded in-line. This is why even() was defined before main()
+
+int main(){
+    if(even(10)) std::cout << "10 is even \n";
+    if(even(11)) std::cout << "11 is even \n";
+    return 0;
+}
+
+
+/*  The function even(), which returns true if its argument is even, 
+    even() being in-line means that the line:
+
+                                    if(even(10)) cout << "10 is even \n";
+
+    is functionally equivalent to:      
+                                    if (!(10%2)) cout << "10 is even \n";
+
+    'even(10)' replaced with '!(10%2)' at compile time.
+
+
+    An in-line function must be "DEFINED" (just declaration won't work) before it is first called. 
+        otherwise the compiler has no way to know that it is supposed to be "EXPANDED in-line". 
+*/
