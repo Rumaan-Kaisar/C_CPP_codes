@@ -44,6 +44,10 @@
     If any in-line restriction is 'violated', the compiler is free to generate a 'normal function' 
         (i.e. the function is compiled as a normal function and the inline request is ignored.). 
 
+
+    Any type of function can be in-lined, including: 
+        Member-functions of classes.
+        Overloaded function
 */
 
 
@@ -217,11 +221,13 @@ int main(){
 
 
 
-Example 2: Any type of function can be in-lined, including functions that are member of classes.
-For example, here the member function divisible() is in-lined for fast execution. (The
-function returns true if its first argument can be evenly divided by its second.)
 
-// Demonstrate in - lining a member function .
+/* Example 2: Any type of function can be in-lined, including Member-functions of classes.
+                Here the member function divisible() is in-lined for 'fast execution'.
+                    The function returns true if its first argument can be evenly divided by its second. 
+*/
+
+// in-lining a member function
 # include <iostream >
 using namespace std ;
 class samp
@@ -259,8 +265,8 @@ return 0;
 
 
 
-Example 3: It is perfectly permissible to in-line an overloaded function. For example, this program
-overloads min() three ways. Each way is also declared as inline.
+/* Example 3: It is perfectly permissible to in-line an overloaded function.
+                This program overloads min() three ways. Each way is also declared as inline. */
 # include <iostream >
 using namespace std ;
 // Overload min () three ways .
@@ -291,11 +297,14 @@ return 0;
 
 
 
-Example 4: In Chapter 1 you overloaded the abs() function so that it could find the absolute value
-of integers, long integers, and doubles. Modify that program so that those functions are
-expanded in line.
+/* Example 4: In "cpp_ch9_3_func_ovrld.cpp" you overloaded the abs() function 
+                so that it could find the absolute value of integers, long integers, and doubles. 
+                Modify that program so that those functions are "Expanded in-line". 
+*/
 
-Example 5: Why might the following function not be in-lined by your compiler? Loop, & no inline keyword?
+
+
+/* Example 5: Why might the following function not be in-lined by your compiler? Loop, & no inline keyword? */
 void f1 ()
 {
 int i;
