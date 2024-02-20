@@ -214,3 +214,94 @@ int main(){
     An in-line function must be "DEFINED" (just declaration won't work) before it is first called. 
         otherwise the compiler has no way to know that it is supposed to be "EXPANDED in-line". 
 */
+
+
+
+Example 2: Any type of function can be in-lined, including functions that are member of classes.
+For example, here the member function divisible() is in-lined for fast execution. (The
+function returns true if its first argument can be evenly divided by its second.)
+
+// Demonstrate in - lining a member function .
+# include <iostream >
+using namespace std ;
+class samp
+{
+int i, j;
+public :
+samp ( int a, int b);
+int divisible (); // in - lined in its definition
+};
+samp :: samp ( int a, int b)
+{
+i = a;
+j = b;
+}
+/*
+Return 1 if i is evenly divisible by j.
+This member function is expanded in line .
+*/
+inline int samp :: divisible ()
+{
+return !(i%j);
+}
+int main ()
+{
+samp ob1 (10 , 2) , ob2 (10 , 3);
+// this is true
+if( ob1 . divisible ())
+cout << "10 divisible by 2\n";
+// this is false
+if( ob2 . divisible ())
+cout << "10 divisible by 3\n";
+return 0;
+}
+
+
+
+
+Example 3: It is perfectly permissible to in-line an overloaded function. For example, this program
+overloads min() three ways. Each way is also declared as inline.
+# include <iostream >
+using namespace std ;
+// Overload min () three ways .
+// integers
+inline int min ( int a, int b)
+
+{
+return a<b ? a : b;
+}
+// longs
+inline long min ( long a, long b)
+{
+return a<b ? a : b;
+}
+// doubles
+inline double min ( double a, double b)
+{
+return a<b ? a : b;
+}
+int main ()
+{
+cout << min (-10, 10) << "\n";
+cout << min ( -10.0 , 100.002) << "\n";
+cout << min ( -10L, 12L) << "\n";
+return 0;
+}
+
+
+
+
+Example 4: In Chapter 1 you overloaded the abs() function so that it could find the absolute value
+of integers, long integers, and doubles. Modify that program so that those functions are
+expanded in line.
+
+Example 5: Why might the following function not be in-lined by your compiler? Loop, & no inline keyword?
+void f1 ()
+{
+int i;
+for (i =0; i <10; i ++)
+cout << i;
+}
+
+
+
