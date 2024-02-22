@@ -260,3 +260,35 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 3: It is perfectly permissible to in-line an overloaded function.
+                This program overloads min() three ways. Each way is also declared as inline. */
+#include <iostream>
+
+// Overload min() three ways.
+// integers
+inline int min(int a, int b){
+    return a<b ? a : b;
+}
+
+// longs
+inline long min(long a, long b){
+    return a<b ? a : b;
+}
+
+// doubles
+inline double min(double a, double b){
+    return a<b ? a : b;
+}
+
+
+int main(){
+    std::cout << min(-10, 10) << "\n";
+    std::cout << min(-10.001, 10.002) << "\n";
+    std::cout << min(-10L, 12L) << "\n";
+
+    return 0;
+}
+
