@@ -328,3 +328,19 @@ int main(){
 
     return 0;
 }
+
+
+
+
+
+/* Example 5: Why might the following function not be in-lined by your compiler? Loop, & no inline keyword? 
+                The function might not be able to be in-lined because it contains a for loop. 
+                Some compilers will not in-line functions containing loops.
+*/
+void f1(){
+    int i;
+    for(i=0; i<10; i++) cout << i;
+}
+
+
+
