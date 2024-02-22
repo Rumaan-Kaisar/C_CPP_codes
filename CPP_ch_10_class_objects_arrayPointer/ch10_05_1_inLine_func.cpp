@@ -292,3 +292,39 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 4: In "cpp_ch9_3_func_ovrld.cpp" you overloaded the abs() function 
+                so that it could find the absolute value of integers, long integers, and doubles. 
+                Modify that program so that those functions are "Expanded in-line". 
+*/
+#include <iostream>
+
+// Overload abs() three ways:
+// ints
+inline int abs(int n){
+    std::cout << "In integer abs()\n";
+    return n<0 ? -n : n;
+}
+
+// longs
+inline long abs(long n){
+    std::cout << "In long abs()\n";
+    return n<0 ? -n : n;
+}
+
+// doubles
+inline double abs(double n){
+    std::cout << "In double abs()\n";
+    return n<0 ? -n : n;
+}
+
+
+int main(){
+    std::cout << " Absolute value of -10: " << abs(-10) << "\n";
+    std::cout << " Absolute value of -10L: " << abs(-10L) << "\n";
+    std::cout << " Absolute value of -10.01: " << abs(-10.01) << "\n";
+
+    return 0;
+}
