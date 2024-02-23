@@ -35,7 +35,7 @@
 
 
 
-For example, the divisible()
+Example 1: For example, the divisible()
 function from the preceding section can be automatically in-lined as shown here:
 # include <iostream >
 using namespace std ;
@@ -99,7 +99,7 @@ The same restrictions that apply to "normal" in-line functions apply to automati
 
 
 
-1. Perhaps the most common use of in-line functions defined within a class is to define
+Example 2: Perhaps the most common use of in-line functions defined within a class is to define
 constructor and destructor functions. For example, the sampclass can more efficiently be
 defined like this:
 # include <iostream >
@@ -117,7 +117,7 @@ samp() is needed.
 
 
 
-2. Sometimes a short function will be included in a class declaration even though the automatic in-lining feature is of little or no value. Consider this class declaration:
+Example 3: Sometimes a short function will be included in a class declaration even though the automatic in-lining feature is of little or no value. Consider this class declaration:
 class myclass
 {
 int i;
@@ -133,7 +133,7 @@ class simply for the sake of convenience, and because no harm is caused
 
 
 
-1. Convert the stack class from Section 2.1, Example 1, so that it uses automatic in-line
+Example 4: Convert the stack class from Section 2.1, Example 1, so that it uses automatic in-line
 functions where appropriate.
 60INTRODUCING CLASSES
 SKILLS CHECK
@@ -193,7 +193,7 @@ return 0;
 
 
 
-2. Convert the strtype class from Section 2.2, Example 3, so that it uses automatic in-line
+Example 5: Convert the strtype class from Section 2.2, Example 3, so that it uses automatic in-line
 functions.
 2. # include <iostream >
 # include <cstring >
