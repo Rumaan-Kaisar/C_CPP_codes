@@ -133,4 +133,106 @@ class simply for the sake of convenience, and because no harm is caused
 
 
 
+1. Convert the stack class from Section 2.1, Example 1, so that it uses automatic in-line
+functions where appropriate.
+60INTRODUCING CLASSES
+SKILLS CHECK
+1. # include <iostream >
+using namespace std ;
+# define SIZE 10
+// Declare a stack class for characters
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+stack ()
+{
+tos = 0;
+}
+void push ( char ch)
+{
+if( tos == SIZE )
+{
+cout << " Stack is full \n";
+return ;
+}
+stck [ tos ] = ch;
+tos ++;
+}
+char pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty \n";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+}
+};
+int main ()
+{
+// Create two stacks that are automatically initialized .
+430ANSWERS
+2.7 EXERCISES
+stack s1 , s2;
+int i;
+s1. push (’a’);
+s2. push (’x’);
+s1. push (’b’);
+s2. push (’y’);
+s1. push (’c’);
+s2. push (’z’);
+for (i =0; i <3; i ++)
+cout << " Pop s1: " << s1.pop () << "\n";
+for (i =0; i <3; i ++)
+cout << " Pop s2: " << s2.pop () << "\n";
+return 0;
+}
+
+
+
+2. Convert the strtype class from Section 2.2, Example 3, so that it uses automatic in-line
+functions.
+2. # include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char * ptr )
+{
+len = strlen ( ptr );
+p = ( char *) malloc (len +1);
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, ptr );
+} ~
+strtype ()
+{
+cout << " Freeing p\n";
+free (p);
+}
+void show ()
+{
+cout << p << " - lengthj : " << len ;
+cout << ’\n’;
+}
+};
+431TEACH YOURSELF
+C++
+int main ()
+{
+strtype s1(" This is a test ."), s2("I like C++. ");
+s1. show ();
+s2. show ();
+return 0;
+}
 
