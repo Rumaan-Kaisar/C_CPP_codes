@@ -99,3 +99,38 @@ The same restrictions that apply to "normal" in-line functions apply to automati
 
 
 
+1. Perhaps the most common use of in-line functions defined within a class is to define
+constructor and destructor functions. For example, the sampclass can more efficiently be
+defined like this:
+# include <iostream >
+using namespace std ;
+class samp
+{
+int i, j;
+public :
+// inline constructor
+samp ( int a, int b) { i = a; j = b; }
+int divisible () { return !(i%j); }
+};
+The definition of samp() within the class samp is sufficient, and no other definition of
+samp() is needed.
+
+
+
+2. Sometimes a short function will be included in a class declaration even though the automatic in-lining feature is of little or no value. Consider this class declaration:
+class myclass
+{
+int i;
+public :
+myclass ( int n) { i = n; }
+void show () { cout << i; }
+};
+Here the function show() is made into an in-line function automatically. However, as you
+should know, I/O operations are (generally) so slow relative to CPU/memory operations
+that any effect of eliminating the function call overhead is essentially lost. Even so, in
+C++ programs, it is still common to see small functions of this type declared within a
+class simply for the sake of convenience, and because no harm is caused
+
+
+
+
