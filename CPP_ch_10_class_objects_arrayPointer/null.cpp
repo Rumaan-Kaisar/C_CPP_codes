@@ -1,6 +1,10 @@
 
-SKILLS CHECK
-Mastery Skills Check
+// SKILLS CHECK
+
+
+
+// -=-=-=-=-    Mastery Skills Check    -=-=-=-=-
+
 At this point you should be able to perform the following exercises and answer the questions.
 1. What is a constructor? What is a destructor? When are they executed?
 2. Create a class called line that draws a line on the screen. Store the line length in a private
@@ -61,7 +65,8 @@ unsigned int bits ;
 
 
 
-Cumulative Skills Check
+// -=-=-=-=-    Cumulative Skills Check    -=-=-=-=-
+
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapter.
 1. Create a class called prompt. Pass its constructor function a prompting string of your
@@ -80,7 +85,9 @@ number between 1 and 6. Then have roll() display that value.
 
 
 
-Review Skills Check
+
+// -=-=-=-=-    Review Skills Check    -=-=-=-=-
+
 Before proceeding, you should be able to correctly answer the following questions and do the
 exercises.
 1. Given the following class, what are the names of its constructor and destructor functions?
