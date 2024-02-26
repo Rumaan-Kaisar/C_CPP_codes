@@ -80,6 +80,42 @@ number between 1 and 6. Then have roll() display that value.
 
 
 
+Review Skills Check
+Before proceeding, you should be able to correctly answer the following questions and do the
+exercises.
+1. Given the following class, what are the names of its constructor and destructor functions?
+class widgit
+{
+int x, y;
+public :
+// ... fill in constructor and destructor functions
+};
+2. When is a constructor function called? When is a destructor function called?
+3. Given the following base class, show how it can be inherited by a derived class called
+Mars.
+class planet
+{
+int moons ;
+double dis_from_sun ;
+double diameter ;
+double mass ;
+public :
+// ...
+};
+4. There are two ways to cause a function to be expanded in line. What are they?
+5. Give two possible restrictions to in-line functions.
+6. Given the following class, show how an object called ob that passes the value 100 to a
+and X to c would be declared.
+class sample
+{
+int a;
+char c;
+public :
+sample ( int x, char ch) { a = x; c = ch; }
+// ...
+};
+
+
 
 
 
