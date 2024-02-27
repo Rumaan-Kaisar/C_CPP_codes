@@ -151,6 +151,94 @@ class simply for the sake of convenience, and because no harm is caused.
                 It uses non-parameterized cinstructor.
 */
 
+
+/* OLD Example 3: Recall the "stack class" we created in previous section required an initialization function to set the stack index variable.
+                Constructor function was designed to perform this sort of operation. 
+
+                Following is an improved version of the 'stack class' that can be used to store characters
+                    that uses a constructor to 'automatically initialize' a stack object when it is created 
+*/
+
+#include <iostream>
+// using namespace std;
+
+#define SIZE 10
+
+
+// Declare a stack class for characters .
+class stack {
+        char stck[ SIZE];   // holds the stack
+        int tos;            // index of top of stack
+    
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
+};
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack. No 'void init();' required
+    // implementing constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+}
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+// -=-=-  main function  -=-=-
+int main(){
+    stack s1, s2; // create two stacks that are automatically initialized.
+    int i;
+
+    // No need to initialize the stacks
+    // s1.init();  // no need 
+    // s2.init();  // no need
+
+    s1.push('a');
+    s2.push('x');
+    s1.push('b');
+    s2.push('y');
+    s1.push('c');
+    s2.push('z');
+
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
+
+    return 0;
+}
+
+
+/* 
+    Notice, 'the initialization task is performed automatically' by the constructor function 
+        rather than by a separate function that must be explicitly called by the program.
+
+    Constructor function makes sure that the inilialization is performed.
+    The programmer, don’t need to worry about initialization-it is performed automatically when the object is brought into existence.
+*/
+
+
 1. # include <iostream >
 using namespace std ;
 # define SIZE 10
@@ -211,6 +299,95 @@ return 0;
                 so that it uses automatic in-line functions.
                 It uses parameterized cinstructor. 
 */
+
+/* OLD Example 4: Here is a different way to implement the 'strtype class' (developed earlier) 
+                that now uses a parameterized constructor function. 
+                
+                'strtype class'creates a simple string class, called 'strtype', that contains a 'string and its length'. 
+
+                When a 'strtype' object is created, 
+                    'memory' is allocated to hold the string and its initial length is set to 0. 
+
+                When strtype object is destroyed, that memory is released. 
+                
+                The program uses malloc and free() to allocate and free memory. While this is perfectly valid, 
+                    C++ does provide another way to dynamically manage memory, which we will see later.
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+// #define SIZE 25      'no need'
+
+// class definition
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char *ptr);  // constructor
+        ~strtype(); // destructor
+        // void set(char *ptr);     'no need'
+        void show();
+};
+
+// constructor: Initialize a string object with parameter.
+strtype::strtype(char * ptr){
+    len = strlen(ptr);  // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){ // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+
+    strcpy(p, ptr); // copy string to p
+
+    // -- old code --
+    // *p = '\0';
+    // len = 0;
+}
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
+}
+
+
+/* -- old code --   'no need'
+void strtype::set(char *ptr){
+    if(strlen(p) >= SIZE){
+        std::cout << " String too big \n";
+        return;
+    }
+    strcpy(p, ptr);
+    len = strlen(p);
+} 
+*/
+
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
+}
+
+
+// In this version of strtype, a string is given an initial value using the constructor function.
+int main(){
+    // strtype s1 , s2;
+    // initialize with string, as parameters
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    // s1.set("This is a test.");   'no need'
+    // s2.set("I like C ++.");      'no need'
+    s1.show();
+    s2.show();
+
+    return 0;
+}
+
 
 2. # include <iostream >
 # include <cstring >
