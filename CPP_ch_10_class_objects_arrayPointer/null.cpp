@@ -208,6 +208,79 @@ the number of inches.
 called roll() that uses the standard random number generator, rand(), to generate a
 number between 1 and 6. Then have roll() display that value.
 
+CUMULATIVE SKILLS CHECK: Chapter 2
+1. # include <iostream >
+using namespace std ;
+class prompt
+{
+int count ;
+public :
+prompt ( char *s) { cout << s; cin >> count ; }
+~ prompt ();
+};
+prompt ::~ prompt ()
+{
+int i, j;
+for (i =0; i< count ; i ++)
+{
+cout << ’\a’;
+for (j =0; j <32000; j++) ; // delay
+}
+}
+int main ()
+{
+prompt ob(" Enter a number : ");
+return 0;
+}
+
+2. # include <iostream >
+using namespace std ;
+class ftoi
+{
+double feet ;
+double inches ;
+public :
+ftoi ( double f);
+};
+ftoi :: ftoi ( double f)
+{
+feet = f;
+inches = feet * 12;
+cout << feet << " is " << inches << " inches .\n";
+}
+int main ()
+{
+ftoi a (12.0) , b (99.0) ;
+return 0;
+}
+3. # include <iostream >
+# include <cstdlib >
+using namespace std ;
+class dice
+{
+int val ;
+public :
+void roll ();
+};
+void dice :: roll ()
+{
+val = ( rand () % 6) + 1; // generate 1 through 6
+cout << val << "\n";
+}
+int main ()
+{
+dice one , two ;
+one . roll ();
+two . roll ();
+one . roll ();
+two . roll ();
+one . roll ();
+two . roll ();
+
+return 0;
+}
+
+
 
 
 
