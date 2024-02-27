@@ -35,8 +35,10 @@
 
 
 
-Example 1: For example, the divisible()
-function from the preceding section can be automatically in-lined as shown here:
+/* Example 1: The divisible() "Member-functions" of classes from the preceding section "ch10_05_1_inLine_func.cpp" Example 2, 
+                can be AUTOMATICALLY in-lined as shown here: */
+
+
 # include <iostream >
 using namespace std ;
 58INTRODUCING CLASSES
@@ -99,9 +101,14 @@ The same restrictions that apply to "normal" in-line functions apply to automati
 
 
 
-Example 2: Perhaps the most common use of in-line functions defined within a class is to define
-constructor and destructor functions. For example, the sampclass can more efficiently be
-defined like this:
+
+
+/* Example 2: Most common use of in-line functions defined within a class is to define:
+                        Constructor and 
+                        Destructor functions. 
+
+                For example the 'sampclass' can more efficiently be defined like below: 
+*/
 # include <iostream >
 using namespace std ;
 class samp
@@ -117,7 +124,11 @@ samp() is needed.
 
 
 
-Example 3: Sometimes a short function will be included in a class declaration even though the automatic in-lining feature is of little or no value. Consider this class declaration:
+
+
+/* Example 3: Sometimes a short function will be included in a class declaration 
+                even though the automatic in-lining feature is of "little or no value". 
+                Consider following class declaration: */
 class myclass
 {
 int i;
@@ -129,14 +140,17 @@ Here the function show() is made into an in-line function automatically. However
 should know, I/O operations are (generally) so slow relative to CPU/memory operations
 that any effect of eliminating the function call overhead is essentially lost. Even so, in
 C++ programs, it is still common to see small functions of this type declared within a
-class simply for the sake of convenience, and because no harm is caused
+class simply for the sake of convenience, and because no harm is caused.
 
 
 
-Example 4: Convert the stack class from Section 2.1, Example 1, so that it uses automatic in-line
-functions where appropriate.
-60INTRODUCING CLASSES
-SKILLS CHECK
+
+
+/* Example 4: Convert the stack class from "ch10_01_2_constructor_destructor.cpp", Example 3, 
+                so that it uses 'automatic in-line' functions where appropriate. 
+                It uses non-parameterized cinstructor.
+*/
+
 1. # include <iostream >
 using namespace std ;
 # define SIZE 10
@@ -193,8 +207,11 @@ return 0;
 
 
 
-Example 5: Convert the strtype class from Section 2.2, Example 3, so that it uses automatic in-line
-functions.
+/* Example 5: Convert the "strtype" class from "ch10_01_3_constructor_param.cpp", Example 4, 
+                so that it uses automatic in-line functions.
+                It uses parameterized cinstructor. 
+*/
+
 2. # include <iostream >
 # include <cstring >
 # include <cstdlib >
