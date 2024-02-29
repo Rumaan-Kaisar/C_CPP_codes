@@ -291,22 +291,36 @@ This section checks how well you have integrated material in this chapter with t
 preceding chapter.
 
 
-// Example 1: Create a class called prompt. Pass its constructor function a prompting string of your
-own choosing. Have the constructor display the string and then input an integer. Have
-the constructor display the string and then input an integer. Store this value in a private
-variable called count. When an object of type prompt is destroyed, ring the bell on the
-terminal as many times as the user entered.
+/* Example 1: Create a class called 'prompt'. Pass its constructor function a prompting string of your own choosing. 
+                Have the constructor display the string and then input an integer. 
+                Store this value in a private variable called 'count'. 
+
+                When an object of type prompt is destroyed, 
+                    ring the bell on the terminal as many times as the user entered. 
+*/
 
 
-// Example 2: In Chapter 1 you created a program that converted feet to inches. Now create a class that
-does the same thing. Have the class store the number of feet and its equivalent number of
-inches. Pass to the class’s constructor the number of feet and have the constructor display
-the number of inches.
-3. Create a class called dice that contains one private integer variable. Create a function
-called roll() that uses the standard random number generator, rand(), to generate a
-number between 1 and 6. Then have roll() display that value.
 
-CUMULATIVE SKILLS CHECK: Chapter 2
+
+/* Example 2: Previously we created a program that converted feet to inches. 
+                Now create a class that does the same thing. 
+                Have the class store the number of feet and its equivalent number of inches. 
+                Pass to the class's constructor the number of feet and 
+                    have the constructor display the number of inches.
+*/
+
+
+
+
+
+/* Example 3: Create a class called dice that contains one private integer variable. 
+                Create a function called roll() that uses the standard random number generator, rand(), 
+                    to generate a number between 1 and 6. Then have roll() display that value. 
+*/
+
+
+
+
 1. # include <iostream >
 using namespace std ;
 class prompt
