@@ -8,17 +8,22 @@
 At this point you should be able to perform the following exercises and answer the questions.
 
 
-// Example 1: What is a constructor? What is a destructor? When are they executed?
+/* Example 1: What is a constructor? What is a destructor? When are they executed? */
 
 
-// Example 2: Create a class called line that draws a line on the screen. Store the line length in a private
-integer variable called len. Have line’s constructor take one parameter: the line length.
-Have the constructor store the length and actually draw the line. If your system does not
-support graphics, display the line by using *.
-Optional: Give linea destructor that erases the line.
 
 
-// Example 3: What does the following program display?
+/* Example 2: Create a class called "line" that draws a line on the screen. 
+                Store the line length in a 'private' integer variable called len. 
+                Have line's constructor take one parameter: the line length.
+                Have the constructor store the length and actually draw the line. 
+                If your system does not support graphics, display the line by using *.
+
+                Optional: Give line a destructor that erases the line. 
+*/
+
+
+/* Example 3: What does the following program display? */
 # include <iostream >
 using namespace std ;
 int main ()
@@ -32,9 +37,78 @@ return 0;
 }
 
 
-// Example 4: Add another derived class that inherits area cl from Section 2.3, Exercise 1. Call this
-class cylinder and have it compute the surface area of a cylinder. Hint: The surface area
-of a cylinder is: 2 ∗ π ∗ R2 + π ∗ D ∗ height:
+/* Example 4: Add another derived class that inherits 'area_cl' from 'ch10_02_inheritance_intro.cpp', Example 4. 
+                Call this class 'cylinder' and have it compute the surface area of a cylinder. 
+                Hint: The surface area of a cylinder is: 2 ∗ π ∗ R2 + π ∗ D ∗ height: 
+*/
+
+
+/* OLD Example 4: Given the following base class,
+
+                    class area_cl{
+                        public:
+                            double height;
+                            double width;
+                    };
+
+                Create two derived classes called 'rectangle' and 'isosceles' that inherit "area_cl". 
+                Have each class include a function called area() 
+                    that returns the area of a rectangle or isosceles triangle, as appropriate. 
+                
+                Use parameterized constructors to initialize height and width
+*/
+
+#include <iostream>
+
+class area_c1{
+    public:
+        double height;
+        double width;
+};
+
+// derived classes
+class rectangle:public area_c1{
+    public:
+        rectangle(double h, double w);
+        double area();
+};
+
+class isosceles:public area_c1{
+    public:
+        isosceles(double h, double w);
+        double area();
+};
+
+
+// member functions of derived class
+rectangle::rectangle(double h, double w){
+    height = h;
+    width = w;
+}
+
+isosceles::isosceles(double h, double w){
+    height = h;
+    width = w;
+}
+
+double rectangle::area(){
+    return width*height;
+}
+
+double isosceles::area(){
+    return 0.5*width*height;
+}
+
+
+int main(){
+    rectangle b(10.0, 5.0);
+    isosceles i(4.0, 6.0);
+
+    std::cout << "Rectangle : " << b.area() << "\n";
+    std::cout << "Triangle : " << i.area() << "\n";
+
+    return 0;
+}
 
 
 // Example 5: What is an in-line function? What are its advantages and disadvantages?
@@ -65,6 +139,10 @@ myclass count (2, 3);
 count . show ();
 return 0;
 }
+
+
+
+
 
 
 // Example 7: What is the difference between a class and a structure?
