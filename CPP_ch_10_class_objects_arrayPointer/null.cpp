@@ -299,28 +299,6 @@ preceding chapter.
                     ring the bell on the terminal as many times as the user entered. 
 */
 
-
-
-
-/* Example 2: Previously we created a program that converted feet to inches. 
-                Now create a class that does the same thing. 
-                Have the class store the number of feet and its equivalent number of inches. 
-                Pass to the class's constructor the number of feet and 
-                    have the constructor display the number of inches.
-*/
-
-
-
-
-
-/* Example 3: Create a class called dice that contains one private integer variable. 
-                Create a function called roll() that uses the standard random number generator, rand(), 
-                    to generate a number between 1 and 6. Then have roll() display that value. 
-*/
-
-
-
-
 1. # include <iostream >
 using namespace std ;
 class prompt
@@ -345,6 +323,16 @@ prompt ob(" Enter a number : ");
 return 0;
 }
 
+
+
+
+/* Example 2: Previously we created a program that converted feet to inches. 
+                Now create a class that does the same thing. 
+                Have the class store the number of feet and its equivalent number of inches. 
+                Pass to the class's constructor the number of feet and 
+                    have the constructor display the number of inches.
+*/
+
 2. # include <iostream >
 using namespace std ;
 class ftoi
@@ -365,6 +353,15 @@ int main ()
 ftoi a (12.0) , b (99.0) ;
 return 0;
 }
+
+
+
+
+/* Example 3: Create a class called dice that contains one private integer variable. 
+                Create a function called roll() that uses the standard random number generator, rand(), 
+                    to generate a number between 1 and 6. Then have roll() display that value. 
+*/
+
 3. # include <iostream >
 # include <cstdlib >
 using namespace std ;
