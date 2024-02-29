@@ -111,10 +111,14 @@ int main(){
 }
 
 
-// Example 5: What is an in-line function? What are its advantages and disadvantages?
 
 
-// Example 6: Modify the following program so that all member functions are automatically in-lined:
+/* Example 5: What is an in-line function? What are its advantages and disadvantages? */
+
+
+
+
+/* Example 6: Modify the following program so that all member functions are automatically in-lined: */
 # include <iostream >
 using namespace std ;
 class myclass
@@ -145,15 +149,19 @@ return 0;
 
 
 
-// Example 7: What is the difference between a class and a structure?
+/* Example 7: What is the difference between a class and a structure? */
 
 
-// Example 8: Is the following fragment valid?
+/* Example 8: Is the following fragment valid? */
 union
 {
 float f;
 unsigned int bits ;
 };
+
+
+
+
 
 
 MASTERY SKILLS CHECK: Chapter 2
