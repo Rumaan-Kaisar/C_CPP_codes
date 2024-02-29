@@ -9,7 +9,8 @@ At this point you should be able to perform the following exercises and answer t
 
 
 /* Example 1: What is a constructor? What is a destructor? When are they executed? */
-
+1. A constructor is the function that is called when an object is created. A destructor is the
+function that is called when an object is destroyed.
 
 
 
@@ -21,6 +22,28 @@ At this point you should be able to perform the following exercises and answer t
 
                 Optional: Give line a destructor that erases the line. 
 */
+2. # include <iostream >
+using namespace std ;
+class line
+{
+int len ;
+public :
+line ( int l);
+};
+line :: line ( int l)
+{
+len = l;
+int i;
+for (i =0; i< len ; i ++)
+cout << ’*’;
+}
+int main ()
+{
+line l (10) ;
+return 0;
+}
+
+
 
 
 /* Example 3: What does the following program display? */
@@ -36,12 +59,58 @@ cout << "\n";
 return 0;
 }
 
+3. 10 1000000 -0.0009
+
+
+
 
 /* Example 4: Add another derived class that inherits 'area_cl' from 'ch10_02_inheritance_intro.cpp', Example 4. 
                 Call this class 'cylinder' and have it compute the surface area of a cylinder. 
                 Hint: The surface area of a cylinder is: 2 ∗ π ∗ R2 + π ∗ D ∗ height: 
 */
 
+
+4. # include <iostream >
+using namespace std ;
+class area_c1
+{
+public :
+double height ;
+
+double width ;
+};
+class rectangle : public area_c1
+{
+public :
+rectangle ( double h, double w){ height = h; width = w; }
+double area () { return width * height ; }
+};
+class isosceles : public area_c1
+{
+public :
+isosceles ( double h, double w){ height = h; width = w; }
+double area (){ return 0.5 * width * height ; }
+};
+class cylinder : public area_c1
+{
+public :
+cylinder ( double h, double w){ height = h; width = w; }
+double area ()
+{
+return (2 * 3.1416 * ( width /2) * ( width /2) ) *
+(3.1416 * width * height );
+}
+};
+int main ()
+{
+rectangle b (10.0 , 5.0) ;
+isosceles i(4.0 , 6.0) ;
+cylinder c(3.0 , 4.0) ;
+cout << " Rectangle : " << b. area () << "\n";
+cout << " Triangle : " << i. area () << "\n";
+cout << " Cylinder : " << c. area () << "\n";
+return 0;
+}
 
 /* OLD Example 4: Given the following base class,
 
@@ -115,6 +184,12 @@ int main(){
 
 /* Example 5: What is an in-line function? What are its advantages and disadvantages? */
 
+5. An in-line function’s code is expanded in line. This means that the function is not actually
+called. This avoids the overhead associated with the function call and return mechanism.
+Its advantage is that it increases the execution speed. Its disadvantage is that it can
+increase the size of the program.
+
+
 
 
 
@@ -145,105 +220,6 @@ return 0;
 }
 
 
-
-
-
-
-/* Example 7: What is the difference between a class and a structure? */
-
-
-/* Example 8: Is the following fragment valid? */
-union
-{
-float f;
-unsigned int bits ;
-};
-
-
-
-
-
-
-MASTERY SKILLS CHECK: Chapter 2
-
-1. A constructor is the function that is called when an object is created. A destructor is the
-function that is called when an object is destroyed.
-
-
-2. # include <iostream >
-using namespace std ;
-class line
-{
-int len ;
-public :
-line ( int l);
-};
-line :: line ( int l)
-{
-len = l;
-int i;
-for (i =0; i< len ; i ++)
-cout << ’*’;
-}
-int main ()
-{
-line l (10) ;
-return 0;
-}
-
-
-3. 10 1000000 -0.0009
-
-
-4. # include <iostream >
-using namespace std ;
-class area_c1
-{
-public :
-double height ;
-
-double width ;
-};
-class rectangle : public area_c1
-{
-public :
-rectangle ( double h, double w){ height = h; width = w; }
-double area () { return width * height ; }
-};
-class isosceles : public area_c1
-{
-public :
-isosceles ( double h, double w){ height = h; width = w; }
-double area (){ return 0.5 * width * height ; }
-};
-class cylinder : public area_c1
-{
-public :
-cylinder ( double h, double w){ height = h; width = w; }
-double area ()
-{
-return (2 * 3.1416 * ( width /2) * ( width /2) ) *
-(3.1416 * width * height );
-}
-};
-int main ()
-{
-rectangle b (10.0 , 5.0) ;
-isosceles i(4.0 , 6.0) ;
-cylinder c(3.0 , 4.0) ;
-cout << " Rectangle : " << b. area () << "\n";
-cout << " Triangle : " << i. area () << "\n";
-cout << " Cylinder : " << c. area () << "\n";
-return 0;
-}
-
-
-5. An in-line function’s code is expanded in line. This means that the function is not actually
-called. This avoids the overhead associated with the function call and return mechanism.
-Its advantage is that it increases the execution speed. Its disadvantage is that it can
-increase the size of the program.
-
-
 6. # include <iostream >
 using namespace std ;
 class myclass
@@ -262,10 +238,46 @@ return 0;
 }
 
 
+
+
+/* Example 7: What is the difference between a class and a structure? */
 7. In a class, members are private by default. In a structure, members are public by default.
 
 
+
+
+/* Example 8: Is the following fragment valid? */
+union
+{
+float f;
+unsigned int bits ;
+};
+
 8. Yes. It defines an anonymous union.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
