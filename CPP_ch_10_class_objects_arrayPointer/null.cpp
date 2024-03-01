@@ -410,10 +410,14 @@ public :
 // ... fill in constructor and destructor functions
 };
 
+1. The constructor is called widgit() and the destructor is called ∼widgit().
+
 
 
 
 /* Example 2: When is a constructor function called? When is a destructor function called? */
+2. The constructor function is called when an object is created (that is, when an object
+comes into existence). The destructor is called when an object is destroyed.
 
 
 
@@ -432,15 +436,25 @@ public :
 // ...
 };
 
+3. class Mars : public planet
+{
+// ...
+};
+
 
 
 
 /* Example 4: There are two ways to cause a function to be expanded 'in-line'. What are they? */
+4. You can expand a function in line either by preceding its definition with the inline specifier
+or by including its definition within a class declaration.
 
 
 
 
 /* Example 5: Give two possible restrictions to 'in-line' functions. */
+5. An in-line function must be defined before it is first used. Other common restrictions
+include the following: It cannot contain any loops. It must not be recursive. It cannot
+contain a goto or a switch statement. It cannot contain any static variables.
 
 
 
@@ -457,20 +471,6 @@ sample ( int x, char ch) { a = x; c = ch; }
 // ...
 };
 
-
-REVIEW SKILLS CHECK: Chapter 3
-1. The constructor is called widgit() and the destructor is called ∼widgit().
-2. The constructor function is called when an object is created (that is, when an object
-comes into existence). The destructor is called when an object is destroyed.
-3. class Mars : public planet
-{
-// ...
-};
-4. You can expand a function in line either by preceding its definition with the inline specifier
-or by including its definition within a class declaration.
-5. An in-line function must be defined before it is first used. Other common restrictions
-include the following: It cannot contain any loops. It must not be recursive. It cannot
-contain a goto or a switch statement. It cannot contain any static variables.
 6. sample ob (100 , ’X’);
 
 
