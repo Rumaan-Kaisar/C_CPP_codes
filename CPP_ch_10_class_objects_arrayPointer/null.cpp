@@ -392,7 +392,7 @@ return 0;
 
 
 
-
+// ----  rev[29-2-24]  ----
 
 // -=-=-=-=-    Review Skills Check    -=-=-=-=-
 
@@ -400,7 +400,9 @@ Before proceeding, you should be able to correctly answer the following question
 exercises.
 
 
-// Example 1: Given the following class, what are the names of its constructor and destructor functions?
+
+
+/* Example 1: Given the following class, what are the names of its 'constructor' and 'destructor' functions? */
 class widgit
 {
 int x, y;
@@ -409,11 +411,17 @@ public :
 };
 
 
-// Example 2: When is a constructor function called? When is a destructor function called?
 
 
-// Example 3: Given the following base class, show how it can be inherited by a derived class called
-Mars.
+/* Example 2: When is a constructor function called? When is a destructor function called? */
+
+
+
+
+/* Example 3: Given the following base class, 
+                show how it can be inherited by a derived class called Mars. 
+*/
+
 class planet
 {
 int moons ;
@@ -425,14 +433,21 @@ public :
 };
 
 
-// Example 4: There are two ways to cause a function to be expanded in line. What are they?
 
 
-// Example 5: Give two possible restrictions to in-line functions.
+/* Example 4: There are two ways to cause a function to be expanded 'in-line'. What are they? */
 
 
-// Example 6: Given the following class, show how an object called ob that passes the value 100 to a
-and X to c would be declared.
+
+
+/* Example 5: Give two possible restrictions to 'in-line' functions. */
+
+
+
+
+/* Example 6: Given the following class, show how an object called 'ob' that passes the value 
+                '100 to a'and 'X to c' would be declared. 
+*/
 class sample
 {
 int a;
