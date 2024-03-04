@@ -146,72 +146,48 @@ class myclass{
 /* Example 4: Convert the stack class from "ch10_01_2_constructor_destructor.cpp", Example 3, 
                 so that it uses 'automatic in-line' functions where appropriate. 
                 It uses 'non-parameterized constructor'.
-*/
 
-
-/* OLD Example 3: Recall the "stack class" we created in previous section required an initialization function to set the stack index variable.
-                Constructor function was designed to perform this sort of operation. 
-
-                Following is an improved version of the 'stack class' that can be used to store characters
-                    that uses a constructor to 'automatically initialize' a stack object when it is created 
+                'stack class' is used to store characters.
 */
 
 #include <iostream>
-// using namespace std;
 
 #define SIZE 10
 
-
-// Declare a stack class for characters .
+// Declare a stack class for characters. 
+// Instead of just DECLARING, all member functions are DEFINED inside the class to make them in-line
 class stack {
         char stck[ SIZE];   // holds the stack
         int tos;            // index of top of stack
     
+    // Notice all following functions are now DEFINED inside the class
     public:
-        stack();            // constructor. Notice no 'void init();' required
-        void push(char ch); // push character on stack
-        char pop();         // pop character from stack
+        stack(){ tos = 0; } // Initialize the stack.
+
+        void push(char ch) {    // push character on stack
+            if(tos == SIZE) {   
+                std::cout << " Stack is full \n";
+                return;
+            }
+            stck[tos] = ch;
+            tos++;
+        }
+
+        char pop(){     // pop character from stack
+            if(tos == 0){
+                std::cout << " Stack is empty \n";
+                return 0; // return null on empty stack
+            }
+            tos--;
+            return stck[tos];
+        };
 };
-
-
-// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
-
-// stack(): Initialize the stack. No 'void init();' required
-    // implementing constructor function
-stack::stack(){
-    std::cout << " Constructing a stack \n";
-    tos = 0;
-}
-
-// push(): Push a character
-void stack::push(char ch){
-    if(tos == SIZE){
-        std::cout << " Stack is full \n";
-        return;
-    }
-    stck[tos] = ch;
-    tos++;
-}
-
-// pop(): Pop or remove a character
-char stack::pop(){
-    if(tos == 0){
-        std::cout << " Stack is empty \n";
-        return 0; // return null on empty stack
-    }
-    tos--;
-    return stck[tos];
-}
 
 
 // -=-=-  main function  -=-=-
 int main(){
     stack s1, s2; // create two stacks that are automatically initialized.
     int i;
-
-    // No need to initialize the stacks
-    // s1.init();  // no need 
-    // s2.init();  // no need
 
     s1.push('a');
     s2.push('x');
@@ -236,59 +212,12 @@ int main(){
 */
 
 
-1. # include <iostream >
-using namespace std ;
-# define SIZE 10
-// Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-stack ()
-{
-tos = 0;
-}
-void push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return ;
-}
-stck [ tos ] = ch;
-tos ++;
-}
-char pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-}
-};
-int main ()
-{
-// Create two stacks that are automatically initialized .
-430ANSWERS
-2.7 EXERCISES
-stack s1 , s2;
-int i;
-s1. push (’a’);
-s2. push (’x’);
-s1. push (’b’);
-s2. push (’y’);
-s1. push (’c’);
-s2. push (’z’);
-for (i =0; i <3; i ++)
-cout << " Pop s1: " << s1.pop () << "\n";
-for (i =0; i <3; i ++)
-cout << " Pop s2: " << s2.pop () << "\n";
-return 0;
-}
+
+
+
+
+
+
 
 
 
