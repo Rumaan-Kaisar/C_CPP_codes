@@ -107,19 +107,17 @@ int main(){
 
                 For example the 'sampclass' can more efficiently be defined like below: 
 */
-# include <iostream >
-using namespace std ;
-class samp
-{
-int i, j;
-public :
-// inline constructor
-samp ( int a, int b) { i = a; j = b; }
-int divisible () { return !(i%j); }
-};
-The definition of samp() within the class samp is sufficient, and no other definition of
-samp() is needed.
+# include <iostream>
 
+class samp{
+        int i, j;
+    public:
+        // inline constructor
+        samp(int a, int b) { i = a; j = b; }
+        int divisible(){ return !(i%j); }
+};
+
+// The definition of samp() within the CLASS 'samp' is sufficient, and no other definition of samp() is needed.
 
 
 
@@ -127,26 +125,27 @@ samp() is needed.
 /* Example 3: Sometimes a short function will be included in a class declaration 
                 even though the automatic in-lining feature is of "little or no value". 
                 Consider following class declaration: */
-class myclass
-{
-int i;
-public :
-myclass ( int n) { i = n; }
-void show () { cout << i; }
+class myclass{
+        int i;
+    public:
+        myclass(int n){ i = n; }
+        void show(){ std::cout << i; }
 };
-Here the function show() is made into an in-line function automatically. However, as you
-should know, I/O operations are (generally) so slow relative to CPU/memory operations
-that any effect of eliminating the function call overhead is essentially lost. Even so, in
-C++ programs, it is still common to see small functions of this type declared within a
-class simply for the sake of convenience, and because no harm is caused.
 
+/*  Here the function show() is made into an in-line function automatically. 
+    However, as you should know, I/O operations are (generally) so slow relative to CPU/memory operations 
+        that any effect of eliminating the 'function call overhead' is essentially lost. 
+        
+    Even so, in C++ programs, it is still common to see small functions of this type 
+        declared within a class simply for the sake of convenience, and because no harm is caused.
+*/
 
 
 
 
 /* Example 4: Convert the stack class from "ch10_01_2_constructor_destructor.cpp", Example 3, 
                 so that it uses 'automatic in-line' functions where appropriate. 
-                It uses non-parameterized cinstructor.
+                It uses 'non-parameterized constructor'.
 */
 
 
