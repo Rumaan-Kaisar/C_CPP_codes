@@ -145,6 +145,7 @@ class myclass{
 
 /* Example 4: Convert the stack class from "ch10_01_2_constructor_destructor.cpp", Example 3, 
                 so that it uses 'automatic in-line' functions where appropriate. 
+
                 It uses 'non-parameterized constructor'.
 
                 'stack class' is used to store characters.
@@ -214,21 +215,12 @@ int main(){
 
 
 
-
-
-
-
-
-
-
+// ----  rev[4-mar-24]  ----
 /* Example 5: Convert the "strtype" class from "ch10_01_3_constructor_param.cpp", Example 4, 
                 so that it uses automatic in-line functions.
-                It uses parameterized cinstructor. 
-*/
 
-/* OLD Example 4: Here is a different way to implement the 'strtype class' (developed earlier) 
-                that now uses a parameterized constructor function. 
-                
+                It uses "parameterized cinstructor". 
+
                 'strtype class'creates a simple string class, called 'strtype', that contains a 'string and its length'. 
 
                 When a 'strtype' object is created, 
@@ -236,69 +228,41 @@ int main(){
 
                 When strtype object is destroyed, that memory is released. 
                 
-                The program uses malloc and free() to allocate and free memory. While this is perfectly valid, 
-                    C++ does provide another way to dynamically manage memory, which we will see later.
+                The program uses malloc and free() to allocate and free memory. While this is perfectly valid.
 */
 
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
 
-// #define SIZE 25      'no need'
-
-// class definition
 class strtype{
         char *p;
         int len;
     public:
-        strtype(char *ptr);  // constructor
-        ~strtype(); // destructor
-        // void set(char *ptr);     'no need'
-        void show();
+        // constructor: Initialize a string object with parameter.
+        strtype(char * ptr){
+            len = strlen(ptr);  // get len of the string
+            // allocate using string's length 'len' instead of fixed 'SIZE'
+            p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+            // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+            if(!p){ // Error massage
+                std::cout << " Allocation error \n";
+                exit(1) ;
+            }
+            strcpy(p, ptr); // copy string to p
+        }
+
+        // destructor: Free memory when destroying string object .
+        ~strtype(){
+            std::cout << " Freeing p\n";
+            free(p);
+        }
+
+        void show(){
+            std::cout << p << " - length : " << len ;
+            std::cout << "\n";
+        }
 };
-
-// constructor: Initialize a string object with parameter.
-strtype::strtype(char * ptr){
-    len = strlen(ptr);  // get len of the string
-    // allocate using string's length 'len' instead of fixed 'SIZE'
-    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
-    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
-    if(!p){ // Error massage
-        std::cout << " Allocation error \n";
-        exit(1) ;
-    } 
-
-    strcpy(p, ptr); // copy string to p
-
-    // -- old code --
-    // *p = '\0';
-    // len = 0;
-}
-
-// destructor: Free memory when destroying string object .
-strtype::~strtype(){
-    std::cout << " Freeing p\n";
-    free(p);
-}
-
-
-/* -- old code --   'no need'
-void strtype::set(char *ptr){
-    if(strlen(p) >= SIZE){
-        std::cout << " String too big \n";
-        return;
-    }
-    strcpy(p, ptr);
-    len = strlen(p);
-} 
-*/
-
-
-void strtype::show(){
-    std::cout << p << " - length : " << len ;
-    std::cout << "\n";
-}
-
 
 // In this version of strtype, a string is given an initial value using the constructor function.
 int main(){
