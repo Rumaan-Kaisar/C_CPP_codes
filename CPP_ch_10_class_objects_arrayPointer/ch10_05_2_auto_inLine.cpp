@@ -266,57 +266,13 @@ class strtype{
 
 // In this version of strtype, a string is given an initial value using the constructor function.
 int main(){
-    // strtype s1 , s2;
     // initialize with string, as parameters
     strtype s1(" This is a test ."), s2("I like C++. ");
 
-    // s1.set("This is a test.");   'no need'
-    // s2.set("I like C ++.");      'no need'
     s1.show();
     s2.show();
 
     return 0;
 }
 
-
-2. # include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr )
-{
-len = strlen ( ptr );
-p = ( char *) malloc (len +1);
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, ptr );
-} ~
-strtype ()
-{
-cout << " Freeing p\n";
-free (p);
-}
-void show ()
-{
-cout << p << " - lengthj : " << len ;
-cout << ’\n’;
-}
-};
-431TEACH YOURSELF
-C++
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++. ");
-s1. show ();
-s2. show ();
-return 0;
-}
 
