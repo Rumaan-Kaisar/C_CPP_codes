@@ -215,7 +215,6 @@ int main(){
 
 
 
-// ----  rev[4-mar-24]  ----
 /* Example 5: Convert the "strtype" class from "ch10_01_3_constructor_param.cpp", Example 4, 
                 so that it uses automatic in-line functions.
 
