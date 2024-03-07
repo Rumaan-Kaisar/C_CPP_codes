@@ -218,7 +218,7 @@ int main(){
 /* Example 5: Convert the "strtype" class from "ch10_01_3_constructor_param.cpp", Example 4, 
                 so that it uses automatic in-line functions.
 
-                It uses "parameterized cinstructor". 
+                It uses "parameterized constructor". 
 
                 'strtype class'creates a simple string class, called 'strtype', that contains a 'string and its length'. 
 

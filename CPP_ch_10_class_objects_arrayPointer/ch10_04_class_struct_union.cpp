@@ -561,7 +561,6 @@ union swapbytes{
         unsigned i;
     private:
         unsigned char c[2];
-        
 };
 
 swapbytes::swapbytes (unsigned x){
