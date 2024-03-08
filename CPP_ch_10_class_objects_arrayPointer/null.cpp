@@ -1,5 +1,5 @@
 
-// ----  rev [5-mar-24]  ----
+
 
 // SKILLS CHECK
 
@@ -133,80 +133,91 @@ int main() {
 
 
 
-// ----  REV [7-mar-24]  ----
 
-/* Example 5: What is an in-line function? What are its advantages and disadvantages? */
 
-5. An in-line function’s code is expanded in line. This means that the function is not actually
-called. This avoids the overhead associated with the function call and return mechanism.
-Its advantage is that it increases the execution speed. Its disadvantage is that it can
-increase the size of the program.
+/* Example 5: What is an in-line function? What are its advantages and disadvantages? 
+
+                An in-line function's code is expanded in line. 
+                    This means that the function is not actually called, 
+                        it's implemented by the compiler at the calling-pointg
+                    
+                    This avoids the overhead associated with the function 'call and return' mechanism.
+
+                Advamtage: It increases the execution speed. 
+                Disadvantage: It can increase the size of the program.
+*/
+
+
 
 
 
 
 
 /* Example 6: Modify the following program so that all member functions are automatically in-lined: */
-# include <iostream >
-using namespace std ;
-class myclass
-{
-int i, j;
-public :
-myclass ( int x, int y);
-void show ();
+#include <iostream>
+
+using namespace std;
+
+class myclass{
+        int i, j;
+    public:
+        myclass(int x, int y);
+        void show();
 };
-myclass :: myclass ( int x, int y)
-{
-i = x;
-j = y;
+
+myclass::myclass(int x, int y){
+    i = x;
+    j = y;
 }
-void myclass :: show ()
-{
-cout << i << " " << j << "\n";
+
+void myclass::show(){
+    cout << i << " " << j << "\n";
 }
-int main ()
-{
-myclass count (2, 3);
-count . show ();
-return 0;
+
+int main(){
+    myclass count(2, 3);
+    count.show();
+    return 0;
 }
 
 
-6. # include <iostream >
-using namespace std ;
-class myclass
-{
-int i, j;
+// Modified  program using in-lined functions
+#include <iostream>
 
-public :
-myclass ( int x, int y) { i = x; j = y; }
-void show () { cout << i << ’ ’ << j; }
+class myclass{
+        int i, j;
+    public:
+        myclass(int x, int y){ i = x; j = y; }
+        void show(){ std::cout << i << " " << j; }
 };
-int main ()
-{
-myclass count (2, 3);
-count . show ();
-return 0;
+
+int main(){
+    myclass count(2, 3);
+    count.show();
+    return 0;
 }
 
 
 
 
-/* Example 7: What is the difference between a class and a structure? */
-7. In a class, members are private by default. In a structure, members are public by default.
+/* Example 7: What is the difference between a class and a structure? 
+
+                In a class, members are private by default. 
+                In a structure, members are public by default.
+*/
+
+
 
 
 
 
 /* Example 8: Is the following fragment valid? */
-union
-{
-float f;
-unsigned int bits ;
+union{
+    float f;
+    unsigned int bits;
 };
 
-8. Yes. It defines an anonymous union.
+// Ans: Yes. It defines an anonymous union.
 
 
 
@@ -223,19 +234,7 @@ unsigned int bits ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ----  REV [8-mar-24]  ----
 
 
 // -=-=-=-=-    Cumulative Skills Check    -=-=-=-=-
@@ -331,13 +330,13 @@ cout << val << "\n";
 }
 int main ()
 {
-dice one , two ;
-one . roll ();
-two . roll ();
-one . roll ();
-two . roll ();
-one . roll ();
-two . roll ();
+dice one, two;
+one.roll();
+two.roll();
+one.roll();
+two.roll();
+one.roll();
+two.roll();
 
 return 0;
 }
@@ -345,7 +344,11 @@ return 0;
 
 
 
-// ----  rev[29-2-24]  ----
+
+
+
+
+
 
 // -=-=-=-=-    Review Skills Check    -=-=-=-=-
 
