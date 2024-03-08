@@ -359,49 +359,60 @@ exercises.
 
 
 /* Example 1: Given the following class, what are the names of its 'constructor' and 'destructor' functions? */
-class widgit
-{
-int x, y;
-public :
-// ... fill in constructor and destructor functions
+
+class widgit{
+        int x, y;
+    public:
+        // ... fill in constructor and destructor functions
 };
 
-1. The constructor is called widgit() and the destructor is called ∼widgit().
+// Constructor is called widgit() and 
+// Destructor is called ~widgit().
 
 
 
 
-/* Example 2: When is a constructor function called? When is a destructor function called? */
-2. The constructor function is called when an object is created (that is, when an object
-comes into existence). The destructor is called when an object is destroyed.
+
+
+/* Example 2: When is a constructor function called? When is a destructor function called? 
+
+                Constructor function is called when an object is created 
+                    (i.e., when an object comes into existence). 
+
+                Destructor is called when an object is destroyed.
+*/
+
+
 
 
 
 
 /* Example 3: Given the following base class, 
-                show how it can be inherited by a derived class called Mars. 
+                show how it can be inherited by a derived class called 'Mars'. 
 */
 
-class planet
-{
-int moons ;
-double dis_from_sun ;
-double diameter ;
-double mass ;
-public :
-// ...
+class planet{
+        int moons;
+        double dis_from_sun;
+        double diameter;
+        double mass;
+    public:
+        // ...
 };
 
-3. class Mars : public planet
-{
-// ...
+// Ans:  derived class called 'Mars'
+class Mars:public planet{
+    // ...
 };
 
 
 
 
 /* Example 4: There are two ways to cause a function to be expanded 'in-line'. What are they? */
-4. You can expand a function in line either by preceding its definition with the inline specifier
+1. use 'inline' keyword:
+2. define a function inside a class declaration:
+
+You can expand a function in line either by preceding its definition with the inline specifier
 or by including its definition within a class declaration.
 
 
