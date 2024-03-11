@@ -234,13 +234,10 @@ union{
 
 
 
-// ----  REV [8-mar-24]  ----
+
 
 
 // -=-=-=-=-    Cumulative Skills Check    -=-=-=-=-
-
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapter.
 
 
 /* Example 1: Create a class called 'prompt'. Pass its constructor function a prompting string of your own choosing. 
@@ -251,29 +248,28 @@ preceding chapter.
                     ring the bell on the terminal as many times as the user entered. 
 */
 
-1. # include <iostream >
-using namespace std ;
-class prompt
-{
-int count ;
-public :
-prompt ( char *s) { cout << s; cin >> count ; }
-~ prompt ();
+#include <iostream>
+
+class prompt{
+        int count;
+    public:
+        prompt (char *s) { std::cout << s; std::cin >> count; }
+        ~prompt();
 };
-prompt ::~ prompt ()
-{
-int i, j;
-for (i =0; i< count ; i ++)
-{
-cout << ’\a’;
-for (j =0; j <32000; j++) ; // delay
+
+prompt::~prompt(){
+    int i, j;
+    for(i =0; i<count; i ++){
+        std::cout << '\a';
+        for(j =0; j<32000; j++); // delay
+    }
 }
+
+int main(){
+    prompt ob(" Enter a number : ");
+    return 0;
 }
-int main ()
-{
-prompt ob(" Enter a number : ");
-return 0;
-}
+
 
 
 
