@@ -273,7 +273,6 @@ int main(){
 
 
 
-
 /* Example 2: Previously we created a program that converted feet to inches. 
                 Now create a class that does the same thing. 
                 Have the class store the number of feet and its equivalent number of inches. 
@@ -281,29 +280,29 @@ int main(){
                     have the constructor display the number of inches.
 */
 
-2. # include <iostream >
-using namespace std ;
-class ftoi
-{
-double feet ;
-double inches ;
-public :
-ftoi ( double f);
+#include <iostream>
+
+class feetInch{
+        double feet, inches;
+    public:
+        feetInch(double f);
 };
-ftoi :: ftoi ( double f)
-{
-feet = f;
-inches = feet * 12;
-cout << feet << " is " << inches << " inches .\n";
-}
-int main ()
-{
-ftoi a (12.0) , b (99.0) ;
-return 0;
+
+feetInch::feetInch(double f){
+    feet = f;
+    inches = feet*12;
+    std::cout << feet << " is " << inches << " inches .\n";
 }
 
+int main(){
+    feetInch a(12.0) , b(99.0);
+    return 0;
+}
 
 
+
+
+// ----  REV [11-mar-24]  ----
 
 /* Example 3: Create a class called dice that contains one private integer variable. 
                 Create a function called roll() that uses the standard random number generator, rand(), 
