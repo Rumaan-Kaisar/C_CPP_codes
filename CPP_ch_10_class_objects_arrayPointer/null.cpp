@@ -302,38 +302,38 @@ int main(){
 
 
 
-// ----  REV [11-mar-24]  ----
+
 
 /* Example 3: Create a class called dice that contains one private integer variable. 
                 Create a function called roll() that uses the standard random number generator, rand(), 
                     to generate a number between 1 and 6. Then have roll() display that value. 
 */
 
-3. # include <iostream >
-# include <cstdlib >
-using namespace std ;
-class dice
-{
-int val ;
-public :
-void roll ();
-};
-void dice :: roll ()
-{
-val = ( rand () % 6) + 1; // generate 1 through 6
-cout << val << "\n";
-}
-int main ()
-{
-dice one, two;
-one.roll();
-two.roll();
-one.roll();
-two.roll();
-one.roll();
-two.roll();
+#include <iostream>
+#include <cstdlib>
 
-return 0;
+class dice {
+        int val;
+    public:
+        void roll();
+};
+
+void dice::roll(){
+    val = (rand() % 6) + 1;     // generate 1 through 6
+    std::cout << val << "\n";
+}
+
+int main(){
+    dice one, two;
+
+    one.roll();
+    two.roll();
+    one.roll();
+    two.roll();
+    one.roll();
+    two.roll();
+
+    return 0;
 }
 
 
@@ -403,20 +403,28 @@ class Mars:public planet{
 
 
 
-/* Example 4: There are two ways to cause a function to be expanded 'in-line'. What are they? */
-1. use 'inline' keyword:
-2. define a function inside a class declaration:
+/* Example 4: There are two ways to cause a function to be expanded 'in-line'. What are they? 
+                1. use 'inline' keyword: 
+                    You can expand a function in line either by preceding its definition with the 'inline' specifier
 
-You can expand a function in line either by preceding its definition with the inline specifier
-or by including its definition within a class declaration.
+                2. define a function inside a class declaration:
+                    Include the functions definition within a class declaration.
+*/
 
 
 
 
-/* Example 5: Give two possible restrictions to 'in-line' functions. */
-5. An in-line function must be defined before it is first used. Other common restrictions
-include the following: It cannot contain any loops. It must not be recursive. It cannot
-contain a goto or a switch statement. It cannot contain any static variables.
+/* Example 5: Give two possible restrictions to 'in-line' functions. 
+
+                An in-line function must be defined before it is first used. 
+                Other common restrictions:
+                    no 'loops'
+                    must not be 'recursive'
+                    no 'goto' or a 'switch'
+                    no 'static' variables
+*/
+
+
 
 
 
@@ -424,16 +432,15 @@ contain a goto or a switch statement. It cannot contain any static variables.
 /* Example 6: Given the following class, show how an object called 'ob' that passes the value 
                 '100 to a'and 'X to c' would be declared. 
 */
-class sample
-{
-int a;
-char c;
-public :
-sample ( int x, char ch) { a = x; c = ch; }
-// ...
+class sample {
+        int a;
+        char c;
+    public:
+        sample(int x, char ch) { a = x; c = ch; }
+    // ...
 };
 
-6. sample ob (100 , ’X’);
+sample ob (100 , 'X');
 
 
 
