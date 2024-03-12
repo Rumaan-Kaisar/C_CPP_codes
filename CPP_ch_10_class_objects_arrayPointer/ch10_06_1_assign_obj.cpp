@@ -1,6 +1,43 @@
-10.6 Assigning Objects
-One object can be assigned to another provided that both objects are of the same type (similar to structure). By default, when one object is assigned to another, a bitwise copy of all the data members is made. 
-	For example, the contents of object called obj_1 is assigned to another object called obj_2, the contents of all of obj_1's data are copied into the equivalent members of obj_2. 
+
+/*  ------------    Assigning Objects    ------------
+    One object can be 'assigned to another object':
+        both objects need to be the same type (similar to structure). 
+ 
+    When one object is assigned to another, a "BITWISE COPY" of all the data members is made.
+
+    Important fact:
+        C++ is different in this case from Java, JavaScript & Python
+
+In C++, when you assign one object to another, a memberwise copy is made by default. 
+    This means that each data member of the source object is copied to the corresponding data member of the destination object. For built-in types, this copy operation is essentially a bitwise copy. For user-defined types, the copy operation may involve calling the copy constructor or assignment operator, depending on how they are implemented.
+
+
+In Java or JavaScript or Python, on the other hand, when you assign one object reference to another, you are copying the reference, not the object itself. Both the original and the copied reference point to the same object in memory. This means that modifications made to the properties of one object will affect the other object if they are referring to the same underlying data.
+
+To create a copy of an object with its own separate memory space in Java, you typically need to perform a deep copy manually by implementing the Cloneable interface and overriding the clone() method, or by using serialization/deserialization techniques.
+
+
+
+Java:
+To create a deep copy of an object in Java, you can implement the Cloneable interface and override the clone() method. This involves creating a new instance of the object and copying the state of all its fields to the new instance. Alternatively, you can use serialization/deserialization techniques to achieve deep copying.
+
+JavaScript:
+In JavaScript, you can create a deep copy of an object by iterating through its properties and creating new copies of nested objects recursively. Alternatively, you can use built-in methods such as spread syntax ({...obj}) or Object.assign() to create shallow copies, or you can use external libraries like lodash for deep copying.
+
+Python:
+In Python, you can create deep copies of objects using the copy() method or the copy module for shallow copies, or the deepcopy() function from the copy module for deep copies. These functions create new objects with their own memory space, recursively copying all nested objects.
+
+
+
+
+
+
+
+
+
+
+
+Example 1: the contents of object called obj_1 is assigned to another object called obj_2, the contents of all of obj_1's data are copied into the equivalent members of obj_2. 
  
 #include <iostream >
 using namespace std;
@@ -15,7 +52,7 @@ void show() {cout << a << ' ' << b << "\n";}
 int main(){	myclass obj_1 , obj_2;
 obj_1.set(10 , 4);
 
-/* assign obj_1 to obj_2 */ 
+// assign obj_1 to obj_2 
 
 obj_2 = obj_1;
 obj_1.show();
@@ -46,11 +83,12 @@ int main(){	myclass obj_1 ;
 yourclass obj_2;
 obj_1.set(10 , 4);
 
-/* assign obj_1 to obj_2 */ 
+// assign obj_1 to obj_2 
 
-obj_2 = obj_1; 	/* compile-time error will occur: not same type */
+obj_2 = obj_1; 	// compile-time error will occur: not same type
 obj_1.show();	 obj_2.show();
 return 0;}
 In this case, even though myclass and yourclass are physically the same, because they have different type names, they are treated as differing types by the compiler.
 	All data members of one object are assigned to another when an assignment is performed. This includes compound data such as arrays. 
 
+ */
