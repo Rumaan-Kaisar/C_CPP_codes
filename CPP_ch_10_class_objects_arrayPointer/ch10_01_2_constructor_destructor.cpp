@@ -620,3 +620,14 @@ class sample{
 // ans: A constructor cannot have a return type.
 
 
+
+
+
+/* Example 9: What is a constructor? What is a destructor? When are they executed? 
+                
+                Ans:
+                    A "constructor" is the function that is called when an object is created. 
+                    A "destructor" is the function that is called when an object is destroyed.
+*/
+
+
