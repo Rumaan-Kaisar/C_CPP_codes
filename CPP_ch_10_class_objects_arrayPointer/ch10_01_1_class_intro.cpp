@@ -613,6 +613,25 @@ int main(){
 
 
 
+/* Example 12: What does the following program display? */
+#include <iostream>
+
+int main(){
+    int i = 10;
+    long l = 1000000;
+    double d = -0.0009;
+
+    std::cout << i << ' ' << l << ' ' << d;
+    std::cout << "\n";
+
+    return 0;
+}
+
+// 10 1000000 -0.0009
+
+
+
+
 // ----  understand qeue  ----
 // A 'Queue' has two pointers to track:
     // Head : tracks 'Dequeue'
