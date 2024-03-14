@@ -509,3 +509,33 @@ int main(){
 }
 
 
+
+
+/* Example 9: Create a class called "line" that draws a line on the screen. 
+                Store the line length in a 'private' integer variable called len. 
+                Have line's constructor take one parameter: the line length.
+                Have the constructor store the length and actually draw the line. 
+                If your system does not support graphics, display the line by using *.
+
+                Optional: Give line a destructor that erases the line. 
+*/
+#include <iostream>
+
+class line{
+        int len;
+    public:
+        line(int l);
+};
+
+line::line(int l){
+    int i;
+    len = l;
+    // draw the line
+    for (i =0; i<len; i++) std::cout << '*';
+}
+
+int main(){
+    line l(10);
+    return 0;
+}
+
