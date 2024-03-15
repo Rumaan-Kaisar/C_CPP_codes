@@ -91,32 +91,58 @@ int main(){
 */
 
 
-	Only objects of the same type can be used in an assignment statement. If the objects are not of the same type, a compile-time error is reported. It is not sufficient that the types just be physically similar-their type names must be the same. 
 
- 
-class myclass {
-int a, b;
-public :
-void set(int i, int j) {a = i; b = j; }
-void show() {cout << a << ' ' << b << "\n";}
+
+/* Example 2: It is not sufficient that the types of the objects just be physically similar - their 'type names' must be the same.
+
+                In following example, the class 'yourclass' is similar to 'myclass' 
+                    but uses a different class name: 'yourclass' and thus appears as a different type to the compiler
+                Hence a "COMPILE-TIME ERROR" is reported
+*/
+
+// This program has an error: object's "type name" must be the same
+#include <iostream>
+
+class myclass{
+        int a, b;
+    public:
+        void set(int i, int j) {a = i; b = j; }
+        void show() {std::cout << a << ' ' << b << "\n";}
 };
+
+// 2nd class, similar to 'myclass', but different type name 'yourclass'
 class yourclass {
-int a, b;
-public :
-void set(int i, int j) {a = i; b = j; }
-void show() {cout << a << ' ' << b << "\n";}
+        int a, b;
+    public:
+        void set(int i, int j) {a = i; b = j; }
+        void show() {std::cout << a << ' ' << b << "\n";}
 }; 
 
-int main(){	myclass obj_1 ; 
-yourclass obj_2;
-obj_1.set(10 , 4);
 
-// assign obj_1 to obj_2 
+int main(){	
+    myclass obj_1; 
+    yourclass obj_2;
 
-obj_2 = obj_1; 	// compile-time error will occur: not same type
-obj_1.show();	 obj_2.show();
-return 0;}
-In this case, even though myclass and yourclass are physically the same, because they have different type names, they are treated as differing types by the compiler.
-	All data members of one object are assigned to another when an assignment is performed. This includes compound data such as arrays. 
+    obj_1.set(10 , 4);  // assigning values to obj_1
 
- */
+    // assign obj_1 to obj_2 
+    obj_2 = obj_1; 	// compile-time error will occur: not same type
+    obj_1.show();	 
+    obj_2.show();
+
+    return 0;
+}
+
+
+/*  In this case, even though 'myclass' and 'yourclass' are physically the same, 
+        because they have different type names, they are treated as differing types by the compiler. 
+*/
+
+
+
+
+/* Example 3: All data members of one object are assigned to another when an assignment is performed. 
+                This includes compound data such as arrays.  
+*/
+
+
