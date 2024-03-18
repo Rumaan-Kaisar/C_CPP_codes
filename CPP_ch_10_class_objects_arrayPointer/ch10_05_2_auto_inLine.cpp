@@ -275,3 +275,70 @@ int main(){
 }
 
 
+
+
+// --------    Auto in-line for "DERIVED class"    --------
+
+/* Example 6: Given the following base class,
+
+                    class area_cl{
+                        public:
+                            double height;
+                            double width;
+                    };
+
+                Create two derived classes called 'rectangle' and 'isosceles' that inherit "area_cl". 
+                Have each class include a function called area() 
+                    that returns the area of a rectangle or isosceles triangle, as appropriate. 
+                
+                Add another derived class that inherits 'area_cl' from 'ch10_02_inheritance_intro.cpp', Example 4. 
+                    Call this class 'cylinder' and have it compute the surface area of a cylinder. 
+                    Hint: The surface area of a cylinder is: (2∗π∗R**2 + π∗D∗height).
+
+                Use parameterized constructors to initialize height and width
+                Use 'in-line functions' to implement member functions and constructors
+*/
+
+#include <iostream>
+
+class area_c1{
+    public:
+        double height;
+        double width;
+};
+
+// derived classes. Notice the in-line functions 
+class rectangle:public area_c1{
+    public:
+        rectangle(double h, double w){height = h; width = w;}
+        double area() { return width*height; }
+};
+
+class isosceles:public area_c1{
+    public:
+        isosceles(double h, double w){height = h; width = w;}
+        double area(){ return 0.5*width*height; }
+};
+
+class cylinder:public area_c1{
+    public:
+        cylinder(double h, double w){height = h; width = w;}
+        double area(){ return (2*3.1416*(width/2)*( width /2)) + (3.1416*width*height); }
+};
+
+// no implementation of member functions, we've already have in-lined functions
+
+
+int main() {
+    rectangle b(10.0, 5.0);
+    isosceles i(4.0, 6.0);
+    cylinder c(3.0, 4.0);
+
+    std::cout << " Rectangle : " << b.area() << "\n";
+    std::cout << " Triangle : " << i.area() << "\n";
+    std::cout << " Cylinder : " << c.area() << "\n";
+
+    return 0;
+}
+
+
