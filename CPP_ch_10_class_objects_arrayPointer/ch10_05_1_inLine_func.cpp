@@ -344,3 +344,17 @@ void f1(){
 
 
 
+
+/* Example 6: What is an in-line function? What are its advantages and disadvantages? 
+
+                An in-line function's code is expanded in line. 
+                    This means that the function is not actually called, 
+                        it's implemented by the compiler at the calling-pointg
+                    
+                    This avoids the overhead associated with the function 'call and return' mechanism.
+
+                Advamtage: It increases the execution speed. 
+                Disadvantage: It can increase the size of the program.
+*/
+
+
