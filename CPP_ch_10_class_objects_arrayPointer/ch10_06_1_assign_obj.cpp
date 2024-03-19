@@ -297,6 +297,142 @@ int main(){
 */
 
 
+// ChatGPT's solution:
+
+The problem with the given code is that it doesn't implement a proper assignment operator (operator=) for the strtype class. When you assign one strtype object to another (s2 = s1), the default assignment operator provided by the compiler is used, which performs a shallow copy. This means that it copies the pointer p from s1 to s2, resulting in both s1 and s2 pointing to the same dynamically allocated memory. When the destructor of s2 is called at the end of main(), it frees the memory pointed to by p. Then, when the destructor of s1 is called, it attempts to free the same memory again, resulting in a double-free error.
+
+To fix this issue, you need to implement a proper assignment operator for the strtype class that performs a deep copy, copying the contents of the dynamically allocated memory pointed to by p from the source object to the destination object. Here's how you can do it:
+
+
+// Assignment operator: Performs a deep copy of the source object to the destination object.
+strtype& strtype::operator=(const strtype& other) {
+    if (this != &other) { // Check for self-assignment
+        // Free the existing memory
+        free(p);
+        // Allocate new memory for the destination object
+        len = other.len;
+        p = (char *)malloc(len + 1);
+        if (!p) {
+            std::cout << "Allocation error\n";
+            exit(1);
+        }
+        // Copy the contents from the source object to the destination object
+        strcpy(p, other.p);
+    }
+    return *this;
+}
+
+With this assignment operator implemented, when you assign one strtype object to another (s2 = s1), a deep copy is performed, and each object has its own dynamically allocated memory. Therefore, when the destructors of s1 and s2 are called at the end of main(), each destructor frees its own memory without causing a double-free error.
+
+
+
+// Edit below [19-mar-24]
+The problem with the given code is that it doesn't implement a proper assignment operator (`operator=`) for the `strtype` class. When you assign one `strtype` object to another (`s2 = s1`), the default assignment operator provided by the compiler is used, which performs a shallow copy. This means that it copies the pointer `p` from `s1` to `s2`, resulting in both `s1` and `s2` pointing to the same dynamically allocated memory. When the destructor of `s2` is called at the end of `main()`, it frees the memory pointed to by `p`. Then, when the destructor of `s1` is called, it attempts to free the same memory again, resulting in a double-free error.
+
+To fix this issue, you need to implement a proper assignment operator for the `strtype` class that performs a deep copy, copying the contents of the dynamically allocated memory pointed to by `p` from the source object to the destination object. Here's how you can do it:
+
+```cpp
+// Assignment operator: Performs a deep copy of the source object to the destination object.
+strtype& strtype::operator=(const strtype& other) {
+    if (this != &other) { // Check for self-assignment
+        // Free the existing memory
+        free(p);
+        // Allocate new memory for the destination object
+        len = other.len;
+        p = (char *)malloc(len + 1);
+        if (!p) {
+            std::cout << "Allocation error\n";
+            exit(1);
+        }
+        // Copy the contents from the source object to the destination object
+        strcpy(p, other.p);
+    }
+    return *this;
+}
+```
+
+With this assignment operator implemented, when you assign one `strtype` object to another (`s2 = s1`), a deep copy is performed, and each object has its own dynamically allocated memory. Therefore, when the destructors of `s1` and `s2` are called at the end of `main()`, each destructor frees its own memory without causing a double-free error.
+
+
+// ------------    Corrected code    ------------
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+// class definition
+class strtype{
+    char *p;
+    int len;
+public:
+    strtype(char *ptr);  // constructor
+    ~strtype(); // destructor
+    void show();
+    strtype& operator=(const strtype& other); // assignment operator
+};
+
+// constructor: Initialize a string object with parameter.
+strtype::strtype(char * ptr){
+    len = strlen(ptr);      // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){     // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+    strcpy(p, ptr);     // copy string to p
+}
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
+}
+
+// Assignment operator: Performs a deep copy of the source object to the destination object.
+strtype& strtype::operator=(const strtype& other) {
+    if (this != &other) { // Check for self-assignment
+        // Free the existing memory
+        free(p);
+        // Allocate new memory for the destination object
+        len = other.len;
+        p = (char *)malloc(len + 1);
+        if (!p) {
+            std::cout << "Allocation error\n";
+            exit(1);
+        }
+        // Copy the contents from the source object to the destination object
+        strcpy(p, other.p);
+    }
+    return *this;
+}
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
+}
+
+int main(){
+    // initialize with string, as parameters
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    s1.show();
+    s2.show();
+    // assign s1 to s2 -- this generates an ERROR
+    s2 = s1;
+    s1.show();
+    s2.show();
+
+    return 0;
+}
+
+
+/* Notice how Declaration & Definition done:
+        strtype& operator=(const strtype& other)       // used for Declaration
+        strtype& strtype::operator=(const strtype& other) {}    // used for Definition
+*/
+
+
 // ------------    rev[19-mar-24]    ------------
 EXERCISES
 1. What is wrong with the following program?
@@ -334,3 +470,5 @@ one queue can be assigned to another.
 
 3. If the queue class from the preceding question dynamically allocates memory to hold the
 queue, why, in this situation, can one queue not be assigned to another?
+
+    
