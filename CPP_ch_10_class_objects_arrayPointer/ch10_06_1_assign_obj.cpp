@@ -154,8 +154,7 @@ int main(){
 // Declare a stack class for characters .
 class stack {
         char stck[ SIZE];   // holds the stack
-        int tos;            // index of top of stack
-    
+        int tos;            // index of top of stack    
     public:
         stack();            // constructor. Notice no 'void init();' required
         void push(char ch); // push character on stack
@@ -215,21 +214,18 @@ int main(){
 
 
 
+// ------------------    make sure you are "not destroying information" that may be needed LATER    ------------------
 
+/* Example 4: You must exercise some CARE when assigning one object to another. 
+                For example, here is the "strtype class" developed in 
+                "ch10_01_3_constructor_param.cpp, [Example 4]" parameterized constructor, along with a short main(). 
 
-
-
-// ------------    rev[18-mar-24]    ------------
-/* 3. You must exercise some care when assigning one object to another. 
-For example, here is the "strtype class" developed in "ch10_01_3_constructor_param.cpp, [Example 4]", along with a short main(). 
-See if you can find an error in this program. */
-
+                See if you can find an error in this program.
+*/
 
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-
-// #define SIZE 25      'no need'
 
 // class definition
 class strtype{
@@ -238,26 +234,20 @@ class strtype{
     public:
         strtype(char *ptr);  // constructor
         ~strtype(); // destructor
-        // void set(char *ptr);     'no need'
         void show();
 };
 
 // constructor: Initialize a string object with parameter.
 strtype::strtype(char * ptr){
-    len = strlen(ptr);  // get len of the string
+    len = strlen(ptr);      // get len of the string
     // allocate using string's length 'len' instead of fixed 'SIZE'
     p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
     // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
-    if(!p){ // Error massage
+    if(!p){     // Error massage
         std::cout << " Allocation error \n";
         exit(1) ;
     } 
-
-    strcpy(p, ptr); // copy string to p
-
-    // -- old code --
-    // *p = '\0';
-    // len = 0;
+    strcpy(p, ptr);     // copy string to p
 }
 
 // destructor: Free memory when destroying string object .
@@ -266,100 +256,48 @@ strtype::~strtype(){
     free(p);
 }
 
-
-/* -- old code --   'no need'
-void strtype::set(char *ptr){
-    if(strlen(p) >= SIZE){
-        std::cout << " String too big \n";
-        return;
-    }
-    strcpy(p, ptr);
-    len = strlen(p);
-} 
-*/
-
-
 void strtype::show(){
     std::cout << p << " - length : " << len ;
     std::cout << "\n";
 }
 
 
-// In this version of strtype, a string is given an initial value using the constructor function.
 int main(){
-    // strtype s1 , s2;
     // initialize with string, as parameters
     strtype s1(" This is a test ."), s2("I like C++. ");
 
-    // s1.set("This is a test.");   'no need'
-    // s2.set("I like C ++.");      'no need'
+    s1.show();
+    s2.show();
+    // assign s1 to s2 -- this generates an ERROR
+    s2 = s1;
     s1.show();
     s2.show();
 
     return 0;
 }
 
+/*  When s1 and s2 are created, both allocate memory to hold their respective strings. 
+
+    A pointer to each object's allocated memory is stored in p.
+        When a strtype object is destroyed, this memory is released.
+
+    However, when s1 is assigned to s2, s2's p now points to the "same memory" as s1's p.
+
+    Thus, when these objects are destroyed, the memory pointed to by s2's p is freed TWICE
+        and the memory originally pointed to by s2's p is not freed at all.
+
+    This sort of problem occurring in a real program will cause
+        the "DYNAMIC ALLOCATION system" to fail, 
+        and possibly even cause a program crash. 
 
 
+    NOTE:
+        When assigning one object to another, 
+        you must make sure you are "not destroying information" that may be needed LATER.
+*/
 
 
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype ();
-void show ();
-};
-strtype :: strtype ( char *ptr )
-{
-len = strlen ( ptr );
-p = ( char *) malloc (len +1);
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, ptr );
-}
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-free (p);
-}
-void strtype :: show ()
-{
-cout << p << " - length : " << len ;
-cout << "\n";
-}
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++. ");
-68A CLOSER LOOK AT CLASSES
-3.1. ASSIGNING OBJECTS
-s1. show ();
-s2. show ();
-// assign s1 to s2 - - this generates an error
-s2 = s1;
-s1. show ();
-s2. show ();
-return 0;
-}
-The trouble with this program is quite insidious. When s1 and s2 are created, both
-allocate memory to hold their respective strings. A pointer to each object’s allocated
-memory is stored in p. When a strtype object is destroyed, this memory is released.
-However, when s1 is assigned to s2, s2’s p now points to the same memory as s1’s p.
-Thus, when these objects are destroyed, the memory pointed to by s2’s p is freed twice
-and the memory originally pointed to by s2’s p is not freed at all.
-While benign in this context, this sort of problem occurring in a real program will cause
-the dynamic allocation system to fail, and possibly even cause a program crash. As you
-can see from the preceding example, when assigning one object to another, you must make
-sure you are not destroying information that may be needed later.
+// ------------    rev[19-mar-24]    ------------
 EXERCISES
 1. What is wrong with the following program?
 // This program has an error .
@@ -388,7 +326,11 @@ x = y;
 C++
 // ...
 }
+
+
 2. Using the queue class that you created for Chapter 2, Section 2.1, Exercise 1, show how
 one queue can be assigned to another.
+
+
 3. If the queue class from the preceding question dynamically allocates memory to hold the
 queue, why, in this situation, can one queue not be assigned to another?
