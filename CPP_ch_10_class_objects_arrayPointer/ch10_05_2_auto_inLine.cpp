@@ -342,3 +342,50 @@ int main() {
 }
 
 
+
+
+/* Example 7: Modify the following program so that all member functions are automatically in-lined: */
+#include <iostream>
+
+using namespace std;
+
+class myclass{
+        int i, j;
+    public:
+        myclass(int x, int y);
+        void show();
+};
+
+myclass::myclass(int x, int y){
+    i = x;
+    j = y;
+}
+
+void myclass::show(){
+    cout << i << " " << j << "\n";
+}
+
+int main(){
+    myclass count(2, 3);
+    count.show();
+    return 0;
+}
+
+
+// Modified  program using in-lined functions
+#include <iostream>
+
+class myclass{
+        int i, j;
+    public:
+        myclass(int x, int y){ i = x; j = y; }
+        void show(){ std::cout << i << " " << j; }
+};
+
+int main(){
+    myclass count(2, 3);
+    count.show();
+    return 0;
+}
+
+
