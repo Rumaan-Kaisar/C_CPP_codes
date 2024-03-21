@@ -420,40 +420,46 @@ int main(){
 */
 
 
-// ------------    rev[19-mar-24]    ------------
-EXERCISES
-1. What is wrong with the following program?
-// This program has an error .
-# include <iostream >
-using namespace std ;
-class cl1
-{
-int i, j;
-public :
-cl1 ( int a, int b) { i = a; j = b; }
+
+
+// ------------    rev[21-mar-24]    ------------
+/* Example 5: What is wrong with the following program? */
+// This program has an error.
+
+#include <iostream>
+
+class cl1{
+        int i, j;
+    public:
+        cl1(int a, int b) {i = a; j = b;}
+        // ...
+};
+
+class cl2{
+        int i, j;
+    public:
+        cl2(int a, int b) {i = a; j = b;}
 // ...
 };
-class cl2
-{
-int i, j;
-public :
-cl2 ( int a, int b) { i = a; j = b; }
-// ...
-};
-int main ()
-{
-cl1 x(10 , 20) ;
-cl2 y(0, 0);
-x = y;
-69TEACH YOURSELF
-C++
-// ...
+
+int main(){
+    cl1 x(10, 20);
+    cl2 y(0, 0);
+
+    // being physically similar won't work - their 'type names' must be the same.
+    x = y;  // ERR: 
+
+    // ...
 }
 
 
-2. Using the queue class that you created for Chapter 2, Section 2.1, Exercise 1, show how
-one queue can be assigned to another.
 
 
-3. If the queue class from the preceding question dynamically allocates memory to hold the
-queue, why, in this situation, can one queue not be assigned to another?
+/* Example 6: Using the queue class that you created for Chapter 2, Section 2.1, Exercise 1 
+                (constructor with no parameters), show how one queue can be assigned to another. */
+
+
+/* Example 7: If the queue class from the preceding question dynamically allocates memory to hold the
+                queue, why, in this situation, can one queue not be assigned to another? */
+
+
