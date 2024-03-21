@@ -298,13 +298,24 @@ int main(){
 
 
 // ChatGPT's solution:
+/*  The problem with the given code is that it doesn't implement a proper assignment operator ("operator=") for the 'strtype' class. 
 
-The problem with the given code is that it doesn't implement a proper assignment operator (operator=) for the strtype class. When you assign one strtype object to another (s2 = s1), the default assignment operator provided by the compiler is used, which performs a shallow copy. This means that it copies the pointer p from s1 to s2, resulting in both s1 and s2 pointing to the same dynamically allocated memory. When the destructor of s2 is called at the end of main(), it frees the memory pointed to by p. Then, when the destructor of s1 is called, it attempts to free the same memory again, resulting in a double-free error.
+    When you assign one 'strtype' object to another ('s2 = s1'), 
+        the default ASSIGNMENT operator provided by the COMPILER is used, which performs a shallow copy. 
+        
+    This means that it copies the pointer 'p' from 's1' to 's2', 
+        resulting in both 's1' and 's2' pointing to the "same dynamically allocated memory". 
+        
+    When the destructor of "s2" is called at the end of 'main()', it frees the memory pointed to by 'p'. 
+        Then, when the destructor of 's1' is called, it attempts to free the "same memory" again, resulting in a "double-free error".
 
-To fix this issue, you need to implement a proper assignment operator for the strtype class that performs a deep copy, copying the contents of the dynamically allocated memory pointed to by p from the source object to the destination object. Here's how you can do it:
+    To fix this issue, you need to implement a proper assignment operator for the 'strtype' class that performs a "deep copy", 
+        copying the contents of the dynamically allocated memory pointed to by 'p' from the SOURCE object to the DESTINATION object. 
+        Here's how you can do it:
+ */
 
-
-// Assignment operator: Performs a deep copy of the source object to the destination object.
+// Operator overloading 
+// Definition of Assignment operator: Performs a "DEEP COPY" of the source object to the destination object.
 strtype& strtype::operator=(const strtype& other) {
     if (this != &other) { // Check for self-assignment
         // Free the existing memory
@@ -322,37 +333,13 @@ strtype& strtype::operator=(const strtype& other) {
     return *this;
 }
 
-With this assignment operator implemented, when you assign one strtype object to another (s2 = s1), a deep copy is performed, and each object has its own dynamically allocated memory. Therefore, when the destructors of s1 and s2 are called at the end of main(), each destructor frees its own memory without causing a double-free error.
+/* 
+    With this assignment operator implemented, when you assign one `strtype` object to another (`s2 = s1`), 
+        a deep copy is performed, and each object has its 'own dynamically allocated memory'. 
 
-
-
-// Edit below [19-mar-24]
-The problem with the given code is that it doesn't implement a proper assignment operator (`operator=`) for the `strtype` class. When you assign one `strtype` object to another (`s2 = s1`), the default assignment operator provided by the compiler is used, which performs a shallow copy. This means that it copies the pointer `p` from `s1` to `s2`, resulting in both `s1` and `s2` pointing to the same dynamically allocated memory. When the destructor of `s2` is called at the end of `main()`, it frees the memory pointed to by `p`. Then, when the destructor of `s1` is called, it attempts to free the same memory again, resulting in a double-free error.
-
-To fix this issue, you need to implement a proper assignment operator for the `strtype` class that performs a deep copy, copying the contents of the dynamically allocated memory pointed to by `p` from the source object to the destination object. Here's how you can do it:
-
-```cpp
-// Assignment operator: Performs a deep copy of the source object to the destination object.
-strtype& strtype::operator=(const strtype& other) {
-    if (this != &other) { // Check for self-assignment
-        // Free the existing memory
-        free(p);
-        // Allocate new memory for the destination object
-        len = other.len;
-        p = (char *)malloc(len + 1);
-        if (!p) {
-            std::cout << "Allocation error\n";
-            exit(1);
-        }
-        // Copy the contents from the source object to the destination object
-        strcpy(p, other.p);
-    }
-    return *this;
-}
-```
-
-With this assignment operator implemented, when you assign one `strtype` object to another (`s2 = s1`), a deep copy is performed, and each object has its own dynamically allocated memory. Therefore, when the destructors of `s1` and `s2` are called at the end of `main()`, each destructor frees its own memory without causing a double-free error.
-
+    Therefore, when the destructors of `s1` and `s2` are called at the end of `main()`, 
+        each destructor frees its own memory without causing a double-free error.
+*/
 
 // ------------    Corrected code    ------------
 #include <iostream>
@@ -470,5 +457,3 @@ one queue can be assigned to another.
 
 3. If the queue class from the preceding question dynamically allocates memory to hold the
 queue, why, in this situation, can one queue not be assigned to another?
-
-    
