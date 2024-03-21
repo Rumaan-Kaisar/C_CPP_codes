@@ -598,3 +598,11 @@ int main(){
 
 
 
+
+/* Example 9: What is the difference between a class and a structure? 
+
+                In a class, members are private by default. 
+                In a structure, members are public by default.
+*/
+
+
