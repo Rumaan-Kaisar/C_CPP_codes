@@ -606,3 +606,14 @@ int main(){
 */
 
 
+
+
+/* Example 10: Is the following fragment valid? */
+union{
+    float f;
+    unsigned int bits;
+};
+
+// Ans: Yes. It defines an anonymous union.
+
+
