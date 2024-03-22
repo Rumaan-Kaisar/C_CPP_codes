@@ -439,7 +439,7 @@ class cl2{
         int i, j;
     public:
         cl2(int a, int b) {i = a; j = b;}
-// ...
+        // ...
 };
 
 int main(){
@@ -452,14 +452,95 @@ int main(){
     // ...
 }
 
+/*  Ans:
+    The assignment statement x = y is wrong because cl1 and cl2 are two different types of classes, 
+        and objects of differing class types cannot be assigned
+*/
 
 
 
-/* Example 6: Using the queue class that you created for Chapter 2, Section 2.1, Exercise 1 
-                (constructor with no parameters), show how one queue can be assigned to another. */
+
+/* Example 6: Using the queue class that you created for "ch10_01_2_constructor_destructor.cpp"
+                (constructor with no parameters), show how one queue can be assigned to another. 
+*/
+#include <iostream>
+
+#define SIZE 100
+
+class q_type{
+    int queue[SIZE];    // holds the queue
+    int head, tail ;    // indices of head and tail
+
+    public:
+        // void init();    // initialize. 'OLD code'
+        q_type();      // constructor: auto initialization
+        void q(int num);    // store
+        int deq();          // retrieve
+};
+
+// Constructor
+q_type::q_type(){
+        head = tail = 0;
+} 
+
+// Put value on the queue .
+void q_type::q(int num){
+    if((tail+1 == head )|| ( (tail+1== SIZE) && (!head) )){
+        // no dequeue case: "((tail+1== SIZE) && (!head))" checks 'head = 0' and 'tail = SIZE-1'
+        // dequeue case: because of "cycle around"  'tail' is one-less than 'head'
+            // thats why we used '(tail+1 == head )'
+        std::cout << " Queue is full \n";
+        return;
+    }
+
+    tail++;
+
+    if(tail == SIZE) tail = 0; // cycle around
+    queue[tail] = num ;
+}
+
+// Remove a value from a queue.
+int q_type::deq(){
+    if(head == tail){
+        std::cout << " Queue is empty \n";
+        return 0; // or some other error indicator
+    }
+
+    head++;
+
+    if(head == SIZE) head = 0; // cycle around
+    return queue[head];
+}
+
+
+// New code / Test
+int main(){
+    q_type q1, q2;
+    int i;
+
+    for(i=1; i<=10; i++) q1.q(i);
+
+    // assign one queue to another
+    q2 = q1;
+
+    // show that both have the same contents
+    for(i =1; i<=10; i++) std::cout << " Dequeue 1: " << q1.deq() << "\n";
+    for(i =1; i<=10; i++) std::cout << " Dequeue 2: " << q2.deq() << "\n";
+
+    return 0;
+}
+
+
 
 
 /* Example 7: If the queue class from the preceding question dynamically allocates memory to hold the
-                queue, why, in this situation, can one queue not be assigned to another? */
+                queue, why, in this situation, can one queue not be assigned to another? 
+
+                If memory to hold a queue is 'dynamically allocated', assigning one queue to another causes
+                    the dynamic memory allocated to the queue on the "left side" of the assignment statement to be LOST and
+                    the memory allocated to the queue on the "right side" to be FREED TWICE when the objects are destroyed. 
+
+                Either of these two conditions is an unacceptable ERROR.
+*/
 
 
