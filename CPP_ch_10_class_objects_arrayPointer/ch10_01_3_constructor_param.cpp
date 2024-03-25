@@ -539,3 +539,32 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 10: Previously we created a program that converted feet to inches. 
+                Now create a class that does the same thing. 
+                Have the class store the number of feet and its equivalent number of inches. 
+                Pass to the class's constructor the number of feet and 
+                    have the constructor display the number of inches.
+*/
+
+#include <iostream>
+
+class feetInch{
+        double feet, inches;
+    public:
+        feetInch(double f);
+};
+
+feetInch::feetInch(double f){
+    feet = f;
+    inches = feet*12;
+    std::cout << feet << " is " << inches << " inches .\n";
+}
+
+int main(){
+    feetInch a(12.0) , b(99.0);
+    return 0;
+}
+
