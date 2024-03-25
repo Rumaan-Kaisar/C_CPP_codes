@@ -389,3 +389,35 @@ int main(){
 }
 
 
+
+
+/* Example 8: Create a class called 'prompt'. Pass its constructor function a prompting string of your own choosing. 
+                Have the constructor display the string and then input an integer. 
+                Store this value in a private variable called 'count'. 
+
+                When an object of type prompt is destroyed, 
+                    ring the bell on the terminal as many times as the user entered. 
+*/
+
+#include <iostream>
+
+class prompt{
+        int count;
+    public:
+        prompt (char *s) { std::cout << s; std::cin >> count; }
+        ~prompt();
+};
+
+prompt::~prompt(){
+    int i, j;
+    for(i =0; i<count; i ++){
+        std::cout << '\a';
+        for(j =0; j<32000; j++); // delay
+    }
+}
+
+int main(){
+    prompt ob(" Enter a number : ");
+    return 0;
+}
+
