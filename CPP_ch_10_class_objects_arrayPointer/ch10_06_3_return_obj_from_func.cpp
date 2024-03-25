@@ -1,9 +1,14 @@
+/*  ----------------------    RETURN objects from function    ---------------------- 
+    RETURNING OBJECTS FROM FUNCTIONS: 
+    To return objects from a function,
+    [1]	First declare the function as returning a class type. 
+    [2]	Second, return an object of that type using the normal return statement.
+    ret_class_type function_name( any_type obj_1, any_type obj_2, . . . . );    
+*/
 
-	RETURNING OBJECTS FROM FUNCTIONS: To return objects from a function,
-[1]	First declare the function as returning a class type. 
-[2]	Second, return an object of that type using the normal return statement.
-ret_class_type function_name( any_type obj_1, any_type obj_2, . . . . );
-	Here is an example of a function that returns an object:
+
+
+Example: Here is an example of a function that returns an object:
 #include <iostream >
 #include <cstring >
 
