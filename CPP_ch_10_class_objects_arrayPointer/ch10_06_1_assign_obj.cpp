@@ -422,7 +422,6 @@ int main(){
 
 
 
-// ------------    rev[21-mar-24]    ------------
 /* Example 5: What is wrong with the following program? */
 // This program has an error.
 
@@ -472,7 +471,6 @@ class q_type{
     int head, tail ;    // indices of head and tail
 
     public:
-        // void init();    // initialize. 'OLD code'
         q_type();      // constructor: auto initialization
         void q(int num);    // store
         int deq();          // retrieve
@@ -492,9 +490,7 @@ void q_type::q(int num){
         std::cout << " Queue is full \n";
         return;
     }
-
     tail++;
-
     if(tail == SIZE) tail = 0; // cycle around
     queue[tail] = num ;
 }
@@ -505,9 +501,7 @@ int q_type::deq(){
         std::cout << " Queue is empty \n";
         return 0; // or some other error indicator
     }
-
     head++;
-
     if(head == SIZE) head = 0; // cycle around
     return queue[head];
 }
