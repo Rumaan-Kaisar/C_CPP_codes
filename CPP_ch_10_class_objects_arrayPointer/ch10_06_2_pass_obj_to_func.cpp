@@ -2,10 +2,14 @@
 /*  ----------------------    PASS objects to function    ---------------------- 
 
     PASSING objects to functions:
+        Objects can be passed to functions as arguments similar to other data-types
+        Declare the function's PARAMETER as a "class type" and 
+            then use an 'object' of that class as an 'argument' when calling the function. 
 
-    Objects can be passed to functions as arguments in just the same way that other types of data are passed. Simply declare the function's parameter as a class type and then use an object of that class as an argument when calling the function. 
-    type function_name( class_type obj_1, class_type obj_2, . . . . );
-    	As with other types of data, by default all objects are passed by value to a function.
+                type function_name( class_type obj_1, class_type obj_2, . . . . );
+
+
+        As with other types of data, by default all objects are "passed by value" to a function.
 */
 
 
