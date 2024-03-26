@@ -13,30 +13,39 @@
 */
 
 
+/* Example 1: In following program we pass object to a function 
+                Here sqr_it() takes an argument of type samp and returns the square of that object's i value.
+*/
 
+#include <iostream>
 
+class samp{ 
+        int i;
+    public:
+        samp(int n) { i = n; }
+        int get_i() { return i;} 
+};
 
-
-Example: in following program we pass object to a function
- 
- 
-#include <iostream >
-using namespace std;
-
-class samp{ int i;
-public :
-samp(int n) { i = n; }
-int get_i() { return i;} };
-/* Return square of obj.i. i.e. square of I of an object obj */ 
+// following function uses an object as an argument
+    // it returns square of "obj.i". 
 int sqr_it(samp obj){
-      return obj.get_i() * obj.get_i(); }
+      return obj.get_i() * obj.get_i(); 
+}
 
-int main(){	samp a(10) , b(2) ;
-cout << sqr_it(a) << "\n";
-cout << sqr_it(b) << "\n";
-return 0;}
+
+int main(){	
+    samp a(10), b(2);
+
+    // calling sqr_it(), notice the 'object' arguments
+    std::cout << sqr_it(a) << "\n";
+    std::cout << sqr_it(b) << "\n";
+
+    return 0;
+}
  
-Here sqr_it() takes an argument of type samp and returns the square of that object's i value.
+
+
+// ----  rev[26-mar-2024]  ----
 	The default method of parameter passing in C++, including objects, is by value. This means that a bitwise copy of the argument is made and it is this copy that is used by the function. Therefore, changes to the object inside the function do not affect the calling (original) object.  Objects , like other parameters , are passed by value . Thus changes to the parameter inside a function have no effect on the object used in the call . Example : 
 
  
