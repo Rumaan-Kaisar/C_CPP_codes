@@ -10,6 +10,25 @@
 
 
         As with other types of data, by default all objects are "passed by value" to a function.
+    
+
+
+    What is "passing by value"?
+        The default method of parameter passing in C++, including objects, is 'by value'. 
+        This means that a "BITWISE COPY" of the argument is made and it is this copy that is used by the function. 
+        Therefore, changes to the object inside the function "DO NOT AFFECT" the calling (original) object.  
+        
+    Objects , like other parameters , are passed by value . 
+        Thus changes to the parameter inside a function have "NO EFFECT" on the object used in the call.
+
+
+
+    ------------    How to modify / change the passed object using a function    ------------
+    passing the ADRESS of an object:
+        The address of an object can be passed to a function so that 
+            the argument used in the call can be modified by the function
+        i.e. changes to the object inside the function will affect the calling (original) object. 
+
 */
 
 
@@ -45,52 +64,84 @@ int main(){
  
 
 
-// ----  rev[26-mar-2024]  ----
-	The default method of parameter passing in C++, including objects, is by value. This means that a bitwise copy of the argument is made and it is this copy that is used by the function. Therefore, changes to the object inside the function do not affect the calling (original) object.  Objects , like other parameters , are passed by value . Thus changes to the parameter inside a function have no effect on the object used in the call . Example : 
 
- 
-#include <iostream >
-using namespace std;
+/* Example 2: Changes to the parameter inside a function have "NO EFFECT" on the object used in the call  */
+#include <iostream>
 
-class samp{ int i;
-public :
-samp(int n) { i = n; }
-void set_i(int n) { i=n; }
-int get_i() {return i;} };
+class samp{ 
+        int i;
+    public:
+        samp(int n) { i = n; }
+        void set_i(int n) { i=n; }
+        int get_i() {return i;} 
+};
 
-output : 	Copy of a has i value of 100
-But, a.i is unchanged in main: 10
+// Set obj.i to its square. This has no effect on the object used to call sqr_it()  
+void sqr_it(samp obj) {
+    obj.set_i(obj.get_i() * obj.get_i());   // setting, i.e. updating with squared value
+    std::cout << "Square = Copy of a has i value of :";
+    std::cout << obj.get_i() << std::endl;   // returns the current, updated value. Printing 
+}
 
-/* Set obj.i to its square . This has no effect on the
-object used to call sqr_it()  */
-void sqr_it( samp obj) {
-obj.set_i( obj.get_i() * obj.get_i() );
-cout << "Square = Copy of a has i value of :" ;
-cout << obj.get_i(); }
+int main(){	
+    samp a(10);
 
-int main(){	samp a(10); /*passed by value*/
-cout << "But , a.i is unchanged in main : ";
-cout << a.get_i(); 
-return 0;}
- 
-	The address of an object can be passed to a function so that the argument used in the call can be modified by the function. That is, changes to the object inside the function will affect the calling (original) object. Let's consider the class of the previous example. If we change the sqr_it() like below: it will modify the value of the object whose address is used in the call to sqr_it().
- 
- 
-/* Set obj.i to its square . This affects the
-   object used to call sqr_it()  */
-void sqr_it( samp *obj) {
-obj->set_i( obj->get_i() * obj->get_i() );
-cout << "Square = Copy of a has i value of :" ;
-cout << obj->get_i(); }
+    sqr_it(a);  // 'a' passed by value
+    std::cout << "But , a.i is unchanged in main : ";
+    std::cout << a.get_i(); 
 
-int main(){	samp a(10); /*passed by value*/
-cout <<"Now , a.i is changed in main : ";
-cout << a.get_i(); 
-return 0;}
+    return 0;
+}
 
-output : 	Copy of a has i value of 100
-Now, a.i is changed in main: 100
- 
+// output : 	
+// Copy of a has i value of 100
+// But, a.i is unchanged in main: 10
+
+
+
+
+/* Example 3: Pass the ADRESS of an object to modify / change the passed object using a function.
+                Let's consider the class of the previous example. 
+                If we change the DEFINITION of sqr_it() like below: 
+                    it will modify the value of the object whose address is used in the call to "sqr_it()".
+*/
+
+#include <iostream>
+
+class samp{ 
+        int i;
+    public:
+        samp(int n) { i = n; }
+        void set_i(int n) { i=n; }
+        int get_i() {return i;} 
+};
+
+// Passing object's adress. This affects the original object used to call sqr_it()
+// Notice how '->' is used to access the member-function set_i()
+void sqr_it(samp *obj) {
+    obj->set_i( obj->get_i() * obj->get_i() );
+    std::cout << "Square = Copy of a has i value of :" ;
+    std::cout << obj->get_i() << std::endl; 
+}
+
+int main(){	
+    samp a(10); 
+
+    sqr_it(&a);  // pass a's address of sqr_it()
+    std::cout <<"Now , a.i is changed in main : ";
+    std::cout << a.get_i(); 
+    
+    return 0;
+}
+
+// output : 	
+// Copy of a has i value of 100
+// Now, a.i is changed in main: 100
+
+
+
+// ----    rev[28-mar-24]    ----
+
 	These two example reflects the same thing that we've discussed in C's passing argument's address in function parameters ( recall  5.3 ).
 	When a copy of an object is created because it is used as an argument to a function, the constructor function is not called. However, when the copy is destroyed (by going out of scope when the function returns), the destructor function is called.
 	The reason for not calling the constructor function is that, the constructor function is generally used to initialize some aspect of an object, it must not be called when making a copy of an already existing object passed to a function. Doing so would alter the contents of the object. When passing an object to a function, you want the current state of the object, not its initial state.
