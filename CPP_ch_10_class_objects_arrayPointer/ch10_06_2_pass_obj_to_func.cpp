@@ -100,7 +100,7 @@ int main(){
 
 
 
-/* Example 3: Pass the ADRESS of an object to modify / change the passed object using a function.
+/* Example 3: Pass the ADDRESS of an object to modify / change the passed object using a function.
                 Let's consider the class of the previous example. 
                 If we change the DEFINITION of sqr_it() like below: 
                     it will modify the value of the object whose address is used in the call to "sqr_it()".
@@ -140,23 +140,82 @@ int main(){
 
 
 
-// ----    rev[28-mar-24]    ----
 
-	These two example reflects the same thing that we've discussed in C's passing argument's address in function parameters ( recall  5.3 ).
-	When a copy of an object is created because it is used as an argument to a function, the constructor function is not called. However, when the copy is destroyed (by going out of scope when the function returns), the destructor function is called.
-	The reason for not calling the constructor function is that, the constructor function is generally used to initialize some aspect of an object, it must not be called when making a copy of an already existing object passed to a function. Doing so would alter the contents of the object. When passing an object to a function, you want the current state of the object, not its initial state.
-	Destructor function is called because the object might perform some operation that must be undone when it goes out of scope.  For Example :
- 
-class samp { int i;
-public :
-   		  samp(int n) { i=n;   /* constructor */
-      cout << " Constructing \n"; }
-  		  ~samp() {           /* destructor */
-      cout << " Destructing \n"; }
-   		  int get_i() { return i; }   };
+/*  ------------    CONSTRUCTOR & DESTRUCTOR for object passed as function parameters    ------------
+
+    Above two example reflects the same thing that we've discussed in 
+        C's passing argument's address in function parameters ( recall  C_Ch5_3_1_func_param.c ).
+
+
+
+    CONSTRUCTOR function is NOT called:
+        When a "copy of an object" is created because it is used as an argument to a function, 
+            the constructor function is not called. 
+
+        Because the constructor is generally used to initialize the object, 
+        It must not be called when making a "copy of an already existing object" passed to a function. 
+        Doing so would "alter the contents" of the object. 
+
+        When passing an object to a function, 
+            you want the current state of the object, not its initial state.
+
+
+
+    DESTRUCTOR function is CALLED:
+        However, when the copy is destroyed (by going out of scope when the function returns), 
+        Destructor is called because the object might perform some 
+            operation that must be undone when it goes out of scope.
+
+*/
+
+
+
+
+/* Example 4: Destructor function is called because the object might perform some operation that must be undone when it goes out of scope.  For Example : */
+
+#include <iostream>
+
+class samp { 
+        int i;
+    public:
+        samp(int n){      // constructor
+            i=n;   
+            std::cout << " Constructing \n"; 
+        }
+        ~samp(){          // destructor
+            stad::cout << " Destructing \n"; 
+        }
+   		int get_i(){ return i; }
+};
+
+
+// ----  rev[29-mar-24]  ----
+
+
+// Passing object's adress. This affects the original object used to call sqr_it()
+// Notice how '->' is used to access the member-function set_i()
+void sqr_it(samp *obj) {
+    obj->set_i( obj->get_i() * obj->get_i() );
+    std::cout << "Square = Copy of a has i value of :" ;
+    std::cout << obj->get_i() << std::endl; 
+}
+
+int main(){	
+    samp a(10); 
+
+    sqr_it(&a);  // pass a's address of sqr_it()
+    std::cout <<"Now , a.i is changed in main : ";
+    std::cout << a.get_i(); 
+    
+    return 0;
+}
+
+
+
 /* Return square of obj.i.*/ 
 int sqr_it( samp obj){ 
     return obj.get_i() * obj.get_i(); }
+    
 int main() { 	samp a (10) ;
 cout << sqr_it (a) << "\n";
 return 0; }
@@ -165,6 +224,81 @@ return 0; }
 Destructing
 100
 Destructing
+
+/* 
 As you can see, only one call to the constructor function is made. This occurs when a is created. However, two calls to the destructor are made. One is for the copy created when a is passed to sqr_it(). The other is for a itself.
 	One important point :  when an object is passed to a function, a copy of that object is made. Further, when that function returns, the copy's destructor function is called. The fact that the destructor for the object that is the copy of the argument is executed when the function terminates can be a source of problems. For example, if the object used as the argument allocates dynamic memory and frees that memory when destroyed, its copy will free the same memory when its destructor is called. This will leave the original object damaged and effectively useless. This problem can be resolved in two ways : one, using reference. Two, using copy-constructor.
 
+
+
+As you can see, only one call to the constructor function is made. This occurs when a is
+created. However, two calls to the destructor are made. One is for the copy created when
+a is passed to sqr it(). The other is for a itself.
+The fact that the destructor for the object that is the copy of the argument is executed
+when the function terminates can be a source of problems. For example, if the object used
+as the argument allocates dynamic memory and frees that memory when destroyed, its
+copy will free the same memory when its destructor is called. This will leave the original
+object damaged and effectively useless. (See Exercise 2, just ahead in this section, for
+an example.) It is important to guard against this type of error and to make sure that
+the destructor function of the copy of an object used in an argument does not cause side
+effects that alter the original argument.
+As you might guess, one way around the problem of a parameter’s destructor function
+destroying data needed by the calling argument is to pass the address of the object and
+not the object itself. When an address is passed, no new object is created, and therefore,
+no destructor is called when the function returns. (As you will see in the next chapter,
+C++ provides a variation on this theme that offers a very elegant alternative.) However,
+an even better solution exists, which you can use after you have learned about a special
+type of constructor called a copy constructor. A copy constructor lets you define precisely
+how copies of objects are made. (Copy constructors are discussed in Chapter 5.)
+
+ */
+
+
+
+EXERCISES
+1. Using the stack example from Section 3.1, Example 2, add a function called showstack()
+that is passed an object of type stack. Have this function display the contents of a stack.
+2. As you know, when an object is passed to a function, a copy of that object is made.
+Further, when that function returns, the copy’s destructor function is called. Keeping
+this in mind, what is wrong with the following program?
+// This program contains an error .
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+class dyna
+{
+int *p;
+public :
+dyna ( int i);
+~ dyna () { free (p); cout << " freeing \n"; }
+int get () { return *p; }
+};
+dyna :: dyna ( int i)
+{
+p = ( int *) malloc ( sizeof (int));
+if (!p)
+{
+cout << " Allocation failure \n";
+exit (1) ;
+74A CLOSER LOOK AT CLASSES
+3.3. RETURNING OBJECTS FROM FUNCTIONS
+} *
+p = i;
+}
+// Return negative value of *ob.p
+int neg ( dyna ob)
+{
+return -ob. get ();
+}
+int main ()
+{
+dyna o( -10);
+cout << o. get () << "\n";
+cout << neg (o) << "\n";
+dyna o2 (20) ;
+cout << o2. get () << "\n";
+cout << neg (o2) << "\n";
+cout << o. get () << "\n";
+cout << neg (o) << "\n";
+return 0;
+}
