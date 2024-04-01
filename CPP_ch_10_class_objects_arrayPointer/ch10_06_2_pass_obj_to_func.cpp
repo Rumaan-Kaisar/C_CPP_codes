@@ -189,7 +189,7 @@ class samp {
             std::cout << " Constructing \n"; 
         }
         ~samp(){          // destructor
-            stad::cout << " Destructing \n"; 
+            std::cout << " Destructing \n"; 
         }
    		int get_i(){ return i; }
 };
@@ -211,8 +211,8 @@ int main(){
  
 /* Output : 	
         Constructing
-        Destructing
         100
+        Destructing
         Destructing 
 
 
