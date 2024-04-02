@@ -255,56 +255,132 @@ int main(){
 
 
 
-EXERCISES
-1. Using the stack example from Section 3.1, Example 2, add a function called showstack()
-that is passed an object of type stack. Have this function display the contents of a stack.
 
+// --------    rev[2-apr-24]    --------
 
+/* Example 5: Using the stack example from previous Section "ch10_06_1_assign_obj.cpp", Example 3, 
+                add a function called "showstack()" that is passed an object of type 'stack'.
+                Have this function display the contents of a stack. 
 
+                In the following version of the 'STACK example', only s1 has any characters actually pushed onto it.
+                However, because of the assignment, s2's "stck" array will also contain the characters a, b, and c.
+*/
+#include <iostream>
 
-2. As you know, when an object is passed to a function, a copy of that object is made.
-Further, when that function returns, the copy’s destructor function is called. Keeping
-this in mind, what is wrong with the following program?
-// This program contains an error .
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
-class dyna
-{
-int *p;
-public :
-dyna ( int i);
-~ dyna () { free (p); cout << " freeing \n"; }
-int get () { return *p; }
+#define SIZE 10
+
+// Declare a stack class for characters .
+class stack {
+        char stck[ SIZE];   // holds the stack
+        int tos;            // index of top of stack    
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
 };
-dyna :: dyna ( int i)
-{
-p = ( int *) malloc ( sizeof (int));
-if (!p)
-{
-cout << " Allocation failure \n";
-exit (1) ;
-74A CLOSER LOOK AT CLASSES
-3.3. RETURNING OBJECTS FROM FUNCTIONS
-} *
-p = i;
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack. No 'void init();' required
+    // implementing constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
 }
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+// -=-=-  main function  -=-=-
+int main(){
+    stack s1, s2; // create two stacks that are automatically initialized.
+    int i;
+
+    s1.push('a');
+    s1.push('b');
+    s1.push('c');
+
+    // clone s1
+    s2 = s1; // now s1 and s2 are identical
+
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
+
+    return 0;
+}
+
+
+
+
+
+/* Example 6: As you know, when an object is passed to a function, a copy of that object is made.
+                Further, when that function returns, the copy's destructor function is called. 
+                Keeping this in mind, what is wrong with the following program? 
+                Is it calling destructormultiple times?
+*/
+
+// This program contains an error. Double-Free ERR
+#include <iostream>
+#include <cstdlib>
+
+class dyna{
+        int *p;
+    public:
+        dyna(int i);
+        ~dyna(){ 
+            free(p); 
+            std::cout << " freeing \n"; 
+        }
+        int get(){ return *p; }
+};
+
+// constructor
+dyna::dyna(int i){
+    p = (int *)malloc(sizeof(int));
+    if(!p){
+        std::cout << " Allocation failure \n";
+        exit(1);
+    }
+    *p = i;
+}
+
 // Return negative value of *ob.p
-int neg ( dyna ob)
-{
-return -ob. get ();
+int neg(dyna ob){
+    return -ob.get();
 }
-int main ()
-{
-dyna o( -10);
-cout << o. get () << "\n";
-cout << neg (o) << "\n";
-dyna o2 (20) ;
-cout << o2. get () << "\n";
-cout << neg (o2) << "\n";
-cout << o. get () << "\n";
-cout << neg (o) << "\n";
-return 0;
+
+int main(){
+    dyna o(-10);
+    std::cout << o.get() << "\n";
+    std::cout << neg(o) << "\n";
+
+    dyna o2(20);
+    std::cout << o2.get() << "\n";
+    std::cout << neg(o2) << "\n";
+
+    std::cout << o.get() << "\n";
+    std::cout << neg(o) << "\n";
+
+    return 0;
 }
 
 
