@@ -256,14 +256,9 @@ int main(){
 
 
 
-// --------    rev[2-apr-24]    --------
-
 /* Example 5: Using the stack example from previous Section "ch10_06_1_assign_obj.cpp", Example 3, 
                 add a function called "showstack()" that is passed an object of type 'stack'.
-                Have this function display the contents of a stack. 
-
-                In the following version of the 'STACK example', only s1 has any characters actually pushed onto it.
-                However, because of the assignment, s2's "stck" array will also contain the characters a, b, and c.
+                Have this function display the contents of a stack.
 */
 #include <iostream>
 
@@ -272,7 +267,7 @@ int main(){
 // Declare a stack class for characters .
 class stack {
         char stck[ SIZE];   // holds the stack
-        int tos;            // index of top of stack    
+        int tos;            // index of top of stack
     public:
         stack();            // constructor. Notice no 'void init();' required
         void push(char ch); // push character on stack
@@ -282,8 +277,7 @@ class stack {
 
 // -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
 
-// stack(): Initialize the stack. No 'void init();' required
-    // implementing constructor function
+// stack(): Initialize the stack the constructor function
 stack::stack(){
     std::cout << " Constructing a stack \n";
     tos = 0;
@@ -310,24 +304,34 @@ char stack::pop(){
 }
 
 
+void showstack (stack o);   // Declaring "showstack()". It display the contents of a stack. 
+
 // -=-=-  main function  -=-=-
 int main(){
-    stack s1, s2; // create two stacks that are automatically initialized.
+    stack s1;
     int i;
 
     s1.push('a');
     s1.push('b');
     s1.push('c');
 
-    // clone s1
-    s2 = s1; // now s1 and s2 are identical
+    // show the stack using "showstack()"
+    showstack(s1);
 
+    // s1 in main is still existent
+    std::cout << "s1 stack still contains this : \n";
     for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
-    for(i =0; i<3; i ++) std::cout << " Pop s2: " << s2.pop() << "\n";
 
     return 0;
 }
 
+
+// Definition of "showstack()" to display the contents of a stack. 
+void showstack (stack o){
+    char c;
+    // when this statement ends, the stack-type object 'o' is empty
+    while (c=o. pop ()) std::cout << c << '\n';
+} 
 
 
 
@@ -335,7 +339,7 @@ int main(){
 /* Example 6: As you know, when an object is passed to a function, a copy of that object is made.
                 Further, when that function returns, the copy's destructor function is called. 
                 Keeping this in mind, what is wrong with the following program? 
-                Is it calling destructormultiple times?
+                Does it generates double free ERR? What is the consequences?
 */
 
 // This program contains an error. Double-Free ERR
@@ -382,5 +386,3 @@ int main(){
 
     return 0;
 }
-
-
