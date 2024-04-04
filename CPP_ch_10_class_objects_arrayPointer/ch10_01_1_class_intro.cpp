@@ -632,8 +632,8 @@ int main(){
 
 
 
-/* Example 13: Create a class called dice that contains one private integer variable. 
-                Create a function called roll() that uses the standard random number generator, rand(), 
+/* Example 13: Create a class called "dice" that contains one private integer variable. 
+                Create a function called "roll()" that uses the standard random number generator, rand(), 
                     to generate a number between 1 and 6. Then have roll() display that value. 
 */
 
