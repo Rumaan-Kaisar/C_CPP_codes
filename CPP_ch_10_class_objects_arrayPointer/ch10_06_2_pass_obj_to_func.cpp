@@ -386,3 +386,10 @@ int main(){
 
     return 0;
 }
+
+/*  Answer: The memory used to hold the integer pointed to by 'p' in object 'o' 
+            that is used to call neg() is "freed" when the "copy of o" is destroyed when neg() terminates, 
+            even though this memory is still needed by "o inside main()".
+*/
+
+
