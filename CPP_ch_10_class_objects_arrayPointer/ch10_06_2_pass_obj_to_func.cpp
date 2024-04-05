@@ -266,7 +266,7 @@ int main(){
 
 // Declare a stack class for characters .
 class stack {
-        char stck[ SIZE];   // holds the stack
+        char stck[SIZE];   // holds the stack
         int tos;            // index of top of stack
     public:
         stack();            // constructor. Notice no 'void init();' required
