@@ -47,13 +47,31 @@ int main(){
 
 
 
-// ----  rev  ----
+/*  --------    temporary object and destructor    --------
+    When an object is "returned by a function", a TEMPORARY OBJECT 
+        is automatically created which holds the return value (the object). 
+        After the value has been returned, this object is DESTROYED. 
+        
+    The destruction of this "temporary object" might cause unexpected SIDE EFFECTS in some situations 
+        (This problem can be resolved in two ways : 
+                using reference
+                using copy-constructor.)
 
-	One important point is : When an object is returned by a function, a temporary object is automatically created which holds the return value. It is this object that is actually returned by the function. After the value has been returned, this object is destroyed. The destruction of this temporary object might cause unexpected side effects in some situations (This problem can be resolved in two ways : one, using reference. Two, using copy-constructor.).
 
+    Be careful about "returning objects from functions" if those objects contain "DESTRUCTOR" 
+        because the "returned object goes out of scope" 
+        as soon as the value is returned to the calling routine.
 
-	You must be careful about returning objects from functions if those objects contain destructor functions because the returned object goes out of scope as soon as the value is returned to the calling routine. For example, if the object returned by the function has a destructor that frees dynamically allocated memory, that memory will be freed even though the object that is assigned the return value is still using it. Consider the program above with newly defined class, constructor and set() : 
+        For example, if the object returned by the function has a 
+            DESTRUCTOR that frees "dynamically allocated memory", that memory will be freed 
+            even though the object that is assigned the return value is still using it. 
+*/
 
+/* Example 1: memory will be freed even though the object that is 
+                assigned the return value is still using it
+*/
+
+// ----    rev[08-apr-24]    ----
 #include <cstdlib> 					/* we'll use allocation function malloc() and free() */
 
 class samp {char *s;
