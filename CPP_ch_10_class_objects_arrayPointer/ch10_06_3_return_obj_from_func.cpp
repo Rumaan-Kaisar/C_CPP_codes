@@ -67,31 +67,97 @@ int main(){
             even though the object that is assigned the return value is still using it. 
 */
 
-/* Example 1: memory will be freed even though the object that is 
-                assigned the return value is still using it
+
+
+
+/* Example 1: You must be careful about returning objects from functions if 
+                those objects contain destructor functions because the returned object goes out of scope 
+                as soon as the value is returned to the calling routine.
+ 
+                memory will be freed even though the object that is 
+                    assigned the return value is still using it
 */
 
-// ----    rev[08-apr-24]    ----
-#include <cstdlib> 					/* we'll use allocation function malloc() and free() */
+#include <iostream>
+#include <cstring>
+#include <cstdlib>  // we'll use allocation function malloc() and free()
 
-class samp {char *s;
-        public :
-            samp() {s="\0";} 						/* "\0" means null */
-            ~samp() {if(s) free(s); cout<< "freeing s \n";}  	/* freeing memory */
-            void show() { cout << s << "\n"; }
-            void set( char *str );  };
+class samp {
+        char *s;
+    public :
+        samp(){s="\0";}    // "\0" means null
+        ~samp(){
+            if(s) free(s);  // freeing memory
+            std::cout<< "Freeing s \n";
+        }     
+        void show(){ std::cout << s << "\n"; }
+        void set(char *str);  
+};
 
-            /* load a string */
-void samp :: set( char *str ){	s=(char *)malloc(strlen(str)+1); 	/* allocating memory */
-if(!s){cout<< "Allocation error \n"; exit(1);}
-strcpy(s, str); }
-
-In this case different error arise in different compiler. Here destructor called multiple times (In old complier three times actually). 
-1.	First, it is called when the local object str goes out of scope when input() returns. 
-2.	The second time ~samp() is called is when the temporary object returned by input() is destroyed. Remember, when an object is returned from a function, an invisible (to you) temporary object is automatically generated which holds the return value. In this case, this object is simply a copy of str, which is the return value of the function. Therefore, destructor is executed. 
-3.	Finally, the destructor for object ob, inside main(), is called when the program terminates.
-
-The trouble is that in this situation, the first time the destructor executes, the memory allocated to hold the string input by input() is freed. Thus, not only do the other two calls to samp's destructor try to free an already released piece of dynamic memory, but they destroy the dynamic allocation system in the process, as evidenced by the run-time message "Null pointer assignment." (Depending upon your compiler, you may or may not see this message). 
-	The key point to be understood from this example is that when an object is returned from a function, the temporary object used to effect the return will have its destructor function called. Thus, you should avoid returning objects in which this situation is harmful. (However, it is possible to use a copy constructor to manage this situation.)
+// load a string 
+void samp::set(char *str){
+    s = (char *)malloc(strlen(str)+1); 	// allocating memory 
+    if(!s){
+        std::cout<< "Allocation error \n"; 
+        exit(1);
+    }
+    strcpy(s, str);     // storing the passed string
+}
 
 
+// following function returns an object of type samp
+samp input(){
+    char s[80];
+    samp str;
+
+    std::cout << " Enter a string : ";
+    std::cin >> s;
+    str.set(s);
+    return str;
+}
+
+
+int main(){
+    samp ob;
+
+    // assign returned object to ob
+    ob = input();   // This causes an error !!!!
+    ob.show();
+    
+    return 0;
+}
+
+/*  ERROR: In this case different error arise in different compiler. 
+        Here destructor called multiple times (In old complier three times actually). 
+
+        1.	First, it is called when the local object str goes out of scope when input() returns. 
+
+        2.	The second time ~samp() is called is when the temporary object returned by input() is destroyed. 
+                Remember, when an object is returned from a function, an invisible (to you) 'temporary object' 
+                is automatically generated which holds the return value. 
+                In this case, this object is simply a "copy of str", which is the return value of the function. 
+                Therefore, destructor is executed. 
+
+        3.	Finally, the destructor for object ob, inside main(), is called when the program terminates.
+
+
+    The trouble is that in this situation:
+        the first time the destructor executes, the memory allocated to hold the string input by input() is freed. 
+        Thus, not only do the other two calls to samp's destructor try to free an already released piece of dynamic memory, 
+        but they destroy the dynamic allocation system in the process, 
+        as evidenced by the run-time message "Null pointer assignment." (Depending upon your compiler, you may or may not see this message). 
+
+    The key point is:
+        when an object is returned from a function, the temporary object used to effect the return will have its destructor function called. 
+        Thus, you should avoid returning objects in which this situation is harmful. 
+        
+        
+    Use copy constructor:
+        However, it is possible to use a copy constructor to manage this situation.
+
+*/
+
+
+// ----  rev[09-Apr-24]  ----
+
+// Exercise
