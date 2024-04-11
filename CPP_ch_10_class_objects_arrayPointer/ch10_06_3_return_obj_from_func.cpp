@@ -166,3 +166,50 @@ int main(){
 
 */
 
+
+
+
+/*  Example 3: To illustrate "exactly when" an object is CONSTRUCTED and DESTRUCTED when "returned from a function", 
+                create a class called who(). 
+                Have who's constructor take one character argument that will be used to "identify an object". 
+
+                Have the constructor display a message similar to this when constructing an object:
+                            "Constructing who #x"
+                    where 'x' is the "identifying character" associated with each object. 
+
+                When an object is destroyed, have a message similar to this displayed:
+                            "Destroying who #x"
+                    where, again, 'x' is the "identifying character". 
+                    
+                Finally, create a function called make_who() that returns a who object. 
+
+                Give each object a unique name. Note the output displayed by the program.
+*/
+
+#include <iostream>
+
+class who{
+        char name;
+    public:
+        who(char c){
+            name = c;
+            std::cout << " Constructing who #";
+            std::cout << name << '\n';
+        } 
+        ~who(){ std::cout << " Destructing who #" << name << "\n"; }
+};
+
+// following functiion returns object of type 'who'
+who make_who(){
+    who temp('B');
+    return temp;
+}
+
+int main(){
+    who ob('A');
+    make_who();
+    return 0;
+}
+
+
+
