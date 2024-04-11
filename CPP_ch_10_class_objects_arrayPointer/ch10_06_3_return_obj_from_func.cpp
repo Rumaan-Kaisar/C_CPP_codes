@@ -5,6 +5,15 @@
         Then return an object of that type using the normal return statement.
 
                 return_class_type function_name( any_type obj_1, any_type obj_2, . . . . );    
+
+
+    ----------------    Restrictions    ----------------
+    Restriction of returning objects:
+        Incorrect freeing of dynamically allocated memory by Destructor of the object
+
+        If an object opens a "disk file" when it is created and "closes that file when it is destroyed", 
+            if that object is returned from a function, 
+            the file will be closed when the temporary object is destroyed.
 */
 
 
@@ -70,7 +79,7 @@ int main(){
 
 
 
-/* Example 1: You must be careful about returning objects from functions if 
+/* Example 2: You must be careful about returning objects from functions if 
                 those objects contain destructor functions because the returned object goes out of scope 
                 as soon as the value is returned to the calling routine.
  
@@ -157,7 +166,3 @@ int main(){
 
 */
 
-
-// ----  rev[09-Apr-24]  ----
-
-// Exercise
