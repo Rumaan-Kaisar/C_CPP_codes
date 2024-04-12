@@ -1,26 +1,72 @@
-11.2 Intro to FRIEND functions
-There will be times when you want a function to have access to the private members of a class without that function actually being a member of that class. Towards this end, C++ supports friend functions. 
-	A friend is not a member of a class but still has access to its private elements.
-	Friend functions are useful for 
-[1]	Operator overloading 
-[2]	Creation of certain types of I/O functions
-[3]	Need one function to have access to the private members of two or more different classes.
-	Definition: A friend function is defined as a regular, nonmember function. However, inside the class declaration for which it will be a friend, its prototype is also included, prefaced by the keyword friend. To understand how this works, examine this short program:
 
- 
-class myclass { int n, d;
-public :
-myclass(int i, int j) {n = i; d = j; }
+/*  ------------    FRIEND functions    ------------
+    FRIEND functions:
+        FRIEND functions have access to the 'private members' of a class 
+            without that function actually being a member of that class. 
 
-/* declare a friend of myclass */ 
+        A friend is not a member of a class but still has access to its private elements.
 
-friend int isfactor( myclass ob);  };    
-/* Here is friend function definition. It returns true if d is a factor of n. Notice that the keyword friend is not used in the definition of isfactor() */
-int isfactor( myclass ob) { 
-if(!( ob.n % ob.d)) return 1;
-else return 0;} 
 
-In this example, myclass declares its constructor function and the friend isfactor() inside its class declaration. Because isfactor() is a friend of myclass, isfactor() has access to its private members. This is why, within isfactor(), it is possible to directly refer to ob.n and ob.d.
+    Friend functions are useful for 
+        [1]	Operator overloading 
+        [2]	Creation of certain types of "I/O functions"
+        [3]	Need one function to have access to the private members of two or more different classes.
+
+
+    friend keyword:
+        A friend function is defined as a "regular, nonmember function". 
+        However, inside the class declaration for which it will be a friend, 
+            its PROTOTYPE is also included, prefaced by the keyword "friend". 
+*/
+
+
+
+
+/* Example 1: Following demonstrates the FRIEND function 
+                Because isfactor() is a friend of myclass, isfactor() has access to its private members. 
+                This is why, within isfactor(), it is possible to directly refer to 'ob.n' and 'ob.d'.
+*/
+#include <iostream>
+class myclass{ 
+        int n, d;
+    public:
+        myclass(int i, int j){
+            n = i; 
+            d = j;
+        }
+
+    // declare a friend of myclass
+    friend int isfactor(myclass ob);
+};
+
+
+/* Here is friend function definition. 
+    It returns true if d is a factor of n. 
+    Notice that the keyword friend is not used in the definition of isfactor() 
+    Keyward 'friend' only used in "class definition"
+*/
+int isfactor(myclass ob) { 
+    if( !(ob.n % ob.d) ) return 1;
+    else return 0;
+} 
+
+int main(){
+    myclass ob1(10, 2), ob2(13, 3);
+
+    if(isfactor(ob1)) std::cout << "2 is a factor of 10 \n";
+    else std::cout << "2 is not a factor of 10 \n";
+
+    if(isfactor(ob2)) std::cout << "3 is a factor of 13 \n";
+    else std::cout << "3 is not a factor of 13 \n";
+
+    return 0;
+}
+
+
+
+
+// ----  rev[12-Apr-24]  ----
+
 	It is important to understand that a friend function is not a member of the class for which it is a friend. Thus, it is not possible to call a friend function by using an object name and a class member access operator (a dot "." or an arrow "->" ). Instead, friends are called just like regular functions. For example, given the preceding example, this statement is wrong: 
 
 ob1.isfactor(); 	/* wrong ; isfactor() is not a member function */
