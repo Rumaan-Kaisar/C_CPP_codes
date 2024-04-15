@@ -65,13 +65,42 @@ int main(){
 
 
 
-// ----  rev[12-Apr-24]  ----
+/*  ------------    Restrictions    ------------
 
-	It is important to understand that a friend function is not a member of the class for which it is a friend. Thus, it is not possible to call a friend function by using an object name and a class member access operator (a dot "." or an arrow "->" ). Instead, friends are called just like regular functions. For example, given the preceding example, this statement is wrong: 
+    Note that a friend function is not a member of the class for which it is a friend. 
+        Thus, it is not possible to call a friend function by using an object name and 
+            a class member access operator (a dot "." or an arrow "->" ). 
+        Friends are called just like "regular functions". For example, given the preceding example, this statement is wrong: 
+                ob1.isfactor(); // wrong ; isfactor() is not a member function
 
-ob1.isfactor(); 	/* wrong ; isfactor() is not a member function */
-	Although a friend function has knowledge of the private elements of the class for which it is a friend, it can only access them through an object of the class. That is, unlike a member function of myclass, which can refer to n or d directly, a friend can access these variables only in conjunction with an object that is declared within or passed to the friend function.
-	Inside the friend function, it is meaningless to refer to a private member without reference to a specific object. A friend function is not linked to any object. It simply is granted access to the private elements of a class. 
+
+
+    Although a friend function can access private elements of the class
+        it can only access them through an object of that class. 
+
+        i.e. unlike a member function of myclass, which can refer to n or d directly,
+            a friend can access these variables "only in conjunction with an object" 
+            that is declared within or passed to the friend function.
+
+        like "isfactor(ob1)" or "isfactor(ob2)"
+
+
+
+    Inside the friend function, it is meaningless to "refer to a private member without reference to a specific object". 
+
+                    int isfactor(myclass ob) { 
+                        if( !(ob.n % ob.d) ) return 1;
+                        else return 0;
+                    }
+
+        A friend function is not linked to any object. 
+        It simply is granted access to the private elements of a class. 
+
+
+
+
+----  rev[15-Apr-24]  ----
+
 	Because friends are not members of a class, they will typically be passed one or more objects of the class for which they are friends. This is the case with isfactor(). It is passed an object of myclass, called ob. However, because isfactor() is a friend of myclass, it can access ob's private elements. Without being friend it would not be able to access ob.d or ob.n since n and d are private members of myclass.
 	Remember: A friend function is not inherited. That is, when a base class includes a friend function, that friend function is not a friend of a derived class.
 	One other important point about friend functions is that a friend function can be friends with more than one class.
@@ -80,7 +109,10 @@ ob1.isfactor(); 	/* wrong ; isfactor() is not a member function */
 class truck ;
 	One common (and good) use of a friend function occurs when two different types of classes have some quantity in common that needs to be compared. 
 For example, consider the following program, which creates a class called car and a class called truck, each containing, as a private variable, the speed of the vehicle it represents:
- 
+
+
+*/
+
 class truck ; // a forward declaration
 class car { int passengers ; int speed ;
 public :
