@@ -24,6 +24,8 @@
         i.e. when a base class includes a friend function, that friend-function is not a friend of a derived (child) class.
 
     A friend function can be friends with "MORE than one CLASS"
+        A friend function occurs in two different types of classes when 
+            the classes have some quantity in common that needs to be compared. 
 
     A function can be a "MEMBER-function" of one class and a "FRIEND-function" of another.
 */
@@ -113,21 +115,32 @@ int main(){
         For example: isfactor() without being friend it would not be able to access ob.d or ob.n 
             since n and d are private members of myclass.
 
-
+*/
 
  
 
 
-Forward declaration:
-Sometimes, there needs to be some way to tell the compiler about a class name without actually declaring it. This is called a forward declaration. In C++, to tell the compiler that an identifier is the name of a class, use a line like this : class class_name; before the class name is first used. For example, in the following program, the forward declaration is:
-class truck ;
+/*  ----------------    Forward declaration    ----------------
+    Forward declaration:
+        It's a way to tell the compiler about a 'class name' without actually declaring it. 
+        Use following format before the class name is first used
 
+                class class_name;
 
-One common (and good) use of a friend function occurs when two different types of classes have some quantity in common that needs to be compared. 
-For example, consider the following program, which creates a class called car and a class called truck, each containing, as a private variable, the speed of the vehicle it represents:
-
-
+        For example, in the following program, the forward declaration is:
+                
+                class truck ; 
 */
+
+
+// ----  rev[16-Apr-2024]  ----
+
+/* Example 1: A friend function occurs in two different types of classes when the classes have some quantity in common that needs to be compared. 
+                following program creates a class called "car" and a class called "truck", 
+                each containing, as a private variable, the "speed" of the vehicle it represents:
+*/
+
+
 
 class truck ; // a forward declaration
 class car { int passengers ; int speed ;
