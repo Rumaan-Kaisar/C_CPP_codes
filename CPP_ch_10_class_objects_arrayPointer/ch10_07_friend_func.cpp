@@ -16,7 +16,16 @@
     friend keyword:
         A friend function is defined as a "regular, nonmember function". 
         However, inside the class declaration for which it will be a friend, 
-            its PROTOTYPE is also included, prefaced by the keyword "friend". 
+            its PROTOTYPE is also included, prefaced by the keyword "friend".
+
+
+    FRIEND is not INHERITED
+        Remember: A friend function is not inherited. 
+        i.e. when a base class includes a friend function, that friend-function is not a friend of a derived (child) class.
+
+    A friend function can be friends with "MORE than one CLASS"
+
+    A function can be a "MEMBER-function" of one class and a "FRIEND-function" of another.
 */
 
 
@@ -98,16 +107,23 @@ int main(){
 
 
 
+    Because friends are not members of a class, 
+        they will typically be passed one or more objects of the class for which they are friends.
 
-----  rev[15-Apr-24]  ----
+        For example: isfactor() without being friend it would not be able to access ob.d or ob.n 
+            since n and d are private members of myclass.
 
-	Because friends are not members of a class, they will typically be passed one or more objects of the class for which they are friends. This is the case with isfactor(). It is passed an object of myclass, called ob. However, because isfactor() is a friend of myclass, it can access ob's private elements. Without being friend it would not be able to access ob.d or ob.n since n and d are private members of myclass.
-	Remember: A friend function is not inherited. That is, when a base class includes a friend function, that friend function is not a friend of a derived class.
-	One other important point about friend functions is that a friend function can be friends with more than one class.
-	A function can be a member of one class and a friend of another. 
-	Forward declaration: Sometimes, there needs to be some way to tell the compiler about a class name without actually declaring it. This is called a forward declaration. In C++, to tell the compiler that an identifier is the name of a class, use a line like this : class class_name; before the class name is first used. For example, in the following program, the forward declaration is:
+
+
+ 
+
+
+Forward declaration:
+Sometimes, there needs to be some way to tell the compiler about a class name without actually declaring it. This is called a forward declaration. In C++, to tell the compiler that an identifier is the name of a class, use a line like this : class class_name; before the class name is first used. For example, in the following program, the forward declaration is:
 class truck ;
-	One common (and good) use of a friend function occurs when two different types of classes have some quantity in common that needs to be compared. 
+
+
+One common (and good) use of a friend function occurs when two different types of classes have some quantity in common that needs to be compared. 
 For example, consider the following program, which creates a class called car and a class called truck, each containing, as a private variable, the speed of the vehicle it represents:
 
 
