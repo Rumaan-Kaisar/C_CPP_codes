@@ -127,58 +127,85 @@ int main(){
 
                 class class_name;
 
+        Forward declaration also called "forward reference"
+
         For example, in the following program, the forward declaration is:
-                
                 class truck ; 
+            Because sp_greater() takes parameters of both the "car" and the "truck" classes, 
+            it is logically impossible to declare both before including sp_greater() in either.
 */
 
 
-// ----  rev[16-Apr-2024]  ----
 
-/* Example 1: A friend function occurs in two different types of classes when the classes have some quantity in common that needs to be compared. 
+
+/* Example 2 : A friend function occurs in two different types of classes when the classes have some quantity in common that needs to be compared. 
                 following program creates a class called "car" and a class called "truck", 
-                each containing, as a private variable, the "speed" of the vehicle it represents:
+                each containing, as a private variable, the "speed" of the vehicle it represents.
+
+                In this case we need forward declaration (also called forward reference). 
+                    Because sp_greater() takes parameters of both the "car" and the "truck" classes, 
+                    it is logically impossible to declare both before including sp_greater() in either.  
+                    
+                Now "truck" can be used in the friend declaration of sp_greater() without generating a compile-time error.
 */
-
-
+#include <iostream>
 
 class truck ; // a forward declaration
-class car { int passengers ; int speed ;
-public :
-car (int p, int s) { 
-passengers = p; speed = s; }
-friend int sp_greater (car c, truck t); 
+
+class car { 
+        int passengers;
+        int speed;
+    public:
+        car(int p, int s){ passengers = p; speed = s; }
+        friend int sp_greater(car c, truck t); 
+        // this friend function uses 'car' and 'truck' type. That's why forward declaration needed.
 };
 
-class truck { int weight ; int speed ;
-public :
-truck (int w, int s) { 
-weight = w; speed = s; }
-friend int sp_greater (car c, truck t);
+class truck { 
+        int weight;
+        int speed;
+    public:
+        truck(int w, int s) { weight = w; speed = s; }
+        friend int sp_greater(car c, truck t);
 };
 
-int sp_greater(car c, truck t){
-   		return (c.speed - t.speed);  }
+/*
+    Return positive if car speed faster than truck.
+    Return 0 if speeds are the same.
+    Return negative if truck speed faster than car.
+*/
+int sp_greater(car c, truck t){ 
+    return (c.speed - t.speed); 
+}
 
-int main(){ int t;
-     car c1(6, 55) , c2(2, 120) ;
-     truck t1(10000 ,55) ,t2(20000 ,72);
 
-cout << " Comparing c1 and t1 :\n";
-t = sp_greater(c1 , t1);
-if(t <0) cout << " Truck is faster .\n";
-else if(t==0) cout << "Speed is the same .\n";
-else cout << "Car is faster .\n";
+int main(){ 
+    int t;
+    car c1(6, 55) , c2(2, 120);
+    truck t1(10000 ,55), t2(20000 ,72);
 
-cout << " Comparing c2 and t2 :\n";
-t = sp_greater(c2 , t2);
-if(t <0) cout << " Truck is faster .\n";
-else if(t==0) cout << "Speed is the same .\n";
-else cout << "Car is faster .\n";
-return 0;}
- 
-This program contains the function sp_greater(), which is a friend function of both the car and truck classes. This function returns positive if the car object is going faster than the truck object, 0 if their speeds are the same, and negative if the truck is going faster.
-In this case we need forward declaration (also called forward reference). Because sp_greater() takes parameters of both the car and the truck classes, it is logically impossible to declare both before including sp_greater() in either.  Now truck can be used in the friend declaration of sp_greater() without generating a compile-time error.
+    std::cout << " Comparing c1 and t1 :\n";
+    t = sp_greater(c1 , t1);
+    if(t<0) std::cout << " Truck is faster .\n";
+    else if(t==0) std::cout << "Speed is the same .\n";
+    else std::cout << "Car is faster .\n";
+
+    std::cout << " Comparing c2 and t2 :\n";
+    t = sp_greater(c2 , t2);
+    if(t<0) std::cout << " Truck is faster .\n";
+    else if(t==0) std::cout << "Speed is the same .\n";
+    else std::cout << "Car is faster .\n";
+
+    return 0;
+}
+
+
+
+
+// ----  rev[18-Apr-2024]  ----
+
+
+
 	Use of scope resolution operator with friend: We have to use the scope resolution operator to declare a friend function to a class which is actually a member-function of another class.  For example, here is the preceding example rewritten so that sp_greater is a member of car and a friend of truck:
 LES
  
