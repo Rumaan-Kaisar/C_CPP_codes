@@ -202,31 +202,149 @@ int main(){
 
 
 
-// ----  rev[18-Apr-2024]  ----
+
+/*  ----------------    scope resolution operator '::' with friend    ----------------
+    Use of scope resolution operator with friend:
+        To make a friend from other class
+        We have to use the scope resolution operator '::' to declare 
+            a "friend function" to a class which is actually a "member-function" of another class.  
+        
+    For example, following is the preceding example rewritten so that 
+        sp_greater is a "member of car" and a "friend of truck":
+*/
 
 
 
-	Use of scope resolution operator with friend: We have to use the scope resolution operator to declare a friend function to a class which is actually a member-function of another class.  For example, here is the preceding example rewritten so that sp_greater is a member of car and a friend of truck:
-LES
- 
+// ----  rev[19-Apr-2024]  ----
+
+/* Example 3: (Scope resolution operator '::' with friend)
+                Following is the preceding example rewritten so that 
+                sp_greater is a "member of car" and a "friend of truck": */
+
+#include <iostream>
+
 class truck ; // a forward declaration
-    class car { int passengers ; int speed ;
-public :
-car (int p, int s) { 
-passengers = p; speed = s; }
-int sp_greater (truck t); };
 
-class truck { int weight ; int speed ;
-public :
-truck (int w, int s) { 
-weight = w; speed = s; }
-/* note new use of the scope resolution operator */ 
-friend int car :: sp_greater( truck t); };
- 
+class car { 
+        int passengers;
+        int speed;
+    public:
+        car(int p, int s){ passengers = p; speed = s; }
+        int sp_greater(truck t); 
+        // this member function of 'car' is also a friend-function of 'truck' type. 
+        // That's why forward declaration needed.
+};
 
-int car :: sp_greater(truck t){ return (speed - t.speed);  }
-/*Since sp_greater() is member of car , only a truck object must be passed to it. */
- 
+class truck { 
+        int weight;
+        int speed;
+    public:
+        truck(int w, int s) { weight = w; speed = s; }
+        // notice the scope resolution operator '::' to make a friend of other clsass's member
+        friend int car :: sp_greater( truck t);
+        // friend int sp_greater(truck t); Need to apply '::'
+};
+
+/*
+    Return positive if car speed faster than truck.
+    Return 0 if speeds are the same.
+    Return negative if truck speed faster than car.
+*/
+int car :: sp_greater(truck t){ 
+    return (speed - t.speed); // notice the direct access of car's "speed"
+}
+
+
+int main(){ 
+    int t;
+    car c1(6, 55) , c2(2, 120);
+    truck t1(10000 ,55), t2(20000 ,72);
+
+    std::cout << " Comparing c1 and t1 :\n";
+    t = sp_greater(c1 , t1);
+    if(t<0) std::cout << " Truck is faster .\n";
+    else if(t==0) std::cout << "Speed is the same .\n";
+    else std::cout << "Car is faster .\n";
+
+    std::cout << " Comparing c2 and t2 :\n";
+    t = sp_greater(c2 , t2);
+    if(t<0) std::cout << " Truck is faster .\n";
+    else if(t==0) std::cout << "Speed is the same .\n";
+    else std::cout << "Car is faster .\n";
+
+    return 0;
+}
+
+
+
+2. A function can be a member of one class and a friend of another. For example, here is
+the preceding example rewritten so that sp greater is a member of car and a friend of
+truck:
+# include <iostream >
+using namespace std ;
+class truck ; // a forward declaration
+class car
+{
+int passengers ;
+int speed ;
+public :
+car ( int p, int s) { passengers = p; speed = s; }
+int sp_greater ( truck t);
+};
+class truck
+{
+int weight ;
+int speed ;
+public :
+truck ( int w, int s) { weight = w; speed = s; }
+// note new use of the scope resolution operator
+friend int car :: sp_greater ( truck t);
+};
+/*
+Return positive if car speed faster than truck .
+Return 0 if speeds are the same .
+Return negative if truck speed faster than car .
+*/
+int car :: sp_greater ( truck t)
+{
+/*
+Since sp_greater () is member of car , only a
+truck object must be passed to it.
+*/
+return speed - t. speed ;
+82A CLOSER LOOK AT CLASSES
+3.4. AN INTRODUCTION TO FRIEND FUNCTIONS
+}
+int main ()
+{
+int t;
+car c1 (6, 55) , c2 (2, 120) ;
+truck t1 (10000 , 55) , t2 (20000 , 72);
+cout << " Comparing c1 and t1 :\n";
+t = c1. sp_greater (t1); // evoke as member function of car
+if(t <0)
+cout << " Truck is faster .\n";
+else if(t ==0)
+cout << " Car and truck speed is the same .\n";
+else
+cout << " Car is faster .\n";
+cout << " Comparing c2 and t2 :\n";
+t = c2. sp_greater (t2); // evoke as member function of car
+if(t <0)
+cout << " Truck is faster .\n";
+else if(t ==0)
+cout << " Car and truck speed is the same .\n";
+else
+cout << " Car is faster .\n";
+return 0;
+}
+
+
+
+
+
+
+
 	Notice the new use of the scope resolution operator as it occurs in the friend declaration within the truck class declaration. In this case, it is used to tell the compiler that the function sp_greater() is a member of the car class.
 	However a slight change appear inside main() which need to compute t ( because sp_greater is a member of car )
 cout << "Comparing c1 and t1 :\n";	t = c1.sp_greater(t1); /* evoke as member function of car */ 
