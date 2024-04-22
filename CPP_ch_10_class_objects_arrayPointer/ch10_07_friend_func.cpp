@@ -301,3 +301,37 @@ int main(){
 */
 
 
+
+
+// ----  rev[22-Apr-24]  ----
+
+
+/* Example 4: Imagine a situation in which two classes, called 'pr1' and 'pr2', shown here, "share one printer".
+                Further, imagine that 
+                    other parts of your program need to know when the printer "is in use by an object" of either of these two classes. 
+
+                Create a function called inuse() that returns true when the printer is being used by either and false otherwise. 
+
+                Make this function a friend of both pr1 and pr2.
+*/
+
+class pr1 {
+        int printing;
+        // ...
+    public:
+        pr1() { printing = 0; }
+        void set_print(int status) { printing = status ; }
+        // ...
+};
+
+class pr2 {
+        int printing;
+        // ...
+    public:
+        void set_print(int status) { printing = status ; }
+        // ...
+};
+
+
+
+
