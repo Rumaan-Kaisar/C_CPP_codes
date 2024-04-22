@@ -1,349 +1,5 @@
 
-
-
-// SKILLS CHECK
-
-
-
-// -=-=-=-=-    Mastery Skills Check    -=-=-=-=-
-
-/* Example 1: What is a constructor? What is a destructor? When are they executed? 
-                
-                Ans:
-                    A "constructor" is the function that is called when an object is created. 
-                    A "destructor" is the function that is called when an object is destroyed.
-*/
-
-
-
-
-/* Example 2: Create a class called "line" that draws a line on the screen. 
-                Store the line length in a 'private' integer variable called len. 
-                Have line's constructor take one parameter: the line length.
-                Have the constructor store the length and actually draw the line. 
-                If your system does not support graphics, display the line by using *.
-
-                Optional: Give line a destructor that erases the line. 
-*/
-#include <iostream>
-
-class line{
-        int len;
-    public:
-        line(int l);
-};
-
-line::line(int l){
-    int i;
-    len = l;
-    // draw the line
-    for (i =0; i<len; i++) std::cout << '*';
-}
-
-int main(){
-    line l(10);
-    return 0;
-}
-
-
-
-
-/* Example 3: What does the following program display? */
-#include <iostream>
-
-int main(){
-    int i = 10;
-    long l = 1000000;
-    double d = -0.0009;
-
-    std::cout << i << ' ' << l << ' ' << d;
-    std::cout << "\n";
-
-    return 0;
-}
-
-// 10 1000000 -0.0009
-
-
-
-
-/* OLD Example 4: Given the following base class,
-
-                    class area_cl{
-                        public:
-                            double height;
-                            double width;
-                    };
-
-                Create two derived classes called 'rectangle' and 'isosceles' that inherit "area_cl". 
-                Have each class include a function called area() 
-                    that returns the area of a rectangle or isosceles triangle, as appropriate. 
-                
-                Add another derived class that inherits 'area_cl' from 'ch10_02_inheritance_intro.cpp', Example 4. 
-                    Call this class 'cylinder' and have it compute the surface area of a cylinder. 
-                    Hint: The surface area of a cylinder is: (2∗π∗R**2 + π∗D∗height).
-
-                Use parameterized constructors to initialize height and width
-                Use 'in-line functions' to implement member functions and constructors
-*/
-
-#include <iostream>
-
-class area_c1{
-    public:
-        double height;
-        double width;
-};
-
-// derived classes. Notice the in-line functions 
-class rectangle:public area_c1{
-    public:
-        rectangle(double h, double w){height = h; width = w;}
-        double area() { return width*height; }
-};
-
-class isosceles:public area_c1{
-    public:
-        isosceles(double h, double w){height = h; width = w;}
-        double area(){ return 0.5*width*height; }
-};
-
-class cylinder:public area_c1{
-    public:
-        cylinder(double h, double w){height = h; width = w;}
-        double area(){ return (2*3.1416*(width/2)*( width /2)) + (3.1416*width*height); }
-};
-
-// no implementation of member functions, we've already have in-lined functions
-
-
-int main() {
-    rectangle b(10.0, 5.0);
-    isosceles i(4.0, 6.0);
-    cylinder c(3.0, 4.0);
-
-    std::cout << " Rectangle : " << b.area() << "\n";
-    std::cout << " Triangle : " << i.area() << "\n";
-    std::cout << " Cylinder : " << c.area() << "\n";
-
-    return 0;
-}
-
-
-
-
-
-
-
-/* Example 5: What is an in-line function? What are its advantages and disadvantages? 
-
-                An in-line function's code is expanded in line. 
-                    This means that the function is not actually called, 
-                        it's implemented by the compiler at the calling-pointg
-                    
-                    This avoids the overhead associated with the function 'call and return' mechanism.
-
-                Advamtage: It increases the execution speed. 
-                Disadvantage: It can increase the size of the program.
-*/
-
-
-
-
-
-
-
-/* Example 6: Modify the following program so that all member functions are automatically in-lined: */
-#include <iostream>
-
-using namespace std;
-
-class myclass{
-        int i, j;
-    public:
-        myclass(int x, int y);
-        void show();
-};
-
-myclass::myclass(int x, int y){
-    i = x;
-    j = y;
-}
-
-void myclass::show(){
-    cout << i << " " << j << "\n";
-}
-
-int main(){
-    myclass count(2, 3);
-    count.show();
-    return 0;
-}
-
-
-// Modified  program using in-lined functions
-#include <iostream>
-
-class myclass{
-        int i, j;
-    public:
-        myclass(int x, int y){ i = x; j = y; }
-        void show(){ std::cout << i << " " << j; }
-};
-
-int main(){
-    myclass count(2, 3);
-    count.show();
-    return 0;
-}
-
-
-
-
-/* Example 7: What is the difference between a class and a structure? 
-
-                In a class, members are private by default. 
-                In a structure, members are public by default.
-*/
-
-
-
-
-
-
-/* Example 8: Is the following fragment valid? */
-union{
-    float f;
-    unsigned int bits;
-};
-
-// Ans: Yes. It defines an anonymous union.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -=-=-=-=-    Cumulative Skills Check    -=-=-=-=-
-
-
-/* Example 1: Create a class called 'prompt'. Pass its constructor function a prompting string of your own choosing. 
-                Have the constructor display the string and then input an integer. 
-                Store this value in a private variable called 'count'. 
-
-                When an object of type prompt is destroyed, 
-                    ring the bell on the terminal as many times as the user entered. 
-*/
-
-#include <iostream>
-
-class prompt{
-        int count;
-    public:
-        prompt (char *s) { std::cout << s; std::cin >> count; }
-        ~prompt();
-};
-
-prompt::~prompt(){
-    int i, j;
-    for(i =0; i<count; i ++){
-        std::cout << '\a';
-        for(j =0; j<32000; j++); // delay
-    }
-}
-
-int main(){
-    prompt ob(" Enter a number : ");
-    return 0;
-}
-
-
-
-
-/* Example 2: Previously we created a program that converted feet to inches. 
-                Now create a class that does the same thing. 
-                Have the class store the number of feet and its equivalent number of inches. 
-                Pass to the class's constructor the number of feet and 
-                    have the constructor display the number of inches.
-*/
-
-#include <iostream>
-
-class feetInch{
-        double feet, inches;
-    public:
-        feetInch(double f);
-};
-
-feetInch::feetInch(double f){
-    feet = f;
-    inches = feet*12;
-    std::cout << feet << " is " << inches << " inches .\n";
-}
-
-int main(){
-    feetInch a(12.0) , b(99.0);
-    return 0;
-}
-
-
-
-
-
-
-/* Example 3: Create a class called dice that contains one private integer variable. 
-                Create a function called roll() that uses the standard random number generator, rand(), 
-                    to generate a number between 1 and 6. Then have roll() display that value. 
-*/
-
-#include <iostream>
-#include <cstdlib>
-
-class dice {
-        int val;
-    public:
-        void roll();
-};
-
-void dice::roll(){
-    val = (rand() % 6) + 1;     // generate 1 through 6
-    std::cout << val << "\n";
-}
-
-int main(){
-    dice one, two;
-
-    one.roll();
-    two.roll();
-    one.roll();
-    two.roll();
-    one.roll();
-    two.roll();
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
+// --------    rev[04-Apr-24]    --------
 
 // -=-=-=-=-    Review Skills Check    -=-=-=-=-
 
@@ -443,4 +99,146 @@ class sample {
 sample ob (100 , 'X');
 
 
+
+
+
+// 22-Apr-2024
+// ------------    Cumulative/Masery/Review skill check    ------------
+
+
+
+// -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
+Before proceeding, you should be able to answer the following questions and perform the exercises.
+1. What single prerequisite must be met in order for one object to be assigned to another?
+2. Given this class fragment,
+class samp
+{
+double *p;
+public :
+samp ( double d)
+{
+p = ( double *) malloc ( sizeof ( double ));
+if (!p)
+exit (1) ; // allocation error
+*p = d;
+} ~
+samp () { free (p); }
+// ..
+};
+// ...
+samp ob1 (123.09) , ob2 (0.0) ;
+// ...
+ob2 = ob1 ;
+84A CLOSER LOOK AT CLASSES
+SKILLS CHECK
+what problem is caused by the assignment of ob1 to ob2?
+3. Given this class,
+class planet
+{
+int moons ;
+double dist_from_sun ; // in miles
+double diameter ;
+double mass ;
+public :
+// ....
+double get_miles () { return dist_from_sun ; }
+};
+create a function called light() that takes as an argument an object of type planet
+and returns the number of seconds that it takes light from the sun to reach the planet.
+(Assume that light travels at 186,000 miles per second and that dist from sun is specified
+in miles.)
+4. Can the address of an object be passed to a function as an argument?
+5. Using the stack class, write a function called loadstack() that returns a stack that is
+already loaded with the letters of the alphabet(a-z). Assign this stack to another object
+in the calling routine and prove that it contains the alphabet. Be sure to change the stack
+size so it is large enough to hold the alphabet.
+6. Explain why you must be careful when passing objects to a function or returning objects
+from a function.
+7. What is a friend function
+
+
+
+
+
+// -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
+This section checks how well you have integrated material in this chapter with that from the
+preceding chapters.
+1. Functions can be overloaded as long as the number or type of their parameters differs.
+Overload loadstack() from Exercise 5 of the Mastery Skills Check so that it takes an
+integer, called upper, as a parameter. In the overloaded version, if upper is 1, load the
+stack with the uppercase alphabet. Otherwise, load it with the lowercase alphabet.
+2. Using the strtype class shown in Section 3.1, Example 3, add a friend function that
+takes as an argument a pointer to an object of type strtype and returns a pointer to the
+string pointed to by that object. (That is, have the function return p.) Call this function
+get string().
+3. Experiment: When an object of a derived class is assigned to another object of the same
+derived class, is the data associated with the base class also copied? To find out, use the
+following two classes and write a program that demonstrates what happens.
+class base
+{
+int a;
+public :
+void load_a ( int n) { a = n; }
+85TEACH YOURSELF
+C++
+int get_a () { return a; }
+};
+class derived : public base
+{
+int b;
+public :
+void load_b ( int n) { b = n; }
+int get_b () { return b; }
+};
+8
+
+
+
+
+// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
+Before proceeding, you should be able to correctly answer the following questions and do the
+exercises.
+1. When one object is assigned to another, what precisely takes place?
+2. Can any troubles or side effects occur when one object is assigned to another? (Give an
+example.)
+3. When an object is passed as an argument to a function, a copy of that object is made. Is
+the copy’s constructor function called? Is its destructor called?
+4. By default, objects are passed to functions by value, which means that what occurs to
+the copy inside the function is not supposed to affect the argument used in the call. Can
+there be a violation of this principle? If so, give an example.
+5. Given the following class, create a function called make sum() their returns an object of
+type summation. Have this function prompt the user for a number and then construct
+an object having this value and return it to the calling procedure. Demonstrate that the
+function works.
+class summation
+{
+int num ;
+long sum ; // summation of num
+public :
+void set_sum ( int n);
+void show_sum ()
+{
+cout << num << " summed is " << sum << "\n";
+}
+};
+void summation :: set_sum (int n)
+{
+int i;
+num = n;
+sum = 0;
+for (i =1; i <=n; i ++)
+sum += i;
+}
+6. In the preceding question, the function set sum() was not defined in line within the summation class declaration. Give a reason why this might be necessary for some compilers.
+7. Given the following class, show how to add a friend function called isneg() that takes one
+parameter of type myclass and returns true if num is negative and false otherwise.
+88ARRAYS, POINTERS, AND REFERENCES
+4.1. ARRAYS OF OBJECTS
+class myclass
+{
+int num ;
+public :
+myclass ( int x) { num = x; }
+};
+8. Can a friend function be friends with more than one class?
 
