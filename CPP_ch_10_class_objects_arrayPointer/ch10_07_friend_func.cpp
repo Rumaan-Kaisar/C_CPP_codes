@@ -1,13 +1,13 @@
 
-/*  ------------    FRIEND functions    ------------
-    FRIEND functions:
-        FRIEND functions have access to the 'private members' of a class 
+/*  ------------    friend functions    ------------
+    friend functions:
+        friend functions have access to the 'private members' of a class 
             without that function actually being a member of that class. 
 
         A friend is not a member of a class but still has access to its private elements.
 
 
-    Friend functions are useful for 
+    friend functions are useful for 
         [1]	Operator overloading 
         [2]	Creation of certain types of "I/O functions"
         [3]	Need one function to have access to the private members of two or more different classes.
@@ -33,7 +33,7 @@
 
 
 
-/* Example 1: Following demonstrates the FRIEND function 
+/* Example 1: Following demonstrates the friend function 
                 Because isfactor() is a friend of myclass, isfactor() has access to its private members. 
                 This is why, within isfactor(), it is possible to directly refer to 'ob.n' and 'ob.d'.
 */
@@ -303,9 +303,6 @@ int main(){
 
 
 
-// ----  rev[22-Apr-24]  ----
-
-
 /* Example 4: Imagine a situation in which two classes, called 'pr1' and 'pr2', shown here, "share one printer".
                 Further, imagine that 
                     other parts of your program need to know when the printer "is in use by an object" of either of these two classes. 
@@ -313,25 +310,81 @@ int main(){
                 Create a function called inuse() that returns true when the printer is being used by either and false otherwise. 
 
                 Make this function a friend of both pr1 and pr2.
+
+
+                class pr1 {
+                        int printing;
+                        // ...
+                    public:
+                        pr1(){ printing = 0; }
+                        void set_print(int status){ printing = status ; }
+                        // ...
+                };
+
+                class pr2 {
+                        int printing;
+                        // ...
+                    public:
+                        void set_print(int status){ printing = status ; }
+                        // ...
+                };
 */
+
+#include <iostream>
+
+class pr2 ; // forward declaration
 
 class pr1 {
         int printing;
         // ...
     public:
-        pr1() { printing = 0; }
-        void set_print(int status) { printing = status ; }
+        pr1(){ printing = 0; }
+        void set_print(int status){ printing = status ; }
         // ...
+        friend int inuse( pr1 o1, pr2 o2); // friend function
 };
+
 
 class pr2 {
         int printing;
         // ...
     public:
-        void set_print(int status) { printing = status ; }
+        pr2(){ printing = 0; }
+        void set_print(int status){ printing = status ; }
         // ...
+        friend int inuse( pr1 o1, pr2 o2); // friend function
 };
 
 
+// Return 'true' if printer is in use .
+int inuse( pr1 o1, pr2 o2) {
+    if(o1.printing || o2.printing) return 1;
+    else return 0;
+}
+
+
+int main(){
+    pr1 p1;
+    pr2 p2;
+
+    if(!inuse(p1 , p2)) std::cout << " Printer idle \n";
+
+    std::cout << " Setting p1 to printing ...\ n";
+    p1.set_print(1);
+
+    if(inuse(p1 , p2)) std::cout << " Now printer in use .\n";
+    
+    std::cout << " Turn off p1 ...\ n";
+    p1.set_print(0);
+
+    if(!inuse(p1, p2)) std::cout << " Printer idle \n";
+    
+    std::cout << " Turn on p2 ...\ n";
+    p2.set_print(1);
+
+    if( inuse (p1 , p2)) std::cout << " Now printer in use .\n";
+
+    return 0;
+}
 
 
