@@ -14,54 +14,58 @@ Before proceeding, you should be able to answer the following questions and perf
 
 
 
-Example 1: What single prerequisite must be met in order for one object to be assigned to another?
+/* Example 1: What single prerequisite must be met in order for one object to be assigned to another? */
 
 
 
-Example 2: Given this class fragment,
-class samp
-{
-double *p;
-public :
-samp ( double d)
-{
-p = ( double *) malloc ( sizeof ( double ));
-if (!p)
-exit (1) ; // allocation error
-*p = d;
-} ~
-samp () { free (p); }
-// ..
-};
-// ...
-samp ob1 (123.09) , ob2 (0.0) ;
-// ...
-ob2 = ob1 ;
-84A CLOSER LOOK AT CLASSES
-SKILLS CHECK
-what problem is caused by the assignment of ob1 to ob2?
+/* Example 2: Given this class fragment (uses memory allocation), 
+
+                        class samp{
+                                double *p;
+                            public:
+                                samp(double d){
+                                    p = (double *)malloc(sizeof ( double ));
+                                    if(!p) exit(1) ; // allocation error
+                                    *p = d;
+                                } 
+                                ~samp(){free (p);}
+                                // ..
+                        };
+
+                        // ...
+                        samp ob1(123.09), ob2(0.0);
+                        // ...
+                        ob2 = ob1;
+
+
+                what problem is caused by the assignment of 'ob1' to 'ob2'?
+*/
 
 
 
-Example 3: Given this class,
-class planet
-{
-int moons ;
-double dist_from_sun ; // in miles
-double diameter ;
-double mass ;
-public :
-// ....
-double get_miles () { return dist_from_sun ; }
-};
-create a function called light() that takes as an argument an object of type planet
-and returns the number of seconds that it takes light from the sun to reach the planet.
-(Assume that light travels at 186,000 miles per second and that dist from sun is specified
-in miles.)
+
+/* Example 3: Given this class,
+
+                        class planet{
+                                int moons;
+                                double dist_from_sun;   // in miles
+                                double diameter;
+                                double mass;
+                            public:
+                                // ....
+                                double get_miles(){ return dist_from_sun; }
+                        };
+
+                create a function called light() that takes as an argument an object of type planet and 
+                    returns the number of seconds that it takes "light from the sun to reach" the planet.
+
+                Assume that light travels at 186,000 miles per second and 
+                    that dist from sun is specified in miles.
+*/
 
 
 
-Example 4: Can the address of an object be passed to a function as an argument?
+/* Example 4: Can the address of an object be passed to a function as an argument? */
 
 
 
