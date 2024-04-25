@@ -69,19 +69,27 @@ Before proceeding, you should be able to answer the following questions and perf
 
 
 
-Example 5: Using the stack class, write a function called loadstack() that returns a stack that is
-already loaded with the letters of the alphabet(a-z). Assign this stack to another object
-in the calling routine and prove that it contains the alphabet. Be sure to change the stack
-size so it is large enough to hold the alphabet.
+
+/* Example 5: Using the "stack class", write a function called "loadstack()" that 
+                returns a stack that is already loaded with the letters of the alphabet(a-z). 
+                
+                Assign this stack to another object in the calling routine and 
+                    prove that it contains the alphabet. 
+
+                Be sure to change the stack size so it is large enough to hold the alphabet. 
+*/
 
 
 
-Example 6: Explain why you must be careful when passing objects to a function or returning objects
-from a function.
+
+/* Example 6: Explain why you must be careful when passing objects to a function 
+                or returning objects from a function. 
+*/
 
 
 
-Example 7: What is a friend function
+
+/* Example 7: What is a friend function */
 
 
 
@@ -93,7 +101,7 @@ preceding chapters.
 
 
 
-Example 1: Functions can be overloaded as long as the number or type of their parameters differs.
+Example 1: Functions can be overloaded as long as the "number or type of their parameters" differs.
 Overload loadstack() from Exercise 5 of the Mastery Skills Check so that it takes an
 integer, called upper, as a parameter. In the overloaded version, if upper is 1, load the
 stack with the uppercase alphabet. Otherwise, load it with the lowercase alphabet.
