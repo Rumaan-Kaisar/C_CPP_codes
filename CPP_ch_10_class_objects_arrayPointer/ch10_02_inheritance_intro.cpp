@@ -435,3 +435,23 @@ int main(){
 
 
 
+
+/* Example 5: Given the following base class, 
+                show how it can be inherited by a derived class called 'Mars'. 
+*/
+
+class planet{
+        int moons;
+        double dis_from_sun;
+        double diameter;
+        double mass;
+    public:
+        // ...
+};
+
+// Ans:  derived class called 'Mars'
+class Mars:public planet{
+    // ...
+};
+
+
