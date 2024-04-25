@@ -645,3 +645,13 @@ class widgit{
 // Destructor is called ~widgit().
 
 
+
+
+/* Example 11: When is a constructor function called? When is a destructor function called? 
+
+                Constructor function is called when an object is created 
+                    (i.e., when an object comes into existence). 
+
+                Destructor is called when an object is destroyed.
+*/
+
