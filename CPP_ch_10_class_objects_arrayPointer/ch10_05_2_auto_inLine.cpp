@@ -421,3 +421,28 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 9: There are two ways to cause a function to be expanded 'in-line'. What are they? 
+                1. use 'inline' keyword: 
+                    You can expand a function in line either by preceding its definition with the 'inline' specifier
+
+                2. define a function inside a class declaration:
+                    Include the functions definition within a class declaration.
+*/
+
+
+
+
+/* Example 10: Give two possible restrictions to 'in-line' functions. 
+
+                An in-line function must be defined before it is first used. 
+                Other common restrictions:
+                    no 'loops'
+                    must not be 'recursive'
+                    no 'goto' or a 'switch'
+                    no 'static' variables
+*/
+
+
