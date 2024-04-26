@@ -1,5 +1,5 @@
 
-// --------    rev[25-Apr-24]    --------
+// --------    rev[26-Apr-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
@@ -148,60 +148,71 @@ exercises.
 
 
 
-Example 1: When one object is assigned to another, what precisely takes place?
+/* Example 1: When one object is assigned to another, what precisely takes place? */
 
 
 
-Example 2: Can any troubles or side effects occur when one object is assigned to another? (Give an
-example.)
+
+/* Example 2: Can any troubles or side effects occur when one object is assigned to another? 
+                (Give an example.) 
+*/
 
 
 
-Example 3: When an object is passed as an argument to a function, a copy of that object is made. Is
-the copy’s constructor function called? Is its destructor called?
+
+/* Example 3: When an object is "passed as an argumen"t to a function, a copy of that object is made. 
+                Is the copy's constructor function called? 
+                Is its destructor called? 
+*/
 
 
 
-Example 4: By default, objects are passed to functions by value, which means that what occurs to
-the copy inside the function is not supposed to affect the argument used in the call. Can
-there be a violation of this principle? If so, give an example.
+
+/* Example 4: By default, objects are passed to functions "by value", i.e. what occurs to the 
+                    copy inside the function is not supposed to affect the argument used in the call. 
+                
+                Can there be a violation of this principle? 
+                If so, give an example. 
+*/
+
+
+/* Example 5: using following class, create a function called make_sum() 
+                that returns an object of type summation. 
+
+                Have this function prompt the user for a number and then 
+                    construct an object having this value and return it to the calling procedure. 
+
+                Demonstrate that the function works.
+
+
+                        class summation {
+                                int num;
+                                long sum ; // summation of num
+                            public:
+                                void set_sum(int n);
+                                void show_sum(){ std::cout << num << " summed is " << sum << "\n"; }
+                        };
+
+                        void summation :: set_sum (int n) {
+                            int i;
+                            num = n;
+                            sum = 0;
+                            for (i =1; i <=n; i ++) sum += i;
+                        }
+
+*/
 
 
 
-Example 5: Given the following class, create a function called make sum() their returns an object of
-type summation. Have this function prompt the user for a number and then construct
-an object having this value and return it to the calling procedure. Demonstrate that the
-function works.
-class summation
-{
-int num ;
-long sum ; // summation of num
-public :
-void set_sum ( int n);
-void show_sum ()
-{
-cout << num << " summed is " << sum << "\n";
-}
-};
-void summation :: set_sum (int n)
-{
-int i;
-num = n;
-sum = 0;
-for (i =1; i <=n; i ++)
-sum += i;
-}
-
-
-
+// ----  [rev 26-Apr-24]  ----
 Example 6: In the preceding question, the function set sum() was not defined in line within the summation class declaration. Give a reason why this might be necessary for some compilers.
 
 
 
 Example 7: Given the following class, show how to add a friend function called isneg() that takes one
 parameter of type myclass and returns true if num is negative and false otherwise.
-88ARRAYS, POINTERS, AND REFERENCES
-4.1. ARRAYS OF OBJECTS
+
+
 class myclass
 {
 int num ;
