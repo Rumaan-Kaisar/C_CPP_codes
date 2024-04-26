@@ -101,41 +101,44 @@ preceding chapters.
 
 
 
-Example 1: Functions can be overloaded as long as the "number or type of their parameters" differs.
-Overload loadstack() from Exercise 5 of the Mastery Skills Check so that it takes an
-integer, called upper, as a parameter. In the overloaded version, if upper is 1, load the
-stack with the uppercase alphabet. Otherwise, load it with the lowercase alphabet.
+/* Example 1: Functions can be OVERLOADED as long as the "number or type of their parameters" differs.
+                Overload loadstack() from Exercise 5 of the Mastery Skills Check so that 
+                it takes an integer, called upper, as a parameter. 
+                In the overloaded version, if upper is 1, load the stack with the uppercase alphabet. 
+                Otherwise, load it with the lowercase alphabet. 
+*/
 
 
 
-Example 2: Using the strtype class shown in Section 3.1, Example 3, add a friend function that
-takes as an argument a pointer to an object of type strtype and returns a pointer to the
-string pointed to by that object. (That is, have the function return p.) Call this function
-get string().
+/* Example 2: Using the strtype class shown in Section 3.1, Example 3 [ch10_06_1_assign_obj.cpp: Example 4], 
+                add a friend function that takes as an argument "a pointer to an object" of type 'strtype' and 
+                returns a pointer to the string pointed to by that object. 
+
+                (That is, have the function return p.) 
+                Call this function get_string(). 
+*/
 
 
+/* Example 3: When an object of a "derived class" is assigned to another object of the same derived class, 
+                is the data associated with the base class also copied? 
 
-Example 3: Experiment: When an object of a derived class is assigned to another object of the same
-derived class, is the data associated with the base class also copied? To find out, use the
-following two classes and write a program that demonstrates what happens.
-class base
-{
-int a;
-public :
-void load_a ( int n) { a = n; }
-85TEACH YOURSELF
-C++
-int get_a () { return a; }
-};
-class derived : public base
-{
-int b;
-public :
-void load_b ( int n) { b = n; }
-int get_b () { return b; }
-};
-8
+                To find out, use the following two classes and 
+                    write a program that demonstrates what happens.
 
+                        class base {
+                                int a;
+                            public:
+                                void load_a(int n) { a = n; }
+                                int get_a() { return a; }
+                        };
+
+                        class derived : public base {
+                                int b;
+                            public:
+                                void load_b(int n) { b = n; }
+                                int get_b() { return b; }
+                        };
+*/
 
 
 
