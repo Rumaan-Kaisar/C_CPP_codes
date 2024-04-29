@@ -176,6 +176,8 @@ exercises.
 */
 
 
+
+
 /* Example 5: using following class, create a function called make_sum() 
                 that returns an object of type summation. 
 
@@ -204,23 +206,28 @@ exercises.
 
 
 
-// ----  [rev 26-Apr-24]  ----
-Example 6: In the preceding question, the function set sum() was not defined in line within the summation class declaration. Give a reason why this might be necessary for some compilers.
+
+/* Example 6: In the preceding question, set_sum() was not defined in-line within the "summation" class declaration.
+                Give a reason why this might be necessary for some compilers. 
+*/
 
 
 
-Example 7: Given the following class, show how to add a friend function called isneg() that takes one
-parameter of type myclass and returns true if num is negative and false otherwise.
+
+/* Example 7: Given the following class, show how to add a friend function called isneg() that 
+                takes one parameter of type myclass and 
+                returns TRUE if num is negative and FALSE otherwise. 
+
+                        class myclass{
+                                int num;
+                            public:
+                                myclass(int x) { num = x; }
+                        };
+*/
 
 
-class myclass
-{
-int num ;
-public :
-myclass ( int x) { num = x; }
-};
 
 
+/* Example 8: Can a friend function be friends with more than one class? */
 
-Example 8: Can a friend function be friends with more than one class?
 
