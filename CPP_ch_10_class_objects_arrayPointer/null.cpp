@@ -1,5 +1,5 @@
 
-// --------    rev[26-Apr-24]    --------
+// --------    rev[28-Apr-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
@@ -9,12 +9,17 @@
 
 
 
+
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 Before proceeding, you should be able to answer the following questions and perform the exercises.
 
 
 
-/* Example 1: What single prerequisite must be met in order for one object to be assigned to another? */
+/* Example 1: What single prerequisite must be met in order for one object to be assigned to another? 
+                ANS: 
+                    Same class type.
+                    For one object to be ASSIGNED to another, both must be of the "same class type".
+*/
 
 
 
@@ -39,6 +44,16 @@ Before proceeding, you should be able to answer the following questions and perf
 
 
                 what problem is caused by the assignment of 'ob1' to 'ob2'?
+
+
+                ANS:
+                    The trouble with the assignment of ob1 to ob2 is that:
+                        The MEMORY pointed to by ob2's initial value of p is now LOST 
+                            because this value is "overwritten by the assignment".         
+                        This memory thus becomes "impossible to free", 
+                        
+                        And the memory pointed to by ob1's p is freed twice when it is destroyed
+                            possibly causing DAMAGE to the "dynamic allocation system".
 */
 
 
@@ -61,17 +76,27 @@ Before proceeding, you should be able to answer the following questions and perf
 
                 Assume that light travels at 186,000 miles per second and 
                     that dist from sun is specified in miles.
+
+
+                ans:
+                    int light(planet p){
+                        return p.get_miles() / 186000;
+                    }
 */
 
 
 
-/* Example 4: Can the address of an object be passed to a function as an argument? */
+
+/* Example 4: Can the "address of an object" be passed to a function as an argument? 
+                ANS: Yes.
+*/
 
 
 
 
-/* Example 5: Using the "stack class", write a function called "loadstack()" that 
-                returns a stack that is already loaded with the letters of the alphabet(a-z). 
+/* Example 5: Using the "stack class" (ch10_06_2_pass_obj_to_func.cpp, Example 5), 
+                write a function called "loadstack()" that returns a stack 
+                that is already loaded with the letters of the alphabet(a-z). 
                 
                 Assign this stack to another object in the calling routine and 
                     prove that it contains the alphabet. 
@@ -79,17 +104,178 @@ Before proceeding, you should be able to answer the following questions and perf
                 Be sure to change the stack size so it is large enough to hold the alphabet. 
 */
 
+#include <iostream>
+
+#define SIZE 10
+
+// Declare a stack class for characters .
+class stack {
+        char stck[SIZE];   // holds the stack
+        int tos;            // index of top of stack
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
+};
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack the constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+}
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+void showstack (stack o);   // Declaring "showstack()". It display the contents of a stack. 
+
+// -=-=-  main function  -=-=-
+int main(){
+    stack s1;
+    int i;
+
+    s1.push('a');
+    s1.push('b');
+    s1.push('c');
+
+    // show the stack using "showstack()"
+    showstack(s1);
+
+    // s1 in main is still existent
+    std::cout << "s1 stack still contains this : \n";
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+
+    return 0;
+}
+
+
+// Definition of "showstack()" to display the contents of a stack. 
+void showstack (stack o){
+    char c;
+    // when this statement ends, the stack-type object 'o' is empty
+    while (c=o. pop ()) std::cout << c << '\n';
+} 
+
+
+
+
+
+// Load a stack with the alphabet .
+# include <iostream >
+using namespace std ;
+# define SIZE 27
+// Declare a stack class for characters
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+stack (); // constructor
+void push ( char ch); // push character on stack
+char pop (); // pop character from stack
+};
+// Initialize the stack
+stack :: stack ()
+{
+cout << " Constructing a stack \n";
+tos = 0;
+}
+// Push a character .
+void stack :: push ( char ch)
+{
+if( tos == SIZE )
+{
+cout << " Stack is full \n";
+return ;
+}
+stck [ tos ] = ch;
+tos ++;
+}
+442ANSWERS
+MASTERY SKILLS CHECK: Chapter 3
+// Pop a character .
+char stack :: pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty \n";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+}
+void showstack ( stack o);
+stack loadstack ();
+int main ()
+{
+stack s1;
+s1 = loadstack ();
+showstack (s1);
+return 0;
+}
+// Display the contents of a stack .
+void showstack ( stack o)
+{
+char c;
+// when this statement ends , the o stack is empty
+while (c=o. pop ())
+cout << c << ’\n’;
+}
+// Load a stack with the letters of the alphabet .
+stack loadstack ()
+{
+stack t;
+char c;
+for (c = ’a’; c <= ’z’; c++)
+t. push (c);
+return t;
+}
+
+
+
 
 
 
 /* Example 6: Explain why you must be careful when passing objects to a function 
                 or returning objects from a function. 
+
+
+When passing an object to a function or returning an object from a function, temporary
+copies of the object are created that will be destroyed when the function terminates.
+When a temporary copy of an object is destroyed, the destructor function might destroy
+something that is needed elsewhere in the program.
+
 */
 
 
 
 
-/* Example 7: What is a friend function */
+/* Example 7: What is a friend function 
+
+A friend is a nonmember function that is granted access to the private members of the class for which it is a friend.
+
+*/
 
 
 
