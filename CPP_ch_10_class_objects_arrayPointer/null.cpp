@@ -520,27 +520,25 @@ return 0;
 
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
 
+/* Example 1: When one object is assigned to another, what precisely takes place? 
 
-
-/* Example 1: When one object is assigned to another, what precisely takes place? */
-
-1. When one object is assigned to another of the same type, the current values of all data
-members of the object on the right are assigned to the corresponding data members on
-the left.
+                ANS:
+                    When one object is assigned to another of the "same type", 
+                    the current values of all data members of the object on the RIGHT are assigned 
+                    to the corresponding data members on the LEFT.
+*/
 
 
 
 
 /* Example 2: Can any troubles or side effects occur when one object is assigned to another? 
                 (Give an example.) 
-*/
 
-2. Trouble can occur when one object is assigned to another if that assignment overwrites
-important data already existing in the target object. For example, a pointer to dynamic
-memory or to an open file can be overwritten and, therefore, lost.
+                ANS:
+                    if that assignment "overwrites important data" already existing in the target object. 
+                    eg: a" pointer to dynamic memory" or to an "open file" can be overwritten and, therefore, lost.
+*/
 
 
 
@@ -548,10 +546,12 @@ memory or to an open file can be overwritten and, therefore, lost.
 /* Example 3: When an object is "passed as an argumen"t to a function, a copy of that object is made. 
                 Is the copy's constructor function called? 
                 Is its destructor called? 
-*/
 
-3. When an object is passed to a function, a copy is made. However, the copy’s destructor
-is called when the object is destroyed by the termination of the function.
+                ANS:
+                    Constructor isn't called
+                    The copy’s destructor is called when the object is destroyed 
+                        by the termination of the function.
+*/
 
 
 
@@ -561,12 +561,18 @@ is called when the object is destroyed by the termination of the function.
                 
                 Can there be a violation of this principle? 
                 If so, give an example. 
+
+
+                ANS:
+                    The violation of the separation between an argument and its copy when 
+                        passed to a parameter can be caused by "several destructor", 
+                        that memory will also be lost to the argument. 
+                    
+                    In general, if the DESTRUCTOR function destroys anything that the "original argument requires", 
+                        damage to the argument will occur.
 */
 
-4. The violation of the separation between an argument and its copy when passed to a
-parameter can be caused by several destructor, that memory will also be lost to the argument. 
-In general, if the destructor function destroys anything that the original argument
-requires, damage to the argument will occur.
+
 
 
 
