@@ -644,7 +644,7 @@ return 0;
 /* Example 6: In the preceding question, set_sum() was not defined in-line within the "summation" class declaration.
                 Give a reason why this might be necessary for some compilers. 
 */
-
+6. For some compilers, in-line functions cannot contain loops.
 
 
 
@@ -659,22 +659,6 @@ return 0;
                         };
 */
 
-
-
-
-/* Example 8: Can a friend function be friends with more than one class? */
-
-
-
-
-
-
-
-
-
-
-
-6. For some compilers, in-line functions cannot contain loops.
 7. # include <iostream >
 using namespace std ;
 class myclass
@@ -700,4 +684,12 @@ cout << isneg (a) << ’ ’ << isneg (b);
 cout << ’\n’;
 return 0;
 }
+
+
+
+
+/* Example 8: Can a friend function be friends with more than one class? */
+
 8. Yes, a friend function can be friends with more than one class.
+
+
