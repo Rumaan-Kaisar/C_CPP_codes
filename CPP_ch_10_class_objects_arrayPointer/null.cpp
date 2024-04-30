@@ -527,12 +527,20 @@ exercises.
 
 /* Example 1: When one object is assigned to another, what precisely takes place? */
 
+1. When one object is assigned to another of the same type, the current values of all data
+members of the object on the right are assigned to the corresponding data members on
+the left.
+
 
 
 
 /* Example 2: Can any troubles or side effects occur when one object is assigned to another? 
                 (Give an example.) 
 */
+
+2. Trouble can occur when one object is assigned to another if that assignment overwrites
+important data already existing in the target object. For example, a pointer to dynamic
+memory or to an open file can be overwritten and, therefore, lost.
 
 
 
@@ -541,6 +549,9 @@ exercises.
                 Is the copy's constructor function called? 
                 Is its destructor called? 
 */
+
+3. When an object is passed to a function, a copy is made. However, the copy’s destructor
+is called when the object is destroyed by the termination of the function.
 
 
 
@@ -551,6 +562,11 @@ exercises.
                 Can there be a violation of this principle? 
                 If so, give an example. 
 */
+
+4. The violation of the separation between an argument and its copy when passed to a
+parameter can be caused by several destructor, that memory will also be lost to the argument. 
+In general, if the destructor function destroys anything that the original argument
+requires, damage to the argument will occur.
 
 
 
@@ -582,6 +598,47 @@ exercises.
 */
 
 
+5. # include <iostream >
+using namespace std ;
+class summation
+{
+int num ;
+long sum ; // summation of num
+public :
+void set_sum ( int n);
+void show_sum ()
+{
+cout << num << " summed is " << sum << "\n";
+}
+};
+void summation :: set_sum (int n)
+{
+448ANSWERS
+REVIEW SKILLS CHECK: Chapter 4
+int i;
+num = n;
+sum = 0;
+for (i =1; i <=n; i ++)
+sum += i;
+}
+summation make_sum ()
+{
+int i;
+summation temp ;
+cout << " Enter number : ";
+cin >> i;
+temp . set_sum (i);
+return temp ;
+}
+int main ()
+{
+summation s;
+s = make_sum ();
+s. show_sum ();
+return 0;
+}
+
+
 
 
 /* Example 6: In the preceding question, set_sum() was not defined in-line within the "summation" class declaration.
@@ -608,3 +665,39 @@ exercises.
 /* Example 8: Can a friend function be friends with more than one class? */
 
 
+
+
+
+
+
+
+
+
+
+6. For some compilers, in-line functions cannot contain loops.
+7. # include <iostream >
+using namespace std ;
+class myclass
+{
+int num ;
+public :
+myclass ( int x)
+{
+num = x;
+}
+friend int isneg ( myclass ob);
+};
+int isneg ( myclass ob)
+{
+return (ob. num <0) ? 1 : 0;
+}
+449TEACH YOURSELF
+C++
+int main ()
+{
+myclass a( -1) , b (2) ;
+cout << isneg (a) << ’ ’ << isneg (b);
+cout << ’\n’;
+return 0;
+}
+8. Yes, a friend function can be friends with more than one class.
