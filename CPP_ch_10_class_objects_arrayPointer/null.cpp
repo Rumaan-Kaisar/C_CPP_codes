@@ -294,6 +294,103 @@ preceding chapters.
                 Otherwise, load it with the lowercase alphabet. 
 */
 
+// Load a stack with the alphabet .
+# include <iostream >
+# include <cctype >
+using namespace std ;
+# define SIZE 27
+// Declare a stack class for characters
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+stack (); // constructor
+void push ( char ch); // push character on stack
+char pop (); // pop character from stack
+};
+// Initialize the stack
+stack :: stack ()
+{
+cout << " Constructing a stack \n";
+tos = 0;
+}
+// Push a character .
+void stack :: push ( char ch)
+{
+if( tos == SIZE )
+{
+cout << " Stack is full \n";
+return ;
+}
+stck [ tos ] = ch;
+tos ++;
+}
+// Pop a character .
+char stack :: pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty \n";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+444ANSWERS
+CUMULATIVE SKILLS CHECK: Chapter 3
+}
+void showstack ( stack o);
+stack loadstack ();
+stack loadstack ( int upper );
+int main ()
+{
+stack s1 , s2 , s3;
+s1 = loadstack ();
+showstack (s1);
+// get uppercase letters
+s2 = loadstack (1) ;
+showstack (s2);
+// use lowercase letters
+s3 = loadstack (0) ;
+showstack (s3);
+return 0;
+}
+// Display the contents of a stack .
+void showstack ( stack o)
+{
+char c;
+// when this statement ends , the o stack is empty
+while (c=o. pop ())
+cout << c << ’\n’;
+}
+// Load a stack with the letters of the alphabet .
+stack loadstack ()
+{
+stack t;
+char c;
+for (c = ’a’; c <= ’z’; c++)
+t. push (c);
+return t;
+}
+/*
+Load a stack with the letters of the alphabet . Uppercase
+letters if upper if 1; lowercase otherwise .
+*/
+stack loadstack ( int upper )
+{
+445TEACH YOURSELF
+C++
+stack t;
+char c;
+if( upper )
+c = ’A’;
+else
+c = ’a’;
+for (; toupper (c) <= ’Z’; c++)
+t. push (c);
+return t;
+}
+
 
 
 /* Example 2: Using the strtype class shown in Section 3.1, Example 3 [ch10_06_1_assign_obj.cpp: Example 4], 
