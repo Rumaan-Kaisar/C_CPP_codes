@@ -393,6 +393,7 @@ return t;
 
 
 
+
 /* Example 2: Using the strtype class shown in Section 3.1, Example 3 [ch10_06_1_assign_obj.cpp: Example 4], 
                 add a friend function that takes as an argument "a pointer to an object" of type 'strtype' and 
                 returns a pointer to the string pointed to by that object. 
@@ -400,6 +401,60 @@ return t;
                 (That is, have the function return p.) 
                 Call this function get_string(). 
 */
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char * ptr );
+~ strtype ();
+void show ();
+friend char * get_string ( strtype *ob);
+};
+strtype :: strtype ( char *ptr )
+{
+len = strlen ( ptr );
+p = ( char *) malloc (len +1);
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, ptr );
+}
+strtype ::~ strtype ()
+{
+cout << " Freeing p\n";
+free (p);
+}
+void strtype :: show ()
+{
+cout << p << " - lengthj : " << len ;
+cout << ’\n’;
+446ANSWERS
+CUMULATIVE SKILLS CHECK: Chapter 3
+}
+char * get_string ( strtype *ob)
+{
+return ob ->p;
+}
+int main ()
+{
+strtype s1(" This is a test .");
+char *s;
+s1. show ();
+// get pointer to string
+s = get_string (& s1);
+cout << " Here is string contained in s1: ";
+cout << s << "\n";
+return 0;
+}
+
+
 
 
 /* Example 3: When an object of a "derived class" is assigned to another object of the same derived class, 
