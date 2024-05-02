@@ -649,8 +649,11 @@ return 0;
 
 /* Example 6: In the preceding question, set_sum() was not defined in-line within the "summation" class declaration.
                 Give a reason why this might be necessary for some compilers. 
+
+                ANS:
+                    For some compilers, in-line functions cannot contain "LOOPS".
 */
-6. For some compilers, in-line functions cannot contain loops.
+
 
 
 
@@ -695,6 +698,7 @@ return 0;
 
 
 /* Example 8: Can a friend function be friends with more than one class? 
+
                 ANS:
                     Yes, a friend function can be friends with more than one class.
 */
