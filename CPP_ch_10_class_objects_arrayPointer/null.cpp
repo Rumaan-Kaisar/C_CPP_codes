@@ -260,11 +260,12 @@ return t;
 /* Example 6: Explain why you must be careful when passing objects to a function 
                 or returning objects from a function. 
 
+                ANS:
+                    When passing / returning an object to / from a function 
+                    "temporary copies" of the object are created that will be destroyed when the function terminates.
 
-When passing an object to a function or returning an object from a function, temporary
-copies of the object are created that will be destroyed when the function terminates.
-When a temporary copy of an object is destroyed, the destructor function might destroy
-something that is needed elsewhere in the program.
+                    When a temporary copy of an object is destroyed, 
+                        the destructor function might destroy something that is needed elsewhere in the program.
 
 */
 
@@ -273,8 +274,9 @@ something that is needed elsewhere in the program.
 
 /* Example 7: What is a friend function 
 
-A friend is a nonmember function that is granted access to the private members of the class for which it is a friend.
-
+                ANS:
+                    A friend is a non-member function that is granted access 
+                        to the "private members" of the class for which it is a friend.
 */
 
 
