@@ -1,5 +1,5 @@
 
-// --------    rev[28-Apr-24]    --------
+// --------    rev[2-May-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
@@ -15,85 +15,7 @@ Before proceeding, you should be able to answer the following questions and perf
 
 
 
-/* Example 1: What single prerequisite must be met in order for one object to be assigned to another? 
-                ANS: 
-                    Same class type.
-                    For one object to be ASSIGNED to another, both must be of the "same class type".
-*/
-
-
-
-/* Example 2: Given this class fragment (uses memory allocation), 
-
-                        class samp{
-                                double *p;
-                            public:
-                                samp(double d){
-                                    p = (double *)malloc(sizeof ( double ));
-                                    if(!p) exit(1) ; // allocation error
-                                    *p = d;
-                                } 
-                                ~samp(){free (p);}
-                                // ..
-                        };
-
-                        // ...
-                        samp ob1(123.09), ob2(0.0);
-                        // ...
-                        ob2 = ob1;
-
-
-                what problem is caused by the assignment of 'ob1' to 'ob2'?
-
-
-                ANS:
-                    The trouble with the assignment of ob1 to ob2 is that:
-                        The MEMORY pointed to by ob2's initial value of p is now LOST 
-                            because this value is "overwritten by the assignment".         
-                        This memory thus becomes "impossible to free", 
-                        
-                        And the memory pointed to by ob1's p is freed twice when it is destroyed
-                            possibly causing DAMAGE to the "dynamic allocation system".
-*/
-
-
-
-
-/* Example 3: Given this class,
-
-                        class planet{
-                                int moons;
-                                double dist_from_sun;   // in miles
-                                double diameter;
-                                double mass;
-                            public:
-                                // ....
-                                double get_miles(){ return dist_from_sun; }
-                        };
-
-                create a function called light() that takes as an argument an object of type planet and 
-                    returns the number of seconds that it takes "light from the sun to reach" the planet.
-
-                Assume that light travels at 186,000 miles per second and 
-                    that dist from sun is specified in miles.
-
-
-                ANS:
-                    int light(planet p){
-                        return p.get_miles() / 186000;
-                    }
-*/
-
-
-
-
-/* Example 4: Can the "address of an object" be passed to a function as an argument? 
-
-                ANS: Yes.
-*/
-
-
-
+// --------    rev[2-May-24]    --------
 
 /* Example 5: Using the "stack class" (ch10_06_2_pass_obj_to_func.cpp, Example 5), 
                 write a function called "loadstack()" that returns a stack 
@@ -107,7 +29,7 @@ Before proceeding, you should be able to answer the following questions and perf
 
 #include <iostream>
 
-#define SIZE 10
+#define SIZE 27
 
 // Declare a stack class for characters .
 class stack {
@@ -151,7 +73,25 @@ char stack::pop(){
 
 void showstack (stack o);   // Declaring "showstack()". It display the contents of a stack. 
 
+stack loadstack();  // Declaring "loadstack()" of class type "stack". It returns a stack.
+
+
 // -=-=-  main function  -=-=-
+// notice the stack loading mechanism moved to loadstack()
+int main(){
+    stack s1;
+    
+    // load stack using "loadstack()"
+    s1 = loadstack();
+    // show the stack using "showstack()"
+    showstack(s1);
+
+    return 0;
+}
+
+
+/* 
+// -=-=-  main function (old)  -=-=-
 int main(){
     stack s1;
     int i;
@@ -169,7 +109,7 @@ int main(){
 
     return 0;
 }
-
+*/
 
 // Definition of "showstack()" to display the contents of a stack. 
 void showstack (stack o){
@@ -178,80 +118,26 @@ void showstack (stack o){
     while (c=o. pop ()) std::cout << c << '\n';
 } 
 
+// Definition of "loadstack()" to Load a stack with the letters of the alphabet .
+stack loadstack(){
+    stack t;
+    char c;
+
+    // load a-z
+    for(c = 'a'; c <= 'z'; c++) t.push (c);
+    return t;
+}
 
 
 
 
-// Load a stack with the alphabet .
-# include <iostream >
-using namespace std ;
-# define SIZE 27
-// Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-stack (); // constructor
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
-};
-// Initialize the stack
-stack :: stack ()
-{
-cout << " Constructing a stack \n";
-tos = 0;
-}
-// Push a character .
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return ;
-}
-stck [ tos ] = ch;
-tos ++;
-}
-442ANSWERS
-MASTERY SKILLS CHECK: Chapter 3
-// Pop a character .
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-}
-void showstack ( stack o);
-stack loadstack ();
-int main ()
-{
-stack s1;
-s1 = loadstack ();
-showstack (s1);
-return 0;
-}
-// Display the contents of a stack .
-void showstack ( stack o)
-{
-char c;
-// when this statement ends , the o stack is empty
-while (c=o. pop ())
-cout << c << ’\n’;
-}
-// Load a stack with the letters of the alphabet .
-stack loadstack ()
-{
-stack t;
-char c;
-for (c = ’a’; c <= ’z’; c++)
-t. push (c);
-return t;
-}
+
+
+
+
+
+
+
 
 
 
