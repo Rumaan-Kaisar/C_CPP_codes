@@ -530,7 +530,7 @@ int main(){
 /* Example 7: If the queue class from the preceding question dynamically allocates memory to hold the
                 queue, why, in this situation, can one queue not be assigned to another? 
 
-                If memory to hold a queue is 'dynamically allocated', assigning one queue to another causes
+                ANS: If memory to hold a queue is 'Dynamically Allocated', assigning one queue to another causes
                     the dynamic memory allocated to the queue on the "left side" of the assignment statement to be LOST and
                     the memory allocated to the queue on the "right side" to be FREED TWICE when the objects are destroyed. 
 
@@ -545,6 +545,42 @@ int main(){
                 ANS: 
                     Same class type.
                     For one object to be ASSIGNED to another, both must be of the "same class type".
+*/
+
+
+
+
+/* Example 9: Given this class fragment (uses memory allocation), 
+
+                        class samp{
+                                double *p;
+                            public:
+                                samp(double d){
+                                    p = (double *)malloc(sizeof ( double ));
+                                    if(!p) exit(1) ; // allocation error
+                                    *p = d;
+                                } 
+                                ~samp(){free (p);}
+                                // ..
+                        };
+
+                        // ...
+                        samp ob1(123.09), ob2(0.0);
+                        // ...
+                        ob2 = ob1;
+
+
+                what problem is caused by the assignment of 'ob1' to 'ob2'?
+
+
+                ANS:
+                    The trouble with the assignment of ob1 to ob2 is that:
+                        The MEMORY pointed to by ob2's initial value of p is now LOST 
+                            because this value is "overwritten by the assignment".         
+                        This memory thus becomes "impossible to free", 
+                        
+                        And the memory pointed to by ob1's p is freed twice when it is destroyed
+                            possibly causing DAMAGE to the "dynamic allocation system".
 */
 
 
