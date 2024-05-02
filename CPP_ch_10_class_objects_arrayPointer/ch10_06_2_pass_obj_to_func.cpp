@@ -393,3 +393,39 @@ int main(){
 */
 
 
+
+
+/* Example 7: Given this class,
+
+                        class planet{
+                                int moons;
+                                double dist_from_sun;   // in miles
+                                double diameter;
+                                double mass;
+                            public:
+                                // ....
+                                double get_miles(){ return dist_from_sun; }
+                        };
+
+                create a function called light() that takes as an argument an object of type planet and 
+                    returns the number of seconds that it takes "light from the sun to reach" the planet.
+
+                Assume that light travels at 186,000 miles per second and 
+                    that dist from sun is specified in miles.
+
+
+                ANS:
+                    int light(planet p){
+                        return p.get_miles() / 186000;
+                    }
+*/
+
+
+
+
+/* Example 8: Can the "address of an object" be passed to a function as an argument? 
+
+                ANS: Yes.
+*/
+
+
