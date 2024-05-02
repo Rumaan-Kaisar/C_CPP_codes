@@ -538,3 +538,13 @@ int main(){
 */
 
 
+
+
+/* Example 8: What single prerequisite must be met in order for one object to be assigned to another? 
+
+                ANS: 
+                    Same class type.
+                    For one object to be ASSIGNED to another, both must be of the "same class type".
+*/
+
+
