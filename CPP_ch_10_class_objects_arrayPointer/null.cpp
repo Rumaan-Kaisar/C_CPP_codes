@@ -78,7 +78,7 @@ Before proceeding, you should be able to answer the following questions and perf
                     that dist from sun is specified in miles.
 
 
-                ans:
+                ANS:
                     int light(planet p){
                         return p.get_miles() / 186000;
                     }
@@ -88,6 +88,7 @@ Before proceeding, you should be able to answer the following questions and perf
 
 
 /* Example 4: Can the "address of an object" be passed to a function as an argument? 
+
                 ANS: Yes.
 */
 
