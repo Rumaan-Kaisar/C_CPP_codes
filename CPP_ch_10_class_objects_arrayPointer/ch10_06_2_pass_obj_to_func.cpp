@@ -429,3 +429,116 @@ int main(){
 */
 
 
+
+
+/* Example 9: Using the "stack class" (ch10_06_2_pass_obj_to_func.cpp, Example 5), 
+                write a function called "loadstack()" that returns a stack 
+                that is already loaded with the letters of the alphabet(a-z). 
+                
+                Assign this stack to another object in the calling routine and 
+                    prove that it contains the alphabet. 
+
+                Be sure to change the stack size so it is large enough to hold the alphabet. 
+*/
+
+#include <iostream>
+
+#define SIZE 27     // change the stack size
+
+// Declare a stack class for characters .
+class stack {
+        char stck[SIZE];   // holds the stack
+        int tos;            // index of top of stack
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
+};
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack the constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+}
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+void showstack(stack o);   // Declaring "showstack()". It display the contents of a stack. 
+
+stack loadstack();  // Declaring "loadstack()" of class type "stack". It returns a stack.
+
+
+// -=-=-  main function  -=-=-
+// notice the stack loading mechanism moved to loadstack()
+int main(){
+    stack s1;
+    
+    // load stack using "loadstack()"
+    s1 = loadstack();
+    // show the stack using "showstack()"
+    showstack(s1);
+
+    return 0;
+}
+
+
+/* 
+// -=-=-  main function (old)  -=-=-
+int main(){
+    stack s1;
+    int i;
+
+    s1.push('a');
+    s1.push('b');
+    s1.push('c');
+
+    // show the stack using "showstack()"
+    showstack(s1);
+
+    // s1 in main is still existent
+    std::cout << "s1 stack still contains this : \n";
+    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
+
+    return 0;
+}
+*/
+
+// Definition of "showstack()" to display the contents of a stack. 
+void showstack (stack o){
+    char c;
+    // when this statement ends, the stack-type object 'o' is empty
+    while(c=o.pop()) std::cout << c << '\n';
+} 
+
+// Definition of "loadstack()" to Load a stack with the letters of the alphabet .
+stack loadstack(){
+    stack t;
+    char c;
+
+    // load a-z
+    for(c = 'a'; c <= 'z'; c++) t.push(c);
+    return t;
+}
+
