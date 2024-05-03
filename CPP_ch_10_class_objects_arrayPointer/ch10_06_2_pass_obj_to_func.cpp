@@ -542,3 +542,18 @@ stack loadstack(){
     return t;
 }
 
+
+
+
+/* Example 10: Explain why you must be careful when passing objects to a function 
+                or returning objects from a function. 
+
+                ANS:
+                    When passing / returning an object to / from a function 
+                    "temporary copies" of the object are created that will be destroyed when the function terminates.
+
+                    When a temporary copy of an object is destroyed, 
+                        the destructor function might destroy something that is needed elsewhere in the program.
+
+*/
+
