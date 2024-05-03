@@ -388,3 +388,13 @@ int main(){
 }
 
 
+
+
+/* Example 5: What is a friend function 
+
+                ANS:
+                    A friend is a non-member function that is granted access 
+                        to the "private members" of the class for which it is a friend.
+*/
+
+
