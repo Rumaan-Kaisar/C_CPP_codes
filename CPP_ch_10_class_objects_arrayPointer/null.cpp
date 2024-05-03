@@ -14,9 +14,6 @@
 Before proceeding, you should be able to answer the following questions and perform the exercises.
 
 
-
-// --------    rev[2-May-24]    --------
-
 /* Example 5: Using the "stack class" (ch10_06_2_pass_obj_to_func.cpp, Example 5), 
                 write a function called "loadstack()" that returns a stack 
                 that is already loaded with the letters of the alphabet(a-z). 
@@ -115,7 +112,7 @@ int main(){
 void showstack (stack o){
     char c;
     // when this statement ends, the stack-type object 'o' is empty
-    while (c=o. pop ()) std::cout << c << '\n';
+    while(c=o.pop()) std::cout << c << '\n';
 } 
 
 // Definition of "loadstack()" to Load a stack with the letters of the alphabet .
@@ -124,20 +121,9 @@ stack loadstack(){
     char c;
 
     // load a-z
-    for(c = 'a'; c <= 'z'; c++) t.push (c);
+    for(c = 'a'; c <= 'z'; c++) t.push(c);
     return t;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
