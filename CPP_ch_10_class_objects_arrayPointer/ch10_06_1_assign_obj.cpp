@@ -584,3 +584,13 @@ int main(){
 */
 
 
+
+
+/* Example 10: When one object is assigned to another, what precisely takes place? 
+
+                ANS:
+                    When one object is assigned to another of the "same type", 
+                    the current values of all data members of the object on the RIGHT are assigned 
+                    to the corresponding data members on the LEFT.
+*/
+
