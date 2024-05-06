@@ -10,25 +10,23 @@
 
 
 
-// -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-Before proceeding, you should be able to answer the following questions and perform the exercises.
+// -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
+This section checks how well you have integrated material in this chapter with that from the
+preceding chapters.
 
 
-/* Example 5: Using the "stack class" (ch10_06_2_pass_obj_to_func.cpp, Example 5), 
-                write a function called "loadstack()" that returns a stack 
-                that is already loaded with the letters of the alphabet(a-z). 
-                
-                Assign this stack to another object in the calling routine and 
-                    prove that it contains the alphabet. 
 
-                Be sure to change the stack size so it is large enough to hold the alphabet. 
+/* Example 1: Functions can be OVERLOADED as long as the "number or type of their parameters" differs.
+                Overload loadstack() from "Example 9" such that it takes an integer, called "upper", as a parameter. 
+                In the overloaded version, if "upper" is 1, load the stack with the uppercase alphabet. 
+                Otherwise, load it with the lowercase alphabet. 
 */
-
 #include <iostream>
+#include <cctype>
 
-#define SIZE 27
+#define SIZE 27     // change the stack size
 
-// Declare a stack class for characters .
+// Declare a stack class for characters.
 class stack {
         char stck[SIZE];   // holds the stack
         int tos;            // index of top of stack
@@ -68,45 +66,33 @@ char stack::pop(){
 }
 
 
-void showstack (stack o);   // Declaring "showstack()". It display the contents of a stack. 
-
-stack loadstack();  // Declaring "loadstack()" of class type "stack". It returns a stack.
+void showstack(stack o);    // Declaring "showstack()". It display the contents of a stack. 
+stack loadstack();          // Declaring "loadstack()" of class type "stack". It returns a stack.
+stack loadstack(int upper);     // overloading loadstack() to return uppercase alphabet
 
 
 // -=-=-  main function  -=-=-
-// notice the stack loading mechanism moved to loadstack()
+// notice the stack loading mechanism moved to loadstack() and loadstack(int upper)
 int main(){
-    stack s1;
-    
-    // load stack using "loadstack()"
+    stack s1 , s2 , s3;
+
+    // load stack using "loadstack()" with lowercase alphabet
     s1 = loadstack();
-    // show the stack using "showstack()"
+    // show the stack s1 using "showstack()"
     showstack(s1);
+
+    // get uppercase letters
+    s2 = loadstack(1);
+    showstack(s2);  // show stack s2
+
+    // use lowercase letters
+    s3 = loadstack(0);
+    showstack(s3);
 
     return 0;
 }
 
 
-/* 
-// -=-=-  main function (old)  -=-=-
-int main(){
-    stack s1;
-    int i;
-
-    s1.push('a');
-    s1.push('b');
-    s1.push('c');
-
-    // show the stack using "showstack()"
-    showstack(s1);
-
-    // s1 in main is still existent
-    std::cout << "s1 stack still contains this : \n";
-    for(i =0; i<3; i ++) std::cout << " Pop s1: " << s1.pop() << "\n";
-
-    return 0;
-}
-*/
 
 // Definition of "showstack()" to display the contents of a stack. 
 void showstack (stack o){
@@ -115,7 +101,8 @@ void showstack (stack o){
     while(c=o.pop()) std::cout << c << '\n';
 } 
 
-// Definition of "loadstack()" to Load a stack with the letters of the alphabet .
+
+// Definition of "loadstack()" to Load a stack with the letters of the alphabet.
 stack loadstack(){
     stack t;
     char c;
@@ -126,145 +113,42 @@ stack loadstack(){
 }
 
 
-
-
-
-
-/* Example 6: Explain why you must be careful when passing objects to a function 
-                or returning objects from a function. 
-
-                ANS:
-                    When passing / returning an object to / from a function 
-                    "temporary copies" of the object are created that will be destroyed when the function terminates.
-
-                    When a temporary copy of an object is destroyed, 
-                        the destructor function might destroy something that is needed elsewhere in the program.
-
+/*  overloaded version of loadstack() so that it returns uppercase alphabet 
+        Load a stack with the letters of the alphabet.
+        Uppercase letters if upper is 1; 
+        lowercase otherwise.
 */
+stack loadstack(int upper){
+    stack t;
+    char c;
 
+    // set starting point
+    if(upper) c = 'A';
+    else c = 'a';
 
-
-
-/* Example 7: What is a friend function 
-
-                ANS:
-                    A friend is a non-member function that is granted access 
-                        to the "private members" of the class for which it is a friend.
-*/
-
-
-
-
-
-// -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
-
-
-
-/* Example 1: Functions can be OVERLOADED as long as the "number or type of their parameters" differs.
-                Overload loadstack() from Exercise 5 of the Mastery Skills Check so that 
-                it takes an integer, called upper, as a parameter. 
-                In the overloaded version, if upper is 1, load the stack with the uppercase alphabet. 
-                Otherwise, load it with the lowercase alphabet. 
-*/
-
-// Load a stack with the alphabet .
-# include <iostream >
-# include <cctype >
-using namespace std ;
-# define SIZE 27
-// Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-stack (); // constructor
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
-};
-// Initialize the stack
-stack :: stack ()
-{
-cout << " Constructing a stack \n";
-tos = 0;
+    /*  load A-Z. Uppercase Z is used in loop condition
+        notice loop control variable initilaized outside of FOR
+        also notice in loop condition, toupper(c) is used for the case, c = 'a'
+            in this case loop condition is checked with uppercased c 
+            but lowercase c is pushed to t
+            resulting a stack of lowercase alphabet 
+    */
+    for(; toupper(c) <= 'Z'; c++) t.push(c);
+    return t;
 }
-// Push a character .
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return ;
-}
-stck [ tos ] = ch;
-tos ++;
-}
-// Pop a character .
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-444ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 3
-}
-void showstack ( stack o);
-stack loadstack ();
-stack loadstack ( int upper );
-int main ()
-{
-stack s1 , s2 , s3;
-s1 = loadstack ();
-showstack (s1);
-// get uppercase letters
-s2 = loadstack (1) ;
-showstack (s2);
-// use lowercase letters
-s3 = loadstack (0) ;
-showstack (s3);
-return 0;
-}
-// Display the contents of a stack .
-void showstack ( stack o)
-{
-char c;
-// when this statement ends , the o stack is empty
-while (c=o. pop ())
-cout << c << ’\n’;
-}
-// Load a stack with the letters of the alphabet .
-stack loadstack ()
-{
-stack t;
-char c;
-for (c = ’a’; c <= ’z’; c++)
-t. push (c);
-return t;
-}
+
+
+
+
+// --------    rev[06-may-2024]    --------
+
+
+
+
 /*
-Load a stack with the letters of the alphabet . Uppercase
-letters if upper if 1; lowercase otherwise .
+
 */
-stack loadstack ( int upper )
-{
-445TEACH YOURSELF
-C++
-stack t;
-char c;
-if( upper )
-c = ’A’;
-else
-c = ’a’;
-for (; toupper (c) <= ’Z’; c++)
-t. push (c);
-return t;
-}
+
 
 
 
@@ -395,14 +279,6 @@ return 0;
 
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-
-/* Example 1: When one object is assigned to another, what precisely takes place? 
-
-                ANS:
-                    When one object is assigned to another of the "same type", 
-                    the current values of all data members of the object on the RIGHT are assigned 
-                    to the corresponding data members on the LEFT.
-*/
 
 
 
