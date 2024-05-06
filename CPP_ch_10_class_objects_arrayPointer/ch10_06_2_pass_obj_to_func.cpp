@@ -557,3 +557,127 @@ stack loadstack(){
 
 */
 
+
+
+
+/* Example 11: Functions can be OVERLOADED as long as the "number or type of their parameters" differs.
+                Overload loadstack() from "Example 9" such that it takes an integer, called "upper", as a parameter. 
+                In the overloaded version, if "upper" is 1, load the stack with the uppercase alphabet. 
+                Otherwise, load it with the lowercase alphabet. 
+*/
+#include <iostream>
+#include <cctype>
+
+#define SIZE 27     // change the stack size
+
+// Declare a stack class for characters.
+class stack {
+        char stck[SIZE];   // holds the stack
+        int tos;            // index of top of stack
+    public:
+        stack();            // constructor. Notice no 'void init();' required
+        void push(char ch); // push character on stack
+        char pop();         // pop character from stack
+};
+
+
+// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
+
+// stack(): Initialize the stack the constructor function
+stack::stack(){
+    std::cout << " Constructing a stack \n";
+    tos = 0;
+}
+
+// push(): Push a character
+void stack::push(char ch){
+    if(tos == SIZE){
+        std::cout << " Stack is full \n";
+        return;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// pop(): Pop or remove a character
+char stack::pop(){
+    if(tos == 0){
+        std::cout << " Stack is empty \n";
+        return 0; // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+
+
+void showstack(stack o);    // Declaring "showstack()". It display the contents of a stack. 
+stack loadstack();          // Declaring "loadstack()" of class type "stack". It returns a stack.
+stack loadstack(int upper);     // overloading loadstack() to return uppercase alphabet
+
+
+// -=-=-  main function  -=-=-
+// notice the stack loading mechanism moved to loadstack() and loadstack(int upper)
+int main(){
+    stack s1 , s2 , s3;
+
+    // load stack using "loadstack()" with lowercase alphabet
+    s1 = loadstack();
+    // show the stack s1 using "showstack()"
+    showstack(s1);
+
+    // get uppercase letters
+    s2 = loadstack(1);
+    showstack(s2);  // show stack s2
+
+    // use lowercase letters
+    s3 = loadstack(0);
+    showstack(s3);
+
+    return 0;
+}
+
+
+
+// Definition of "showstack()" to display the contents of a stack. 
+void showstack (stack o){
+    char c;
+    // when this statement ends, the stack-type object 'o' is empty
+    while(c=o.pop()) std::cout << c << '\n';
+} 
+
+
+// Definition of "loadstack()" to Load a stack with the letters of the alphabet.
+stack loadstack(){
+    stack t;
+    char c;
+
+    // load a-z
+    for(c = 'a'; c <= 'z'; c++) t.push(c);
+    return t;
+}
+
+
+/*  overloaded version of loadstack() so that it returns uppercase alphabet 
+        Load a stack with the letters of the alphabet.
+        Uppercase letters if upper is 1; 
+        lowercase otherwise.
+*/
+stack loadstack(int upper){
+    stack t;
+    char c;
+
+    // set starting point
+    if(upper) c = 'A';
+    else c = 'a';
+
+    /*  load A-Z. Uppercase Z is used in loop condition
+        notice loop control variable initilaized outside of FOR
+        also notice in loop condition, toupper(c) is used for the case, c = 'a'
+            in this case loop condition is checked with uppercased c 
+            but lowercase c is pushed to t
+            resulting a stack of lowercase alphabet 
+    */
+    for(; toupper(c) <= 'Z'; c++) t.push(c);
+    return t;
+}
+
