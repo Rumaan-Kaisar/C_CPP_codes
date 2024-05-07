@@ -594,3 +594,15 @@ int main(){
                     to the corresponding data members on the LEFT.
 */
 
+
+
+
+/* Example 11: Can any troubles or side effects occur when one object is assigned to another? 
+                (Give an example.) 
+
+                ANS:
+                    if that assignment "overwrites important data" already existing in the target object. 
+                    eg: a "pointer to dynamic memory" or to an "open file" can be overwritten and, therefore, lost.
+*/
+
+
