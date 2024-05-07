@@ -16,205 +16,9 @@ preceding chapters.
 
 
 
-/* Example 1: Functions can be OVERLOADED as long as the "number or type of their parameters" differs.
-                Overload loadstack() from "Example 9" such that it takes an integer, called "upper", as a parameter. 
-                In the overloaded version, if "upper" is 1, load the stack with the uppercase alphabet. 
-                Otherwise, load it with the lowercase alphabet. 
-*/
-#include <iostream>
-#include <cctype>
-
-#define SIZE 27     // change the stack size
-
-// Declare a stack class for characters.
-class stack {
-        char stck[SIZE];   // holds the stack
-        int tos;            // index of top of stack
-    public:
-        stack();            // constructor. Notice no 'void init();' required
-        void push(char ch); // push character on stack
-        char pop();         // pop character from stack
-};
 
 
-// -=-=-=-=-=-    implementing member function    -=-=-=-=-=-
-
-// stack(): Initialize the stack the constructor function
-stack::stack(){
-    std::cout << " Constructing a stack \n";
-    tos = 0;
-}
-
-// push(): Push a character
-void stack::push(char ch){
-    if(tos == SIZE){
-        std::cout << " Stack is full \n";
-        return;
-    }
-    stck[tos] = ch;
-    tos++;
-}
-
-// pop(): Pop or remove a character
-char stack::pop(){
-    if(tos == 0){
-        std::cout << " Stack is empty \n";
-        return 0; // return null on empty stack
-    }
-    tos--;
-    return stck[tos];
-}
-
-
-void showstack(stack o);    // Declaring "showstack()". It display the contents of a stack. 
-stack loadstack();          // Declaring "loadstack()" of class type "stack". It returns a stack.
-stack loadstack(int upper);     // overloading loadstack() to return uppercase alphabet
-
-
-// -=-=-  main function  -=-=-
-// notice the stack loading mechanism moved to loadstack() and loadstack(int upper)
-int main(){
-    stack s1 , s2 , s3;
-
-    // load stack using "loadstack()" with lowercase alphabet
-    s1 = loadstack();
-    // show the stack s1 using "showstack()"
-    showstack(s1);
-
-    // get uppercase letters
-    s2 = loadstack(1);
-    showstack(s2);  // show stack s2
-
-    // use lowercase letters
-    s3 = loadstack(0);
-    showstack(s3);
-
-    return 0;
-}
-
-
-
-// Definition of "showstack()" to display the contents of a stack. 
-void showstack (stack o){
-    char c;
-    // when this statement ends, the stack-type object 'o' is empty
-    while(c=o.pop()) std::cout << c << '\n';
-} 
-
-
-// Definition of "loadstack()" to Load a stack with the letters of the alphabet.
-stack loadstack(){
-    stack t;
-    char c;
-
-    // load a-z
-    for(c = 'a'; c <= 'z'; c++) t.push(c);
-    return t;
-}
-
-
-/*  overloaded version of loadstack() so that it returns uppercase alphabet 
-        Load a stack with the letters of the alphabet.
-        Uppercase letters if upper is 1; 
-        lowercase otherwise.
-*/
-stack loadstack(int upper){
-    stack t;
-    char c;
-
-    // set starting point
-    if(upper) c = 'A';
-    else c = 'a';
-
-    /*  load A-Z. Uppercase Z is used in loop condition
-        notice loop control variable initilaized outside of FOR
-        also notice in loop condition, toupper(c) is used for the case, c = 'a'
-            in this case loop condition is checked with uppercased c 
-            but lowercase c is pushed to t
-            resulting a stack of lowercase alphabet 
-    */
-    for(; toupper(c) <= 'Z'; c++) t.push(c);
-    return t;
-}
-
-
-
-
-// --------    rev[06-may-2024]    --------
-
-
-
-
-/*
-
-*/
-
-
-
-
-
-/* Example 2: Using the strtype class shown in Section 3.1, Example 3 [ch10_06_1_assign_obj.cpp: Example 4], 
-                add a friend function that takes as an argument "a pointer to an object" of type 'strtype' and 
-                returns a pointer to the string pointed to by that object. 
-
-                (That is, have the function return p.) 
-                Call this function get_string(). 
-*/
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype ();
-void show ();
-friend char * get_string ( strtype *ob);
-};
-strtype :: strtype ( char *ptr )
-{
-len = strlen ( ptr );
-p = ( char *) malloc (len +1);
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, ptr );
-}
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-free (p);
-}
-void strtype :: show ()
-{
-cout << p << " - lengthj : " << len ;
-cout << ’\n’;
-446ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 3
-}
-char * get_string ( strtype *ob)
-{
-return ob ->p;
-}
-int main ()
-{
-strtype s1(" This is a test .");
-char *s;
-s1. show ();
-// get pointer to string
-s = get_string (& s1);
-cout << " Here is string contained in s1: ";
-cout << s << "\n";
-return 0;
-}
-
-
-
+// --------    rev[07-may-2024]    --------
 
 /* Example 3: When an object of a "derived class" is assigned to another object of the same derived class, 
                 is the data associated with the base class also copied? 
@@ -235,17 +39,23 @@ return 0;
                                 void load_b(int n) { b = n; }
                                 int get_b() { return b; }
                         };
+
+
+                ANS:
+                    The outcome of the experiment is as follows: 
+                    Yes, data from the base class is also copied when an object of 
+                        a derived class is assigned to another object of the same derived class.
+    
+                    Here is a program that demonstrates this fact:
 */
-The outcome of the experiment is as follows: Yes, data from the base class is also copied
-when an object of a derived class is assigned to another object of the same derived class.
-Here is a program that demonstrates this fact:
-# include <iostream >
-using namespace std ;
-class base
-{
-int a;
-public :
-void load_a ( int n) { a = n; }
+
+
+#include <iostream>
+
+class base{
+        int a;
+    public:
+        void load_a(int n) { a = n; }
 int get_a () { return a; }
 };
 class derived : public base
@@ -281,15 +91,6 @@ return 0;
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
-
-
-/* Example 2: Can any troubles or side effects occur when one object is assigned to another? 
-                (Give an example.) 
-
-                ANS:
-                    if that assignment "overwrites important data" already existing in the target object. 
-                    eg: a" pointer to dynamic memory" or to an "open file" can be overwritten and, therefore, lost.
-*/
 
 
 
