@@ -398,3 +398,75 @@ int main(){
 */
 
 
+
+
+/* Example 6: Using the strtype class shown in [ch10_06_1_assign_obj.cpp: Example 4], 
+                add a friend function that takes as an argument "a pointer to an object" of type 'strtype' and 
+                returns a pointer to the string pointed to by that object. 
+
+                (That is, have the function return p.) 
+                Call this function get_string().
+
+                You must exercise some CARE when assigning one object to another. 
+                For example, here is the "strtype class" developed in parameterized constructor.
+*/
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+// class definition
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char *ptr);  // constructor
+        ~strtype(); // destructor
+        void show();
+        friend char * get_string(strtype *ob);      // returns a pointer of type 'strtype'
+};
+
+// constructor: Initialize a string object with parameter.
+strtype::strtype(char * ptr){
+    len = strlen(ptr);      // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){     // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+    strcpy(p, ptr);     // copy string to p
+}
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
+}
+
+void strtype::show(){
+    std::cout << p << " - length : " << len;
+    std::cout << "\n";
+}
+
+// friend function definition
+char *get_string(strtype *ob){
+    // notice the use of arrow operator '->'
+    return ob -> p;     // returning pointer to the object p
+}
+
+
+int main(){
+    // initialize with string, as parameters
+    strtype s1(" This is a test .");
+    char *s;
+
+    s1.show();
+    // get pointer to string
+    s = get_string(&s1);
+    std::cout << " Here is string contained in s1: ";
+    std::cout << s << "\n";
+
+    return 0;
+}
+
