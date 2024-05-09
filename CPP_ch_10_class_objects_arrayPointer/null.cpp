@@ -1,5 +1,5 @@
 
-// --------    rev[2-May-24]    --------
+// --------    rev[09-May-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
@@ -14,11 +14,6 @@
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapters.
 
-
-
-
-
-// --------    rev[07-may-2024]    --------
 
 /* Example 3: When an object of a "derived class" is assigned to another object of the same derived class, 
                 is the data associated with the base class also copied? 
@@ -129,7 +124,7 @@ int main(){
 
 
 
-
+// --------    rev[09-may-2024]    --------
 
 /* Example 5: using following class, create a function called make_sum() 
                 that returns an object of type summation. 
@@ -154,48 +149,42 @@ int main(){
                             sum = 0;
                             for (i =1; i <=n; i ++) sum += i;
                         }
-
 */
 
+#include <iostream>
 
-5. # include <iostream >
-using namespace std ;
-class summation
-{
-int num ;
-long sum ; // summation of num
-public :
-void set_sum ( int n);
-void show_sum ()
-{
-cout << num << " summed is " << sum << "\n";
-}
+class summation{
+        int num;
+        long sum;   // summation of num
+    public:
+        void set_sum(int n);
+        void show_sum(){ std::cout << num << " summed is " << sum << "\n"; }
 };
-void summation :: set_sum (int n)
-{
-448ANSWERS
-REVIEW SKILLS CHECK: Chapter 4
-int i;
-num = n;
-sum = 0;
-for (i =1; i <=n; i ++)
-sum += i;
+
+void summation :: set_sum(int n){
+    int i;
+    num = n;
+    sum = 0;
+    for(i =1; i<=n; i ++) sum += i;
 }
-summation make_sum ()
-{
-int i;
-summation temp ;
-cout << " Enter number : ";
-cin >> i;
-temp . set_sum (i);
-return temp ;
+
+summation make_sum(){
+    int i;
+    summation temp;
+    std::cout << " Enter number : ";
+    std::cin >> i;
+    temp.set_sum (i);
+    return temp;
 }
-int main ()
-{
-summation s;
-s = make_sum ();
-s. show_sum ();
-return 0;
+
+
+int main(){
+    summation s;
+
+    s = make_sum();
+    s.show_sum();
+    
+    return 0;
 }
 
 
@@ -222,30 +211,25 @@ return 0;
                         };
 */
 
-7. # include <iostream >
-using namespace std ;
-class myclass
-{
-int num ;
-public :
-myclass ( int x)
-{
-num = x;
-}
-friend int isneg ( myclass ob);
+#include <iostream>
+
+class myclass{
+        int num;
+    public:
+        myclass(int x){num = x;}
+        friend int isneg(myclass ob);
 };
-int isneg ( myclass ob)
-{
-return (ob. num <0) ? 1 : 0;
-}
-449TEACH YOURSELF
-C++
-int main ()
-{
-myclass a( -1) , b (2) ;
-cout << isneg (a) << ’ ’ << isneg (b);
-cout << ’\n’;
-return 0;
+
+int isneg(myclass ob){ return (ob.num <0) ? 1 : 0; }
+
+
+int main(){
+    myclass a(-1), b(2);
+    
+    std::cout << isneg (a) << ’ ’ << isneg (b);
+    std::cout << ’\n’;
+
+    return 0;
 }
 
 
