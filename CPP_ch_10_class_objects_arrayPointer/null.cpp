@@ -55,34 +55,36 @@ preceding chapters.
 class base{
         int a;
     public:
-        void load_a(int n) { a = n; }
-int get_a () { return a; }
+        void load_a(int n){ a = n; }
+        int get_a(){ return a; }
 };
-class derived : public base
-{
-int b;
-public :
-void load_b ( int n) { b = n; }
-int get_b () { return b; }
+
+class derived : public base {
+        int b;
+    public:
+        void load_b(int n){ b = n; }
+        int get_b(){ return b; }
 };
-int main ()
-{
-derived ob1 , ob2 ;
-ob1 . load_a (5) ;
-ob1 . load_b (10) ;
-447TEACH YOURSELF
-C++
-// assign ob1 to ob2
-ob2 = ob1 ;
-cout << " Here is ob1 ’s a and b: ";
-cout << ob1 . get_a () << " " << ob1 . get_b () << "\n";
-cout << " Here is ob2 ’s a and b: ";
-cout << ob2 . get_a () << " " << ob2 . get_b () << "\n";
-/*
-As you can probably guess , the output is the same for
-each object .
-*/
-return 0;
+
+
+int main(){
+    derived ob1, ob2;   // both are objects of derived class
+
+    // load a () and b 
+    ob1.load_a(5);      // member of base
+    ob1.load_b(10);     // member of derived
+
+    // assign ob1 to ob2
+    ob2 = ob1;
+
+    std::cout << " Here is ob1's a and b: ";
+    std::cout << ob1.get_a() << " " << ob1.get_b() << "\n";
+    std::cout << " Here is ob2's a and b: ";
+    std::cout << ob2.get_a() << " " << ob2.get_b() << "\n";
+
+    // As you can probably guess , the output is the same for each object.
+
+    return 0;
 }
 
 
