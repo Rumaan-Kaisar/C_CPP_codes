@@ -693,3 +693,23 @@ stack loadstack(int upper){
                     The copy’s destructor is called when the object is destroyed 
                         by the termination of the function.
 */
+
+
+
+
+/* Example 13: By default, objects are passed to functions "by value", i.e. what occurs to the 
+                    copy inside the function is not supposed to affect the argument used in the call. 
+                
+                Can there be a violation of this principle? 
+                If so, give an example. 
+
+
+                ANS:
+                    The violation of the separation between an argument and its copy when 
+                        passed to a parameter can be caused by "several destructor", 
+                        that memory will also be lost to the argument. 
+                    
+                    In general, if the DESTRUCTOR function destroys anything that the "original argument requires", 
+                        damage to the argument will occur.
+*/
+
