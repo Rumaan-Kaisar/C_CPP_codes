@@ -681,3 +681,15 @@ stack loadstack(int upper){
     return t;
 }
 
+
+
+
+/* Example 12: When an object is "passed as an argumen"t to a function, a copy of that object is made. 
+                Is the copy's constructor function called? 
+                Is its destructor called? 
+
+                ANS:
+                    Constructor isn't called
+                    The copy’s destructor is called when the object is destroyed 
+                        by the termination of the function.
+*/
