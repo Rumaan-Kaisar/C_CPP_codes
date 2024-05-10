@@ -470,3 +470,12 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 7: Can a friend function be friends with more than one class? 
+
+                ANS:
+                    Yes, a friend function can be friends with more than one class.
+*/
+
