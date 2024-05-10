@@ -479,3 +479,38 @@ int main(){
                     Yes, a friend function can be friends with more than one class.
 */
 
+
+
+
+/* Example 8: Given the following class, show how to add a friend function called isneg() that 
+                takes one parameter of type myclass and 
+                returns TRUE if num is negative and FALSE otherwise. 
+
+                        class myclass{
+                                int num;
+                            public:
+                                myclass(int x) { num = x; }
+                        };
+*/
+
+#include <iostream>
+
+class myclass{
+        int num;
+    public:
+        myclass(int x){num = x;}
+        friend int isneg(myclass ob);
+};
+
+int isneg(myclass ob){ return (ob.num <0) ? 1 : 0; }
+
+
+int main(){
+    myclass a(-1), b(2);
+    
+    std::cout << isneg(a) << ' ' << isneg(b);
+    std::cout << '\n';
+
+    return 0;
+}
+
