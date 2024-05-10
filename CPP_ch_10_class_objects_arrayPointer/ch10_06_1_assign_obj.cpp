@@ -606,3 +606,72 @@ int main(){
 */
 
 
+
+
+/* Example 12: When an object of a "derived class" is assigned to another object of the same derived class, 
+                is the data associated with the base class also copied? 
+
+                To find out, use the following two classes and 
+                    write a program that demonstrates what happens.
+
+                        class base {
+                                int a;
+                            public:
+                                void load_a(int n) { a = n; }
+                                int get_a() { return a; }
+                        };
+
+                        class derived : public base {
+                                int b;
+                            public:
+                                void load_b(int n) { b = n; }
+                                int get_b() { return b; }
+                        };
+
+
+                ANS:
+                    The outcome of the experiment is as follows: 
+                    Yes, data from the base class is also copied when an object of 
+                        a derived class is assigned to another object of the same derived class.
+    
+                    Here is a program that demonstrates this fact:
+*/
+
+
+#include <iostream>
+
+class base{
+        int a;
+    public:
+        void load_a(int n){ a = n; }
+        int get_a(){ return a; }
+};
+
+class derived : public base {
+        int b;
+    public:
+        void load_b(int n){ b = n; }
+        int get_b(){ return b; }
+};
+
+
+int main(){
+    derived ob1, ob2;   // both are objects of derived class
+
+    // load a () and b 
+    ob1.load_a(5);      // member of base
+    ob1.load_b(10);     // member of derived
+
+    // assign ob1 to ob2
+    ob2 = ob1;
+
+    std::cout << " Here is ob1's a and b: ";
+    std::cout << ob1.get_a() << " " << ob1.get_b() << "\n";
+    std::cout << " Here is ob2's a and b: ";
+    std::cout << ob2.get_a() << " " << ob2.get_b() << "\n";
+
+    // As you can probably guess , the output is the same for each object.
+
+    return 0;
+}
+
