@@ -462,3 +462,77 @@ class sample {
 sample ob (100 , 'X');
 
 
+
+
+/* Example 12: using following class, create a function called make_sum() 
+                that returns an object of type summation. 
+
+                Have this function prompt the user for a number and then 
+                    construct an object having this value and return it to the calling procedure. 
+
+                Demonstrate that the function works.
+
+
+                        class summation {
+                                int num;
+                                long sum ; // summation of num
+                            public:
+                                void set_sum(int n);
+                                void show_sum(){ std::cout << num << " summed is " << sum << "\n"; }
+                        };
+
+                        void summation :: set_sum (int n) {
+                            int i;
+                            num = n;
+                            sum = 0;
+                            for (i =1; i <=n; i ++) sum += i;
+                        }
+*/
+
+#include <iostream>
+
+class summation{
+        int num;
+        long sum;   // summation of num
+    public:
+        void set_sum(int n);
+        void show_sum(){ std::cout << num << " summed is " << sum << "\n"; }
+};
+
+// notice we didn't define set_sum() as in-line because it contains loop
+void summation :: set_sum(int n){
+    int i;
+    num = n;
+    sum = 0;
+    for(i =1; i<=n; i ++) sum += i;
+}
+
+summation make_sum(){
+    int i;
+    summation temp;
+    std::cout << " Enter number : ";
+    std::cin >> i;
+    temp.set_sum (i);
+    return temp;
+}
+
+
+int main(){
+    summation s;
+
+    s = make_sum();
+    s.show_sum();
+    
+    return 0;
+}
+
+
+
+
+/* Example 13: In the preceding question, set_sum() was not defined in-line within the "summation" class declaration.
+                Give a reason why this might be necessary for some compilers. 
+
+                ANS:
+                    For some compilers, in-line functions cannot contain "LOOPS".
+*/
+
