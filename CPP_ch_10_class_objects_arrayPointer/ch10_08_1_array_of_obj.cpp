@@ -5,26 +5,44 @@
 
     Arrays of objects are accessed just like arrays of other types of variables.
 
- */
+*/
+
+
 
 /* Example 1: Following program creates a four-element array of objects of type "samp" and 
-    then loads each element's a with a value between 0 and 3.  
+                    then loads each element's a with a value between 0 and 3.  
     
-The array name, in this case "ob", is indexed; 
-then the "member access operator" is applied, 
-    followed by the name of the member function to be called. */
-class samp {	int a;
-public : void set_a(int n) { a = n; }
-int get_a() { return a; }	};
+                The array name, in this case "ob", is indexed; 
+                then the "member access operator" is applied, 
+                    followed by the name of the member function to be called. 
+*/
+#include <iostream>
 
-int main() {	samp ob [4];	int i;
-for (i=0; i<4; i++) ob[i].set_a(i);
-for (i=0; i<4; i++) cout<< ob[i].get_a();
-cout<< "\n";
-return 0;}
+class samp{	
+        int a;
+    public:
+        void set_a(int n) { a = n; }
+        int get_a() { return a; }
+};
+
+int main() {
+    samp ob[4];	
+    int i;
+
+    // notice how "ob" is indexed and access a member
+    for(i=0; i<4; i++) ob[i].set_a(i);
+    for(i=0; i<4; i++) std::cout<< ob[i].get_a();
+    std::cout<< "\n";
+    
+    return 0;
+}
 
 
 
+/* ------------    Array initialization    ------------
+
+
+*/
 
 	Initialization list (short and long form) for array with constructor: If a class type includes a constructor, an array of objects can be initialized. For example, here ob is an initialized array:
 
