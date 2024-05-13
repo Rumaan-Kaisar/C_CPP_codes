@@ -1,8 +1,19 @@
 
-10.9 ARRAYS OF OBJECTS
-	The syntax for declaring an array of objects is exactly like that used to declare an array of any other type of variable. 
-	Arrays of objects are accessed just like arrays of other types of variables.
-Example: 		class samp {	int a;
+/* ------------    array of objects    ------------
+    The syntax for declaring an "array of objects" is exactly similar to 
+        array of any other type of variable. 
+
+    Arrays of objects are accessed just like arrays of other types of variables.
+
+ */
+
+/* Example 1: Following program creates a four-element array of objects of type "samp" and 
+    then loads each element's a with a value between 0 and 3.  
+    
+The array name, in this case "ob", is indexed; 
+then the "member access operator" is applied, 
+    followed by the name of the member function to be called. */
+class samp {	int a;
 public : void set_a(int n) { a = n; }
 int get_a() { return a; }	};
 
@@ -11,7 +22,9 @@ for (i=0; i<4; i++) ob[i].set_a(i);
 for (i=0; i<4; i++) cout<< ob[i].get_a();
 cout<< "\n";
 return 0;}
-This creates a four-element array of objects of type samp and then loads each element's a with a value between 0 and 3.  The array name, in this case ob, is indexed; then the member access operator is applied, followed by the name of the member function to be called.
+
+
+
 
 	Initialization list (short and long form) for array with constructor: If a class type includes a constructor, an array of objects can be initialized. For example, here ob is an initialized array:
 
