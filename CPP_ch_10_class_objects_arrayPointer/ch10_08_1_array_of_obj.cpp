@@ -39,23 +39,62 @@ int main() {
 
 
 
-/* ------------    Array initialization    ------------
 
+/*  ------------    initialize an array of objects    ------------
+    If a class type includes a constructor, an array of objects can be initialized.
+        Shorthand form: 
+                        samp ob[4] = { -1, -2, -3, -4 };
+        longer form:
+                        samp ob[4] = { samp(-1), samp(-2), samp(-3), samp(-4) }; 
+
+
+    Notice (recall ch10_01_3_constructor_param.cpp):
+        The syntax for passing an argument to a parameterized constructor is shorthand for this longer form:
+
+                    myclass ob = myclass(4)
+
+        And mostly we used the shorthand form:
+
+                    myclass ob(4)
 
 */
 
-	Initialization list (short and long form) for array with constructor: If a class type includes a constructor, an array of objects can be initialized. For example, here ob is an initialized array:
 
-class samp { 	int a;
-public :samp(int n) { a = n; } /* constructor for initialization*/
-int get_a() { return a; } };
+/* Example 2: (Initialize an array) Here "ob" is an initialized array.
+                We used the array { -1, -2, -3, -4 } to initialize the array of obejects ob[4] 
+*/
+#include <iostream>
 
-int main() { samp ob [4] = { -1, -2, -3, -4 };
-. . . . . . }
+class samp{
+        int a;
+    public:
+        samp(int n) { a = n; }      // constructor for initialization (in-line)
+        int get_a(){ return a; }
+};
 
-Actually, the syntax shown in the initialization list samp ob [4] = { -1, -2, -3, -4 }; is shorthand for this longer form (first shown in 10.3 ):
-samp ob[4] = { 	samp( -1), samp( -2),
-samp( -3), samp( -4)    };
+
+int main(){
+    samp ob[4] = { -1, -2, -3, -4 };
+    int i;
+
+    for (i =0; i <4; i ++) std::cout << ob[i].get_a() << ' ';
+    std::cout << "\n";
+
+    return 0;
+}
+
+/*  Note:
+            samp ob[4] = { -1, -2, -3, -4 };
+
+        is shorthand for following longer form:
+
+            samp ob[4] = { samp(-1), samp(-2), samp(-3), samp(-4) }; 
+*/
+
+
+
+// ----    REV[14-MAY-24]    ----
+
 However, the shorthand form used in the program is applicable when constructors take only one argument. For constructors with two or more argument (multidimensional arrays of objects) we have to use the longer form.  For example, 
 
 class samp { 	int a, b;
