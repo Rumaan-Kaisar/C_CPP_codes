@@ -217,3 +217,37 @@ samp(13 , 14), 	samp(15 , 16)   };
 
 
 EXERCISES
+1. Using the following class declaration, create a ten-element array and initialize the ch
+element with the values A through J. Demonstrate that the array does, indeed, contain
+these values.
+# include <iostream >
+using namespace std ;
+class letters
+{
+char ch;
+public :
+letters ( char c) { ch = c; }
+char get_ch () { return ch; }
+};
+92ARRAYS, POINTERS, AND REFERENCES
+4.2. USING POINTERS TO OBJECTS
+
+
+
+2. Using the following class declaration, create a ten-element array, initialize num to the
+values 1 through 10, and initialize sqr to num’s square.
+# include <iostream >
+using namespace std ;
+class squares
+{
+int num , sqr ;
+public :
+squares ( int a, int b) { num = a; sqr = b; }
+void show () { cout << num << ’ ’ << sqr << "\n"; }
+};
+
+
+
+3. Change the initialization in Exercise 1 so it uses the long form. (That is, invoke letters’
+constructor explicitly in the initialization list.
+
