@@ -57,6 +57,13 @@ int main() {
 
                     myclass ob(4)
 
+
+    However, the shorthand form is applicable when constructors take "only one argument". 
+        We have to use the longer form for constructors with two or more argument 
+        (eg: multidimensional arrays of objects)
+
+
+
 */
 
 
@@ -93,9 +100,15 @@ int main(){
 
 
 
-// ----    REV[14-MAY-24]    ----
+// ----    REV[16-MAY-24]    ----
 
-However, the shorthand form used in the program is applicable when constructors take only one argument. For constructors with two or more argument (multidimensional arrays of objects) we have to use the longer form.  For example, 
+	The reason is, the formal C++ syntax allows only one argument at a time in a comma-separated list. 
+There is no way, for example, to specify two (or more) arguments per entry in the list. 
+
+	Therefore, when you initialize arrays of objects that have constructors that take more than one argument, 
+you must use the "long form" initialization syntax rather than the "shorthand form."
+
+	You can always use the long form of initialization even if the object takes only one argument. 
 
 class samp { 	int a, b;
 public : samp(int n, int m) { a = n; b = m; } /* initialization for 2-D array */
@@ -108,7 +121,5 @@ samp(9, 10), 		samp(11 , 12),
 samp(13 , 14), 	samp(15 , 16)   };
 . . . . . }
 
-	The reason is, the formal C++ syntax allows only one argument at a time in a comma-separated list. There is no way, for example, to specify two (or more) arguments per entry in the list. 
-	Therefore, when you initialize arrays of objects that have constructors that take more than one argument, you must use the "long form" initialization syntax rather than the "shorthand form."
-	You can always use the long form of initialization even if the object takes only one argument. 
+
 
