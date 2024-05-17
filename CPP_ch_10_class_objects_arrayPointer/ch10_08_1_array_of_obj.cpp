@@ -107,51 +107,50 @@ int main(){
 
 
 
-// ----    REV[16-MAY-24]    ----
 
+/* Example 3: (Multidimensional arrays of objeects) here is a program
+                that creates a 2D array of objects and initializes them: 
 
-Example 3: You can also have multidimensional arrays of objeects. For example, here is a program
-that creates a two-dimensional array of objects and initializes them:
+                notice the constructor takes one parameter, hence 'shorthand form' used
+*/
 // Create a two - dimensional array of objects .
-# include <iostream >
-using namespace std ;
-class samp
-{
-int a;
-public :
-samp ( int n) { a = n; }
-int get_a () { return a; }
+#include <iostream>
+
+class samp{
+        int a;
+    public:
+        samp(int n) { a = n; }
+        int get_a() { return a; }
 };
-90ARRAYS, POINTERS, AND REFERENCES
-4.1. ARRAYS OF OBJECTS
-int main ()
-{
-samp ob [4][2] = { 1, 2,
-3, 4,
-5, 6,
-7, 8,
-};
-int i;
-for (i =0; i <4; i ++)
-{
-cout << ob[i ][0]. get_a () << ’ ’;
-cout << ob[i ][1]. get_a () << "\n";
+
+
+int main(){
+    // following initalize 8 objects
+    samp ob[4][2] = { 
+        1, 2,
+        3, 4,
+        5, 6,
+        7, 8,
+    };
+
+    int i;
+
+    for(i =0; i<4; i++){
+        std::cout << ob[i][0].get_a() << ' ';
+        std::cout << ob[i][1].get_a() << "\n";
+    }
+    std::cout << "\n";
+
+    return 0;
 }
-cout << "\n";
-return 0;
-}
-This program displays
-1 2
-3 4
-5 6
-7 8
-4. 
 
 
+// ----    REV[17-MAY-24]    ----
 
-Example 4: As you know, a constructor can take more than one argument. When initializing an array
+/* Example 4: As you know, a constructor can take more than one argument. When initializing an array
 of objects whose constructor takes more than one argument, you must use the alternative
-form of initialization mentioned earlier. Let’s begin with an example:
+form of initialization mentioned earlier. Let’s begin with an example: */
+
 # include <iostream >
 using namespace std ;
 class samp
