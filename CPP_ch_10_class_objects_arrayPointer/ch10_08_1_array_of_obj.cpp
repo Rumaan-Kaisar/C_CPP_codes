@@ -200,6 +200,7 @@ int main(){
 
 
 
+// ----  rev[20-May-24]  ----
 
 /* Example 5: Using the following class declaration, create a 10-element array and 
                 initialize the ch element with the values 'A' through 'J'. 
@@ -220,6 +221,27 @@ class letters {
         letters(char c) { ch = c; }
         char get_ch() { return ch; }
 };
+
+# include <iostream >
+using namespace std ;
+class letters
+{
+char ch;
+public :
+letters ( char c) { ch = c; }
+char get_ch () { return ch; }
+};
+int main ()
+{
+letters ob [10] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
+int i;
+for (i =0; i <10; i ++)
+cout << ob[i]. get_ch () << ’ ’;
+cout << "\n";
+return 0;
+}
+
+
 
 
 
@@ -245,9 +267,72 @@ class squares {
 };
 
 
+# include <iostream >
+using namespace std ;
+class squares
+{
+int num , sqr ;
+public :
+squares ( int a, int b) { num = a; sqr = b; }
+void show () { cout << num << ’ ’ << sqr << "\n"; }
+};
+
+int main ()
+{
+squares ob [10] = {
+squares (1, 1) ,
+squares (2, 4) ,
+squares (3, 9) ,
+squares (4, 16) ,
+squares (5, 25) ,
+squares (6, 36) ,
+squares (7, 49) ,
+squares (8, 64) ,
+squares (9, 81) ,
+squares (10 , 100) ,
+};
+int i;
+for (i =0; i <10; i ++)
+ob[i]. show ();
+return 0;
+}
+
+
 
 
 /* Example 7: Change the initialization in "Example 5" so it uses the "long form of initialization". 
                 (That is, invoke letter's constructor explicitly in the initialization list.) 
 */
+
+#include <iostream>
+
+class letters {
+        char ch;
+    public:
+        letters( char c) { ch = c; }
+        char get_ch() { return ch; }
+};
+
+
+int main(){
+    letters ob [10] = {
+        letters('a'),
+        letters('b'),
+        letters('c'),
+        letters('d'),
+        letters('e'),
+        letters('f'),
+        letters('g'),
+        letters('h'),
+        letters('i'),
+        letters('j'),
+    };
+
+    int i;
+
+    for(i=0; i<10; i++) std::cout << ob[i].get_ch() << ' ';
+    std::cout << "\n";
+
+    return 0;
+}
 
