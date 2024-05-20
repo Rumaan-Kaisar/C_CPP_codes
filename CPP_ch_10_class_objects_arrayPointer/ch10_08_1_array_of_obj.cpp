@@ -201,40 +201,53 @@ int main(){
 
 
 
-// ----  rev[17-may-2024]  ----
+/* Example 5: Using the following class declaration, create a 10-element array and 
+                initialize the ch element with the values 'A' through 'J'. 
+                Demonstrate that the array does, indeed, contain these values. 
 
-EXERCISES
-1. Using the following class declaration, create a ten-element array and initialize the ch
-element with the values A through J. Demonstrate that the array does, indeed, contain
-these values.
-# include <iostream >
-using namespace std ;
-class letters
-{
-char ch;
-public :
-letters ( char c) { ch = c; }
-char get_ch () { return ch; }
-};
-92ARRAYS, POINTERS, AND REFERENCES
-4.2. USING POINTERS TO OBJECTS
+                class letters {
+                        char ch;
+                    public:
+                        letters(char c){ ch = c; }
+                        char get_ch(){ return ch; }
+                };
+*/
+#include <iostream>
 
-
-
-2. Using the following class declaration, create a ten-element array, initialize num to the
-values 1 through 10, and initialize sqr to num’s square.
-# include <iostream >
-using namespace std ;
-class squares
-{
-int num , sqr ;
-public :
-squares ( int a, int b) { num = a; sqr = b; }
-void show () { cout << num << ’ ’ << sqr << "\n"; }
+class letters {
+        char ch;
+    public:
+        letters(char c) { ch = c; }
+        char get_ch() { return ch; }
 };
 
 
 
-3. Change the initialization in Exercise 1 so it uses the long form. (That is, invoke letters’
-constructor explicitly in the initialization list.
+
+/* Example 6: Using the following class declaration, create a 10-element array, 
+                initialize "num" to the values 1 through 10, and 
+                initialize "sqr" to num's square. 
+
+                class squares {
+                        int num , sqr;
+                    public:
+                        squares(int a, int b) { num = a; sqr = b; }
+                        void show() { std::cout << num << ' ' << sqr << "\n"; }
+                };                
+*/
+#include <iostream>
+
+class squares {
+        int num , sqr;
+    public:
+        squares(int a, int b) { num = a; sqr = b; }
+        void show() { std::cout << num << ' ' << sqr << "\n"; }
+};
+
+
+
+
+/* Example 7: Change the initialization in "Example 5" so it uses the "long form of initialization". 
+                (That is, invoke letter's constructor explicitly in the initialization list.) 
+*/
 
