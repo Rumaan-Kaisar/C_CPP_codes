@@ -200,7 +200,6 @@ int main(){
 
 
 
-// ----  rev[20-May-24]  ----
 
 /* Example 5: Using the following class declaration, create a 10-element array and 
                 initialize the ch element with the values 'A' through 'J'. 
@@ -222,29 +221,22 @@ class letters {
         char get_ch() { return ch; }
 };
 
-# include <iostream >
-using namespace std ;
-class letters
-{
-char ch;
-public :
-letters ( char c) { ch = c; }
-char get_ch () { return ch; }
-};
-int main ()
-{
-letters ob [10] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
-int i;
-for (i =0; i <10; i ++)
-cout << ob[i]. get_ch () << ’ ’;
-cout << "\n";
-return 0;
+
+int main(){
+    letters ob[10] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
+    int i;
+
+    // Accessing members of each object in the array-of-objects
+    for(i =0; i<10; i++) std::cout << ob[i].get_ch() << ' ';
+    std::cout << "\n";
+
+    return 0;
 }
 
 
 
 
-
+// ----  rev[21-May-24]  ----
 
 /* Example 6: Using the following class declaration, create a 10-element array, 
                 initialize "num" to the values 1 through 10, and 
