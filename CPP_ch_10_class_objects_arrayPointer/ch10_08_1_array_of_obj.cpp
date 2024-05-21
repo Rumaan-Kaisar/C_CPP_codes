@@ -236,8 +236,6 @@ int main(){
 
 
 
-// ----  rev[21-May-24]  ----
-
 /* Example 6: Using the following class declaration, create a 10-element array, 
                 initialize "num" to the values 1 through 10, and 
                 initialize "sqr" to num's square. 
@@ -252,45 +250,39 @@ int main(){
 #include <iostream>
 
 class squares {
-        int num , sqr;
+        int num, sqr;
     public:
         squares(int a, int b) { num = a; sqr = b; }
         void show() { std::cout << num << ' ' << sqr << "\n"; }
 };
 
 
-# include <iostream >
-using namespace std ;
-class squares
-{
-int num , sqr ;
-public :
-squares ( int a, int b) { num = a; sqr = b; }
-void show () { cout << num << ’ ’ << sqr << "\n"; }
-};
+int main(){
+    squares ob[10] = {
+        squares(1, 1),
+        squares(2, 4),
+        squares(3, 9),
+        squares(4, 16),
+        squares(5, 25),
+        squares(6, 36),
+        squares(7, 49),
+        squares(8, 64),
+        squares(9, 81),
+        squares(10 , 100),
+    };
 
-int main ()
-{
-squares ob [10] = {
-squares (1, 1) ,
-squares (2, 4) ,
-squares (3, 9) ,
-squares (4, 16) ,
-squares (5, 25) ,
-squares (6, 36) ,
-squares (7, 49) ,
-squares (8, 64) ,
-squares (9, 81) ,
-squares (10 , 100) ,
-};
-int i;
-for (i =0; i <10; i ++)
-ob[i]. show ();
-return 0;
+    int i;
+
+    // Accessing members of each object in the array-of-objects
+    for (i =0; i <10; i++) ob[i].show();
+
+    return 0;
 }
 
 
 
+
+// ----  rev[21-May-24]  ----
 
 /* Example 7: Change the initialization in "Example 5" so it uses the "long form of initialization". 
                 (That is, invoke letter's constructor explicitly in the initialization list.) 
