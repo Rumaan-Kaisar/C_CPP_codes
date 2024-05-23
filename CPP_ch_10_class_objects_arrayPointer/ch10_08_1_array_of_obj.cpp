@@ -282,8 +282,6 @@ int main(){
 
 
 
-// ----  rev[21-May-24]  ----
-
 /* Example 7: Change the initialization in "Example 5" so it uses the "long form of initialization". 
                 (That is, invoke letter's constructor explicitly in the initialization list.) 
 */
@@ -293,13 +291,13 @@ int main(){
 class letters {
         char ch;
     public:
-        letters( char c) { ch = c; }
+        letters(char c) { ch = c; }
         char get_ch() { return ch; }
 };
 
 
 int main(){
-    letters ob [10] = {
+    letters ob[10] = {
         letters('a'),
         letters('b'),
         letters('c'),
