@@ -37,15 +37,27 @@
                     use "->" operator (pointer)
 */
 
-int myclass :: get() { return a; }
-int main() {	myclass ob (120) ; 	/*  create object  */
-myclass *p; 		/*  create pointer to object  */ 
-p = &ob; 		/*  put address of ob into p  */
-cout << " Value using object : " << ob.get();
-cout << "\n";
-cout << " Value using pointer : " << p->get();
-return 0; }
+#include <iostream>
 
+class myclass{
+        int a;
+    public:
+        myclass(int x) { a = x; }; // constructor
+        int get() { return a; };
+};
+
+
+int main(){
+    myclass ob(120); 	// create object
+    myclass *ptr;       //  create pointer to object
+
+    ptr = &ob; // put address of 'ob' into 'ptr'
+    std::cout << " Access value using object : " << ob.get();  // dot-operator '.' is used
+    std::cout << "\n";
+    std::cout << " Access value using pointer : " << ptr->get(); // arrow-operator '->' is used
+
+    return 0; 
+}
 
 
 
