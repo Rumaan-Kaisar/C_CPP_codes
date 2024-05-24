@@ -129,6 +129,42 @@ int main(){
 /* Example 3: Rewrite above "Example 2" so it displays the contents of the ob array in "reverse order". */
 
 
-/* Example 4: Change Section 4.1, Example 3 so the two-dimensional array is accessed via a pointer.
+/* Example 4: Change "ch10_08_1_array_of_obj.cpp", Example 3 so the two-dimensional array is accessed via a pointer.
 Hint: In C++, as in C, all arrays are stored contiguously, left to right, low to high. */
 
+
+/* : (Multidimensional arrays of objeects) here is a program
+                that creates a 2D array of objects and initializes them: 
+
+                notice the constructor takes one parameter, hence 'shorthand form' used
+*/
+// Create a two - dimensional array of objects .
+#include <iostream>
+
+class samp{
+        int a;
+    public:
+        samp(int n) { a = n; }
+        int get_a() { return a; }
+};
+
+
+int main(){
+    // following initalize 8 objects
+    samp ob[4][2] = { 
+        1, 2,
+        3, 4,
+        5, 6,
+        7, 8,
+    };
+
+    int i;
+
+    for(i =0; i<4; i++){
+        std::cout << ob[i][0].get_a() << ' ';
+        std::cout << ob[i][1].get_a() << "\n";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
