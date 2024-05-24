@@ -71,14 +71,30 @@ int main(){
 
 
 
-/* Example 2: (Pointers to objects) Here is an example of object pointer arithmetic */
+/*  --------    Pointer arithmetic    --------
+    Pointer arithmetic using an "object pointer" is the same as it is for any other data type: 
+        it is performed relative to the "type" of the object. 
+    
+    For example, when an object pointer is incremented, 
+        it points to the next object. 
+    
+    When an object pointer is decremented, 
+        it points to the previous object. 
+*/
+
+
+/* Example 2: (Pointers increment) Here is an example of object pointer arithmetic 
+
+                Notice the pointer arithmetic:
+                    Each time p is incremented, it points to the next object in the array.
+*/
 
 #include <iostream>
 
 class samp{
         int a, b;
     public:
-        samp(int n, int m){ a = n; b = m; }
+        samp(int n, int m){ a = n; b = m; }     // inline function constructor
         int get_a(){ return a; }
         int get_b(){ return b; }
 };
@@ -108,32 +124,5 @@ int main(){
     return 0;
 }
 
-
-
-
-// ----  rev[24-may-24]  ----
-
-
-
-	Pointer arithmetic using an object pointer is the same as it is for any other data type: it is performed relative to the type of the object. For example, when an object pointer is incremented, it points to the next object. When an object pointer is decremented, it points to the previous object.
- 
-class samp { int a, b;
-/* inline function as constructor */
-   public : samp(int n, int m) { a=n; b=m; } 
-     int get_a() { return a; }
-     int get_b() { return b; }   };
-int main() {
-samp ob[4] = {samp(1, 2), samp(3, 4),
-samp(5, 6), samp(7, 8) };
-int i;
-samp *p;
-p = ob;  /* get starting address of array */ 
-for (i=0; i <4; i++){
-cout << p->get_a () << ' ';
-cout << p->get_b () << "\n";
-p++;  /* advance to next object */ }
-. . . . . }
- 
-	Each time p is incremented, it points to the next object in the array.
 
 
