@@ -102,6 +102,8 @@ int main(){
 
 
 
+// ----  rev[24-may-24]  ----
+
 	Notice how the declaration          myclass *p; 	creates a pointer to an object of myclass. 
 	The address of ob is put into p by using this statement:       p = &ob;
 	Finally, the program shows how the members of an object can be accessed through a Pointer as using :      p->get()  .
