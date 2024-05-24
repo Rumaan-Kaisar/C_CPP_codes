@@ -35,6 +35,15 @@
 /* Example 1: following use two ways to access a class member of an object of that class
                     use "." operator 
                     use "->" operator (pointer)
+
+                # Notice how following declaration creates a pointer to an object of myclass. 
+                            myclass *p; 
+
+                # The address of ob is put into p by using this statement:       
+                            p = &ob;
+
+                # Finally, the program shows how the members of an object can be accessed through a Pointer as using :      
+                            p->get()
 */
 
 #include <iostream>
@@ -104,9 +113,7 @@ int main(){
 
 // ----  rev[24-may-24]  ----
 
-	Notice how the declaration          myclass *p; 	creates a pointer to an object of myclass. 
-	The address of ob is put into p by using this statement:       p = &ob;
-	Finally, the program shows how the members of an object can be accessed through a Pointer as using :      p->get()  .
+
 
 	Pointer arithmetic using an object pointer is the same as it is for any other data type: it is performed relative to the type of the object. For example, when an object pointer is incremented, it points to the next object. When an object pointer is decremented, it points to the previous object.
  
