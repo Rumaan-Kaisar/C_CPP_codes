@@ -129,8 +129,11 @@ int main(){
 /* Example 3: Rewrite above "Example 2" so it displays the contents of the ob array in "reverse order". */
 
 
-/* Example 4: Change "ch10_08_1_array_of_obj.cpp", Example 3 so the two-dimensional array is accessed via a pointer.
-Hint: In C++, as in C, all arrays are stored contiguously, left to right, low to high. */
+/* Example 4: Change "ch10_08_1_array_of_obj.cpp", (Example 3) so the two-dimensional array is accessed via a pointer.
+
+                Hint:   In C++, as in C, all arrays are stored contiguously, 
+                        left to right, low to high. 
+*/
 
 
 /* : (Multidimensional arrays of objeects) here is a program
