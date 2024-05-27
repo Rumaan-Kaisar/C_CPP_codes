@@ -126,7 +126,48 @@ int main(){
 
 
 
+
 /* Example 3: Rewrite above "Example 2" so it displays the contents of the ob array in "reverse order". */
+
+// Display in reverse order.
+#include <iostream>
+
+class samp{
+        int a, b;
+    public:
+        samp(int n, int m){ a = n; b = m; }     // inline function constructor
+        int get_a(){ return a; }
+        int get_b(){ return b; }
+};
+
+
+int main(){
+    // initialization
+    samp ob[4] = {
+        samp(1, 2),
+        samp(3, 4),
+        samp(5, 6),
+        samp(7, 8)
+    };
+
+    int i;
+    samp *p;    // object pointer
+
+    // p = ob;     // get starting address of array
+    p = &ob[3];     // get address of last element, notice "&" is used for specific element
+    for(i =0; i<4; i++){
+        std::cout << p -> get_a() << ' ';
+        std::cout << p -> get_b() << "\n";
+        // p++;    // advance to next object
+        p--;    // advance to previous object
+    }
+
+    std::cout << "\n";
+
+    return 0;
+}
+
+
 
 
 /* Example 4: Change "ch10_08_1_array_of_obj.cpp", (Example 3) so the two-dimensional array is accessed via a pointer.
@@ -171,3 +212,43 @@ int main(){
 
     return 0;
 }
+
+
+
+
+2. /*
+Create a two - dimensional array of objects .
+Access via a pointer .
+*/
+# include <iostream >
+452ANSWERS
+4.3 EXERCISE
+using namespace std ;
+class samp
+{
+int a;
+public :
+samp ( int n) { a = n; }
+int get_a () { return a; }
+};
+int main ()
+{
+samp ob [4][2] = { 1, 2,
+3, 4,
+5, 6,
+7, 8,
+};
+int i;
+samp *p;
+p = ( samp *) ob;
+for (i =0; i <4; i ++)
+{
+cout << p-> get_a () << ’ ’;
+p ++;
+cout << p-> get_a () << "\n";
+p ++;
+}
+cout << "\n";
+return 0;
+}
+
