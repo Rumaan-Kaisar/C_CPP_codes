@@ -240,46 +240,53 @@ int main(){
                 Why "p = (samp *)ob;" used instead of "p = ob;" in the "Example 4"? 
 
 
-answer:
+    answer:
+
+        In C++, when dealing with MULTI-DIMENSIONAL arrays and pointers, 
+            the "TYPE of the pointer" must match the "type of the array ELEMENTS". 
 
 
-In C++, when dealing with multidimensional arrays and pointers, the type of the pointer must match the type of the array elements. Let's dissect the reason behind using p = (samp *)ob; instead of p = ob; in the context of your examples.
+            Consider the following declaration:
+
+                    samp ob[4][2];
+            
+                This creates a two-dimensional array of samp objects. Here's how the TYPES break down:
+                    "ob" is an array of 4 elements, where each element is an array of 2 "samp" objects.
+                    The type of ob is samp[4][2].
+                    The type of ob[0] is samp[2] (an array of 2 samp objects).
+                    The type of &ob[0][0] is samp* (a pointer to a samp object).
 
 
-Understanding Array Types and Pointers:
 
-Consider the following declaration:
+            Pointer Arithmetic:
+                When you assign a pointer to the array ob, you need to consider what exactly the pointer is pointing to:
 
-    cpp
-    Copy code
-    samp ob[4][2];
-    This creates a two-dimensional array of samp objects. Here's how the types break down:
+                    p = ob; would attempt to assign p a type of samp (*)[2], 
+                        which is a pointer to an array of 2 samp objects.
 
-    ob is an array of 4 elements, where each element is an array of 2 samp objects.
-    The type of ob is samp[4][2].
-    The type of ob[0] is samp[2] (an array of 2 samp objects).
-    The type of &ob[0][0] is samp* (a pointer to a samp object).
-
-
-Pointer Arithmetic:
-    When you assign a pointer to the array ob, you need to consider what exactly the pointer is pointing to:
-
-    p = ob; would attempt to assign p a type of samp (*)[2], which is a pointer to an array of 2 samp objects.
-    p = (samp *)ob; explicitly casts ob to a pointer to samp, effectively treating the entire 2D array as a contiguous block of samp objects.
-    By using the cast p = (samp *)ob;, you are telling the compiler to treat the 2D array ob as if it were a single-dimensional array of samp objects. This is valid because, in memory, a 2D array is stored contiguously in row-major order (left to right, top to bottom).
+                    p = (samp *)ob; explicitly casts ob to a pointer to "samp", 
+                        effectively treating the entire 2D array as a "contiguous block" of samp objects.
+            
+                    By using the cast p = (samp *)ob;, you are telling the compiler to 
+                        treat the 2D array ob as if it were a single-dimensional array of samp objects. 
+                    This is valid because, in memory, a 2D array is stored contiguously in row-major order (left to right, top to bottom).
 
 
-Why Casting is Necessary?
-    Without the cast, if you tried to directly assign p = ob;, the types wouldn't match:
 
-    ob is of type samp[4][2].
-    p is of type samp*.
-    The cast p = (samp *)ob; ensures that the type of p is compatible with the type of &ob[0][0], effectively treating the 2D array as a contiguous block of memory.
+            Why Casting is Necessary?
+                Without the cast, if you tried to directly assign p = ob;, the types wouldn't match:
 
-    Summary
-    In summary, p = (samp *)ob; is used to treat the 2D array as a contiguous block of memory. This allows you to increment the pointer p and access each samp object in sequence. Without the cast, the types would not be compatible, and you would not be able to perform pointer arithmetic correctly to traverse the entire 2D array as if it were a 1D array.
+                    ob is of type samp[4][2].
+                    p is of type samp*.
 
+                The cast p = (samp *)ob; ensures that the type of p is compatible with the type of &ob[0][0], 
+                    effectively treating the 2D array as a contiguous block of memory.
+                    This allows you to increment the pointer p and access each "samp object" in sequence. 
+            
 
+            Without the cast, the types would not be compatible, 
+                and you would not be able to perform pointer arithmetic correctly to 
+                traverse the entire 2D array as if it were a 1D array.
 */
 
 
