@@ -292,32 +292,38 @@ int main(){
 
 
 
+/* Example 6: Why '&' is used in "p = &ob[3];"? 
+                Why not just "p=ob[3]" in "Example 3" ? 
 
-/* Example 6: Why '&' is used in "p = &ob[3];"? Why not just "p=ob[3]" in "Example 3" ? */
+    Ans:
+        '&' is used to get the address of a variable. 
+        When working with pointers and arrays, 
+            it's crucial to understand the distinction between an "object" and the "address of an object".
 
-In C++, the & operator is used to get the address of a variable. When working with pointers and arrays, it's crucial to understand the distinction between an object and the address of an object.
 
-Understanding the Difference
-p = ob[3]; assigns the value of the fourth element of the array ob (since array indexing is zero-based) to p. This is incorrect because p is a pointer to samp, not a samp object.
-p = &ob[3]; assigns the address of the fourth element of the array ob to p. This is correct because p is supposed to point to a samp object.
-Explanation
-Here’s a detailed explanation of why & is used in p = &ob[3];:
+        Understanding the Difference
 
-Type Compatibility:
+            p = ob[3]; 
+                tries to assign a samp object to a samp* pointer, which is incorrect.
+                it assigns the "value" of the fourth element of the array ob  to p. 
+                This is incorrect because p is a pointer to samp, 
+                p is supposed to point to a samp object.
 
-ob is an array of samp objects.
-ob[3] is a samp object.
-p is a pointer to a samp object (samp*).
-To make p point to the fourth element of ob, you need to assign it the address of that element. The address of ob[3] is obtained using the address-of operator &.
+            p = &ob[3]; 
+                means that p now points to the "memory location" of the fourth element of ob.
+                assigns the "address" of the fourth "samp object" in the array ob to the pointer p 
+                This is correct because p is supposed to point to a samp object.
 
-Pointer Assignment:
 
-p = &ob[3]; means that p now points to the memory location of the fourth element of ob.
+        Type Compatibility:
+            ob is an "array of samp objects".
+            ob[3] is a samp object.
+            p is a pointer to a samp object (samp*).
 
-Summary
-p = ob[3]; tries to assign a samp object to a samp* pointer, which is incorrect.
-p = &ob[3]; correctly assigns the address of the fourth samp object in the array ob to the pointer p.
-Using &ob[3] ensures that p points to the correct memory location, allowing for proper pointer arithmetic and accessing the object's members correctly.
+            To make p point to the fourth element of ob, you need to assign it the address of that element. 
+                The address of ob[3] is obtained using the address-of operator '&'
+
+*/
 
 
 
