@@ -328,20 +328,39 @@ int main(){
 
 
 
+// ----   rev[30-may-2024]   ----
 
-/* Example 7: Then why there is no '&' with "p = ob;" in the first example? */
-Great question! The reason for the difference in the use of & in p = ob; and p = &ob[3]; is due to the way arrays and pointers interact in C++.
+/* Example 7: Then why there is no '&' with "p = ob;" in the first example (Example 2)? */
 
-Arrays and Pointers in C++
-In C++, arrays and pointers are closely related. When you use the name of an array by itself, it "decays" into a pointer to the first element of the array. This is a special behavior of arrays in C++.
+/* 
+        The reason for the difference in the use of & in 
 
-Explanation
-Case 1: p = ob;
-When p = ob; is used, the array name ob decays into a pointer to its first element:
+                            p = ob; 
+                    and 
+                            p = &ob[3]; 
 
-ob is of type samp[4], but when used in expressions, it decays to samp*, a pointer to the first element of the array.
-Thus, p = ob; assigns the address of ob[0] to p.
-This is why you don't need the & operator in this case. The array name itself acts as a pointer to the first element.
+        is due to the way "arrays and pointers interact" in C++.
+
+
+        Arrays and Pointers in C++:
+            In C++, arrays and pointers are closely related. 
+            When you use the "name of an array" by itself, 
+                it "decays" into a "pointer to the first element" of the array. 
+            This is a special behavior of arrays in C++.
+
+
+    ----  Explanation  ----
+
+    Case 1: p = ob;
+        When p = ob; is used, the "array name" ob decays into a "pointer to its first element":
+
+        ob is of type samp[4], but when used in expressions like "p = ob;", 
+            it decays to samp*, a "pointer to the first element" of the array.
+            
+        Thus, p = ob; assigns the address of ob[0] to p.
+
+        This is why you don't need the' &' operator in this case. 
+            The "array name" itself acts as a pointer to the first element.
 
 Case 2: p = &ob[3];
 When you want p to point to a specific element of the array (in this case, the fourth element), you need to use the address-of operator &:
@@ -362,13 +381,14 @@ p = &ob[3]; works because you need the address of a specific element in the arra
 This distinction ensures that p correctly points to the starting address of the array or a specific element within the array, respectively.
 
 
-
+ */
 
 
 /* Example 8: use samp ob[8] instead of samp ob[4][2] in "Example 4", can you use "p =ob;" similar to "Example 2"? 
 
-Answer: Yes you can. 
-Also we can use the casting for 1D array
+    Answer: 
+        without cast: Yes you can. 
+        casting: Also we can use the casting for 1D array (but its redundant and not recommended)
 */
 
 // Access via a pointer a 2D-array of objects .
