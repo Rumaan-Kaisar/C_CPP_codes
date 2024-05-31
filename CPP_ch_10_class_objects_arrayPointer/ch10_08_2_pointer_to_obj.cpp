@@ -328,8 +328,6 @@ int main(){
 
 
 
-// ----   rev[30-may-2024]   ----
-
 /* Example 7: Then why there is no '&' with "p = ob;" in the first example (Example 2)? 
 
     Ans:
@@ -386,9 +384,15 @@ int main(){
 
 /* Example 8: use samp ob[8] instead of samp ob[4][2] in "Example 4", can you use "p =ob;" similar to "Example 2"? 
 
-    Answer: 
-        without cast: Yes you can. 
-        casting: Also we can use the casting for 1D array (but its redundant and not recommended)
+            Answer: 
+                without cast: Yes you can. 
+                                Because using array name "ob" in expression "p = ob" decays to samp*
+                                p = ob; assigns the address of ob[0] to p
+                                ob decays to &ob[0]
+
+                casting: Also we can use the casting for 1D array (but its redundant and not recommended)
+                            Following works also:
+                            p = (samp *)ob; // get starting address of array (cast not necessary)
 */
 
 // Access via a pointer a 2D-array of objects .
@@ -430,8 +434,13 @@ int main(){
 
 
 
-Example 9: I understand why i need casting "p = (samp *)ob;" for 2D array of objects. However can i still use the casting for 1D array? Or we have to use "p = ob"?
+// ----   rev[31-may-2024]   ----
 
+/* 
+Example 9: We understand why we need casting "p = (samp *)ob;" for 2D array of objects. 
+However can we still use the casting for 1D array? 
+Or we have to use "p = ob"?
+ */
 You don't have to use casting for a 1D array of objects because, in C++, the array name automatically decays to a pointer to its first element. However, you can use casting if you want, although it's redundant and not idiomatic.
 
 Using Casting for 1D Array
