@@ -330,9 +330,9 @@ int main(){
 
 // ----   rev[30-may-2024]   ----
 
-/* Example 7: Then why there is no '&' with "p = ob;" in the first example (Example 2)? */
+/* Example 7: Then why there is no '&' with "p = ob;" in the first example (Example 2)? 
 
-/* 
+    Ans:
         The reason for the difference in the use of & in 
 
                             p = ob; 
@@ -349,39 +349,39 @@ int main(){
             This is a special behavior of arrays in C++.
 
 
+
     ----  Explanation  ----
 
-    Case 1: p = ob;
-        When p = ob; is used, the "array name" ob decays into a "pointer to its first element":
+        Case 1: p = ob;
+            When p = ob; is used, the "array name" ob decays into a "pointer to its first element":
+                so no & is needed
 
-        ob is of type samp[4], but when used in expressions like "p = ob;", 
-            it decays to samp*, a "pointer to the first element" of the array.
-            
-        Thus, p = ob; assigns the address of ob[0] to p.
+            ob is of type samp[4], but when used in expressions like "p = ob;", 
+                it decays to samp*, a "pointer to the first element" of the array.
+                
+            Thus, p = ob; assigns the address of ob[0] to p.
 
-        This is why you don't need the' &' operator in this case. 
-            The "array name" itself acts as a pointer to the first element.
-
-Case 2: p = &ob[3];
-When you want p to point to a specific element of the array (in this case, the fourth element), you need to use the address-of operator &:
-
-ob[3] is the fourth element of the array, which is of type samp.
-&ob[3] is the address of the fourth element, which is of type samp*.
-To make p point to the fourth element, you need to assign it the address of ob[3], hence p = &ob[3];.
-
-Summary
-p = ob;: Here, ob decays to a pointer to the first element of the array, so no & is needed.
-p = &ob[3];: Here, ob[3] is an element of the array, so you need & to get the address of this specific element.
+            This is why you don't need the' &' operator in this case. 
+                The "array name" itself acts as a pointer to the first element.
 
 
-In summary:
+        Case 2: p = &ob[3];
+            When you want p to point to a "specific element of the array" 
+                (in this case, the fourth element), you need to use the address-of operator &:
 
-p = ob; works because ob decays to &ob[0].
-p = &ob[3]; works because you need the address of a specific element in the array.
-This distinction ensures that p correctly points to the starting address of the array or a specific element within the array, respectively.
+            ob[3] is the fourth element of the array, which is of type "samp".
+            &ob[3] is the address of the fourth element, which is of type "samp*".
+
+            o make p point to the fourth element, 
+                you need to assign it the address of ob[3], hence p = &ob[3];.
 
 
- */
+        In summary:
+            p = ob; works because ob decays to &ob[0].
+            p = &ob[3]; works because you need the address of a specific element in the array.
+*/
+
+
 
 
 /* Example 8: use samp ob[8] instead of samp ob[4][2] in "Example 4", can you use "p =ob;" similar to "Example 2"? 
