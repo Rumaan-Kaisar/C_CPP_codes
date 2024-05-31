@@ -217,6 +217,9 @@ int main(){
 }
 
 
+
+
+
 /* Cosider all 3 previous examples: Example 2, Example 3, Example 4,
 
         --------    Use ChatGPT to explain:    --------
@@ -501,20 +504,25 @@ int main() {
 
 
 
-// ----   rev[31-may-2024]   ----
 
-Example 10: But does using casting with 1D array of objects has side effects?
+/* Example 10: But does using casting with 1D array of objects has side effects? 
 
-Using a cast with a 1D array of objects in C++ generally does not have adverse side effects, but it is redundant and can reduce code readability. Here are a few points to consider:
+    Ans:
+        Using a cast with a 1D array of objects in C++ generally does not have adverse side effects, 
+            but it is redundant and can reduce code readability. 
+            
+            Here are 3 points to consider:
+                When you cast a "1D array of objects" to a pointer to the first element ((samp *)ob), 
+                    you are telling the compiler to treat the array as a pointer to the first element, 
+                    which is what happens implicitly anyway. 
 
-No Functional Side Effects
-Type Compatibility: When you cast a 1D array of objects to a pointer to the first element ((samp *)ob), you are effectively telling the compiler to treat the array as a pointer to the first element, which is what happens implicitly anyway. Therefore, there are no functional side effects or changes in behavior.
-Code Readability and Maintainability
-Redundancy: Adding a cast where it is not needed makes the code less clean and can confuse readers who might wonder why the cast was necessary.
-Maintainability: Overuse of casting can make the code harder to maintain and understand. Future developers (or even you) might spend extra time figuring out why a cast was used when it wasn't needed.
+                Adding a cast where it is not needed makes the code less clean and 
+                    can confuse readers who might wonder why the cast was necessary.
 
-Conclusion
-Using a cast with a 1D array of objects to a pointer does not have adverse side effects in terms of functionality. The cast is redundant because the array name already decays to a pointer to its first element. The main issues with using unnecessary casts are reduced code readability and maintainability. It is best practice to avoid unnecessary casting to keep the code clean and easy to understand.
+                Overuse of casting can make the code harder to maintain and understand. 
+                    Future developers (or even you) might spend extra time figuring out why a cast was used when it wasn't needed.
+
+*/
 
 
 
