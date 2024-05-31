@@ -322,7 +322,6 @@ int main(){
 
             To make p point to the fourth element of ob, you need to assign it the address of that element. 
                 The address of ob[3] is obtained using the address-of operator '&'
-
 */
 
 
@@ -434,24 +433,36 @@ int main(){
 
 
 
-// ----   rev[31-may-2024]   ----
 
-/* 
-Example 9: We understand why we need casting "p = (samp *)ob;" for 2D array of objects. 
-However can we still use the casting for 1D array? 
-Or we have to use "p = ob"?
- */
-You don't have to use casting for a 1D array of objects because, in C++, the array name automatically decays to a pointer to its first element. However, you can use casting if you want, although it's redundant and not idiomatic.
+/* Example 9: We understand why we need casting "p = (samp *)ob;" for 2D array of objects. 
+                However can we still use the casting for 1D array? 
+                Or we have to use "p = ob"?
 
-Using Casting for 1D Array
-While it is not necessary, you can still use casting for a 1D array, but it's typically avoided because it's not needed and reduces code readability.
+            ans:
+                You don't have to use casting for a 1D array of objects because, 
+                    in C++, the array name automatically decays to a pointer to its first element. 
+                However, you can use casting if you want, although it's redundant and not idiomatic.
 
-Examples
-Let's illustrate this with examples:
+                Using Casting for 1D Array:
+                    While it is not necessary, you can still use casting for a 1D array, 
+                        but it's typically avoided because it's not needed and reduces code readability.
 
-Without Casting (Recommended Way)
 
-With Casting (Not Recommended but Possible)
+
+            Why Casting is Not Necessary for 1D Arrays:
+                Type Decay: 
+                    When you use the name of a 1D array (ob), it decays to a pointer to its first element. 
+                    This means p = ob; is already effectively p = &ob[0];
+
+                Readability: 
+                    Adding an unnecessary cast makes the code less readable and more complicated without any benefit.
+
+
+                The preferred way is to use p = ob; for a 1D array, which automatically decays to the pointer to the first element. 
+                    This keeps the code clean and idiomatic.
+*/
+
+// With Casting (Not Recommended but Possible)
 
 #include <iostream>
 
@@ -475,6 +486,7 @@ int main() {
     int i;
     samp *p;    // object pointer
 
+    // p = ob   // recommended
     p = (samp *)ob; // get starting address of array (cast not necessary)
     for (i = 0; i < 4; i++) {
         std::cout << p->get_a() << ' ';
@@ -488,13 +500,8 @@ int main() {
 }
 
 
-Why Casting is Not Necessary for 1D Arrays
-Type Decay: When you use the name of a 1D array (ob), it decays to a pointer to its first element. This means p = ob; is already effectively p = &ob[0];.
-Readability: Adding an unnecessary cast makes the code less readable and more complicated without any benefit.
-Summary
-While you can use casting for a 1D array of objects, it is redundant and not recommended. The preferred way is to use p = ob; for a 1D array, which automatically decays to the pointer to the first element. This keeps the code clean and idiomatic.
 
-
+// ----   rev[31-may-2024]   ----
 
 Example 10: But does using casting with 1D array of objects has side effects?
 
