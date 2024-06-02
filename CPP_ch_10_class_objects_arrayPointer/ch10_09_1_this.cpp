@@ -1,11 +1,19 @@
 
-10.8 The "this" pointer
+/*  ------------    "this" pointer    ------------
+
+this:
 C++ contains a special pointer that is called this. this is a pointer that is automatically passed to any member function when it is called, and it is a pointer to the object that generates the call (this works implicitly).  For example, given this statement,
-ob.f1(); 	/* accessing f1() member function from object ob */ 
+
+ob.f1(); 	// accessing f1() member function from object ob
+
 the function f1() is automatically passed a pointer to ob-which is the object that invokes the call. This pointer is referred to as this.
 	Only member functions are passed a this pointer. For example, a friend does not have a this pointer.
 	When a member function refers to another member of a class, it does so directly without qualifying the member with either a class or an object specification. For example, 
  
+
+*/
+
+
 class inventory {	char item[20];
 double cost ;
 int on_hand ;
