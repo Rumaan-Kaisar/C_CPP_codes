@@ -19,6 +19,9 @@
 */
 
 
+
+// --------    rev[03-jum-2024]    --------
+
 /* Example 1: When a member function "refers" to another member of a class, 
                 it does so DIRECTLY without qualifying the member with either a "class or an object specification"
 
@@ -26,61 +29,54 @@
 */
 
 // Demonstrate the this pointer .
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class inventory
-{
-char item [20];
-double cost ;
-int on_hand ;
-public :
-inventory ( char *i, double c, int o)
-{
-strcpy (item , i);
-cost = c;
-on_hand = o;
-}
-void show ();
+#include <iostream>
+#include <cstring>
+
+class inventory{
+        char item[20];
+        double cost;
+        int on_hand;
+    public:
+        inventory(char *i, double c, int o) {
+            strcpy(item , i);
+            cost = c;
+            on_hand = o;
+        }
+    void show();
 };
-void inventory :: show ()
-{
-cout << item ;
-cout << ": $" << cost ;
-cout << " On hand : " << on_hand << "\n";
-}
-int main ()
-{
-inventory ob(" wrench ", 4.95 , 4);
-ob. show ();
-return 0;
-}
-As you can see, within the constructor inventory() and the member function show(),
-the member variables item, cost, and on hand are referred to directly. This is because a
-member function can be called only in conjunction with an object. Therefore, the compiler
-knows which object’s data is being referred to.
-
-
-
-
-class inventory {	char item[20];
-double cost ;
-int on_hand ;
-public : 
-inventory( char *i, double c, int o) {
-strcpy (item , i);
-cost = c;	on_hand = o; }
-void show (); };
 
 void inventory :: show(){
-cout << item ;
-cout << ": $" << cost ;
-cout << " On hand : " << on_hand << "\n"; }
+    std::cout << item ;
+    std::cout << ": $" << cost ;
+    std::cout << " On hand : " << on_hand << "\n";
+}
+
+int main(){
+    inventory ob(" wrench ", 4.95 , 4);
+    ob.show();
+    
+    return 0;
+}
+
+/*  Notice:
+        In the functions inventory() and show(), 
+            all the member variables "item", "cost", "on_hand" are referred to directly. 
+
+        This is because a "member function" can be called only in CONJUNCTION with an "object". 
+            Therefore, the compiler knows which object's data is being referred to.
+            for example: "ob.show()"
+
+*/
+
+
+
+
+
 
 
  
 
-Here, within the constructor inventory() and the member function show(), the member variables item, cost, and on_hand are referred to directly. 
+// however we can use "this" to access a class memebers
  
 class inventory {	char item[20];
 double cost ;
