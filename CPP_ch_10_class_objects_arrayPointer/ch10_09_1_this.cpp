@@ -11,6 +11,8 @@
         The function f1() is automatically passed a pointer to "ob" -which is the object that invokes the call. 
             That pointer is referred to as "this"
 
+        Usage:
+            It is also used in overloading operators.
 
     Restrictions:
         Only member functions are passed a "this" pointer. 
@@ -20,7 +22,6 @@
 
 
 
-// --------    rev[03-jun-2024]    --------
 
 /* Example 1: When a member function "refers" to another member of a class, 
                 it does so DIRECTLY without qualifying the member with either a "class or an object specification"
@@ -69,7 +70,21 @@ int main(){
 */
 
 
+/*  --------    Using "this"    --------
+    All member variables are reffered directly in member-functions because:
+        By default, all member functions are automatically passed a pointer to the invoking object.
 
+
+	Here the member variables are accessed explicitly through the this pointer. 
+	Shorthand-form: within show(), these two statements are equivalent:
+cost = 123.23;
+this -> cost = 123.23;
+the first form is a shorthand for the second.
+Note
+
+
+
+*/
 
 
 
@@ -97,12 +112,5 @@ cout << " On hand : " << this->on_hand << "\n"; }
 
 
  
-	Here the member variables are accessed explicitly through the this pointer. 
-	Shorthand-form: within show(), these two statements are equivalent:
-cost = 123.23;
-this -> cost = 123.23;
-the first form is a shorthand for the second.
-Note
-[1]	By default, all member functions are automatically passed a pointer to the invoking object.
-[2]	The this pointer has several uses, including aiding in overloading operators.
+
 
