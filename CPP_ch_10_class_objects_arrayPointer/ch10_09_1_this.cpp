@@ -70,28 +70,30 @@ int main(){
 */
 
 
+
+
 /*  --------    Using "this"    --------
     All member variables are reffered directly in member-functions because:
         By default, all member functions are automatically passed a pointer to the invoking object.
 
 
-	Here the member variables are accessed explicitly through the this pointer. 
-	Shorthand-form: within show(), these two statements are equivalent:
-cost = 123.23;
-this -> cost = 123.23;
-the first form is a shorthand for the second.
-Note
+    Shorthand-form: 
+        within show(), these two statements are equivalent:
 
+            cost = 123.23;
+            this -> cost = 123.23;
 
-
+        the first form is a SHORTHAND for the second.
 */
 
 
+// ----  rev[03-jun-24]  ----
 
+/* Example 2: we can re-write the above example as below:
+                In this case the member variables are accessed explicitly through the "this" pointer
+*/
 
- 
-
-// however we can use "this" to access a class memebers
+// Explicit access: we can use "this" to access a class memebers
  
 class inventory {	char item[20];
 double cost ;
