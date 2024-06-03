@@ -20,7 +20,7 @@
 
 
 
-// --------    rev[03-jum-2024]    --------
+// --------    rev[03-jun-2024]    --------
 
 /* Example 1: When a member function "refers" to another member of a class, 
                 it does so DIRECTLY without qualifying the member with either a "class or an object specification"
