@@ -128,6 +128,36 @@ int main(){
 }
 
 
-// ----  rev[03-jun-24]  ----
+// ----  rev[04-jun-24]  ----
+/* Example 3: Given the following program, convert all appropriate 
+                "references" to class members to EXPLICIT "this" pointer references. 
+*/
+#include <iostream >
+using namespace std ;
+class myclass
+{
+int a, b;
+96ARRAYS, POINTERS, AND REFERENCES
+4.4. USING new AND delete
+public :
+myclass ( int n, int m) { a = n; b = m; }
+int add () { return a+b; }
+void show ();
+};
+void myclass :: show ()
+{
+int t;
+t = add (); // call member function
+cout << t << "\n";
+}
+int main ()
+{
+myclass ob (10 , 14) ;
+ob. show ();
+return 0;
+}
+
+
+// ----  using EXPLICIT "this" pointer references  ----
 
 
