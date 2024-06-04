@@ -105,9 +105,9 @@ class inventory {
     public:
         inventory(char *i, double c, int o) {
             // notice the access through "this" pointer
-            strcpy(this -> item , i);     // use of "this" at argument
-            this -> cost = c;   // use "this" to access member variable
-            this -> on_hand= o; 
+            strcpy(this->item , i);     // use of "this" at argument
+            this->cost = c;   // use "this" to access member variable
+            this->on_hand= o; 
         }	
         void show(); 
 };
@@ -159,5 +159,28 @@ int main() {
 
 
 // ----  using EXPLICIT "this" pointer references  ----
+#include <iostream>
+
+class myclass {
+        int a, b;
+    public:
+        myclass(int n, int m) {this->a = n; this->b = m;}
+        int add() {return this->a + this->b;}
+        void show();
+};
+
+void myclass :: show() {
+    int t;
+    t = this->add();    // call member function
+    std::cout << t << "\n";
+}
+
+
+int main() {
+    myclass ob(10 , 14);
+    ob.show();
+
+    return 0;
+}
 
 
