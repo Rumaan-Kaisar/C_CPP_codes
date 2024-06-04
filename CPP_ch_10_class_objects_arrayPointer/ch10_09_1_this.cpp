@@ -87,32 +87,47 @@ int main(){
 */
 
 
-// ----  rev[03-jun-24]  ----
+
 
 /* Example 2: we can re-write the above example as below:
                 In this case the member variables are accessed explicitly through the "this" pointer
 */
 
 // Explicit access: we can use "this" to access a class memebers
- 
-class inventory {	char item[20];
-double cost ;
-int on_hand ;
-public : 
-inventory( char *i, double c, int o) {
-/* accessing through "this" pointer */
-strcpy (this->item , i); 	
-this->cost = c; 
-this->on_hand= o; }	
-void show (); };
+#include <iostream>
+#include <cstring>
+
+// ----  inventory() and show() and demonstrate the "this" pointer  ----
+class inventory {
+    	char item[20];
+        double cost;
+        int on_hand;
+    public:
+        inventory(char *i, double c, int o) {
+            // notice the access through "this" pointer
+            strcpy(this -> item , i);     // use of "this" at argument
+            this -> cost = c;   // use "this" to access member variable
+            this -> on_hand= o; 
+        }	
+        void show(); 
+};
 
 void inventory :: show(){ 
- /* use "this" to access members*/
-cout << this->item ; 	
-cout << ": $" << this->cost ;
-cout << " On hand : " << this->on_hand << "\n"; }
+    // use "this" to access member variables
+    std::cout << this->item ; 	
+    std::cout << ": $" << this->cost ;
+    std::cout << " On hand: " << this->on_hand << "\n"; 
+}
 
 
- 
+int main(){
+    inventory ob(" wrench ", 4.95 , 4);
+    ob.show();
+    
+    return 0;
+}
+
+
+// ----  rev[03-jun-24]  ----
 
 
