@@ -1,6 +1,11 @@
 
-10.11 Memory allocation/release operators :  new, delete
+/* ------------    new, delete :    ALLOCATION / RELEASE of Memory    ------------
+
+
+Memory allocation/release operators :  new, delete
 To allocate memory and to free the allocated memory we use the C's dynamic allocation functions malloc() and free() respectively (applicable in C++ also). These are the standard. 
+
+
 Memory allocation/release operators :  C++ provides safer and more convenient operators (not functions): new and release to allocate and free (delete) memory respectively. These operators take these general forms:
 p_var = new type ;
 delete p_var ;
@@ -10,6 +15,9 @@ Here type is the type specifier of the object for which you want to allocate mem
 	delete releases that memory when it is no longer needed. delete can be called only with an invalid pointer, the allocation system will be destroyed, possibly crashing your program.
 	If there is insufficient available memory to fill an allocation request, one of two actions will occur. Either new will return a null pointer or it will generate an exception. 
 
+
+
+*/
  
 Example: // A simple example of new and delete .
 # include <iostream >
