@@ -1,32 +1,53 @@
 
 /* ------------    new, delete :    ALLOCATION / RELEASE of Memory    ------------
-    Previously, to ALLOCATE memory and to FREE the allocated memory we use the C's dynamic allocation functions 
+    Previously, to ALLOCATE memory and to FREE the allocated memory we use the C's dynamic allocation FUNCTIONS 
             malloc()
             free() 
     These are the "standard"
-        However, C++ provides safer and more convenient "operators" (not functions): 
+        However, C++ provides safer and more convenient "OPERATORS" (not FUNCTIONS): 
 
 
 
     Memory allocation/release operators :  new, delete
 
-            new :  to allocate memory
-            delete :  to free memory
+                new :  to allocate memory
+                delete :  to free memory
 
         These operators take these general forms:
 
-            p_var = new type;
-            delete p_var;
+                p_var = new type;
+                delete p_var;
+
+            "type" is the "type/class specifier" of the object for which you want to allocate memory and 
+            "p_var" is a POINTER to that type
 
 
-Here type is the type specifier of the object for which you want to allocate memory and p_var is a pointer to that type. 
-	new is an operator that returns a pointer to dynamically allocated memory that is large enough to hold an object of type type. 
-	In Standard C++, the default behavior of new is to generate an exception when it cannot satisfy an allocation request. If this exception is not handled by your program, your program will be terminated. (Exceptions and exception handling are described later; loosely, an exception is a run-time error that can be managed in a structured fashion.)
-	delete releases that memory when it is no longer needed. delete can be called only with an invalid pointer, the allocation system will be destroyed, possibly crashing your program.
-	If there is insufficient available memory to fill an allocation request, one of two actions will occur. Either new will return a null pointer or it will generate an exception. 
+    new :
+        "new" is an OPERATOR that returns a POINTER to "dynamically allocated memory" 
+            that is large enough to hold an object of type type.
+
+        If "new" cannot satisfy an allocation request, it generates an EXCEPTION
+        If this EXCEPTION is not handled by your program, 
+            your program will be TERMINATED (abruptly). 
+
+            (   Exceptions and exception handling are described later; 
+                loosely, an exception is a run-time error that can be managed in a structured fashion.  
+            )
+
+
+    delete :
+        "delete" RELEASES that memory when it is no longer needed. 
+        "delete" can be called only with a VALID pointer, 
+        Calling with an invalid pointer, the allocation system will be destroyed, possibly CRASHING your program.
+
+
+    Insufficient available memory:
+        If there is insufficient available memory to fill an allocation request, one of two actions will occur. 
+            1.  "new" will return a NULL pointer or
+            2.  "new" will generate an EXCEPTION.
 
 */
- 
+
 /* Example 1: A simple example of new and delete . */
 # include <iostream >
 using namespace std;
