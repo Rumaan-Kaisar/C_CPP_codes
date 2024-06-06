@@ -1,15 +1,22 @@
 
 /* ------------    new, delete :    ALLOCATION / RELEASE of Memory    ------------
-Memory allocation/release operators :  new, delete
-To allocate memory and to free the allocated memory we use the C's dynamic allocation functions malloc() and free() respectively (applicable in C++ also). These are the standard. 
+    Previously, to ALLOCATE memory and to FREE the allocated memory we use the C's dynamic allocation functions 
+            malloc()
+            free() 
+    These are the "standard"
+        However, C++ provides safer and more convenient "operators" (not functions): 
 
 
-Memory allocation/release operators :  
-C++ provides safer and more convenient operators (not functions): new and release to allocate and free (delete) memory respectively. 
-These operators take these general forms:
 
-p_var = new type ;
-delete p_var ;
+    Memory allocation/release operators :  new, delete
+
+            new :  to allocate memory
+            delete :  to free memory
+
+        These operators take these general forms:
+
+            p_var = new type;
+            delete p_var;
 
 
 Here type is the type specifier of the object for which you want to allocate memory and p_var is a pointer to that type. 
