@@ -48,39 +48,35 @@
 
 
 
+    advantage of "new" and "delete"
+        Although "new" and "delete" perform functions similar to malloc() and free(), they have several advantages. 
 
-        ----  rev[06-jun-2024]  ----
+        1.  "new" automatically ALLOCATES enough "memory" to hold an object of the specified type.
+                No to use sizeof to compute the number of bytes required.
 
-
-Although new and delete perform functions similar to malloc() and free(), they have several
-advantages. 
-
-First, new automatically allocates enough memory to hold an object of the specified
-type. 
-You do not need to use sizeof to compute the number of bytes required. 
-
-This reduces the possibility for error. 
+        2.  "new" automatically RETURNS a "pointer" of the specified type
 
 
-Second, new automatically returns a pointer of the specified
-type. 
 
 
-Remember in "ch10_01_2_constructor_destructor.cpp" in Example 4, we first encountered a type cast for memory allocation.
+    --------  type cast during memory allocation  --------
 
-p = (char *)malloc(SIZE);    // malloc() returns a POINTER
-// Why type cast : To make conversion from ‘void *’ to ‘char *’
+    Remember in "ch10_01_2_constructor_destructor.cpp" in Example 4, 
+        we first encountered a type cast for memory allocation.
 
-type cast! why? : 
-                Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
-                
-                In C, you don't need to cast the return value of malloc(). 
-                    [Recall 'C_Ch8_7_dynmic_allocation.c', "Example 2"]
-                    The "pointer to void" i.e 'void *' returned by malloc() is automagically converted to the correct type. 
-                
-                However, in C++ compiler, 'a cast is NEEDED'.
-                    C++ is not C. Their type systems are totally different. 
-                    Observations about C++'s type system do not necessarily apply to C. In fact, they rarely do.
+            p = (char *)malloc(SIZE);    // malloc() returns a POINTER
+            // Why type cast : To make conversion from ‘void *’ to ‘char *’
+
+            type cast! why? : 
+                    Notice 'type cast' in malloc(): To avoid ERR- invalid conversion from ‘void*’ to ‘char*’
+                    
+                    In C, you don't need to cast the return value of malloc(). 
+                        [Recall 'C_Ch8_7_dynmic_allocation.c', "Example 2"]
+                        The "pointer to void" i.e 'void *' returned by malloc() is automagically converted to the correct type. 
+                    
+                    However, in C++ compiler, 'a cast is NEEDED'.
+                        C++ is not C. Their type systems are totally different. 
+                        Observations about C++'s type system do not necessarily apply to C. In fact, they rarely do.
 
 
 
