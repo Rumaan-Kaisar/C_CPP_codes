@@ -48,16 +48,6 @@
 
 
 
-    advantage of "new" and "delete"
-        Although "new" and "delete" perform functions similar to malloc() and free(), they have several advantages. 
-
-        1.  "new" automatically ALLOCATES enough "memory" to hold an object of the specified type.
-                No to use sizeof to compute the number of bytes required.
-
-        2.  "new" automatically RETURNS a "pointer" of the specified type
-
-
-
 
     --------  type cast during memory allocation  --------
 
@@ -72,37 +62,49 @@
                     
                     In C, you don't need to cast the return value of malloc(). 
                         [Recall 'C_Ch8_7_dynmic_allocation.c', "Example 2"]
-                        The "pointer to void" i.e 'void *' returned by malloc() is automagically converted to the correct type. 
+                        The "pointer to void" i.e 'void *' returned by malloc() is automagically converted to the correct type.
+
+                        i.e. the (void *) returned by malloc() is automatically "converted into a pointer" 
+                            compatible with the "type of pointer" on the left side of the assignment. 
+
+                        In C, no "type cast" is required when you are assigning the return value of malloc() to a pointer 
+    
                     
                     However, in C++ compiler, 'a cast is NEEDED'.
                         C++ is not C. Their type systems are totally different. 
                         Observations about C++'s type system do not necessarily apply to C. In fact, they rarely do.
 
+                        C++, requires an "explicit type cast" when you use malloc(). 
+                        Because it allows C++ to enforce more rigorous type checking.
 
 
-    
+    --------    Advantages of "new" and "delete"    --------
 
-You do not need to use an "explicit type cast" the way you did when you allocated memory
-by using malloc() (see the following note). Third, both new and delete can be overloaded,
-enabling you to easily implement your own custom allocation system. Fourth, it is possible to
-initialize a dynamically allocated object. Finally, you no longer need to include <cstdlib>
-with your programs.
+        Although "new" and "delete" perform functions similar to malloc() and free(), they have several advantages. 
+
+        1.  "new" automatically ALLOCATES enough "memory" to hold an object of the specified type.
+                No to use "sizeof" to compute the number of bytes required.
+                
+        2.  "new" automatically RETURNS a "pointer" of the specified type
+
+        3.  You do not need to use an "explicit type cast" the way you did 
+                when you allocated memory by using malloc()
+
+        4.  Both new and delete can be overloaded,
+                enabling you to easily implement your own custom allocation system. 
+
+        5.  It is possible to initialize a "dynamically allocated object". 
+
+        6.  You no longer need to include <cstdlib> with your programs.
 
 
-Note: In C, no type cast is required when you are assigning the return value of malloc() to
-a pointer because the void * returned by malloc() is automatically converted into a pointer
-compatible with the type of pointer on the left side of the assignment. However, this is not the
-case in C++, which requires an explicit type cast when you use malloc(). The reason for this
-difference is that it allows C++ to enforce more rigorous type checking.
-Now that new and delete have been introduced, they will be used instead of malloc() and
-free()
-
+    From now we'll use "new" and "delete" instead of malloc() and free()
 */
 
 
 
 
-
+//  ----  rev[07-jun-24]  ----
 
 
 /* Example 1: A simple example of new and delete . */
