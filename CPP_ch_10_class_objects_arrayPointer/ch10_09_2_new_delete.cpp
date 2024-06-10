@@ -104,7 +104,13 @@
 
 
 
-/* Example 1: A simple example of new and delete . */
+/* Example 1: A simple example of new and delete. 
+                this program allocates memory to hold an integer
+        
+                Notice the "Allocation error" check:
+                    However, thuis check is meaningful only if your compiler implements new is such a way 
+                    that it returns "null" on failure.
+*/
 #include <iostream>
 
 int main() {
@@ -126,25 +132,57 @@ int main() {
 
 
 
-
-
 /*  ------------    initializing dynamic dynamically allocated object    ------------
+    We can give a dynamically allocated object an initial value 
+        by using this form of the new statement:
 
- : Dynamically allocated objects can be given initial values. We can give a dynamically allocated object an initial value by using this form of the new statement:
+        p_var = new type( initial_value );
+*/
 
 
-p_var = new type( initial_value );
- */
-/* Example 2: 	 */
-class samp { int i, j;
-public :
-samp(int a, int b) { i=a; j=b; }
-int get_product() { return i*j; } };
-int main() { samp *p;
-p = new samp(6, 5); 	/* allocate object with initialization */ 
-if(!p) { cout << " Allocation error \n"; return 1; } 	/*allocation check*/
-delete p;	 /* release memory */
-return 0; }
+
+
+/*  Example 2: We can give a dynamically allocated object an initial value.	 
+                Here is an example that allocates an object dynamically
+*/
+#include <iostream>
+
+class samp { 
+        int i, j;
+    public:
+        samp(int a, int b) { i=a; j=b; }
+        int get_product() { return i*j; } 
+};
+
+
+int main() {
+    samp *p;
+
+    p = new samp(6, 5); 	// allocate object with initialization
+    if(!p){ 
+        std::cout << " Allocation error \n"; 
+        return 1;
+    }
+    std::cout << "Product: " << p->get_product() << std::endl;
+
+    delete p;	 // release memory
+    
+    return 0; 
+}
+
+
+Allocation check: In modern C++, new will throw a std::bad_alloc exception if the allocation fails, so the check if (!p) is not necessary. However, if you prefer to check for allocation errors without using exceptions, you can use the nothrow version of new:
+cpp
+Copy code
+p = new (std::nothrow) samp(6, 5);
+if(!p) {
+    std::cout << "Allocation error\n";
+    return 1;
+}
+
+
+
+
 
 Example 2: To initialize an integer variable,
 p = new int(9); 	/* give initial value of 9*/ 
