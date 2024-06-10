@@ -104,26 +104,37 @@
 
 
 
-//  ----  rev[07-jun-24]  ----
-
-
 /* Example 1: A simple example of new and delete . */
-# include <iostream >
-using namespace std;
-int main() {int *p;
-p = new int; /* allocate room for an integer */ 
-if(!p) {cout << "Allocation error \n";
-return 1;}
+#include <iostream>
 
-*p = 100;
-cout << "Here is integer at p:" << *p << "\n";
-delete p; /* release memory */ 
-return 0;}
+int main() {
+    int *p;
 
- 
-	Initializing dynamic variable : Dynamically allocated objects can be given initial values. We can give a dynamically allocated object an initial value by using this form of the new statement:
+    p = new int; // allocate room for an integer
+    if(!p){
+        std::cout << "Allocation error \n";
+        return 1;
+    }
+
+    *p = 100;
+    std::cout << "Here is integer at p:" << *p << "\n";
+
+    delete p; // release memory
+
+    return 0;
+}
+
+
+
+
+
+/*  ------------    initializing dynamic dynamically allocated object    ------------
+
+ : Dynamically allocated objects can be given initial values. We can give a dynamically allocated object an initial value by using this form of the new statement:
+
+
 p_var = new type( initial_value );
-
+ */
 /* Example 2: 	 */
 class samp { int i, j;
 public :
