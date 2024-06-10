@@ -171,16 +171,23 @@ int main() {
 }
 
 
-Allocation check: In modern C++, new will throw a std::bad_alloc exception if the allocation fails, so the check if (!p) is not necessary. However, if you prefer to check for allocation errors without using exceptions, you can use the nothrow version of new:
-cpp
-Copy code
-p = new (std::nothrow) samp(6, 5);
-if(!p) {
-    std::cout << "Allocation error\n";
-    return 1;
-}
+/*  -=-=-=-=-=-    NOTE on Allocation check    -=-=-=-=-=-
+    In modern C++, "new" will throw a "std::bad_alloc" exception if the allocation fails, 
+
+        So the check if(!p) is not necessary. 
 
 
+    However, if you prefer to "check for allocation errors" without using exceptions, 
+        you can use the "nothrow" version of "new":
+
+    NOTHROW version of "new":
+
+        p = new (std::nothrow) samp(6, 5);
+        if(!p) {
+            std::cout << "Allocation error\n";
+            return 1;
+        }
+*/
 
 
 
