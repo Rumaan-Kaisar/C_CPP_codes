@@ -191,9 +191,32 @@ int main() {
 
 
 
-Example 2: To initialize an integer variable,
-p = new int(9); 	/* give initial value of 9*/ 
-if(!p) { cout << " Allocation error \n"; return 1; }	/*always check if allocation is successful*/
-. . . . . . STATEMENTS. . . . . .
-delete p; 		/* release memory */ 
+// alternative form: without auto-inlined-function as a constructor
+    // notice "set_i" used instead of "samp"
+#include <iostream>
+
+class samp { 
+        int i, j;
+    public:
+        void set_i(int a, int b) { i=a; j=b; }
+        int get_product() { return i*j; } 
+};
+
+
+int main() {
+    samp *p;
+
+    p = new (std::nothrow) samp; 	// allocate object with NOTHROW version of "new"
+    if(!p){ 
+        std::cout << " Allocation error \n"; 
+        return 1;
+    }
+    p -> set_i(4, 5);   // setting the values
+    std::cout << "Product: " << p->get_product() << std::endl;
+
+    delete p;	 // release memory
+    
+    return 0; 
+}
+
 
