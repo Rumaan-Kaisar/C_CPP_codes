@@ -220,3 +220,43 @@ int main() {
 }
 
 
+
+
+/* Example 3: Following dynamically allocate, initialize and deallocate an integer variable 
+
+                int *p = new int(9); dynamically allocates memory for an integer 
+                    and initializes it with the value 9.
+
+                if(!p) checks if the allocation failed. 
+                    In modern C++, new throws a "std::bad_alloc" exception on failure, 
+                    so this check is technically redundant,
+*/
+
+#include <iostream>
+
+int main() {
+    int *p = new int(9);    // Allocate an int variable with an initial value of 9
+    // Check if allocation was successful
+    if (!p) {
+        std::cout << "Allocation error\n";
+        return 1; // Exit the program with an error code
+    }
+
+    // Use the allocated integer variable in some statements
+    std::cout << "The value of the dynamically allocated integer is: " << *p << std::endl;
+
+    // Perform some operations
+    *p += 1; // Increment the value by 1
+    std::cout << "The value after incrementing is: " << *p << std::endl;
+    *p *= 2; // Multiply the value by 2
+    std::cout << "The value after multiplying by 2 is: " << *p << std::endl;
+
+    // Release the allocated memory
+    delete p;
+
+    return 0;
+}
+
+
+// ----  rev[11-jun-24]  ----
+
