@@ -260,13 +260,90 @@ int main() {
 
 // ----  rev[13-jun-24]  ----
 
-/* Example 4: Write a program that uses "new" to dynamically allocate a float, a long, and a char. Give
-these dynamic variables values and display their values. Finally, release all dynamically
-allocated memory by using delete. */
+/* Example 4: Write a program that uses "new" to dynamically allocate a float, a long, and a char.
+                Give these dynamic variables values and display their values. 
+                Finally, "release" all dynamically allocated memory by using delete. 
+*/
+# include <iostream >
+using namespace std ;
+int main ()
+{
+float *f;
+long *l;
+char *c;
+f = new float ;
+l = new long ;
+c = new char ;
+if (!f || !l || !c)
+{
+cout << " Allocation error .";
+return 1;
+} *
+f = 10.102;
+*l = 100000;
+*c = ’A’;
+cout << *f << ’ ’ << *l << ’ ’ << *c;
+cout << ’\n’;
+delete f;
+delete l;
+delete c;
+return 0;
+}
 
 
-/* Example 5: Create a class that contains a person’s name and telephone number. Using new, dynamically allocate an object of this class and put your name and phone number into these
-fields within this object. */
 
 
-/* Example 6: What are the two ways that new might indicate an allocation failure? */
+/* Example 5: Create a class that contains a person’s name and telephone number. 
+                Using new, dynamically allocate an object of this class and 
+                put your name and phone number into these fields within this object. 
+*/
+# include <iostream >
+# include <cstring >
+using namespace std ;
+class phone
+{
+char name [40];
+char number [14];
+public :
+void store ( char *n, char *num );
+void show ();
+};
+void phone :: store ( char *n, char *num )
+{
+strcpy (name , n);
+strcpy ( number , num );
+}
+void phone :: show ()
+{
+cout << name << ": " << number ;
+cout << "\n";
+}
+int main ()
+{
+phone *p;
+p = new phone ;
+if (!p)
+{
+cout << " Allocation error .";
+return 1;
+} p
+-> store (" Isaac Newton ", " 111 555 -2323 ");
+p-> show ();
+delete p;
+return 0;
+}
+
+
+
+
+/* Example 6: What are the two ways that new might indicate an allocation failure? 
+
+                ans:
+                    On failure, "new" will either return a "null pointer" or generate an EXCEPTION.
+                    You must check your compiler’s documentation to determine which approach is used.
+                    
+                    In Standard C++, "new" generates an "exception" by default.
+*/
+
+
+
