@@ -258,40 +258,43 @@ int main() {
 }
 
 
-// ----  rev[13-jun-24]  ----
+
 
 /* Example 4: Write a program that uses "new" to dynamically allocate a float, a long, and a char.
                 Give these dynamic variables values and display their values. 
                 Finally, "release" all dynamically allocated memory by using delete. 
 */
-# include <iostream >
-using namespace std ;
-int main ()
-{
-float *f;
-long *l;
-char *c;
-f = new float ;
-l = new long ;
-c = new char ;
-if (!f || !l || !c)
-{
-cout << " Allocation error .";
-return 1;
-} *
-f = 10.102;
-*l = 100000;
-*c = ’A’;
-cout << *f << ’ ’ << *l << ’ ’ << *c;
-cout << ’\n’;
-delete f;
-delete l;
-delete c;
-return 0;
+#include <iostream>
+
+int main(){
+    float *f;
+    long *l;
+    char *c;
+
+    f = new float;
+    l = new long;
+    c = new char;
+
+    if(!f || !l || !c) {
+        std::cout << " Allocation error .";
+        return 1;
+    }
+    *f = 10.102;
+    *l = 100000;
+    *c = 'A';
+    std::cout << *f << ' ' << *l << ' ' << *c;
+    std::cout << '\n';
+
+    delete f;
+    delete l;
+    delete c;
+
+    return 0;
 }
 
 
 
+// ----  rev[13-jun-24]  ----
 
 /* Example 5: Create a class that contains a person’s name and telephone number. 
                 Using new, dynamically allocate an object of this class and 
