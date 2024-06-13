@@ -373,3 +373,33 @@ int series(void){
     return num;
 }
 
+
+
+
+/*  --------    Independent Blocks    --------
+    Can a block in C++ or Java be created using only "{}", i.e., without being part of a class, function, or control statement?
+    
+        Yes. In both C++ and Java, you can create a block using {} independently, 
+            without it being alongside a class, function, or control statement. 
+
+    This creates a "BLOCK SCOPE", allowing you to define variables that are "local to that block".
+*/
+
+
+
+/* Example 10: In this example, blockVar is defined within an independent block scope inside the main function. 
+                Outside the {} block, blockVar is not accessible. 
+*/
+
+// C++: In C++, you can create an independent block as follows:
+#include <iostream>
+
+int main() {
+    {
+        int blockVar = 10;
+        std::cout << "blockVar: " << blockVar << std::endl;
+    }
+    // blockVar is not accessible here
+    return 0;
+}
+
