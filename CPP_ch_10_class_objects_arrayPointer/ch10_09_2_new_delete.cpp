@@ -258,5 +258,15 @@ int main() {
 }
 
 
-// ----  rev[11-jun-24]  ----
+// ----  rev[13-jun-24]  ----
 
+/* Example 4: Write a program that uses "new" to dynamically allocate a float, a long, and a char. Give
+these dynamic variables values and display their values. Finally, release all dynamically
+allocated memory by using delete. */
+
+
+/* Example 5: Create a class that contains a person’s name and telephone number. Using new, dynamically allocate an object of this class and put your name and phone number into these
+fields within this object. */
+
+
+/* Example 6: What are the two ways that new might indicate an allocation failure? */
