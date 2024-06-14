@@ -294,46 +294,47 @@ int main(){
 
 
 
-// ----  rev[13-jun-24]  ----
 
-/* Example 5: Create a class that contains a person’s name and telephone number. 
-                Using new, dynamically allocate an object of this class and 
+/* Example 5: Create a class that contains a person's name and telephone number. 
+                Using "new", dynamically allocate an object of this class and 
                 put your name and phone number into these fields within this object. 
 */
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class phone
-{
-char name [40];
-char number [14];
-public :
-void store ( char *n, char *num );
-void show ();
+#include <iostream>
+#include <cstring>
+
+class phone {
+        char name[40];
+        char number[14];
+    public:
+        void store(char *n, char *num);
+        void show();
 };
-void phone :: store ( char *n, char *num )
-{
-strcpy (name , n);
-strcpy ( number , num );
+
+void phone :: store( char *n, char *num) {
+    strcpy(name , n);
+    strcpy(number , num);
 }
-void phone :: show ()
-{
-cout << name << ": " << number ;
-cout << "\n";
+
+void phone :: show() {
+    std::cout << name << ": " << number ;
+    std::cout << "\n";
 }
-int main ()
-{
-phone *p;
-p = new phone ;
-if (!p)
-{
-cout << " Allocation error .";
-return 1;
-} p
--> store (" Isaac Newton ", " 111 555 -2323 ");
-p-> show ();
-delete p;
-return 0;
+
+
+int main() {
+    phone *p;
+
+    p = new phone;  // dynamic allocation
+    if(!p){
+        std::cout << " Allocation error .";
+        return 1;
+    } 
+    p -> store(" Isaac Newton ", " 111 555 -2323 ");
+    p -> show();
+
+    delete p;
+
+    return 0;
 }
 
 
