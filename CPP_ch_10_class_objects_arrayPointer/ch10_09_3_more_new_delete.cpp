@@ -11,7 +11,10 @@
 
 
     initialization:
-        It is not possible to initialize an array that is dynamically allocated.
+        You can give a dynamically allocated object an "initial value" by using this form:
+                    p_var = new type ( initial_value );
+
+        It is not possible to initialize an "array" that is dynamically allocated.
 
 
 
@@ -20,9 +23,33 @@
 
         This syntax causes the "compiler" to call the DESTRUCTOR function for "each element" in the array. 
         It does not cause "p_var" to be freed MULTIPLE times. 
-        p_var is still freed only once.
+        "p_var" is still freed only once.
+
+
+
+    --------    Notes    --------
+    new automatically allocates enough memory to hold an object of the specified type. 
+        You do not need to use sizeof, for example, to compute the number of bytes required.
+
+    new automatically returns a pointer of the specified type. 
+        You do not need to use an "explicit type cast".  
+
+        In C, "no type cast is required" when you are assigning the return value of malloc() to a pointer 
+            because the "void *" returned by malloc() is automatically converted into a pointer 
+            compatible with the type of pointer on the left side of the assignment. 
+
+        However, this is not the case in C++, which requires an "explicit type cast" when you use malloc(). 
+        
+    
+    Both new and delete can be overloaded, 
+        enabling you to easily implement your own "custom allocation system". 
+    
+    It is possible to initialize a dynamically allocated object. 
+
+    You no longer need to include <cstdlib> with your programs.
 
 */
+
 
 
 
@@ -46,20 +73,5 @@ if(!p) { cout << " Allocation error \n"; return 1; } 	// allocation check
 delete [] p;
 
 
-/* 
-Note
-    new automatically allocates enough memory to hold an object of the specified type. You do not need to use sizeof, for example, to compute the number of bytes required. This reduces the possibility for error. 
 
-    new automatically returns a pointer of the specified type. You do not need to use an explicit type cast.  
 
-    In C, no type cast is required when you are assigning the return value of malloc() to a pointer because the void * returned by malloc() is automatically converted into a pointer compatible with the type of pointer on the left side of the assignment. 
-
-    However, this is not the case in C++, which requires an explicit type cast when you use malloc(). The reason for this difference is that it allows C++ to enforce more rigorous type checking.
-    
-    Both new and delete can be overloaded, enabling you to easily implement your own custom allocation system. 
-    
-    It is possible to initialize a dynamically allocated object. 
-
-    You no longer need to include <cstdlib> with your programs.
-
-*/
