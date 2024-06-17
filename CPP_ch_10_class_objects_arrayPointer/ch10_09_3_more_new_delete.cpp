@@ -75,3 +75,171 @@ delete [] p;
 
 
 
+
+
+// ----  rev[17-jun-2024]  ----
+
+1. This program allocates memory for an integer and initializes that memory:
+// An example of initializing a dynamic variable .
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int *p;
+p = new int (9) ; // give initial value of 9
+if (!p)
+{
+cout << " Allocation error \n";
+return 1;
+}
+cout << " Here is integer at p: " << *p << "\n";
+delete p; // release memory
+return 0;
+}
+As you should expect, this program displays the value 9, which is the initial value given
+to the memory pointed to by p.
+
+
+
+2. The following program passes initial values to a dynamically allocated object:
+// Allocating dynamic objects
+# include <iostream >
+using namespace std ;
+class samp
+{
+int i, j;
+public :
+samp ( int a, int b) { i=a; j=b; }
+int get_product () { return i*j; }
+};
+int main ()
+{
+samp *p;
+p = new samp (6, 5); // allocate object with
+initialization
+if (!p)
+{
+cout << " Allocation error \n";
+return 1;
+}
+cout << " Product is: " << p-> get_product () << "\n";
+delete p;
+return 0;
+}
+When the samp object is allocated, its constructor is automatically called and is passed
+the values 6 and 5.
+
+
+
+3. The following program allocates an array of integers:
+// A simple example of new and delete
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int *p;
+p = new int [5]; // allocate room for 5 integers
+// always make sure that allocation succeeded
+if (!p)
+{
+cout << " Allocation error \n";
+return 1;
+}
+
+int i;
+for (i =0; i <5; i ++)
+p[i] = i;
+for (i =0; i <5; i ++)
+{
+cout << " Here is integer at p[" << i << "]: ";
+cout << p[i] << "\n";
+}
+delete [] p;
+return 0;
+}
+
+
+4. The following program creates a dynamic array of objects:
+// Allocating dynamic objects .
+# include <iostream >
+using namespace std ;
+class samp
+{
+int i, j;
+public :
+void set_ij ( int a, int b) { i=a; j=b; }
+int get_product () { return i*j; }
+};
+int main ()
+{
+samp *p;
+int i;
+p = new samp [10]; // allocate object array
+if (!p)
+{
+cout << " Allocation error \n";
+return 1;
+}
+for (i =0; i <10; i ++)
+p[i]. set_ij (i, i);
+for (i =0; i <10; i ++)
+{
+cout << " Product [" << i << "] is: ";
+cout << p[i]. get_product () << "\n";
+}
+delete [] p;
+return 0;
+}
+
+
+5. The following version of the preceding program gives samp a destructor, and now when
+p is freed, each element’s destructor is called:
+// Allocating dynamic objects
+# include <iostream >
+using namespace std ;
+class samp
+{
+int i, j;
+public :
+void set_ij ( int a, int b) { i=a; j=b; }
+~ samp () { cout << " Destroying ...\ n"; }
+int get_product () { return i*j; }
+};
+int main ()
+{
+samp *p;
+int i;
+p = new samp [10]; // allocate object array
+if (!p)
+{
+cout << " Allocation error \n";
+return 1;
+}
+for (i =0; i <10; i ++)
+p[i]. set_ij (i, i);
+for (i =0; i <10; i ++)
+{
+cout << " Product [" << i << "] is: ";
+cout << p[i]. get_product () << "\n";
+}
+delete [] p;
+return 0;
+}
+
+// As you can see, samp’s destructor is called ten times-once for each element in the array
+
+1. Show how to convert the following code into its equivalent that uses new.
+char *p;
+p = ( char *) malloc (100) ;
+// ...
+strcpy (p, " This is a test ");
+Hint: A string is simply an array of characters.
+2. Using new, show how to allocate a double and give it an initial value of -123.0987.
+
+
+
+
+
+
+
+
