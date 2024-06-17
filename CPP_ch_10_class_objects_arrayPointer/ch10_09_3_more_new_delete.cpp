@@ -53,33 +53,11 @@
 
 
 
-// ----  rev[14-jun-2024]  ----
-
-/* Example 3 : to allocate an array of integers  */
-int *p;
-p = new int[5]; 	// allocate room for 5 integers
-if(!p) { cout << " Allocation error \n"; return 1; } 	// allocation check
-. . . . . . STATEMENTS. . . . . .
-delete [] p;
+// --------    rev[17-jun-24: 9:50pm]    --------
 
 
 
-
-/* Example 4 : to allocate object array named "samp", */
-samp *p;
-p = new samp[5]; 	// allocate object array named "samp" 
-if(!p) { cout << " Allocation error \n"; return 1; } 	// allocation check
-. . . . . . STATEMENTS. . . . . .
-delete [] p;
-
-
-
-
-
-
-// ----  rev[17-jun-2024]  ----
-
-1. This program allocates memory for an integer and initializes that memory:
+/* Example 1: Following program "allocates" MEMORY for an integer and "initializes" that memory */
 // An example of initializing a dynamic variable .
 # include <iostream >
 using namespace std ;
@@ -101,7 +79,8 @@ to the memory pointed to by p.
 
 
 
-2. The following program passes initial values to a dynamically allocated object:
+
+/* Example 2: The following program passes "initial values" to a dynamically allocated object */
 // Allocating dynamic objects
 # include <iostream >
 using namespace std ;
@@ -131,7 +110,8 @@ the values 6 and 5.
 
 
 
-3. The following program allocates an array of integers:
+
+/* Example 3: The following program allocates an ARRAY of integers */
 // A simple example of new and delete
 # include <iostream >
 using namespace std ;
@@ -159,7 +139,9 @@ return 0;
 }
 
 
-4. The following program creates a dynamic array of objects:
+
+
+/* Example 4: The following program creates a dynamic array of objects */
 // Allocating dynamic objects .
 # include <iostream >
 using namespace std ;
@@ -174,6 +156,7 @@ int main ()
 {
 samp *p;
 int i;
+// allocate object array named "samp" 
 p = new samp [10]; // allocate object array
 if (!p)
 {
@@ -192,8 +175,12 @@ return 0;
 }
 
 
-5. The following version of the preceding program gives samp a destructor, and now when
-p is freed, each element’s destructor is called:
+
+
+/* Example 5 : (array of object) The following version of the preceding program gives samp a "DESTRUCTOR", 
+                and now when p is freed, each element’s destructor is called.
+*/
+
 // Allocating dynamic objects
 # include <iostream >
 using namespace std ;
@@ -226,20 +213,23 @@ delete [] p;
 return 0;
 }
 
+
 // As you can see, samp’s destructor is called ten times-once for each element in the array
 
-1. Show how to convert the following code into its equivalent that uses new.
+
+
+
+/* Example 1: Show how to convert the following code into its equivalent that uses "new" */
 char *p;
 p = ( char *) malloc (100) ;
 // ...
 strcpy (p, " This is a test ");
 Hint: A string is simply an array of characters.
-2. Using new, show how to allocate a double and give it an initial value of -123.0987.
 
 
 
 
-
+/* Example 2: Using new, show how to allocate a "double" and give it an initial value of "-123.0987" */
 
 
 
