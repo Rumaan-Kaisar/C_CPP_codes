@@ -53,32 +53,33 @@
 
 
 
-// --------    rev[17-jun-24: 9:50pm]    --------
-
-
-
 /* Example 1: Following program "allocates" MEMORY for an integer and "initializes" that memory */
-// An example of initializing a dynamic variable .
-# include <iostream >
-using namespace std ;
-int main ()
-{
-int *p;
-p = new int (9) ; // give initial value of 9
-if (!p)
-{
-cout << " Allocation error \n";
-return 1;
+
+#include <iostream>
+
+int main() {
+    int *p;
+
+    // initializing a dynamic variable
+    p = new (std::nothrow) int(9);     // give initial value of 9, using "nothrow" version of "new"
+    if (!p){
+        std::cout << " Allocation error \n";
+        return 1;
+    }
+
+    std::cout << " Here is integer at p: " << *p << "\n";
+    delete p; // release memory
+
+    return 0;
 }
-cout << " Here is integer at p: " << *p << "\n";
-delete p; // release memory
-return 0;
-}
-As you should expect, this program displays the value 9, which is the initial value given
-to the memory pointed to by p.
+
+// above program displays the value 9, 
+// which is the initial value given to the memory pointed to by p.
 
 
 
+
+// --------    rev[18-jun-24]    --------
 
 /* Example 2: The following program passes "initial values" to a dynamically allocated object */
 // Allocating dynamic objects
@@ -217,6 +218,8 @@ return 0;
 // As you can see, samp’s destructor is called ten times-once for each element in the array
 
 
+
+// following reviewed
 
 
 /* Example 6: Show how to convert the following code into its equivalent that uses "new" 
