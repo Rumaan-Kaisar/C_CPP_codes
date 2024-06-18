@@ -219,7 +219,7 @@ return 0;
 
 
 
-/* Example 1: Show how to convert the following code into its equivalent that uses "new" */
+/* Example 6: Show how to convert the following code into its equivalent that uses "new" */
 char *p;
 p = ( char *) malloc (100) ;
 // ...
@@ -227,9 +227,23 @@ strcpy (p, " This is a test ");
 Hint: A string is simply an array of characters.
 
 
+char *p;
+p = new char [100];
+// ...
+strcpy (p, " This is a test ");
 
 
-/* Example 2: Using new, show how to allocate a "double" and give it an initial value of "-123.0987" */
 
 
+/* Example 7: Using new, show how to allocate a "double" and give it an initial value of "-123.0987" */
+
+# include <iostream >
+using namespace std ;
+int main ()
+{
+double *p;
+p = new double ( -123.0987) ;
+cout << *p << ’\n’;
+return 0;
+}
 
