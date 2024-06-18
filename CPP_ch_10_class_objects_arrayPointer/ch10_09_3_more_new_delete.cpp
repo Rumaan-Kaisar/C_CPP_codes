@@ -219,16 +219,22 @@ return 0;
 
 
 
-/* Example 6: Show how to convert the following code into its equivalent that uses "new" */
-char *p;
-p = ( char *) malloc (100) ;
-// ...
-strcpy (p, " This is a test ");
-Hint: A string is simply an array of characters.
+/* Example 6: Show how to convert the following code into its equivalent that uses "new" 
 
+                        char *p;
+                        
+                        // allocate 100 bytes
+                        p = (char *) malloc(100);
+                        // ...
+                        strcpy(p, " This is a test ");
+
+                Hint: A string is simply an array of characters.
+*/
 
 char *p;
-p = new char [100];
+
+// allocate 100 bytes: by creating array of 100 "char", assuming each "char" is 1 byte
+p = new char[100];
 // ...
 strcpy (p, " This is a test ");
 
@@ -236,14 +242,15 @@ strcpy (p, " This is a test ");
 
 
 /* Example 7: Using new, show how to allocate a "double" and give it an initial value of "-123.0987" */
+# include <iostream>
 
-# include <iostream >
-using namespace std ;
-int main ()
-{
-double *p;
-p = new double ( -123.0987) ;
-cout << *p << ’\n’;
-return 0;
+int main(){
+    double *p;
+
+    // allocate a "double" with initial value of "-123.0987"
+    p = new double(-123.0987);
+    std::cout << *p << '\n';
+
+    return 0;
 }
 
