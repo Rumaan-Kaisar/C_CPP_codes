@@ -79,35 +79,38 @@ int main() {
 
 
 
-// --------    rev[18-jun-24]    --------
+/* Example 2: The following program passes "initial values" to a dynamically allocated object 
+                When the samp object is allocated, 
+                    its constructor is automatically called and is passed the values 6 and 5.
+*/
 
-/* Example 2: The following program passes "initial values" to a dynamically allocated object */
-// Allocating dynamic objects
-# include <iostream >
-using namespace std ;
-class samp
-{
-int i, j;
-public :
-samp ( int a, int b) { i=a; j=b; }
-int get_product () { return i*j; }
+#include <iostream>
+
+class samp{
+        int i, j;
+    public:
+        samp(int a, int b) { i=a; j=b; }
+        int get_product() { return i*j; }
 };
-int main ()
-{
-samp *p;
-p = new samp (6, 5); // allocate object with
-initialization
-if (!p)
-{
-cout << " Allocation error \n";
-return 1;
+
+
+int main(){
+    samp *p;
+
+    p = new samp(6, 5);     // allocate object with initialization
+    if(!p){
+        std::cout << " Allocation error \n";
+        return 1;
+    }
+    std::cout << " Product is: " << p->get_product() << "\n";
+
+    delete p;
+
+    return 0;
 }
-cout << " Product is: " << p-> get_product () << "\n";
-delete p;
-return 0;
-}
-When the samp object is allocated, its constructor is automatically called and is passed
-the values 6 and 5.
+
+
+
 
 
 
