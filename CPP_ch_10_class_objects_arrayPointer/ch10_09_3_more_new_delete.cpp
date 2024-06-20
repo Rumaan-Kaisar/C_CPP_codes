@@ -140,41 +140,44 @@ int main(){
 
 
 
-/* Example 4: The following program creates a dynamic array of objects */
-// Allocating dynamic objects .
-# include <iostream >
-using namespace std ;
-class samp
-{
-int i, j;
-public :
-void set_ij ( int a, int b) { i=a; j=b; }
-int get_product () { return i*j; }
+/* Example 4: The following program creates a dynamic array of "objects" */
+// Allocating dynamic objects.
+#include <iostream>
+
+class samp{
+        int i, j;
+    public:
+        void set_ij(int a, int b) { i=a; j=b; }
+        int get_product() { return i*j; }
 };
-int main ()
-{
-samp *p;
-int i;
-// allocate object array named "samp" 
-p = new samp [10]; // allocate object array
-if (!p)
-{
-cout << " Allocation error \n";
-return 1;
-}
-for (i =0; i <10; i ++)
-p[i]. set_ij (i, i);
-for (i =0; i <10; i ++)
-{
-cout << " Product [" << i << "] is: ";
-cout << p[i]. get_product () << "\n";
-}
-delete [] p;
-return 0;
+
+
+int main(){
+    samp *p;
+    int i;
+
+    // allocate object array named "samp" 
+    p = new samp[10];  // allocate object array
+    if(!p){
+        std::cout << " Allocation error \n";
+        return 1;
+    }
+
+    // "->" is not used since we're dealing with array
+    for(i =0; i <10; i ++) p[i].set_ij(i, i);  
+    for(i =0; i <10; i ++){
+        std::cout << " Product [" << i << "] is: ";
+        std::cout << p[i].get_product() << "\n";
+    }
+    
+    delete [] p;
+    
+    return 0;
 }
 
 
 
+// ----  rev[20-jun-24]  ----
 
 /* Example 5 : (array of object) The following version of the preceding program gives samp a "DESTRUCTOR", 
                 and now when p is freed, each element’s destructor is called.
