@@ -97,7 +97,7 @@ class samp{
 int main(){
     samp *p;
 
-    p = new samp(6, 5);     // allocate object with initialization
+    p = new (std::nothrow) samp(6, 5);     // allocate object with initialization
     if(!p){
         std::cout << " Allocation error \n";
         return 1;
@@ -112,34 +112,29 @@ int main(){
 
 
 
-
-
-
 /* Example 3: The following program allocates an ARRAY of integers */
-// A simple example of new and delete
-# include <iostream >
-using namespace std ;
-int main ()
-{
-int *p;
-p = new int [5]; // allocate room for 5 integers
-// always make sure that allocation succeeded
-if (!p)
-{
-cout << " Allocation error \n";
-return 1;
-}
+#include <iostream>
 
-int i;
-for (i =0; i <5; i ++)
-p[i] = i;
-for (i =0; i <5; i ++)
-{
-cout << " Here is integer at p[" << i << "]: ";
-cout << p[i] << "\n";
-}
-delete [] p;
-return 0;
+int main(){
+    int *p;
+
+    p = new (std::nothrow) int[5];     // allocate room for 5 integers
+    // always make sure that allocation succeeded
+    if (!p){
+        std::cout << " Allocation error \n";
+        return 1;
+    }
+
+    int i;
+    for (i =0; i <5; i ++) p[i] = i;
+    for (i =0; i <5; i ++){
+        std::cout << " Here is integer at p[" << i << "]: ";
+        std::cout << p[i] << "\n";
+    }
+
+    delete [] p;    // freeing "each element" in the array 
+
+    return 0;
 }
 
 
