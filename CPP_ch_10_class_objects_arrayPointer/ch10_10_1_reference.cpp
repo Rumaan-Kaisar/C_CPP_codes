@@ -24,13 +24,13 @@
 
 
 // --------  chatGPT  --------
-A reference in C++ is an alias for another variable. Once a reference is initialized to a variable, it cannot be changed to refer to another variable. This provides a way to access the same memory location with a different name.
+A reference in C++ is an "alias" for another variable. 
+Once a reference is initialized to a variable, it cannot be changed to refer to another variable.
+This provides a way to access the same "memory location" with a different name.
 
 Syntax
 To declare a reference, you use the & symbol:
 
-cpp
-Copy code
 int x = 10;
 int &ref = x; // ref is now a reference to x
 Properties
