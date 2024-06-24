@@ -67,6 +67,34 @@
 */
 
 
+
+
+/* Example 1: Here is a simple example demonstrating the use of references in C++: */
+
+#include <iostream>
+
+void increment(int &ref) {
+    ref++; // increment the value of the referenced variable
+}
+
+
+int main() {
+    int a = 5;
+    int &rf = a; // rf is a reference to a
+
+    std::cout << "a: " << a << std::endl; // Output: 5
+    std::cout << "ref: " << rf << std::endl; // Output: 5
+
+    rf = 10; // modifying "rf" modifies the original variable "a"
+    std::cout << "a after modifying ref: " << a << std::endl; // Output: 10
+
+    increment(a); // pass a by reference to the function
+    std::cout << "a after increment: " << a << std::endl; // Output: 11
+
+    return 0;
+}
+
+
 // --------  chatGPT  --------
 A reference in C++ is an "alias" for another variable. 
 Once a reference is initialized to a variable, it cannot be changed to refer to another variable.
