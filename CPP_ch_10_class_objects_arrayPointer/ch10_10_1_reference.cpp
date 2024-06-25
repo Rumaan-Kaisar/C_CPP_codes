@@ -23,6 +23,8 @@
         C++ has the concept of references, which are a safer and more user-friendly alternative to pointers
 
         A reference in C++ is an "alias" for another variable. 
+        A reference is an "implicit pointer" that 
+            for all intents and purposes acts like another name (i.e. alias) for a variable. 
 
         Once a reference is initialized to a variable, it "cannot be changed" to refer to another variable.
         This provides a way to access the same "memory location" with a different name.
@@ -33,6 +35,13 @@
                 int x = 10;
                 int &ref = x;   // "ref" is now a reference to x
 
+
+        --------    Usage    --------
+        There are three ways that a reference can be used.
+            First, a reference can be "passed" to a function. 
+            Second, a reference can be "returned" by a function. 
+            Finally, an "independent reference" can be created. 
+ 
 
         --------    Properties    --------
         Initialization: 
@@ -139,14 +148,12 @@ int main() {
 
 // ----  rev[21-jun-24]  ----
 
-// 10.12 
-Reference a feature that is related to the pointer. A reference is an implicit pointer that for all intents and purposes acts like another name for a variable. There are three ways that a reference can be used.
- 
-[1]	First, a reference can be passed to a function. 
-[2]	Second, a reference can be returned by a function. 
-[3]	Finally, an independent reference can be created. 
- 
-	Reference as parameter : The most important use of a reference is as a parameter to a function. Let's first start with a program that uses a pointer (not a reference) as a parameter:
+/* 
+
+	Reference as parameter : The most important use of a reference is as a parameter to a function. 
+Let's first start with a program that uses a pointer (not a reference) as a parameter:
+ */
+
 
 void f(int *n); 			/* use a pointer parameter */ 
 
@@ -192,7 +199,7 @@ written using references	written using pointers instead of references (recall 5.
 
 
 // ChatGPT explanation
-// --------    Swap using poiter & and referance    --------
+// --------    Swap using pointer & and referance    --------
 
 Certainly! Let's break down the swap function in the given C++ code example:
 
