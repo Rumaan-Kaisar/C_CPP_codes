@@ -146,15 +146,15 @@ int main() {
 
 
 
-// ----  rev[21-jun-24]  ----
+// ----  rev[25-jun-24]  ----
 
-/* 
+/*  ------------    Reference as parameter    ------------
+    The most important use of a reference is as a parameter to a function.
+    To demonstrate, we first use a pointer parameter, then we use a reference parameter.
+*/
 
-	Reference as parameter : The most important use of a reference is as a parameter to a function. 
-Let's first start with a program that uses a pointer (not a reference) as a parameter:
- */
-
-
+/* Example 3: Following program uses a "pointer" (not a reference) as a parameter: */
+// using pointer parameter
 void f(int *n); 			/* use a pointer parameter */ 
 
 int main() { 	int i = 0;
@@ -167,7 +167,8 @@ void f(int *n){ *n = 100; } 	/* put 100 into the argument pointed to by n */
 Here f() loads the value 100 into the integer pointed to by n. In this program, f() is called with the address of i in main(). Thus, after f() returns, i contains the value 100.
 This program demonstrates how a pointer is used as a parameter to manually create a call-by-reference parameter-passing mechanism. In a C program, this is the only way to achieve a call-by-reference.
 
-	However, in C++ reference parameter completely automate this process. To see how, let's rework the previous program. Here is a version that uses a reference parameter:
+	However, in C++ reference parameter completely automate this process. 
+To see how, let's rework the previous program. Here is a version that uses a reference parameter:
 
 void f(int &n); 			/* declare a reference parameter */ 
 
