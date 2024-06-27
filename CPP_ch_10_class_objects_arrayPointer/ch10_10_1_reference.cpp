@@ -185,20 +185,35 @@ void f( int *n){
 
 
 
-/* Example 4: in C++ reference parameter completely automate above process.  */
+/* Example 4: in C++ reference parameter completely automate above process.
+                Following is a rework of the previous program.
+                Following uses a REFERENCE parameter.
+*/
 
-To see how, let's rework the previous program. Here is a version that uses a reference parameter:
+#include <iostream>
 
-void f(int &n); 			/* declare a reference parameter */ 
+void f(int &n);     // declare a "reference parameter", instead of "pointer parameter"
 
-int main() { 	int i = 0;
-f(i);
-cout << " Here is i's new value : " << i << "\n";
-return 0;}
 
-/* using now the reference parameter. Notice that no * is needed in the following statement */ 
+int main(){
+    int i = 0;
 
-void f(int &n){ n = 100; } 	/* put 100 into the argument pointed to by n */ 
+    f(i);   // notice no use of '&'
+    std::cout << " Here is i's new value : " << i << "\n";
+
+    return 0;
+}
+
+void f(int &n){
+    // reference parameter: notice that no * is needed in the following statement
+    n = 100;    // put 100 into the argument used to call f()
+}
+
+
+
+
+
+
 
 	First, to declare a reference variable or parameter, you precede the variable's name with the &. This is how n is declared as a parameter to f(). 
 	Now that n is a reference, it is no longer necessary-or even legal-to apply (not allowed) the * operator. Instead, each time n is used within f(), it is automatically treated as a pointer to the argument used to call f(). Within the function, the compiler automatically uses the variable pointed to by the reference parameter. This means that the statement n = 100; actually puts the value 100 into the variable used to call f(), which in this case, is i. 
