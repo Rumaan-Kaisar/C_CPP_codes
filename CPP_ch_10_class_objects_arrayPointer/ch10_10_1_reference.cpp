@@ -168,6 +168,22 @@ Here f() loads the value 100 into the integer pointed to by n. In this program, 
 This program demonstrates how a pointer is used as a parameter to manually create a call-by-reference parameter-passing mechanism. In a C program, this is the only way to achieve a call-by-reference.
 
 	However, in C++ reference parameter completely automate this process. 
+
+# include <iostream >
+using namespace std ;
+void f( int *n); // use a pointer parameter
+int main ()
+{
+int i = 0;
+f(&i);
+cout << " Here is i’s new value : " << i << "\n";
+return 0;
+}
+void f( int *n)
+{
+*n = 100; // put 100 into the argument pointed to by n
+}
+
 To see how, let's rework the previous program. Here is a version that uses a reference parameter:
 
 void f(int &n); 			/* declare a reference parameter */ 
