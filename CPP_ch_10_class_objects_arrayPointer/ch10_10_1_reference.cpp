@@ -211,15 +211,22 @@ void f(int &n){
 
 
 
+// ----  rev[27-jun-2024]  ----
+
+/* 
+To declare a reference variable or parameter, you precede the variable's name with the &. 
+    Eg: This is how n is declared as a parameter to f(). 
 
 
+	Now that n is a reference, it is no longer necessary-or even legal-to apply (not allowed) the * operator. 
+Instead, each time n is used within f(), it is automatically treated as a pointer to the argument used to call f(). Within the function, the compiler automatically uses the variable pointed to by the reference parameter. This means that the statement n = 100; actually puts the value 100 into the variable used to call f(), which in this case, is i. 
 
 
-	First, to declare a reference variable or parameter, you precede the variable's name with the &. This is how n is declared as a parameter to f(). 
-	Now that n is a reference, it is no longer necessary-or even legal-to apply (not allowed) the * operator. Instead, each time n is used within f(), it is automatically treated as a pointer to the argument used to call f(). Within the function, the compiler automatically uses the variable pointed to by the reference parameter. This means that the statement n = 100; actually puts the value 100 into the variable used to call f(), which in this case, is i. 
 	Further, when f() is called, there is no need ( in fact not allowed ) to precede the argument with the &. Instead, because f() is declared as taking a reference parameter, the address to the argument is automatically passed to f().When you use a reference parameter, the compiler automatically passes the address of the variable used as the argument. Thus, a reference parameter fully automates the call-by-reference parameter-passing mechanism.
-	You cannot change what a reference is pointing to. For example, if the statement   " n++ ; "   were put inside f() in the preceding program, "n" would still be pointing to i in main(). Instead of incrementing n, this statement increments the value of the variable being referenced  (in this case, i).
 
+
+	You cannot change what a reference is pointing to. For example, if the statement   " n++ ; "   were put inside f() in the preceding program, "n" would still be pointing to i in main(). Instead of incrementing n, this statement increments the value of the variable being referenced  (in this case, i).
+ */
 Example:  The classic example of passing arguments by reference is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
 written using references	written using pointers instead of references (recall 5.3)
 	void swap_args(int &x, int &y)
