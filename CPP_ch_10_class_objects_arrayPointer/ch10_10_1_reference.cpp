@@ -145,44 +145,47 @@ int main() {
 
 
 
-
-// ----  rev[25-jun-24]  ----
-
 /*  ------------    Reference as parameter    ------------
     The most important use of a reference is as a parameter to a function.
     To demonstrate, we first use a pointer parameter, then we use a reference parameter.
 */
 
-/* Example 3: Following program uses a "pointer" (not a reference) as a parameter: */
-// using pointer parameter
-void f(int *n); 			/* use a pointer parameter */ 
 
-int main() { 	int i = 0;
-f(&i);
-cout << " Here is i's new value : " << i << "\n";
-return 0;}
 
-void f(int *n){ *n = 100; } 	/* put 100 into the argument pointed to by n */ 
+/* Example 3: Following program uses a "pointer" (not a reference) as a parameter 
+                This program demonstrates how a POINTER is used as a parameter to 
+                    manually create a "call-by-reference parameter-passing" mechanism. 
 
-Here f() loads the value 100 into the integer pointed to by n. In this program, f() is called with the address of i in main(). Thus, after f() returns, i contains the value 100.
-This program demonstrates how a pointer is used as a parameter to manually create a call-by-reference parameter-passing mechanism. In a C program, this is the only way to achieve a call-by-reference.
+                In a "C" program, this is the only way to achieve a "call-by-reference".
+*/
+// using POINTER parameter
+#include <iostream>
 
-	However, in C++ reference parameter completely automate this process. 
+void f(int *n);     // use a POINTER parameter
 
-# include <iostream >
-using namespace std ;
-void f( int *n); // use a pointer parameter
-int main ()
-{
-int i = 0;
-f(&i);
-cout << " Here is i’s new value : " << i << "\n";
-return 0;
+
+int main(){
+    int i = 0;
+
+    f(&i);  // using POINTER, (not a reference)
+    std::cout << " Here is i's new value : " << i << "\n";
+    return 0;
 }
-void f( int *n)
-{
-*n = 100; // put 100 into the argument pointed to by n
+
+void f( int *n){
+    *n = 100; // put 100 into the argument pointed to by n
 }
+
+
+/*  Here f() loads the value 100 into the integer pointed to by n. 
+    f(&i) means f() is called with the address of i in main(). 
+    Thus, i contains the value 100 after f() returns, 
+*/
+
+
+
+
+/* Example 4: in C++ reference parameter completely automate above process.  */
 
 To see how, let's rework the previous program. Here is a version that uses a reference parameter:
 
