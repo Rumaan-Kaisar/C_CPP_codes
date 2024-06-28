@@ -73,6 +73,18 @@
     Readability: 
         Code that uses references is often more readable and expressive.
 
+
+    ADVANTAGES over equivalent pointer alternatives: 
+        1. No longer need to remember to pass the address of an argument, it's done autometically
+        2. reference parameters offer a cleaner, more elegant interface
+
+        3. when an object is passed to a function as a reference, no copy is made.
+                avoiding the troubles associated with the copy of an argument damaging
+                something needed elsewhere in the program when its DESTRUCTOR function is called.
+
+
+    Finally, note that:
+        reference is NOT a pointer
 */
 
 
@@ -235,7 +247,9 @@ void f(int &n){
 
 
 
-/* Example:  The classic example of passing arguments by reference is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
+// ----  rev[28-jun-2024]: copy example & Exercise from book  ----
+
+/* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
 written using references	written using pointers instead of references (recall 5.3)
 void swap_args(int &x, int &y)
 {int t;
