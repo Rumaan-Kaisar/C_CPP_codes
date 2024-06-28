@@ -214,12 +214,16 @@ void f(int &n){
 // ----  rev[27-jun-2024]  ----
 
 /* 
-To declare a reference variable or parameter, you precede the variable's name with the &. 
+To declare a reference variable or parameter, you precede the variable's name with the "&". 
     Eg: This is how n is declared as a parameter to f(). 
+            
+            void f(int &n)
 
+    Now that n is a reference, using * isn't allowed any more
+        each time n is used within f(), it is automatically treated as a pointer to the argument used to call f()
 
-	Now that n is a reference, it is no longer necessary-or even legal-to apply (not allowed) the * operator. 
-Instead, each time n is used within f(), it is automatically treated as a pointer to the argument used to call f(). Within the function, the compiler automatically uses the variable pointed to by the reference parameter. This means that the statement n = 100; actually puts the value 100 into the variable used to call f(), which in this case, is i. 
+    Within the function, the compiler automatically uses the "variable pointed to by the reference parameter"
+    i.e. the statement n = 100; actually puts the value 100 into the variable used to call f(), which in this case, is "i"
 
 
 	Further, when f() is called, there is no need ( in fact not allowed ) to precede the argument with the &. Instead, because f() is declared as taking a reference parameter, the address to the argument is automatically passed to f().When you use a reference parameter, the compiler automatically passes the address of the variable used as the argument. Thus, a reference parameter fully automates the call-by-reference parameter-passing mechanism.
