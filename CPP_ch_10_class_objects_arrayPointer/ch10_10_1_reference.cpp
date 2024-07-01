@@ -273,7 +273,12 @@ void f(int &n){
         Pointer arithmetic is possible, 
         You can increment or decrement pointers to "TRAVERSE" arrays or other data structures.
 
-    // Attempting pointer arithmetic with a reference will result in a compilation error
+
+    However, attempting pointer arithmetic with a reference will not produce a compilation error
+        Operations on references directly affect the referred variable
+
+        Therefore, the line ++ref; in "Example 6" is valid and increments the value of a, 
+            which is why it does not produce a compilation error. 
 
 */
 
@@ -304,17 +309,18 @@ int main() {
     int a = 10;
     int &ref = a;
 
-    
-    // ++ref; // This increments the value of 'a', not the reference itself
+    // This increments the value of 'a' through the reference 'ref' but not the reference itself
+    ++ref; // 'a' is now 11
 
-    std::cout << ref << std::endl; // Output: 10
+    std::cout << ref << std::endl; // Output: 11
+    std::cout << a << std::endl;   // Output: 11
 
     return 0;
 }
 
 
 
-
+// ------  rev[01-jul-2024]  ------
 // ChatGPT explanation
 // --------    Swap using pointer & and referance    --------
 
@@ -595,7 +601,7 @@ For a truly effective swap function that modifies the variables outside the func
 
 
 
-// ----  rev[28-jun-2024]: copy example & Exercise from book  ----
+// ----  rev[01-jul-2024]: copy example & Exercise from book  ----
 
 /* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
 written using references	written using pointers instead of references (recall 5.3)
