@@ -247,24 +247,12 @@ void f(int &n){
 
 
 
-// ----  rev[28-jun-2024]: copy example & Exercise from book  ----
+/*  ------------    pointer arithmetic is not allowed    ------------
 
-/* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
-written using references	written using pointers instead of references (recall 5.3)
-void swap_args(int &x, int &y)
-{int t;
-t = x;  x = y;  y = t; 	}	void swap_args(int *x, int *y)
-{int t;
-t = *x;  *x = *y;  *y = t; 	}
- */
-
-
-
-
-
-/*  --------    pointer arithmetic is not allowed    --------
-
-	You cannot change what a reference is pointing to. For example, if the statement   " n++ ; "   were put inside f() in the preceding program, "n" would still be pointing to i in main(). Instead of incrementing n, this statement increments the value of the variable being referenced  (in this case, i).
+    You cannot change what a reference is pointing to. 
+        If the statement   " n++ ; "   were put inside f() in the preceding program, 
+        "n" would still be pointing to i in main() instead of incrementing n. 
+        This statement actually "increments the value" of the variable being referenced  (in this case, i).
 
 No, you cannot use pointer arithmetic with references in C++. References and pointers are fundamentally different in how they are used and managed.
 
@@ -275,6 +263,8 @@ A reference is an alias for another variable.
 Once a reference is initialized to a variable, it cannot be changed to refer to another variable.
 References are typically implemented as pointers under the hood, but they are not pointers in terms of syntax and usage.
 You cannot perform arithmetic operations (like incrementing or decrementing) on references.
+
+
 Pointers:
 
 A pointer is a variable that holds the memory address of another variable.
@@ -597,5 +587,19 @@ Conclusion
 Without references or pointers, the swap function cannot modify the actual variables passed to it, making the swap only local to the function.
 Using references (or pointers) allows the function to modify the original variables, which is the desired behavior in most practical applications.
 For a truly effective swap function that modifies the variables outside the function scope, references or pointers are necessary in C++.
+
+
+
+
+// ----  rev[28-jun-2024]: copy example & Exercise from book  ----
+
+/* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
+written using references	written using pointers instead of references (recall 5.3)
+void swap_args(int &x, int &y)
+{int t;
+t = x;  x = y;  y = t; 	}	void swap_args(int *x, int *y)
+{int t;
+t = *x;  *x = *y;  *y = t; 	}
+ */
 
 
