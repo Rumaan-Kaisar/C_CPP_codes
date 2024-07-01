@@ -247,32 +247,39 @@ void f(int &n){
 
 
 
-/*  ------------    pointer arithmetic is not allowed    ------------
+/*  ------------    Pointer arithmetic is not allowed for references    ------------
 
     You cannot change what a reference is pointing to. 
         If the statement   " n++ ; "   were put inside f() in the preceding program, 
         "n" would still be pointing to i in main() instead of incrementing n. 
         This statement actually "increments the value" of the variable being referenced  (in this case, i).
-
-No, you cannot use pointer arithmetic with references in C++. References and pointers are fundamentally different in how they are used and managed.
-
-Differences Between References and Pointers:
-References:
-
-A reference is an alias for another variable.
-Once a reference is initialized to a variable, it cannot be changed to refer to another variable.
-References are typically implemented as pointers under the hood, but they are not pointers in terms of syntax and usage.
-You cannot perform arithmetic operations (like incrementing or decrementing) on references.
+    
+    If you need to perform "pointer arithmetic", you should use pointers instead of references.
 
 
-Pointers:
+    You cannot use pointer arithmetic with references in C++. 
+        References and pointers are fundamentally different in how they are used and managed.
 
-A pointer is a variable that holds the memory address of another variable.
-Pointers can be reassigned to point to different variables.
-Pointer arithmetic is possible, allowing you to increment or decrement pointers to traverse arrays or other data structures.
-Example of Pointer Arithmetic:
-cpp
-Copy code
+    ----  Differences Between References and Pointers  ----
+    References:
+        A reference is an alias for another variable.
+        Once a reference is initialized to a variable, it cannot be changed to refer to another variable.
+        References are typically implemented as "pointers under the hood", but "they are not pointers" in terms of syntax and usage.
+        You cannot perform arithmetic operations (like INCREMENTING or DECREMENTING) on references.
+
+    Pointers:
+        A pointer is a variable that holds the memory address of another variable.
+        Pointers can be reassigned to point to different variables.
+        Pointer arithmetic is possible, 
+        You can increment or decrement pointers to "TRAVERSE" arrays or other data structures.
+
+    // Attempting pointer arithmetic with a reference will result in a compilation error
+
+*/
+
+
+
+/* Example 5: Pointer Arithmetic. */
 #include <iostream>
 
 int main() {
@@ -286,28 +293,25 @@ int main() {
 
     return 0;
 }
-Attempting Pointer Arithmetic with References:
-cpp
-Copy code
+
+
+
+
+/* Example 6: Attempting Pointer Arithmetic with References: */
 #include <iostream>
 
 int main() {
     int a = 10;
     int &ref = a;
 
-    // Attempting pointer arithmetic with a reference will result in a compilation error
+    
     // ++ref; // This increments the value of 'a', not the reference itself
 
     std::cout << ref << std::endl; // Output: 10
 
     return 0;
 }
-Conclusion:
-Pointer arithmetic is used to traverse memory locations, such as elements in an array.
-References provide a simpler and safer way to refer to other variables but do not support pointer arithmetic.
-If you need to perform pointer arithmetic, you should use pointers instead of references.
 
-*/
 
 
 
