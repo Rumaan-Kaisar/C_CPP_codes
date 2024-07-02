@@ -499,6 +499,9 @@ int main() {
 
 
 
+// ----  rev[02-jul-2024]  ----
+
+
 /* Example 9: can swap be done simply without referance or pointers? */
 ChatGPT
 Yes, you can implement a swap function without using references or pointers, but it won't affect the original variables outside the function scope. This approach is often used to demonstrate the concept of swapping, but it's limited in practical use because it doesn't modify the actual variables passed to the function. Here's an example:
@@ -554,7 +557,7 @@ For a truly effective swap function that modifies the variables outside the func
 
 
 
-// ----  rev[01-jul-2024]: copy example & Exercise from book  ----
+// ----  rev[02-jul-2024]: copy example & Exercise from book  ----
 
 /* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
 written using references	written using pointers instead of references (recall 5.3)
