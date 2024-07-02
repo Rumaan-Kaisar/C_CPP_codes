@@ -387,36 +387,44 @@ int main() {
 
 
 
-what is the difference between referance swap and normal swap?
-ChatGPT
-In C++, there are different ways to implement a swap function to exchange the values of two variables. Two common methods are swapping using references and swapping using pointers. Here's a detailed comparison:
+/* Example 8: What is the difference between referance swap and pointer swap? */
 
-1. Swap Using References
-Function Definition:
 
-cpp
-Copy code
-void swap(int &x, int &y) {
-    int temp = x;
-    x = y;
-    y = temp;
-}
-Explanation:
+/*  --------  swapping using REFERENCES  -------- 
 
-References: The function parameters int &x and int &y are references to the actual variables passed to the function.
-Direct Manipulation: Changes made to x and y within the function directly affect the variables passed as arguments.
-Cleaner Syntax: Using references results in cleaner syntax since there's no need to use the dereference operator (*).
-Usage:
+                    void swap(int &x, int &y) {
+                        int temp = x;
+                        x = y;
+                        y = temp;
+                    }
 
-cpp
-Copy code
-int a = 5, b = 10;
-swap(a, b); // a becomes 10, b becomes 5
-2. Swap Using Pointers
-Function Definition:
+        Direct Manipulation: 
+            Changes made to x and y within the function directly affect the variables passed as arguments
 
-cpp
-Copy code
+        Cleaner Syntax: 
+            Using references results in cleaner syntax since there's no need to use the dereference operator (*)
+
+
+
+    --------  swapping using POINTERS  --------
+
+
+        Direct Manipulation: 
+            Changes made to x and y within the function directly affect the variables passed as arguments
+
+        Cleaner Syntax: 
+            Using references results in cleaner syntax since there's no need to use the dereference operator (*)
+*/
+
+
+// 2. swapping using 
+
+
+
+
+
+
+
 void swap(int *x, int *y) {
     int temp = *x;
     *x = *y;
@@ -424,7 +432,7 @@ void swap(int *x, int *y) {
 }
 Explanation:
 
-Pointers: The function parameters int *x and int *y are pointers to the actual variables passed to the function.
+
 Indirect Manipulation: Changes made to *x and *y within the function indirectly affect the variables passed as arguments.
 Syntax Complexity: Using pointers requires dereferencing (*x, *y), which can make the code slightly more complex.
 Usage:
