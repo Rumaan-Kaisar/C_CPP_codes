@@ -320,14 +320,39 @@ int main() {
 
 
 
-// ------  rev[01-jul-2024]  ------
-// ChatGPT explanation
+
+
 // --------    Swap using pointer & and referance    --------
 
-Certainly! Let's break down the swap function in the given C++ code example:
 
-cpp
-Copy code
+/* Example 7: This example demonstrates how references can be used to manipulate data efficiently and returned in C++
+
+                Following swap() function swaps the values of two integer variables using REFERENCES 
+                and retrun the larger value using getLarger()
+
+
+                Notice, the function-definition,  "void swap(int &x, int &y)" takes two parameters: int &x and int &y
+                    These are "references to integers", meaning 
+                    any changes made to x and y within the function will directly affect the variables passed as arguments.
+
+
+                Inside the main() function, "a" and "b" are declared and initialized with values 5 and 10
+                    The swap() function is called with 'a' and 'b' as arguments "swap(a, b);"
+                    Since swap uses REFERENCES, the values of 'a' and 'b' are swapped (affecting 'a', 'b' directly)
+                    After swapping, 'a' becomes 10 and 'b' becomes 5.
+
+
+
+                Also notice getLarger() function, it returns a reference
+
+                    it takes two integer references as parameters and returns a reference to the larger of the two.
+                        which in this case is 'a', The reference is stored in "larger".
+
+                    Now, since "larger" is connected to 'a', modifying "larger" wil affect 'a'
+                        The value of "larger" is changed to 20. Since "larger" is a reference to "a", "a" is also modified
+
+*/
+
 #include <iostream>
 
 void swap(int &x, int &y) {
@@ -354,94 +379,13 @@ int main() {
 
     return 0;
 }
-swap Function Explanation
-The swap function swaps the values of two integer variables using references. Here’s how it works step-by-step:
 
-Function Definition:
 
-cpp
-Copy code
-void swap(int &x, int &y) {
-    int temp = x;
-    x = y;
-    y = temp;
-}
-The function takes two parameters: int &x and int &y. These are references to integers, meaning any changes made to x and y within the function will directly affect the variables passed as arguments.
-Swapping Process:
 
-Temporary Variable:
-cpp
-Copy code
-int temp = x;
-A temporary variable temp is created to store the value of x.
-Assign y to x:
-cpp
-Copy code
-x = y;
-The value of y is assigned to x. Now, x holds the value that was originally in y.
-Assign temp to y:
-cpp
-Copy code
-y = temp;
-The value stored in temp (which is the original value of x) is assigned to y.
-By the end of these steps, the values of x and y have been swapped.
 
-main Function Explanation
-Variable Declaration and Initialization:
 
-cpp
-Copy code
-int a = 5, b = 10;
-Two integer variables a and b are declared and initialized with values 5 and 10, respectively.
-Calling swap Function:
 
-cpp
-Copy code
-swap(a, b);
-The swap function is called with a and b as arguments. Since swap uses references, the values of a and b are swapped.
-After swapping, a becomes 10 and b becomes 5.
-Output After Swapping:
 
-cpp
-Copy code
-std::cout << "a: " << a << ", b: " << b << std::endl; // Output: a: 10, b: 5
-This prints the swapped values of a and b.
-getLarger Function Explanation
-Function Definition:
-cpp
-Copy code
-int& getLarger(int &x, int &y) {
-    return (x > y) ? x : y;
-}
-The function takes two integer references as parameters and returns a reference to the larger of the two.
-Usage in main
-Calling getLarger Function:
-
-cpp
-Copy code
-int &larger = getLarger(a, b);
-The getLarger function is called with a and b as arguments. The function returns a reference to the larger value, which in this case is a.
-The reference is stored in larger.
-Output the Larger Value:
-
-cpp
-Copy code
-std::cout << "Larger: " << larger << std::endl; // Output: Larger: 10
-This prints the value of larger, which is 10.
-Modifying larger:
-
-cpp
-Copy code
-larger = 20; // modifying larger modifies a
-The value of larger is changed to 20. Since larger is a reference to a, a is also modified.
-Output After Modification:
-
-cpp
-Copy code
-std::cout << "a after modifying larger: " << a << std::endl; // Output: a: 20
-This prints the updated value of a, which is now 20.
-Summary
-The swap function uses references to swap the values of two variables directly. The getLarger function returns a reference to the larger of two values, allowing direct modification of the original variable. This example demonstrates how references can be used to manipulate data efficiently and safely in C++.
 
 what is the difference between referance swap and normal swap?
 ChatGPT
