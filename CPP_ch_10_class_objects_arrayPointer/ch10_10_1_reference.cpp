@@ -502,15 +502,16 @@ int main() {
 // ----  rev[02-jul-2024]  ----
 
 
-/* Example 9: can swap be done simply without referance or pointers? */
-ChatGPT
-Yes, you can implement a swap function without using references or pointers, but it won't affect the original variables outside the function scope. This approach is often used to demonstrate the concept of swapping, but it's limited in practical use because it doesn't modify the actual variables passed to the function. Here's an example:
+/* Example 9: Can a swap be done simply without using references or pointers? 
 
-Swap Without References or Pointers
-cpp
-Copy code
+                Ans:    SCOPE matters!!!
+                        Yes, you can implement a swap function without using references or pointers, 
+                            but it won't affect the original variables outside the function SCOPE. 
+                            It doesn't modify the actual variables passed to the function
+*/
 #include <iostream>
 
+// Swap Without References or Pointers
 void swap(int x, int y) {
     int temp = x;
     x = y;
@@ -524,6 +525,7 @@ int main() {
     std::cout << "Outside function - a: " << a << ", b: " << b << std::endl; // Output: a: 5, b: 10
     return 0;
 }
+
 Explanation
 In the above code:
 
