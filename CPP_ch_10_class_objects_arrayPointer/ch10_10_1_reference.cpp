@@ -561,6 +561,8 @@ int main() {
 
 
 
+// ----  rev[04-JUL-2024]  ----
+
 /* Example 10 (another swap function):  The classic example of "passing arguments by reference" is 
                 a function that "exchanges the values of the two arguments" with which it is called. 
 
@@ -575,4 +577,114 @@ void swap_args(int &x, int &y)
 t = x;  x = y;  y = t; 	}	void swap_args(int *x, int *y)
 {int t;
 t = *x;  *x = *y;  *y = t; 	}
+
+
+
+# include <iostream >
+using namespace std ;
+void swapargs ( int &x, int &y);
+int main ()
+{
+int i, j;
+i = 10;
+j = 19;
+cout << "i: " << i << ", ";
+cout << "j: " << j << "\n";
+swapargs (i, j);
+cout << " After swapping : ";
+cout << "i: " << i << ", ";
+cout << "j: " << j << "\n";
+return 0;
+}
+void swapargs ( int &x, int &y)
+{
+int t;
+t = x;
+x = y;
+y = t;
+}
+If swapargs() had been written using pointers instead of references, it would have looked
+like this:
+void swapargs ( int *x, int *y)
+{
+int t;
+t = *x;
+107TEACH YOURSELF
+C++
+*x = *y;
+*y = t;
+}
+As you can see, by using the reference version of swapargs(), the need for the * operator
+is eliminated.
+
+
+
+2. Here is a program that uses the round() function to round a double value. The value
+to be rounded is passed by reference.
+# include <iostream >
+# include <cmath >
+using namespace std ;
+void round ( double & num );
+int main ()
+{
+double i = 100.4;
+cout << i << " rounded is ";
+round (i);
+cout << i << "\n";
+i = 10.9;
+cout << i << " rounded is ";
+round (i);
+cout << i << "\n";
+return 0;
+}
+void round ( double & num )
+{
+double frac ;
+double val ;
+// decompose num into whole and fractional parts
+frac = modf (num , & val );
+if( frac < 0.5)
+num = val ;
+else
+num = val +1.0;
+}
+round() uses a relatively obscure standard library function called modf() to decompose
+a number into its whole number and fractional parts. The fractional part is returned; the
+whole number is put into the variable pointed to by modf()’s second parameter.
+EXERCISES
+108ARRAYS, POINTERS, AND REFERENCES
+4.7. PASSING REFERENCES TO OBJECTS
+
+
+
+1. Write a function called neg() that reverses the sign of its integer parameter. Write
+the function two ways-first by using a pointer parameter and then by using a reference
+parameter. Include a short program to demonstrate their operation.
+
+
+
+
+2. What is wrong with the following program?
+// This program has an error .
+# include <iostream >
+using namespace std ;
+void triple ( double & num );
+int main ()
+{
+double d = 7.0;
+triple (&d);
+cout << d;
+return 0;
+}
+// Triple num ’s value .
+void triple ( double & num )
+{
+num = 3 * num ;
+}
+
+
+
+
+3. Give some advantages of reference parameters.
+
 
