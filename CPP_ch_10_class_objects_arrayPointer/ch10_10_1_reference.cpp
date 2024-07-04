@@ -507,7 +507,7 @@ int main() {
                 Ans:    SCOPE matters!!!
                         Yes, you can implement a swap function without using references or pointers, 
                             but it won't affect the original variables outside the function SCOPE. 
-                            It doesn't modify the actual variables passed to the function
+                            It doesn't modify the "actual variables" passed to the function
 */
 #include <iostream>
 
@@ -526,12 +526,16 @@ int main() {
     return 0;
 }
 
-Explanation
-In the above code:
+/*  In this case the swap function takes x and y as parameters "by value" 
+        that means the function receives "copies of a and b"
 
-The swap function takes x and y as parameters by value. This means the function receives copies of a and b.
-Inside the function, x and y are swapped. However, since x and y are local to the function, the original values of a and b in the main function are not affected.
-The output inside the function will show the swapped values, but the output outside the function will show the original values because the actual variables a and b are not modified.
+    Inside the function, x and y are swapped 
+        However, since x and y are "local" to the function, 
+        the "original" values of a and b in the main function are "not affected"
+*/
+
+
+
 Practical Swap Function
 To actually swap the values of variables in the main function, you need to use either references or pointers. Here is a reminder of how it looks with references:
 
