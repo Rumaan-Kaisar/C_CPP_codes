@@ -561,21 +561,18 @@ int main() {
 
 
 
+/* Example 10 (another swap function):  The classic example of "passing arguments by reference" is 
+                a function that "exchanges the values of the two arguments" with which it is called. 
 
+                Folowing swap_args() uses references to swap its two integer arguments:
+*/
 
-// ----  rev[02-jul-2024]: copy example & Exercise from book  ----
+// using references	
 
-/* Example:  The classic example of "passing arguments by reference" is a function that "exchanges the values of the two arguments" with which it is called. 
-
-
-
-Here is an example called swap_args() that uses references to swap its two integer arguments:
-written using references	written using pointers instead of references (recall 5.3)
+// using pointers
 void swap_args(int &x, int &y)
 {int t;
 t = x;  x = y;  y = t; 	}	void swap_args(int *x, int *y)
 {int t;
 t = *x;  *x = *y;  *y = t; 	}
- */
-
 
