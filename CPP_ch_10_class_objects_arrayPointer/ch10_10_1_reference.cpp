@@ -499,15 +499,15 @@ int main() {
 
 
 
-// ----  rev[02-jul-2024]  ----
-
-
 /* Example 9: Can a swap be done simply without using references or pointers? 
 
                 Ans:    SCOPE matters!!!
                         Yes, you can implement a swap function without using references or pointers, 
                             but it won't affect the original variables outside the function SCOPE. 
                             It doesn't modify the "actual variables" passed to the function
+                        
+                        Without references or pointers, the swap function cannot modify the actual variables passed to it, 
+                            making the swap only local to the function.
 */
 #include <iostream>
 
@@ -536,36 +536,40 @@ int main() {
 
 
 
-Practical Swap Function
-To actually swap the values of variables in the main function, you need to use either references or pointers. Here is a reminder of how it looks with references:
+// Practical Swap Function:
+// To actually swap the values of variables in the main function, you need to use either references or pointers
 
-cpp
-Copy code
 #include <iostream>
 
+// using reference
 void swap(int &x, int &y) {
     int temp = x;
     x = y;
     y = temp;
+    std::cout << "Inside function - x: " << x << ", y: " << y << std::endl;
 }
 
 int main() {
     int a = 5, b = 10;
-    swap(a, b); // Swaps the values of a and b
-    std::cout << "a: " << a << ", b: " << b << std::endl; // Output: a: 10, b: 5
+    swap(a, b); // Swaps the values of a and b. modifies 'a and b' directly
+    std::cout << "Outside function - a: " << a << ", b: " << b << std::endl; // Output: a: 10, b: 5
     return 0;
 }
-Conclusion
-Without references or pointers, the swap function cannot modify the actual variables passed to it, making the swap only local to the function.
-Using references (or pointers) allows the function to modify the original variables, which is the desired behavior in most practical applications.
-For a truly effective swap function that modifies the variables outside the function scope, references or pointers are necessary in C++.
+
+// Using references (or pointers) allows the function to modify the original variables
+
+
 
 
 
 
 // ----  rev[02-jul-2024]: copy example & Exercise from book  ----
 
-/* Example:  The classic example of "passing arguments by reference" is a function that exchanges the values of the two arguments with which it is called. Here is an example called swap_args() that uses references to swap its two integer arguments:
+/* Example:  The classic example of "passing arguments by reference" is a function that "exchanges the values of the two arguments" with which it is called. 
+
+
+
+Here is an example called swap_args() that uses references to swap its two integer arguments:
 written using references	written using pointers instead of references (recall 5.3)
 void swap_args(int &x, int &y)
 {int t;
