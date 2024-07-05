@@ -561,70 +561,83 @@ int main() {
 
 
 
-// ----  rev[04-JUL-2024]  ----
-
 /* Example 10 (another swap function):  The classic example of "passing arguments by reference" is 
                 a function that "exchanges the values of the two arguments" with which it is called. 
 
                 Folowing swap_args() uses references to swap its two integer arguments:
 */
-
 // using references	
+#include <iostream>
+
+void swapargs (int &x, int &y);
+
+
+int main(){
+    int i, j;
+
+    i = 10;
+    j = 19;
+    std::cout << "i: " << i << ", ";
+    std::cout << "j: " << j << "\n";
+
+    swapargs (i, j);
+    std::cout << " After swapping : " << "i: " << i << ", " << "j: " << j << std::endl;
+
+    return 0;
+}
+
+
+void swapargs(int &x, int &y){
+    int t;
+
+    t = x;
+    x = y;
+    y = t;
+}
+
+
 
 // using pointers
-void swap_args(int &x, int &y)
-{int t;
-t = x;  x = y;  y = t; 	}	void swap_args(int *x, int *y)
-{int t;
-t = *x;  *x = *y;  *y = t; 	}
+#include <iostream>
+
+void swapargs(int *x, int *y);
+// Notice in the reference version of swapargs(), there is no need for the * operator
 
 
+int main(){
+    int i, j;
 
-# include <iostream >
-using namespace std ;
-void swapargs ( int &x, int &y);
-int main ()
-{
-int i, j;
-i = 10;
-j = 19;
-cout << "i: " << i << ", ";
-cout << "j: " << j << "\n";
-swapargs (i, j);
-cout << " After swapping : ";
-cout << "i: " << i << ", ";
-cout << "j: " << j << "\n";
-return 0;
+    i = 10;
+    j = 19;
+    std::cout << "i: " << i << ", ";
+    std::cout << "j: " << j << "\n";
+
+    swapargs (&i, &j);  // change
+    std::cout << " After swapping : " << "i: " << i << ", " << "j: " << j << std::endl;
+
+    return 0;
 }
-void swapargs ( int &x, int &y)
-{
-int t;
-t = x;
-x = y;
-y = t;
+
+
+void swapargs(int *x, int *y){
+    int t;
+    
+    t = *x;
+    *x = *y;
+    *y = t;
 }
-If swapargs() had been written using pointers instead of references, it would have looked
-like this:
-void swapargs ( int *x, int *y)
-{
-int t;
-t = *x;
-107TEACH YOURSELF
-C++
-*x = *y;
-*y = t;
-}
-As you can see, by using the reference version of swapargs(), the need for the * operator
-is eliminated.
 
 
 
-Example 11: Here is a program that uses the round() function to round a double value. The value
-to be rounded is passed by reference.
-# include <iostream >
-# include <cmath >
-using namespace std ;
+
+/* Example 11: Here is a program that uses the round() function to "round a double value". 
+                The value to be rounded is passed by reference. 
+*/
+#include <iostream>
+#include <cmath>
+
 void round ( double & num );
+
 int main ()
 {
 double i = 100.4;
@@ -651,20 +664,23 @@ num = val +1.0;
 round() uses a relatively obscure standard library function called modf() to decompose
 a number into its whole number and fractional parts. The fractional part is returned; the
 whole number is put into the variable pointed to by modf()’s second parameter.
-EXERCISES
-108ARRAYS, POINTERS, AND REFERENCES
-4.7. PASSING REFERENCES TO OBJECTS
-
-
-
-Example 12: Write a function called neg() that reverses the sign of its integer parameter. Write
-the function two ways-first by using a pointer parameter and then by using a reference
-parameter. Include a short program to demonstrate their operation.
 
 
 
 
-Example 13: What is wrong with the following program?
+
+/* Example 12: Write a function called neg() that "reverses the sign" of its integer parameter.
+                Write the function two ways-
+                    first by using a pointer parameter and 
+                    then by using a reference parameter. 
+
+                Include a short program to demonstrate their operation. 
+*/
+
+
+
+
+/* Example 13: What is wrong with the following program? */
 // This program has an error .
 # include <iostream >
 using namespace std ;
@@ -685,6 +701,6 @@ num = 3 * num ;
 
 
 
-Example 14: Give some advantages of reference parameters.
+/* Example 14: Give some advantages of reference parameters. */
 
 
