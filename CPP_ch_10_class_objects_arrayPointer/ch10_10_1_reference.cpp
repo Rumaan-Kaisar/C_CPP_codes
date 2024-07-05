@@ -619,7 +619,7 @@ is eliminated.
 
 
 
-2. Here is a program that uses the round() function to round a double value. The value
+Example 11: Here is a program that uses the round() function to round a double value. The value
 to be rounded is passed by reference.
 # include <iostream >
 # include <cmath >
@@ -657,14 +657,14 @@ EXERCISES
 
 
 
-1. Write a function called neg() that reverses the sign of its integer parameter. Write
+Example 12: Write a function called neg() that reverses the sign of its integer parameter. Write
 the function two ways-first by using a pointer parameter and then by using a reference
 parameter. Include a short program to demonstrate their operation.
 
 
 
 
-2. What is wrong with the following program?
+Example 13: What is wrong with the following program?
 // This program has an error .
 # include <iostream >
 using namespace std ;
@@ -685,6 +685,6 @@ num = 3 * num ;
 
 
 
-3. Give some advantages of reference parameters.
+Example 14: Give some advantages of reference parameters.
 
 
