@@ -636,7 +636,7 @@ void swapargs(int *x, int *y){
 #include <iostream>
 #include <cmath>
 
-void round ( double & num );
+void round(double & num);
 
 int main ()
 {
@@ -676,7 +676,31 @@ whole number is put into the variable pointed to by modf()’s second parameter.
 
                 Include a short program to demonstrate their operation. 
 */
-
+# include <iostream >
+using namespace std ;
+void rneg ( int &i); // reference version
+void pneg ( int *i); // pointer version
+int main ()
+{
+int i = 10;
+int j = 20;
+rneg (i);
+pneg (&j);
+cout << i << ’ ’ << j << ’\n’;
+return 0;
+}
+// using a reference parameter
+void rneg ( int &i)
+{
+i = -i;
+}
+// using a pointer parameter
+void pneg ( int *i)
+456ANSWERS
+4.7 EXERCISE
+{
+*i = -*i;
+}
 
 
 
@@ -698,9 +722,16 @@ void triple ( double & num )
 num = 3 * num ;
 }
 
+When triple() is called, the address of d is explicitly obtained with the & operator. This
+is neither necessary nor legal. When a reference parameter is used, the argument is not
+preceded by the &.
+
 
 
 
 /* Example 14: Give some advantages of reference parameters. */
-
+The address of a reference parameter is automatically passed to the function. You need
+not obtain the address manually. Passing by reference is often faster than passing by
+value. No copy of argument is generated. Therefor, there is no chance of a side effect
+occurring because the copy’s destructor is called.
 
