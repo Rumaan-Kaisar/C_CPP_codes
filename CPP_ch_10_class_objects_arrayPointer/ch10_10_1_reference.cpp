@@ -673,6 +673,28 @@ void rounder(double &num){
 }
 
 
+/* Note:
+
+*/
+
+#include <iostream>
+#include <cmath>
+
+int main(){
+    double i = 100.4;
+
+    std::cout << i << " rounded is ";
+    std::cout << std::round(i) << "\n";
+
+    i = 10.9;
+    std::cout << i << " rounded is ";
+    std::cout << std::round(i) << "\n";
+
+    return 0;
+}
+
+
+
 
 
 /*  --------    modf() Function in C++    --------
