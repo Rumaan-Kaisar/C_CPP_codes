@@ -630,46 +630,49 @@ void swapargs(int *x, int *y){
 
 
 
-// ----  rev[05-JUL-24]  ----
-
-/* Example 11: Here is a program that uses the round() function to "round a double value". 
+/* Example 11: Here is a program that uses the rounder() function to "round a double value". 
                 The value to be rounded is passed by reference. 
+
+                Notice, rounder() uses a relatively obscure standard library function called modf() 
+                    to decompose a number into its whole number and fractional parts.
+
+                    The "fractional part" is returned; 
+                    The "whole number" is put into the variable pointed to by modf()'s second parameter.
 */
 #include <iostream>
 #include <cmath>
 
-void round(double & num);
+void rounder(double &num);
 
 int main(){
     double i = 100.4;
 
     std::cout << i << " rounded is ";
-    round(i);
+    rounder(i);
     std::cout << i << "\n";
 
     i = 10.9;
     std::cout << i << " rounded is ";
-    round(i);
+    rounder(i);
     std::cout << i << "\n";
 
     return 0;
 }
 
 
-void round(double & num){
+void rounder(double &num){
     double frac;
     double val;
 
     // decompose "num" into "whole" and "fractional" parts
-frac = modf(num , & val );
-if(frac < 0.5)
-num = val ;
-else
-num = val +1.0;
+    frac = modf(num , &val);
+    std::cout << "(Itegral part: " << val << " fractional part: " << frac << ")" << std::endl;
+    // rounding
+    if(frac < 0.5) num = val;
+    else num = val +1.0;
 }
-round() uses a relatively obscure standard library function called modf() to decompose
-a number into its whole number and fractional parts. The fractional part is returned; the
-whole number is put into the variable pointed to by modf()’s second parameter.
+
+
 
 
 /*  --------    modf() Function in C++    --------
@@ -687,20 +690,19 @@ whole number is put into the variable pointed to by modf()’s second parameter.
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 int main() {
     double num = 3.14159;
     double integralPart;
 
     double fractionalPart = modf(num, &integralPart);
 
-    cout << "Original number: " << num << endl;
-    cout << "Integral part: " << integralPart << endl;
-    cout << "Fractional part: " << fractionalPart << endl;
+    std::cout << "Original number: " << num << std::endl;
+    std::cout << "Integral part: " << integralPart << std::endl;
+    std::cout << "Fractional part: " << fractionalPart << std::endl;
 
     return 0;
 }
+
 
 
 
@@ -711,10 +713,11 @@ int main() {
 
                 Include a short program to demonstrate their operation. 
 */
-# include <iostream >
-using namespace std ;
-void rneg ( int &i); // reference version
-void pneg ( int *i); // pointer version
+#include <iostream>
+
+void rneg(int &i);  // reference version
+void pneg(int *i);  // pointer version
+
 int main ()
 {
 int i = 10;
