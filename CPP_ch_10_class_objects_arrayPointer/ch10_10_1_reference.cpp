@@ -673,10 +673,13 @@ void rounder(double &num){
 }
 
 
-/* Note:
+/* Note:    ambiguity error
 
+            It arises if we define and name our own "round" function within the code, 
+                which conflicts with the standard "round" function from the <cmath> header std::round
+                So we set a different name: "rounder"
 */
-
+// demo of std::round
 #include <iostream>
 #include <cmath>
 
@@ -692,7 +695,6 @@ int main(){
 
     return 0;
 }
-
 
 
 
@@ -727,6 +729,8 @@ int main() {
 
 
 
+
+// ----  rev[08-7-2024]  ----
 
 /* Example 12: Write a function called neg() that "reverses the sign" of its integer parameter.
                 Write the function two ways-
