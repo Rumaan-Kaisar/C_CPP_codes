@@ -744,27 +744,30 @@ int main() {
 void rneg(int &i);  // reference version
 void pneg(int *i);  // pointer version
 
-int main ()
-{
-int i = 10;
-int j = 20;
-rneg (i);
-pneg (&j);
-cout << i << ’ ’ << j << ’\n’;
-return 0;
+
+int main(){
+    int i = 10;
+    int j = 20;
+
+    rneg(i);    // referance version
+    pneg(&j);   // pointer version
+
+    std::cout << i << ' ' << j << '\n';
+
+    return 0;
 }
+
+
 // using a reference parameter
-void rneg ( int &i)
-{
-i = -i;
+void rneg(int &i){
+    i = -i;
 }
+
 // using a pointer parameter
-void pneg ( int *i)
-456ANSWERS
-4.7 EXERCISE
-{
-*i = -*i;
+void pneg(int *i){
+    *i = -*i;
 }
+
 
 
 
