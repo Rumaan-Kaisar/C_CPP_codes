@@ -770,6 +770,7 @@ void pneg(int *i){
 
 
 /* Example 13: What is wrong with the following program? 
+
                 ans:
                 When triple() is called, the "address of d" is explicitly obtained with the & operator. 
                     This is neither necessary nor legal (illigal). 
@@ -798,10 +799,15 @@ void triple(double & num){
 
 
 
+/* Example 14: Give some advantages of reference parameters. 
 
-/* Example 14: Give some advantages of reference parameters. */
-The address of a reference parameter is automatically passed to the function. You need
-not obtain the address manually. Passing by reference is often faster than passing by
-value. No copy of argument is generated. Therefor, there is no chance of a side effect
-occurring because the copy’s destructor is called.
+            ans:
+                The "address of a reference parameter" is automatically passed to the function. 
+                    You need not obtain the address manually. 
+
+                Passing by reference is often faster than passing by value. 
+
+                No copy of argument is generated.
+                    There is no chance of a side effect occurring because the "copy's destructor is called".
+*/
 
