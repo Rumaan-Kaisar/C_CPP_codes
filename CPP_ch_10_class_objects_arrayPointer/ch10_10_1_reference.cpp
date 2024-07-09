@@ -730,8 +730,6 @@ int main() {
 
 
 
-// ----  rev[08-7-2024]  ----
-
 /* Example 12: Write a function called neg() that "reverses the sign" of its integer parameter.
                 Write the function two ways-
                     first by using a pointer parameter and 
@@ -771,27 +769,32 @@ void pneg(int *i){
 
 
 
-/* Example 13: What is wrong with the following program? */
-// This program has an error .
-# include <iostream >
-using namespace std ;
-void triple ( double & num );
-int main ()
-{
-double d = 7.0;
-triple (&d);
-cout << d;
-return 0;
-}
-// Triple num ’s value .
-void triple ( double & num )
-{
-num = 3 * num ;
+/* Example 13: What is wrong with the following program? 
+                ans:
+                When triple() is called, the "address of d" is explicitly obtained with the & operator. 
+                    This is neither necessary nor legal (illigal). 
+                When a reference parameter is used, the argument is not preceded by the &.
+*/
+
+// This program has an error
+#include <iostream>
+
+void triple(double &num);
+
+int main() {
+    double d = 7.0;
+
+    triple(&d); // illigal?
+    std::cout << d;
+
+    return 0;
 }
 
-When triple() is called, the address of d is explicitly obtained with the & operator. This
-is neither necessary nor legal. When a reference parameter is used, the argument is not
-preceded by the &.
+// Triple num's value .
+void triple(double & num){
+    num = 3*num;
+}
+
 
 
 
