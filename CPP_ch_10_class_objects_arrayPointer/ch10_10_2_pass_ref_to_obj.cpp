@@ -26,7 +26,7 @@
             that changes made to the object inside the function "affect the object" used as the argument.
 
 
-        Note: 
+        Note: --------    Passing by Pointer vs. Reference    --------
             It is crucial to understand that a reference is not a pointer. 
             
             Therefore, when an object is passed by reference, 
@@ -40,15 +40,18 @@
 
 */
 
-// --------    Passing by Pointer vs. Reference    --------
+
+// ----  rev[12-JUL-2028]  ----
 
 
 
+/* Example 1: Using REFERENCES resolvs problem of execution of "copy's destructor function" during function return
 
-	Example:   Lets first define class with constructor and destructor 
+Lets first define class with constructor and destructor  */
 #include <iostream>
-using namespace std;
-class myclass {	int who ;
+
+class myclass {	
+    int who ;
 public : myclass (int n) { who = n;
 cout << " Constructing " << who << "\n";}
 ~ myclass () { cout << " Destructing " << who << "\n"; }
