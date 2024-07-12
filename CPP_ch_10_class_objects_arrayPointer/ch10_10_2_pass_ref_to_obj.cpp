@@ -19,21 +19,33 @@
     Resolving problem of execution of "copy's destructor function" during function return
             Recall "ch10_06_2_pass_obj_to_func.cpp" and "ch10_06_3_return_obj_from_func.cpp"
 
-    ------  [rev-11-JUL-2024]  ------
-
-    When you pass the object by reference, no copy is made, and therefore its destructor function is not called when the function returns. 
-        Remember, however, that changes made to the object inside the function affect the object used as the argument.
-
-    Note: It is critical to understand that a reference is not a pointer. 
-        Therefore, when an object is passed by reference, the member access operator remains the dot (.), not the arrow (->).
-
-    	Example:   Lets first define class with constructor and destructor 
+        When you pass the object by REFERENCE, "no copy is made",
+            so its destructor isn't called during function returns. 
+        
+        Remember: 
+            that changes made to the object inside the function "affect the object" used as the argument.
 
 
+        Note: 
+            It is crucial to understand that a reference is not a pointer. 
+            
+            Therefore, when an object is passed by reference, 
+                the member access operator remains the dot (.), not the arrow (->).
+
+            Both pointers and references allow changes made inside a function 
+                to affect the original object used as the argument.
+
+            When using a POINTER, you must DEREFERENCE it to access or modify the object.
+            When using a REFERENCE, you can access or modify the object DIRECTLY.
 
 */
 
+// --------    Passing by Pointer vs. Reference    --------
 
+
+
+
+	Example:   Lets first define class with constructor and destructor 
 #include <iostream>
 using namespace std;
 class myclass {	int who ;
