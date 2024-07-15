@@ -41,32 +41,66 @@
 */
 
 
-// ----  rev[12-JUL-2028]  ----
 
 
+/* Example 1: Using REFERENCES resolvs problem of execution of "copy's destructor function" during function return */
 
-/* Example 1: Using REFERENCES resolvs problem of execution of "copy's destructor function" during function return
-
-Lets first define class with constructor and destructor  */
+// (version 1) call-by-value parameter-passing mechanism
 #include <iostream>
 
+// class with constructor and destructor
 class myclass {	
-    int who ;
-public : myclass (int n) { who = n;
-cout << " Constructing " << who << "\n";}
-~ myclass () { cout << " Destructing " << who << "\n"; }
-int id() { return who; }	};
+        int who ;
+    public: 
+        myclass(int n) { who = n;
+        std::cout << " Constructing " << who << "\n";}
+        ~myclass(){ std::cout << " Destructing " << who << "\n"; }
+        int id() { return who; }	
+};
 
-default call-by-value parameter-passing mechanism	call-by-reference parameter-passing mechanism
-void f(myclass t){  /* t is passed by value .*/ 
-cout << "Received" << t.id() << "\n"; }
-int main(){	myclass x(1) ;
-f(x);
-return 0;}	void f(myclass &t){  /* Now t is passed by reference .*/ 
-cout << "Received" << t.id() << "\n"; } /*still "." used*/
-int main(){	myclass x(1) ;
-f(x);
-		return 0;}
+// t is passed by value
+void f(myclass t){
+    std::cout << " Received" << t.id() << "\n"; 
+}
+
+int main(){	
+    myclass x(1) ;
+    
+    f(x);
+    
+    return 0;
+}
+
+
+/*  Notice: destructor called twice
+ Constructing 1
+ Received1
+ Destructing 1
+ Destructing 1
+*/
+
+
+
+
+// (version 1) call-by-value parameter-passing mechanism
+
+
+
+// call-by-reference parameter-passing mechanism
+void f(myclass &t){  // Now t is passed by reference
+    std::cout << "Received" << t.id() << "\n"; // still "." used
+}
+
+int main(){	
+    myclass x(1) ;
+
+    f(x);
+	
+    return 0;
+}
+
+
+
 Output : 	Constructing 1
 		Received 1
 		Destructing 1
@@ -75,3 +109,6 @@ Output : 	Constructing 1
 		Destructing 1
 Now we notice that the only difference between the two mechanism is "&" before t inside the function parameter .
 
+
+
+// ----  rev[12-JUL-2028]  ----
