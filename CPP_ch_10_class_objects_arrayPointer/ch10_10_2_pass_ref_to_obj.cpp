@@ -52,8 +52,10 @@
 class myclass {	
         int who ;
     public: 
-        myclass(int n) { who = n;
-        std::cout << " Constructing " << who << "\n";}
+        myclass(int n) { 
+            who = n;
+            std::cout << " Constructing " << who << "\n";
+        }
         ~myclass(){ std::cout << " Destructing " << who << "\n"; }
         int id() { return who; }	
 };
@@ -62,6 +64,7 @@ class myclass {
 void f(myclass t){
     std::cout << " Received" << t.id() << "\n"; 
 }
+
 
 int main(){	
     myclass x(1) ;
@@ -73,6 +76,7 @@ int main(){
 
 
 /*  Notice: destructor called twice
+
  Constructing 1
  Received1
  Destructing 1
@@ -82,14 +86,26 @@ int main(){
 
 
 
-// (version 1) call-by-value parameter-passing mechanism
+// (version 2) call-by-reference parameter-passing mechanism
+#include <iostream>
 
+// class with constructor and destructor
+class myclass {	
+        int who ;
+    public: 
+        myclass(int n) { 
+            who = n;
+            std::cout << " Constructing " << who << "\n";
+        }
+        ~myclass(){ std::cout << " Destructing " << who << "\n"; }
+        int id() { return who; }	
+};
 
-
-// call-by-reference parameter-passing mechanism
-void f(myclass &t){  // Now t is passed by reference
+// Now t is passed by reference
+void f(myclass &t){  
     std::cout << "Received" << t.id() << "\n"; // still "." used
 }
+
 
 int main(){	
     myclass x(1) ;
@@ -99,16 +115,14 @@ int main(){
     return 0;
 }
 
+/*  Notice: destructor called once
 
-
-Output : 	Constructing 1
-		Received 1
-		Destructing 1
-		Destructing 1 	/*Two time appears */	Output : 	Constructing 1
-		Received 1
-		Destructing 1
-Now we notice that the only difference between the two mechanism is "&" before t inside the function parameter .
+ Constructing 1
+ Received1
+ Destructing 1
+*/
 
 
 
-// ----  rev[12-JUL-2028]  ----
+// ----  rev[15-JUL-2028]  ----
+// copy from book
