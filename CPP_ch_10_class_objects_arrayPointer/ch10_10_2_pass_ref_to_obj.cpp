@@ -124,5 +124,50 @@ int main(){
 
 
 
-// ----  rev[15-JUL-2028]  ----
-// copy from book
+
+/* Example 2: What is wrong with the following program? 
+                Show how it can be fixed by using a reference parameter.
+                Recall: ch10_09_3_more_new_delete.cpp
+*/
+// This program has an error .
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+    public:
+        strtype(char *s);
+        // following frees dynamic memory using delete, 
+        // by calling DESTRUCTOR function for "each element" in the array
+        ~strtype(){ delete [] p; }
+        char *get(){ return p; }
+};
+
+strtype :: strtype(char *s){
+    int leN;
+    leN = strlen(s) +1;
+    p = new char [leN];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    strcpy (p, s);
+}
+
+void show(strtype x){
+    char *s;
+    s = x.get();
+    std::cout << s << "\n";
+}
+
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    show(a);
+    show(b);
+
+    return 0;
+}
+
