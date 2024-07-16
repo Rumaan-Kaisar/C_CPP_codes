@@ -171,3 +171,54 @@ int main(){
     return 0;
 }
 
+
+
+/* ans: ERROR for double free memory */
+
+
+In the original program, the object is passed to show() by value. Thus, a copy is made.
+When show() returns, the copy is destroyed and its destructor is called. This causes p
+to be released, but the memory pointed to it is still needed by the arguments to show().
+Here is a corrected version that uses a reference parameter to prevent a copy from being
+made when the function is called:
+// This program is now fixed .
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+public :
+strtype ( char *s);
+~ strtype () { delete [] p; }
+char * get () { return p; }
+};
+strtype :: strtype ( char *s)
+{
+int l;
+l = strlen (s) +1;
+p = new char [l];
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, s);
+}
+// Fix by using a reference parameter .
+457TEACH YOURSELF
+C++
+void show ( strtype &x)
+{
+char *s;
+s = x. get ();
+cout << s << "\n";
+}
+int main ()
+{
+strtype a(" Hello "), b(" There ");
+show (a);
+show (b);
+return 0;
+}
