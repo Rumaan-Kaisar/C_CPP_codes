@@ -152,7 +152,7 @@ strtype :: strtype(char *s){
         std::cout << " Allocation error \n";
         exit(1);
     }
-    strcpy (p, s);
+    strcpy(p, s);
 }
 
 void show(strtype x){
@@ -173,52 +173,62 @@ int main(){
 
 
 
-/* ans: ERROR for double free memory */
+/* ans: ERROR for double free memory 
 
+        In the above program, the object is passed to show() "by value". Thus, a copy is made.
 
-In the original program, the object is passed to show() by value. Thus, a copy is made.
-When show() returns, the copy is destroyed and its destructor is called. This causes p
-to be released, but the memory pointed to it is still needed by the arguments to show().
-Here is a corrected version that uses a reference parameter to prevent a copy from being
-made when the function is called:
+        When show() returns, the copy is destroyed and its destructor is called. 
+            This causes "p" to be released, 
+            But the memory pointed to it is still needed by the arguments to show().
+
+        Here is a corrected version that uses a reference parameter to 
+            prevent a copy from being made when the function is called:
+*/
+
 // This program is now fixed .
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-public :
-strtype ( char *s);
-~ strtype () { delete [] p; }
-char * get () { return p; }
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+    public:
+        strtype(char *s);
+        // following frees dynamic memory using delete, 
+        // by calling DESTRUCTOR function for "each element" in the array
+        ~strtype(){ delete [] p; }
+        char *get(){ return p; }
 };
-strtype :: strtype ( char *s)
-{
-int l;
-l = strlen (s) +1;
-p = new char [l];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
+
+strtype :: strtype(char *s){
+    int leN;
+    leN = strlen(s) +1;
+    p = new char [leN];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    strcpy(p, s);
 }
-strcpy (p, s);
+
+// Fix by using a reference parameter.
+void show(strtype &x){
+    char *s;
+    s = x.get();
+    std::cout << s << "\n";
 }
-// Fix by using a reference parameter .
-457TEACH YOURSELF
-C++
-void show ( strtype &x)
-{
-char *s;
-s = x. get ();
-cout << s << "\n";
+
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    show(a);
+    show(b);
+
+    return 0;
 }
-int main ()
-{
-strtype a(" Hello "), b(" There ");
-show (a);
-show (b);
-return 0;
-}
+
+
+
+
