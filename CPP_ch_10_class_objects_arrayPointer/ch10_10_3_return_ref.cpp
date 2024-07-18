@@ -1,21 +1,64 @@
 
-	RETURNING REFERENCES :  A function can return a reference. The effect of this is both powerful and startling.
-	Returning a reference can be very useful when you are overloading certain types of operators. (discussed  in next chapter) 
-	However, it also can be employed to allow a function to be used on the left side of an assignment statement. 
+/*  ----------------    returning REFERENCES    ----------------
+    A function can return a reference
 
-	Example 1 : here is a very simple program that contains a function that returns a reference.
+    Returning a reference can be very useful when you are 
+        "overloading" certain types of operators. (discussed  in next chapter)
 
- 
+    However, it also can be employed to allow a function 
+        to be used on the "left side of an assignment" statement. 
+
+*/
+
+
+// A simple example of a function returning a reference .
+
+
+Here function f() is declared as returning a reference to an integer. Inside the body of the
+function, the statement
+return x;
+does not return the value of the global variable x, but rather, it automatically returns x’s
+address (int the form of a reference). Thus, inside main(), the statement
+f() = 100;
+puts the value 100 into x because f() has returned a reference to it.
+To review, function f() returns a reference. Thus when f() is used on the left side of the
+assignment statement, it is this reference, returned by f(), that is being assigned to. Since
+f() returns a reference to x (in this example), it is x that receives the value 100.
+2.
+
+/* Example 1 : here is a very simple program that contains a function that "returns a reference" */
+
 #include <iostream >
-using namespace std;
-int &f(); /* function declared that return a reference */ 
-int x; 
-/* without global variable  returning reference is meaningless  */
-int main(){ f() = 100; /* assign 100 to reference returned by f()  */ 
+
+int &f(); // function that return a reference
+int x;  // without global variable  returning reference is meaningless
+
+
+int main(){ 
+    f() = 100; // assign 100 to reference returned by f()
+
+    std::cout << x << "\n";
+    
+    return 0; 
+}
+
+
+int &f() {		 // Return an int reference
+return x; } 	// returns a reference to x
+
+
+int main ()
+
+{
+f() = 100; // assign 100 to reference returned by f()
 cout << x << "\n";
-return 0; }
-int &f() {		 /* Return an int reference */ 
-return x; } 	/* returns a reference to x */  
+return 0;
+}
+// Return an int reference
+int &f()
+{
+return x; // returns a reference to x
+}
 
 	Here function f() returns a reference. So, f() is declared as returning a reference to an integer. 
 	Inside the body of the function, the statement "  return x;  "  does not return the value of the global variable x, but rather, it automatically returns x's address (int the form of a reference). 
