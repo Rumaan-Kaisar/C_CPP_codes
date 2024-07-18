@@ -7,7 +7,6 @@
 
     However, it also can be employed to allow a function 
         to be used on the "left side of an assignment" statement. 
-
 */
 
 
@@ -45,6 +44,7 @@ int &f() { return x; } 	// returns a reference to x
         because f() has returned a reference to x. 
         thus x recives the value 100.
 
+// --------  rev[18-JUL-2024]  --------
 
     ----   don't lose the SCOPE   ----
     Be careful on not go "out of scope", that's why we used "global x"
