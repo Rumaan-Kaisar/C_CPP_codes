@@ -110,33 +110,36 @@ array :: array(int num){
 // &f()-like referance returning
 char &array :: put(int i) {
     if(i<0 || i>=size ){
-        std::cout << " Bounds error !!!\ n";
+        std::cout << " Bounds error !!!\n";
         exit(1);
     }
     return p[i];    // return reference to p[i]
 }
 
 
-
-/* Get something from the array.*/ 
-char array :: get(int i)
-{
-if(i <0 || i >= size ){
-cout << " Bounds error !!!\ n";
-exit(1) ; }
-return p[i];
+// Get something from the array.
+char array :: get(int i){
+    if(i<0 || i>=size ){
+        std::cout << " Bounds error !!!\ n";
+        exit(1); 
+    }
+    return p[i];
 }
 
-int main() {
-array a(10) ;
-a.put (3) = 'X';
-a.put (2) = 'R';
-cout << a.get (3) << a.get (2) ;
-cout << "\n";
 
-/* now generate run - time boundary error */ 
-a.put (11) = '!';
-return 0;
+int main(){
+    array a(10) ;
+
+    a.put(3) = 'X';
+    a.put(2) = 'R';
+
+    std::cout << a.get(3) << a.get(2) ;
+    std::cout << "\n";
+
+    // now generate run-time boundary error
+    a.put(11) = '!';
+
+    return 0;
 } 
 
 	Notice that the put() function returns a reference to the array element specified by parameter i. This reference can then be used on the left side of an assignment statement to store something in the array-if the index specified by i is not out of bounds. 
