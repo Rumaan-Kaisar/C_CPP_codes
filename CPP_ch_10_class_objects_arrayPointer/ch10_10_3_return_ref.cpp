@@ -142,8 +142,22 @@ int main(){
     return 0;
 } 
 
-	Notice that the put() function returns a reference to the array element specified by parameter i. This reference can then be used on the left side of an assignment statement to store something in the array-if the index specified by i is not out of bounds. 
-	The reverse is get(), which returns the value stored at the specified index if that index is within range.
-	This approach to maintaining an array is sometimes referred to as a safe array. 
-	The array is allocated dynamically by the use of new. This allows arrays of differing length to be declared.
-	If you need to have array boundaries verified at run time, this is one way to do it. However, remember that bounds checking slows access to the array. So use it when it really needed.
+
+/*  Notice put() returns a "reference to the array element" specified by parameter i. 
+        This reference can then be used on the "left side of an assignment statement" 
+        to store something in the array-if the index specified by i is "not out of bounds". 
+
+    The reverse is get(), 
+        which returns the value stored at the specified index if that "index is within range".
+
+    safe array:
+        This approach to maintaining an array is sometimes referred to as a safe array.
+
+    In side the constructor, the array is allocated dynamically by the use of "new"
+        This allows arrays of "differing length" to be declared.
+
+    If you need to have array boundaries verified at "run-time", this is one way to do it. 
+    However, remember that bounds checking "slows" access to the array
+*/
+
+
