@@ -64,34 +64,57 @@ int &f() { return x; } 	// returns a reference to x
 
 
 
-	Example 2 : One very good use of returning a reference is found when a bounded array type is created. In C++, you can create an array class that performs automatic bounds checking. An array class contains two core functions-one that stores information into the array and one that retrieves information. These functions can check, at run time, that the array boundaries are not overrun. The following program implements a bounds-checking array for characters:
- 
 
-// A simple bounded array example .
-# include <iostream >
-# include <cstdlib >
-using namespace std;
-class array{	int size ;
-char *p;
-public:
- 	array(int num); /* constructor */
-~array(){delete [] p;} /* destructor */
-char &put(int i);
-char get(int i);	};
+// ------------    bounded array    ------------
 
-array :: array(int num)  /* constructor define */
-{p = new char [num];	          /* array declaration */
-if(!p){ cout << "Allocation error \n";
-exit(1) ; } 		/* allocation check */
-size = num ; }	/* array size */
+/* Example 2 : One very good use of returning a reference is found when a "BOUNDED array type" is created. 
 
-/* Put something into the array .*/ 
-char &array :: put(int i)  /* &f() define */
-{if(i<0 || i>=size ){
-cout << " Bounds error !!!\ n";
-exit(1);}
-return p[i];} /* return reference to p[i]*/ 
+                In C++, you can create an array class that performs "automatic bounds checking". 
 
+                An array class contains two core functions
+                    - one that stores information into the array and 
+                    - one that retrieves information. 
+
+                These functions can check, at "run-time", that the array boundaries are NOT OVERRUN. 
+
+                The following program implements a bounds-checking array for characters.
+*/
+
+#include <iostream>
+#include <cstdlib>
+
+class array{
+        int size;
+        char *p;
+    public:
+ 	    array(int num);     // constructor
+        ~array(){ delete [] p; }      // destructor, frees allocated memory
+        char &put(int i);
+        char get(int i);	
+};
+
+// constructor definition
+array :: array(int num){
+    p = new char[num];      // array declaration. Dynamically allocate a 1D array
+    
+    // allocation check
+    if(!p){ 
+        std::cout << "Allocation error \n";
+        exit(1);
+    } 		
+    size = num;     // array size
+}
+
+
+// Put something into the array
+// &f()-like referance returning
+char &array :: put(int i) {
+    if(i<0 || i>=size ){
+        std::cout << " Bounds error !!!\ n";
+        exit(1);
+    }
+    return p[i];    // return reference to p[i]
+}
 
 
 
