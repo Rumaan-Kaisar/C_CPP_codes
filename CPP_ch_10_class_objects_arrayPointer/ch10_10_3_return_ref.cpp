@@ -7,6 +7,8 @@
 
     However, it also can be employed to allow a function 
         to be used on the "left side of an assignment" statement. 
+
+    A "reference returned by a function" cannot be assigned to a POINTER.
 */
 
 
@@ -44,29 +46,21 @@ int &f() { return x; } 	// returns a reference to x
         because f() has returned a reference to x. 
         thus x recives the value 100.
 
-// --------  rev[18-JUL-2024]  --------
+
 
     ----   don't lose the SCOPE   ----
     Be careful on not go "out of scope", that's why we used "global x"
     For example, here the reference returned by f() is useless:
 
-int &f() {	int x;  	/* x is now a local variable */ 
-return x; }  	/* returns a reference to x */ 
-In this case, x is now local to f() and will go out of scope when f() returns. This effectively means that the reference returned by f() is useless.
+            int &f() {	
+                int x;      // x is now a local variable
+                return x;   // returns a reference to x
+            }  	
+
+    In this case, "x is now local to f()" and will go out of scope when f() returns. 
+    This effectively means that the reference returned by f() is useless.
 
 */
-
-Here function f() is declared as returning a reference to an integer. Inside the body of the
-function, the statement
-return x;
-does not return the value of the global variable x, but rather, it automatically returns x’s
-address (int the form of a reference). Thus, inside main(), the statement
-f() = 100;
-puts the value 100 into x because f() has returned a reference to it.
-To review, function f() returns a reference. Thus when f() is used on the left side of the
-assignment statement, it is this reference, returned by f(), that is being assigned to. Since
-f() returns a reference to x (in this example), it is x that receives the value 100.
-2.
 
 
 
