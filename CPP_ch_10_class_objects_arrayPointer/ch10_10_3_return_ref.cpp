@@ -231,3 +231,20 @@ cout << a. get (i, j) << " ";
 a. put (10 , 10) ;
 return 0;
 }
+
+
+
+/* Example 4: Is the following fragment valid? 
+
+                        int &f();
+                        . . .
+
+                        int *x;
+                        x = f();
+
+                If not, why not? 
+
+        ans:
+            No. A "reference returned by a function" cannot be assigned to a POINTER.
+*/
+
