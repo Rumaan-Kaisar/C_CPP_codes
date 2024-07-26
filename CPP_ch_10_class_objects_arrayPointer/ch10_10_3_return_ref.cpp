@@ -175,62 +175,66 @@ int main(){
 #include <iostream >
 #include <cstdlib >
 
-class array
-{
-int isize , jsize ;
-int *p;
-public :
-array ( int i, int j);
-int & put ( int i, int j);
-int get ( int i, int j);
+class array{
+        int isize , jsize ;
+        int *p;
+    public:
+        array(int i, int j);
+        int &put(int i, int j);
+        int get(int i, int j);
 };
-array :: array ( int i, int j)
-{
-p = new int [i*j];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
+
+
+array :: array(int i, int j){
+    p = new int[i*j];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    isize = i;
+    jsize = j;
 }
-isize = i;
-jsize = j;
-}
+
+
 // Put something into the array
-int & array :: put ( int i, int j)
-{
-if(i <0 || i >= isize || j <0 || j >= jsize )
-458ANSWERS
-MASTERY SKILLS CHECK: Chapter 4
-{
-cout << " Bounds error !!!\ n";
-exit (1) ;
+int &array :: put(int i, int j){
+    if((i<0) || i (>= isize) || (j<0) || (j >= jsize)){     // bound checking
+        std::cout << " Bounds error !!!\ n";
+        exit(1);
+    }
+    return p[i*jsize + j]; // return reference to p[i]
 }
-return p[i* jsize + j]; // return reference to p[i]
-}
+
+
 // Get something from the array
-int array :: get ( int i, int j)
-{
-if(i <0 || i >= isize || j <0 || j >= jsize )
-{
-cout << " Bounds error !!!\ n";
-exit (1) ;
+int array :: get(int i, int j){
+    if((i<0) || (i >= isize) || (j<0) || (j >= jsize)){     // bound checking
+        std::cout << " Bounds error !!!\ n";
+        exit(1);
+    }
+    return p[i*jsize + j]; // return character
 }
-return p[i* jsize + j]; // return character
+
+
+
+int main(){
+    array a(2, 3);
+    int i, j;
+
+    for(i=0; i<2; i++)
+        for(j=0; j<3; j++)
+            a.put(i, j) = i*j;
+
+    for(i=0; i<2; i++)
+        for(j=0; j<3; j++)
+            std::cout << a.get(i, j) << " ";
+
+    // generate out of bounds
+    a.put(10, 10);
+
+    return 0;
 }
-int main ()
-{
-array a(2, 3);
-int i, j;
-for (i =0; i <2; i ++)
-for (j =0; j <3; j++)
-a. put (i, j) = i*j;
-for (i =0; i <2; i ++)
-for (j =0; j <3; j++)
-cout << a. get (i, j) << " ";
-// generate out of bounds
-a. put (10 , 10) ;
-return 0;
-}
+
 
 
 
@@ -247,4 +251,6 @@ return 0;
         ans:
             No. A "reference returned by a function" cannot be assigned to a POINTER.
 */
+
+
 
