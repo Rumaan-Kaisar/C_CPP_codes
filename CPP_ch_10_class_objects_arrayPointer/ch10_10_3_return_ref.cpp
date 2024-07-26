@@ -163,17 +163,13 @@ int main(){
 
 
 
-// --------  rev[25-JUL-2024 - start]  --------
-
-
-
 /* Example 3: Write a program that creates a 2x3 2D safe array of integers. 
                 Demonstrate that it works. 
 */
 
 // A simple bounded two - dimensional array example .
-#include <iostream >
-#include <cstdlib >
+#include <iostream>
+#include <cstdlib>
 
 class array{
         int isize , jsize ;
@@ -198,8 +194,8 @@ array :: array(int i, int j){
 
 // Put something into the array
 int &array :: put(int i, int j){
-    if((i<0) || i (>= isize) || (j<0) || (j >= jsize)){     // bound checking
-        std::cout << " Bounds error !!!\ n";
+    if((i<0) || (i >= isize) || (j<0) || (j >= jsize)){     // bound checking
+        std::cout << " Bounds error !!!\n";
         exit(1);
     }
     return p[i*jsize + j]; // return reference to p[i]
@@ -209,7 +205,7 @@ int &array :: put(int i, int j){
 // Get something from the array
 int array :: get(int i, int j){
     if((i<0) || (i >= isize) || (j<0) || (j >= jsize)){     // bound checking
-        std::cout << " Bounds error !!!\ n";
+        std::cout << " Bounds error !!!\n";
         exit(1);
     }
     return p[i*jsize + j]; // return character
