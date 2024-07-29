@@ -6,7 +6,15 @@
 
     Because references cannot be assigned "new values", 
         an independent reference must be initialized when it is declared.
+
+    There is "little benefit" in this type of reference, 
+        but you may see it from time too time in other programs
+
+    An independent reference can refer to a "constant". For example, following is valid.
+
+            const int &ref = 10; 
 */
+
 
 
 	Example :  	int main(){	int x;
