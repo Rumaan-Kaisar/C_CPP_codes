@@ -1,5 +1,14 @@
-	INDEPENDENT REFERENCES: Although not commonly used, the independent reference is another type of reference. An independent reference is a reference variable that in all effects is simply another name for another variable. 
-	Because references cannot be assigned new values, an independent reference must be initialized when it is declared.
+
+/*  ----------------    INDEPENDENT REFERENCES    ----------------
+    It's not commonly used
+    Independent reference is a reference variable that in all effects 
+        is simply "another name for another variable". 
+
+    Because references cannot be assigned "new values", 
+        an independent reference must be initialized when it is declared.
+*/
+
+
 	Example :  	int main(){	int x;
 int &ref = x; /* create an independent reference */ 
 
