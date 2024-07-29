@@ -17,6 +17,7 @@
 
 
 
+// ----  rev[29-JUL-2024]  ----
 
 /*  ----------------    RULES    ----------------
 
@@ -42,24 +43,31 @@ c.	When an object is passed to a function as a reference, no copy is made. This 
 
 
 
-1. Here is a program that contains an independent reference:
-# include <iostream >
-using namespace std ;
-int main ()
-{
-int x;
-int & ref = x; // create an independent reference
-x = 10; // these two statements
-ref = 10; // are functionally equivalent
-ref = 100;
-// this prints the number 100 twice
-cout << x << ’ ’ << ref << "\n";
-return 0;
+/* Example 1: Following program contains an independent reference 
+                The independent reference "ref" serves as a different name for "x"
+                From a practical point of view, "x" and "ref" are equivalent
+*/
+#include <iostream>
+
+int main(){
+    int x;
+    int &ref = x;  // create an independent reference
+
+    x = 10;     // these two statements
+    ref = 10;   // are functionally equivalent
+    ref = 100;
+
+    // this prints the number 100 twice
+    std::cout << x << ' ' << ref << "\n";
+
+    return 0;
 }
-In this program, the independent reference ref serves as a different name for x. From a
-practical point of view, x and ref are equivalent.
-2. An independent reference can refer to a constant. For example, this is valid:
+
+
+
+
+/* Example 2: An independent reference can refer to a constant. */
 const int & ref = 10;
-Again, there is little benefit in this type of reference, but you may see it from time too
-time in other programs
+
+
 
