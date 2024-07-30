@@ -27,11 +27,18 @@
         [6]	Remember, references are similar to pointers, but they are not pointers.
  
 
-Note:
-Reference parameters offer several advantages over their (more or less) equivalent pointer alternatives. 
-a.	No longer need to remember to pass the address of an argument. When a reference parameter is used, the address is automatically passed. 
-b.	Reference parameters offer a cleaner, more elegant interface than the rather clumsy explicit pointer mechanism. 
-c.	When an object is passed to a function as a reference, no copy is made. This is one way to eliminate the troubles associated with the copy of an argument damaging something needed elsewhere in the program (recall change : destructor problem while passing object to a function) when its destructor function is called.
+    Note:
+        Reference PARAMETERS offer several advantages over equivalent pointer
+
+            a.  No longer need to remember to pass the address of an argument. 
+                    the address is automatically passed. 
+
+            b.  Reference parameters offer a cleaner, more elegant interface
+            
+            c.  When an "object" is passed to a function as a reference, "no copy is made". 
+                    It eliminate the troubles associated with the "copy of an argument" damaging 
+                    something needed elsewhere in the program when its destructor function is called
+                (recall change : destructor problem while passing object to a function) .
 
 */
 
