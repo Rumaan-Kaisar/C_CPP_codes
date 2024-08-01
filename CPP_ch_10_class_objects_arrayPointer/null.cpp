@@ -3,10 +3,9 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-Example 1: Given the following class, create a two-by-five two-dimensional array and give each object
-in the array an initial value of your own choosing. Then display the contents of the array.
-116ARRAYS, POINTERS, AND REFERENCES
-SKILLS CHECK
+/* Example 1: Given the following class, create a two-by-five two-dimensional array and give each object
+in the array an initial value of your own choosing. Then display the contents of the array. */
+
 class a_type
 {
 double a, b;
@@ -89,7 +88,7 @@ return 0;
 
 
 
-Example 2: Modify your solution to the preceding problem so it accesses the array by using a pointer.
+/* Example 2: Modify your solution to the preceding problem so it accesses the array by using a pointer. */
 
 2. The this pointer is a pointer that is automatically passed to a member function and that
 points to the object that generated the call.
@@ -98,7 +97,7 @@ points to the object that generated the call.
 
 
 
-Example 3: What is the this pointer?
+/* Example 3: What is the this pointer? */
 
 3. The general forms of new and delete are:
 p_var = new type ;
@@ -111,8 +110,8 @@ you program.
 
 
 
-Example 4: Show the general forms for new and delete. What are some advantages of using them
-instead of malloc() and free()?
+/* Example 4: Show the general forms for new and delete. What are some advantages of using them
+instead of malloc() and free()? */
 
 4. A reference is essentially an implicit pointer constant that is effectively a different name
 for another variable or argument. One advantage of using a reference parameter is that
@@ -122,7 +121,7 @@ no copy of the argument is made.
 
 
 
-Example 5: What is a reference? What is one advantage of using a reference parameter?
+/* Example 5: What is a reference? What is one advantage of using a reference parameter? */
 
 5. # include <iostream >
 using namespace std ;
@@ -143,9 +142,9 @@ d = 1/d;
 
 
 
-Example 6: Create a function called recip() that takes one double reference parameter. Have the
+/* Example 6: Create a function called recip() that takes one double reference parameter. Have the
 function change the value of that parameter into its reciprocal. Write a program to
-demonstrate that it works.
+demonstrate that it works. */
 
 
 
@@ -157,14 +156,14 @@ demonstrate that it works.
 
 
 
-Example 1: Given a pointer to an object, what operator is used to access a member of that object?
+/* Example 1: Given a pointer to an object, what operator is used to access a member of that object? */
 1. To access a member of an object by using a pointer, use the arrow (-> operator.
 
 
 
 
 
-Example 2: In Chapter 2, a strtype class was created that dynamically allocated space for a string.
+/* Example 2: In Chapter 2, a strtype class was created that dynamically allocated space for a string. */
 Rework the strtype class (shown here for your convenience) so it uses new and delete.
 # include <iostream >
 # include <cstring >
@@ -258,7 +257,7 @@ return 0;}
 
 
 
-Example 3: On your own, rework any program from the preceding chapter so that it uses a reference.
+/* Example 3: On your own, rework any program from the preceding chapter so that it uses a reference. */
 
 
 
@@ -268,7 +267,7 @@ Example 3: On your own, rework any program from the preceding chapter so that it
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
-Example 1: What is a reference? Give two important uses.
+/* Example 1: What is a reference? Give two important uses. */
 
 1. A reference is a special type of pointer that is automatically dereferenced and that can be
 used interchangeably with the object it is pointing to. There are three types of references:
@@ -278,8 +277,8 @@ parameter references, independent reference, and references that are returned by
 
 
 
-Example 2: Show how to allocate a float and an int by using new. Also, show how to free them by
-using delete.
+/* Example 2: Show how to allocate a float and an int by using new. Also, show how to free them by
+using delete. */
 
 2. # include <iostream >
 using namespace std ;
@@ -306,8 +305,8 @@ return 0;
 
 
 
-Example 3: What is the general form of new that is used to initialize a dynamic variable? Give a
-concrete example.
+/* Example 3: What is the general form of new that is used to initialize a dynamic variable? Give a
+concrete example. */
 
 3. The general form of new that includes an initializer is shown here:
 p_var = new type ( initializer );
@@ -319,8 +318,8 @@ p = new int (10) }
 
 
 
-Example 4: Given the following class, show how to initialize a ten-element array so that x has the
-value 1 through 10.
+/* Example 4: Given the following class, show how to initialize a ten-element array so that x has the
+value 1 through 10. */
 class samp
 {
 int x;
@@ -352,7 +351,7 @@ return 0;
 
 
 
-Example 5: Give one advantage of reference parameters. Give one disadvantage.
+/* Example 5: Give one advantage of reference parameters. Give one disadvantage. */
 
 5. Advantages: A reference parameter does not cause a copy of the object used in the call
 to be made. A reference is often faster to pass than a value. The reference parameter
@@ -364,14 +363,14 @@ the calling routine.
 
 
 
-Example 6: Can dynamically allocated arrays be initialized?
+/* Example 6: Can dynamically allocated arrays be initialized? */
 
 6. No.
 
 
 
-Example 7: Create a function called mag() using the following prototype that raises num to the order
-of magnitude specified by order:
+/* Example 7: Create a function called mag() using the following prototype that raises num to the order
+of magnitude specified by order: */
 void mag ( long &num , long order );
 For example, if num is 4 and order is 2, when mag() returns, num will be 400. Demonstrate in a program that the function works.
 
@@ -401,3 +400,30 @@ num = num * 10;
 
 
 // ------------    Cumulative/Masery/Review skill check    ------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
