@@ -1,21 +1,35 @@
 
-// --------    rev[30-JUL-24]    --------
+// --------    rev[01-Aug-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-/* Example 1: Given the following class, create a two-by-five two-dimensional array and give each object
-in the array an initial value of your own choosing. Then display the contents of the array. */
+/* Example 1: Given the following class, create a 2x5, 2D array and 
+                give each object in the array an initial value of your own choosing. 
+                Then display the contents of the array. 
 
-class a_type
-{
-double a, b;
-public :
-a_type ( double x, double y)
-{
-a = x;
-b = y;
-}
-void show () { cout << a << ’ ’ << b << "\n"; }
+                class a_type{
+                        double a, b;
+                    public:
+                        a_type(double x, double y){
+                            a = x;
+                            b = y;
+                        }
+                        void show(){ 
+                            std::cout << a << ' ' << b << "\n"; 
+                        }
+                };
+*/
+
+class a_type{
+        double a, b;
+    public:
+        a_type(double x, double y){
+            a = x;
+            b = y;
+        }
+        void show(){ 
+            std::cout << a << ' ' << b << "\n"; 
+        }
 };
 
 1. # include <iostream >
