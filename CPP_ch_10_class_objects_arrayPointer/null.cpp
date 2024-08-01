@@ -19,15 +19,94 @@ b = y;
 void show () { cout << a << ’ ’ << b << "\n"; }
 };
 
+1. # include <iostream >
+using namespace std ;
+class a_type
+{
+double a, b;
+public :
+a_type ( double x, double y)
+{
+a = x;
+b = y;
+}
+void show () { cout << a << ’ ’ << b << ’\n’; }
+};
+int main ()
+{
+a_type ob [2][5] = {
+a_type (1, 1) , a_type (2, 2) ,
+a_type (3, 3) , a_type (4, 4) ,
+a_type (5, 5) , a_type (6, 6) ,
+a_type (7, 7) , a_type (8, 8) ,
+a_type (9, 9) , a_type (10 , 10) ,
+};
+int i, j;
+for (i =0; i <2; i ++)
+for (j =0; j <5; j++)
+ob[i][j]. show ();
+cout << ’\n’;
+return 0;
+} #
+include <iostream >
+using namespace std ;
+class a_type
+{
+double a, b;
+public :
+a_type ( double x, double y)
+{
+a = x;
+b = y;
+}
+void show () { cout << a << ’ ’ << b << ’\n’; }
+};
+int main ()
+{
+a_type ob [2][5] = {
+a_type (1, 1) , a_type (2, 2) ,
+a_type (3, 3) , a_type (4, 4) ,
+a_type (5, 5) , a_type (6, 6) ,
+a_type (7, 7) , a_type (8, 8) ,
+a_type (9, 9) , a_type (10 , 10) ,
+};
+a_type *p;
+p = ( a_type *) ob;
+int i, j;
+for (i =0; i <2; i ++)
+{
+for (j =0; j <5; j++)
+{
+p-> show ();
+p ++;
+}
+}
+cout << ’\n’;
+return 0;
+}
+
+
 
 
 
 Example 2: Modify your solution to the preceding problem so it accesses the array by using a pointer.
 
+2. The this pointer is a pointer that is automatically passed to a member function and that
+points to the object that generated the call.
+
+
 
 
 
 Example 3: What is the this pointer?
+
+3. The general forms of new and delete are:
+p_var = new type ;
+delete p_var ;
+When using new, you don’t need to use a type cast. The size of the object is automatically
+determined; you don’t need to use sizeof0 Also, you don’t need to include <cstdlib> in
+you program.
+
 
 
 
@@ -35,10 +114,31 @@ Example 3: What is the this pointer?
 Example 4: Show the general forms for new and delete. What are some advantages of using them
 instead of malloc() and free()?
 
+4. A reference is essentially an implicit pointer constant that is effectively a different name
+for another variable or argument. One advantage of using a reference parameter is that
+no copy of the argument is made.
+
+
 
 
 
 Example 5: What is a reference? What is one advantage of using a reference parameter?
+
+5. # include <iostream >
+using namespace std ;
+void recip ( double &d);
+int main ()
+{
+double x = 100.0;
+cout << "x is " << x << ’\n’;
+recip (x);
+cout << " Reciprocal is " << x << ’\n’;
+return 0;
+}
+void recip ( double &d){
+d = 1/d;
+}
+
 
 
 
@@ -175,96 +275,11 @@ For example, if num is 4 and order is 2, when mag() returns, num will be 400. De
 
 
 // ------------    Cumulative/Masery/Review skill check    ------------
-1. # include <iostream >
-using namespace std ;
-class a_type
-{
-double a, b;
-public :
-a_type ( double x, double y)
-{
-a = x;
-b = y;
-}
-void show () { cout << a << ’ ’ << b << ’\n’; }
-};
-int main ()
-{
-a_type ob [2][5] = {
-a_type (1, 1) , a_type (2, 2) ,
-a_type (3, 3) , a_type (4, 4) ,
-a_type (5, 5) , a_type (6, 6) ,
-a_type (7, 7) , a_type (8, 8) ,
-a_type (9, 9) , a_type (10 , 10) ,
-};
-int i, j;
-for (i =0; i <2; i ++)
-for (j =0; j <5; j++)
-ob[i][j]. show ();
-cout << ’\n’;
-return 0;
-} #
-include <iostream >
-using namespace std ;
-class a_type
-{
-double a, b;
-public :
-a_type ( double x, double y)
-{
-a = x;
-b = y;
-}
-void show () { cout << a << ’ ’ << b << ’\n’; }
-};
-int main ()
-{
-a_type ob [2][5] = {
-a_type (1, 1) , a_type (2, 2) ,
-a_type (3, 3) , a_type (4, 4) ,
-a_type (5, 5) , a_type (6, 6) ,
-a_type (7, 7) , a_type (8, 8) ,
-a_type (9, 9) , a_type (10 , 10) ,
-};
-a_type *p;
-p = ( a_type *) ob;
-int i, j;
-for (i =0; i <2; i ++)
-{
-for (j =0; j <5; j++)
-{
-p-> show ();
-p ++;
-}
-}
-cout << ’\n’;
-return 0;
-}
-2. The this pointer is a pointer that is automatically passed to a member function and that
-points to the object that generated the call.
-3. The general forms of new and delete are:
-p_var = new type ;
-delete p_var ;
-When using new, you don’t need to use a type cast. The size of the object is automatically
-determined; you don’t need to use sizeof0 Also, you don’t need to include <cstdlib> in
-you program.
-4. A reference is essentially an implicit pointer constant that is effectively a different name
-for another variable or argument. One advantage of using a reference parameter is that
-no copy of the argument is made.
-5. # include <iostream >
-using namespace std ;
-void recip ( double &d);
-int main ()
-{
-double x = 100.0;
-cout << "x is " << x << ’\n’;
-recip (x);
-cout << " Reciprocal is " << x << ’\n’;
-return 0;
-}
-void recip ( double &d){
-d = 1/d;
-}
+
+
+
+
+
 
 
 
