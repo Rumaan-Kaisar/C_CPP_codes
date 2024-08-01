@@ -401,29 +401,3 @@ num = num * 10;
 
 // ------------    Cumulative/Masery/Review skill check    ------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
