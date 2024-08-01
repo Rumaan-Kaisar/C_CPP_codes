@@ -102,9 +102,19 @@ int main(){
 
 
 
+
 /* Example 3: What is the this pointer? */
 
-3. The general forms of new and delete are:
+The this pointer is a pointer that is automatically passed to a member function and that
+points to the object that generated the call.
+
+
+
+
+/* Example 4: Show the general forms for new and delete. What are some advantages of using them
+instead of malloc() and free()? */
+
+The general forms of new and delete are:
 p_var = new type ;
 delete p_var ;
 When using new, you don’t need to use a type cast. The size of the object is automatically
@@ -114,21 +124,20 @@ you program.
 
 
 
+/* Example 5: What is a reference? What is one advantage of using a reference parameter? */
 
-/* Example 4: Show the general forms for new and delete. What are some advantages of using them
-instead of malloc() and free()? */
-
-4. A reference is essentially an implicit pointer constant that is effectively a different name
+A reference is essentially an implicit pointer constant that is effectively a different name
 for another variable or argument. One advantage of using a reference parameter is that
 no copy of the argument is made.
 
 
 
 
+/* Example 6: Create a function called recip() that takes one double reference parameter. Have the
+function change the value of that parameter into its reciprocal. Write a program to
+demonstrate that it works. */
 
-/* Example 5: What is a reference? What is one advantage of using a reference parameter? */
-
-5. # include <iostream >
+# include <iostream >
 using namespace std ;
 void recip ( double &d);
 int main ()
@@ -142,14 +151,6 @@ return 0;
 void recip ( double &d){
 d = 1/d;
 }
-
-
-
-
-
-/* Example 6: Create a function called recip() that takes one double reference parameter. Have the
-function change the value of that parameter into its reciprocal. Write a program to
-demonstrate that it works. */
 
 
 
