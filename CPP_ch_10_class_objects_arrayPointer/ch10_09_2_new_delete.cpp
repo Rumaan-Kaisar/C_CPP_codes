@@ -351,3 +351,23 @@ int main() {
 
 
 
+
+/* Example 7: Show the general forms for "new" and "delete". 
+                What are some ADVANTAGES of using them instead of malloc() and free()? 
+
+            ans:
+                The general forms of new and delete are:
+                    p_var = new type;
+                    delete p_var;
+
+
+                Advantages when using "new":
+                    You don't need to use a "TYPE CAST".
+                        The size of the object is automatically determined; 
+
+                    You don’t need to use "sizeof" also, 
+
+                    You don’t need to include <cstdlib> in your program.
+*/
+
+
