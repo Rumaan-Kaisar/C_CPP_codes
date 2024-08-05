@@ -318,3 +318,57 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 8: Given the following class, create a 2x5, 2D array and 
+                give each object in the array an initial value of your own choosing. 
+                Then display the contents of the array. 
+
+                class a_type{
+                        double a, b;
+                    public:
+                        a_type(double x, double y){
+                            a = x;
+                            b = y;
+                        }
+                        void show(){ 
+                            std::cout << a << ' ' << b << "\n"; 
+                        }
+                };
+*/
+
+#include <iostream>
+
+class a_type{
+        double a, b;
+    public:
+        a_type(double x, double y){
+            a = x;
+            b = y;
+        }
+        void show(){ 
+            std::cout << a << ' ' << b << "\n"; 
+        }
+};
+
+
+int main(){
+    int i, j;
+    // array of objects, and its initailaization (using "longer form")
+    a_type ob[2][5] = {
+        a_type(1, 1), a_type(2, 2),
+        a_type(3, 3), a_type(4, 4),
+        a_type(5, 5), a_type(6, 6),
+        a_type(7, 7), a_type(8, 8),
+        a_type(9, 9), a_type(10 , 10),
+    };
+
+    // show the array content
+    for(i=0; i<2; i++)
+        for(j=0; j<5; j++)  ob[i][j].show();
+    std::cout << '\n';
+
+    return 0;
+}
+
