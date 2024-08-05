@@ -184,3 +184,12 @@ int main() {
 }
 
 
+
+
+/* Example 3: What is the this pointer? 
+
+                ans:
+                    The "this" pointer is a pointer that is automatically passed to a "member function" and 
+                    that "points" to the "object" that generated the call.
+*/
+
