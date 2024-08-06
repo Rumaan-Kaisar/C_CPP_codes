@@ -3,132 +3,21 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-/* Example 1: Given the following class, create a 2x5, 2D array and 
-                give each object in the array an initial value of your own choosing. 
-                Then display the contents of the array. 
 
-                class a_type{
-                        double a, b;
-                    public:
-                        a_type(double x, double y){
-                            a = x;
-                            b = y;
-                        }
-                        void show(){ 
-                            std::cout << a << ' ' << b << "\n"; 
-                        }
-                };
+
+
+
+
+
+/* Example 5: What is a reference? What is one advantage of using a reference parameter? 
+
+                A reference is essentially an "implicit pointer constant" that is 
+                    effectively a "different name" for another variable or argument. 
+
+                One advantage of using a "reference parameter" is that 
+                    no "copy of the argument" is made.
+
 */
-
-#include <iostream>
-
-class a_type{
-        double a, b;
-    public:
-        a_type(double x, double y){
-            a = x;
-            b = y;
-        }
-        void show(){ 
-            std::cout << a << ' ' << b << "\n"; 
-        }
-};
-
-
-int main(){
-    int i, j;
-    // array of objects, and its initailaization (using "longer form")
-    a_type ob[2][5] = {
-        a_type(1, 1), a_type(2, 2),
-        a_type(3, 3), a_type(4, 4),
-        a_type(5, 5), a_type(6, 6),
-        a_type(7, 7), a_type(8, 8),
-        a_type(9, 9), a_type(10 , 10),
-    };
-
-    // show the array content
-    for(i=0; i<2; i++)
-        for(j=0; j<5; j++)  ob[i][j].show();
-    std::cout << '\n';
-
-    return 0;
-}
-
-
-
-
-/* Example 2: Modify your solution to the preceding problem so it accesses the array by using a pointer. */
-
-// Version 2: modified version using object pointer
-#include <iostream>
-
-class a_type{
-        double a, b;
-    public:
-        a_type(double x, double y){
-            a = x;
-            b = y;
-        }
-        void show(){ 
-            std::cout << a << ' ' << b << "\n"; 
-        }
-};
-
-
-int main(){
-    int i, j;
-    // array of objects, and its initailaization (using "longer form")
-    a_type ob[2][5] = {
-        a_type(1, 1), a_type(2, 2),
-        a_type(3, 3), a_type(4, 4),
-        a_type(5, 5), a_type(6, 6),
-        a_type(7, 7), a_type(8, 8),
-        a_type(9, 9), a_type(10 , 10),
-    };
-
-    // use pointer to show the array content
-    a_type *p;
-    p = (a_type *) ob;
-
-    for(i=0; i<2; i++)
-        for(j=0; j<5; j++) {
-            p-> show();
-            p++;
-        }
-    std::cout << '\n';
-
-    return 0;
-}
-
-
-
-
-/* Example 3: What is the this pointer? */
-
-The this pointer is a pointer that is automatically passed to a member function and that
-points to the object that generated the call.
-
-
-
-
-/* Example 4: Show the general forms for new and delete. What are some advantages of using them
-instead of malloc() and free()? */
-
-The general forms of new and delete are:
-p_var = new type ;
-delete p_var ;
-When using new, you don’t need to use a type cast. The size of the object is automatically
-determined; you don’t need to use sizeof0 Also, you don’t need to include <cstdlib> in
-you program.
-
-
-
-
-/* Example 5: What is a reference? What is one advantage of using a reference parameter? */
-
-A reference is essentially an implicit pointer constant that is effectively a different name
-for another variable or argument. One advantage of using a reference parameter is that
-no copy of the argument is made.
 
 
 
