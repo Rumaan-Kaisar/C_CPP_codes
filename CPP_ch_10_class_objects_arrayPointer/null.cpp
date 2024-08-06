@@ -1,51 +1,7 @@
 
-// --------    rev[01-Aug-24]    --------
+// --------    rev[06-Aug-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-
-
-
-
-
-
-
-/* Example 5: What is a reference? What is one advantage of using a reference parameter? 
-
-                A reference is essentially an "implicit pointer constant" that is 
-                    effectively a "different name" for another variable or argument. 
-
-                One advantage of using a "reference parameter" is that 
-                    no "copy of the argument" is made.
-
-*/
-
-
-
-
-/* Example 6: Create a function called recip() that takes one double reference parameter. Have the
-function change the value of that parameter into its reciprocal. Write a program to
-demonstrate that it works. */
-
-# include <iostream >
-using namespace std ;
-void recip ( double &d);
-int main ()
-{
-double x = 100.0;
-cout << "x is " << x << ’\n’;
-recip (x);
-cout << " Reciprocal is " << x << ’\n’;
-return 0;
-}
-void recip ( double &d){
-d = 1/d;
-}
-
-
-
-
-
-
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
