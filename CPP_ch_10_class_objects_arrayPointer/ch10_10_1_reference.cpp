@@ -811,3 +811,15 @@ void triple(double & num){
                     There is no chance of a side effect occurring because the "copy's destructor is called".
 */
 
+
+
+
+/* Example 15: What is a reference? What is one advantage of using a reference parameter? 
+
+                A reference is essentially an "implicit pointer constant" that is 
+                    effectively a "different name" for another variable or argument. 
+
+                One advantage of using a "reference parameter" is that 
+                    no "copy of the argument" is made.
+*/
+
