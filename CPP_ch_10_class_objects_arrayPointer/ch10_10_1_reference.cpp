@@ -823,3 +823,32 @@ void triple(double & num){
                     no "copy of the argument" is made.
 */
 
+
+
+
+/* Example 16: Create a function called recip() that takes one "double reference parameter"
+                Have the function change the value of that parameter into its "reciprocal"
+                Write a program to demonstrate that it works.
+*/
+
+#include <iostream>
+
+void recip(double &d);  // double reference parameter
+
+
+int main(){
+    double x = 100.0;
+
+    std::cout << "x is " << x << '\n';
+    recip(x);
+    std::cout << " Reciprocal is " << x << '\n';
+
+    return 0;
+}
+
+
+// double reference parameter used
+void recip(double &d){
+    d = 1/d;
+}
+
