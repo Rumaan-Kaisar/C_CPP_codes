@@ -7,9 +7,11 @@
 
 
 
-/* Example 1: Given a pointer to an object, what operator is used to access a member of that object? */
-1. To access a member of an object by using a pointer, use the arrow (-> operator.
-
+/* Example 1: Given a pointer to an object, what operator is used to access a member of that object? 
+                
+            ans:
+                To access a "member" of an object by using a POINTER, use the arrow "->" operator.
+*/
 
 
 
