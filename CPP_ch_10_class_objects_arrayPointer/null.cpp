@@ -16,8 +16,93 @@
 
 
 
-/* Example 2: In Chapter 2, a strtype class was created that dynamically allocated space for a string. */
-Rework the strtype class (shown here for your convenience) so it uses new and delete.
+/* Example 2: In "ch10_01_2_constructor_destructor.cpp", in "Example 4" a strtype class 
+                was created that dynamically allocated space for a string. 
+                
+
+                It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
+
+                When a 'strtype' object is created, 
+                    'memory' is allocated to hold the string and its initial length is set to 0. 
+
+                When strtype object is destroyed, that memory is released
+                The old program uses malloc() and free() to allocate and free memory.
+
+                Rework the strtype class (shown here for your convenience) so it uses new and delete
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+#define SIZE 25
+
+// class definition
+class strtype{
+        char *p;
+        int len;
+
+    public:
+        strtype();  // constructor
+        ~strtype(); // destructor
+        void set(char *ptr);
+        void show();
+};
+
+
+// -=-=-    implementing member function    -=-=-
+
+// constructor: Initialize a string object .
+strtype::strtype(){
+    p = (char *)malloc(SIZE);    // malloc() returns a POINTER
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+
+    *p = '\0';
+    len = 0;
+}
+
+// destructor: Free memory when destroying string object .
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
+}
+
+
+void strtype::set(char *ptr){
+    if(strlen(p) >= SIZE){
+        std::cout << " String too big \n";
+        return;
+    }
+    strcpy(p, ptr);
+    len = strlen(p);
+}
+
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
+}
+
+
+int main(){
+    strtype s1 , s2;
+
+    s1.set("This is a test.");
+    s2.set("I like C ++.");
+    s1.show();
+    s2.show();
+
+    return 0;
+}
+
+
+
+
+
 # include <iostream >
 # include <cstring >
 # include <cstdlib >
