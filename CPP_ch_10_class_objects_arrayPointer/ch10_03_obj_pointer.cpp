@@ -129,3 +129,13 @@ int main() {
 
 // Each time p is incremented, it points to the next object in the array.
 
+
+
+
+/* Example 3: Given a pointer to an object, what operator is used to access a member of that object? 
+                
+            ans:
+                To access a "member" of an object by using a POINTER, use the arrow "->" operator.
+*/
+
+
