@@ -256,3 +256,133 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 8: In "ch10_01_2_constructor_destructor.cpp", in "Example 4" a strtype class 
+                was created that dynamically allocated space for a string. 
+                Later we improved it using parameterized constructor 
+
+                It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
+
+                When a 'strtype' object is created, 
+                    'memory' is allocated to hold the string and its initial length is set to 0. 
+
+                When strtype object is destroyed, that memory is released
+                The old program uses malloc() and free() to allocate and free memory.
+
+                Rework the strtype class (shown here for your convenience) so it uses new and delete
+
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char *ptr);  // constructor
+        ~strtype(); // destructor
+        void show();
+};
+
+// constructor:
+strtype::strtype(char * ptr){
+    len = strlen(ptr);  // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    if(!p){ // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+
+    strcpy(p, ptr); // copy string to p
+}
+
+// destructor:
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    free(p);
+}
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
+}
+
+
+// In this version of strtype, a string is given an initial value using the constructor function.
+int main(){
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    s1.show();
+    s2.show();
+
+    return 0;
+}
+
+*/
+
+// above program using "new" and "delete"
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char *ptr);  // constructor
+        ~strtype(); // destructor
+        void show();
+};
+
+
+// constructor: using "new"
+strtype::strtype(char * ptr){
+    len = strlen(ptr);  // get len of the string
+    // allocate using string's length 'len' instead of fixed 'SIZE'
+    // p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
+    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
+    
+    p = new char[len +1];   // using "new" instead of "malloc()"
+    
+    if(!p){ // Error massage
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+
+    strcpy(p, ptr); // copy string to p
+}
+
+
+// destructor: using "delete"
+strtype::~strtype(){
+    std::cout << " Freeing p\n";
+    // free(p);
+    delete [] p;    // using "delete" instead of "free"
+
+}
+
+
+void strtype::show(){
+    std::cout << p << " - length : " << len ;
+    std::cout << "\n";
+}
+
+
+// In this version of strtype, a string is given an initial value using the constructor function.
+int main(){
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    s1.show();
+    s2.show();
+
+    return 0;
+}
+
+
+
