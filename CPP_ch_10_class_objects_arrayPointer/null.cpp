@@ -1,144 +1,9 @@
 
-// --------    rev[06-Aug-24]    --------
+// --------    rev[09-Aug-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-
-
-
-/* Example 1: Given a pointer to an object, what operator is used to access a member of that object? 
-                
-            ans:
-                To access a "member" of an object by using a POINTER, use the arrow "->" operator.
-*/
-
-
-
-
-/* Example 2: In "ch10_01_2_constructor_destructor.cpp", in "Example 4" a strtype class 
-                was created that dynamically allocated space for a string. 
-                Later we improved it using parameterized constructor 
-
-                It creates a simple string class, called 'strtype', that contains a 'string and its length'. 
-
-                When a 'strtype' object is created, 
-                    'memory' is allocated to hold the string and its initial length is set to 0. 
-
-                When strtype object is destroyed, that memory is released
-                The old program uses malloc() and free() to allocate and free memory.
-
-                Rework the strtype class (shown here for your convenience) so it uses new and delete
-
-
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
-
-class strtype{
-        char *p;
-        int len;
-    public:
-        strtype(char *ptr);  // constructor
-        ~strtype(); // destructor
-        void show();
-};
-
-// constructor:
-strtype::strtype(char * ptr){
-    len = strlen(ptr);  // get len of the string
-    // allocate using string's length 'len' instead of fixed 'SIZE'
-    p = (char *)malloc(len +1);    // malloc() returns a POINTER. Extra 1 is for 'end-of-line' character
-    // Why type cast : To make conversion from ‘void *’ to ‘char *’, C++ data type differs from C
-    if(!p){ // Error massage
-        std::cout << " Allocation error \n";
-        exit(1) ;
-    } 
-
-    strcpy(p, ptr); // copy string to p
-}
-
-// destructor:
-strtype::~strtype(){
-    std::cout << " Freeing p\n";
-    free(p);
-}
-
-void strtype::show(){
-    std::cout << p << " - length : " << len ;
-    std::cout << "\n";
-}
-
-
-// In this version of strtype, a string is given an initial value using the constructor function.
-int main(){
-    strtype s1(" This is a test ."), s2("I like C++. ");
-
-    s1.show();
-    s2.show();
-
-    return 0;
-}
-
-*/
-
-
-// using "new" and "delete"
-
-
-2. # include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype ();
-void show ();
-};
-strtype :: strtype ( char *ptr )
-{
-len = strlen ( ptr );
-p = new char [ len +1];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, ptr );
-}
-strtype ::~ strtype ()
-{
-cout << " Freeing p\n";
-delete [] p;
-}
-void strtype :: show ()
-{
-cout << p << " - length : " << len ;
-cout << ’\n’;
-}
-int main ()
-{
-462ANSWERS
-REVIEW SKILLS CHECK: Chapter 5
-strtype s1(" This is a test ."), s2("I like C++");
-s1. show ();
-s2. show ();
-return 0;}
-
-
-
-
-
-/* Example 3: On your own, rework any program from the preceding chapter so that it uses a reference. */
-
-
-
-
-
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
@@ -276,4 +141,6 @@ num = num * 10;
 
 
 // ------------    Cumulative/Masery/Review skill check    ------------
+
+
 
