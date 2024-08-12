@@ -1,5 +1,5 @@
 
-// --------    rev[09-Aug-24]    --------
+// --------    rev[12-Aug-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
@@ -7,53 +7,6 @@
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
-
-/* Example 1: What is a reference? Give two important uses. 
-
-            ans:
-                A reference is a special type of pointer that is:
-                    automatically dereferenced and 
-                    that can be used interchangeably with the object it is pointing to
-
-                There are three types of references:
-                    1. parameter references, 
-                    2. independent reference, and 
-                    3. references that are returned by functions.
-*/
-
-
-
-
-/* Example 2: Show how to allocate a "float" and an "int" by using "new". 
-                Also, show how to free them by using "delete".
-*/
-
-#include <iostream>
-
-int main(){
-    float *f;
-    int *i;
-
-    // allocate a "float" and an "int"
-    f = new float;
-    i = new int;
-
-    if(!f || !i){
-        std::cout << " Allocation error \n";
-        return 1;
-    } 
-
-    *f = 10.101;
-    *i = 100;
-
-    std::cout << *f << ' ' << *i << '\n';
-
-    // relese memory
-    delete f;
-    delete i;
-
-    return 0;
-}
 
 
 
