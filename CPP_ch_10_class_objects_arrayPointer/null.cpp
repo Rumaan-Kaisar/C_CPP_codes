@@ -8,12 +8,18 @@
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
-/* Example 1: What is a reference? Give two important uses. */
+/* Example 1: What is a reference? Give two important uses. 
 
-1. A reference is a special type of pointer that is automatically dereferenced and that can be
-used interchangeably with the object it is pointing to. There are three types of references:
-parameter references, independent reference, and references that are returned by functions.
+            ans:
+                A reference is a special type of pointer that is:
+                    automatically dereferenced and 
+                    that can be used interchangeably with the object it is pointing to
 
+                There are three types of references:
+                    1. parameter references, 
+                    2. independent reference, and 
+                    3. references that are returned by functions.
+*/
 
 
 
