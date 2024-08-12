@@ -24,28 +24,35 @@
 
 
 
-/* Example 2: Show how to allocate a float and an int by using new. Also, show how to free them by
-using delete. */
+/* Example 2: Show how to allocate a "float" and an "int" by using "new". 
+                Also, show how to free them by using "delete".
+*/
 
-2. # include <iostream >
-using namespace std ;
-int main ()
-{
-float *f;
-int *i;
-f = new float ;
-i = new int ;
-if (!f || !i)
-{
-cout << " Allocation error \n";
-return 1;
-} *
-f = 10.101;
-*i = 100;
-cout << *f << ’ ’ << *i << ’\n’;
-delete f;
-delete i;
-return 0;
+#include <iostream>
+
+int main(){
+    float *f;
+    int *i;
+
+    // allocate a "float" and an "int"
+    f = new float;
+    i = new int;
+
+    if(!f || !i){
+        std::cout << " Allocation error \n";
+        return 1;
+    } 
+
+    *f = 10.101;
+    *i = 100;
+
+    std::cout << *f << ' ' << *i << '\n';
+
+    // relese memory
+    delete f;
+    delete i;
+
+    return 0;
 }
 
 
