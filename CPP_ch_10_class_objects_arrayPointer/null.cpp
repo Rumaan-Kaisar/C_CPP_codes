@@ -12,15 +12,18 @@
 
 
 
-/* Example 3: What is the general form of new that is used to initialize a dynamic variable? Give a
-concrete example. */
+/* Example 3: What is the general form of "new" that is used to "initialize" a dynamic variable? 
+                Give a concrete example. 
 
-3. The general form of new that includes an initializer is shown here:
-p_var = new type ( initializer );
-For example, this allocates an integer and gives it the value 10:
-int *p;
-p = new int (10) }
+            ans:
+                The general form of "new" that includes an initializer is shown here:
 
+                        p_var = new type (initializer);
+
+                For example, this allocates an integer and gives it the value 10:
+                        int *p;
+                        p = new int (10)
+*/
 
 
 
