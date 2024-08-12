@@ -852,3 +852,19 @@ void recip(double &d){
     d = 1/d;
 }
 
+
+
+
+/* Example 17: What is a reference? Give two important uses. 
+
+            ans:
+                A reference is a special type of pointer that is:
+                    automatically dereferenced and 
+                    that can be used interchangeably with the object it is pointing to
+
+                There are three types of references:
+                    1. parameter references, 
+                    2. independent reference, and 
+                    3. references that are returned by functions.
+*/
+
