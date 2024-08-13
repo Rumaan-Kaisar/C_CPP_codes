@@ -1,5 +1,5 @@
 
-// --------    rev[12-Aug-24]    --------
+// --------    rev[13-Aug-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
@@ -10,26 +10,9 @@
 
 
 
-
-
-/* Example 3: What is the general form of "new" that is used to "initialize" a dynamic variable? 
-                Give a concrete example. 
-
-            ans:
-                The general form of "new" that includes an initializer is shown here:
-
-                        p_var = new type (initializer);
-
-                For example, this allocates an integer and gives it the value 10:
-                        int *p;
-                        p = new int (10)
+/* Example 4: Given the following class, show how to initialize 
+                a ten-element array so that x has the value 1 through 10. 
 */
-
-
-
-
-/* Example 4: Given the following class, show how to initialize a ten-element array so that x has the
-value 1 through 10. */
 class samp
 {
 int x;
