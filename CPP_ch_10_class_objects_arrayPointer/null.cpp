@@ -9,48 +9,21 @@
 
 
 
+/* Example 5: Give one advantage of reference parameters. Give one disadvantage. 
 
-/* Example 4: Given the following class, show how to initialize 
-                a ten-element array so that x has the value 1 through 10. 
-*/
-class samp
-{
-int x;
-public :
-samp ( int n) { x = n; }
-int getx () { return x; }
-};
-
-4. # include <iostream >
-using namespace std ;
-class samp
-{
-int x;
-public :
-samp ( int n) { x = n; }
-int getx () { return x; }
-};
-int main ()
-{
-samp A [10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-int i;
-for (i =0; i <10; i ++)
-cout << A[i]. getx () << ’ ’;
-cout << ’\n’;
-return 0;
-}
-
-
-
-
-
-/* Example 5: Give one advantage of reference parameters. Give one disadvantage. */
-
-5. Advantages: A reference parameter does not cause a copy of the object used in the call
+Advantages: 
+    A reference parameter does not cause a copy of the object used in the call
 to be made. A reference is often faster to pass than a value. The reference parameter
 streamlines the call-by-reference syntax and procedure, reducing the chance for errors.
-Disadvantages: Changes to a reference parameter open the possibility of side effects in
+
+Disadvantages: 
+    Changes to a reference parameter open the possibility of side effects in
 the calling routine.
+*/
+
+
+
+
 
 
 
