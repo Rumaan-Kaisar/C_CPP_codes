@@ -372,3 +372,37 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 9: Given the following class, show how to initialize 
+                a ten-element array so that x has the value 1 through 10. 
+
+                    class samp{
+                            int x;
+                        public:
+                            samp(int n){ x = n; }
+                            int getx(){ return x; }
+                    };
+*/
+
+#include <iostream>
+
+class samp{
+        int x;
+    public:
+        samp(int n){ x = n; }
+        int getx(){ return x; }
+};
+
+
+int main(){
+    samp A[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int i;
+
+    for(i=0; i<10; i++) std::cout << A[i].getx() << ' ';
+    std::cout << '\n';
+
+    return 0;
+}
+
