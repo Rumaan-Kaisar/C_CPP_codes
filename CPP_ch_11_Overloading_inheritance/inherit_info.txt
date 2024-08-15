@@ -1,0 +1,22 @@
+
+5.1 Overloading constructor functions
+5.2 Creating and using a copy constructor
+5.3 The overload anachronism
+5.4 Using default arguments
+5.5 Overloading and ambiguity
+5.6 Finding the address of an overloaded function
+
+6.1 The basics of operator overloading
+6.2 Overloading binary operators
+6.3 Overloading the relational and logical operators
+6.4 Overloading a unary operator
+6.5 Using friend operator functions
+6.6 A closer look at the assignment operator
+6.7 Overloading the [ ] subscript operator
+
+7.1 Base class access control
+7.2 Using protected members
+7.3 Constructors, destructors, and inheritance
+7.4 Multiple inheritance
+7.5 Virtual base classes
+
