@@ -868,3 +868,19 @@ void recip(double &d){
                     3. references that are returned by functions.
 */
 
+
+
+
+/* Example 18: Give one advantage of reference parameters. Give one disadvantage. 
+
+                Advantages: 
+                    A reference parameter does not cause a "copy of the object" used in the call to be made.
+                    A reference is often faster to pass than a value. 
+                    The reference parameter streamlines the call-by-reference syntax and procedure, 
+                        reducing the chance for errors.
+
+                Disadvantages: 
+                    Changes to a reference parameter open the possibility of side effects in the calling routine.
+*/
+
+
