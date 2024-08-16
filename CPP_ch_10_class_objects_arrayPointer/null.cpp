@@ -25,15 +25,21 @@
                 Initialization requires "knowing the memory location" and values to store, 
                     which isn't possible at compile time. 
                 You must manually assign values to elements after allocation.
-*/
 
 
 
 ----  Gemini  ----
-When you dynamically allocate an array in C++ using new, you're essentially reserving a block of memory without specifying its contents. This is because:
+When you dynamically allocate an array in C++ using "new", 
+    you're essentially "reserving a block of memory" without specifying its contents. 
 
-Memory Location Uncertainty: The exact memory address where the array will be stored is determined at runtime, not compile time. This makes it impossible to pre-fill values during the allocation process.
-Compiler Limitations: The compiler doesn't have enough information at compile time to know the specific values you want to initialize the array with, especially if those values are determined by user input or calculations.
+This is because:
+
+Memory Location Uncertainty: 
+    The exact memory address where the array will be stored is determined at "runtime", not "compile time". 
+    This makes it impossible to pre-fill values during the allocation process.
+
+Compiler Limitations: 
+    The compiler doesn't have enough information at compile time to know the specific values you want to initialize the array with, especially if those values are determined by user input or calculations.
 Efficiency: Initializing every element to a default value (like 0) during allocation might introduce unnecessary overhead, especially for large arrays.
 Therefore, to initialize a dynamically allocated array, you must manually assign values to each element after the allocation using a loop or other methods. This gives you flexibility in setting the initial values based on your program's logic.
 
@@ -79,6 +85,12 @@ std::vector<int> arr = {1, 2, 3, 4, 5};
 
 Summary:
 Dynamic arrays are allocated at runtime, and C++ doesn't provide a direct way to initialize them with an initializer list at that time. You need to manually initialize each element or use higher-level containers like std::vector.
+
+
+
+
+*/
+
 
 
 
