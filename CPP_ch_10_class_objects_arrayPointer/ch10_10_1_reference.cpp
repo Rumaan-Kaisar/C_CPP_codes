@@ -884,3 +884,34 @@ void recip(double &d){
 */
 
 
+
+
+/* Example 19: Create a function called mag() using the following prototype 
+                that raises num to the order of magnitude specified by order 
+
+                        void mag(long &num , long order );
+
+                For example, if num is 4 and order is 2, when mag() returns, num will be 400. 
+                Demonstrate in a program that the function works.
+*/
+
+#include <iostream>
+
+void mag(long &num , long order);
+
+int main(){
+    long n = 4;
+    long o = 2;
+
+    std::cout << "4 raised to the 2nd order of magnitude is ";
+    mag(n, o);
+    std::cout << n << '\n';
+
+    return 0;
+}
+
+
+void mag(long &num, long order){
+    for( ; order; order--) num = num*10;
+}
+
