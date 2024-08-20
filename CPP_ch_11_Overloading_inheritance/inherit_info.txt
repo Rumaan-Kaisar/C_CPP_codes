@@ -24,56 +24,26 @@
 
 ----  file naming  ----
 
-ch10_01_1_class_intro
-ch10_01_2_constructor_destructor
-ch10_01_3_constructor_param
+ch11_01_1_ovrld_constructor
+ch11_01_2_copy_constructor
+ch11_01_3_ovrld_anachronism
 
-ch10_02_inheritance_intro
-ch10_03_obj_pointer
-ch10_04_class_struct_union
+ch11_02_default_args
+ch11_03_ovrld_ambiguity
+ch11_04_ovrld_address_function
 
-ch10_05_1_inLine_func
-ch10_05_2_auto_inLine
+ch11_05_1_ovrldOpr
+ch11_05_2_ovrldOpr_binary
+ch11_05_3_ovrldOpr_relational_logical
+ch11_05_4_ovrldOpr_unary
 
-ch10_06_1_assign_obj
-ch10_06_2_pass_obj_to_func
-ch10_06_3_return_obj_from_func
+ch11_06_ovrldOpr_friend
+ch11_07_ovrldOpr_assignment
+ch11_08_ovrldOpr_subscript_sqrBrc
 
-ch10_07_friend_func
+inhrit_ch11_09_Base class access control
+inhrit_ch11_10_Using protected members
+inhrit_ch11_11_Constructors, destructors, and inheritance
+inhrit_ch11_12_Multiple inheritance
+inhrit_ch11_13_Virtual base classes
 
-ch10_08_1_array_of_obj
-ch10_08_2_pointer_to_obj
-
-ch10_09_1_this
-ch10_09_2_new_delete
-ch10_09_3_more_new_delete
-
-ch10_10_reference
-ch10_10_pass_ref_to_obj
-ch10_10_return_ref
-ch10_10_indpdnt_ref_&_rules
-
-
-
-ch11_01_1_Overloading constructor functions
-ch11_01_2_Creating and using a copy constructor
-ch11_01_3_The overload anachronism
-
-5.4 Using default arguments
-5.5 Overloading and ambiguity
-5.6 Finding the address of an overloaded function
-
-6.1 The basics of operator overloading
-6.2 Overloading binary operators
-6.3 Overloading the relational and logical operators
-6.4 Overloading a unary operator
-
-6.5 Using friend operator functions
-6.6 A closer look at the assignment operator
-6.7 Overloading the [ ] subscript operator
-
-7.1 Base class access control
-7.2 Using protected members
-7.3 Constructors, destructors, and inheritance
-7.4 Multiple inheritance
-7.5 Virtual base classes
