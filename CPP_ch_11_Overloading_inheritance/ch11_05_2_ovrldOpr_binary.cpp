@@ -1,3 +1,6 @@
 
 /*  ------------------------    chapter    ------------------------
+
+Overloading binary operators
+
 */  

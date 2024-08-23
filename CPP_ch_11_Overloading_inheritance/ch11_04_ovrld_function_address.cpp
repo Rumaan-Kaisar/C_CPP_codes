@@ -1,6 +1,6 @@
 
 /*  ------------------------    chapter    ------------------------
 
-Overloading the [ ] subscript operator
+5.6 Finding the address of an overloaded function
 
 */  
