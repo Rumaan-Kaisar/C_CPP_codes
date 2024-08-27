@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    copy constructor    ------------------------
 
 Creating and using a copy constructor
 
