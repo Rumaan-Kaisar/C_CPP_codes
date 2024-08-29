@@ -5,10 +5,10 @@ Finding the address of an overloaded function
 
 recall function pointers: "C_Ch8_6_func_pointers.c"
 
-11.7 Address of an OVERLOADED function 
-In C, you can assign the address of a function (that is, its entry point) to a pointer and access that function via that pointer. A function's address is obtained by putting its name on the right side of an assignment statement without any parentheses or arguments. For example, if zap() is a function, then we assign p the address of zap():	 p = zap;
-	In C, any type of pointer can be used to point to a function because there is only one function that it can point to. 
-	In C++ the situation is a bit more complex because a function can be overloaded.  When we assign the address of an overloaded function to a function pointer, it is the declaration of the pointer that determines which function's address is assigned. Further, the declaration of the function pointer must exactly match one and only one of the overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time error.
+Address of an OVERLOADED function :
+    In C, you can assign the address of a function (that is, its entry point) to a pointer and access that function via that pointer. A function's address is obtained by putting its name on the right side of an assignment statement without any parentheses or arguments. For example, if zap() is a function, then we assign p the address of zap():	 p = zap;
+    	In C, any type of pointer can be used to point to a function because there is only one function that it can point to. 
+    	In C++ the situation is a bit more complex because a function can be overloaded.  When we assign the address of an overloaded function to a function pointer, it is the declaration of the pointer that determines which function's address is assigned. Further, the declaration of the function pointer must exactly match one and only one of the overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time error.
 
 void space(int n){ /* Type-1: Output n number of spaces */
 		for( ; n ; n --) cout << ' '; }
