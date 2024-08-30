@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    overloading : []-operator   ------------------------
 
 Overloading the [ ] subscript operator
 
