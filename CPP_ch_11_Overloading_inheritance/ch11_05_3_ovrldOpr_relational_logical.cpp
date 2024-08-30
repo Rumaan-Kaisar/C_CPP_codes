@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    operator overloading : RELATIONAL and LOGICAL    ------------------------
 
 
 Overloading the relational and logical operators

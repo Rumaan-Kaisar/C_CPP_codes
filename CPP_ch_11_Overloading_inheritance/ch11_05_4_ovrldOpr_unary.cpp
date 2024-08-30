@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    operator overloading : unary    ------------------------
 
 Overloading a unary operator
 

@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    operator overloading : BINARY    ------------------------
 
 Overloading binary operators
 
