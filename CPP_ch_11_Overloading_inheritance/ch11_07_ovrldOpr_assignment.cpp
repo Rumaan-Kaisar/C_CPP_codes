@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    overloading : '='    ------------------------
 A closer look at the assignment operator
 
 11.13 Assignment Operator Advanced
