@@ -10,9 +10,13 @@
         2. to support arrays
         3. to create "copy constructors"
 
-the first two of these are discussed in this section.
+        the first two of these are discussed in this section.
  
-	If a program attempts to create an object for which no matching constructor (means : with parameter or no parameter) is found, a compile-time error occurs. This is why overloaded constructor functions are so common to C++ programs.
+
+    compile-time error for no matching constructor:
+	If a program attempts to create an object for which no matching constructor (means : with parameter or no parameter) is found, a compile-time error occurs. 
+This is why overloaded constructor functions are so common to C++ programs.
+
 	Giving an object an initialization or not:  . The most frequent use of overloaded constructor functions is to provide the option of either giving an object an initialization or not giving it one. By providing both a parameterized and a parameterless constructor, your program allows the creation of objects that are either initialized or not as needed.  For example, in the following program, o1 is given an initial value, but o2 is not. Either removing the constructor-with-no-parameter or constructor-with-parameter will cause compile-time error because there is no match for an initialized object or non-initialized object. 
 
 	class myclass { int x;
