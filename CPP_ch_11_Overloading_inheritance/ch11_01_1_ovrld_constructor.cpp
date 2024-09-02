@@ -1,12 +1,16 @@
 
 /*  ------------------------    Overloading CONSTRUCTOR    ------------------------
+    Overloading CONSTRUCTOR:
+        It's possible overload a class's CONSTRUCTOR
+        But "not possible" to overload a DESTRUCTOR
 
-11.3 Overloading CONSTRUCTOR 
-It is possible overload a class's constructor function but not possible to overload a destructor. There are three main reasons to overload constructor: the first two of these are discussed in this section.
- 
-[1]	to gain flexibility, 
-[2]	to support arrays 
-[3]	to create copy constructors.
+
+    Reasons to overload constructor: 
+        1. to gain flexibility, 
+        2. to support arrays
+        3. to create "copy constructors"
+
+the first two of these are discussed in this section.
  
 	If a program attempts to create an object for which no matching constructor (means : with parameter or no parameter) is found, a compile-time error occurs. This is why overloaded constructor functions are so common to C++ programs.
 	Giving an object an initialization or not:  . The most frequent use of overloaded constructor functions is to provide the option of either giving an object an initialization or not giving it one. By providing both a parameterized and a parameterless constructor, your program allows the creation of objects that are either initialized or not as needed.  For example, in the following program, o1 is given an initial value, but o2 is not. Either removing the constructor-with-no-parameter or constructor-with-parameter will cause compile-time error because there is no match for an initialized object or non-initialized object. 
@@ -86,3 +90,5 @@ format - This is the C string that contains one or more of the items: Whitespace
 
 
 */  
+
+
