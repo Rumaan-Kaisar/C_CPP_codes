@@ -22,21 +22,42 @@
         The most frequent use of overloaded constructor functions is to offer the option of either initializing an object or not. 
         By providing both a "PARAMETERIZED" and a "PARAMETERLESS" constructor, 
             your program allows the creation of objects that "can be initialized" or "left uninitialized "as needed. 
+*/
 
-For example, in the following program, o1 is given an initial value, but o2 is not. Either removing the constructor-with-no-parameter or constructor-with-parameter will cause compile-time error because there is no match for an initialized object or non-initialized object. 
 
-	class myclass { int x;
-		public: // overload constructor two ways 
-	    myclass() {x=0;} 	// no initializer
-	    myclass(int n) {x=n;} 	// initializer
-	    int getx() { return x; }   
-	};	int main (){
-myclass o(10) ; 	// declare with initial value
-myclass o2; 		// declare without initializer
-	cout << "o1: " << o1.getx() << '\n';
-	cout << "o2: " << o2.getx() << '\n';
-return 0;}
-	Allowing both individual objects and arrays of objects: Overloaded constructor functions allow both individual objects and arrays of objects to occur within a program. It is fairly common to initialize a single variable, but it is not as common to initialize an array. So we must include a constructor that supports initialization and one that does not. From previous example, both of these declarations are valid:				myclass ob(10) ;
+
+
+/* Example 1: In the following program, o1 is given an initial value, but o2 is not. 
+                Either removing PARAMETERLESS-constructor  or PARAMETERIZED-constructor will cause compile-time error.
+                Because there is no match for an initialized object or non-initialized object.
+*/
+
+#include <iostream>
+
+class myclass{
+        int x;
+    public: 
+        // overload constructor two ways 
+        myclass() {x=0;}// no initializer
+        myclass(int n) {x=n;} // initializer
+        int getx() { return x; }   
+};	
+
+
+int main(){
+    myclass o1(10);  // declare with initial value
+    myclass o2;     // declare without initializer
+
+    std::cout << "o1: " << o1.getx() << '\n';
+    std::cout << "o2: " << o2.getx() << '\n';
+
+    return 0;
+}
+
+
+
+
+/*  Allowing both individual objects and arrays of objects: Overloaded constructor functions allow both individual objects and arrays of objects to occur within a program. It is fairly common to initialize a single variable, but it is not as common to initialize an array. So we must include a constructor that supports initialization and one that does not. From previous example, both of these declarations are valid:				myclass ob(10) ;
 myclass ob[5];
 We can use both parameterized and parameterless constructors to create initialized and non-initialized arrays. For example, the following program with previous example's class, declares two arrays of type myclass; one is initialized and the other is not:
 
