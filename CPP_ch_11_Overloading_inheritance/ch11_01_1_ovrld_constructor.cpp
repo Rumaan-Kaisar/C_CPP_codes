@@ -13,15 +13,30 @@
         the first two of these are discussed in this section.
  
 
+
+
+    --------    why overload constructor    -------
+
     compile-time error for no matching constructor:
         Attempting to create an object "without a matching constructor" 
             (either with parameters or without) results in a COMPILE-TIME ERROR.
             That's why overloaded constructor functions are so common in C++
 
+
     Providing an object with or without initialization: 
         The most frequent use of overloaded constructor functions is to offer the option of either initializing an object or not. 
         By providing both a "PARAMETERIZED" and a "PARAMETERLESS" constructor, 
             your program allows the creation of objects that "can be initialized" or "left uninitialized "as needed. 
+
+
+    Enabling both "single objects" and "object arrays":
+        Overloaded constructors enable both individual objects and object arrays in a program. 
+        While initializing a single variable is common, initializing an array is less so. 
+        Therefore, we include constructors for both scenarios. For example, both of these declarations are valid in "Example 1": 
+                myclass ob(10);
+                myclass ob[5];
+
+
 */
 
 
@@ -57,8 +72,11 @@ int main(){
 
 
 
-/*  Allowing both individual objects and arrays of objects: Overloaded constructor functions allow both individual objects and arrays of objects to occur within a program. It is fairly common to initialize a single variable, but it is not as common to initialize an array. So we must include a constructor that supports initialization and one that does not. From previous example, both of these declarations are valid:				myclass ob(10) ;
-myclass ob[5];
+/*  
+
+
+
+// initialized and non-initialized arrays
 We can use both parameterized and parameterless constructors to create initialized and non-initialized arrays. For example, the following program with previous example's class, declares two arrays of type myclass; one is initialized and the other is not:
 
 int main(){
@@ -72,6 +90,9 @@ for(i=0; i <10; i++){
 return 0;}
 
 Here, all elements of o1 are set to 0 by the constructor function. The elements of o2 are initialized as shown in the program.
+
+
+
 	Overloading constructor functions is to allow us to select the most convenient method of initializing an object. For example following overloads the date() constructor two ways. One as a character string. Another passed as three integers.
 
 #include<cstdio> // included for sscanf() 
@@ -89,6 +110,8 @@ int main(){
 	sdate.show();
 	idate.show();
 return 0;}
+
+
 	Initializing dynamically allocated array: Overloading a class's constructor function allows us to initialize dynamically allocated array. We know that a dynamic array cannot be initialized. Thus, if the class contains a constructor that takes an initializer, you must include an overloaded version that takes no-initializer. For example, here is a program that allocates an object array dynamically:
 
 
