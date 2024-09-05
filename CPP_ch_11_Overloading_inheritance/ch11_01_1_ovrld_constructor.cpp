@@ -72,24 +72,51 @@ int main(){
 
 
 
-/*  
+// --------    initialized and non-initialized arrays    --------
 
+/*  Example 2: We can use both parameterized and parameterless constructors to create initialized and non-initialized arrays. 
+                For example, the following program with previous example's class (i.e. Example 1), 
+                declares two arrays of type myclass; one is initialized and the other is not. 
 
+                Here, all elements of o1 are set to 0 by the constructor function. 
+                The elements of o2 are initialized as shown in the program.
+*/
 
-// initialized and non-initialized arrays
-We can use both parameterized and parameterless constructors to create initialized and non-initialized arrays. For example, the following program with previous example's class, declares two arrays of type myclass; one is initialized and the other is not:
+#include <iostream>
+
+class myclass{
+        int x;
+    public: 
+        // overload constructor two ways 
+        myclass() {x=0;}// no initializer
+        myclass(int n) {x=n;} // initializer
+        int getx() { return x; }   
+};	
+
 
 int main(){
-myclass o1[10]; // array without initializers
-	// array with initializer
-myclass o2[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	int i; // Output both array
-for(i=0; i <10; i++){
-	cout <<"o1["<<i <<"]: "<< o1[i].getx()<<'\n';
-	cout <<"o2["<<i <<"]: "<< o2[i].getx()<<'\n';}
-return 0;}
+    myclass o1[10];  // non-initialized array
+    myclass o2[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};  // initialized array
+    int i; 
+    
+    // Output both array
+    for(i=0; i <10; i++){
+        std::cout <<"o1["<<i <<"]: "<< o1[i].getx()<<'\n';
+        std::cout <<"o2["<<i <<"]: "<< o2[i].getx()<<'\n';
+    }
 
-Here, all elements of o1 are set to 0 by the constructor function. The elements of o2 are initialized as shown in the program.
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+/*  
 
 
 
