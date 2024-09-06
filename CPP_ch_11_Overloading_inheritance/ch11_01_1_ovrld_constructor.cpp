@@ -37,6 +37,19 @@
                 myclass ob[5];
 
 
+    It offers a choice for the most convenient object initialization:
+        Overloading constructor functions allows us to choose the most convenient method for initializing an object. 
+        For example, we can overload a constructor in two ways: 
+            one that accepts a character string and 
+            another that accepts three integers.
+
+
+    Initializing dynamically allocated array: 
+        Overloading a class's constructor function allows us to initialize dynamically allocated array. 
+        We know that a dynamic array cannot be initialized. 
+
+        Thus, if the class contains a constructor that takes an initializer, 
+            you must include an overloaded version that takes no-initializer.
 */
 
 
@@ -139,7 +152,9 @@ int main(){
 return 0;}
 
 
-	Initializing dynamically allocated array: Overloading a class's constructor function allows us to initialize dynamically allocated array. We know that a dynamic array cannot be initialized. Thus, if the class contains a constructor that takes an initializer, you must include an overloaded version that takes no-initializer. For example, here is a program that allocates an object array dynamically:
+	Initializing dynamically allocated array: Overloading a class's constructor function allows us to initialize dynamically allocated array. We know that a dynamic array cannot be initialized. Thus, if the class contains a constructor that takes an initializer, you must include an overloaded version that takes no-initializer.
+
+ For example, here is a program that allocates an object array dynamically:
 
 
 
@@ -164,6 +179,7 @@ Note
 Declaration: 	int sscanf(const char *str, const char *format, ...)
 Parameters :  	str - This is the C string that the function processes as its source to retrieve the data.
 format - This is the C string that contains one or more of the items: Whitespace character, Non-whitespace character and Format specifiers.
+
 [2]	It is possible to overload a constructor as many times as you want but, 
 	Doing so excessively has a destructing effect on the class. 
 	It is best to overload a constructor to accommodate only those situations that are likely to occur frequently. 
