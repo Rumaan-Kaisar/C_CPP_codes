@@ -124,33 +124,65 @@ int main(){
 
 
 
+/* Example 3: Constructor overloading offers a choice for the most convenient object initialization.
+                Following overloads the date() constructor two ways. 
+                    One as a character string. 
+                    Another passed as three integers. 
+
+
+                The C library function sscanf() from the "stdio.h" header reads formatted input from a string.
+
+                Declaration:
+                                int sscanf(const char *str, const char *format, ...);
+
+                Parameters:
+                            str:    This is the C string from which the function retrieves the data.
+                            format: This is the C string that contains one or more items, such as:
+                                        Whitespace characters
+                                        Non-whitespace characters
+                                        Format specifiers (e.g., %d, %s, etc.) to specify the types of data to be extracted.
+
+*/
+
+#include <iostream>
+#include <cstdio> // contains sscanf() 
+
+class date{
+        int day, month, year;
+    public:
+        // following constructor reads character string
+        date(char *str );
+        // following constructor reads 3 integers
+        date(int m, int d, int y){
+            day = d; 
+            month = m; 
+            year = y;
+        }
+        void show(){std::cout <<month<<'/'<<day<<'/'<<year<<'\n';}
+};
+
+date :: date(char *str){
+    sscanf(str, "%d%*c%d%*c%d", &month, &day, &year);
+}
+
+
+int main(){
+    date sdate("12/31/99");     // using string 
+    date idate(12, 31, 99);     // using integers 
+
+    sdate.show();
+    idate.show();
+
+    return 0;
+}
 
 
 
+
+// ----rev[06-Sep-2024]----
 
 
 /*  
-
-
-
-	Overloading constructor functions is to allow us to select the most convenient method of initializing an object. For example following overloads the date() constructor two ways. One as a character string. Another passed as three integers.
-
-#include<cstdio> // included for sscanf() 
-class date{int day, month, year ;
-  public : date( char *str );
-           date( int m, int d, int y){
-day = d; month = m; year = y;}
-     void show(){
-   cout <<month<<'/'<<day<<'/'<<year<<'\n';}
-};	date :: date( char *str ){
-sscanf(str, "%d%*c%d%*c%d", &month, &day, &year);}
-int main(){
-   date sdate("12/31/99");		// using string 
-   date idate (12, 31, 99) ; 	// using integers 
-	sdate.show();
-	idate.show();
-return 0;}
-
 
 	Initializing dynamically allocated array: Overloading a class's constructor function allows us to initialize dynamically allocated array. We know that a dynamic array cannot be initialized. Thus, if the class contains a constructor that takes an initializer, you must include an overloaded version that takes no-initializer.
 
@@ -175,10 +207,7 @@ return 0;}
 Without overloaded myclass() that has no-initializer, "new" would've generated a compile-time error.
 
 Note
-[1]	The C library function sscanf() of "stdio.h" reads formatted input from a string.
-Declaration: 	int sscanf(const char *str, const char *format, ...)
-Parameters :  	str - This is the C string that the function processes as its source to retrieve the data.
-format - This is the C string that contains one or more of the items: Whitespace character, Non-whitespace character and Format specifiers.
+[1]	
 
 [2]	It is possible to overload a constructor as many times as you want but, 
 	Doing so excessively has a destructing effect on the class. 
