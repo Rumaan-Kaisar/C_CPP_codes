@@ -196,22 +196,34 @@ int main(){
                 Without overloaded myclass() that has no-initializer, 
                     "new" would've generated a compile-time error.
 */  
+#include <iostream>
 
-class myclass{ int x;
-	public :
-myclass() {x=0;}     // no initializer 
-myclass(int n) {x=n;}  // initializer 
-int getx() {return x;}
-};	int main(){	myclass *p;
-	myclass ob(10) ; 	    // initialize single variable 
-	p = new myclass[10];    // can 't use initializers here 
-if(!p){cout << "Allocation error \n"; return 1;}
-int i;
-for(i=0; i <10; i++) p[i]=ob;  // initialize all elements to ob 
-for (i=0; i<10; i++){
-	    cout <<"p["<<i<<"]: "<<p[i].getx()<<'\n';}
-return 0;}
+class myclass{ 
+        int x;
+    public:
+        myclass() {x=0;}    // no initializer 
+        myclass(int n) {x=n;}   // initializer 
+        int getx() {return x;}
+};	
+
+int main(){	
+    myclass *p;
+    myclass ob(10);    // initialize single variable 
+
+    p = new myclass[10];    // can't use initializers here 
+    if(!p){
+        std::cout << "Allocation error \n"; 
+        return 1;
+    }
+    
+    int i;
+    for(i=0; i <10; i++) p[i]=ob;   // initialize all elements to ob 
+    for (i=0; i<10; i++) std::cout <<"p["<<i<<"]: "<<p[i].getx()<<'\n';
+
+    return 0;
+}
 
 
 // ----rev[06-Sep-2024]----
+
 
