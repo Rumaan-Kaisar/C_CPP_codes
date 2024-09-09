@@ -50,6 +50,12 @@
 
         Thus, if the class contains a constructor that takes an initializer, 
             you must include an overloaded version that takes no-initializer.
+
+
+    It is possible to overload a constructor as many times as you want but, 
+        Doing so excessively has a destructing effect on the class. 
+        It's best to overload a constructor only for common scenarios
+
 */
 
 
@@ -130,6 +136,8 @@ int main(){
                     Another passed as three integers. 
 
 
+                ------------  sscanf()  ------------
+
                 The C library function sscanf() from the "stdio.h" header reads formatted input from a string.
 
                 Declaration:
@@ -182,11 +190,13 @@ int main(){
 // ----rev[06-Sep-2024]----
 
 
-/*  
+/* Example 4: Following program allocates an object array dynamically.
+    
+                Since a dynamic array cannot be initialized. 
+                Thus, if the class contains a constructor that takes an initializer, 
+                    you must include an overloaded version that takes no-initializer.
 
-	Initializing dynamically allocated array: Overloading a class's constructor function allows us to initialize dynamically allocated array. We know that a dynamic array cannot be initialized. Thus, if the class contains a constructor that takes an initializer, you must include an overloaded version that takes no-initializer.
-
- For example, here is a program that allocates an object array dynamically:
+ 
 
 
 
@@ -204,14 +214,14 @@ for(i=0; i <10; i++) p[i]=ob;  // initialize all elements to ob
 for (i=0; i<10; i++){
 	    cout <<"p["<<i<<"]: "<<p[i].getx()<<'\n';}
 return 0;}
+
 Without overloaded myclass() that has no-initializer, "new" would've generated a compile-time error.
 
-Note
-[1]	
 
-[2]	It is possible to overload a constructor as many times as you want but, 
-	Doing so excessively has a destructing effect on the class. 
-	It is best to overload a constructor to accommodate only those situations that are likely to occur frequently. 
+
+
+
+
 
 
 
