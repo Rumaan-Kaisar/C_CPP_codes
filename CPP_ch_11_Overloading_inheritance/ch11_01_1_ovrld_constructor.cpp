@@ -187,18 +187,15 @@ int main(){
 
 
 
-// ----rev[06-Sep-2024]----
-
-
 /* Example 4: Following program allocates an object array dynamically.
     
                 Since a dynamic array cannot be initialized. 
                 Thus, if the class contains a constructor that takes an initializer, 
                     you must include an overloaded version that takes no-initializer.
 
- 
-
-
+                Without overloaded myclass() that has no-initializer, 
+                    "new" would've generated a compile-time error.
+*/  
 
 class myclass{ int x;
 	public :
@@ -215,16 +212,6 @@ for (i=0; i<10; i++){
 	    cout <<"p["<<i<<"]: "<<p[i].getx()<<'\n';}
 return 0;}
 
-Without overloaded myclass() that has no-initializer, "new" would've generated a compile-time error.
 
-
-
-
-
-
-
-
-
-*/  
-
+// ----rev[06-Sep-2024]----
 
