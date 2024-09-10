@@ -105,6 +105,9 @@ int main(){
                 For example, the following program with previous example's class (i.e. Example 1), 
                 declares two arrays of type myclass; one is initialized and the other is not. 
 
+                once you have defined both parameterized and parameterless constructors you
+                    can use them to create initialized and non-initialized arrays.
+
                 Here, all elements of o1 are set to 0 by the constructor function. 
                 The elements of o2 are initialized as shown in the program.
 */
