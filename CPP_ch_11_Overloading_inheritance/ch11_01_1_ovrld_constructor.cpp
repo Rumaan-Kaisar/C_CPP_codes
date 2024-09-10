@@ -64,6 +64,14 @@
 /* Example 1: In the following program, o1 is given an initial value, but o2 is not. 
                 Either removing PARAMETERLESS-constructor  or PARAMETERIZED-constructor will cause compile-time error.
                 Because there is no match for an initialized object or non-initialized object.
+
+                Note: 
+                    Constructor overloading also allow both individual objects and arrays of objects to occur within a program. 
+                    We know that it is fairly common to "initialize a single variable", but it is not as common to initialize an array.
+
+                    For example, both of these declarations are valid: 
+                                    myclass ob(10);
+                                    myclass ob[5];
 */
 
 #include <iostream>
