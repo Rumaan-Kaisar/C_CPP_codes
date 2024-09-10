@@ -142,9 +142,14 @@ int main(){
 
 
 /* Example 3: Constructor overloading offers a choice for the most convenient object initialization.
-                Following overloads the date() constructor two ways. 
-                    One as a character string. 
-                    Another passed as three integers. 
+                Following overloads the date() constructor two ways: 
+                            One as a character string. 
+                            Another passed as three integers. 
+
+                    You're free to use the version that best fits the situation. 
+                    For example, 
+                        use the "string version" for user input and 
+                        the "three-integer version" for internal calculations.
 
 
                 ------------  sscanf()  ------------
@@ -186,8 +191,8 @@ date :: date(char *str){
 
 
 int main(){
-    date sdate("12/31/99");     // using string 
-    date idate(12, 31, 99);     // using integers 
+    date sdate("12/31/99");     // construct date object using string 
+    date idate(12, 31, 99);     // construct date object using integers 
 
     sdate.show();
     idate.show();
