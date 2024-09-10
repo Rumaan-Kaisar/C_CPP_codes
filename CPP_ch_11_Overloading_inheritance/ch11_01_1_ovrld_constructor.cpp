@@ -242,4 +242,31 @@ int main(){
 
 // ----rev[10-Sep-2024]----
 
+Example 5: Given this partially defined class
+class strtype
+{
+char *p;
+int len ;
+public :
+char * getstring { return p; }
+
+int getlength () { return len; }
+};
+add two constructor functions. Have the first one take no parameters. Have this one
+allocate 255 bytes of memory (using new), initialize that memory as a null string, and
+give len a value of 255. Have the other constructor take two parameters. The first is
+the string to use for initialization and the other is the number of bytes to allocate. Have
+this version allocate the specified amount of memory and copy the string ti that memory.
+Perform all necessary boundary checks and demonstrate that your constructors work by
+including a short program.
+
+
+Example 6: In Exercise 2 of Chapter 2, Section 2.1, you created a stopwatch emulation. Expand your
+solution so that the stopwatch class provides both a parameterless constructor (as it does
+already) and an overloaded version that accepts the system time in the form returned by
+the standard function clock(). Demonstrate that your improvement works.
+
+
+
+
 
