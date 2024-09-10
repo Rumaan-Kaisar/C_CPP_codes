@@ -44,12 +44,11 @@
             another that accepts three integers.
 
 
-    Initializing dynamically allocated array: 
-        Overloading a class's constructor function allows us to initialize dynamically allocated array. 
-        We know that a dynamic array cannot be initialized. 
-
-        Thus, if the class contains a constructor that takes an initializer, 
-            you must include an overloaded version that takes no-initializer.
+    Provide dynamically allocated array: 
+        You need to overload a class's constructor when creating a dynamic array of that class. 
+        Since dynamic arrays can't be initialized, 
+            if the class has a constructor with an initializer, 
+            you must also provide one without an initializer.
 
 
     It is possible to overload a constructor as many times as you want but, 
@@ -203,11 +202,11 @@ int main(){
 
 
 
-/* Example 4: Following program allocates an object array dynamically.
-    
-                Since a dynamic array cannot be initialized. 
+/* Example 4: Since a dynamic array cannot be initialized. 
                 Thus, if the class contains a constructor that takes an initializer, 
                     you must include an overloaded version that takes no-initializer.
+
+                Following program allocates an object array dynamically.
 
                 Without overloaded myclass() that has no-initializer, 
                     "new" would've generated a compile-time error.
@@ -217,6 +216,7 @@ int main(){
 class myclass{ 
         int x;
     public:
+        // overload constructor two ways
         myclass() {x=0;}    // no initializer 
         myclass(int n) {x=n;}   // initializer 
         int getx() {return x;}
@@ -240,6 +240,6 @@ int main(){
 }
 
 
-// ----rev[06-Sep-2024]----
+// ----rev[10-Sep-2024]----
 
 
