@@ -240,28 +240,36 @@ int main(){
 }
 
 
-// ----rev[10-Sep-2024]----
+
 
 /* Example 5: Given this partially defined class
-class strtype
-{
-char *p;
-int len ;
-public :
-char * getstring { return p; }
 
-int getlength () { return len; }
-};
-add two constructor functions. 
+                    class strtype{
+                            char *p;
+                            int len;
+                        public :
+                            char *getstring { return p; }
+                            int getlength() { return len; }
+                    };
+
+                add two constructor functions. 
 
 
-Have the first one take no parameters. Have this one
-allocate 255 bytes of memory (using new), initialize that memory as a null string, and
-give len a value of 255. Have the other constructor take two parameters. The first is
-the string to use for initialization and the other is the number of bytes to allocate. Have
-this version allocate the specified amount of memory and copy the string ti that memory.
-Perform all necessary boundary checks and demonstrate that your constructors work by
-including a short program. */
+                First constructor take no parameters.
+                    Allocate 255 bytes of memory (using new), 
+                    Initialize that memory as a null string, and
+                    Give 'len' a value of 255.
+
+
+                Other constructor take two parameters: 
+                        i.  the string to use for initialization and the other is the 
+                        ii. number of bytes to allocate.
+                    Allocate the specified amount of memory and copy the string to that memory.
+
+
+                Perform all necessary boundary checks and apply those to a short program.
+*/
+
 
 
 /* Example 6: In Exercise 2 of Chapter 2, Section 2.1, you created a stopwatch emulation. Expand your
