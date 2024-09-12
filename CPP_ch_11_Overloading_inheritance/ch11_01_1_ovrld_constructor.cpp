@@ -327,12 +327,155 @@ return 0;
 }
 
 
-/* Example 6: In Exercise 2 of Chapter 2, Section 2.1, you created a stopwatch emulation. Expand your
-solution so that the stopwatch class provides both a parameterless constructor (as it does
-already) and an overloaded version that accepts the system time in the form returned by
-the standard function clock(). Demonstrate that your improvement works. */
 
 
 
 
+/* Example 6: In "Example 7" of "ch10_01_2_constructor_destructor.cpp", we created a stopwatch emulation. 
+
+                Now we expand our solution so that the stopwatch class provides both:
+                    i.  a parameterless constructor (as it does already) and 
+                    ii. an overloaded version that accepts the "system time" in the form returned by the standard function clock().
+
+
+                Create a class called 'stopwatch' that emulates a stopwatch that keeps track of elapsed time. 
+                
+                Use a CONSTRUCTOR to initially set the elapsed time to 0. 
+                
+                Provide two member functions called start() and stop() that turn on and off the timer, respectively. 
+                Include a member function called show() that displays the elapsed time. 
+                
+                Also, have the DESTRUCTOR function automatically display elapsed time when a stopwatch object is destroyed. 
+                (To simplify, report the time in seconds.) 
+*/
+
+// Stopwatch emulator
+#include <iostream>
+#include <ctime>
+
+
+class stopwatch {
+        double begin, end;
+
+    public:
+        stopwatch();
+        ~stopwatch();
+        void start();
+        void stop();
+        void show();
+};
+
+
+
+
+stopwatch :: stopwatch(){
+    begin = end = 0.0;
+}
+
+
+stopwatch ::~ stopwatch(){
+    std::cout << " Stopwatch object being destroyed ... ";
+    show();
+}
+
+
+void stopwatch::start(){
+    begin = (double)clock() / CLOCKS_PER_SEC;
+}
+
+
+void stopwatch::stop(){
+    end = (double)clock() / CLOCKS_PER_SEC;
+}
+
+
+void stopwatch::show(){
+    std::cout << " Elapsed time : " << end - begin;
+    std::cout << "\n";
+}
+
+
+int main(){
+    stopwatch watch ;
+    long i;
+
+    watch.start();
+    for(i =0; i<320000; i++); // time a for loop
+    watch.stop();
+    watch.show();
+
+    return 0;
+}
+
+/* 
+    // another for loop to test
+        for(i =0; i<3200000000; i++){
+            if(!(i%60000)) {
+                watch.stop();
+                watch.show();
+            }
+        }
+*/
+
+
+
+
+
+2. // Stopwatch emulator
+# include <iostream >
+# include <ctime >
+using namespace std ;
+class stopwatch
+{
+double begin , end ;
+public :
+stopwatch ();
+stopwatch ( clock_t t);
+~ stopwatch ();
+void start ();
+void stop ();
+void show ();
+};
+stopwatch :: stopwatch ()
+{
+begin = end = 0.0;
+}
+stopwatch :: stopwatch ( clock_t t)
+{
+begin = ( double ) t / CLOCKS_PER_SEC ;
+end = 0.0;
+}
+stopwatch ::~ stopwatch ()
+{
+cout << " Stopwatch object being destroyed ... ";
+show ();
+}
+void stopwatch :: start ()
+{
+begin = ( double ) clock () / CLOCKS_PER_SEC ;
+}
+void stopwatch :: stop ()
+{
+end = ( double ) clock () / CLOCKS_PER_SEC ;
+}
+void stopwatch :: show ()
+{
+cout << " Elapsed time : " << end - begin ;
+cout << "\n";
+}
+int main ()
+{
+stopwatch watch ;
+long i;
+watch . start ();
+for (i =0; i <320000; i++); // time a for loop
+watch . stop ();
+watch . show ();
+// create object using initial value
+stopwatch s2( clock ());
+for (i =0; i <250000; i++); // time a for loop
+s2. stop ();
+s2. show ();
+return 0;
+}
 
