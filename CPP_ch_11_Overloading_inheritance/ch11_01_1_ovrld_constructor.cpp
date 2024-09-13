@@ -330,7 +330,7 @@ int main(){
 
 
 
-
+// ----  rev[13-Sep-2024]  ----
 
 /* Example 6: In "Example 7" of "ch10_01_2_constructor_destructor.cpp", we created a stopwatch emulation. 
 
@@ -348,6 +348,19 @@ int main(){
                 
                 Also, have the DESTRUCTOR function automatically display elapsed time when a stopwatch object is destroyed. 
                 (To simplify, report the time in seconds.) 
+
+
+
+--------  clock_t clock(void);  --------
+
+clock() returns the 'number of system clock cycles' that have occurred since the PROGRAM began EXECUTION. 
+    To compute the number of seconds, divide this value by the CLOCKS_PER_SEC macro. 
+
+Recall: CPP_ch_0_useful_lib_func -> C_Ch0_4_Time .c
+
+CLOCKS_PER_SEC is a constant in C/C++ that defines the number of clock ticks per second used by the clock() function. It is used to convert the processor time returned by clock() into seconds. For example, dividing the value returned by clock() by CLOCKS_PER_SEC gives the CPU time in seconds
+
+
 */
 
 // Stopwatch emulator
@@ -359,7 +372,8 @@ class stopwatch {
         double begin, end;
 
     public:
-        stopwatch();
+        stopwatch();      // constructor 1: no parameter
+        stopwatch(clock_t t);     // constructor 2: with parameter
         ~stopwatch();
         void start();
         void stop();
@@ -367,13 +381,18 @@ class stopwatch {
 };
 
 
-
-
+// constructor 1: no parameter
 stopwatch :: stopwatch(){
     begin = end = 0.0;
 }
 
+// constructor 2: with parameter
+stopwatch :: stopwatch( clock_t t){
+begin = ( double ) t / CLOCKS_PER_SEC ;
+end = 0.0;
+}
 
+// Destructor
 stopwatch ::~ stopwatch(){
     std::cout << " Stopwatch object being destroyed ... ";
     show();
@@ -416,41 +435,32 @@ int main(){
                 watch.show();
             }
         }
+
+
 */
 
 
 
 
 
-2. // Stopwatch emulator
-# include <iostream >
-# include <ctime >
-using namespace std ;
-class stopwatch
-{
-double begin , end ;
-public :
-stopwatch ();
-stopwatch ( clock_t t);
-~ stopwatch ();
-void start ();
-void stop ();
-void show ();
-};
+
 stopwatch :: stopwatch ()
 {
 begin = end = 0.0;
 }
+
 stopwatch :: stopwatch ( clock_t t)
 {
 begin = ( double ) t / CLOCKS_PER_SEC ;
 end = 0.0;
 }
+
 stopwatch ::~ stopwatch ()
 {
 cout << " Stopwatch object being destroyed ... ";
 show ();
 }
+
 void stopwatch :: start ()
 {
 begin = ( double ) clock () / CLOCKS_PER_SEC ;
