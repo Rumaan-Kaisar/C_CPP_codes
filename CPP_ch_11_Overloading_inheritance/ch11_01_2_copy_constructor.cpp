@@ -16,45 +16,52 @@ Creating and using a copy constructor
 [c]	when a temporary object is created for use as a return value of a function.
 	The copy constructor only applies to initializations. It does not apply to assignments.
 	Declaring, defining & invoking (activating) copy-constructor: By default, when an initialization occurs, the compiler will automatically provides a default copy constructor that simply duplicates the object. However, it is possible to specify precisely how one object will initialize another by defining a copy constructor. Once defined, the copy constructor is called whenever an object is used to initialize another. The most common form of copy constructor is 
-class_name( const class_name &obj) {	/* body of constructor */ 	}
+
+class_name( const class_name &obj) {	body of constructor 	}
+
+
 Here obj is a reference to an object that is being used to initialize another object. const is an access modifier recall 5.7.
 	To declare & define : For example,  a class called myclass, and that y is an object of type myclass, the declaration is 
-myclass( const myclass &ob ); 	/* const is an access modifier recall 5.7 */
-The definition will be,  myclass :: myclass( const myclass &ob) {  /* body of copy-constructor*/ }
-	To invoke: Three types of statements can invoke the  myclass copy constructor:
-[1]	myclass x = y; 	/* y explicitly initializing x */ 
-[2]	fun1 (y); 		/* y passed as a parameter */ 
-[3]	y = func2 (); 	/* y receiving a returned object */ 
-In the first two cases, a reference to y would be passed to the copy constructor. In the third, a reference to the object returned by func() is passed to the copy constructor.
-	Example: This program creates a " safe " array class . Since space for the array is dynamically allocated , a copy constructor is provided to allocate memory when one array object is used to initialize another .
+myclass( const myclass &ob ); 	// const is an access modifier recall C_Ch7_3_2_acs_modfyr_constVolatile.c
 
-	#include<cstdlib> 			/* for using exit() */
+The definition will be,  myclass :: myclass( const myclass &ob) {   body of copy-constructor    }
+
+	To invoke: Three types of statements can invoke the  myclass copy constructor:
+[1]	myclass x = y; 	// y explicitly initializing x 
+[2]	fun1 (y); 		// y passed as a parameter 
+[3]	y = func2 (); 	// y receiving a returned object 
+In the first two cases, a reference to y would be passed to the copy constructor. In the third, a reference to the object returned by func() is passed to the copy constructor.
+
+	Example: This program creates a " safe " array class. 
+Since space for the array is dynamically allocated , a copy constructor is provided to allocate memory when one array object is used to initialize another.
+
+	#include<cstdlib> 			// for using exit() 
 		class array {	int *p, size ;
-				public: array (int sz); 			/* constructor */
-					array(const array &a); 		/* copy constructor */
-					~ array() { delete [] p; } 	/* destructor */
+				public: array (int sz); 			// constructor 
+					array(const array &a); 		// copy constructor 
+					~ array() { delete [] p; } 	// destructor 
 					void put(int i, int j) { if(i >=0 && i< size ) p[i] = j; }
 					int get(int i) { return p[i]; }	};
 Copy constructor	Normal constructor
 array :: array( const array &a) { int i;
        size = a.size ;
-       p = new int [a.size]; /* allocate memory for copy */ 
+       p = new int [a.size]; // allocate memory for copy *
        if(!p){cout<< " Allocation error "; exit(1);}
-       for(i=0; i<a.size; i++) p[i]=a.p[i]; /*copy*/
+       for(i=0; i<a.size; i++) p[i]=a.p[i]; //copy
        cout << " Using copy constructor \n"; }	array :: array( int sz) {
      p = new int [sz ];
      if(!p){cout<< " Allocation error "; exit(1);}
      size = sz;
      cout << "Using 'normal' constructor \n";      
 	}
-int main(){array num(10);  /* calls "normal" cnstrct */
+int main(){array num(10);  // calls "normal" cnstrct 
 	    int i;
-for(i=0; i<10; i++) num.put(i,i); /* array value */
+for(i=0; i<10; i++) num.put(i,i); // array value 
 for(i=9; i>=0; i--) cout<<num.get(i); // display 
 cout << "\n";		
-	/* create another array and initialize with num */
+	// create another array and initialize with num 
 
-     array x = num; /* this invokes copy constructor */
+     array x = num; // this invokes copy constructor 
     for(i=0; i<10; i++) cout<< x.get(i); // display x 
      return 0; }
 	Here in the copy constructor, memory is allocated specifically for the copy , and the address of this memory is assigned to p. Therefore , p is not pointing to the same dynamically allocated memory as the original object .
@@ -69,3 +76,4 @@ where func_name is the name of the function to be overloaded..
 
 
 */  
+
