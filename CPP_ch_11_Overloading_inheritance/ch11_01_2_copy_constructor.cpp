@@ -1,12 +1,21 @@
 
 /*  ------------------------    copy constructor    ------------------------
+    
+    Problem while PASSING / RETURN objects to a function:
 
-Creating and using a copy constructor
+        Recall 10.10 PASSING objects to functions and RETURNING objects from function: 
+            ch10_10_2_pass_ref_to_obj.cpp
+            ch10_10_3_return_ref.cpp
 
-11.4 COPY CONSTRUCTOR (recall 10.10 PASSING objects to functions and RETURNING objects from function / "ch10_10_2_pass_ref_to_obj.cpp" & "ch10_10_3_return_ref.cpp" )
+
+
+
 	Problem while passing objects to a function: When an object is passed to a function, a bitwise (i.e., exact) copy of that object is made and given to the function parameter that receives the object. However, there are cases in which this identical copy is not desirable. For example, if the object contains a pointer to allocated memory, the copy will point to the same memory as does the original object. Therefore, if the copy makes a change to the contents of this memory, it will be changed for the original object too! Also, copy will be destroyed when the function terminates, the, causing its destructor to be called. This affect the original object.
+
 	Problem while returning object from a function: When an object is returned by a function. The compiler will commonly generate a temporary object that holds copy of the value returned by the function.  This temporary object goes out of scope once the value is returned to the calling routine, causing the temporary object's destructor to be called. If the destructor destroys something needed by the calling routine (for example, if it frees dynamically allocated memory), trouble will follow.
 
+
+Creating and using a copy constructor
 	At the core of these problems is the fact that a bitwise copy of the object is being made.  By defining a copy constructor, you can fully specify exactly what occurs when a copy of an object is made.
 	C++ defines two distinct types of situations in which the value of one object is given to another. 
 [1]	The first situation is assignment. 
