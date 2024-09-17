@@ -8,11 +8,37 @@
             ch10_10_3_return_ref.cpp
 
 
+        Problems When Passing Objects to a Function:
+            When an object is passed to a function, an exact copy (bitwise copy) of that object is created
+                and given to the function parameter that receives the object
+
+            ----  problems  ----
+            If the object contains "pointers" to dynamically allocated memory, 
+                both the "original" and the "copy" will point to the same memory. 
+
+            Any changes made to the copy will also affect the original object.
+
+            Additionally, when the function ends, the copy's destructor is called, 
+                which "affect the original object" if it deallocates shared resources.
 
 
-	Problem while passing objects to a function: When an object is passed to a function, a bitwise (i.e., exact) copy of that object is made and given to the function parameter that receives the object. However, there are cases in which this identical copy is not desirable. For example, if the object contains a pointer to allocated memory, the copy will point to the same memory as does the original object. Therefore, if the copy makes a change to the contents of this memory, it will be changed for the original object too! Also, copy will be destroyed when the function terminates, the, causing its destructor to be called. This affect the original object.
 
-	Problem while returning object from a function: When an object is returned by a function. The compiler will commonly generate a temporary object that holds copy of the value returned by the function.  This temporary object goes out of scope once the value is returned to the calling routine, causing the temporary object's destructor to be called. If the destructor destroys something needed by the calling routine (for example, if it frees dynamically allocated memory), trouble will follow.
+
+
+
+Problem while returning object from a function: 
+When an object is returned by a function. The compiler will commonly generate a temporary object that holds copy of the value returned by the function.  
+This temporary object goes out of scope once the value is returned to the calling routine, causing the temporary object's destructor to be called. If the destructor destroys something needed by the calling routine (for example, if it frees dynamically allocated memory), trouble will follow.
+
+
+
+
+
+
+Problems When Returning Objects from a Function:
+When an object is returned from a function, a temporary object is often created to hold the return value. This temporary object is destroyed when it goes out of scope, causing its destructor to run. If the destructor releases important resources (like dynamically allocated memory), it could cause issues in the calling function that needs those resources.
+
+
 
 
 Creating and using a copy constructor
