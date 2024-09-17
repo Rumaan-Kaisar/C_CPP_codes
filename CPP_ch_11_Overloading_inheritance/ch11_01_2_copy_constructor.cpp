@@ -8,7 +8,8 @@
             ch10_10_3_return_ref.cpp
 
 
-        Problems When Passing Objects to a Function:
+
+        Problems when "Passing Objects" to a function:
             When an object is passed to a function, an exact copy (bitwise copy) of that object is created
                 and given to the function parameter that receives the object
 
@@ -23,22 +24,19 @@
 
 
 
+        Problems when "Returning Objects" from a function:
+            When an object is returned from a function, a "temporary object" is often created to hold the return value. 
+
+            This temporary object goes out of scope once the value is returned to the calling routine, 
+                causing the temporary object's destructor to be called.
+
+            If the destructor destroys important resources (like dynamically allocated memory), 
+                it could "cause issues" in the calling function that needs those resources.
 
 
 
-Problem while returning object from a function: 
-When an object is returned by a function. The compiler will commonly generate a temporary object that holds copy of the value returned by the function.  
-This temporary object goes out of scope once the value is returned to the calling routine, causing the temporary object's destructor to be called. If the destructor destroys something needed by the calling routine (for example, if it frees dynamically allocated memory), trouble will follow.
 
-
-
-
-
-
-Problems When Returning Objects from a Function:
-When an object is returned from a function, a temporary object is often created to hold the return value. This temporary object is destroyed when it goes out of scope, causing its destructor to run. If the destructor releases important resources (like dynamically allocated memory), it could cause issues in the calling function that needs those resources.
-
-
+----  rev[17-Sep-2024]  ----
 
 
 Creating and using a copy constructor
