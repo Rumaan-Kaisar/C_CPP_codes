@@ -36,54 +36,44 @@
 
 
 
+    --------  Creating and using a copy constructor  --------
+    The core of the above issues is that a "bitwise (exact) copy of the object" is being made. 
+    By defining a "copy constructor", you can "control what happens" when an object is copied.
 
-----  rev[17-Sep-2024]  ----
-
-
-
-By defining a copy constructor, you can fully specify exactly what occurs when a copy of an object is made.
-	C++ defines two distinct types of situations in which the value of one object is given to another. 
-
-[1]	The first situation is assignment. 
-[2]	The second situation is initialization which can occur three ways:
-[a]	when an object is used to initialize another object in a declaration statement.
-[b]	when an object is passed as a parameter to a function, and
-[c]	when a temporary object is created for use as a return value of a function.
-	The copy constructor only applies to initializations. It does not apply to assignments.
-	Declaring, defining & invoking (activating) copy-constructor: By default, when an initialization occurs, the compiler will automatically provides a default copy constructor that simply duplicates the object. However, it is possible to specify precisely how one object will initialize another by defining a copy constructor. Once defined, the copy constructor is called whenever an object is used to initialize another. The most common form of copy constructor is 
-
-class_name( const class_name &obj) {	body of constructor 	}
+    Two Types of Object Copying:
+        Assignment: 
+            When one object is "assigned" to another after both have been created.
+        
+        Initialization: This occurs in three cases:
+            When an object is used to "initialize" another in a declaration.
+            When an object is passed to a function as a "parameter".
+            When a temporary object is created as a "return value" from a function.
 
 
-Here obj is a reference to an object that is being used to initialize another object. const is an access modifier recall 5.7.
+    Copy Constructor vs Assignment
+        The copy constructor only applies to initializations, not assignments.
 
 
 
+    --------  Declaring, defining & invoking (activating) copy-constructor  --------
+    By default, when an initialization occurs, C++ provides a copy constructor that simply duplicates the object. 
 
---------  Creating and using a copy constructor  --------
-The core of the above issues is that a "bitwise (exact) copy of the object" is being made. 
-By defining a "copy constructor", you can control what happens when an object is copied.
+    However, you can create a custom copy constructor to specify "how one object initializes another". 
+        A typical copy constructor looks like this:
 
-Two Types of Object Copying:
-Assignment: When one object is assigned to another after both have been created.
-Initialization: This occurs in three cases:
-When an object is used to initialize another in a declaration.
-When an object is passed to a function as a parameter.
-When a temporary object is created as a return value from a function.
-Copy Constructor vs Assignment
-The copy constructor only applies to initializations, not assignments.
-Default and Custom Copy Constructor
-By default, C++ provides a copy constructor that simply duplicates the object. However, you can create a custom copy constructor to specify how one object initializes another. A typical copy constructor looks like this:
+                    class_name(const class_name &obj) {
+                        body of constructor
+                    }
 
-cpp
-Copy code
-class_name(const class_name &obj) {
-   // body of the constructor
-}
-In this, obj is a reference to the object used for initialization, and const ensures that obj cannot be modified.
+        "obj" is a reference to an object that is being used to initialize another object
+        "const" is an access modifier (recall C_Ch7_3_2_acs_modfyr_constVolatile.c)
+            const ensures that obj cannot be modified
 
 
 
+
+
+----  rev[19-Sep-2024]  ----
 
 
 	To declare & define : For example,  a class called myclass, and that y is an object of type myclass, the declaration is 
