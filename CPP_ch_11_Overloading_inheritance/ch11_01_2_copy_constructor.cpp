@@ -76,16 +76,30 @@
 ----  rev[19-Sep-2024]  ----
 
 
-	To declare & define : For example,  a class called myclass, and that y is an object of type myclass, the declaration is 
-myclass( const myclass &ob ); 	// const is an access modifier recall C_Ch7_3_2_acs_modfyr_constVolatile.c
+How to declare & define : 
+    For a class "myclass" with an object 'y' of type 'myclass', the declaration of the copy constructor is:
 
-The definition will be,  myclass :: myclass( const myclass &ob) {   body of copy-constructor    }
+                myclass(const myclass &ob);
+                // const is an access modifier recall C_Ch7_3_2_acs_modfyr_constVolatile.c
 
-	To invoke: Three types of statements can invoke the  myclass copy constructor:
-[1]	myclass x = y; 	// y explicitly initializing x 
-[2]	fun1 (y); 		// y passed as a parameter 
-[3]	y = func2 (); 	// y receiving a returned object 
-In the first two cases, a reference to y would be passed to the copy constructor. In the third, a reference to the object returned by func() is passed to the copy constructor.
+
+        The definition would be:  
+                myclass :: myclass( const myclass &ob) {
+                    body of copy-constructor
+                }
+
+
+        Invoking the Copy Constructor:
+            Three types of statements can invoke the  myclass copy constructor:
+
+            1.     myclass x = y;       // y explicitly initializing x 
+            2.     fun1 (y);            // y passed as a parameter 
+            3.     y = func2 ();        // y receiving a returned object 
+
+            In the first two cases, a "reference to y" would be passed to the copy constructor. 
+            In the third, a "reference to the object" returned by func() is passed to the copy constructor.
+
+
 
 	Example: This program creates a " safe " array class. 
 Since space for the array is dynamically allocated , a copy constructor is provided to allocate memory when one array object is used to initialize another.
