@@ -104,11 +104,8 @@
                 Since space for the array is dynamically allocated , a copy constructor is provided 
                     to allocate memory when one array object is used to initialize another. 
 
-Example: Safe Array Class with Copy Constructor
-This program demonstrates a "safe" array class where memory is dynamically allocated. 
-A copy constructor is provided to ensure that when one array object initializes another, separate memory is allocated for the copy.
-
-
+                That copy constructor ensures that when one array object initializes another, 
+                    separate memory is allocated for the copy.
 */
 
 	#include<cstdlib> 			// for using exit() 
