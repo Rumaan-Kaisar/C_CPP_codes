@@ -139,6 +139,93 @@ cout << "\n";
      return 0; }
 
 
+
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+class array
+{
+int *p;
+int size ;
+public :
+array ( int sz) // constructor
+{
+p = new int [sz ];
+if (!p)
+exit (1) ;
+size = sz;
+cout << " Using ’normal ’ constructor \n";
+} ~
+array () { delete [] p; }
+// copy constructor
+array ( const array &a);
+void put ( int i, int j)
+{
+if(i >=0 && i< size )
+p[i] = j;
+}
+int get ( int i)
+{
+return p[i];
+}
+};
+
+/*
+Copy constructor
+In the following , memory is allocated specifically
+for the copy , and the address of this memory is assigned
+to p. Therefore , p is not pointing to the same
+dynamically allocated memory as the original object .
+*/
+array :: array ( const array &a)
+{
+int i;
+size = a. size ;
+p = new int [a. size ]; // allocate memory for copy
+if (!p)
+exit (1) ;
+for (i =0; i<a. size ; i++)
+p[i] = a.p[i]; // copy contents
+cout << " Using copy constructor \n";
+}
+int main ()
+{
+array num (10) ; // this calls " normal " constructor
+int i;
+// put some values into the array
+for (i =0; i <10; i ++)
+num . put (i, i);
+// display num
+for (i =9; i >=0; i --)
+cout << num . get (i);
+cout << "\n";
+
+// create another array and initialize with num
+array x = num ; // this invokes copy constructor
+// display x
+for (i =0; i <10; i ++)
+cout << x. get (i);
+return 0;
+}
+
+/* 
+When num is used to initialize x, the copy constructor is called, memory for the new
+array is allocated and stored in x.p, and the contents of num are copied to x’s array. In
+this way, x and num have arrays that have the same values, but each array is separate
+and distinct. (That is, num.p and x.p do not point to the same piece of memory.) If the
+copy constructor had not been created, the bitwise initialization array x = num would
+have resulted in x and num sharing the same memory for their arrays! (That is, num.p
+and x.p would have, indeed, pointed to the same location.)
+The copy constructor is called only for initializations. For example, the following sequence
+does not call the copy constructor defined in the preceding program:
+array a (10) ;
+array b (10) ;
+b = a; // does not call copy constructor
+In this case, b = a performs the assignment operation.
+
+ */
+
+
 /* 
 	Here in the copy constructor, memory is allocated specifically for the copy , and the address of this memory is assigned to p. Therefore , p is not pointing to the same dynamically allocated memory as the original object .
 	When copy-constructor is called: When num is used to initialize x (i.e., array x = num; ) the copy constructor is called, memory for the new array is allocated and stored in x.p, and the contents of num are copied to x's array.  In this way, x and num have arrays that have the same values, but each array is separate and distinct. (That is, num.p and x.p do not point to the same piece of memory.) 
@@ -236,4 +323,213 @@ In older C++ compilers, the overload keyword was required to define overloaded f
 
 
 */
+
+
+
+2. To see how the copy constructor helps prevent some of the problems associated with
+passing certain types of objects to functions, consider this (incorrect) program:
+// This program has an error .
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+public :
+strtype ( char *s);
+~ strtype () { delete [] p; }
+char * get () { return p; }
+};
+strtype :: strtype ( char *s)
+{
+int l;
+l = strlen (s) +1;
+p = new char [l];
+
+
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, s);
+}
+void show ( strtype x)
+{
+char *s;
+s = x. get ();
+cout << s << "\n";
+}
+int main ()
+{
+strtype a(" Hello "), b(" There ");
+show (a);
+show (b);
+return 0;
+}
+/* In this program, when a strtype object is passed to show(), a bitwise copy is made (since
+no copy constructor has been defined) and put into parameter x. Thus, when the function
+returns, x goes out of scope and is destroyed. This, of course, causes x’s destructor to
+be called, which frees x.p. However, the memory being freed is the same memory that is
+still being used by the object used to call the function. This results in an error.
+The solution to the preceding problem is to define a copy constructor for the strtype
+class that allocates memory for the copy when the copy is created. This approach is used
+by the following, corrected, program: */
+
+
+/*
+This program uses a copy constructor to allow strtype
+objects
+to be passed to functions .
+*/
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+public :
+strtype ( char *s); // constructor
+strtype ( const strtype &o); // copy constructor
+
+~ strtype () { delete [] p; } // destructor
+char * get () { return p; }
+};
+// " Normal " constructor
+strtype :: strtype ( char *s)
+{
+int l;
+l = strlen (s) +1;
+p = new char [l];
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, s);
+}
+// Copy constructor
+strtype :: strtype ( const strtype &o)
+{
+int l;
+l = strlen (o.p) +1;
+p = new char [l]; // allocate memory for new copy
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, o.p); // copy string into copy
+}
+void show ( strtype x)
+{
+char *s;
+s = x. get ();
+cout << s << "\n";
+}
+int main ()
+{
+strtype a(" Hello "), b(" There ");
+show (a);
+130FUNCTION OVERLOADING
+5.2. CREATING AND USING A COPY CONSTRUCTOR
+show (b);
+return 0;
+}
+Now when show() terminates and x goes out of scope, the memory pointed to by x.p
+(which will be freed) is not the same as the memory still in use by the object passed to
+the function
+
+
+
+// EXERCISES
+1. The copy constructor is also invoked when a function generates the temporary object that
+is used as the function’s return value (for those functions that return objects). With this
+in mind, consider the following output:
+Constructing normally
+Constructing normally
+Constructing copy
+This output was created by the following program. Explain why, and describe precisely
+what is occurring.
+# include <iostream >
+using namespace std ;
+class myclass
+{
+public :
+myclass ();
+myclass ( const myclass &o);
+myclass f();
+};
+// Normal constructor
+myclass :: myclass ()
+{
+cout << " Constructing normally \n";
+}
+// Copy constructor
+myclass :: myclass ( const myclass &o)
+{
+cout << " Constructing copy \n";
+}
+// Return an object .
+myclass myclass ::f()
+{
+myclass temp ;
+return temp ;
+}
+131TEACH YOURSELF
+C++
+int main ()
+{
+myclass obj ;
+obj = obj .f();
+return 0;
+}
+
+
+
+2. Explain what is wrong with the following program and then fix it.
+// This program contains an error .
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+class myclass
+{
+int *p;
+public :
+myclass ( int i);
+~ myclass () { delete p; }
+friend int getval ( myclass o);
+};
+myclass :: myclass ( int i)
+{
+p = new int ;
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+} *
+p = i;
+}
+int getval ( myclass o)
+{
+return *o.p; // get value
+}
+int main ()
+{
+myclass a (1) , b (2) ;
+cout << getval (a) << " " << getval (b);
+cout << "\n";
+cout << getval (a) << " " << getval (b);
+return 0;
+}
+132FUNCTION OVERLOADING
+5.3. THE OVERLOAD ANACHRONISM
+
+
+
+3. In your own words, explain the purpose of a copy constructor and how it differs from a
+normal constructor.
+
 
