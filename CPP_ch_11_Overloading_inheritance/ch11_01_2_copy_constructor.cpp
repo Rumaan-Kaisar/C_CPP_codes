@@ -101,7 +101,8 @@
 // --------    rev[20-Sep-2024]    --------
 
 /*  Example 1: This program creates a " safe " array class. 
-Since space for the array is dynamically allocated , a copy constructor is provided to allocate memory when one array object is used to initialize another. 
+                Since space for the array is dynamically allocated , a copy constructor is provided 
+                    to allocate memory when one array object is used to initialize another. 
 
 Example: Safe Array Class with Copy Constructor
 This program demonstrates a "safe" array class where memory is dynamically allocated. 
