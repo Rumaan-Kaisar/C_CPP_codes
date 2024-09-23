@@ -108,20 +108,38 @@
                     separate memory is allocated for the copy.
 */
 
-	#include<cstdlib> 			// for using exit() 
-		class array {	int *p, size ;
-				public: array (int sz); 			// constructor 
-					array(const array &a); 		// copy constructor 
-					~ array() { delete [] p; } 	// destructor 
-					void put(int i, int j) { if(i >=0 && i< size ) p[i] = j; }
-					int get(int i) { return p[i]; }	};
-Copy constructor	Normal constructor
-array :: array( const array &a) { int i;
-       size = a.size ;
-       p = new int [a.size]; // allocate memory for copy *
-       if(!p){cout<< " Allocation error "; exit(1);}
-       for(i=0; i<a.size; i++) p[i]=a.p[i]; //copy
-       cout << " Using copy constructor \n"; }	array :: array( int sz) {
+#include<cstdlib> 			// to use exit() 
+#include <cstdlib>
+
+
+class array {	
+        int *p, size ;
+    public: 
+        array (int sz);             // constructor 
+        array(const array &a);      // copy constructor 
+        ~array() { delete [] p; }   // destructor 
+        void put(int i, int j) { if(i>=0 && i<size) p[i] = j; }
+        int get(int i) { return p[i]; }	
+};
+
+
+// ----  Copy constructor  ----
+array :: array( const array &a) { 
+    int i;
+
+    size = a.size ;
+    p = new int [a.size]; // allocate memory for copy
+    if(!p){
+        std::cout<< " Allocation error "; 
+        exit(1);
+    }
+
+    for(i=0; i<a.size; i++) p[i]=a.p[i]; //copy
+    std::cout << " Using copy constructor \n"; 
+}	
+       
+// ----  constructor  ----
+       array :: array( int sz) {
      p = new int [sz ];
      if(!p){cout<< " Allocation error "; exit(1);}
      size = sz;
@@ -141,8 +159,9 @@ cout << "\n";
 
 
 # include <iostream >
-# include <cstdlib >
-using namespace std ;
+
+using namespace std;
+
 class array
 {
 int *p;
