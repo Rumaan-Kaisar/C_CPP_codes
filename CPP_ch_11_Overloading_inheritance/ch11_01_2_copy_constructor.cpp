@@ -98,7 +98,7 @@
 
 
 
-// --------    rev[20-Sep-2024]    --------
+// --------    rev[23-Sep-2024]    --------
 
 /*  Example 1: This program creates a " safe " array class. 
                 Since space for the array is dynamically allocated , a copy constructor is provided 
@@ -107,13 +107,12 @@
                 That copy constructor ensures that when one array object initializes another, 
                     separate memory is allocated for the copy.
 */
-
-#include<cstdlib> 			// to use exit() 
-#include <cstdlib>
+#include <iostream>
+#include <cstdlib> 			// to use exit() 
 
 
 class array {	
-        int *p, size ;
+        int *p, size;
     public: 
         array (int sz);             // constructor 
         array(const array &a);      // copy constructor 
@@ -123,8 +122,22 @@ class array {
 };
 
 
+// ----  constructor  ----
+array(int sz) {
+    p = new int [sz];
+    if(!p){
+        std::cout<< " Allocation error "; 
+        exit(1);
+    }
+    size = sz;
+    std::cout << "Using 'normal' constructor \n";      
+}
+
+
 // ----  Copy constructor  ----
-array :: array( const array &a) { 
+// In the following, memory is allocated specifically for the copy, and the address of this memory is assigned to p. 
+// Therefore, p is not pointing to the same dynamically allocated memory as the original object.
+array :: array(const array &a) { 
     int i;
 
     size = a.size ;
@@ -134,98 +147,37 @@ array :: array( const array &a) {
         exit(1);
     }
 
-    for(i=0; i<a.size; i++) p[i]=a.p[i]; //copy
+    for(i=0; i < a.size; i++) p[i]=a.p[i]; // copy contents
     std::cout << " Using copy constructor \n"; 
-}	
-       
-// ----  constructor  ----
-       array :: array( int sz) {
-     p = new int [sz ];
-     if(!p){cout<< " Allocation error "; exit(1);}
-     size = sz;
-     cout << "Using 'normal' constructor \n";      
-	}
-int main(){array num(10);  // calls "normal" cnstrct 
-	    int i;
-for(i=0; i<10; i++) num.put(i,i); // array value 
-for(i=9; i>=0; i--) cout<<num.get(i); // display 
-cout << "\n";		
-	// create another array and initialize with num 
-
-     array x = num; // this invokes copy constructor 
-    for(i=0; i<10; i++) cout<< x.get(i); // display x 
-     return 0; }
-
-
-
-# include <iostream >
-
-using namespace std;
-
-class array
-{
-int *p;
-int size ;
-public :
-array ( int sz) // constructor
-{
-p = new int [sz ];
-if (!p)
-exit (1) ;
-size = sz;
-cout << " Using ’normal ’ constructor \n";
-} ~
-array () { delete [] p; }
-// copy constructor
-array ( const array &a);
-void put ( int i, int j)
-{
-if(i >=0 && i< size )
-p[i] = j;
 }
-int get ( int i)
-{
-return p[i];
-}
-};
 
-/*
-Copy constructor
-In the following , memory is allocated specifically
-for the copy , and the address of this memory is assigned
-to p. Therefore , p is not pointing to the same
-dynamically allocated memory as the original object .
-*/
-array :: array ( const array &a)
-{
-int i;
-size = a. size ;
-p = new int [a. size ]; // allocate memory for copy
-if (!p)
-exit (1) ;
-for (i =0; i<a. size ; i++)
-p[i] = a.p[i]; // copy contents
-cout << " Using copy constructor \n";
-}
-int main ()
-{
-array num (10) ; // this calls " normal " constructor
-int i;
-// put some values into the array
-for (i =0; i <10; i ++)
-num . put (i, i);
-// display num
-for (i =9; i >=0; i --)
-cout << num . get (i);
-cout << "\n";
 
-// create another array and initialize with num
-array x = num ; // this invokes copy constructor
-// display x
-for (i =0; i <10; i ++)
-cout << x. get (i);
-return 0;
+
+int main(){
+    array num(10);  // calls "normal" constructor 
+    int i;
+
+    // put some values into the array
+    for(i=0; i<10; i++) num.put(i, i); // array value 
+    for(i=9; i>=0; i--) cout<<num.get(i); // display num
+    std::cout << "\n";
+
+    // create another array and initialize with num 
+    array x = num;  // this invokes copy constructor 
+    for(i=0; i<10; i++) std::cout<< x.get(i); // display x 
+    
+    return 0; 
 }
+
+
+
+
+
+
+
+
+
+
 
 /* 
 When num is used to initialize x, the copy constructor is called, memory for the new
