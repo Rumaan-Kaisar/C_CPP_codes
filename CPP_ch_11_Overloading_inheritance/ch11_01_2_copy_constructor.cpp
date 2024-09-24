@@ -98,7 +98,6 @@
 
 
 
-// --------    rev[23-Sep-2024]    --------
 
 /*  Example 1: This program creates a " safe " array class. 
                 Since space for the array is dynamically allocated , a copy constructor is provided 
@@ -123,7 +122,7 @@ class array {
 
 
 // ----  constructor  ----
-array(int sz) {
+array :: array(int sz) {
     p = new int [sz];
     if(!p){
         std::cout<< " Allocation error "; 
@@ -159,7 +158,7 @@ int main(){
 
     // put some values into the array
     for(i=0; i<10; i++) num.put(i, i); // array value 
-    for(i=9; i>=0; i--) cout<<num.get(i); // display num
+    for(i=9; i>=0; i--) std::cout<<num.get(i); // display num
     std::cout << "\n";
 
     // create another array and initialize with num 
@@ -170,34 +169,34 @@ int main(){
 }
 
 
+/*  When "num" is used to initialize "x", the Copy Constructor is called. 
+    It allocates new memory for "x.p" and copies the contents from "num" into "x", i.e. x's array. 
+
+    This ensures that "x" and "num" have identical but separate arrays 
+        (i.e., num.p and x.p point to different memory locations).
 
 
+    If no copy constructor existed, the bitwise initialization "array x = num;" would have 
+        resulted in both arrays sharing the same memory, causing both to reference the same data.
+        (i.e. num.p and x.p would have pointed to the same location.)
 
+    The copy constructor is called only used for "initialization", not for assignment.
+        For example, the following sequence "does not call the copy constructor" defined in the preceding program:
 
+                array a(10);
+                array b(10);
+                b = a;  // This performs an assignment, not a copy constructor call.
 
+*/
 
 
 
 
 /* 
-When num is used to initialize x, the copy constructor is called, memory for the new
-array is allocated and stored in x.p, and the contents of num are copied to x’s array. In
-this way, x and num have arrays that have the same values, but each array is separate
-and distinct. (That is, num.p and x.p do not point to the same piece of memory.) If the
-copy constructor had not been created, the bitwise initialization array x = num would
-have resulted in x and num sharing the same memory for their arrays! (That is, num.p
-and x.p would have, indeed, pointed to the same location.)
-The copy constructor is called only for initializations. For example, the following sequence
-does not call the copy constructor defined in the preceding program:
-array a (10) ;
-array b (10) ;
-b = a; // does not call copy constructor
-In this case, b = a performs the assignment operation.
-
- */
 
 
-/* 
+// --------    rev[23-Sep-2024]    --------
+
 	Here in the copy constructor, memory is allocated specifically for the copy , and the address of this memory is assigned to p. Therefore , p is not pointing to the same dynamically allocated memory as the original object .
 	When copy-constructor is called: When num is used to initialize x (i.e., array x = num; ) the copy constructor is called, memory for the new array is allocated and stored in x.p, and the contents of num are copied to x's array.  In this way, x and num have arrays that have the same values, but each array is separate and distinct. (That is, num.p and x.p do not point to the same piece of memory.) 
 	If the copy constructor had not been created, the bitwise initialization array x = num; would have resulted in x and num sharing the same memory for their arrays! (That is, num.p and x.p would have pointed to the same location.)
