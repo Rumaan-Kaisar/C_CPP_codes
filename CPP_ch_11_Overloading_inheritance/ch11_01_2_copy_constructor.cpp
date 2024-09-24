@@ -94,6 +94,26 @@
                 In the first two cases, a "reference to y" would be passed to the copy constructor. 
                 In the third, a "reference to the object" returned by func() is passed to the copy constructor.
 
+
+    When copy-constructor is not called: 
+        The copy constructor is called only for initializations. 
+        Copy constructors do not affect assignment operations. 
+        
+        For example, the following sequence does not call the copy constructor defined in next program: 
+                array a(10);
+                array b(10);
+                b = a;       
+
+        Here b = a performs the assignment operation. Rather calling copy-constructor.
+
+    Note: 
+        The "overload" keyword used in old C++ compilers is now obsolete and no longer required for overloading functions.
+
+        The general form:
+                    overload func_name;
+            It must precede the overloaded function declarations
+            where func_name is the name of the function to be overloaded..  
+
 */  
 
 
@@ -105,6 +125,10 @@
 
                 That copy constructor ensures that when one array object initializes another, 
                     separate memory is allocated for the copy.
+
+                Here in the copy constructor, "memory" is allocated specifically for the "copy", 
+                    and the address of this memory is assigned to p. 
+                    Therefore , p is not pointing to the same dynamically allocated memory as the original object.
 */
 #include <iostream>
 #include <cstdlib> 			// to use exit() 
@@ -192,22 +216,8 @@ int main(){
 
 
 
-/* 
 
-
-// --------    rev[23-Sep-2024]    --------
-
-	Here in the copy constructor, memory is allocated specifically for the copy , and the address of this memory is assigned to p. Therefore , p is not pointing to the same dynamically allocated memory as the original object .
-	When copy-constructor is called: When num is used to initialize x (i.e., array x = num; ) the copy constructor is called, memory for the new array is allocated and stored in x.p, and the contents of num are copied to x's array.  In this way, x and num have arrays that have the same values, but each array is separate and distinct. (That is, num.p and x.p do not point to the same piece of memory.) 
-	If the copy constructor had not been created, the bitwise initialization array x = num; would have resulted in x and num sharing the same memory for their arrays! (That is, num.p and x.p would have pointed to the same location.)
-	When copy-constructor is not called: The copy constructor is called only for initializations. Copy constructors do not affect assignment operations. For example, the following sequence does not call the copy constructor defined in this program: 
-array a(10) ; array b(10) ; b = a;       ( b = a performs the assignment operation. Rather calling copy-constructor) 
-Note: Old Overload keyword : For old C++ compiler the keyword overload was required to create an overloaded function. It is now 
-obsolete and no longer supported by modern C++ compilers. The general form:
-overload func_name ; 	(It must precede the overloaded function declarations)
-where func_name is the name of the function to be overloaded..  
-*/
-
+// --------    rev[24-Sep-2024]    --------
 
 #include <cstdlib> // for exit()
 
