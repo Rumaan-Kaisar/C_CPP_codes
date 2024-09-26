@@ -107,7 +107,8 @@
         Here b = a performs the assignment operation. Rather calling copy-constructor.
 
     Note: 
-        The "overload" keyword used in old C++ compilers is now obsolete and no longer required for overloading functions.
+        The "overload" keyword used in old C++ compilers to define overloaded functions.
+        But it is now obsolete and no longer required for overloading functions.
 
         The general form:
                     overload func_name;
@@ -137,7 +138,7 @@
 class array {	
         int *p, size;
     public: 
-        array (int sz);             // constructor 
+        array (int sz);             // normal constructor 
         array(const array &a);      // copy constructor 
         ~array() { delete [] p; }   // destructor 
         void put(int i, int j) { if(i>=0 && i<size) p[i] = j; }
@@ -145,7 +146,7 @@ class array {
 };
 
 
-// ----  constructor  ----
+// ----  Normal constructor  ----
 array :: array(int sz) {
     p = new int [sz];
     if(!p){
@@ -162,8 +163,8 @@ array :: array(int sz) {
 // Therefore, p is not pointing to the same dynamically allocated memory as the original object.
 array :: array(const array &a) { 
     int i;
+    size = a.size;
 
-    size = a.size ;
     p = new int [a.size]; // allocate memory for copy
     if(!p){
         std::cout<< " Allocation error "; 
@@ -182,7 +183,7 @@ int main(){
 
     // put some values into the array
     for(i=0; i<10; i++) num.put(i, i); // array value 
-    for(i=9; i>=0; i--) std::cout<<num.get(i); // display num
+    for(i=9; i>=0; i--) std::cout<<num.get(i); // display num array
     std::cout << "\n";
 
     // create another array and initialize with num 
@@ -204,7 +205,9 @@ int main(){
         resulted in both arrays sharing the same memory, causing both to reference the same data.
         (i.e. num.p and x.p would have pointed to the same location.)
 
-    The copy constructor is called only used for "initialization", not for assignment.
+    --------  initialization vs assignment  --------
+    The copy constructor is called only used for "initialization" (such as "array x = num;"),
+    Copy constructor not invoked during assignment.
         For example, the following sequence "does not call the copy constructor" defined in the preceding program:
 
                 array a(10);
@@ -218,93 +221,6 @@ int main(){
 
 
 // --------    rev[24-Sep-2024]    --------
-
-#include <cstdlib> // for exit()
-
-class array {
-    int *p, size;
-public:
-    array(int sz);               // normal constructor
-    array(const array &a);       // copy constructor
-    ~array() { delete[] p; }     // destructor
-    
-    void put(int i, int j) { 
-        if (i >= 0 && i < size) 
-            p[i] = j; 
-    }
-    
-    int get(int i) { return p[i]; }
-};
-
-// Copy constructor
-array::array(const array &a) {
-    size = a.size;
-    p = new int[a.size]; // allocate memory for the copy
-    if (!p) { 
-        std::cout << "Allocation error"; 
-        exit(1); 
-    }
-    
-    for (int i = 0; i < a.size; i++) 
-        p[i] = a.p[i]; // copy contents
-    std::cout << "Using copy constructor\n";
-}
-
-// Normal constructor
-array::array(int sz) {
-    p = new int[sz];
-    if (!p) { 
-        std::cout << "Allocation error"; 
-        exit(1); 
-    }
-    
-    size = sz;
-    std::cout << "Using 'normal' constructor\n";
-}
-
-int main() {
-    array num(10); // calls normal constructor
-    for (int i = 0; i < 10; i++) 
-        num.put(i, i); // populate array values
-    
-    for (int i = 9; i >= 0; i--) 
-        std::cout << num.get(i) << " "; // display array
-    
-    std::cout << "\n";
-    
-    // Create another array and initialize with num
-    array x = num; // calls copy constructor
-    for (int i = 0; i < 10; i++) 
-        std::cout << x.get(i) << " "; // display x
-    
-    return 0;
-}
-
-
-/* 
-
-Key Points:
-Memory Allocation in Copy Constructor:
-The copy constructor allocates separate memory for the new object and copies the contents from the original object. This prevents the two objects from sharing the same memory.
-
-When Copy Constructor is Called:
-The copy constructor is invoked when an object is used to initialize another, such as array x = num;. This ensures that num and x have separate arrays with identical values.
-
-If No Copy Constructor:
-Without the copy constructor, x = num; would result in both x and num pointing to the same memory location, leading to unintended modifications.
-
-Copy Constructor vs. Assignment:
-The copy constructor only applies during initialization, not during assignment. For example, b = a; performs an assignment and does not invoke the copy constructor.
-
-
-Note:
-Old Overload Keyword:
-In older C++ compilers, the overload keyword was required to define overloaded functions. This is now obsolete and no longer supported by modern compilers.
-
-
-*/
-
-
 
 2. To see how the copy constructor helps prevent some of the problems associated with
 passing certain types of objects to functions, consider this (incorrect) program:
