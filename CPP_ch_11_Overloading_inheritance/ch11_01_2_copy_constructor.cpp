@@ -220,59 +220,79 @@ int main(){
 
 
 
-// --------    rev[26-Sep-2024]    --------
+
 
 /* Example 2. To see how the copy constructor helps prevent some of the problems associated with
-                passing certain types of objects to functions, consider following (incorrect) program. */
+                passing certain types of objects to functions, consider following (incorrect) program. 
 
 
-// --------GPT clarification:--------
-Problem Explanation:
-Original (Incorrect) Program: In the original program, when a strtype object is passed to the function show(), a bitwise copy of the object is made because no copy constructor is defined. This causes the following issues:
+                --------    Problem Explanation    --------
+                when a 'strtype' object is passed to the function show(), 
+                    a bitwise copy of the object is made because no copy constructor is defined. 
 
-The function parameter x receives a bitwise copy of the original object.
-When show() ends, x goes out of scope, and its destructor is called.
-Since x and the original object share the same dynamically allocated memory (because of the bitwise copy), the destructor frees this memory, but the original object still tries to use that memory.
-This results in undefined behavior and a potential runtime error.
-Example of the Problem:
-cpp
-Copy code
+                This causes the following issues:
+
+                    show()'s parameter x receives a "bitwise copy" of the original object.
+                    When show() ends, x goes out of scope, and its "destructor" is called.
+
+                    Since x and the original object share the same dynamically allocated memory (because of the bitwise copy), 
+                        the destructor frees this memory, but the original object still tries to use that memory.
+
+                    This results in undefined behavior and a potential runtime error.
+*/
+
+// This program has an error .
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-using namespace std;
 
-class strtype {
-    char *p;
-public:
-    strtype(char *s);  // Constructor
-    ~strtype() { delete[] p; }  // Destructor
-    char* get() { return p; }  // Getter function
+class strtype{
+        char *p;
+    public:
+        strtype(char *s);   // Constructor
+        ~strtype() { delete [] p; } // Destructor
+        char *get() { return p; }   // Getter function
 };
 
-// Constructor implementation
-strtype::strtype(char *s) {
-    int l = strlen(s) + 1;
-    p = new char[l];  // Allocating memory
-    if (!p) {
-        cout << "Allocation error\n";
+
+// constructor
+strtype :: strtype(char *s){
+    int l;
+
+    l = strlen (s) +1;
+    p = new char [l];   // Allocating memory
+    if(!p){
+        std::cout << " Allocation error \n";
         exit(1);
     }
-    strcpy(p, s);  // Copying string
+    strcpy(p, s);   // Copying string
 }
 
-// Function that takes a `strtype` object as an argument
-void show(strtype x) {
-    char* s = x.get();
-    cout << s << "\n";
+
+// Function that takes a 'strtype' object as an argument
+void show(strtype x){
+    char *s;
+    s = x. get ();
+    std::cout << s << "\n";
 }
 
-int main() {
-    strtype a("Hello"), b("There");
-    show(a);  // Calls show(), passing `a` by value
-    show(b);  // Calls show(), passing `b` by value
+
+int main(){
+    1strtype a(" Hello "), b(" There ");
+
+    show(a);
+    show(b);
+    
     return 0;
 }
+
+
+
+
+
+
+// --------    rev[26-Sep-2024]    --------
+
 Key Problem:
 When the function show() is called, a bitwise copy of the object (like a) is made. After show() completes, the destructor for the copied object x frees the memory, which was also used by the original object (since they share the same memory). This causes a runtime issue.
 Corrected Program Using a Copy Constructor:
@@ -352,47 +372,7 @@ This ensures safe and correct behavior when working with dynamic memory in class
 
 
 
-// This program has an error .
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
 
-using namespace std ;
-class strtype
-{
-char *p;
-public :
-strtype ( char *s);
-~ strtype () { delete [] p; }
-char * get () { return p; }
-};
-strtype :: strtype ( char *s)
-{
-int l;
-l = strlen (s) +1;
-p = new char [l];
-
-
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, s);
-}
-void show ( strtype x)
-{
-char *s;
-s = x. get ();
-cout << s << "\n";
-}
-int main ()
-{
-strtype a(" Hello "), b(" There ");
-show (a);
-show (b);
-return 0;
-}
 /* In this program, when a strtype object is passed to show(), a bitwise copy is made (since
 no copy constructor has been defined) and put into parameter x. Thus, when the function
 returns, x goes out of scope and is destroyed. This, of course, causes x’s destructor to
