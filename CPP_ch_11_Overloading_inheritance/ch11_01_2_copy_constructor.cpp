@@ -120,7 +120,7 @@
 
 
 
-/*  Example 1: This program creates a " safe " array class. 
+/*  Example 1: This program creates a "safe" array class. 
                 Since space for the array is dynamically allocated , a copy constructor is provided 
                     to allocate memory when one array object is used to initialize another. 
 
@@ -219,9 +219,6 @@ int main(){
 
 
 
-
-
-
 /* Example 2. To see how the copy constructor helps prevent some of the problems associated with
                 passing certain types of objects to functions, consider following (incorrect) program. 
 
@@ -278,7 +275,7 @@ void show(strtype x){
 
 
 int main(){
-    1strtype a(" Hello "), b(" There ");
+    strtype a(" Hello "), b(" There ");
 
     show(a);
     show(b);
