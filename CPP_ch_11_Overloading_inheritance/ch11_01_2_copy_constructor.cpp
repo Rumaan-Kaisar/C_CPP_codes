@@ -269,7 +269,7 @@ strtype :: strtype(char *s){
 // Function that takes a 'strtype' object as an argument
 void show(strtype x){
     char *s;
-    s = x. get ();
+    s = x.get();
     std::cout << s << "\n";
 }
 
@@ -286,11 +286,6 @@ int main(){
 
 
 
-
-
-
-
-
 /*  The solution to the preceding problem is to define a copy constructor for the strtype class 
                 that allocates memory for the "copy" when the copy is created.
 
@@ -298,123 +293,74 @@ int main(){
                 This ensures that the copied object has its own memory, separate from the original object.
 */
 
-
 // Corrected version: This program uses a copy constructor to allow strtype objects to be passed to functions
 
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-public :
-strtype ( char *s); // constructor
-strtype ( const strtype &o); // copy constructor
-
-~ strtype () { delete [] p; } // destructor
-char * get () { return p; }
-};
-// " Normal " constructor
-strtype :: strtype ( char *s)
-{
-int l;
-l = strlen (s) +1;
-p = new char [l];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, s);
-}
-// Copy constructor
-strtype :: strtype ( const strtype &o)
-{
-int l;
-l = strlen (o.p) +1;
-p = new char [l]; // allocate memory for new copy
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, o.p); // copy string into copy
-}
-void show ( strtype x)
-{
-char *s;
-s = x. get ();
-cout << s << "\n";
-}
-int main ()
-{
-strtype a(" Hello "), b(" There ");
-show (a);
-130FUNCTION OVERLOADING
-5.2. CREATING AND USING A COPY CONSTRUCTOR
-show (b);
-return 0;
-}
-Now when show() terminates and x goes out of scope, the memory pointed to by x.p
-(which will be freed) is not the same as the memory still in use by the object passed to
-the function
-
-
-
-
-
-
-cpp
-Copy code
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-using namespace std;
 
-class strtype {
-    char *p;
-public:
-    strtype(char *s);  // Normal constructor
-    strtype(const strtype &o);  // Copy constructor
-    ~strtype() { delete[] p; }  // Destructor
-    char* get() { return p; }  // Getter function
+
+class strtype{
+        char *p;
+    public:
+        strtype(char *s);   // Constructor
+        strtype(const strtype &o); // copy constructor
+        ~strtype() { delete [] p; } // Destructor
+        char *get() { return p; }   // Getter function
 };
 
-// Normal constructor implementation
-strtype::strtype(char *s) {
-    int l = strlen(s) + 1;
-    p = new char[l];  // Allocate memory
-    if (!p) {
-        cout << "Allocation error\n";
+
+// "Normal" constructor
+strtype :: strtype(char *s){
+    int l;
+
+    l = strlen (s) +1;
+    p = new char [l];   // Allocating memory
+    if(!p){
+        std::cout << " Allocation error \n";
         exit(1);
     }
-    strcpy(p, s);  // Copy string
+    strcpy(p, s);   // Copying string
 }
 
-// Copy constructor implementation
-strtype::strtype(const strtype &o) {
-    int l = strlen(o.p) + 1;
-    p = new char[l];  // Allocate memory for the new copy
-    if (!p) {
-        cout << "Allocation error\n";
+
+// Copy constructor
+strtype :: strtype(const strtype &o){
+    int l;
+
+    l = strlen(o.p) + 1;
+    p = new char [l];   // allocate memory for new copy
+    if(!p){
+        std::cout << " Allocation error \n";
         exit(1);
     }
-    strcpy(p, o.p);  // Copy the string into the new memory
+    strcpy(p, o.p);     // copy string into copy
 }
 
-// Function that takes a `strtype` object as an argument
-void show(strtype x) {
-    char* s = x.get();
-    cout << s << "\n";
+
+// Function that takes a 'strtype' object as an argument
+void show(strtype x){
+    char *s;
+    s = x.get();
+    std::cout << s << "\n";
 }
 
-int main() {
-    strtype a("Hello"), b("There");
-    show(a);  // Copy constructor is called
-    show(b);  // Copy constructor is called
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    show(a);
+    show(b);
+    
     return 0;
 }
+
+
+// --------    rev[30-Sep-2024]    --------
+
+/* Now when show() terminates and x goes out of scope, the memory pointed to by x.p
+(which will be freed) is not the same as the memory still in use by the object passed to
+the function */
 
 
 Key Improvements:
@@ -446,7 +392,7 @@ This ensures safe and correct behavior when working with dynamic memory in class
 
 
 
-// --------    rev[26-Sep-2024]    --------
+
 
 
 
