@@ -230,7 +230,7 @@ int main(){
                 This causes the following issues:
 
                     show()'s parameter x receives a "bitwise copy" of the original object.
-                    When show() ends, x goes out of scope, and its "destructor" is called.
+                    When show() ends, x goes out of scope, and its "destructor" is called (freeing x.p).
 
                     Since x and the original object share the same dynamically allocated memory (because of the bitwise copy), 
                         the destructor frees this memory, but the original object still tries to use that memory.
@@ -238,7 +238,7 @@ int main(){
                     This results in undefined behavior and a potential runtime error.
 */
 
-// This program has an error .
+// This program has an error: "Double Memory Relese"
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
@@ -288,103 +288,19 @@ int main(){
 
 
 
-// --------    rev[26-Sep-2024]    --------
-
-Key Problem:
-When the function show() is called, a bitwise copy of the object (like a) is made. After show() completes, the destructor for the copied object x frees the memory, which was also used by the original object (since they share the same memory). This causes a runtime issue.
-Corrected Program Using a Copy Constructor:
-To solve the problem, we define a copy constructor that handles the creation of a separate memory allocation for the copied object. This ensures that the copied object has its own memory, separate from the original object.
-
-Corrected Example:
-cpp
-Copy code
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
-using namespace std;
-
-class strtype {
-    char *p;
-public:
-    strtype(char *s);  // Normal constructor
-    strtype(const strtype &o);  // Copy constructor
-    ~strtype() { delete[] p; }  // Destructor
-    char* get() { return p; }  // Getter function
-};
-
-// Normal constructor implementation
-strtype::strtype(char *s) {
-    int l = strlen(s) + 1;
-    p = new char[l];  // Allocate memory
-    if (!p) {
-        cout << "Allocation error\n";
-        exit(1);
-    }
-    strcpy(p, s);  // Copy string
-}
-
-// Copy constructor implementation
-strtype::strtype(const strtype &o) {
-    int l = strlen(o.p) + 1;
-    p = new char[l];  // Allocate memory for the new copy
-    if (!p) {
-        cout << "Allocation error\n";
-        exit(1);
-    }
-    strcpy(p, o.p);  // Copy the string into the new memory
-}
-
-// Function that takes a `strtype` object as an argument
-void show(strtype x) {
-    char* s = x.get();
-    cout << s << "\n";
-}
-
-int main() {
-    strtype a("Hello"), b("There");
-    show(a);  // Copy constructor is called
-    show(b);  // Copy constructor is called
-    return 0;
-}
-Key Improvements:
-Copy Constructor:
-The copy constructor strtype(const strtype &o) creates a separate memory space for the copy, ensuring that p for the new object does not point to the same memory as the original object.
-Safe Memory Handling:
-When the function show() ends and the object x is destroyed, the memory allocated for x.p is released, but the original object still retains its own separate memory, preventing the shared-memory issue.
-Conceptual Summary:
-Without a Copy Constructor:
-
-A bitwise copy is made, causing multiple objects to share the same dynamically allocated memory. This leads to issues when one of them is destroyed and frees the memory, as the other object will still try to use the freed memory.
-With a Copy Constructor:
-
-The copy constructor ensures that a separate memory allocation is made for each object copy. This prevents the issues caused by sharing memory between objects.
-Copy Constructor is Called:
-
-When an object is passed by value to a function or returned from a function.
-Copy Constructor is Not Called:
-
-For assignment operations, the copy constructor is not called. For example, b = a; is an assignment operation that does not invoke the copy constructor. Instead, it performs a bitwise assignment (unless overridden).
-This ensures safe and correct behavior when working with dynamic memory in classes.
 
 
 
+/*  The solution to the preceding problem is to define a copy constructor for the strtype class 
+                that allocates memory for the "copy" when the copy is created.
 
-
-/* In this program, when a strtype object is passed to show(), a bitwise copy is made (since
-no copy constructor has been defined) and put into parameter x. Thus, when the function
-returns, x goes out of scope and is destroyed. This, of course, causes x’s destructor to
-be called, which frees x.p. However, the memory being freed is the same memory that is
-still being used by the object used to call the function. This results in an error.
-The solution to the preceding problem is to define a copy constructor for the strtype
-class that allocates memory for the copy when the copy is created. This approach is used
-by the following, corrected, program: */
-
-
-/*
-This program uses a copy constructor to allow strtype
-objects
-to be passed to functions .
+                The copy constructor handles the creation of a separate memory allocation for the copied object. 
+                This ensures that the copied object has its own memory, separate from the original object.
 */
+
+
+// Corrected version: This program uses a copy constructor to allow strtype objects to be passed to functions
+
 # include <iostream >
 # include <cstring >
 # include <cstdlib >
@@ -449,7 +365,88 @@ the function
 
 
 
+cpp
+Copy code
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+using namespace std;
 
+class strtype {
+    char *p;
+public:
+    strtype(char *s);  // Normal constructor
+    strtype(const strtype &o);  // Copy constructor
+    ~strtype() { delete[] p; }  // Destructor
+    char* get() { return p; }  // Getter function
+};
+
+// Normal constructor implementation
+strtype::strtype(char *s) {
+    int l = strlen(s) + 1;
+    p = new char[l];  // Allocate memory
+    if (!p) {
+        cout << "Allocation error\n";
+        exit(1);
+    }
+    strcpy(p, s);  // Copy string
+}
+
+// Copy constructor implementation
+strtype::strtype(const strtype &o) {
+    int l = strlen(o.p) + 1;
+    p = new char[l];  // Allocate memory for the new copy
+    if (!p) {
+        cout << "Allocation error\n";
+        exit(1);
+    }
+    strcpy(p, o.p);  // Copy the string into the new memory
+}
+
+// Function that takes a `strtype` object as an argument
+void show(strtype x) {
+    char* s = x.get();
+    cout << s << "\n";
+}
+
+int main() {
+    strtype a("Hello"), b("There");
+    show(a);  // Copy constructor is called
+    show(b);  // Copy constructor is called
+    return 0;
+}
+
+
+Key Improvements:
+Copy Constructor:
+The copy constructor strtype(const strtype &o) creates a separate memory space for the copy, ensuring that p for the new object does not point to the same memory as the original object.
+Safe Memory Handling:
+When the function show() ends and the object x is destroyed, the memory allocated for x.p is released, but the original object still retains its own separate memory, preventing the shared-memory issue.
+Conceptual Summary:
+Without a Copy Constructor:
+
+A bitwise copy is made, causing multiple objects to share the same dynamically allocated memory. This leads to issues when one of them is destroyed and frees the memory, as the other object will still try to use the freed memory.
+With a Copy Constructor:
+
+The copy constructor ensures that a separate memory allocation is made for each object copy. This prevents the issues caused by sharing memory between objects.
+Copy Constructor is Called:
+
+When an object is passed by value to a function or returned from a function.
+Copy Constructor is Not Called:
+
+For assignment operations, the copy constructor is not called. For example, b = a; is an assignment operation that does not invoke the copy constructor. Instead, it performs a bitwise assignment (unless overridden).
+This ensures safe and correct behavior when working with dynamic memory in classes.
+
+
+
+
+
+
+
+
+
+
+// --------    rev[26-Sep-2024]    --------
 
 
 
