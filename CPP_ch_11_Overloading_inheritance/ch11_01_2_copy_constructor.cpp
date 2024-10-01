@@ -366,20 +366,22 @@ int main(){
 
 // --------    rev[30-Sep-2024]    --------
 
+/* Example 3: The copy constructor is also invoked when a function generates the temporary object 
+                that is used as the function’s return value (for those functions that return objects). 
 
-// EXERCISES
-/* Example 3: The copy constructor is also invoked when a function generates the temporary object that
-is used as the function’s return value (for those functions that return objects). With this
-in mind, consider the following output:
-Constructing normally
-Constructing normally
-Constructing copy
-This output was created by the following program. Explain why, and describe precisely
-what is occurring. */
+                With this in mind, consider the following output:
+
+                        Constructing normally
+                        Constructing normally
+                        Constructing copy
+
+                This output was created by the following program. 
+                Explain why, and describe precisely what is occurring. 
+*/
 
 
-# include <iostream >
-using namespace std ;
+#include <iostream>
+
 class myclass
 {
 public :
