@@ -362,42 +362,22 @@ int main(){
 
 
 
-Without a Copy Constructor:
-
-A bitwise copy is made, causing multiple objects to share the same dynamically allocated memory. This leads to issues when one of them is destroyed and frees the memory, as the other object will still try to use the freed memory.
-With a Copy Constructor:
-
-The copy constructor ensures that a separate memory allocation is made for each object copy. This prevents the issues caused by sharing memory between objects.
-Copy Constructor is Called:
-
-When an object is passed by value to a function or returned from a function.
-Copy Constructor is Not Called:
-
-For assignment operations, the copy constructor is not called. For example, b = a; is an assignment operation that does not invoke the copy constructor. Instead, it performs a bitwise assignment (unless overridden).
-This ensures safe and correct behavior when working with dynamic memory in classes.
-
-
-
-
-
-
-
-
-
 
 
 // --------    rev[30-Sep-2024]    --------
 
 
 // EXERCISES
-1. The copy constructor is also invoked when a function generates the temporary object that
+/* Example 3: The copy constructor is also invoked when a function generates the temporary object that
 is used as the function’s return value (for those functions that return objects). With this
 in mind, consider the following output:
 Constructing normally
 Constructing normally
 Constructing copy
 This output was created by the following program. Explain why, and describe precisely
-what is occurring.
+what is occurring. */
+
+
 # include <iostream >
 using namespace std ;
 class myclass
@@ -434,7 +414,7 @@ return 0;
 
 
 
-2. Explain what is wrong with the following program and then fix it.
+/* Example 4: Explain what is wrong with the following program and then fix it. */
 // This program contains an error .
 # include <iostream >
 # include <cstdlib >
@@ -474,7 +454,8 @@ return 0;
 
 
 
-3. In your own words, explain the purpose of a copy constructor and how it differs from a
-normal constructor.
+/* Example 5: Explain the purpose of a copy constructor and how it differs from a normal constructor. */
 
+A copy constructor is invoked when one object is used to initialize another. A normal
+constructor is called when an object is created.
 
