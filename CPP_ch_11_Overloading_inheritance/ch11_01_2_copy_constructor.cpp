@@ -289,8 +289,8 @@ int main(){
 /*  The solution to the preceding problem is to define a copy constructor for the strtype class 
                 that allocates memory for the "copy" when the copy is created.
 
-                The copy constructor handles the creation of a separate memory allocation for the copied object. 
-                This ensures that the copied object has its own memory, separate from the original object.
+                The copy constructor "strtype(const strtype &o)" handles the creation of a separate memory allocation for the copied object. 
+                This ensures that the copied object "p" has its own memory, separate from the original object.
 */
 
 // Corrected version: This program uses a copy constructor to allow strtype objects to be passed to functions
@@ -356,19 +356,12 @@ int main(){
 }
 
 
-// --------    rev[30-Sep-2024]    --------
-
-/* Now when show() terminates and x goes out of scope, the memory pointed to by x.p
-(which will be freed) is not the same as the memory still in use by the object passed to
-the function */
+/*  Now when show() terminates and x goes out of scope, the memory pointed to by x.p (which will be freed) 
+    is not the same as the "memory still in use" by the object passed to the function 
+*/
 
 
-Key Improvements:
-Copy Constructor:
-The copy constructor strtype(const strtype &o) creates a separate memory space for the copy, ensuring that p for the new object does not point to the same memory as the original object.
-Safe Memory Handling:
-When the function show() ends and the object x is destroyed, the memory allocated for x.p is released, but the original object still retains its own separate memory, preventing the shared-memory issue.
-Conceptual Summary:
+
 Without a Copy Constructor:
 
 A bitwise copy is made, causing multiple objects to share the same dynamically allocated memory. This leads to issues when one of them is destroyed and frees the memory, as the other object will still try to use the freed memory.
@@ -393,7 +386,7 @@ This ensures safe and correct behavior when working with dynamic memory in class
 
 
 
-
+// --------    rev[30-Sep-2024]    --------
 
 
 // EXERCISES
