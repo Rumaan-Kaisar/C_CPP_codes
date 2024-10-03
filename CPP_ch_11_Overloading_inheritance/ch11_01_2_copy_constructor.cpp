@@ -363,9 +363,6 @@ int main(){
 
 
 
-
-// --------    rev[30-Sep-2024]    --------
-
 /* Example 3: The copy constructor is also invoked when a function generates the temporary object 
                 that is used as the function’s return value (for those functions that return objects). 
 
@@ -419,8 +416,57 @@ int main(){
 }
 
 
+// --------    rev[03-Oct-2024]    --------
+/* Note:  
 
-// Note: 
+In this program, you might expect the copy constructor to be called when the object temp is returned by f(). However, the copy constructor is not invoked due to Return Value Optimization (RVO) or Copy Elision, a feature in C++ compilers that optimizes away unnecessary copies of objects.
+
+Return Value Optimization (RVO) / Copy Elision:
+
+When temp is returned from the function f(), the C++ compiler optimizes the return process and elides (skips) the creation of the temporary object, which would have triggered the copy constructor.
+
+Instead of making a copy of temp, the compiler constructs the return value directly in the location where the result is expected (the memory location of obj in main()), thus skipping the need for a temporary copy.
+
+Because the compiler performs RVO/Copy Elision, the copy constructor is not called. This is why you don't see the "Constructing copy" message.
+
+Why Copy Constructor Is Not Invoked:
+Copy elision is an optimization technique where the compiler avoids unnecessary copies, and this happens especially in cases where temporary objects would be created during function returns. C++ standards allow this optimization, and many modern compilers apply it by default.
+
+In your case, when temp is returned by f(), the compiler skips the creation of a temporary object (which would have triggered the copy constructor) and directly assigns the value to obj in main().
+
+
+Explanation of the Output:
+The output of your program will be:
+
+Copy code
+Constructing normally
+Constructing normally
+The first "Constructing normally" occurs when obj is created in main().
+The second "Constructing normally" occurs when temp is created inside the function f().
+There is no "Constructing copy" because the copy constructor is not called due to RVO/Copy Elision.
+To Force Copy Constructor:
+If you want to force the copy constructor to be called (to see the "Constructing copy" output), you can disable optimizations like RVO by using the compiler flag -fno-elide-constructors with GCC or Clang:
+
+Copy code
+g++ -fno-elide-constructors your_program.cpp
+This disables RVO, and you will then see the copy constructor being invoked.
+
+Without optimizations, the output would be:
+
+go
+Copy code
+Constructing normally
+Constructing normally
+Constructing copy
+This would occur because the temporary object is created and copied into obj during the return process.
+
+---- use following instead
+
+>> g++ -fno-elide-constructors ch11_01_2_copy_cons.cpp -o ch11_01_2_copy_cons.exe
+>> ch11_01_2_copy_cons.exe
+
+
+*/
 
 
 
