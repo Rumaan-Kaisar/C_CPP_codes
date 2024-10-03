@@ -376,7 +376,12 @@ int main(){
                         Constructing copy
 
                 This output was created by the following program. 
-                Explain why, and describe precisely what is occurring. 
+                Explain why, and describe precisely what is occurring.
+
+                Reason:
+                    The "obj" and "temp" objects are constructed normally. 
+                    However, when "temp" is returned by f(), a temporary object is made, 
+                        and it is this "temporary object" that generates the call to the "copy constructor".
 */
 
 
