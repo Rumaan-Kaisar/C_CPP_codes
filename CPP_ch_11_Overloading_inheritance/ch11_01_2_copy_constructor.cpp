@@ -384,54 +384,56 @@ int main(){
                         and it is this "temporary object" that generates the call to the "copy constructor".
 */
 
-
 #include <iostream>
 
-class myclass
-{
-public :
-myclass ();
-myclass ( const myclass &o);
-myclass f();
+class myclass {
+    public:
+        myclass();
+        myclass(const myclass &o);
+        myclass f();
 };
+
 // Normal constructor
-myclass :: myclass ()
-{
-cout << " Constructing normally \n";
+myclass :: myclass(){
+    std::cout << " Constructing normally \n";
 }
+
 // Copy constructor
-myclass :: myclass ( const myclass &o)
-{
-cout << " Constructing copy \n";
+myclass :: myclass(const myclass &o){
+    std::cout << " Constructing copy \n";
 }
+
 // Return an object .
-myclass myclass ::f()
-{
-myclass temp ;
-return temp ;
-}
-131TEACH YOURSELF
-C++
-int main ()
-{
-myclass obj ;
-obj = obj .f();
-return 0;
+myclass myclass :: f(){
+    myclass temp ;
+    return temp ;
 }
 
 
+int main(){
+    myclass obj;
 
-/* Example 4: Explain what is wrong with the following program and then fix it. */
-// This program contains an error .
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
-class myclass
-{
-int *p;
-public :
-myclass ( int i);
-~ myclass () { delete p; }
+    obj = obj.f();
+
+    return 0;
+}
+
+
+
+// Note: 
+
+
+
+/* Example 4: Explain what is wrong with the following program and then fix it */
+// This program contains an error.
+#include <iostream>
+#include <cstdlib>
+
+class myclass{
+        int *p;
+    public:
+        myclass(int i);
+        ~myclass(){ delete p; }
 friend int getval ( myclass o);
 };
 myclass :: myclass ( int i)
