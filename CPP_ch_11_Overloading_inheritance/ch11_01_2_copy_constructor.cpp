@@ -460,7 +460,18 @@ int main(){
 
 // --------    rev[03-Oct-2024]    --------
 
-/* Example 4: Explain what is wrong with the following program and then fix it */
+/* Example 4: Explain what is wrong with the following program and then fix it. 
+
+            Explanation:
+                When an object is passed to getval() a "bitwise copy" is made.
+                When getval() returns and that copy is destroyed, 
+                    the memory allocated to that object (which is pointed to by p) is released.
+                However, this is the same memory still required
+                by the object used in the call to getval(). 
+
+                The correct version of the program is shown later. It uses a "copy constructor" to avoid this problem.
+*/
+
 // This program contains an error.
 #include <iostream>
 #include <cstdlib>
@@ -470,10 +481,10 @@ class myclass{
     public:
         myclass(int i);
         ~myclass(){ delete p; }
-friend int getval ( myclass o);
+        friend int getval ( myclass o);
 };
-myclass :: myclass ( int i)
-{
+
+myclass :: myclass(int i){
 p = new int ;
 if (!p)
 {
@@ -494,13 +505,65 @@ cout << "\n";
 cout << getval (a) << " " << getval (b);
 return 0;
 }
-132FUNCTION OVERLOADING
-5.3. THE OVERLOAD ANACHRONISM
+
+
+// correct version: This program is now fixed .
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+class myclass
+{
+int *p;
+467TEACH YOURSELF
+C++
+public :
+myclass ( int i);
+myclass ( const myclass &o); // copy constructor
+~ myclass () { delete p; }
+friend int getval ( myclass o);
+};
+myclass :: myclass ( int i)
+{
+p = new int ;
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+} *
+p = i;
+}
+// Copy constructor
+myclass :: myclass ( const myclass &o)
+{
+p = new int ; // allocate copy ’s own memory
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+} *
+p = *o.p;
+}
+int getval ( myclass o)
+{
+return *o.p; // get value
+}
+int main ()
+{
+myclass a (1) , b (2) ;
+cout << getval (a) << " " << getval (b);
+cout << "\n";
+cout << getval (a) << " " << getval (b);
+return 0;
+}
 
 
 
-/* Example 5: Explain the purpose of a copy constructor and how it differs from a normal constructor. */
+/* Example 5: Explain the purpose of a copy constructor and how it differs from a normal constructor.
 
-A copy constructor is invoked when one object is used to initialize another. A normal
-constructor is called when an object is created.
+                ans:
+                    A copy constructor is invoked when one object is used to initialize another. 
+                    A normal constructor is called when an object is created.
+*/
+
+
 
