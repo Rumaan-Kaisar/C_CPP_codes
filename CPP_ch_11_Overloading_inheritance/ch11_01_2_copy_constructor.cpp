@@ -458,7 +458,7 @@ int main(){
 */
 
 
-// --------    rev[03-Oct-2024]    --------
+
 
 /* Example 4: Explain what is wrong with the following program and then fix it. 
 
@@ -472,40 +472,45 @@ int main(){
                 The correct version of the program is shown later. It uses a "copy constructor" to avoid this problem.
 */
 
-// This program contains an error.
+// This program contains an error.  ERR: "free(): double free detected in tcache 2"
 #include <iostream>
 #include <cstdlib>
 
 class myclass{
         int *p;
     public:
-        myclass(int i);
-        ~myclass(){ delete p; }
-        friend int getval ( myclass o);
+        myclass(int i);     // "normal" constructor
+        ~myclass(){ delete p; } // destructor
+        friend int getval(myclass o);
 };
 
 myclass :: myclass(int i){
-p = new int ;
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-} *
-p = i;
-}
-int getval ( myclass o)
-{
-return *o.p; // get value
-}
-int main ()
-{
-myclass a (1) , b (2) ;
-cout << getval (a) << " " << getval (b);
-cout << "\n";
-cout << getval (a) << " " << getval (b);
-return 0;
+    p = new int;
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    *p = i;
 }
 
+// friend function
+int getval(myclass o){
+    return *o.p; // get value
+}
+
+
+int main(){
+    myclass a(1), b(2);
+
+    std::cout << getval (a) << " " << getval (b);
+    std::cout << "\n";
+    std::cout << getval (a) << " " << getval (b);
+
+    return 0;
+}
+
+
+// --------    rev[04-Oct-2024]    --------
 
 // correct version: This program is now fixed .
 # include <iostream >
