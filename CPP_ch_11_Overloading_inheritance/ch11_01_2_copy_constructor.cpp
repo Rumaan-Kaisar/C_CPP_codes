@@ -561,3 +561,15 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 5: Explain the purpose of a copy constructor and how it differs from a normal constructor.
+
+                ans:
+                    A copy constructor is invoked when one object is used to "initialize" another. 
+                    A normal constructor is called when an object is "created".
+*/
+
+
+
