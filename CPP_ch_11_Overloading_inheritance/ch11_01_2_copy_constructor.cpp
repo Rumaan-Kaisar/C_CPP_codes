@@ -484,6 +484,7 @@ class myclass{
         friend int getval(myclass o);
 };
 
+// "normal" constructor
 myclass :: myclass(int i){
     p = new int;
     if(!p){
@@ -510,65 +511,53 @@ int main(){
 }
 
 
-// --------    rev[04-Oct-2024]    --------
 
-// correct version: This program is now fixed .
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
-class myclass
-{
-int *p;
-467TEACH YOURSELF
-C++
-public :
-myclass ( int i);
-myclass ( const myclass &o); // copy constructor
-~ myclass () { delete p; }
-friend int getval ( myclass o);
+// ----  correct version: This program is now fixed  ----
+#include <iostream>
+#include <cstdlib>
+
+class myclass{
+        int *p;
+    public:
+        myclass(int i);
+        myclass(const myclass &o);  // copy constructor
+        ~myclass(){ delete p; }
+        friend int getval(myclass o);
 };
-myclass :: myclass ( int i)
-{
-p = new int ;
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-} *
-p = i;
+
+// "normal" constructor
+myclass :: myclass(int i){
+    p = new int;
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+    *p = i;
 }
+
 // Copy constructor
-myclass :: myclass ( const myclass &o)
-{
-p = new int ; // allocate copy ’s own memory
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-} *
-p = *o.p;
+myclass :: myclass(const myclass &o){
+    p = new int ; // allocate copy ’s own memory
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1) ;
+    } 
+    *p = *o.p;
 }
-int getval ( myclass o)
-{
-return *o.p; // get value
-}
-int main ()
-{
-myclass a (1) , b (2) ;
-cout << getval (a) << " " << getval (b);
-cout << "\n";
-cout << getval (a) << " " << getval (b);
-return 0;
+
+// friend function
+int getval(myclass o){
+    return *o.p;    // get value
 }
 
 
+int main(){
+    myclass a(1), b(2);
 
-/* Example 5: Explain the purpose of a copy constructor and how it differs from a normal constructor.
+    std::cout << getval (a) << " " << getval (b);
+    std::cout << "\n";
+    std::cout << getval (a) << " " << getval (b);
 
-                ans:
-                    A copy constructor is invoked when one object is used to initialize another. 
-                    A normal constructor is called when an object is created.
-*/
-
-
+    return 0;
+}
 
