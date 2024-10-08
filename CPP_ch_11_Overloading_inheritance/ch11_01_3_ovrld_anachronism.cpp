@@ -19,37 +19,53 @@
 
 
     --------    Modern C++ compilers "no longer require or support"    --------
+
     Modern C++ compilers "no longer require or support" the overload keyword. 
     Function overloading is now "AUTOMATICALLY recognized" by the compiler as long as each function has a "unique signature" 
         (i.e., a different combination of parameter types or numbers).
 
     Although the keyword "overload" is now obsolete and no longer supported by modern C++ compilers, 
-        you may still see overload used in old programs.
+        you may still see overload used in very old C++ programs.
     
-    
+    The general form of using keyword "overload" is:
 
+                        overload func_name ;
 
-The general form of overload is shown here,
-overload func_name ;
-where func-name is the name of the function to be overloaded. This statement must precede
-the overloaded function declarations. For example, this tells the compiler that you will be
-overloading a function called time():
-overload timer ;
-Remember: overload is obsolete and no longer supported by modern C++ compilers.
+        where func_name is the name of the function to be overloaded.
+        This statement must "precede" the "overloaded function DECLARATIONS". 
+        Also notice: the parentheses "()" were not included after the function name. For example:
 
+                        overload timer;  // No parentheses after "timer"
 
-
-
-
-
-
-
-Though this keyword is no longer needed, it might still be seen in very old programs, so understanding it helps when reviewing legacy C++ code. Today, when you overload a function, you simply declare it multiple times with different parameters, without needing the overload keyword.
-
-Key points:
-
-overload was a way to mark functions for overloading in early C++.
-It's now obsolete and not supported by modern compilers.
-Modern C++ automatically handles function overloading based on the function's signature.
+            The reason for this is that the keyword "overload" was not defining or declaring the function itself.
+            Instead, it just informing the compiler that the function "timer" would have multiple overloaded versions, 
+                the actual function declarations and definitions would come later, which do use (), with their respective parameter lists.
+            It's just a directive or a marker for the compiler, not a function declaration or definition.
 
 */  
+
+// ----  Old version of function oveloading  ----
+overload timer;  // Tells the compiler that `timer` will be overloaded
+
+int timer(int hours) {
+    // Function body for one version of timer()
+}
+
+double timer(double seconds) {
+    // Function body for another version of timer()
+}
+
+
+
+
+// ----  Modern C++ function overloading  ----
+// In modern C++, you would simply define multiple versions of the function without any special keyword
+
+int timer(int hours) {
+    // Function body for one version of timer()
+}
+
+double timer(double seconds) {
+    // Function body for another version of timer()
+}
+
