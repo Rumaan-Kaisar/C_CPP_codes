@@ -19,6 +19,19 @@
 
 
 
+// --------    rev point 1: [10-Oct-2024]    --------
+
+
+	Notice that this syntax is similar to variable initialization. This function can now be called three different ways. 
+[1]	First, it can be called with both arguments specified. Example: f(10, 99); 		/* a is 10, b is 99*/ 
+[2]	Second, it can be called with only the first argument specified. In this case, b will default to 0. Example: 
+f(10); 	/* a is 10, b defaults to 0 */
+[3]	Finally, f() can be called with no arguments, causing both a and b to default to 0. Example: 
+f(); 		/* a and b default to 0*/
+
+
+
+
 ----  GPT more  ----
 here are a few important points to know about default arguments in C++:
 
@@ -62,12 +75,9 @@ Defaults Across Multiple Files: If you declare a function with default arguments
 
 
 
-	Notice that this syntax is similar to variable initialization. This function can now be called three different ways. 
-[1]	First, it can be called with both arguments specified. Example: f(10, 99); 		/* a is 10, b is 99*/ 
-[2]	Second, it can be called with only the first argument specified. In this case, b will default to 0. Example: 
-f(10); 	/* a is 10, b defaults to 0 */
-[3]	Finally, f() can be called with no arguments, causing both a and b to default to 0. Example: 
-f(); 		/* a and b default to 0*/
+// --------    rev point 2: [10-Oct-2024]    --------
+
+
 	It is clear that there is no way to default a and specify b.
 	There are several rules to specify default arguments :
 	Default arguments must be specified only once: either in the function's prototype or in its definition if the definition precedes the function's first use. The defaults cannot be specified in both the prototype and the definition. 
