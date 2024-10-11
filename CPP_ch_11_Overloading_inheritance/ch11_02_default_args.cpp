@@ -33,9 +33,9 @@
 
 
     Note:
-        There is no way to default a and specify b.
+        There is no way to default 'a' and specify 'b'.
 
-        Default arguments must be "constants" or "global" variables. They cannot be "local" variables or other parameters.
+        Default arguments must be "CONSTANTS" or "GLOBAL" variables. They cannot be "local" variables or other parameters.
 
         Default arguments must be specified only once, either in the:
             function's prototype or 
