@@ -17,9 +17,19 @@
         If the function f() is called without arguments, it will use the default values a = 0 and b = 0.
 
 
+    Similar to variable initialization:
+        Notice that this syntax is similar to variable initialization. 
+        This function can now be called three different ways. 
 
+            it can be called with both arguments specified. Example: 
+                    f(10, 99);      // a is 10, b is 99 
 
-// --------    rev point 1: [10-Oct-2024]    --------
+            it can be called with only the first argument specified. In this case, b will default to 0. Example: 
+                    f(10);          // a is 10, b defaults to 0 
+
+            Finally, f() can be called with no arguments, causing both a and b to default to 0. Example: 
+                    f();            // a and b default to 0
+
 
 
 	Notice that this syntax is similar to variable initialization. This function can now be called three different ways. 
