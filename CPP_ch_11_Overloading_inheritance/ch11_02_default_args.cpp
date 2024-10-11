@@ -32,6 +32,25 @@
 
 
 
+    Note:
+        There is no way to default a and specify b.
+
+        Default arguments must be "constants" or "global" variables. They cannot be "local" variables or other parameters.
+
+        Default arguments must be specified only once, either in the:
+            function's prototype or 
+            function's in its definition (must precedes the function's first use)
+            
+        The defaults CANNOT be specified in both the "prototype" and the "definition"
+
+
+        All default parameters must be to the right side of any parameters that don't have defaults
+
+                    void example(int a, int b = 10)     // Correct
+                    void example(int a = 5, int b)      // Incorrect
+
+
+
 	Notice that this syntax is similar to variable initialization. This function can now be called three different ways. 
 [1]	First, it can be called with both arguments specified. Example: f(10, 99); 		/* a is 10, b is 99*/ 
 [2]	Second, it can be called with only the first argument specified. In this case, b will default to 0. Example: 
