@@ -56,9 +56,9 @@
 
         Once the "first default argument" is specified, all following arguments must also have default values. 
             You can't skip some arguments. 
-            For example, following will cause a compile-time error because b doesn't have a default:
+            For example, following will cause a compile-time error because "b" doesn't have a default:
 
-                    void f(int a = 0, int b)  // wrong! b must have a default too
+                    void f(int a=0, int b)  // wrong! b must have a default too
 
 
         You can "omit" only the arguments from the "rightmost side". 
@@ -99,7 +99,7 @@
 
 
 
-// --------    rev point 2: [10-Oct-2024]    --------
+// --------    rev point 2: [14-Oct-2024]    --------
 
 
 
@@ -116,22 +116,64 @@ cout <<'\n';}	int main(){	f();
 	a: 10, b: 0
 	a: 10, b: 99
 
-	All arguments must specified as default:  We can't just make any specific argument to default. Once the first default argument is specified, all following parameters must have defaults as well. For example, this slightly different version of f() causes a compile- time error:
-void f(int a=0, int b) 		/* wrong! b must have default , too */ 
+	
+
+
+
+DEFAULT arguments instead of OVERLOADING
+    A constructor is often overloaded to allow the creation of both initialized and uninitialized objects. 
+    However, you can simplify this by using default arguments instead of overloading. For example:
 
 
 Many times a constructor is overloaded simply to allow both initialized and uninitialized objects to be created. In many cases, you can avoid overloading a constructor by giving it one or more default arguments. For example,
 
-myclass(int n = 0) { x = n; } 	/* default argument instead of overloading constructor */
+myclass(int n = 0) { x = n; } 	// default argument instead of overloading constructor
 . . . . . . 
 . . . . . . 
-myclass o1(10) ;  			/* declare with initial value */ 
-myclass o2;  				/* declare without initializer */ 
+myclass o1(10) ;  			// declare with initial value 
+myclass o2;  				// declare without initializer 
 
 So it is possible to create objects that have explicit initial values and those for which the default value is sufficient.
+
+// using default argument
+class myclass {
+    int x;
+public:
+    // Constructor with a default argument
+    myclass(int n = 0) { 
+        x = n; 
+    }
+
+    void display() {
+        cout << "x = " << x << endl;
+    }
+};
+
+
+
+// using constructor-overloading
+class myclass {
+    int x;
+public:
+    // Overloaded constructors
+    myclass(int n) { 
+        x = n; 
+    }
+    myclass() { 
+        x = 0; 
+    }
+
+    void display() {
+        cout << "x = " << x << endl;
+    }
+};
+
+
+
+
 	Cpy-Constructor with default arguments: We've seen the general form of a copy constructor with only one parameter. However, it is possible to create copy constructors that take additional arguments, as long as the additional arguments have default values. For example, 
 
-myclass( const myclass &obj , int x = 0){ /* body of constructor */ }
+myclass( const myclass &obj , int x = 0){ // body of constructor }
 
 As long as the first argument is a reference to the object being copied, and all other arguments default, the function qualifies as a copy constructor. This flexibility allows you to create copy constructors that have other uses.
 
