@@ -74,19 +74,18 @@
                             f(10, 20, 30); // uses a=10, b=20, c=30
 
 
+        Default arguments should "typically be placed" in the function declaration (prototype) and 
+            not in the function definition itself.
+            For example: 
 
-// --------    rev point 1: [11-Oct-2024]    --------
+                void f(int a = 0, int b = 0);  // Default values in the declaration
 
-----  GPT more  ----
+                void f(int a, int b) {
+                    // function body
+                }
 
-Declaration in Function Prototype: Default arguments should typically be placed in the function declaration (prototype) and not in the function definition itself. For instance:
 
-cpp
-Copy code
-void f(int a = 0, int b = 0);  // Default values in the declaration
-void f(int a, int b) {
-    // function body
-}
+
 Mixing with Function Overloading: You can mix default arguments and function overloading. However, care should be taken because they might conflict if multiple overloaded functions match a call due to default arguments.
 
 Defaults Across Multiple Files: If you declare a function with default arguments in a header file and define it in a source file, place the default values only in the header file to avoid redefinition errors.
