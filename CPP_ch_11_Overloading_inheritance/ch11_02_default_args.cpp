@@ -86,9 +86,15 @@
 
 
 
-Mixing with Function Overloading: You can mix default arguments and function overloading. However, care should be taken because they might conflict if multiple overloaded functions match a call due to default arguments.
+    ------------    Mixing DEFAULT arguments with Function OVERLOADING    ------------
+    You can "mix" DEFAULT arguments and function OVERLOADING. 
+    Be CAREFUL because they might CONFLICT if multiple overloaded functions match a call due to default arguments.
 
-Defaults Across Multiple Files: If you declare a function with default arguments in a header file and define it in a source file, place the default values only in the header file to avoid redefinition errors.
+
+
+    ------------    Defaults Across Multiple Files    ------------
+    If you declare a function with DEFAULT ARGUMENTS in a "header file" and define it in a "source file", 
+        place the DEFAULT VALUES only in the "header file" to avoid redefinition errors
 
 
 
