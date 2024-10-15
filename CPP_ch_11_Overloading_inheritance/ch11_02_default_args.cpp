@@ -145,3 +145,24 @@ Note
 
 
 */
+
+
+
+/* Example 1: Here is a program that illustrates the default argumnets */
+
+#include <iostream>
+
+void f(int a=0, int b=0){
+    std::cout <<"a: "<< a <<", b: "<< b;
+    std::cout <<'\n';
+}	
+
+int main(){	
+    f();
+    f(10) ;
+    f(10 , 99);
+
+    return 0;
+}
+
+
