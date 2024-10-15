@@ -86,6 +86,34 @@
 
 
 
+    DEFAULT arguments instead of OVERLOADING:
+        A constructor is often overloaded to allow the creation of both initialized and uninitialized objects. 
+        However, you can avoid overloading a constructor by giving it one or more default arguments. For example,
+
+            // using default argument
+            class myclass {
+                    int x;
+                public:
+                    myclass(int n = 0) { x = n; }   // Constructor with a default argument
+                    void display() {std::cout << "x = " << x << endl;}
+            };
+
+
+            // using constructor-overloading
+            class myclass {
+                    int x;
+                public:
+                    // Overloaded constructors
+                    myclass(int n) { x = n; }
+                    myclass() { x = 0; }
+                    void display() {std::cout << "x = " << x << endl;}
+            };
+
+
+        So it is possible to create objects that have "explicit initial values" and those for which the default value is sufficient.
+
+
+
     ------------    Mixing DEFAULT arguments with Function OVERLOADING    ------------
     You can "mix" DEFAULT arguments and function OVERLOADING. 
     Be CAREFUL because they might CONFLICT if multiple overloaded functions match a call due to default arguments.
@@ -100,75 +128,6 @@
 
 
 // --------    rev point 2: [14-Oct-2024]    --------
-
-
-
-
-Here is a program that illustrates the example described in the preceding discussion:
-
-void f(int a=0, int b=0){
-cout <<"a: "<< a <<", b: "<< b;
-cout <<'\n';}	int main(){	f();
-		f(10) ;
-		f(10 , 99);
-		return 0;}	output:
-	a: 0, b: 0
-	a: 10, b: 0
-	a: 10, b: 99
-
-	
-
-
-
-DEFAULT arguments instead of OVERLOADING
-    A constructor is often overloaded to allow the creation of both initialized and uninitialized objects. 
-    However, you can simplify this by using default arguments instead of overloading. For example:
-
-
-Many times a constructor is overloaded simply to allow both initialized and uninitialized objects to be created. In many cases, you can avoid overloading a constructor by giving it one or more default arguments. For example,
-
-myclass(int n = 0) { x = n; } 	// default argument instead of overloading constructor
-. . . . . . 
-. . . . . . 
-myclass o1(10) ;  			// declare with initial value 
-myclass o2;  				// declare without initializer 
-
-So it is possible to create objects that have explicit initial values and those for which the default value is sufficient.
-
-// using default argument
-class myclass {
-    int x;
-public:
-    // Constructor with a default argument
-    myclass(int n = 0) { 
-        x = n; 
-    }
-
-    void display() {
-        cout << "x = " << x << endl;
-    }
-};
-
-
-
-// using constructor-overloading
-class myclass {
-    int x;
-public:
-    // Overloaded constructors
-    myclass(int n) { 
-        x = n; 
-    }
-    myclass() { 
-        x = 0; 
-    }
-
-    void display() {
-        cout << "x = " << x << endl;
-    }
-};
-
-
 
 
 	Cpy-Constructor with default arguments: We've seen the general form of a copy constructor with only one parameter. However, it is possible to create copy constructors that take additional arguments, as long as the additional arguments have default values. For example, 
@@ -186,5 +145,3 @@ Note
 
 
 */
-
-
