@@ -126,23 +126,26 @@
 
 
 
+    ------------    Copy-Constructor with DEFAULT arguments    ------------
+    We've seen the general form of a copy constructor with only one parameter. 
+    However, it is possible to create copy constructors that take additional arguments, 
+        as long as the additional arguments have default values. For example, 
 
-// --------    rev point 2: [14-Oct-2024]    --------
+            myclass( const myclass &obj , int x = 0){ 
+                // body of constructor
+            }
 
+    As long as the first argument is a "reference to the object being copied", and all other arguments "default", 
+        the function qualifies as a "copy constructor".
 
-	Cpy-Constructor with default arguments: We've seen the general form of a copy constructor with only one parameter. However, it is possible to create copy constructors that take additional arguments, as long as the additional arguments have default values. For example, 
+    Note:
+        A good application for a default argument is found when a parameter is used to "select an option".
+        Default arguments can be misused. For example,
 
-myclass( const myclass &obj , int x = 0){ // body of constructor }
+In cases in which no one value is more likely to be used than another, or when there is no benefit to using a default argument as a flag value, it makes little sense to provide a default value.
 
-As long as the first argument is a reference to the object being copied, and all other arguments default, the function qualifies as a copy constructor. This flexibility allows you to create copy constructors that have other uses.
-
-Note
-[1]	Another good application for a default argument is found when a parameter is used to select an option.
-[2]	Although default arguments are powerful and convenient, they can be misused. For example, 
-	If the argument is the value wanted nine times out of ten, giving a function a default argument to this effect is obviously a good idea. 
-	In cases in which no one value is more likely to be used than another, or when there is no benefit to using a default argument as a flag value, it makes little sense to provide a default value.
-
-
+    If the argument is the value wanted nine times out of ten, 
+        giving a function a default argument to this effect is obviously a good idea. 
 
 */
 
