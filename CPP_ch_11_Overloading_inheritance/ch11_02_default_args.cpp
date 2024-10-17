@@ -85,6 +85,11 @@
                 }
 
 
+        If "no single value" is more likely to be used, providing a default value isn't useful.
+        If a specific value is required most of the time (say nine times out of ten), 
+            it's a good idea to set it as a default argument for the function.
+
+
 
     DEFAULT arguments instead of OVERLOADING:
         A constructor is often overloaded to allow the creation of both initialized and uninitialized objects. 
@@ -137,17 +142,8 @@
 
     As long as the first argument is a "reference to the object being copied", and all other arguments "default", 
         the function qualifies as a "copy constructor".
-
-    Note:
-        A good application for a default argument is found when a parameter is used to "select an option".
-        Default arguments can be misused. For example,
-
-In cases in which no one value is more likely to be used than another, or when there is no benefit to using a default argument as a flag value, it makes little sense to provide a default value.
-
-    If the argument is the value wanted nine times out of ten, 
-        giving a function a default argument to this effect is obviously a good idea. 
-
 */
+
 
 
 
@@ -168,4 +164,7 @@ int main(){
     return 0;
 }
 
+
+// ----  rev[17-Oct-2024]  ----
+// book
 
