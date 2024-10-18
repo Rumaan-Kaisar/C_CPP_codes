@@ -168,3 +168,197 @@ int main(){
 // ----  rev[17-Oct-2024]  ----
 // book
 
+1. Here is a program that illustrates the example described in the preceding discussion:
+// A simple first example of default arguments .
+# include <iostream >
+using namespace std ;
+void f( int a=0, int b =0)
+{
+cout << "a: " << a << ", b: " << b;
+cout << ’\n’;
+}
+int main ()
+{
+f();
+f (10) ;
+f(10 , 99) ;
+return 0;
+}
+As you should expect, this program displays the following output:
+a: 0, b: 0
+a: 10, b: 0
+a: 10, b: 99
+Remember that once the first default argument is specified, all following parameters must
+have defaults as well. For example, this slightly different version of f() causes a compiletime error:
+void f( int a=0, int b) // wrong ! b must have default , too
+{
+cout << "a: " << a << ", b: " << b;
+cout << ’\n’;
+}
+2. To understand how default arguments are related to function overloading, first consider
+the next program, which overloads the function called rect area(). This function returns
+the area of a rectangle.
+// Compute area of a rectangle using overloaded functions .
+# include <iostream >
+using namespace std ;
+// Return area of a non - square rectangle .
+double rect_area ( double length , double width )
+{
+return length * width ;
+}
+// Return area of a square
+134FUNCTION OVERLOADING
+5.4. USING DEFAULT ARGUMENTS
+double rect_area ( double length )
+{
+return length * length ;
+}
+int main ()
+{
+cout << "10 x 5.8 rectangle has area : ";
+cout << rect_area (10.0 , 5.8) << ’\n’;
+cout << "10 x 10 square has area : ";
+cout << rect_area (10.0) << ’\n’;
+return 0;
+}
+Int his program, rect area() is overloaded two ways. In the first way, both dimensions
+of a rectangle are passed to the function. This version is used when the rectangle is not a
+square. However, when the rectangle is a square, only one argument need to be specified,
+and the second version of rect area() is called.
+If you think about it, it is clear that in this situation there is really no need to have two
+different functions. Instead, the second parameter can be defaulted to some value that
+acts as a flag to rect area(). When this value is seen by the function, it uses the length
+parameter twice. Here is an example of this approach:
+// Compute area of a rectangle using default arguments .
+# include <iostream >
+using namespace std ;
+// Return area of a rectangle .
+double rect_area ( double length , double width = 0)
+{
+if (! width )
+width = length ;
+return length * width ;
+}
+int main ()
+{
+cout << "10 x 5.8 rectangle has area : ";
+cout << rect_area (10.0 , 5.8) << ’\n’;
+cout << "10 x 10 square has area : ";
+cout << rect_area (10.0) << ’\n’;
+return 0;
+}
+Here 0 is the default value of width. This value was chosen because no rectangle will
+have a width of 0. (Actually, a rectangle with a width of 0 is a line.) Thus, if this default
+value is seen, rect area() automatically uses the value in length for the value of width.
+As this example shows, default arguments often provide a simple alternative to function
+135TEACH YOURSELF
+C++
+overloading. (Of course, there are many situations in which function overloading is still
+required.)
+3. It is not only legal to give constructor functions default arguments, it is also common.
+As you saw earlier in this chapter, many times a constructor is overloaded simply to
+allow both initialized and uninitialized objects to be created. In many cases, you can
+avoid overloading a constructor by giving it one or more default arguments. For example,
+examine this program:
+# include <iostream >
+using namespace std ;
+class myclass
+{
+int x;
+public :
+/*
+Use default argument instead of overloading
+myclass ’s constructor .
+*/
+myclass ( int n = 0) { x = n; }
+int getx () { return x; }
+};
+int main ()
+{
+myclass o1 (10) ; // declare with initial value
+myclass o2; // declare without initializer
+cout << "o1: " << o1. getx () << ’\n’;
+cout << "o2: " << o2. getx () << ’\n’;
+return 0;
+}
+As this example shows, by giving n the default value of 0, it is possible to create objects
+that have explicit initial values and those for which the default value is sufficient.
+4. Another good application for a default argument is found when a parameter is used to
+select an option. It is possible to give that parameter a default value that is used as a flag
+that tells the function to continue to use the previously selected option. For example, in
+the following program, the function print() displays a string on the screen. If its how
+parameter is set to ignore, the text is displayed as is. If how is upper, the text is
+displayed in uppercase. If how is lower, the text is displayed in lowercase. When how
+is not specified, it defaults to -1, which tells the function to reuse the last how value.
+# include <iostream >
+# include <cctype >
+using namespace std ;
+const int ignore = 0;
+const int upper = 1;
+const int lower = 2;
+136FUNCTION OVERLOADING
+5.4. USING DEFAULT ARGUMENTS
+void print ( char *s, int how = -1);
+int main ()
+{
+print (" Hello There \n", ignore );
+print (" Hello There \n", upper );
+print (" Hello There \n"); // continue in upper
+print (" Hello There \n", lower );
+print (" That ’s all \n"); // continue in lower
+return 0;
+}
+/*
+Print a string in the specified case . Use
+last case specified if none is given .
+*/
+void print ( char *s, int how )
+{
+static int oldcase = ignore ;
+// reuse old case if none specified
+if(how <0)
+how = oldcase ;
+while (*s)
+{
+switch ( how )
+{
+case upper : cout << ( char ) toupper (*s);
+break ;
+case lower : cout << ( char ) tolower (*s);
+break ;
+default : cout << *s;
+} s
+++;
+}
+oldcase = how ;
+}
+This function displays the following output:
+Hello There
+HELLO THERE
+HELLO THERE
+hello there
+that’s all
+5. Earlier in this chapter, you saw the general form of a copy constructor. This general form
+was shown with only one parameter. However, it is possible to create copy constructors
+that take additional arguments, as long as the additional arguments have default values.
+For example, the following is also an acceptable form of a copy constructor:
+137TEACH YOURSELF
+C++
+myclass ( const myclass &obj , int x = 0)
+{
+// body of constructor
+}
+As long as the first argument is a reference to the object being copied, and all other
+arguments default, the function qualifies as a copy constructor. This flexibility allows you
+to create copy constructors that have other uses.
+6. Although default arguments are powerful and convenient, when used correctly, default
+arguments allow a function to perform its job in an efficient and easy-to-use manner.
+However, this is only the case when the default value given to a parameter makes sense.
+For example, if the argument is the value wanted nine times out of ten, giving a function
+a default argument to this effect is obviously a good idea. However, in cases in which no
+one value is more likely to be used than another, or when there is no benefit to using a
+default argument as a flag value, it makes little sense to provide a default value. Actually,
+providing a default argument when one is not called for destructures your program and
+tends to mislead anyone else who has to use that function.
+As with function overloading, part of becoming an excellent C++ programmer is knowing
+when to use a default argument and when not to.
