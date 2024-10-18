@@ -362,3 +362,32 @@ providing a default argument when one is not called for destructures your progra
 tends to mislead anyone else who has to use that function.
 As with function overloading, part of becoming an excellent C++ programmer is knowing
 when to use a default argument and when not to.
+
+
+
+
+
+1. In the C++ standard library is the function strtoi(), which has this prototype:
+long strtoi ( const char *start , const ** end , int base );
+The function converts the numeric string pointed to by start into a long integer. The
+number base of the numeric string is specified by base. Upon return, end points to the
+character in the string immediately following the end of the number. The long integer
+equivalent of the numeric string is returned. base must be in the range 2 to 38. However,
+most commonly, base 10 is used.
+Create a function called mystrtoi() that works the same as strtoi() except that ( base)
+is given the default argument of 10. (Feel free to use strtoi() to actually perform the
+conversion. It requires the header <cstdlib>.) Demonstrate that your version works
+correctly.
+2. What is wrong with the following function prototype?
+char *f( char *p, int x = 0, char *q);
+3. Most C++ compilers supply nonstandard functions that allow cursor positioning and the
+like. If your compiler supplies such functions, create a function called myclreol() that
+clears the line from the current cursor position to the end of the line. However, give
+this function a parameter that specifies the number of character positions to clear. If the
+parameter is not specified, automatically clear the entire line. Otherwise, clear only the
+number of character positions specified by the parameter.
+4. What is wrong with the following prototype, which uses a default argument?
+int f( int count , int max = count );
+
+
+
