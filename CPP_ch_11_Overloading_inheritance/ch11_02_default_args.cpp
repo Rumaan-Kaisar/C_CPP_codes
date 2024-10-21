@@ -175,15 +175,25 @@ int main(){
 }
 
 
-// ----  rev[17-Oct-2024]  ----
+// ----  rev[21-Oct-2024]  ----
 // book
 
 
 
 
-/* Example 2: To understand how "default arguments" are related to function OVERLOADING, first consider
-the next program, which overloads the function called rect area(). This function returns
-the area of a rectangle. */
+/* Example 2: To understand how "default arguments" are related to function OVERLOADING, 
+                consider the following program that overloads the function rect_area().
+                This function calculates the area of a rectangle.
+
+
+                The function is OVERLOADED in two ways:
+                    non-square: with both "length" and "width" of the rectangle are passed, the first version is used.
+                    square: When only one argument (length) is passed, the second version is called.
+
+                However we can use "default arguments" instead:
+                    Instead of creating two separate functions, the second parameter can be given a default value
+                    If the default value is passed, the function assumes it’s a square and uses the same value for both dimensions.
+*/
 
 // Compute area of a rectangle using overloaded functions .
 # include <iostream >
@@ -208,24 +218,19 @@ cout << "10 x 10 square has area : ";
 cout << rect_area (10.0) << ’\n’;
 return 0;
 }
-Int his program, rect area() is overloaded two ways. In the first way, both dimensions
-of a rectangle are passed to the function. This version is used when the rectangle is not a
-square. However, when the rectangle is a square, only one argument need to be specified,
-and the second version of rect area() is called.
-If you think about it, it is clear that in this situation there is really no need to have two
-different functions. Instead, the second parameter can be defaulted to some value that
-acts as a flag to rect area(). When this value is seen by the function, it uses the length
-parameter twice. Here is an example of this approach:
+
+
+
 // Compute area of a rectangle using default arguments .
 # include <iostream >
 using namespace std ;
 // Return area of a rectangle .
 double rect_area ( double length , double width = 0)
 {
-if (! width )
-width = length ;
+if(!width) width = length;
 return length * width ;
 }
+
 int main ()
 {
 cout << "10 x 5.8 rectangle has area : ";
