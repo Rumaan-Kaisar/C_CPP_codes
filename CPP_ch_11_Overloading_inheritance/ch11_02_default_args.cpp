@@ -181,9 +181,10 @@ int main(){
 
 
 
-2. To understand how default arguments are related to function overloading, first consider
+/* Example 2: To understand how "default arguments" are related to function OVERLOADING, first consider
 the next program, which overloads the function called rect area(). This function returns
-the area of a rectangle.
+the area of a rectangle. */
+
 // Compute area of a rectangle using overloaded functions .
 # include <iostream >
 using namespace std ;
@@ -241,11 +242,17 @@ As this example shows, default arguments often provide a simple alternative to f
 C++
 overloading. (Of course, there are many situations in which function overloading is still
 required.)
-3. It is not only legal to give constructor functions default arguments, it is also common.
+
+
+
+
+/* Example 3: It is not only legal to give constructor functions default arguments, it is also common.
 As you saw earlier in this chapter, many times a constructor is overloaded simply to
 allow both initialized and uninitialized objects to be created. In many cases, you can
 avoid overloading a constructor by giving it one or more default arguments. For example,
-examine this program:
+examine this program: */
+
+
 # include <iostream >
 using namespace std ;
 class myclass
@@ -269,13 +276,19 @@ return 0;
 }
 As this example shows, by giving n the default value of 0, it is possible to create objects
 that have explicit initial values and those for which the default value is sufficient.
-4. Another good application for a default argument is found when a parameter is used to
+
+
+
+
+/* Example 4: Another good application for a default argument is found when a parameter is used to
 select an option. It is possible to give that parameter a default value that is used as a flag
 that tells the function to continue to use the previously selected option. For example, in
 the following program, the function print() displays a string on the screen. If its how
 parameter is set to ignore, the text is displayed as is. If how is upper, the text is
 displayed in uppercase. If how is lower, the text is displayed in lowercase. When how
-is not specified, it defaults to -1, which tells the function to reuse the last how value.
+is not specified, it defaults to -1, which tells the function to reuse the last how value. */
+
+
 # include <iostream >
 # include <cctype >
 using namespace std ;
@@ -324,12 +337,17 @@ HELLO THERE
 HELLO THERE
 hello there
 that’s all
-5. Earlier in this chapter, you saw the general form of a copy constructor. This general form
+
+
+
+
+/* Example 5: Earlier in this chapter, you saw the general form of a copy constructor. This general form
 was shown with only one parameter. However, it is possible to create copy constructors
 that take additional arguments, as long as the additional arguments have default values.
-For example, the following is also an acceptable form of a copy constructor:
-137TEACH YOURSELF
-C++
+For example, the following is also an acceptable form of a copy constructor: */
+
+
+
 myclass ( const myclass &obj , int x = 0)
 {
 // body of constructor
@@ -337,7 +355,11 @@ myclass ( const myclass &obj , int x = 0)
 As long as the first argument is a reference to the object being copied, and all other
 arguments default, the function qualifies as a copy constructor. This flexibility allows you
 to create copy constructors that have other uses.
-6. Although default arguments are powerful and convenient, when used correctly, default
+
+
+
+
+/* Example 6: Although default arguments are powerful and convenient, when used correctly, default
 arguments allow a function to perform its job in an efficient and easy-to-use manner.
 However, this is only the case when the default value given to a parameter makes sense.
 For example, if the argument is the value wanted nine times out of ten, giving a function
@@ -349,11 +371,15 @@ tends to mislead anyone else who has to use that function.
 As with function overloading, part of becoming an excellent C++ programmer is knowing
 when to use a default argument and when not to.
 
+ */
 
 
 
 
-1. In the C++ standard library is the function strtoi(), which has this prototype:
+
+
+
+/* Example 1: In the C++ standard library is the function strtoi(), which has this prototype:
 long strtoi ( const char *start , const ** end , int base );
 The function converts the numeric string pointed to by start into a long integer. The
 number base of the numeric string is specified by base. Upon return, end points to the
@@ -363,16 +389,28 @@ most commonly, base 10 is used.
 Create a function called mystrtoi() that works the same as strtoi() except that ( base)
 is given the default argument of 10. (Feel free to use strtoi() to actually perform the
 conversion. It requires the header <cstdlib>.) Demonstrate that your version works
-correctly.
-2. What is wrong with the following function prototype?
+correctly. */
+
+
+
+
+/* Example 2: What is wrong with the following function prototype? */
 char *f( char *p, int x = 0, char *q);
-3. Most C++ compilers supply nonstandard functions that allow cursor positioning and the
+
+
+
+
+/* Example 3: Most C++ compilers supply nonstandard functions that allow cursor positioning and the
 like. If your compiler supplies such functions, create a function called myclreol() that
 clears the line from the current cursor position to the end of the line. However, give
 this function a parameter that specifies the number of character positions to clear. If the
 parameter is not specified, automatically clear the entire line. Otherwise, clear only the
-number of character positions specified by the parameter.
-4. What is wrong with the following prototype, which uses a default argument?
+number of character positions specified by the parameter. */
+
+
+
+
+/* Example 4: What is wrong with the following prototype, which uses a default argument? */
 int f( int count , int max = count );
 
 
