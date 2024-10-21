@@ -147,7 +147,17 @@
 
 
 
-/* Example 1: Here is a program that illustrates the default argumnets */
+/* Example 1: Here is a program that illustrates the default argumnets 
+
+                Remember that once the first default argument is specified, all following parameters must have defaults as well.
+                For example, this slightly different version of f() causes a compiletime error:
+
+                    // wrong ! b must have default , too
+                    void f(int a=0, int b){
+                        std::cout <<"a: "<< a <<", b: "<< b;
+                        std::cout <<'\n';
+                    }
+*/
 
 #include <iostream>
 
@@ -168,33 +178,9 @@ int main(){
 // ----  rev[17-Oct-2024]  ----
 // book
 
-1. Here is a program that illustrates the example described in the preceding discussion:
-// A simple first example of default arguments .
-# include <iostream >
-using namespace std ;
-void f( int a=0, int b =0)
-{
-cout << "a: " << a << ", b: " << b;
-cout << ’\n’;
-}
-int main ()
-{
-f();
-f (10) ;
-f(10 , 99) ;
-return 0;
-}
-As you should expect, this program displays the following output:
-a: 0, b: 0
-a: 10, b: 0
-a: 10, b: 99
-Remember that once the first default argument is specified, all following parameters must
-have defaults as well. For example, this slightly different version of f() causes a compiletime error:
-void f( int a=0, int b) // wrong ! b must have default , too
-{
-cout << "a: " << a << ", b: " << b;
-cout << ’\n’;
-}
+
+
+
 2. To understand how default arguments are related to function overloading, first consider
 the next program, which overloads the function called rect area(). This function returns
 the area of a rectangle.
