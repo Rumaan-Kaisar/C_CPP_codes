@@ -247,39 +247,43 @@ int main(){
 
 
 
-/* Example 3: It is not only legal to give constructor functions default arguments, it is also common.
-As you saw earlier in this chapter, many times a constructor is overloaded simply to
-allow both initialized and uninitialized objects to be created. In many cases, you can
-avoid overloading a constructor by giving it one or more default arguments. For example,
-examine this program: */
+// --------    constructors with default argumnets    --------
 
+/* Example 3: It is not only legal but also common to use "default arguments in constructors".
+                Instead of OVERLOADING a constructor for both initialized and uninitialized objects, 
+                    you can often use DEFAULT arguments.
+                This simplifies the code by eliminating the need for multiple constructor definitions.
 
-# include <iostream >
-using namespace std ;
-class myclass
-{
-int x;
-public :
-/*
-Use default argument instead of overloading
-myclass ’s constructor .
+                This program shows that by giving n a default value of 0, 
+                    objects can be created with either explicit or default values.
 */
-myclass ( int n = 0) { x = n; }
-int getx () { return x; }
+#include <iostream>
+
+class myclass{
+        int x;
+    public:
+        // Use DEFAULT argument instead of OVERLOADING myclass's constructor
+        myclass(int n = 0){ x = n; }
+        int getx(){ return x; }
 };
-int main ()
-{
-myclass o1 (10) ; // declare with initial value
-myclass o2; // declare without initializer
-cout << "o1: " << o1. getx () << ’\n’;
-cout << "o2: " << o2. getx () << ’\n’;
-return 0;
+
+int main(){
+    myclass o1(10) ; // declare with initial value
+    myclass o2; // declare without initializer
+
+    std::cout << "o1: " << o1.getx() << '\n';
+    std::cout << "o2: " << o2.getx() << '\n';
+    
+    return 0;
 }
-As this example shows, by giving n the default value of 0, it is possible to create objects
-that have explicit initial values and those for which the default value is sufficient.
 
 
 
+
+
+
+
+// --------  rev[22-Oct-2024]  --------
 
 /* Example 4: Another good application for a default argument is found when a parameter is used to
 select an option. It is possible to give that parameter a default value that is used as a flag
@@ -290,14 +294,14 @@ displayed in uppercase. If how is lower, the text is displayed in lowercase. Whe
 is not specified, it defaults to -1, which tells the function to reuse the last how value. */
 
 
-# include <iostream >
-# include <cctype >
-using namespace std ;
+#include <iostream>
+#include <cctype>
+
 const int ignore = 0;
 const int upper = 1;
 const int lower = 2;
-136FUNCTION OVERLOADING
-5.4. USING DEFAULT ARGUMENTS
+
+
 void print ( char *s, int how = -1);
 int main ()
 {
