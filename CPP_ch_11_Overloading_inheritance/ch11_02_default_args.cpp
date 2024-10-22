@@ -175,10 +175,6 @@ int main(){
 }
 
 
-// ----  rev[21-Oct-2024]  ----
-// book
-
-
 
 
 /* Example 2: To understand how "default arguments" are related to function OVERLOADING, 
@@ -195,28 +191,27 @@ int main(){
                     If the default value is passed, the function assumes it’s a square and uses the same value for both dimensions.
 */
 
-// Compute area of a rectangle using overloaded functions .
-# include <iostream >
-using namespace std ;
-// Return area of a non - square rectangle .
-double rect_area ( double length , double width )
-{
-return length * width ;
+// Compute area of a rectangle using OVERLOADED functions
+#include <iostream>
+
+// Return area of a non - square rectangle
+double rect_area(double length , double width){
+    return length * width;
 }
+
 // Return area of a square
-134FUNCTION OVERLOADING
-5.4. USING DEFAULT ARGUMENTS
-double rect_area ( double length )
-{
-return length * length ;
+double rect_area(double length){
+    return length * length;
 }
-int main ()
-{
-cout << "10 x 5.8 rectangle has area : ";
-cout << rect_area (10.0 , 5.8) << ’\n’;
-cout << "10 x 10 square has area : ";
-cout << rect_area (10.0) << ’\n’;
-return 0;
+
+
+int main(){
+    std::cout << "10 x 5.8 rectangle has area : ";
+    std::cout << rect_area(10.0, 5.8) << '\n';
+    std::cout << "10 x 10 square has area : ";
+    std::cout << rect_area(10.0) << '\n';
+
+    return 0;
 }
 
 
@@ -232,22 +227,21 @@ return 0;
 */
 
 // Compute area of a rectangle using default arguments
-# include <iostream >
-using namespace std ;
+#include <iostream>
+
 // Return area of a rectangle .
-double rect_area ( double length , double width = 0)
-{
-if(!width) width = length;
-return length * width ;
+double rect_area(double length , double width = 0){
+    if(!width) width = length;  // checking the 2nd argument
+    return length*width;
 }
 
-int main ()
-{
-cout << "10 x 5.8 rectangle has area : ";
-cout << rect_area (10.0 , 5.8) << ’\n’;
-cout << "10 x 10 square has area : ";
-cout << rect_area (10.0) << ’\n’;
-return 0;
+int main(){
+    std::cout << "10 x 5.8 rectangle has area : ";
+    std::cout << rect_area(10.0, 5.8) << '\n';
+    std::cout << "10 x 10 square has area : ";
+    std::cout << rect_area(10.0) << '\n';
+
+    return 0;
 }
 
 
