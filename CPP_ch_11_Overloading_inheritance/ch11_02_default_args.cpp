@@ -221,7 +221,17 @@ return 0;
 
 
 
-// Compute area of a rectangle using default arguments .
+/*  Version 2: using default argument
+
+    The default value for "width" is set to 0 because no rectangle can have a width of 0.
+    If rect_area() sees the default value (0), it automatically assumes the shape is a square and 
+        uses the "length" value for both length and width.
+
+    Default arguments can simplify code and reduce the need for function overloading.
+    However, there are still cases where function overloading is necessary.
+*/
+
+// Compute area of a rectangle using default arguments
 # include <iostream >
 using namespace std ;
 // Return area of a rectangle .
@@ -239,14 +249,6 @@ cout << "10 x 10 square has area : ";
 cout << rect_area (10.0) << ’\n’;
 return 0;
 }
-Here 0 is the default value of width. This value was chosen because no rectangle will
-have a width of 0. (Actually, a rectangle with a width of 0 is a line.) Thus, if this default
-value is seen, rect area() automatically uses the value in length for the value of width.
-As this example shows, default arguments often provide a simple alternative to function
-135TEACH YOURSELF
-C++
-overloading. (Of course, there are many situations in which function overloading is still
-required.)
 
 
 
