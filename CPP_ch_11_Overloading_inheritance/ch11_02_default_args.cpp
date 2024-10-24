@@ -285,7 +285,7 @@ int main(){
 
 // --------  rev[22-Oct-2024]  --------
 
-/* Example 4: Another good application for a default argument is found when a parameter is used to select an option. 
+/* Example 4: 
 It is possible to give that parameter a default value that is used as a flag
 that tells the function to continue to use the previously selected option. For example, in
 the following program, the function print() displays a string on the screen. If its how
@@ -297,34 +297,40 @@ is not specified, it defaults to -1, which tells the function to reuse the last 
 
 // ----  GPT  ----
 A default argument can be useful for selecting an option in a function.
-A parameter can be given a default value to act as a flag to indicate using the previously selected option.
-Example: The function print() displays text.
-If how is set to ignore, the text is displayed as is.
-If how is upper, it is displayed in uppercase.
-If how is lower, it is shown in lowercase.
-When how is not specified, it defaults to -1, meaning the function reuses the previous how value.
+A parameter can be given a "default value" to act as a flag to indicate using the previously selected option.
+
+for example the function print() displays text.
+    If "how" is set to "ignore", the text is displayed as is.
+    If "how" is "upper", it is displayed in uppercase.
+    If "how" is "lower", it is shown in lowercase.
+    When "how" is not specified, it defaults to -1, meaning the function reuses the previous how value.
 
 
 Here is a C++ prototype for the print() function described:
 
-cpp
-Copy code
-void print(const char* str, int how = -1);
+    void print(char *s, int how = -1);
+
+
+
 Explanation:
 
-const char* str: The string to be printed.
-int how = -1: The how parameter is used to control how the string is displayed (with -1 as the default flag to reuse the previous value).
+char *s: The string to be printed.
+int how = -1: The how parameter is used to control how the string is displayed 
+                (with -1 as the default flag to reuse the previous value).
 
 
 
-NOTE: it is not overloading any original or built-in print() function in C++.
+NOTE: it is not overloading any original or built-in "print()" function in C++.
 
-C++ does not have a predefined print() function. Instead, C++ typically uses std::cout for printing to the console. So, when you define your own print() function like this:
+C++ does not have a predefined "print()" function (like C). 
+Instead, C++ typically uses "std::cout" for printing to the console. 
 
-cpp
-Copy code
-void print(const char* str, int how = -1);
-You are not overriding or overloading any existing function in the standard library. This is simply defining your own function with the name print().
+So, when you define your own print() function like this:
+
+    void print(char *s, int how = -1);
+
+
+You are not overriding or overloading any existing function in the standard library.
 
 */
 
