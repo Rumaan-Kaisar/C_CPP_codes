@@ -359,6 +359,80 @@ void print(char *s, int how){   // default value of "how" given in prototype
 
 
 
+// --------  rev[24-Oct-2024]  --------
+
+/*  Explanation:
+
+// ----  prompt 1  ----
+In C++, remembering a previous state or value (like the "old case" for how in the print() function example) can be done by using static variables. These variables retain their value between function calls.
+
+Here’s a simplified explanation:
+
+A static variable inside a function maintains its value even after the function returns.
+So, if you want to remember the "old case" in the print() function, you can declare how as static, and it will preserve its value across multiple calls.
+
+
+// ----  prompt 2  ----
+The program you've written successfully demonstrates how to use default arguments and a static variable to "remember" the last how parameter in the print() function. Here’s a simplified breakdown:
+
+Key Elements:
+Static Variable oldcase:
+The static variable oldcase is used to remember the last case (ignore, upper, lower) across multiple function calls. This way, if how is not specified, it reuses the previous setting.
+
+Function Parameters with Default Value:
+The how parameter is given a default value of -1. If the user doesn't specify how, it uses the last case (`old
+
+
+// ----  prompt 3  ----
+In the provided program, the variable oldcase is declared as static inside the print() function. Since static local variables retain their value across multiple function calls, this allows the function to "remember" the previous how value even after the function returns.
+
+Here’s how the old case is remembered:
+
+The first time print() is called, oldcase is initialized to ignore.
+If the argument how is not provided or is negative, the function uses the value stored in oldcase from the last call.
+After processing the string, oldcase is updated with the current value of how, so that it can be reused in the next call.
+Thus, by retaining the oldcase value across function calls, the function can "remember" the last used case setting.
+
+
+
+Is a static variable destroyed after a function call, even if it's defined inside the function?
+
+No, static variables are not destroyed after a function call, even if they are defined inside the function.
+
+Key characteristics of static variables:
+Lifetime:
+Static variables have a lifetime that lasts for the entire duration of the program. Once initialized, they retain their value between multiple calls to the function, unlike regular local variables, which are destroyed at the end of each function call.
+
+Scope:
+The scope of a static variable defined inside a function is local to the function—it can only be accessed within that function. However, its value is remembered between invocations.
+
+Example:
+In your program, the variable oldcase inside the print() function is declared as static:
+
+cpp
+Copy code
+void print(char *s, int how){   
+    static int oldcase = ignore;  // Static variable
+
+    // Logic to print based on case
+}
+This means that oldcase will be initialized only once (the first time the function is called), and its value will persist across future calls to print(). It is not destroyed after the function returns.
+When the function is called again, oldcase will still hold the value it had from the previous function call. This allows the program to "remember" the last case setting.
+Conclusion:
+The static variable inside the function remains in memory and retains its value until the program terminates. It is not destroyed after each function call.
+
+
+
+* Static local variables are not destroyed when the function ends.
+* They stay in memory for the entire duration of the program.
+* Even though they are defined inside a function, they retain their value between function calls.
+* Their scope is limited to the function, but their lifetime lasts as long as the program runs.
+
+*/
+
+
+
+
 
 
 /* Example 5: Earlier in this chapter, you saw the general form of a copy constructor. This general form
