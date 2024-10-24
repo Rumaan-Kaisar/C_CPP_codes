@@ -280,58 +280,35 @@ int main(){
 
 
 
+/* Example 4: A default argument can be useful for selecting an OPTION in a function.
+                A parameter can be given a "default value" to act as a flag to indicate using the previously selected option.
+
+                For example the function print() displays text.
+                    If "how" is set to "ignore", the text is displayed as is.
+                    If "how" is "upper", it is displayed in uppercase.
+                    If "how" is "lower", it is shown in lowercase.
+                    When "how" is not specified, it defaults to -1, meaning the function reuses the previous how value.
 
 
+                Here is a C++ prototype for the print() function described:
 
-// --------  rev[22-Oct-2024]  --------
+                        void print(char *s, int how = -1);
 
-/* Example 4: 
-It is possible to give that parameter a default value that is used as a flag
-that tells the function to continue to use the previously selected option. For example, in
-the following program, the function print() displays a string on the screen. If its how
-parameter is set to ignore, the text is displayed as is. If how is upper, the text is
-displayed in uppercase. If how is lower, the text is displayed in lowercase. When how
-is not specified, it defaults to -1, which tells the function to reuse the last how value. 
+                    char *s: The string to be printed.
+                    int how = -1: The how parameter is used to control how the string is displayed 
+                                    (with -1 as the default flag to reuse the previous value).
 
 
+                NOTE: 
+                    We're not overloading any original or built-in "print()" function in C++.
+                    C++ does not have a predefined "print()" function (like C). 
+                    Instead, C++ typically uses "std::cout" for printing to the console. 
 
-// ----  GPT  ----
-A default argument can be useful for selecting an option in a function.
-A parameter can be given a "default value" to act as a flag to indicate using the previously selected option.
+                    So, when you define your own print() function like this:
 
-for example the function print() displays text.
-    If "how" is set to "ignore", the text is displayed as is.
-    If "how" is "upper", it is displayed in uppercase.
-    If "how" is "lower", it is shown in lowercase.
-    When "how" is not specified, it defaults to -1, meaning the function reuses the previous how value.
+                        void print(char *s, int how = -1);
 
-
-Here is a C++ prototype for the print() function described:
-
-    void print(char *s, int how = -1);
-
-
-
-Explanation:
-
-char *s: The string to be printed.
-int how = -1: The how parameter is used to control how the string is displayed 
-                (with -1 as the default flag to reuse the previous value).
-
-
-
-NOTE: it is not overloading any original or built-in "print()" function in C++.
-
-C++ does not have a predefined "print()" function (like C). 
-Instead, C++ typically uses "std::cout" for printing to the console. 
-
-So, when you define your own print() function like this:
-
-    void print(char *s, int how = -1);
-
-
-You are not overriding or overloading any existing function in the standard library.
-
+                    You are not overriding or overloading any existing function in the standard library.
 */
 
 
@@ -342,47 +319,44 @@ const int ignore = 0;
 const int upper = 1;
 const int lower = 2;
 
+void print(char *s, int how =-1);      // prototype with default value
 
-void print(char *s, int how = -1);
-int main ()
-{
-print (" Hello There \n", ignore );
-print (" Hello There \n", upper );
-print (" Hello There \n"); // continue in upper
-print (" Hello There \n", lower );
-print (" That ’s all \n"); // continue in lower
-return 0;
+int main(){
+    print(" Hello There \n", ignore);
+    print(" Hello There \n", upper);
+    print(" Hello There \n");   // continue in upper
+    print(" Hello There \n", lower);
+    print(" That ’s all \n");   // continue in lower
+
+    return 0;
 }
-/*
-Print a string in the specified case . Use
-last case specified if none is given .
+
+
+/*  function definition: 
+        Print a string in the specified case. 
+        Use last case specified if none is given
 */
-void print ( char *s, int how )
-{
-static int oldcase = ignore ;
-// reuse old case if none specified
-if(how <0)
-how = oldcase ;
-while (*s)
-{
-switch ( how )
-{
-case upper : cout << ( char ) toupper (*s);
-break ;
-case lower : cout << ( char ) tolower (*s);
-break ;
-default : cout << *s;
-} s
-++;
+void print(char *s, int how){   // default value of "how" given in prototype
+    static int oldcase = ignore;
+
+    // reuse old case if none specified
+    if(how<0) how = oldcase;
+    while(*s){
+        switch(how){
+            case upper: 
+                std::cout << (char)toupper(*s);
+                break;
+            case lower:
+                std::cout << (char)tolower(*s);
+                break;
+            default:
+                std::cout << *s;
+        }
+        s++;
+    }
+    oldcase = how;
 }
-oldcase = how ;
-}
-This function displays the following output:
-Hello There
-HELLO THERE
-HELLO THERE
-hello there
-that’s all
+
 
 
 
