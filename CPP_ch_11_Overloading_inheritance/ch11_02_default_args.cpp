@@ -361,37 +361,39 @@ void print(char *s, int how){   // default value of "how" given in prototype
 
 // --------  rev[24-Oct-2024]  --------
 
-/*  Explanation:
+/*  Above program demonstrates how to use "default arguments" and a STATIC variable 
+        to "remember" the last "how" parameter in the print() function.
 
-// ----  prompt 1  ----
-In C++, remembering a previous state or value (like the "old case" for how in the print() function example) can be done by using static variables. These variables retain their value between function calls.
+    Explanation:
+        In C++, remembering a previous state or value (like the "old case" for "how" in the print() function example) 
+            can be done by using "static variables". 
+            These variables retain their value between function calls.
 
-Here’s a simplified explanation:
+
+
 
 A static variable inside a function maintains its value even after the function returns.
-So, if you want to remember the "old case" in the print() function, you can declare how as static, and it will preserve its value across multiple calls.
+We declare "oldcase" as static and it stores "how" values, 
+    and it will preserve its value across multiple calls.
 
 
 // ----  prompt 2  ----
-The program you've written successfully demonstrates how to use default arguments and a static variable to "remember" the last how parameter in the print() function. Here’s a simplified breakdown:
+
+
+
+
+ Here’s a simplified breakdown:
 
 Key Elements:
 Static Variable oldcase:
-The static variable oldcase is used to remember the last case (ignore, upper, lower) across multiple function calls. This way, if how is not specified, it reuses the previous setting.
-
-Function Parameters with Default Value:
-The how parameter is given a default value of -1. If the user doesn't specify how, it uses the last case (`old
+The static variable "oldcase" is used to remember the last case (ignore, upper, lower) across multiple function calls. 
+    This way, if "how" is not specified, it reuses the previous setting.
 
 
-// ----  prompt 3  ----
-In the provided program, the variable oldcase is declared as static inside the print() function. Since static local variables retain their value across multiple function calls, this allows the function to "remember" the previous how value even after the function returns.
+The "how" parameter is given a default value of -1. If the user doesn't specify "how", it uses the last case stored in "oldcase"
 
-Here’s how the old case is remembered:
 
-The first time print() is called, oldcase is initialized to ignore.
-If the argument how is not provided or is negative, the function uses the value stored in oldcase from the last call.
-After processing the string, oldcase is updated with the current value of how, so that it can be reused in the next call.
-Thus, by retaining the oldcase value across function calls, the function can "remember" the last used case setting.
+
 
 
 
