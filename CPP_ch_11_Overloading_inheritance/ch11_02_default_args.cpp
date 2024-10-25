@@ -358,9 +358,6 @@ void print(char *s, int how){   // default value of "how" given in prototype
 }
 
 
-
-// --------  rev[24-Oct-2024]  --------
-
 /*  Above program demonstrates how to use "default arguments" and a STATIC variable 
         to "remember" the last "how" parameter in the print() function.
 
@@ -370,72 +367,39 @@ void print(char *s, int how){   // default value of "how" given in prototype
             These variables retain their value between function calls.
 
 
+        A static variable inside a function maintains its value even after the function returns.
+            We declare "oldcase" as static and it stores "how" values, 
+                and it will preserve its value across multiple calls.
+
+            The static variable "oldcase" is used to remember the last case (ignore, upper, lower) across multiple function calls. 
+                This way, if "how" is not specified, it reuses the previous setting.
 
 
-A static variable inside a function maintains its value even after the function returns.
-We declare "oldcase" as static and it stores "how" values, 
-    and it will preserve its value across multiple calls.
-
-
-// ----  prompt 2  ----
-
-
-
-
- Here’s a simplified breakdown:
-
-Key Elements:
-Static Variable oldcase:
-The static variable "oldcase" is used to remember the last case (ignore, upper, lower) across multiple function calls. 
-    This way, if "how" is not specified, it reuses the previous setting.
-
-
-The "how" parameter is given a default value of -1. If the user doesn't specify "how", it uses the last case stored in "oldcase"
-
-
-
-
-
-
-Is a static variable destroyed after a function call, even if it's defined inside the function?
-
-No, static variables are not destroyed after a function call, even if they are defined inside the function.
-
-Key characteristics of static variables:
-Lifetime:
-Static variables have a lifetime that lasts for the entire duration of the program. Once initialized, they retain their value between multiple calls to the function, unlike regular local variables, which are destroyed at the end of each function call.
-
-Scope:
-The scope of a static variable defined inside a function is local to the function—it can only be accessed within that function. However, its value is remembered between invocations.
-
-Example:
-In your program, the variable oldcase inside the print() function is declared as static:
-
-cpp
-Copy code
-void print(char *s, int how){   
-    static int oldcase = ignore;  // Static variable
-
-    // Logic to print based on case
-}
-This means that oldcase will be initialized only once (the first time the function is called), and its value will persist across future calls to print(). It is not destroyed after the function returns.
-When the function is called again, oldcase will still hold the value it had from the previous function call. This allows the program to "remember" the last case setting.
-Conclusion:
-The static variable inside the function remains in memory and retains its value until the program terminates. It is not destroyed after each function call.
-
-
-
-* Static local variables are not destroyed when the function ends.
-* They stay in memory for the entire duration of the program.
-* Even though they are defined inside a function, they retain their value between function calls.
-* Their scope is limited to the function, but their lifetime lasts as long as the program runs.
-
+        The "how" parameter is given a default value of -1. 
+            If the user doesn't specify "how", it uses the last case stored in "oldcase"
 */
 
 
 
 
+/* ------------    lifetime of a static variable    ------------ 
 
+    Is a static variable destroyed after a function call, even if it's defined inside the function?
+
+        No, static variables are not destroyed after a function call, even if they are defined inside the function.
+        Static variables have a lifetime that lasts for the entire duration of the program. 
+        Once initialized, they retain their value between multiple calls to the function.
+
+
+        * Static local variables are not destroyed when the function ends.
+        * They stay in memory for the entire duration of the program.
+        * Even though they are defined inside a function, they retain their value between function calls.
+        * Their scope is limited to the function, but their lifetime lasts as long as the program runs.
+*/
+
+
+
+// --------  rev[25-Oct-2024]  --------
 
 /* Example 5: Earlier in this chapter, you saw the general form of a copy constructor. This general form
 was shown with only one parameter. However, it is possible to create copy constructors
