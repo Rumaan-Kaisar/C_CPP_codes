@@ -30,6 +30,9 @@
             Finally, f() can be called with no arguments, causing both a and b to default to 0. Example: 
                     f();            // a and b default to 0
 
+        Like function overloading, knowing when to use a default argument and 
+            when not to is essential for writing clear, effective C++ programs
+
 
 
     Note:
@@ -399,7 +402,6 @@ void print(char *s, int how){   // default value of "how" given in prototype
 
 
 
-// --------  rev[25-Oct-2024]  --------
 
 /* Example 5: Earlier in "ch11_01_2_copy_constructor.cpp" we saw the general form of a copy constructor. 
                 This general form was shown with only one parameter.
@@ -408,32 +410,21 @@ void print(char *s, int how){   // default value of "how" given in prototype
                     as long as the additional arguments have "DEFAULT values".
 */
 
-
-
-myclass ( const myclass &obj , int x = 0)
-{
-// body of constructor
+myclass (const myclass &obj, int x = 0){
+    // body of constructor
 }
-As long as the first argument is a reference to the object being copied, and all other
-arguments default, the function qualifies as a copy constructor. This flexibility allows you
-to create copy constructors that have other uses.
+
+/* As long as the first argument is a "reference to the object being copied", and all other arguments default, 
+    the function qualifies as a copy constructor.  
+*/
+
+
+
+// --------  rev[28-Oct-2024]  --------
 
 
 
 
-/* Example 6: Although default arguments are powerful and convenient, when used correctly, default
-arguments allow a function to perform its job in an efficient and easy-to-use manner.
-However, this is only the case when the default value given to a parameter makes sense.
-For example, if the argument is the value wanted nine times out of ten, giving a function
-a default argument to this effect is obviously a good idea. However, in cases in which no
-one value is more likely to be used than another, or when there is no benefit to using a
-default argument as a flag value, it makes little sense to provide a default value. Actually,
-providing a default argument when one is not called for destructures your program and
-tends to mislead anyone else who has to use that function.
-As with function overloading, part of becoming an excellent C++ programmer is knowing
-when to use a default argument and when not to.
-
- */
 
 
 
