@@ -401,10 +401,12 @@ void print(char *s, int how){   // default value of "how" given in prototype
 
 // --------  rev[25-Oct-2024]  --------
 
-/* Example 5: Earlier in this chapter, you saw the general form of a copy constructor. This general form
-was shown with only one parameter. However, it is possible to create copy constructors
-that take additional arguments, as long as the additional arguments have default values.
-For example, the following is also an acceptable form of a copy constructor: */
+/* Example 5: Earlier in "ch11_01_2_copy_constructor.cpp" we saw the general form of a copy constructor. 
+                This general form was shown with only one parameter.
+
+                However, it is possible to create copy constructors that take additional arguments, 
+                    as long as the additional arguments have "DEFAULT values".
+*/
 
 
 
