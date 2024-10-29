@@ -436,30 +436,6 @@ is given the default argument of 10. (Feel free to use strtoi() to actually perf
 conversion. It requires the header <cstdlib>.) Demonstrate that your version works
 correctly. */
 
-
-
-
-/* Example 2: What is wrong with the following function prototype? */
-char *f( char *p, int x = 0, char *q);
-
-
-
-
-/* Example 3: Most C++ compilers supply nonstandard functions that allow cursor positioning and the
-like. If your compiler supplies such functions, create a function called myclreol() that
-clears the line from the current cursor position to the end of the line. However, give
-this function a parameter that specifies the number of character positions to clear. If the
-parameter is not specified, automatically clear the entire line. Otherwise, clear only the
-number of character positions specified by the parameter. */
-
-
-
-
-/* Example 4: What is wrong with the following prototype, which uses a default argument? */
-int f( int count , int max = count );
-
-
-
 1. # include <iostream >
 # include <cstdlib >
 using namespace std ;
@@ -480,30 +456,48 @@ x = mystrtol (s1 , &p); // use default base of 10
 cout << " Base 10: " << x << ’\n’;
 return 0;
 }
+
+
+
+
+/* Example 2: What is wrong with the following function prototype? */
+char *f( char *p, int x = 0, char *q);
+
 2. All parameters taking default arguments must appear to the right of those that do not.
 That is, once you begin giving parameters defaults, all subsequent parameters must also
 have defaults. In the question, q is not given a default.
-3. Since cursor positioning functions differ from compiler to compiler and environment to environment, only one possible solution is shown. The following program works for Borland
-C++ under a command-prompt environment.
+
+
+
+
+/* Example 3: Most C++ compilers supply nonstandard functions that allow cursor positioning and the
+like. If your compiler supplies such functions, create a function called myclreol() that
+clears the line from the current cursor position to the end of the line. However, give
+this function a parameter that specifies the number of character positions to clear. If the
+parameter is not specified, automatically clear the entire line. Otherwise, clear only the
+number of character positions specified by the parameter. */
+
+3. Since cursor positioning functions differ from compiler to compiler and environment to environment, only one possible solution is shown. 
+The following program works for Borland C++ under a command-prompt environment.
 // Note : This program is Borland C++- specific .
 # include <iostream >
 # include <conio .h>
-using namespace std ;
+
 void myclreol ( int len = -1);
+
 int main ()
 {
 int i;
 gotoxy (1, 1);
 for (i =0; i <24; i ++)
 cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
-469TEACH YOURSELF
-C++
 gotoxy (1, 2);
 myclreol ();
 gotoxy (1, 4);
 myclreol (20) ;
 return 0;
 }
+
 // Clear to end of line unless len parameter is specified .
 void myclreol ( int len )
 {
@@ -517,4 +511,16 @@ for ( ; i <= len ; i ++)
 cout << ’ ’;
 gotoxy (x, y); // reset the cursor
 }
-4. A default argument cannot be another parameter or a local variable.
+
+
+
+
+/* Example 4: What is wrong with the following prototype, which uses a default argument? 
+
+                    int f(int count, int max = count);
+                
+                ans:
+                    A default argument cannot be another parameter or a local variable.
+*/
+
+
