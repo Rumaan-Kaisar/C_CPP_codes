@@ -424,14 +424,6 @@ myclass (const myclass &obj, int x = 0){
 
 
 
-
-
-
-
-
-
-
-
 /* Example 1: In the C++ standard library is the function strtoi(), which has this prototype:
 long strtoi ( const char *start , const ** end , int base );
 The function converts the numeric string pointed to by start into a long integer. The
@@ -468,3 +460,61 @@ int f( int count , int max = count );
 
 
 
+1. # include <iostream >
+# include <cstdlib >
+using namespace std ;
+long mystrtol ( const char *s, char ** end , int base = 10)
+{
+return strtol (s, end , base );
+}
+int main ()
+{
+long x;
+char *s1 = " 100234 ";
+char *p;
+x = mystrtol (s1 , &p, 16);
+cout << " Base 16: " << x << ’\n’;
+x = mystrtol (s1 , &p, 10);
+cout << " Base 10: " << x << ’\n’;
+x = mystrtol (s1 , &p); // use default base of 10
+cout << " Base 10: " << x << ’\n’;
+return 0;
+}
+2. All parameters taking default arguments must appear to the right of those that do not.
+That is, once you begin giving parameters defaults, all subsequent parameters must also
+have defaults. In the question, q is not given a default.
+3. Since cursor positioning functions differ from compiler to compiler and environment to environment, only one possible solution is shown. The following program works for Borland
+C++ under a command-prompt environment.
+// Note : This program is Borland C++- specific .
+# include <iostream >
+# include <conio .h>
+using namespace std ;
+void myclreol ( int len = -1);
+int main ()
+{
+int i;
+gotoxy (1, 1);
+for (i =0; i <24; i ++)
+cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
+469TEACH YOURSELF
+C++
+gotoxy (1, 2);
+myclreol ();
+gotoxy (1, 4);
+myclreol (20) ;
+return 0;
+}
+// Clear to end of line unless len parameter is specified .
+void myclreol ( int len )
+{
+int x, y;
+x = wherex (); // get x position
+y = wherey (); // get y position
+if( len == -1)
+len = 80-x;
+int i = x;
+for ( ; i <= len ; i ++)
+cout << ’ ’;
+gotoxy (x, y); // reset the cursor
+}
+4. A default argument cannot be another parameter or a local variable.
