@@ -414,8 +414,8 @@ myclass (const myclass &obj, int x = 0){
     // body of constructor
 }
 
-/* As long as the first argument is a "reference to the object being copied", and all other arguments default, 
-    the function qualifies as a copy constructor.  
+/*  As long as the first argument is a "reference to the object being copied", and all other arguments default, 
+        the function qualifies as a copy constructor.  
 */
 
 
@@ -425,16 +425,25 @@ myclass (const myclass &obj, int x = 0){
 
 
 /* Example 1: In the C++ standard library is the function strtoi(), which has this prototype:
-long strtoi ( const char *start , const ** end , int base );
-The function converts the numeric string pointed to by start into a long integer. The
-number base of the numeric string is specified by base. Upon return, end points to the
-character in the string immediately following the end of the number. The long integer
-equivalent of the numeric string is returned. base must be in the range 2 to 38. However,
-most commonly, base 10 is used.
-Create a function called mystrtoi() that works the same as strtoi() except that ( base)
-is given the default argument of 10. (Feel free to use strtoi() to actually perform the
-conversion. It requires the header <cstdlib>.) Demonstrate that your version works
-correctly. */
+
+                        long strtoi(const char *start, const **end, int base);
+
+                The function converts the "numeric string" pointed to by "start" into a long integer. 
+                The number base of the numeric string is specified by base. 
+                Upon return, "end" points to the character in the string immediately following the end of the number.
+
+                The long integer equivalent of the numeric string is returned. base must be in the range 2 to 36. 
+                    However, most commonly, base 10 is used.
+
+                There is also similar strtol() converts the numeric string pointed to by start into a long integer.
+                
+                        long strtol(const char *start, char **end, int base);
+
+
+                Create a function called mystrtoi() that works the same as strtoi() or strtol()
+                    except that (Base) is given the default argument of 10. 
+                    (Feel free to use strtoi() to actually perform the conversion. It requires the header <cstdlib>.) 
+*/
 
 1. # include <iostream >
 # include <cstdlib >
@@ -456,6 +465,33 @@ x = mystrtol (s1 , &p); // use default base of 10
 cout << " Base 10: " << x << ’\n’;
 return 0;
 }
+
+
+// using For strtol()
+#include <iostream>
+#include <cstdlib>  // For strtol()
+
+long mystrtol(const char *start, char **end = nullptr, int base = 10) {
+    return strtol(start, end, base);
+}
+
+int main() {
+    char *end;
+    const char *numStr = "1234";
+
+    // Test with default base (10)
+    long result = mystrtol(numStr, &end);
+    std::cout << "Result (default base 10): " << result << "\n";
+
+    // Test with specified base (16)
+    result = mystrtol(numStr, &end, 16);
+    std::cout << "Result (base 16): " << result << "\n";
+
+    return 0;
+}
+This example demonstrates that mystrtol() works similarly to strtol() but defaults to base 10 if not specified.
+
+
 
 
 
