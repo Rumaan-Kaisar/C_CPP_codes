@@ -598,8 +598,57 @@ gotoxy, wherex(), and wherey() functions are replaced with ANSI escape codes for
 For full portability, a library like ncurses could be used on Unix systems for cursor manipulation, as it provides a more comprehensive and standardized interface.
 
 
-// promt 2
 
+
+// promt 2
+Here's the program modified for GCC using standard libraries available in Linux terminal environments. In GCC (Linux environment), the conio.h functions like gotoxy, wherex, and wherey are not available. Instead, ANSI escape codes can be used for cursor control.
+
+The program below uses ANSI escape sequences to move the cursor and clears portions of a line based on the specified length.
+
+cpp
+Copy code
+#include <iostream>
+#include <unistd.h>  // for usleep()
+
+void gotoxy(int x, int y);
+void myclreol(int len = -1);
+int get_cursor_x();
+int get_cursor_y();
+
+int main() {
+    // Move the cursor to (1,1)
+    gotoxy(1, 1);
+    
+    // Print 24 lines of text
+    for (int i = 0; i < 24; i++) 
+        std::cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
+    
+    // Move the cursor to (1,2) and clear from current position to the end of the line
+    gotoxy(1, 2);
+    myclreol();
+    
+    // Move the cursor to (1,4) and clear 20 characters from the current position
+    gotoxy(1, 4);
+    myclreol(20);
+
+    return 0;
+}
+
+// Moves the cursor to the specified (x, y) position
+void gotoxy(int x, int y) {
+    printf("\033[%d;%dH", y, x);
+    fflush(stdout);
+}
+
+// Function to get the current X position of the cursor
+int get_cursor_x() {
+    int x, y;
+    printf("\033[6n");   // Request cursor position
+    std::cin >> x >> y;  // Not fully portable, works in Linux/GCC under typical settings
+    return x;
+}
+
+// Function to get the
 
 
 
