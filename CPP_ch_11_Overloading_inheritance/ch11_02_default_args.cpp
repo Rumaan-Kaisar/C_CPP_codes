@@ -464,15 +464,17 @@ int main(){
 
 
 
+/* Example 2: What is wrong with the following function prototype? 
 
+                        char *f(char *p, int x = 0, char *q);
+            ans:
+                All parameters taking default arguments must appear to the "right" of those that do not.
 
+                That is, once you begin giving parameters defaults, 
+                    all subsequent parameters must also have defaults.
+                    In the above code, q is not given a default.
 
-/* Example 2: What is wrong with the following function prototype? */
-char *f( char *p, int x = 0, char *q);
-
-2. All parameters taking default arguments must appear to the right of those that do not.
-That is, once you begin giving parameters defaults, all subsequent parameters must also
-have defaults. In the question, q is not given a default.
+*/
 
 
 // --------  rev[31-Oct-2024]  --------
