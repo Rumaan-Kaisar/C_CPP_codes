@@ -477,48 +477,58 @@ int main(){
 */
 
 
+
 // --------  rev[31-Oct-2024]  --------
 
-/* Example 3: Most C++ compilers supply nonstandard functions that allow cursor positioning and the
-like. If your compiler supplies such functions, create a function called myclreol() that
-clears the line from the current cursor position to the end of the line. However, give
-this function a parameter that specifies the number of character positions to clear. If the
-parameter is not specified, automatically clear the entire line. Otherwise, clear only the
-number of character positions specified by the parameter. */
+/* Example 3: Many C++ compilers provide "nonstandard functions" for cursor positioning.
 
-3. Since cursor positioning functions differ from compiler to compiler and environment to environment, only one possible solution is shown. 
-The following program works for Borland C++ under a command-prompt environment.
-// Note : This program is Borland C++- specific .
-# include <iostream >
-# include <conio .h>
+                If such functions are available, create a function named myclreol() 
+                    to clear the line from the current cursor position to the end of the line.
+                    
+                Add an optional parameter to myclreol() that specifies the "number of characters" to clear.
+                    If the parameter is not provided, the function should clear the entire line.
+                    If the parameter is provided, the function should clear only 
+                        the specified number of characters from the current cursor position.
+*/
 
-void myclreol ( int len = -1);
+// Since cursor positioning functions differ from compiler to compiler and environment to environment, only one possible solution is shown.
 
-int main ()
-{
-int i;
-gotoxy (1, 1);
-for (i =0; i <24; i ++)
-cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
-gotoxy (1, 2);
-myclreol ();
-gotoxy (1, 4);
-myclreol (20) ;
-return 0;
+// The following program works for Borland C++ under a command-prompt environment.
+// Note : This program is Borland C++- specific
+
+#include <iostream>
+#include <conio.h>
+
+void myclreol(int len = -1);
+
+
+int main(){
+    int i;
+
+    gotoxy(1, 1);
+    for(i=0; i<24; i++) std::cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
+    
+    gotoxy(1, 2);
+    myclreol();
+    
+    gotoxy(1, 4);
+    myclreol(20) ;
+
+    return 0;
 }
 
+
 // Clear to end of line unless len parameter is specified .
-void myclreol ( int len )
-{
-int x, y;
-x = wherex (); // get x position
-y = wherey (); // get y position
-if( len == -1)
-len = 80-x;
-int i = x;
-for ( ; i <= len ; i ++)
-cout << ’ ’;
-gotoxy (x, y); // reset the cursor
+void myclreol(int len){
+    int x, y;
+
+    x = wherex();   // get x position
+    y = wherey();   // get y position
+    
+    if(len == -1) len = 80-x;
+    int i = x;
+    for( ; i <= len ; i ++) std::cout << ' ';
+    gotoxy (x, y); // reset the cursor
 }
 
 
