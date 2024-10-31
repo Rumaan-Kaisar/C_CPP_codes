@@ -420,13 +420,10 @@ myclass (const myclass &obj, int x = 0){
 
 
 
-// --------  rev[28-Oct-2024]  --------
 
+/* Example 1: In the C++ standard library is the function strtol(), which has this prototype:
 
-
-/* Example 1: In the C++ standard library is the function strtoi(), which has this prototype:
-
-                        long strtoi(const char *start, const **end, int base);
+                        long strtol(const char *start, const **end, int base);
 
                 The function converts the "numeric string" pointed to by "start" into a long integer. 
                 The number base of the numeric string is specified by base. 
@@ -435,61 +432,35 @@ myclass (const myclass &obj, int x = 0){
                 The long integer equivalent of the numeric string is returned. base must be in the range 2 to 36. 
                     However, most commonly, base 10 is used.
 
-                There is also similar strtol() converts the numeric string pointed to by start into a long integer.
                 
-                        long strtol(const char *start, char **end, int base);
-
-
                 Create a function called mystrtoi() that works the same as strtoi() or strtol()
                     except that (Base) is given the default argument of 10. 
                     (Feel free to use strtoi() to actually perform the conversion. It requires the header <cstdlib>.) 
 */
 
-1. # include <iostream >
-# include <cstdlib >
-using namespace std ;
-long mystrtol ( const char *s, char ** end , int base = 10)
-{
-return strtol (s, end , base );
-}
-int main ()
-{
-long x;
-char *s1 = " 100234 ";
-char *p;
-x = mystrtol (s1 , &p, 16);
-cout << " Base 16: " << x << ’\n’;
-x = mystrtol (s1 , &p, 10);
-cout << " Base 10: " << x << ’\n’;
-x = mystrtol (s1 , &p); // use default base of 10
-cout << " Base 10: " << x << ’\n’;
-return 0;
-}
-
-
-// using For strtol()
 #include <iostream>
-#include <cstdlib>  // For strtol()
+#include <cstdlib>
 
-long mystrtol(const char *start, char **end = nullptr, int base = 10) {
-    return strtol(start, end, base);
+long mystrtol(const char *s, char ** end, int base = 10){
+    return strtol(s, end , base );
 }
 
-int main() {
-    char *end;
-    const char *numStr = "1234";
 
-    // Test with default base (10)
-    long result = mystrtol(numStr, &end);
-    std::cout << "Result (default base 10): " << result << "\n";
+int main(){
+    long x;
+    char *s1 = " 100234 ";
+    char *p;
 
-    // Test with specified base (16)
-    result = mystrtol(numStr, &end, 16);
-    std::cout << "Result (base 16): " << result << "\n";
+    x = mystrtol (s1 , &p, 16);
+    std::cout << " Base 16: " << x << '\n';
+    x = mystrtol (s1 , &p, 10);
+    std::cout << " Base 10: " << x << '\n';
+    x = mystrtol (s1 , &p); // use default base of 10
+    std::cout << " Base 10: " << x << '\n';
 
     return 0;
 }
-This example demonstrates that mystrtol() works similarly to strtol() but defaults to base 10 if not specified.
+
 
 
 
@@ -504,7 +475,7 @@ That is, once you begin giving parameters defaults, all subsequent parameters mu
 have defaults. In the question, q is not given a default.
 
 
-
+// --------  rev[31-Oct-2024]  --------
 
 /* Example 3: Most C++ compilers supply nonstandard functions that allow cursor positioning and the
 like. If your compiler supplies such functions, create a function called myclreol() that
