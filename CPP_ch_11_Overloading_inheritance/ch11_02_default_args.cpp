@@ -532,6 +532,76 @@ void myclreol(int len){
 }
 
 
+// --------    ChatGPT: above code converted for GCC    --------
+
+// promt1 : 
+The original code relies on Borland-specific functions like gotoxy(), wherex(), and wherey() for cursor manipulation. Unfortunately, these functions aren't part of the C++ standard library and are not available in GCC.
+
+To make it compatible with GCC and standard C++, we need to use ANSI escape codes for cursor control instead, which work in most Unix-like environments, including Linux terminals.
+
+Here’s the equivalent code that should work in a typical GCC setup with a terminal that supports ANSI escape codes:
+
+cpp
+Copy code
+#include <iostream>
+#include <string>
+using namespace std;
+
+void gotoxy(int x, int y) {
+    // Move cursor to (x, y) using ANSI escape codes
+    cout << "\033[" << y << ";" << x << "H";
+}
+
+void myclreol(int len = -1) {
+    int x, y;
+    
+    // Get current cursor position in a terminal-independent way is challenging in standard C++. 
+    // However, for demonstration, we assume the cursor is at (1, 1) when the program starts.
+    
+    // Clear till end of line or till specified length
+    if (len == -1) {
+        // Clear till the end of the line (from current position to 80 columns)
+        cout << "\033[K";
+    } else {
+        // Clear specified length by printing spaces
+        for (int i = 0; i < len; i++) {
+            cout << ' ';
+        }
+        // Move the cursor back to the start position after clearing
+        cout << "\033[" << len << "D";
+    }
+}
+
+int main() {
+    gotoxy(1, 1);
+    for (int i = 0; i < 24; i++) {
+        cout << "abcdefghijklmnopqrstuvwxyz1234567890\n";
+    }
+
+    gotoxy(1, 2);
+    myclreol();         // Clear from the current position till the end of the line
+    gotoxy(1, 4);
+    myclreol(20);       // Clear only 20 characters from the current position
+
+    return 0;
+}
+Explanation of Modifications:
+gotoxy(int x, int y): This function uses ANSI escape codes to move the cursor to the specified coordinates (x, y). The format \033[<y>;<x>H is an ANSI escape code that positions the cursor.
+
+myclreol(int len = -1):
+
+When len is -1, it clears from the current cursor position to the end of the line using \033[K.
+When len is specified, it clears only len characters by printing spaces. After printing spaces, it moves the cursor back to the original position using \033[<len>D to reset the position.
+Notes:
+This code assumes an ANSI-compatible terminal (like a typical Linux terminal or the Windows Subsystem for Linux).
+gotoxy, wherex(), and wherey() functions are replaced with ANSI escape codes for cross-platform compatibility.
+For full portability, a library like ncurses could be used on Unix systems for cursor manipulation, as it provides a more comprehensive and standardized interface.
+
+
+// promt 2
+
+
+
 
 
 /* Example 4: What is wrong with the following prototype, which uses a default argument? 
