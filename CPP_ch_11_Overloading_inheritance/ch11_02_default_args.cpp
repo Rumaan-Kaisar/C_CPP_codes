@@ -478,7 +478,6 @@ int main(){
 
 
 
-// --------  rev[31-Oct-2024]  --------
 
 /* Example 3: Many C++ compilers provide "nonstandard functions" for cursor positioning.
 
@@ -532,24 +531,25 @@ void myclreol(int len){
 }
 
 
+
+
 // --------    ChatGPT: above code converted for GCC    --------
+/*  The original code relies on Borland-specific functions like gotoxy(), wherex(), and wherey() for cursor manipulation. 
+    Unfortunately, these functions aren't part of the C++ standard library and are not available in GCC.
 
-// promt1 : 
-The original code relies on Borland-specific functions like gotoxy(), wherex(), and wherey() for cursor manipulation. Unfortunately, these functions aren't part of the C++ standard library and are not available in GCC.
+    To make it compatible with GCC and standard C++, we need to use ANSI escape codes for cursor control instead, 
+    which work in most Unix-like environments, including Linux terminals.
 
-To make it compatible with GCC and standard C++, we need to use ANSI escape codes for cursor control instead, which work in most Unix-like environments, including Linux terminals.
+    Here's the equivalent code that should work in a typical GCC setup with a terminal that supports ANSI escape codes: 
+*/
 
-Here’s the equivalent code that should work in a typical GCC setup with a terminal that supports ANSI escape codes:
-
-cpp
-Copy code
+// version 2
 #include <iostream>
 #include <string>
-using namespace std;
 
 void gotoxy(int x, int y) {
     // Move cursor to (x, y) using ANSI escape codes
-    cout << "\033[" << y << ";" << x << "H";
+    std::cout << "\033[" << y << ";" << x << "H";
 }
 
 void myclreol(int len = -1) {
@@ -559,96 +559,46 @@ void myclreol(int len = -1) {
     // However, for demonstration, we assume the cursor is at (1, 1) when the program starts.
     
     // Clear till end of line or till specified length
-    if (len == -1) {
+    if(len == -1){
         // Clear till the end of the line (from current position to 80 columns)
-        cout << "\033[K";
-    } else {
+        std::cout << "\033[K";
+    } 
+    else{
         // Clear specified length by printing spaces
-        for (int i = 0; i < len; i++) {
-            cout << ' ';
+        for(int i = 0; i < len; i++) {
+            std::cout << ' ';
         }
         // Move the cursor back to the start position after clearing
-        cout << "\033[" << len << "D";
+        std::cout << "\033[" << len << "D";
     }
 }
 
-int main() {
-    gotoxy(1, 1);
-    for (int i = 0; i < 24; i++) {
-        cout << "abcdefghijklmnopqrstuvwxyz1234567890\n";
-    }
+int main(){
+    int i;
 
+    gotoxy(1, 1);
+    for(i=0; i<24; i++) std::cout << "abcdefghijklmnopqrstuvwxyz1234567890\n";
+    
     gotoxy(1, 2);
     myclreol();         // Clear from the current position till the end of the line
+
     gotoxy(1, 4);
     myclreol(20);       // Clear only 20 characters from the current position
 
     return 0;
 }
-Explanation of Modifications:
-gotoxy(int x, int y): This function uses ANSI escape codes to move the cursor to the specified coordinates (x, y). The format \033[<y>;<x>H is an ANSI escape code that positions the cursor.
-
-myclreol(int len = -1):
-
-When len is -1, it clears from the current cursor position to the end of the line using \033[K.
-When len is specified, it clears only len characters by printing spaces. After printing spaces, it moves the cursor back to the original position using \033[<len>D to reset the position.
-Notes:
-This code assumes an ANSI-compatible terminal (like a typical Linux terminal or the Windows Subsystem for Linux).
-gotoxy, wherex(), and wherey() functions are replaced with ANSI escape codes for cross-platform compatibility.
-For full portability, a library like ncurses could be used on Unix systems for cursor manipulation, as it provides a more comprehensive and standardized interface.
 
 
+/*     --------    Explanation    --------
+    gotoxy(int x, int y): 
+        This function uses ANSI escape codes to move the cursor to the specified coordinates (x, y). 
+        The format "\033[<y>;<x>H" is an ANSI escape code that positions the cursor.
 
-
-// promt 2
-Here's the program modified for GCC using standard libraries available in Linux terminal environments. In GCC (Linux environment), the conio.h functions like gotoxy, wherex, and wherey are not available. Instead, ANSI escape codes can be used for cursor control.
-
-The program below uses ANSI escape sequences to move the cursor and clears portions of a line based on the specified length.
-
-cpp
-Copy code
-#include <iostream>
-#include <unistd.h>  // for usleep()
-
-void gotoxy(int x, int y);
-void myclreol(int len = -1);
-int get_cursor_x();
-int get_cursor_y();
-
-int main() {
-    // Move the cursor to (1,1)
-    gotoxy(1, 1);
-    
-    // Print 24 lines of text
-    for (int i = 0; i < 24; i++) 
-        std::cout << " abcdefghijklmnopqrstyvwxyz1234567890 \n";
-    
-    // Move the cursor to (1,2) and clear from current position to the end of the line
-    gotoxy(1, 2);
-    myclreol();
-    
-    // Move the cursor to (1,4) and clear 20 characters from the current position
-    gotoxy(1, 4);
-    myclreol(20);
-
-    return 0;
-}
-
-// Moves the cursor to the specified (x, y) position
-void gotoxy(int x, int y) {
-    printf("\033[%d;%dH", y, x);
-    fflush(stdout);
-}
-
-// Function to get the current X position of the cursor
-int get_cursor_x() {
-    int x, y;
-    printf("\033[6n");   // Request cursor position
-    std::cin >> x >> y;  // Not fully portable, works in Linux/GCC under typical settings
-    return x;
-}
-
-// Function to get the
+    myclreol(int len = -1):
+        When "len" is -1, it clears from the current cursor position to the end of the line using "\033[K".
+        When "len" is specified, it clears only "len" characters by printing spaces. 
+            After printing spaces, it moves the cursor back to the original position using "\033[<len>D" to reset the position.
+*/
 
 
 
