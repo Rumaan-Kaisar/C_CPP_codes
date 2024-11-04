@@ -1,8 +1,6 @@
 
 /*  ------------------------    Ambiguity caused by Overloading     ------------------------
 
-// ----  rev[01-Nov-2024]  ----
-
     Ambiguity Caused By Overloading:
         Overloading-caused ambiguity can be introduced through 
             - type conversions, 
@@ -12,20 +10,21 @@
         Further, some types of ambiguity are caused by the "overloaded functions" themselves. 
         Other types occur in the manner in which an overloaded function is called. 
 
-    [1]	Type conversion ambiguity: when a function is called with an argument that is of a compatible (but not the same) type as the parameter to which it is being passed, the type of the argument is automatically converted to the target type (C++'s automatic type conversion rules).  Sometimes automatic type conversion will cause an ambiguous situation when a function is overloaded.
-
-    	It is this sort of type conversion that allows a function such as putchar() to be called with a character even though its argument is specified as an int. 
 
 
-// ----  GPT  ----
-Ambiguity Caused by Overloading:
+    Type Conversion Ambiguity: 
 
-Overloading can sometimes lead to ambiguity due to:
-
-Type Conversion Ambiguity: When an argument has a compatible (but not exact) type with the function parameter, C++ automatically converts it to the target type. This automatic type conversion may create ambiguity if there are multiple overloaded functions that can match due to the conversion.
+When an argument has a compatible (but not exact) type with the function parameter, C++ automatically converts it to the target type. This automatic type conversion may create ambiguity if there are multiple overloaded functions that can match due to the conversion.
 
 Example: This type conversion allows a function like putchar() to accept a char argument, even though its parameter is specified as int.
 Other factors that may cause ambiguity include reference parameters, default arguments, and the way overloaded functions are called.
+
+
+
+
+    [1]	Type conversion ambiguity: when a function is called with an argument that is of a compatible (but not the same) type as the parameter to which it is being passed, the type of the argument is automatically converted to the target type (C++'s automatic type conversion rules).  Sometimes automatic type conversion will cause an ambiguous situation when a function is overloaded.
+
+    	It is this sort of type conversion that allows a function such as putchar() to be called with a character even though its argument is specified as an int. 
 
 
 
@@ -51,6 +50,8 @@ void f( char c) { cout << c; }	int main() { f('c');
 	return 0; }
 
 Here, when f() is called with the numeric constant 86, the compiler cannot know whether to call f(unsigned char) or f(char). Either conversion is equally valid, thus leading to ambiguity.
+
+
 [2]	Ambiguity by Reference: In C++ there is no syntactical difference between calling a function that takes a value parameter and calling a function that takes a reference parameter, hence ambiguity arise. For example :
 
 int f(int a, int b) { return a+b; }
