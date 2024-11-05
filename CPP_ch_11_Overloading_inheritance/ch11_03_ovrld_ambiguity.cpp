@@ -78,7 +78,51 @@ int main() {
 }
 
 
-// ----  rev[04-Nov-2024]  ----
+// ----  rev[05-Nov-2024]  ----
+
+/* Example 2: Notice the following program:
+                    The compiler correctly selects the appropriate version of f() when called with either a "float" or "double".
+
+                    However, when called with an "int", ambiguity arises. 
+                        The compiler can't decide whether to promote the "int" to a "float" or "double", 
+                        Does the compiler call f(float) or f(double)?
+                            as both conversions are valid. This creates an ambiguous situation.
+
+*/
+
+#include <iostream>
+
+float f(float i) { 
+    return i/2.0f; 
+}
+
+double f(double i) { 
+    return i/3.0; 
+}
+
+int main() {
+    float x = 10.09f;
+    double y = 10.09;
+
+    cout << f(x) << endl;   // unambiguous - calls f(float)
+    cout << f(y) << endl;   // unambiguous - calls f(double)
+
+    // cout << f(10) << endl; // ambiguous - should 10 be converted to float or double?
+
+    // To resolve ambiguity, use an explicit cast:
+    cout << f(static_cast<float>(10)) << endl;   // calls f(float)
+    cout << f(static_cast<double>(10)) << endl;  // calls f(double)
+
+    return 0;
+}
+Explanation:
+f(x) calls f(float) because x is of type float.
+f(y) calls f(double) because y is of type double.
+f(10) would be ambiguous because 10 can be implicitly converted to either float or double. To resolve this, use an explicit cast to specify which function to call:
+f(static_cast<float>(10)) calls f(float).
+f(static_cast<double>(10)) calls f(double).
+Output:
+The program will output the following values based on the calculations:
 
 
 float f( float i) { return i/2.0; }
@@ -93,9 +137,8 @@ return 0; }
 
 
 
-The compiler is able to select the correct version of f() when it is called with either a float or a double variable. 
-However, what happens when it is called with an integer? Does the compiler call f(float) or f(double)? (Both are valid conversions!) 
-In either case, it is valid to promote an integer into either a float or a double. Thus, the ambiguous situation is created.
+
+
 
 	However, when this function is called with the wrong type of argument, C++'s automatic conversion rules cause an ambiguous situation,
 
