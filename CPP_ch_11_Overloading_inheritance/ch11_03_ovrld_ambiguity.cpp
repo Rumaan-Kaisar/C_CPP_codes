@@ -9,6 +9,11 @@
 
         Further, some types of ambiguity are caused by the "overloaded functions" themselves. 
         Other types occur in the manner in which an overloaded function is called. 
+
+
+    solutions:
+        Most often we'll "Explicitly Cast the Argument" to avoid ambiguty.
+        Another solution is making the "Function Signatures" more distinct
 */  
 
 
@@ -151,17 +156,47 @@ int main(){
 
 
 
+// ----  rev[07-nov-2024]  ----
 
 /* ------------    Ambiguity by Reference    ------------
-    In C++ there is no syntactical difference between calling a function that takes a value parameter and calling a function that takes a reference parameter, hence ambiguity arise. 
-    For example :
- */
-int f(int a, int b) { return a+b; }
-		/* Following is inherently ambiguous */
-int f(int a, int &b) { return a-b; }	int main() { int x=1, y=2;
-cout << f(x, y);    /* which version of f() is called?*/ 
-return 0; }
-Here, f(x, y) is ambiguous because it could be calling either version of the function. 
+    Ambiguity by Reference:
+        In C++ there is no syntactical difference between 
+            -   calling a function that takes a "value parameter" and 
+            -   calling a function that takes a "reference parameter"
+    
+        This can lead to ambiguity, especially if two overloaded functions exist, 
+            one taking a value and the other a reference :
+*/
+#include <iostream>
+
+int f(int a, int b){ 
+    std::cout << "value" << std::endl;
+    return a+b; }      // function with both parameters by value
+
+int f(int a, int &b){ 
+    std::cout << "reference" << std::endl;
+    return a-b; }     // function with second parameter by reference
+
+
+int main(){
+    int x=1, y=2;
+
+    std::cout << f(x, y);    // ambiguous: which version of f() is called?
+
+    return 0;
+}
+
+// Here, f(x, y) is ambiguous because it could be calling either version of the function
+
+// Solutions:
+// Make the Function Signatures More Distinct
+int f(int a, int b) { return a + b; }            // Pass-by-value version
+int f(int a, const int &b) { return a - b; }     // Pass-by-reference version with const
+
+// Explicitly Cast the Argument
+std::cout << f(x, static_cast<int>(y));  // Calls `f(int, int)`
+std::cout << f(x, y);  // This will call `f(int, int&)` because `y` is passed as a reference
+
 
 
 
