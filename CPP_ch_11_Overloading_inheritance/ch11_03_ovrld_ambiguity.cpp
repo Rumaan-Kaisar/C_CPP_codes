@@ -13,7 +13,7 @@
 
 
 
-/*  --------    Type Conversion Ambiguity    --------
+/*  ------------    Type Conversion Ambiguity    ------------
 
     Type Conversion Ambiguity: 
         When an argument has a "compatible (but not exact) type" with the function parameter, C++ automatically converts it to the target type. 
@@ -128,28 +128,34 @@ int main() {
 
 
 
-// ----  rev[05-Nov-2024]  ----
+/* Example 3: when this function is called with the wrong type of argument, 
+                C++'s automatic conversion rules cause an ambiguous situation.
 
-when this function is called with the wrong type of argument, 
-C++'s automatic conversion rules cause an ambiguous situation,
+                When f() is called with the numeric constant 86, 
+                    the compiler cannot know whether to call f(unsigned char) or f(char). 
+                    Either conversion is equally valid, thus leading to ambiguity.
+*/
+#include <iostream>
 
-void f( unsigned char c) { cout << c; }
-void f( char c) { cout << c; }	
+void f(unsigned char c){std::cout << c;}
 
-int main() { f('c');
-	f(86) ;   /* which f() is called ? */ 
-	return 0; }
+void f(char c){std::cout << c;}	
 
-Here, when f() is called with the numeric constant 86, the compiler cannot know whether to call f(unsigned char) or f(char). Either conversion is equally valid, thus leading to ambiguity.
+int main(){
+    f('c');
+	f(86);   // which f() is called ?
+    // f(static_cast<unsigned char>(86));
+
+	return 0; 
+}
 
 
 
 
-
-Ambiguity by Reference:
+/* ------------    Ambiguity by Reference    ------------
     In C++ there is no syntactical difference between calling a function that takes a value parameter and calling a function that takes a reference parameter, hence ambiguity arise. 
     For example :
-
+ */
 int f(int a, int b) { return a+b; }
 		/* Following is inherently ambiguous */
 int f(int a, int &b) { return a-b; }	int main() { int x=1, y=2;
@@ -160,9 +166,9 @@ Here, f(x, y) is ambiguous because it could be calling either version of the fun
 
 
 
-Ambiguity by default arguments:
+/* ------------    Ambiguity by default arguments    ------------
     Another type of ambiguity is caused when you are overloading a function in which one or more overloaded functions use a default argument. Consider following program:
-
+ */
 int f(int a) { return a*a; }
 int f(int a, int b = 0) { return a*b; }	int main() { cout << f(10 , 2); /* calls f(int , int) */ 
 cout << f (10) ;    /* ambiguous: f(int ) or f(int , int )? */ 
