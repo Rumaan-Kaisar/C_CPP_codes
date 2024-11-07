@@ -78,7 +78,7 @@ int main() {
 }
 
 
-// ----  rev[05-Nov-2024]  ----
+
 
 /* Example 2: Notice the following program:
                     The compiler correctly selects the appropriate version of f() when called with either a "float" or "double".
@@ -88,12 +88,20 @@ int main() {
                         Does the compiler call f(float) or f(double)?
                             as both conversions are valid. This creates an ambiguous situation.
 
+
+                f(x) calls f(float) because x is of type float.
+                f(y) calls f(double) because y is of type double.
+                f(10) would be ambiguous because 10 can be implicitly converted to either float or double.
+
+                To resolve this, use an "explicit cast" to specify which function to call:
+                    f(static_cast<float>(10)) calls f(float)
+                    f(static_cast<double>(10)) calls f(double)
 */
 
 #include <iostream>
 
 float f(float i) { 
-    return i/2.0f; 
+    return i/2.0; 
 }
 
 double f(double i) { 
@@ -101,49 +109,34 @@ double f(double i) {
 }
 
 int main() {
-    float x = 10.09f;
+    float x = 10.09;
     double y = 10.09;
 
-    cout << f(x) << endl;   // unambiguous - calls f(float)
-    cout << f(y) << endl;   // unambiguous - calls f(double)
+    std::cout << f(x) << std::endl;   // unambiguous - calls f(float)
+    std::cout << f(y) << std::endl;   // unambiguous - calls f(double)
 
-    // cout << f(10) << endl; // ambiguous - should 10 be converted to float or double?
+    // followig line cause "Ambiguous ERR"
+    std::cout << f(10) << std::endl;     // ambiguous - should 10 be converted to float or double?
 
     // To resolve ambiguity, use an explicit cast:
-    cout << f(static_cast<float>(10)) << endl;   // calls f(float)
-    cout << f(static_cast<double>(10)) << endl;  // calls f(double)
+    std::cout << f(static_cast<float>(10)) << std::endl;   // calls f(float)
+    std::cout << f(static_cast<double>(10)) << std::endl;  // calls f(double)
 
     return 0;
 }
-Explanation:
-f(x) calls f(float) because x is of type float.
-f(y) calls f(double) because y is of type double.
-f(10) would be ambiguous because 10 can be implicitly converted to either float or double. To resolve this, use an explicit cast to specify which function to call:
-f(static_cast<float>(10)) calls f(float).
-f(static_cast<double>(10)) calls f(double).
-Output:
-The program will output the following values based on the calculations:
-
-
-float f( float i) { return i/2.0; }
-double f( double i) { return i/3.0; }
-int mai() { 	float x = 10.09;
-		double y = 10.09;
-	cout << f(x); /* unambiguous - use f(float) */ 
-cout << f(y); /* unambiguous - use f(double) */ 
-cout << f (10) ; /* ambiguous , convert 10 to double or 
-					       float ??   */ 
-return 0; }
 
 
 
 
+// ----  rev[05-Nov-2024]  ----
 
-
-	However, when this function is called with the wrong type of argument, C++'s automatic conversion rules cause an ambiguous situation,
+when this function is called with the wrong type of argument, 
+C++'s automatic conversion rules cause an ambiguous situation,
 
 void f( unsigned char c) { cout << c; }
-void f( char c) { cout << c; }	int main() { f('c');
+void f( char c) { cout << c; }	
+
+int main() { f('c');
 	f(86) ;   /* which f() is called ? */ 
 	return 0; }
 
