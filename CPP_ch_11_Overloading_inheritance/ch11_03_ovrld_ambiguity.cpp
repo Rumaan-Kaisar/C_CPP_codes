@@ -148,13 +148,11 @@ void f(char c){std::cout << c;}
 
 int main(){
     f('c');
-	f(86);   // which f() is called ?
+    f(86);   // which f() is called ?
     // f(static_cast<unsigned char>(86));
 
 	return 0; 
 }
-
-
 
 // ----  rev[07-nov-2024]  ----
 
