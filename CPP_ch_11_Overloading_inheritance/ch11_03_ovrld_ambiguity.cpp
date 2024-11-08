@@ -154,7 +154,9 @@ int main(){
 	return 0; 
 }
 
-// ----  rev[07-nov-2024]  ----
+
+
+
 
 /* ------------    Ambiguity by Reference    ------------
     Ambiguity by Reference:
@@ -169,35 +171,36 @@ int main(){
 
 int f(int a, int b){ 
     std::cout << "value" << std::endl;
-    return a+b; }      // function with both parameters by value
+    return a+b;     // function with both parameters by value
+}    
 
 int f(int a, int &b){ 
     std::cout << "reference" << std::endl;
-    return a-b; }     // function with second parameter by reference
+    return a-b;     // function with second parameter by reference
+}    
 
 
 int main(){
     int x=1, y=2;
 
     std::cout << f(x, y);    // ambiguous: which version of f() is called?
+    // Explicitly pass y as a reference or a value
+    std::cout << f(x, static_cast<int>(y));    // ambiguous: calles by value i.e. f(int a, int b)
+    std::cout << f(x, std::ref(y)) << std::endl;  // wont work either: Calls the reference version f(int, int&)
 
     return 0;
 }
 
 // Here, f(x, y) is ambiguous because it could be calling either version of the function
 
-// Solutions:
-// Make the Function Signatures More Distinct
-int f(int a, int b) { return a + b; }            // Pass-by-value version
-int f(int a, const int &b) { return a - b; }     // Pass-by-reference version with const
-
-// Explicitly Cast the Argument
-std::cout << f(x, static_cast<int>(y));  // Calls `f(int, int)`
-std::cout << f(x, y);  // This will call `f(int, int&)` because `y` is passed as a reference
+/*  Solutions: Explicitly cast the argument
+        std::cout << f(x, static_cast<int>(y));     // Calls "f(int, int)"
+        std::cout << f(x, y);   // This will call "f(int, int&)" because 'y' is passed as a reference
+*/
 
 
 
-
+// ----  rev[07-nov-2024]  ----
 
 /* ------------    Ambiguity by default arguments    ------------
     Another type of ambiguity is caused when you are overloading a function in which one or more overloaded functions use a default argument. Consider following program:
