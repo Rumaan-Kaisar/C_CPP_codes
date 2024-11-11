@@ -200,43 +200,34 @@ int main(){
 
 
 
-// ----  rev[07-nov-2024]  ----
 
 /* ------------    Ambiguity by default arguments    ------------
     Ambiguity by default arguments
-    Ambiguity if one or more overloaded functions use a default argument
-    because default arguments can make it unclear which version of an overloaded function should be called
+        Ambiguity occurs if one or more overloaded functions use a default argument
+        because default arguments can make it unclear which version of an overloaded function should be called
+
+    Here the call f(10, 2) is perfectly acceptable, and unambiguous. 
+    However, the compiler has now way of knowing whether the call f(10) is calling 
+        the first version of f() or the second version with b defaulting.
 */
-int f(int a) { return a*a; }
-int f(int a, int b = 0) { return a*b; }	int main() { cout << f(10 , 2); /* calls f(int , int) */ 
-cout << f (10) ;    /* ambiguous: f(int ) or f(int , int )? */ 
-return 0; }
-Here the call f(10, 2) is perfectly acceptable, and unambiguous. However, the compiler has now way of knowing whether the call f(10) is calling the first version of f() or the second version with b defaulting.
 
-
-To complete the program and resolve the ambiguity, let's keep the original example with the ambiguous case. I'll add explanations to clarify the ambiguity and provide a solution to resolve it.
-
-Here's the program with comments:
-
-cpp
-Copy code
 #include <iostream>
-using namespace std;
 
-int f(int a) {        // First version: takes a single int parameter
-    return a * a;
+int f(int a){        // First version: takes a single int parameter
+    return a*a;
 }
 
-int f(int a, int b = 0) {  // Second version: takes two int parameters, with b defaulting to 0
-    return a * b;
+int f(int a, int b = 0){  // Second version: takes two int parameters, with b defaulting to 0
+    return a*b;
 }
 
-int main() {
-    cout << f(10, 2) << endl;  // Calls f(int, int) - unambiguous
-    cout << f(10) << endl;     // Ambiguous: could be calling either f(int) or f(int, int)
+int main(){
+    std::cout << f(10, 2) << std::endl;  // Calls f(int, int) - unambiguous
+    std::cout << f(10) << std::endl;     // Ambiguous: could be calling either f(int) or f(int, int)
 
     return 0;
 }
+
 Explanation of Ambiguity:
 f(10, 2) is unambiguous. It clearly matches the second version f(int, int).
 f(10) is ambiguous because:
@@ -277,3 +268,10 @@ Copy code
 f(10, 2) calls f(int, int) and returns 10 * 2 = 20.
 f(10) calls f(int) and returns 10 * 10 = 100.
 By removing the default argument from f(int, int), the ambiguity is resolved, and each function call has a clear match.
+
+
+
+
+// ----  rev[07-nov-2024]  ----
+
+
