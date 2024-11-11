@@ -157,7 +157,6 @@ int main(){
 
 
 
-
 /* ------------    Ambiguity by Reference    ------------
     Ambiguity by Reference:
         In C++ there is no syntactical difference between 
@@ -206,9 +205,11 @@ int main(){
         Ambiguity occurs if one or more overloaded functions use a default argument
         because default arguments can make it unclear which version of an overloaded function should be called
 
-    Here the call f(10, 2) is perfectly acceptable, and unambiguous. 
-    However, the compiler has now way of knowing whether the call f(10) is calling 
-        the first version of f() or the second version with b defaulting.
+    Here the call f(10, 2) is perfectly acceptable, and unambiguous.
+    f(10) is ambiguous because:
+        It could match the first version f(int) directly.
+        It could also match the second version f(int, int), with the default value for b (i.e., b = 0).
+        Since both versions are valid candidates for f(10), the compiler does not know which function to choose.
 */
 
 #include <iostream>
@@ -228,50 +229,19 @@ int main(){
     return 0;
 }
 
-Explanation of Ambiguity:
-f(10, 2) is unambiguous. It clearly matches the second version f(int, int).
-f(10) is ambiguous because:
-It could match the first version f(int) directly.
-It could also match the second version f(int, int), with the default value for b (i.e., b = 0).
-Since both versions are valid candidates for f(10), the compiler does not know which function to choose, resulting in an ambiguity error.
 
-Solution to Resolve Ambiguity:
-To avoid this ambiguity, remove the default argument in the second version of the function. By making f(int, int) require two parameters explicitly, f(10) will unambiguously match f(int).
-
-Here's the modified code:
-
-cpp
-Copy code
-#include <iostream>
-using namespace std;
-
-int f(int a) {           // First version: takes a single int parameter
-    return a * a;
-}
-
-int f(int a, int b) {    // Second version: takes two int parameters, no default value for b
-    return a * b;
-}
-
-int main() {
-    cout << f(10, 2) << endl;  // Calls f(int, int) - unambiguous
-    cout << f(10) << endl;     // Now unambiguous: calls f(int) only
-
-    return 0;
-}
-Final Output:
-Now, this program will compile successfully and produce the following output:
-
-Copy code
-20
-100
-f(10, 2) calls f(int, int) and returns 10 * 2 = 20.
-f(10) calls f(int) and returns 10 * 10 = 100.
-By removing the default argument from f(int, int), the ambiguity is resolved, and each function call has a clear match.
+/* Solution to Resolve Ambiguity:
+    To avoid this ambiguity, remove the default argument in the second version of the function. 
+    By making f(int, int) require two parameters explicitly, f(10) will unambiguously match f(int). 
+    
+    int f(int a, int b) {    // Second version: takes two int parameters, no default value for b
+        return a * b;
+    }
+*/
 
 
 
 
-// ----  rev[07-nov-2024]  ----
-
+// ----  rev[11-nov-2024]  ----
+// procedd books example
 
