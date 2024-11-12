@@ -239,9 +239,3 @@ int main(){
     }
 */
 
-
-
-
-// ----  rev[11-nov-2024]  ----
-// procedd books example
-
