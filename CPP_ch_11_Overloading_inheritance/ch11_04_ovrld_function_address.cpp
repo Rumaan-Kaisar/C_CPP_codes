@@ -19,21 +19,16 @@
     In C, "any type of pointer" can be used to "point to a function" 
         because there is only one function that it can point to. 
     
-    In C++ the situation is a bit more complex because a function can be "overloaded".  When we assign the address of an overloaded function to a function pointer, it is the declaration of the pointer that determines which function's address is assigned. Further, the declaration of the function pointer must exactly match one and only one of the overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time error.
+    In C++ the situation is a bit more complex because a function can be "overloaded".
+    When we assign the address of an "overloaded function" to a function pointer, 
+        it is the declaration of the pointer that determines which function's address is assigned. 
+    Further, the declaration of the function pointer must "exactly match one and only one" of the overloaded functions. 
+    If it does not, ambiguity will be introduced, causing a compile-time error.
 
 
 
 
-// ----    GPT    ----
 
-
-Assigning a Function's Address to a Pointer: In C, you can assign the address of a function to a pointer and use that pointer to call the function. For example, if zap() is a function, p = zap; assigns p the address of zap.
-
-Pointer Type Flexibility in C: In C, any function pointer type can point to a function, as there’s typically only one version of a function (no overloading).
-
-Complexity in C++ Due to Overloading: In C++, functions can be overloaded, meaning multiple versions of a function can exist with the same name but different parameters. This introduces complexity when assigning an overloaded function's address to a pointer.
-
-How C++ Resolves Which Overloaded Function to Point To: When assigning an overloaded function to a pointer in C++, the pointer’s declaration must match exactly one of the overloaded function versions. This includes matching the parameter types and return type. If the pointer doesn’t match any specific version or matches multiple versions, it creates ambiguity, leading to a compile-time error.
 
 Example
 cpp
