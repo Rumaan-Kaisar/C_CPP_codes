@@ -5,15 +5,28 @@
         recall function pointers: "C_Ch8_6_func_pointers.c"
 
     Address of an OVERLOADED function :
-    In C, you can assign the address of a function (that is, its entry point) to a pointer and access that function via that pointer. A function's address is obtained by putting its name on the right side of an assignment statement without any parentheses or arguments. For example, if zap() is a function, then we assign p the address of zap():	 p = zap;
-    	In C, any type of pointer can be used to point to a function because there is only one function that it can point to. 
-    	In C++ the situation is a bit more complex because a function can be overloaded.  When we assign the address of an overloaded function to a function pointer, it is the declaration of the pointer that determines which function's address is assigned. Further, the declaration of the function pointer must exactly match one and only one of the overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time error.
+        In C, you can assign the address of a function (that is, its entry point) to a pointer 
+            and access that function via that pointer. 
+        A function's address is obtained by putting its name 
+            on the right side of an assignment statement without any parentheses or arguments. 
+    
+    For example, if zap() is a function, then we assign p the address of zap():
+
+            p = zap;
+    
+
+    --------    C vs C++    --------
+    In C, "any type of pointer" can be used to "point to a function" 
+        because there is only one function that it can point to. 
+    
+    In C++ the situation is a bit more complex because a function can be "overloaded".  When we assign the address of an overloaded function to a function pointer, it is the declaration of the pointer that determines which function's address is assigned. Further, the declaration of the function pointer must exactly match one and only one of the overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time error.
 
 
 
 
 // ----    GPT    ----
-Simplified Explanation: Address of an Overloaded Function in C++
+
+
 Assigning a Function's Address to a Pointer: In C, you can assign the address of a function to a pointer and use that pointer to call the function. For example, if zap() is a function, p = zap; assigns p the address of zap.
 
 Pointer Type Flexibility in C: In C, any function pointer type can point to a function, as there’s typically only one version of a function (no overloading).
