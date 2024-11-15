@@ -43,16 +43,18 @@
 
 
 
-/* Example 1: Here is a program that contains two versions of a function called space(). The first
-version outputs count number of spaces to the screen. The second version outputs count
-number of whatever type of character is passed to ch. In main(), two function pointers
-are declared.The first one is specified as a pointer to a function having only one integer
-parameter. The second is declared as a pointer to a function taking two parameters.
+/* Example 1: Following program contains two versions of a function called space().
 
-	Here two versions of a function called space(). The first version outputs n number of spaces to the screen. The second version outputs n number of whatever type of character is passed to ch. 
-	In main(), two function pointers are declared. The first one is specified as a pointer to a function having only one integer parameter. The second is declared as a pointer to a function taking two parameters : one integer and one character.
-	The compiler is able to determine which overloaded function to obtain the address of based upon how fp1 and fp2 are declared.
+                Two Versions of space() Function:
+                    The first version of space() outputs a specified number (count) of "spaces" on the screen.
+                    The second version of space() outputs a specified number (count) of a given "character" (ch).
 
+                In main(), two function pointers are declared:
+                    fp1: A pointer to a function that takes a single integer parameter.
+                    fp2: A pointer to a function that takes two parameters — an integer and a character.
+
+                The compiler determines which version of the space() function to assign to each pointer (fp1 and fp2) 
+                    based on the parameters specified in their declarations.
 */
 
 void space(int n){      // Type-1: Output n number of spaces
