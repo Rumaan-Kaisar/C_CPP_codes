@@ -57,24 +57,38 @@
                     based on the parameters specified in their declarations.
 */
 
+#include <iostream>
+
 void space(int n){      // Type-1: Output n number of spaces
-for( ; n ; n --) cout << ' '; }
+    for( ; n; n--) std::cout << ' '; 
+}
 
 void space(int n , char ch){        // Type-2: Output n chs
-for( ; n ; n --) cout << ch; }
-int main() {
-// pointer to void function with one int parameter
-void ( *fp1 )(int );    // matches to Type-1 
-// pointer to void function with int and character parameter.
-void ( *fp2 )(int, char);   // matches to Type-2 	
-fp1 = space ;   // gets address of space(int)
-fp2 = space ;   // gets address of space(int , char )
-fp1(22) ;   // output 22 spaces 
-cout << "|\n";
-fp2 (30 , 'x'); // output 30 x's 
-cout << "|\n";
-return 0;}
+    for( ; n; n--) std::cout << ch; 
+}
 
+
+int main() {
+    // pointer to void function with one int parameter
+    void ( *fp1 )(int );    // matches to Type-1 
+
+    // pointer to void function with int and character parameter.
+    void ( *fp2 )(int, char);   // matches to Type-2 
+
+    fp1 = space;   // gets address of space(int)
+    fp2 = space;   // gets address of space(int , char)
+
+    fp1(22) ;   // output 22 spaces 
+    std::cout << "|\n";
+
+    fp2 (30 , 'x'); // output 30 x's 
+    std::cout << "|\n";
+
+    return 0;
+}
+
+
+// ----  rev[15-Nov-2024]  ----
 
 /*
 Illustrate assigning function pointers to
