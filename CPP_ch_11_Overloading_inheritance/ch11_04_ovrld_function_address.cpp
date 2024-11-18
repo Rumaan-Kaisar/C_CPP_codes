@@ -63,7 +63,7 @@ void space(int n){      // Type-1: Output n number of spaces
     for( ; n; n--) std::cout << ' '; 
 }
 
-void space(int n , char ch){        // Type-2: Output n chs
+void space(int n, char ch){        // Type-2: Output n chs
     for( ; n; n--) std::cout << ch; 
 }
 
@@ -81,7 +81,7 @@ int main() {
     fp1(22) ;   // output 22 spaces 
     std::cout << "|\n";
 
-    fp2 (30 , 'x'); // output 30 x's 
+    fp2(30 , 'x'); // output 30 x's 
     std::cout << "|\n";
 
     return 0;
@@ -90,53 +90,13 @@ int main() {
 
 // ----  rev[15-Nov-2024]  ----
 
-/*
-Illustrate assigning function pointers to
-overloaded functions .
-*/
-# include <iostream >
-using namespace std ;
-// Output count number of spaces .
-void space ( int count )
-{
-for ( ; count ; count --)
-cout << ’ ’;
-}
-// Output count number of chs .
-void space ( int count , char ch)
-{
-for ( ; count ; count --)
-cout << ch;
-}
-int main ()
-{
-/*
-142FUNCTION OVERLOADING
-SKILLS CHECK
-Create a pointer to void function with
-one int parameter
-*/
-void (* fp1 )( int );
-/*
-Create a pointer to void function with
-one int parameter and one character parameter .
-*/
-void (* fp2 )(int , char );
-fp1 = space ; // gets address of space (int)
-fp2 = space ; // gets address of space (int , char )
-fp1 (22) ; // output 22 spaces
-cout << "|\n";
-fp2 (30 , ’x’); // output 30 x’s
-cout << "|\n";
-return 0;
-}
-As the comments illustrate, the compiler is able to determine which overloaded function
-to obtain the address of based upon how fp1 and fp2 are declared.
 To review: When you assign the address of an overloaded function to a function pointer,
 it is the declaration of the pointer that determines which function’s address is assigned.
 Further, the declaration of the function pointer must exactly match one and only one of the
 overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time
 error.
+
+
 
 
 EXERCISE
