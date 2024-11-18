@@ -97,24 +97,25 @@ int main() {
 }
 
 
-// ----  rev[15-Nov-2024]  ----
-
-To review: When you assign the address of an overloaded function to a function pointer,
-it is the declaration of the pointer that determines which function’s address is assigned.
-Further, the declaration of the function pointer must exactly match one and only one of the
-overloaded functions. If it does not, ambiguity will be introduced, causing a compile-time
-error.
 
 
+/* Example 2: Following are two overloaded functions. Show how to obtain the address of each. 
 
+                    int dif(int a, int b){
+                        return a-b;
+                    }
 
-EXERCISE
-/* Example 2: Following are two overloaded functions. Show how to obtain the address of each. */
-int dif ( int a, int b)
-{
-return a-b;
-}
-float dif ( float a, float b)
-{
-return a-b;
-}
+                    float dif(float a, float b){
+                        return a-b;
+                    }
+
+                ans:
+                    // pointer to void function with one int parameter
+                    void ( *p1 )(int, int);    // matches to Type-1 
+
+                    // pointer to void function with int and character parameter.
+                    void ( *p2 )(float, float);   // matches to Type-2 
+
+                    p1 = dif;   // gets address of space(int)
+                    p2 = dif;   // gets address of space(int , char)
+*/
