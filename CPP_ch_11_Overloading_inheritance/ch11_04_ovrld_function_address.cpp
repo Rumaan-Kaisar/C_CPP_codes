@@ -111,11 +111,35 @@ int main() {
 
                 ans:
                     // pointer to void function with one int parameter
-                    void ( *p1 )(int, int);    // matches to Type-1 
+                    void ( *p1 )(int, int);     // matches to Type-1 
 
                     // pointer to void function with int and character parameter.
                     void ( *p2 )(float, float);   // matches to Type-2 
 
-                    p1 = dif;   // gets address of space(int)
-                    p2 = dif;   // gets address of space(int , char)
+                    p1 = dif;   // gets address of  dif(int, int)
+                    p2 = dif;   // gets address of  dif(float, float)
 */
+
+#include <iostream>
+
+int dif(int a, int b){ return a-b; }
+
+float dif(float a, float b){ return a-b; }
+
+int main(){
+    int (*p1)(int , int);   // matches to Type-1 
+    float (*p2)(float , float);   // matches to Type-2 
+
+    p1 = dif ; // address of dif(int , int)
+    p2 = dif ; // address of dif(float , float)
+
+    std::cout << p1(10, 5) << ' ';
+    std::cout << p2(10.5, 8.9) << '\n';
+
+    return 0;
+}
+
+
+
+
+
