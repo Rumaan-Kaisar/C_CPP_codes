@@ -39,6 +39,15 @@
             "doubleAddPtr" matches add(double, double) exactly, so it points to that version.
             If intAddPtr or doubleAddPtr had an "incompatible signature", it would cause an error.
 
+
+    Note:
+        When assigning the "address of an overloaded function" to a function pointer:
+            The pointer's declaration determines which version of the function is assigned.
+            The pointer's type must exactly match one specific version of the overloaded functions.
+        
+        If the declaration doesn't match any version or matches more than one, 
+            it causes ambiguity and results in a compile-time error.
+
 */  
 
 
