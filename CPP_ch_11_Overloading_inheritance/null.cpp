@@ -247,17 +247,26 @@ return 0;
 
 
 
-Example 2: Why are the following two overloaded functions inherently ambiguous?
+/* Example 2: Why are the following two overloaded functions inherently ambiguous?
 int f( int a);
-int f( int &a);
+int f( int &a); */
+2. The syntax for calling a function that takes a reference parameter is identical to the syntax
+for calling a function that takes a value parameter.
 
 
 
-Example 3: Explain why using a default argument is related to function overloading.
+/* Example 3: Explain why using a default argument is related to function overloading. */
+3. A default argument is essentially a shorthand approach to function overloading because
+the net result is the same.
+For example,
+int f( int a, int b = 0);
+is functionally equivalent to these two overloaded functions:
+int f( int a);
+int f( int a, int b);
 
 
 
-Example 4: Given the following partial class, add the necessary constructor functions so that both
+/* Example 4: Given the following partial class, add the necessary constructor functions so that both
 declarations within main() are valid. (Hint: You need to overload samp() twice.)
 class samp
 {
@@ -272,10 +281,32 @@ samp ob (88) ; // init ob ’s a to 88
 samp obarray [10]; // non - initialized 10- element array
 // ...
 }
+ */
+4. # include <iostream >
+using namespace std ;
+class samp
+{
+int a;
+public :
+samp () { a = 0; }
+samp ( int n) { a = n; }
+int get_a () { return a; }
+};
+int main ()
+{
+samp ob (88) ;
+samp obarray [10];
+// ...
+}
+474ANSWERS
+REVIEW SKILLS CHECK: Chapter 6
 
 
 
-Example 5: Briefly explain why copy constructors are needed
+/* Example 5: Briefly explain why copy constructors are needed */
+5. Copy constructors are needed when you, the programmer, must control precisely how a
+copy of an object is made. This is important only when the default bitwise copy creates
+undesired side effects.
 
 
 
@@ -362,36 +393,10 @@ Example 6: What is a copy constructor and under what circumstances is it called?
 
 
 
-2. The syntax for calling a function that takes a reference parameter is identical to the syntax
-for calling a function that takes a value parameter.
-3. A default argument is essentially a shorthand approach to function overloading because
-the net result is the same.
-For example,
-int f( int a, int b = 0);
-is functionally equivalent to these two overloaded functions:
-int f( int a);
-int f( int a, int b);
-4. # include <iostream >
-using namespace std ;
-class samp
-{
-int a;
-public :
-samp () { a = 0; }
-samp ( int n) { a = n; }
-int get_a () { return a; }
-};
-int main ()
-{
-samp ob (88) ;
-samp obarray [10];
-// ...
-}
-474ANSWERS
-REVIEW SKILLS CHECK: Chapter 6
-5. Copy constructors are needed when you, the programmer, must control precisely how a
-copy of an object is made. This is important only when the default bitwise copy creates
-undesired side effects.
+
+
+
+
 
 
 
