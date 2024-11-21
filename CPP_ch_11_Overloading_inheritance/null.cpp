@@ -9,8 +9,52 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 1: Overload the date() constructor from Section 5.1, Example 3, so that it accepts a parameter of type time t. (Remember, time t is a type defined by the standard time and
-date functions found in your C++ compiler’s library.) */
+/* Example 1: Overload the date() constructor from "ch11_01_1_ovrld_constructor.cpp", Example 3, 
+                so that it accepts a parameter of type time t.
+
+                Constructor overloading: Following overloads the date() constructor two ways: 
+                                            One as a character string. 
+                                            Another passed as three integers. 
+
+                sscanf(): from the "stdio.h" header reads formatted input from a string.
+
+(Remember, "time t" is a type defined by the standard time and date functions found in your C++ compiler’s library.) 
+*/
+
+
+#include <iostream>
+#include <cstdio> // contains sscanf() 
+
+class date{
+        int day, month, year;
+    public:
+        // following constructor reads character string
+        date(char *str );
+        // following constructor reads 3 integers
+        date(int m, int d, int y){
+            day = d; 
+            month = m; 
+            year = y;
+        }
+        void show(){std::cout <<month<<'/'<<day<<'/'<<year<<'\n';}
+};
+
+date :: date(char *str){
+    sscanf(str, "%d%*c%d%*c%d", &month, &day, &year);
+}
+
+
+int main(){
+    date sdate("12/31/99");     // construct date object using string 
+    date idate(12, 31, 99);     // construct date object using integers 
+
+    sdate.show();
+    idate.show();
+
+    return 0;
+}
+
+
 
 
 1. // Overload date () for time_t .
