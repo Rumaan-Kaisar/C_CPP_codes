@@ -458,8 +458,6 @@ int main(){
 
 (Remember, "time_t" is a type defined by the standard time and date functions found in your C++ compiler’s library.) 
 */
-
-
 #include <iostream>
 #include <cstdio>   // contains sscanf() 
 #include <ctime>    // to use "time_t" type
@@ -508,4 +506,5 @@ int main(){
 
     return 0;
 }
+
 
