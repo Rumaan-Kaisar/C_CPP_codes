@@ -1,5 +1,5 @@
 
-// --------    rev[19-Nov-24]    --------
+// --------    rev[21-Nov-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
@@ -10,46 +10,64 @@ At this point you should be able to perform the following exercises and answer t
 
 
 /* Example 1: Overload the date() constructor from "ch11_01_1_ovrld_constructor.cpp", Example 3, 
-                so that it accepts a parameter of type time t.
+                so that it accepts a parameter of type time_t.
 
                 Constructor overloading: Following overloads the date() constructor two ways: 
                                             One as a character string. 
                                             Another passed as three integers. 
+                                            Othr accepts a parameter of type time_t
 
                 sscanf(): from the "stdio.h" header reads formatted input from a string.
 
-(Remember, "time t" is a type defined by the standard time and date functions found in your C++ compiler’s library.) 
+(Remember, "time_t" is a type defined by the standard time and date functions found in your C++ compiler’s library.) 
 */
 
 
 #include <iostream>
-#include <cstdio> // contains sscanf() 
+#include <cstdio>   // contains sscanf() 
+#include <ctime>    // to use "time_t" type
 
+// notice 3 overloaded constructor (last one Overload date() for time_t)
 class date{
         int day, month, year;
     public:
         // following constructor reads character string
         date(char *str );
-        // following constructor reads 3 integers
+        // following (overloaded) constructor reads 3 integers
         date(int m, int d, int y){
             day = d; 
             month = m; 
             year = y;
         }
+        // following (overloaded) constructor reads parameter of type time_t
+        date(time_t t);
         void show(){std::cout <<month<<'/'<<day<<'/'<<year<<'\n';}
 };
 
+// overload to read character string
 date :: date(char *str){
     sscanf(str, "%d%*c%d%*c%d", &month, &day, &year);
+}
+
+// overload for parameter of type time_t
+date :: date(time_t t){
+    struct tm *p;   // The tm structure stores parts of a date and time
+    p = localtime(&t); // convert to broken down time
+    day = p-> tm_mday;
+    month = p-> tm_mon;
+    year = p-> tm_year;
 }
 
 
 int main(){
     date sdate("12/31/99");     // construct date object using string 
     date idate(12, 31, 99);     // construct date object using integers 
+    // construct date object using time_t - this creates an object using the "system date"
+    date tdate(time(NULL));
 
     sdate.show();
     idate.show();
+    tdate.show();
 
     return 0;
 }
@@ -57,60 +75,7 @@ int main(){
 
 
 
-1. // Overload date () for time_t .
-# include <iostream >
-# include <cstdio > // included for sscanf ()
-# include <ctime >
-using namespace std ;
-class date
-{
-int day , month , year ;
-public :
-date ( char * str );
-date ( int m, int d, int y)
-{
-day = d;
-month = m;
-year = y;
-}
-// overload for parameter of type time_t
-date ( time_t t);
-void show ()
-{
-cout << month << ’/’ << day << ’/’;
-cout << year << ’\n’;
-}
-};
-date :: date ( char * str )
-{
-sscanf (str , "%d%*c%d%*c%d", &month , &day , & year );
-}
-date :: date ( time_t t)
-{
-struct tm *p;
-p = localtime (&t); // convert to broken down time
-day = p-> tm_mday ;
-month = p-> tm_mon ;
-year = p-> tm_year ;
-}
-int main ()
-{
-471TEACH YOURSELF
-C++
-// construct date object using string
-date sdate (" 12/31/99 ");
-// construct date object using integers
-date idate (12 , 31, 99) ;
-/*
-construct date object using time_t - this
-creates an object using the system date
-*/
-date tdate ( time ( NULL ));
-sdate . show ();
-idate . show ();
-tdate . show ();
-return 0;
-}
+
 
 
 
