@@ -1,38 +1,11 @@
 
-// --------    rev[21-Nov-24]    --------
+// --------    rev[22-Nov-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 Mastery Skills Check
 At this point you should be able to perform the following exercises and answer the questions.
 
-
-
-
-
-
-
-
-
-
-/* Example 2: What is wrong with the following fragment?
-class samp
-{
-int a;
-public :
-samp ( int i) { a = i; }
-// ...
-};
-// ...
-int main ()
-{
-samp x, y (10) ;
-// ...
-}
- */
-2. The class samp defines only one constructor, and this constructor requires an initializer.
-Therefore, it is improper to declare an object of type samp without one. (That is, samp
-x is an invalid declaration.)
 
 
 
