@@ -536,3 +536,18 @@ int main(){
 */
 
 
+
+
+/* Example 9: Give two reasons why you might want (or need) to overload a class’s constructor. 
+
+                Flexibility: 
+                    Allows selecting the most suitable constructor for a specific situation.
+
+                Initialization Options: 
+                    Enables creating both initialized and uninitialized objects.
+                    
+                Dynamic Memory Allocation: 
+                    Useful for allocating dynamic arrays.
+*/
+
+
