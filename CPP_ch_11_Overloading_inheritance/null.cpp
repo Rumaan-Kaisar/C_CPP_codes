@@ -7,17 +7,6 @@ Mastery Skills Check
 At this point you should be able to perform the following exercises and answer the questions.
 
 
-
-
-/* Example 3: Give two reasons why you might want (or need) to overload a class’s constructor. */
-
-3. One reason to overload a constructor is to provide flexibility, allowing you to choose the
-most appropriate constructor in the specific instance. Another is to allow both initialized
-and uninitialized objects to be declared. You might want to overload a constructor so
-that dynamic arrays can be allocated.
-
-
-
 /* Example 4: What is the most common general form of a copy constructor? */
 
 4. The most common general form of a copy constructor is shown here:
