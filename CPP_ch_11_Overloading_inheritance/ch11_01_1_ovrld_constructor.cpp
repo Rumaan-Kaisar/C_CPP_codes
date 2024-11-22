@@ -508,3 +508,31 @@ int main(){
 }
 
 
+
+
+/* Example 8: What is wrong with the following fragment?
+
+                    class samp{
+                            int a;
+                        public:
+                            samp(int i){ a = i; }
+                            // ...
+                    };
+
+                    // ...
+
+                    int main(){
+                        samp x, y(10);
+                        // ...
+                    }
+
+                ans:
+                    The class "samp" defines only one constructor, and this constructor requires an "initializer"
+                    Since no default constructor (a constructor without parameters) is defined, 
+                        every object of samp must be initialized using an integer value.
+                    Therefore, it is improper to declare an object of type samp without initializing.
+                    That is, "samp x;" is invalid declaration because 
+                        it tries to create an object without providing the required initializer.
+*/
+
+
