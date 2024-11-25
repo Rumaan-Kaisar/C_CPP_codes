@@ -69,3 +69,15 @@ double timer(double seconds) {
     // Function body for another version of timer()
 }
 
+
+
+
+/* Example 1: Briefly explain what the overload keyword does and why it is no longer needed. 
+
+                The "overload" keyword is outdated in C++.
+                It was used in early versions of C++ to indicate that a function would be overloaded.
+                Modern C++ compilers no longer support it, 
+                    as function overloading is now handled automatically without needing the keyword.
+*/
+
+
