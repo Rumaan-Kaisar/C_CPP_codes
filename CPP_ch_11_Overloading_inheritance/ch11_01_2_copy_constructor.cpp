@@ -573,3 +573,32 @@ int main(){
 
 
 
+
+/* Example 6: What is the most common general form of a copy constructor? 
+
+                The most common general form of a copy constructor:
+
+                classname(const classname &obj){
+                    // body of constructor
+                }
+*/
+
+
+
+
+/* Example 7: What type of operations will cause the copy constructor to be invoked? 
+
+                1. Object Initialization: 
+                    A copy constructor is invoked when one object is explicitly used to initialize another object.
+
+                2. Passing an Object to a Function:
+                    when an object is passed as a parameter to a function, 
+                    the copy constructor is called to create a copy of the object for use inside the function.
+
+                3. Returning an Object from a Function:
+                    A copy constructor is called when an object is returned by value from a function.
+                    This happens because a "temporary object" is created to hold the function's return value.
+*/
+
+
+
