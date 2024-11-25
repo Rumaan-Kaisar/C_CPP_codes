@@ -612,3 +612,13 @@ int main(){
 */
 
 
+
+
+/* Example 5: Briefly describe a default argument. 
+
+                ans:
+                    A default argument is a value that is given to a function parameter 
+                    when no corresponding argument appears when the function is called.
+*/
+
+
