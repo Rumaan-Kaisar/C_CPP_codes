@@ -3,52 +3,26 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-Mastery Skills Check
-At this point you should be able to perform the following exercises and answer the questions.
 
 
-/* Example 4: What is the most common general form of a copy constructor? */
+// ----  rev[25-Nov-2024]  ----
 
-4. The most common general form of a copy constructor is shown here:
-classname ( const classname &obj)
-{
-// body of constructor
-}
+/* Example 8: Create a function called reverse() that takes two parameters. 
 
+                The first parameter, called "str", is a pointer to a string 
+                    that will be reversed upon return from the function. 
 
+                The second parameter is called "count", and 
+                    it specifies how many characters of str to reverse.
 
-/* Example 5: What type of operations will cause the copy constructor to be invoked? */
-
-5. A copy constructor is called when an initialization takes place-specifically, when one object
-is explicitly used to initialize another, when an object is passed as a parameter to a
-function, and when a temporary object is created when an object is returned by a function.
-
-
-
-/* Example 6: Briefly explain what the overload keyword does and why it is no longer needed. */
-
-6. The overload keyword is obsolete. In early versions of C++ it was used to tell the
-compiler that a function will be overloaded. It is not supported by modern compilers.
-
-
-
-/* Example 7: Briefly describe a default argument. */
-
-7. A default argument is a value that is given to a function parameter when no corresponding
-argument appears when the function is called.
-
-
-
-/* Example 8: Create a function called reverse() that takes two parameters. The first parameter, called
-str, is a pointer to a string that will be reversed upon return from the function. The
-second parameter is called count, and it specifies how many characters of str to reverse.
-Give count a default value that, when present, tells reverse() to reverse the entire string.
+                Give count a default value that, when present, tells reverse() to reverse the entire string.
  */
 
-8. # include <iostream >
-# include <cstring >
-using namespace std ;
-void reverse ( char *str , int count = 0);
+#include <iostream>
+#include <cstring>
+
+void reverse(char *str , int count = 0);
+
 int main ()
 {
 char s1 [] = " This is a test .";
@@ -61,6 +35,7 @@ cout << s1 << ’\n’;
 cout << s2 << ’\n’;
 return 0;
 }
+
 void reverse ( char *str , int count )
 {
 int i, j;
