@@ -21,40 +21,44 @@
 #include <iostream>
 #include <cstring>
 
-void reverse(char *str , int count = 0);
+void reverse(char *str , int count = 0);    // declaration with "default value"
 
-int main ()
-{
-char s1 [] = " This is a test .";
-472ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 5
-char s2 [] = "I like C++. ";
-reverse (s1); // reverses entire string
-reverse (s2 , 7); // reverse first 7 chars
-cout << s1 << ’\n’;
-cout << s2 << ’\n’;
-return 0;
+
+int main(){
+    char s1[] = " This is a test. ";
+    char s2[] = " I like C++. ";
+
+    reverse(s1); // reverses entire string
+    reverse(s2 , 7); // reverse first 7 chars
+    std::cout << s1 << '\n';
+    std::cout << s2 << '\n';
+
+    return 0;
 }
 
-void reverse ( char *str , int count )
-{
-int i, j;
-char temp ;
-if (! count )
-count = strlen (str) - 1;
-for (i=0, j= count ; i<j; i++, j --)
-{
-temp = str [i];
-str [i] = str [j];
-str [j] = temp ;
-}
+
+// function definition
+void reverse(char *str , int count){
+    int i, j;
+    char temp;
+
+if(!count) count = strlen(str) - 1;
+
+    for(i=0, j= count; i<j; i++, j--){
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
 }
 
 
 
 /* Example 9: What is wrong with the following prototype?
-char * wordwrap ( char *str , int size = 0, char ch); */
-9. All parameters receiving default arguments must appear to the right of those that do not.
+char * wordwrap ( char *str , int size = 0, char ch); 
+
+All parameters receiving default arguments must appear to the right of those that do not.
+*/
+
 
 
 
