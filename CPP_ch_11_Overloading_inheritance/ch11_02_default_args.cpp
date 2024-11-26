@@ -122,6 +122,21 @@
 
 
 
+    ------------    Definition  or Declaration(prototype)?    ------------
+    
+    You do not need to specify the default argument again in the function "definition" 
+        if you have already specified it in the "declaration"
+    
+    Default arguments in C++ are specified only in the function declaration (prototype).
+    
+    The compiler uses the default arguments defined in the prototype 
+        when the function is called without explicitly providing the argument.
+    
+    Including the default argument in the definition is unnecessary and can lead to a compile-time error 
+        in some cases because the compiler expects the default value to be specified only once.
+
+
+
     ------------    Mixing DEFAULT arguments with Function OVERLOADING    ------------
     You can "mix" DEFAULT arguments and function OVERLOADING. 
     Be CAREFUL because they might CONFLICT if multiple overloaded functions match a call due to default arguments.
