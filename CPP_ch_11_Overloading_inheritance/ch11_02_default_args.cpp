@@ -622,3 +622,17 @@ int main(){
 */
 
 
+
+
+/* Example 6: What is wrong with the following prototype?
+
+                    char * wordwrap( char *str , int size = 0, char ch); 
+
+                All parameters receiving default arguments must appear to the right of those that do not.
+
+                NOTE: 
+                    Both "char *wordwrap" and "char * wordwrap" are syntactically correct in C++ and mean the same thing.
+                    The most common style is "char *wordwrap", where the * is grouped with the variable name or function name
+*/
+
+
