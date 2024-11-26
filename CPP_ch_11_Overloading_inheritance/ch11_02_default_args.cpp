@@ -42,7 +42,7 @@
 
         Default arguments must be specified only once, either in the:
             function's prototype or 
-            function's in its definition (must precedes the function's first use)
+            function's definition (must precedes the function's first use)
             
         The defaults CANNOT be specified in both the "prototype" and the "definition"
 
