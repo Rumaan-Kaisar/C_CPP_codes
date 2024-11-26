@@ -5,61 +5,7 @@
 
 
 
-// ----  rev[25-Nov-2024]  ----
-
-/* Example 8: Create a function called reverse() that takes two parameters. 
-
-                The first parameter, called "str", is a pointer to a string 
-                    that will be reversed upon return from the function. 
-
-                The second parameter is called "count", and 
-                    it specifies how many characters of str to reverse.
-
-                Give count a default value that, when present, tells reverse() to reverse the entire string.
- */
-
-#include <iostream>
-#include <cstring>
-
-void reverse(char *str , int count = 0);    // declaration with "default value"
-
-
-int main(){
-    char s1[] = " This is a test. ";
-    char s2[] = " I like C++. ";
-
-    reverse(s1); // reverses entire string
-    reverse(s2 , 7); // reverse first 7 chars
-    std::cout << s1 << '\n';
-    std::cout << s2 << '\n';
-
-    return 0;
-}
-
-
-// function definition
-void reverse(char *str , int count){
-    int i, j;
-    char temp;
-
-if(!count) count = strlen(str) - 1;
-
-    for(i=0, j= count; i<j; i++, j--){
-        temp = str[i];
-        str[i] = str[j];
-        str[j] = temp;
-    }
-}
-
-
-
-/* Example 9: What is wrong with the following prototype?
-char * wordwrap ( char *str , int size = 0, char ch); 
-
-All parameters receiving default arguments must appear to the right of those that do not.
-*/
-
-
+// ----  rev[26-Nov-2024]  ----
 
 
 /* Example 10: Explain some ways that ambiguity can be introduced when you are overloading functions. */
