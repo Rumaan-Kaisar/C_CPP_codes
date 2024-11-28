@@ -142,4 +142,12 @@ int main(){
 
 
 
+/* Example 3: When you are assigning the address of an overloaded function to a pointer, 
+                what is it that determines which version of the function is used? 
+
+                ans:
+                    When you are obtaining the "address of an overloaded function", 
+                    it is the "type specification of the pointer" that determines which function is used.
+*/
+
 
