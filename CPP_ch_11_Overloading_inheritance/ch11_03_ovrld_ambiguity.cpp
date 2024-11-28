@@ -257,3 +257,18 @@ int main(){
 */
 
 
+
+
+/* Example 5: What is wrong with the following fragment?
+
+                    void compute(double *num, int divisor =1);
+                    void compute(double * num);
+                    // ...
+                    compute (&x);
+
+                ans:
+                    It is ambiguous because the compiler cannot know which version of compute() to call.
+                    Is it the first version, with divisor defaulting? 
+                    Or is it the second version, which takes only one parameter?
+*/
+
