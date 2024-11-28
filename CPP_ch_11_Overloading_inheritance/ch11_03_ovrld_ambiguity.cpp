@@ -239,3 +239,21 @@ int main(){
     }
 */
 
+
+
+
+/* Example 4: Explain some ways that ambiguity can be introduced when you are overloading functions. 
+
+                Ways Ambiguity Can Occur in Function Overloading:
+
+                    Default Type Conversions: 
+                        When arguments are automatically converted to match parameter types
+
+                    Reference Parameters: 
+                        Functions with reference parameters can clash with those using value parameters
+                        
+                    Default Arguments: 
+                        Functions with default values can conflict with other overloaded versions if the arguments overlap.
+*/
+
+
