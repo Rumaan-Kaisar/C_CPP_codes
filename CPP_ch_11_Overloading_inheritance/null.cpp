@@ -5,42 +5,10 @@
 
 
 
-// ----  rev[26-Nov-2024]  ----
-
-
-/* Example 10: Explain some ways that ambiguity can be introduced when you are overloading functions. */
-10. Ambiguity can be introduced by default type conversions, reference parameters, and default arguments.
-
-
-
-/* Example 11: What is wrong with the following fragment?
-void compute ( double *num , int divisor =1) ;
-void compute ( double * num );
-// ...
-compute (&x);
- */
-11. It is ambiguous because the compiler cannot know which version of compute() to call.
-Is it the first version, with divisor defaulting? Or is it the second version, which takes
-only one parameter?
-
-
-
-/* Example 12: When you are assigning the address of an overloaded function to a pointer, what is it that
-determines which version of the function is used? */
-12. When you are obtaining the address of an overloaded function, it is the type specification
-of the pointer that determines which function is used.
-
-
-
-
+// ----  rev[28-Nov-2024]  ----
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
-
-
 
 /* Example 1: Create a function called order() that takes two integer reference parameters. If the first
 argument is greater than the second argument, reverse the two arguments. Otherwise,
