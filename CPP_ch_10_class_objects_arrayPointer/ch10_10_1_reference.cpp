@@ -915,3 +915,46 @@ void mag(long &num, long order){
     for( ; order; order--) num = num*10;
 }
 
+
+
+
+/* Example 20: Create a function called order() that takes two "integer reference parameters".
+                If the first argument is greater than the second argument, reverse the two arguments.
+                Otherwise, take no action. 
+
+                That is order the two arguments used to call order() so that, 
+                upon return, the first argument will be less than the second. 
+
+                For example, given
+                                    int x=1, y =0;
+                                    order (x, y);
+
+                following the call, x will be 0 and y will be 1.
+*/
+
+#include <iostream>
+
+void order(int &a, int &b){
+    int t;
+
+    if(a<b) return;
+    else { 
+        // swap a and b
+        t = a;
+        a = b;
+        b = t;
+    }
+}
+
+
+int main(){
+    int x=10, y =5;
+
+    std::cout << "x: " << x << ", y: " << y << '\n';
+    order(x, y);
+    std::cout << "x: " << x << ", y: " << y << '\n';
+
+    return 0;
+}
+
+
