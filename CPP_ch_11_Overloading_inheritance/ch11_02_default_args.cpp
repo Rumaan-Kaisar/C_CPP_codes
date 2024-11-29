@@ -698,3 +698,19 @@ if(!count) count = strlen(str) - 1;
 }
 
 
+
+
+/* Example 8: Explain why using a default argument is related to function overloading. 
+
+                A "default argument" is essentially a 'shorthand' approach to function overloading 
+                    because the net result is the same. For example:
+
+                        int f(int a, int b = 0);
+
+                is functionally equivalent to these two overloaded functions:
+
+                        int f(int a);
+                        int f(int a, int b);
+*/
+
+
