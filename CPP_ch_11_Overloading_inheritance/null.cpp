@@ -1,121 +1,13 @@
 
-// --------    rev[22-Nov-24]    --------
+// --------    rev[29-Nov-24]    --------
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-
-// ----  rev[28-Nov-2024]  ----
-
-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-
-/* Example 1: Create a function called order() that takes two integer reference parameters. If the first
-argument is greater than the second argument, reverse the two arguments. Otherwise,
-take no action. That is order the two arguments used to call order() so that, upon return,
-the first argument will be less than the second. For example, given
-int x=1, y =0;
-order (x, y);
-following the call, x will be 0 and y will be 1.
- */
-
-
-1. # include <iostream >
-using namespace std ;
-void order ( int &a, int &b)
-{
-int t;
-if(a<b)
-return ;
-else // swap a and b
-{
-t = a;
-473TEACH YOURSELF
-C++
-a = b;
-b = t;
-}
-}
-int main ()
-{
-int x=10 , y =5;
-cout << "x: " << x << ", y: " << y << ’\n’;
-order (x, y);
-cout << "x: " << x << ", y: " << y << ’\n’;
-return 0;
-}
-
-
-
-/* Example 2: Why are the following two overloaded functions inherently ambiguous?
-int f( int a);
-int f( int &a); */
-2. The syntax for calling a function that takes a reference parameter is identical to the syntax
-for calling a function that takes a value parameter.
-
-
-
-/* Example 3: Explain why using a default argument is related to function overloading. */
-3. A default argument is essentially a shorthand approach to function overloading because
-the net result is the same.
-For example,
-int f( int a, int b = 0);
-is functionally equivalent to these two overloaded functions:
-int f( int a);
-int f( int a, int b);
-
-
-
-/* Example 4: Given the following partial class, add the necessary constructor functions so that both
-declarations within main() are valid. (Hint: You need to overload samp() twice.)
-class samp
-{
-int a;
-public :
-// add constructor functions
-int get_a () { return a; }
-};
-int main ()
-{
-samp ob (88) ; // init ob ’s a to 88
-samp obarray [10]; // non - initialized 10- element array
-// ...
-}
- */
-4. # include <iostream >
-using namespace std ;
-class samp
-{
-int a;
-public :
-samp () { a = 0; }
-samp ( int n) { a = n; }
-int get_a () { return a; }
-};
-int main ()
-{
-samp ob (88) ;
-samp obarray [10];
-// ...
-}
-474ANSWERS
-REVIEW SKILLS CHECK: Chapter 6
-
-
-
-/* Example 5: Briefly explain why copy constructors are needed */
-5. Copy constructors are needed when you, the programmer, must control precisely how a
-copy of an object is made. This is important only when the default bitwise copy creates
-undesired side effects.
-
-
 
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-
-Review Skills Check
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
 
 
 
