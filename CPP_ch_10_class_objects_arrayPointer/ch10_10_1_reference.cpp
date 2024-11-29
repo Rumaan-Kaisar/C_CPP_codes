@@ -927,7 +927,7 @@ void mag(long &num, long order){
 
                 For example, given
                                     int x=1, y =0;
-                                    order (x, y);
+                                    order(x, y);
 
                 following the call, x will be 0 and y will be 1.
 */
