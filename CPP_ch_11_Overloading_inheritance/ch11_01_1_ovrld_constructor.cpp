@@ -551,3 +551,40 @@ int main(){
 */
 
 
+
+
+/* Example 10: Given the following partial class, add the necessary constructor functions 
+                so that both declarations within main() are valid. 
+                (Hint: You need to overload samp() twice.)
+
+                        class samp{
+                                int a;
+                            public:
+                                // add constructor functions
+                                int get_a(){ return a; }
+                        };
+
+                        int main(){
+                            samp ob(88);    // init ob's a to 88
+                            samp obarray[10];      // non - initialized 10- element array
+                            // ...
+                        }
+*/
+#include <iostream>
+
+class samp{
+        int a;
+    public:
+        samp(){ a = 0; }        // constructor 1
+        samp(int n){ a = n; }   // constructor 2
+        int get_a(){ return a; }
+};
+
+
+int main(){
+    samp ob(88);
+    samp obarray[10];
+    // ...
+}
+
+
