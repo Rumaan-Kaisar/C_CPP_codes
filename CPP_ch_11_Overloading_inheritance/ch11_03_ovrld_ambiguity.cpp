@@ -272,3 +272,16 @@ int main(){
                     Or is it the second version, which takes only one parameter?
 */
 
+
+
+
+/* Example 6: Why are the following two overloaded functions inherently ambiguous?
+
+                        int f( int a);
+                        int f( int &a); 
+
+            ans:
+                The syntax for calling a function that takes a "reference parameter"
+                is identical to the syntax for calling a function that takes a "value parameter".
+*/
+
