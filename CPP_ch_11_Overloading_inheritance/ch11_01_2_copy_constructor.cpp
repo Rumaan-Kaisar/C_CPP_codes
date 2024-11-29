@@ -602,3 +602,11 @@ int main(){
 
 
 
+
+/* Example 8: Briefly explain why copy constructors are needed 
+
+                Copy constructors are needed when you,  must control precisely how a copy of an object is made. 
+                This is important only when the default bitwise copy creates undesired side effects.
+*/
+
+
