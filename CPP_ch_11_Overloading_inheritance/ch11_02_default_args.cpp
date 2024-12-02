@@ -714,3 +714,35 @@ if(!count) count = strlen(str) - 1;
 */
 
 
+
+
+/* Example 9: Show how to overload the constructor for the following class so that un-initialized objects can also be created. 
+                (When creating uninitialized objects, give x and y the value 0.)
+
+                        class myclass {
+                                int x, y;
+                            public:
+                                myclass ( int i, int j) { x=i; y=j; }
+                                //
+                        };
+*/
+
+class myclass{
+        int x, y;
+    public:
+        myclass(int i, int j){ x=i; y=j; }
+        myclass(){ x =0; y =0; }
+};
+
+
+
+
+/* Example 10: Consider Previous example, show how you can avoid overloading myclass() by using default arguments. */
+
+class myclass{
+        int x, y;
+    public:
+        myclass(int i=0, int j=0){ x=i; y=j; }
+};
+
+
