@@ -285,3 +285,17 @@ int main(){
                 is identical to the syntax for calling a function that takes a "value parameter".
 */
 
+
+
+
+/* Example 7: What is wrong with these two overloaded functions?
+                    void f(int a);
+                    void f(int &a); 
+
+                A function cannot be overloaded when the only difference is that: 
+                    one version takes a value parameter and 
+                    the other takes a reference parameter. 
+
+                    (The compiler cannot tell them apart.)
+*/
+
