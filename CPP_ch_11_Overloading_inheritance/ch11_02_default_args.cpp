@@ -746,3 +746,11 @@ class myclass{
 };
 
 
+
+
+/* Example 11: When is it appropriate to use default arguments? When is it probably a bad idea? 
+
+                It is appropriate to use default arguments when there are one or more values that will occur frequently. 
+                It is inappropriate when there is no value or values that have a greater likelihood of occurring.
+*/
+
