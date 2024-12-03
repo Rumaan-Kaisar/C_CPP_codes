@@ -588,3 +588,25 @@ int main(){
 }
 
 
+
+
+/* Example 11: Given the following class definition, is it possible to "dynamically allocate" an array of these objects?
+
+                    class test {
+                            char *p;
+                            int *q;
+                            int count;
+                        public :
+                            test(char *x, int *y, int c){
+                                p = x;
+                                q = y;
+                                count = c;
+                            }
+                            // ...
+                    };
+
+
+                No, because there is no way to initialize a dynamic array. 
+                This class has only one constructor, and it requires initializers.
+*/
+
