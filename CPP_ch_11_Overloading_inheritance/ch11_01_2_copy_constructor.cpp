@@ -610,3 +610,13 @@ int main(){
 */
 
 
+
+
+/* Example 9: What is a copy constructor and under what circumstances is it called? 
+
+                A copy constructor is a special constructor called in three situations:
+                    When one object is explicitly used to initialize another.
+                    When an object is passed to a function.
+                    When a temporary object is created as a function's return value.
+*/
+
