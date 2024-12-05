@@ -70,4 +70,53 @@
 	However, do not use any operator overloading abnormally. 
 
 
+
+
+Simplified and Pointwise Explanation:
+Return Type of Operator Function:
+
+The return type is often the class for which the operator function is defined.
+However, the operator function is free to return any type as needed.
+Naming Convention:
+
+The operator being overloaded is substituted for # in the function name.
+For example, to overload +, the function name becomes operator+.
+Argument List (arg-list):
+
+The argument list depends on how the operator function is implemented and the type of operator being overloaded.
+Restrictions on Operator Overloading:
+Precedence:
+
+The precedence (order of operations) of the operator cannot be changed.
+Number of Operands:
+
+The number of operands for an operator cannot be changed.
+For example, a binary operator (like /) cannot be redefined as a unary operator.
+Operators That Cannot Be Overloaded:
+
+These operators cannot be overloaded:
+. (dot operator)
+:: (scope resolution operator)
+.* (pointer-to-member operator)
+? (ternary conditional operator)
+Preprocessor operators like # and ## cannot be overloaded.
+Operators That Can Be Overloaded:
+These operators can be overloaded:
+[] (subscript operator)
+() (function call operator)
+new and delete
+. (dot operator) and -> (arrow operator)
+Inheritance of Operator Functions:
+Inheritance:
+All operator functions (except =) are inherited by derived classes.
+A derived class can freely overload any operator (even those already overloaded in the base class) as needed for itself.
+Common Overloaded Operators:
+Examples:
+Operators << and >> have been overloaded for console I/O in C++.
+Despite overloading for I/O, these operators still retain their original functionality (e.g., left shift and right shift).
+Best Practices:
+Avoid Abnormal Use:
+Do not overload operators in a way that causes unexpected or illogical behavior. Use them in a way that maintains clarity and makes sense for the class being defined.
+
+
 */  
