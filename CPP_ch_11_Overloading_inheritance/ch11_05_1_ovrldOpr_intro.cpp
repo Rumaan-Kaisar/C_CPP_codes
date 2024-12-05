@@ -20,20 +20,41 @@
 
 
     ------------    Member Operator Function and Friend Operator Function    ------------
+    There's' a slight difference between a member operator function and a friend operator function. 
+
+    The general form of a MEMBER operator function:
+
+            return_type class_name :: operator#(arg_list ) {
+                // operation to be performed
+            }
+
+        The operator function is defined as a member of the class.
+        Tied to an object of the class.
+        Can directly access the class's private members.
+        left-hand operand of the operator (eg: 'a' of  "a+b" )
+            must be a class object (or convertible to it).
+
+
+    The general form of a FRIEND operator function:
+
+            return_type operator#(arg_list) {
+                // operation to be performed
+            }
+
+            class class_name {
+                friend return_type operator#(arg_list);
+            };
+
+        The operator function is defined as a friend of the class and is not a member of the class.
+        Not tied to a specific object of the class.
+        Can access private members using the friend keyword.
+        left-hand operand of the operator (eg: 'a' of  "a+b" )
+            can be a non-class object, like a primitive type.
 
 
 
 
-
-
-
-
-
-
-there is a slight difference between a member operator function and a friend operator function. 
-	The general form of a member operator function is, 
-return_type class_name::operator#( arg_list ) {
-/* operation to be performed */   }
+    // ----  rev[05-Dec-2024]  ----
 
 
 	The return type of an operator function is often the class for which it is defined. (operator function may free to return any type.) 
@@ -47,7 +68,6 @@ return_type class_name::operator#( arg_list ) {
 	Except for the =, operator functions are inherited by any derived class. However, a derived class is free to overload any operator it chooses (including those overloaded by the base class) relative to itself.
 	You have been using two overloaded operators: << and >>. These operators have been overloaded to perform console I/O in C++. As mentioned, overloading these operators to perform I/O does not prevent them from performing their traditional jobs of left shift and right shift.
 	However, do not use any operator overloading abnormally. 
-
 
 
 */  
