@@ -53,46 +53,66 @@
 
 
 
+    Return Type of Operator Function:
+        The "return type" of an Operator Function is often the class for which it is defined.
+        However, the operator function may free to return any type
 
-    // ----  rev[05-Dec-2024]  ----
+    Naming Convention:
+        The operator being overloaded is substituted for '#' in the function name.
+        For example, to overload +, the function name becomes "operator+".
+
+    Argument List (arg-list):
+        The argument list depends on how the operator function is implemented and the type of operator being overloaded.
 
 
-	The return type of an operator function is often the class for which it is defined. (operator function may free to return any type.) 
-	The operator being overloaded is substituted for the #. For example, to overloaded + , the function name would be operator+.
+// ----  rev[05-Dec-2024]  ----
+
+Restrictions on Operator Overloading:
+
+
+
+
+
 	The contents of arg-list vary depending upon how the operator function is implemented and the type of operator being overloaded.
+
 	Restrictions: 		The precedence of the operator cannot be changed. 
+
 	Second, the number of operands that an operator takes cannot be altered. I.e. a binary operator cannot be overload as an unary operator. For example, you cannot overload the / operator so that it takes only one operand.
+
 	These operators we cannot overload:   .   ::   .*     ?
+
 	We cannot overload the preprocessor operators (i.e. #, ##). (The    .*    operator is highly specialized and not discussed in this book.)
+
 	The [] subscript operators, the () function call operators, new and delete, and the . (dot) and -> (arrow) operators can be overloaded.
+
 	Except for the =, operator functions are inherited by any derived class. However, a derived class is free to overload any operator it chooses (including those overloaded by the base class) relative to itself.
+
 	You have been using two overloaded operators: << and >>. These operators have been overloaded to perform console I/O in C++. As mentioned, overloading these operators to perform I/O does not prevent them from performing their traditional jobs of left shift and right shift.
+
 	However, do not use any operator overloading abnormally. 
 
 
 
 
 Simplified and Pointwise Explanation:
-Return Type of Operator Function:
 
-The return type is often the class for which the operator function is defined.
-However, the operator function is free to return any type as needed.
-Naming Convention:
 
-The operator being overloaded is substituted for # in the function name.
-For example, to overload +, the function name becomes operator+.
-Argument List (arg-list):
 
-The argument list depends on how the operator function is implemented and the type of operator being overloaded.
-Restrictions on Operator Overloading:
+
+
+
+
+
 Precedence:
+    The precedence (order of operations) of the operator cannot be changed.
 
-The precedence (order of operations) of the operator cannot be changed.
+
 Number of Operands:
+    The number of operands for an operator cannot be changed.
+    For example, a binary operator (like /) cannot be redefined as a unary operator.
 
-The number of operands for an operator cannot be changed.
-For example, a binary operator (like /) cannot be redefined as a unary operator.
 Operators That Cannot Be Overloaded:
+
 
 These operators cannot be overloaded:
 . (dot operator)
