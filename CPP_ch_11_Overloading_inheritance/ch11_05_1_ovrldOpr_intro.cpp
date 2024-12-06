@@ -65,19 +65,22 @@
         The argument list depends on how the operator function is implemented and the type of operator being overloaded.
 
 
+
+    ------------    Restrictions    ------------
+
+    Precedence:
+        The precedence (order of operations) of the operator cannot be changed.
+
+    Number of Operands:
+        The number of operands for an operator cannot be changed.
+        For example, a binary operator (like /) cannot be redefined as a unary operator.
+
+
+
 // ----  rev[05-Dec-2024]  ----
 
 Restrictions on Operator Overloading:
 
-
-
-
-
-	The contents of arg-list vary depending upon how the operator function is implemented and the type of operator being overloaded.
-
-	Restrictions: 		The precedence of the operator cannot be changed. 
-
-	Second, the number of operands that an operator takes cannot be altered. I.e. a binary operator cannot be overload as an unary operator. For example, you cannot overload the / operator so that it takes only one operand.
 
 	These operators we cannot overload:   .   ::   .*     ?
 
@@ -103,13 +106,7 @@ Simplified and Pointwise Explanation:
 
 
 
-Precedence:
-    The precedence (order of operations) of the operator cannot be changed.
 
-
-Number of Operands:
-    The number of operands for an operator cannot be changed.
-    For example, a binary operator (like /) cannot be redefined as a unary operator.
 
 Operators That Cannot Be Overloaded:
 
