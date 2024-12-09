@@ -75,6 +75,18 @@
         The number of operands for an operator cannot be changed.
         For example, a binary operator (like /) cannot be redefined as a unary operator.
 
+    These operators we cannot overload:   .   ::   .*     ?
+        We cannot overload preprocessor operators (i.e. #, ##)
+        .*    operator is highly specialized and not discussed here
+
+    Operators That Can Be Overloaded:
+        []      (subscript operator)
+        ()      (function call operator)
+        new 
+        delete
+        .       (dot operator) and 
+        ->      (arrow operator)
+
 
 
 // ----  rev[05-Dec-2024]  ----
@@ -82,11 +94,6 @@
 Restrictions on Operator Overloading:
 
 
-	These operators we cannot overload:   .   ::   .*     ?
-
-	We cannot overload the preprocessor operators (i.e. #, ##). (The    .*    operator is highly specialized and not discussed in this book.)
-
-	The [] subscript operators, the () function call operators, new and delete, and the . (dot) and -> (arrow) operators can be overloaded.
 
 	Except for the =, operator functions are inherited by any derived class. However, a derived class is free to overload any operator it chooses (including those overloaded by the base class) relative to itself.
 
@@ -100,14 +107,6 @@ Restrictions on Operator Overloading:
 Simplified and Pointwise Explanation:
 
 
-
-
-
-
-
-
-
-
 Operators That Cannot Be Overloaded:
 
 
@@ -117,12 +116,12 @@ These operators cannot be overloaded:
 .* (pointer-to-member operator)
 ? (ternary conditional operator)
 Preprocessor operators like # and ## cannot be overloaded.
-Operators That Can Be Overloaded:
-These operators can be overloaded:
-[] (subscript operator)
-() (function call operator)
-new and delete
-. (dot operator) and -> (arrow operator)
+
+
+
+
+
+
 Inheritance of Operator Functions:
 Inheritance:
 All operator functions (except =) are inherited by derived classes.
