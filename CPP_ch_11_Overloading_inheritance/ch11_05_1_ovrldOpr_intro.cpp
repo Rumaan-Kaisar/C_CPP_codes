@@ -75,64 +75,36 @@
         The number of operands for an operator cannot be changed.
         For example, a binary operator (like /) cannot be redefined as a unary operator.
 
-    These operators we cannot overload:   .   ::   .*     ?
+    These operators cannot be overloaded:
+            .       (dot operator)
+            ::      (scope resolution operator)
+            .*      (pointer-to-member operator)
+            ?       (ternary conditional operator)
+    
         We cannot overload preprocessor operators (i.e. #, ##)
         .*    operator is highly specialized and not discussed here
 
     Operators That Can Be Overloaded:
-        []      (subscript operator)
-        ()      (function call operator)
-        new 
-        delete
-        .       (dot operator) and 
-        ->      (arrow operator)
+            []      (subscript operator)
+            ()      (function call operator)
+            new 
+            delete
+            .       (dot operator) and 
+            ->      (arrow operator)
 
 
-
-// ----  rev[05-Dec-2024]  ----
-
-Restrictions on Operator Overloading:
-
-
-
-	Except for the =, operator functions are inherited by any derived class. However, a derived class is free to overload any operator it chooses (including those overloaded by the base class) relative to itself.
-
-	You have been using two overloaded operators: << and >>. These operators have been overloaded to perform console I/O in C++. As mentioned, overloading these operators to perform I/O does not prevent them from performing their traditional jobs of left shift and right shift.
-
-	However, do not use any operator overloading abnormally. 
+    Inheritance:
+        All operator functions (except =) are inherited by derived classes.
+        However, a derived class is free to overload any operator it chooses 
+            (including those overloaded by the base class) relative to itself.
 
 
+    Common Overloaded Operators:
+        Operators << and >> have been overloaded for console I/O in C++.
+        Despite overloading for I/O, these operators still retain their original functionality: "left shift" and "right shift"
 
 
-Simplified and Pointwise Explanation:
-
-
-Operators That Cannot Be Overloaded:
-
-
-These operators cannot be overloaded:
-. (dot operator)
-:: (scope resolution operator)
-.* (pointer-to-member operator)
-? (ternary conditional operator)
-Preprocessor operators like # and ## cannot be overloaded.
-
-
-
-
-
-
-Inheritance of Operator Functions:
-Inheritance:
-All operator functions (except =) are inherited by derived classes.
-A derived class can freely overload any operator (even those already overloaded in the base class) as needed for itself.
-Common Overloaded Operators:
-Examples:
-Operators << and >> have been overloaded for console I/O in C++.
-Despite overloading for I/O, these operators still retain their original functionality (e.g., left shift and right shift).
-Best Practices:
-Avoid Abnormal Use:
-Do not overload operators in a way that causes unexpected or illogical behavior. Use them in a way that maintains clarity and makes sense for the class being defined.
-
-
+    Finally, do not use any operator overloading abnormally that causes unexpected or illogical behavior
 */  
+
+
