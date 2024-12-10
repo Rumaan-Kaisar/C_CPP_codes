@@ -7,11 +7,15 @@
         The object on the "left side" generates the call to the operator function and is passed implicitly using the "this" pointer.
 
 
+    Operator functions can be written in various way, some are shown in the examples:
+        using return type, temporary object, no-operator modification
+        using order of objects, implicit first object, assignment operator
+        using built-in-type objects i.e. int-float-char, order of the operands
+        using reference parameter in operator funtion
 
+*/
 
-
-
-Operator functions can be written in various way, some are shown in the examples:
+// **** use GPT to explain the overloading in short word
 
 
 
@@ -19,16 +23,16 @@ Example 1( return type, temporary object, no-operator modification ):  Overload 
 
 
 
-class coord {	int x, y; 		/* coordinate */ 
+class coord {	int x, y; 		// coordinate  
 	public :
 		coord() { x=0; y=0; };
 		coord(int i, int j) {x=i; y=j; }
 		void get_xy(int &i, int &j) {
  					i=x; j=y; }
 		coord operator+(coord ob2); };
-	/* coord type used for overloaded operator */			/* Overload + relative to coord class.*/ 
+	// coord type used for overloaded operator 			// Overload + relative to coord class. 
 coord coord :: operator +( coord ob2) {
-	/* one coord for type and another is for class*/
+	// one coord for type and another is for class
 		coord temp ;
 		temp.x = x + ob2.x;
 		temp.y = y + ob2.y;
@@ -36,7 +40,7 @@ coord coord :: operator +( coord ob2) {
 	}
 		int main() { 	coord o1(10 , 10), o2(5, 3), o3;
 				int x, y;
-				o3 = o1 + o2; 	/* add two objects – "this" calls operator + */ 
+				o3 = o1 + o2; 	// add two objects – "this" calls operator + 
 				o3.get_xy(x, y);
 				cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
 				return 0; }
@@ -46,10 +50,13 @@ Output:   (o1+o2) X: 15, Y: 13
 	Notice that a temporary object called temp is used inside operator+() to hold the result, and it is the returned object. 
 	The reason for temp is: a temporary object is needed to hold the result. In this situation (as in most), the + has been overloaded in a manner consistent with its normal arithmetic use. Therefore, neither operand be changed. For example, for 10+4=14, the result is 14, but neither the 10 nor the 4 is modified.
 	Because a coord object is returned, the statement: (o1+o2). get_xy (x, y); is also perfectly valid. Here the temporary object returned by operator+() is used directly and  after execution the temporary object is destroyed.
-	Example 2( order of objects, implicit first object, assignment operator ):  Overload the +, - and "=" operator relative to the coord class. This class is used to maintain X, Y coordinates  similar to previous example.
 
-		class coord { 	/* all elements of public are same, only declare operator functions*/
-			public: 	. . . . . . . /* all elements similar to Example 1 */ . . . . . . 
+
+
+Example 2( order of objects, implicit first object, assignment operator ):  Overload the +, - and "=" operator relative to the coord class. This class is used to maintain X, Y coordinates  similar to previous example.
+
+		class coord { 	// all elements of public are same, only declare operator functions
+			public: 	. . . . . . . // all elements similar to Example 1  . . . . . . 
 				coord operator +( coord ob2); 
 				coord operator -( coord ob2); 
 				coord operator =( coord ob2); };
@@ -65,12 +72,13 @@ coord temp ;
 	x = ob2.x;
 	y = ob2.y;
 	return *this ; 
-/* return the object that is assigned */  }
+// return the object that is assigned   
+}
 int main() {	coord o1(10 , 10) , o2(5, 3) , o3;
 		int x, y;
-o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";  /* add two objects */ 
-o3 = o1-o2; 	o3.get_xy(x, y); cout<< "(o1-o2) X: "<< x <<", Y: "<< y <<"\n";  /* subtract two objects */ 
-o3 = o1; 	o3.get_xy(x, y); cout<< "(o3=o1) X: "<< x <<", Y: "<< y <<"\n";  /* assign an object */ 
+o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";  // add two objects
+o3 = o1-o2; 	o3.get_xy(x, y); cout<< "(o1-o2) X: "<< x <<", Y: "<< y <<"\n";  // subtract two objects
+o3 = o1; 	o3.get_xy(x, y); cout<< "(o3=o1) X: "<< x <<", Y: "<< y <<"\n";  // assign an object
 return 0; }
 	Order of the operands: The operator-() function is implemented similarly to operator+(). However the order of the operands is important while overloading an operator. 
 	The order of the left-operand which "generates the call to operator-()" and the right-operand which "passed as an argument  to the operator-()" is important for subtraction because  A-B≠ B-A, It must be in the order:   x - ob2.x; . 
@@ -79,13 +87,16 @@ return 0; }
 	The assignment operator function:  Here the left-operand is modified by the operation (that is, the object being assigned a value).  This is in keeping with the normal meaning of assignment. 
 	The function returns *this. That is, the operator=() function returns the object that is being assigned to. The reason for this is to allow a series of assignments to be made. Eg: we used a = b = c = d = 0; for variables, returning *this by overloaded assignment operator allows us to use o3 = o2 = o1; for multiple objects.
 	There is no rule that requires an overloaded assignment function to return the object that receives the assignment. However, if you want the overloaded = to behave relative to its class the way it does for the built-in types, it must return *this.
-	Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
+
+
+
+Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
 
 class coord { 
 	public: 	
-/* all elements similar to Example 1 */ 
-coord operator+(coord ob2); 	    //obj+obj
-coord operator+(int i); };       //obj+int	coord coord :: operator +( coord ob2) {
+// all elements similar to Example 1
+coord operator+(coord ob2); 	    // obj+obj
+coord operator+(int i); };       // obj+int	coord coord :: operator +( coord ob2) {
 coord temp ;
 	temp.x = x + ob2.x;
 	temp.y = y + ob2.y;
@@ -96,15 +107,20 @@ coord temp ;
 	return temp ; }
 int main() {	coord o1(10 , 10) , o2(5, 3) , o3;
 		int x, y;
-o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";     /* add two objects */ 
-o3 = o1+100; 	o3.get_xy(x, y); cout<< "(o1+100) X: "<< x <<", Y: "<< y <<"\n";    /* add object + int */ 
+o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";     // add two objects
+o3 = o1+100; 	o3.get_xy(x, y); cout<< "(o1+100) X: "<< x <<", Y: "<< y <<"\n";    // add object + int
 return 0; }
 
-	The order of the left-operand and right-operand is important when we use built-in-type variables as right-operand . The reason is: It is the object on the left that generates the call to the operator function. For instance,  o3 = 19 + o1; /* int + obj */ generates a compile-time error. Because there is no built-in operation defined to handle the addition of an integer to an object.
+	The order of the left-operand and right-operand is important when we use built-in-type variables as right-operand . The reason is: It is the object on the left that generates the call to the operator function. 
+    For instance,  o3 = 19 + o1; // int + obj  
+    generates a compile-time error. Because there is no built-in operation defined to handle the addition of an integer to an object.
 	The overloaded operator+(int i) function works only when the object is on the left. (However there is a solution around this restriction.)
-	Example 4( reference parameter in operator funtion ):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example.
 
-coord coord :: operator+( coord &ob2) {	coord temp ; 	/* using references.*/ 
+
+
+Example 4( reference parameter in operator funtion ):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example.
+
+coord coord :: operator+( coord &ob2) {	coord temp ; 	// using references
 temp.x = x + ob2.x;
 temp.y = y + ob2.y;
 return temp ; }
@@ -116,7 +132,7 @@ Note:
 When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
 
 
-*/  
+
 
 
 1. The following program overloads the + operator relative to the coord class. This class
@@ -181,6 +197,10 @@ statement is also perfectly valid:
 (o1+o2). get_xy (x, y);
 Here the temporary object returned by operator+() is used directly. Of course, after
 this statement has executed, the temporary object is destroyed.
+
+
+
+
 2. The following version of the preceding program overloads the - and the = operators
 relative to the coord class.
 // Overload the +, -, and = relative to coord class .
@@ -263,6 +283,8 @@ o3 = o2 = o1;
 Keep in mind that there is no rule that requires an overloaded assignment function to
 return the object that receives the assignment. However, if you want the overloaded = to
 behave relative to its class the way it does for the built-in types, it must return *this.
+
+
 3. It is possible to overload an operator relative to a class so that the operand on the right
 side is an object of a built-in type, such as an integer, instead of the class for which the
 operator function is a member. For example, here the + operator is overloaded to add an
@@ -320,6 +342,10 @@ There is no built-in operation defined to handle the addition of an integer to a
 The overloaded operator+(int i) function works only when the object is on the left.
 Therefore, this statement generates a compile-time error. (Soon you will see one way
 around this restriction.)
+
+
+
+
 4. You can use a reference parameter in an operator function. For example, this is a perfectly
 acceptable way to overload the + operator relative to the coord class:
 // Overload + relative to coord class using references .
