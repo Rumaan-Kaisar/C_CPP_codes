@@ -1,14 +1,23 @@
 
 /*  ------------------------    operator overloading : BINARY    ------------------------
 
-Overloading binary operators
+    Overloading binary operators
+        When a "member operator function" overloads a BINARY operator, the function will have only "one parameter"
+        The parameter will "receive" the object that is on the "right side" of the operator
+        The object on the "left side" generates the call to the operator function and is passed implicitly using the "this" pointer.
 
-11.9 Overloading Binary Operators
-When a member operator function overloads a binary operator, the function will have only one parameter. 
-	The parameter will receive the object that is on the right side of the operator. 
-	The object on the left side is the object that generates the call to the operator function and is passed implicitly by this (pointer).
-	Operator functions can be written in various way, some are shown in the examples:
-	Example 1( return type, temporary object, no-operator modification ):  Overload the + operator relative to the coord class. This class is used to maintain X, Y coordinates.
+
+
+
+
+
+Operator functions can be written in various way, some are shown in the examples:
+
+
+
+Example 1( return type, temporary object, no-operator modification ):  Overload the + operator relative to the coord class. This class is used to maintain X, Y coordinates.
+
+
 
 class coord {	int x, y; 		/* coordinate */ 
 	public :
@@ -336,6 +345,8 @@ possible for the destructor to destroy something needed by the calling object. I
 case, using a reference parameter instead of a value parameter is an easy (and efficient)
 way around the problem. Of course, you could also define a copy constructor that would
 prevent this problem in the general case.
+
+
 EXERCISES
 1. Relative to coord, overload the * and / operators. Demonstrate that they work.
 2. Why would the following be an inappropriate use of an overloaded operator?
