@@ -15,6 +15,9 @@
 
 */
 
+
+// --------  rev[11-Nov-2024]  --------
+
 // **** use GPT to explain the overloading in short word
 
 
@@ -38,22 +41,28 @@ class coord{
 
 
 // Overload + relative to coord class: return_type class_name :: operator#(arg_list)
-// return_type and class_name are the same
-coord coord :: operator+(coord ob2){
-coord temp;
-temp .x = x + ob2 .x;
-temp .y = y + ob2 .y;
-return temp ;
+// Notice, return_type and class_name are the same here
+coord coord::operator+(coord ob2){
+    coord temp;
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    return temp;
 }
-int main ()
-{
-coord o1 (10 , 10) , o2 (5, 3) , o3;
-int x, y;
-o3 = o1 + o2; // add two objects - this calls operator +
-o3. get_xy (x, y);
-cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
-return 0;
+
+
+int main(){
+    coord o1(10, 10), o2(5, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2; // add two objects - this calls operator +
+    o3. get_xy (x, y);
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
 }
+
+
+
 This program displays the following:
 150INTRODUCING OPERATOR OVERLOADING
 6.2. OVERLOADING BINARY OPERATORS
