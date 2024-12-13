@@ -16,19 +16,44 @@
 */
 
 
-// --------  rev[11-Nov-2024]  --------
-
-// **** use GPT to explain the overloading in short word
 
 
 /* Example 1: (return type, temporary object, no-operator modification )
                 Following  overload the '+' operator relative to the "coord" class. This class is used to maintain X, Y coordinates.
+
+
+                Purpose:
+                    The + operator is overloaded to allow the "addition of two objects" of the coord class, combining their x and y values.
+
+
+                Return Type: 
+                    The return type of the overloaded operator is the same class type (coord) 
+                    since the result of the addition is also a coord object.
+
+
+                Function Signature: 
+                    The function is a member of the coord class with the syntax:
+
+                            coord coord::operator+(coord ob2)
+
+                        Here, ob2 represents the object on the right-hand side of the operator.
+
+
+                How it Works:
+                    The "operator+" function is called when the expression "o1 + o2" is evaluated.
+                    
+                    The left-hand object (o1) is passed implicitly using the "this" pointer, 
+                        and the right-hand object (o2) is passed as a parameter.
+                    
+                    Inside the function, the x and y values of o1 and o2 are added, 
+                        and the result is stored in a temporary coord object, which is then returned.
+
+
+                Main Function:
+                    The overloaded operator is used as "o3 = o1 + o2;"
+                    The resulting x and y values of the new coord object (o3) are displayed using get_xy.
+
 */
-
-
-GPT: explain the overloading in short word (no code rewrite)
-
-// Overload the + relative to coord class
 
 #include <iostream>
 
@@ -57,129 +82,46 @@ int main(){
     int x, y;
 
     o3 = o1 + o2; // add two objects - this calls operator +
-    o3. get_xy (x, y);
+    o3.get_xy(x, y);
     std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
 
     return 0;
 }
 
 
+/*  Output:   (o1+o2) X: 15, Y: 13
 
-Explanation of Overloading + in the coord Class:
-Purpose:
-The + operator is overloaded to allow the addition of two objects of the coord class, combining their x and y values.
+    Notice that there is no ob1 in operator function (it is implicit here and used to call ob2), 
+        however we'll use both ob1 and ob2 in the friend operator function. 
+    
+    The reason that the operator+() function returns an object of type "coord" is: 
+                o3 = o1 + o2 
+        is valid iff the result of o1 + o2 is a "coord" object that can be assigned to o3. 
+        If a different type had been returned, this statement would have been invalid. 
+    
+    Notice that a temporary object called "temp" is used inside operator+() to hold the result, and it is the returned object.
+    
+    The reason for temp is: 
+        A temporary object is needed to hold the result. 
+    
+    In this situation (as in most), the + has been overloaded in a manner consistent with its normal arithmetic use. 
+        Therefore, neither operand be changed. 
+        For example, for 10+4=14, the result is 14, but neither the 10 nor the 4 is modified.
 
-Key Concepts:
+    Because a coord object is returned, the statement: 
+                (o1+o2).get_xy(x, y);
+        is also perfectly valid. 
+        Here the temporary object returned by operator+() is used directly 
+            and after execution the temporary object is destroyed.
 
-Return Type: The return type of the overloaded operator is the same class type (coord) since the result of the addition is also a coord object.
-Function Signature: The function is a member of the coord class with the syntax:
-coord coord::operator+(coord ob2)
-Here, ob2 represents the object on the right-hand side of the operator.
-How it Works:
-
-The operator+ function is called when the expression o1 + o2 is evaluated.
-The left-hand object (o1) is passed implicitly using the this pointer, and the right-hand object (o2) is passed as a parameter.
-Inside the function, the x and y values of o1 and o2 are added, and the result is stored in a temporary coord object, which is then returned.
-Main Function:
-
-The overloaded operator is used as o3 = o1 + o2;.
-The resulting x and y values of the new coord object (o3) are displayed using get_xy.
-Output:
-The program will display:
-(o1+o2) X: 15, Y: 13
-
-This demonstrates how operator overloading adds custom functionality for a specific class while keeping the syntax intuitive and consistent with built-in operators.
-
-
-
-
-
-Simplified Key Points:
-Program Output:
-(o1+o2) X: 15, Y: 13
-
-Functionality of operator+:
-
-It returns a temporary object of type coord that contains:
-The sum of the x coordinates in x.
-The sum of the y coordinates in y.
-Neither operand (o1 or o2) is modified during the operation.
-Use of Temporary Object (temp):
-
-A temporary object is required to hold the result of the operation.
-This ensures that the operands remain unaltered, mimicking the natural behavior of arithmetic operations (e.g., 10 + 4 = 14, but 10 and 4 remain unchanged).
-Return Type of operator+:
-
-The operator returns a coord object, allowing its result to be used in expressions.
-For example:
-o3 = o1 + o2 works because the result of o1 + o2 is a coord object assignable to o3.
-Complex expressions like o3 = o1 + o2 + o1 + o3 are also valid.
-Direct Use of Temporary Object:
-
-The returned temporary object can be used directly, as in:
-(o1 + o2).get_xy(x, y);
-After this statement, the temporary object is destroyed automatically.
-Default Behavior:
-
-Most operator functions return an object of their class to maintain intuitive arithmetic behavior and allow chaining of operations.
-Exceptions: Relational and logical operators often return types other than the class itself (e.g., bool).
-This explanation emphasizes why temporary objects and appropriate return types are crucial in operator overloading for preserving intuitive behavior and flexibility.
-
-
-
-Output:   (o1+o2) X: 15, Y: 13
-	Notice that there is no ob1 in operator function (it is implicit here and used to call ob2), however we'll use both ob1 and ob2 in the friend operator function. 
-	The reason that the operator+() function returns an object of type coord is: o3 = o1 + o2 is valid iff the result of o1 + o2 is a coord object that can be assigned to o3. If a different type had been returned, this statement would have been invalid. 
-	Notice that a temporary object called temp is used inside operator+() to hold the result, and it is the returned object. 
-	The reason for temp is: a temporary object is needed to hold the result. In this situation (as in most), the + has been overloaded in a manner consistent with its normal arithmetic use. Therefore, neither operand be changed. For example, for 10+4=14, the result is 14, but neither the 10 nor the 4 is modified.
-	Because a coord object is returned, the statement: (o1+o2). get_xy (x, y); is also perfectly valid. Here the temporary object returned by operator+() is used directly and  after execution the temporary object is destroyed.
+ */
 
 
 
 
+// --------  rev[11-Nov-2024]  --------
 
-
-This program displays the following:
-150INTRODUCING OPERATOR OVERLOADING
-6.2. OVERLOADING BINARY OPERATORS
-(o1+o2) X: 15, Y: 13
-Let’s look closely at this program. The operator+() function returns an object of type
-coord that has the sum of each operand’s X coordinates in x and the sum of the Y
-coordinates in y. Notice that a temporary object called temp is used inside operator+()
-to hold the result, and it is this object that is returned. Notice also that neither operand
-is modified. The reason for temp is easy to understand. In this situation (as in most), the
-+ has been overloaded in a manner consistent with its normal arithmetic use. Therefor,
-it was important that neither operand be changed. For example, when you add 10+4, the
-result is 14, but neither the 10 nor the 4 is modified. Thus, a temporary object is needed
-to hold the result.
-The reason that the operator+() function returns an object of type coord is that it
-allows the result of the addition of coord objects to be used in larger expressions. For
-example, the statement
-o3 = o1 + o2
-is valid only because the result of o1 + o2 is a coord object that can be assigned to o3.
-If a different type had been returned, this statement would have been invalid. Further, by
-returning a coord object, the addition operator allows a string of additions. For example,
-this is a valid statement:
-o3 = o1 + o2 + o1 + o3;
-Although there will be situations in which you want an operator function to return something other than an object for which it is defined, most of the time operator functions
-that you create will return an object of their class. (The major exception to this rule is
-when the relational and logical operators are overloaded. This situation is examined in
-Section 6.3, "Overloading the Relational and Logical Operators," later in this chapter.)
-One final point about this example. Because a coord object is returned, the following
-statement is also perfectly valid:
-(o1+o2). get_xy (x, y);
-Here the temporary object returned by operator+() is used directly. Of course, after
-this statement has executed, the temporary object is destroyed.
-
-
-
-
-
-
-
-
-
-
+// **** use GPT to explain the overloading in short word
 
 
 
