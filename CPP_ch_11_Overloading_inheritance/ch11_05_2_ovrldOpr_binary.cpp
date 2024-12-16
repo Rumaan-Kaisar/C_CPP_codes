@@ -114,16 +114,7 @@ int main(){
         Here the temporary object returned by operator+() is used directly 
             and after execution the temporary object is destroyed.
 
- */
-
-
-
-
-// --------  rev[11-Nov-2024]  --------
-
-// **** use GPT to explain the overloading in short word
-
-
+*/
 
 
 
@@ -132,39 +123,6 @@ int main(){
                 Overload the +, - and "=" operator relative to the coord class. 
                 This class is used to maintain X, Y coordinates  similar to previous example. 
 */
-
-		class coord { 	
-coord coord :: operator +( coord ob2) {
-coord temp ;
-	temp.x = x + ob2.x;
-	temp.y = y + ob2.y;
-	return temp ; }	coord coord :: operator -( coord ob2) {
-coord temp ;
-	temp.x = x - ob2.x;
-	temp.y = y - ob2.y;
-	return temp ; }	coord coord :: operator =( coord ob2) {
-	x = ob2.x;
-	y = ob2.y;
-	return *this ; 
-// return the object that is assigned   
-}
-int main() {	coord o1(10 , 10) , o2(5, 3) , o3;
-		int x, y;
-o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";  // add two objects
-o3 = o1-o2; 	o3.get_xy(x, y); cout<< "(o1-o2) X: "<< x <<", Y: "<< y <<"\n";  // subtract two objects
-o3 = o1; 	o3.get_xy(x, y); cout<< "(o3=o1) X: "<< x <<", Y: "<< y <<"\n";  // assign an object
-return 0; }
-	Order of the operands: The operator-() function is implemented similarly to operator+(). However the order of the operands is important while overloading an operator. 
-	The order of the left-operand which "generates the call to operator-()" and the right-operand which "passed as an argument  to the operator-()" is important for subtraction because  A-B≠ B-A, It must be in the order:   x - ob2.x; . 
-	The order of the left-operand and right-operand is also important when we use built-in-type variables as right-operand .
-	The order of the left-operand and the right-operand is not important for addition.
-	The assignment operator function:  Here the left-operand is modified by the operation (that is, the object being assigned a value).  This is in keeping with the normal meaning of assignment. 
-	The function returns *this. That is, the operator=() function returns the object that is being assigned to. The reason for this is to allow a series of assignments to be made. Eg: we used a = b = c = d = 0; for variables, returning *this by overloaded assignment operator allows us to use o3 = o2 = o1; for multiple objects.
-	There is no rule that requires an overloaded assignment function to return the object that receives the assignment. However, if you want the overloaded = to behave relative to its class the way it does for the built-in types, it must return *this.
-
-
-
-
 
 #include <iostream>
 
@@ -182,44 +140,76 @@ class coord{
 };
 
 
-// Overload + relative to coord class .
-coord coord :: operator +( coord ob2)
-{
-coord temp ;
-temp .x = x + ob2 .x;
-temp .y = y + ob2 .y;
-return temp ;
+// Overload '+' relative to coord class.
+coord coord::operator+(coord ob2) {
+    coord temp ;
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    return temp ; 
+}	
+
+// Overload '-' relative to coord class.
+coord coord::operator-(coord ob2) {
+    coord temp ;
+    temp.x = x - ob2.x;
+    temp.y = y - ob2.y;
+    return temp ; 
+}	
+
+// Overload '=' relative to coord class.
+coord coord::operator=(coord ob2) {
+    x = ob2.x;
+    y = ob2.y;
+    return *this ; 
+    // return the object that is assigned. Noticem, no "temp" is used
 }
-// Overload - relative to coord class .
-coord coord :: operator -( coord ob2)
-{
-coord temp ;
-temp .x = x - ob2 .x;
-temp .y = y - ob2 .y;
-return temp ;
+
+
+int main(){
+    coord o1(10,10), o2(5,3), o3;
+    int x, y;
+
+    o3 = o1 + o2;   // add two objects - this calls operator +
+    o3.get_xy(x,y);
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2;   // subtract two objects
+    o3.get_xy(x,y);
+    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1;        // assign an object
+    o3.get_xy(x,y);
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
 }
-// Overload = relative to coord class .
-coord coord :: operator =( coord ob2)
-{
-x = ob2 .x;
-y = ob2 .y;
-return * this ; // return the object that is assigned
-}
-int main ()
-{
-coord o1 (10 , 10) , o2 (5, 3) , o3;
-int x, y;
-o3 = o1 + o2; // add two objects - this calls operator +
-o3. get_xy (x, y);
-cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
-o3 = o1 - o2; // subtract two objects
-o3. get_xy (x, y);
-cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
-o3 = o1; // assign an object
-o3. get_xy (x, y);
-cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
-return 0;
-}
+
+
+
+
+
+
+// --------  rev[16-Dec-2024]  --------
+
+// **** use GPT to explain the overloading in short word
+
+
+
+
+	Order of the operands: The operator-() function is implemented similarly to operator+(). However the order of the operands is important while overloading an operator. 
+	The order of the left-operand which "generates the call to operator-()" and the right-operand which "passed as an argument  to the operator-()" is important for subtraction because  A-B≠ B-A, It must be in the order:   x - ob2.x; . 
+	The order of the left-operand and right-operand is also important when we use built-in-type variables as right-operand .
+	The order of the left-operand and the right-operand is not important for addition.
+	The assignment operator function:  Here the left-operand is modified by the operation (that is, the object being assigned a value).  This is in keeping with the normal meaning of assignment. 
+	The function returns *this. That is, the operator=() function returns the object that is being assigned to. The reason for this is to allow a series of assignments to be made. Eg: we used a = b = c = d = 0; for variables, returning *this by overloaded assignment operator allows us to use o3 = o2 = o1; for multiple objects.
+	There is no rule that requires an overloaded assignment function to return the object that receives the assignment. However, if you want the overloaded = to behave relative to its class the way it does for the built-in types, it must return *this.
+
+
+
+
+
+
+
 The operator-() function is implemented similarly to operator+(). However, the above
 example illustrates a crucial point when you are overloading an operator in which the order
 152INTRODUCING OPERATOR OVERLOADING
