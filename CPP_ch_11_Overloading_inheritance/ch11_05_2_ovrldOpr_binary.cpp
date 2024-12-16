@@ -125,13 +125,15 @@ int main(){
 
 
 
-Example 2( order of objects, implicit first object, assignment operator ):  Overload the +, - and "=" operator relative to the coord class. This class is used to maintain X, Y coordinates  similar to previous example.
 
-		class coord { 	// all elements of public are same, only declare operator functions
-			public: 	. . . . . . . // all elements similar to Example 1  . . . . . . 
-				coord operator +( coord ob2); 
-				coord operator -( coord ob2); 
-				coord operator =( coord ob2); };
+
+
+/* Example 2 (order of objects, implicit first object, assignment operator):
+                Overload the +, - and "=" operator relative to the coord class. 
+                This class is used to maintain X, Y coordinates  similar to previous example. 
+*/
+
+		class coord { 	
 coord coord :: operator +( coord ob2) {
 coord temp ;
 	temp.x = x + ob2.x;
@@ -162,72 +164,24 @@ return 0; }
 
 
 
-Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
-
-class coord { 
-	public: 	
-// all elements similar to Example 1
-coord operator+(coord ob2); 	    // obj+obj
-coord operator+(int i); };       // obj+int	coord coord :: operator +( coord ob2) {
-coord temp ;
-	temp.x = x + ob2.x;
-	temp.y = y + ob2.y;
-	return temp ; }	coord coord :: operator +( int i) {
-coord temp ;
-	temp.x = x + i;
-	temp.y = y + i;
-	return temp ; }
-int main() {	coord o1(10 , 10) , o2(5, 3) , o3;
-		int x, y;
-o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";     // add two objects
-o3 = o1+100; 	o3.get_xy(x, y); cout<< "(o1+100) X: "<< x <<", Y: "<< y <<"\n";    // add object + int
-return 0; }
-
-	The order of the left-operand and right-operand is important when we use built-in-type variables as right-operand . The reason is: It is the object on the left that generates the call to the operator function. 
-    For instance,  o3 = 19 + o1; // int + obj  
-    generates a compile-time error. Because there is no built-in operation defined to handle the addition of an integer to an object.
-	The overloaded operator+(int i) function works only when the object is on the left. (However there is a solution around this restriction.)
 
 
+#include <iostream>
 
-Example 4( reference parameter in operator funtion ):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example.
+class coord{
+        int x, y; // coordinate values
+    public:
+        coord() { x =0; y =0; }
+        coord(int i, int j) { x=i; y=j; }
+        void get_xy(int &i, int &j) { i=x; j=y; }
 
-coord coord :: operator+( coord &ob2) {	coord temp ; 	// using references
-temp.x = x + ob2.x;
-temp.y = y + ob2.y;
-return temp ; }
-	Efficiency: Passing the address of an object is always quick and efficient and do not consume CPU cycles as much as normal object parameters do. If the operator is going to be used often, using a reference parameter is a good choice.
-	Prevent temporary object/operand destruction after execution (recall 10.10):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
-	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
-	However, we could also define a copy constructor that would prevent this problem in the general case.
-Note:
-When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
-
-
-
-
-
-
-
-
-2. The following version of the preceding program overloads the - and the = operators
-relative to the coord class.
-// Overload the +, -, and = relative to coord class .
-# include <iostream >
-using namespace std ;
-class coord
-{
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; };
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-coord operator +( coord ob2);
-coord operator -( coord ob2);
-coord operator =( coord ob2);
+        // OPERATOR OVERLOADING: coord type used for overloaded operator
+        coord operator+(coord ob2);
+        coord operator-(coord ob2);
+        coord operator=(coord ob2);
 };
-151TEACH YOURSELF
-C++
+
+
 // Overload + relative to coord class .
 coord coord :: operator +( coord ob2)
 {
@@ -292,6 +246,57 @@ o3 = o2 = o1;
 Keep in mind that there is no rule that requires an overloaded assignment function to
 return the object that receives the assignment. However, if you want the overloaded = to
 behave relative to its class the way it does for the built-in types, it must return *this.
+
+
+
+
+Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
+
+class coord { 
+	public: 	
+// all elements similar to Example 1
+coord operator+(coord ob2); 	    // obj+obj
+coord operator+(int i); };       // obj+int	coord coord :: operator +( coord ob2) {
+coord temp ;
+	temp.x = x + ob2.x;
+	temp.y = y + ob2.y;
+	return temp ; }	coord coord :: operator +( int i) {
+coord temp ;
+	temp.x = x + i;
+	temp.y = y + i;
+	return temp ; }
+int main() {	coord o1(10 , 10) , o2(5, 3) , o3;
+		int x, y;
+o3 = o1+o2; 	o3.get_xy(x, y); cout<< "(o1+o2) X: "<< x <<", Y: "<< y <<"\n";     // add two objects
+o3 = o1+100; 	o3.get_xy(x, y); cout<< "(o1+100) X: "<< x <<", Y: "<< y <<"\n";    // add object + int
+return 0; }
+
+	The order of the left-operand and right-operand is important when we use built-in-type variables as right-operand . The reason is: It is the object on the left that generates the call to the operator function. 
+    For instance,  o3 = 19 + o1; // int + obj  
+    generates a compile-time error. Because there is no built-in operation defined to handle the addition of an integer to an object.
+	The overloaded operator+(int i) function works only when the object is on the left. (However there is a solution around this restriction.)
+
+
+
+Example 4( reference parameter in operator funtion ):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example.
+
+coord coord :: operator+( coord &ob2) {	coord temp ; 	// using references
+temp.x = x + ob2.x;
+temp.y = y + ob2.y;
+return temp ; }
+	Efficiency: Passing the address of an object is always quick and efficient and do not consume CPU cycles as much as normal object parameters do. If the operator is going to be used often, using a reference parameter is a good choice.
+	Prevent temporary object/operand destruction after execution (recall 10.10):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
+	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
+	However, we could also define a copy constructor that would prevent this problem in the general case.
+Note:
+When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
+
+
+
+
+
+
+
 
 
 3. It is possible to overload an operator relative to a class so that the operand on the right
