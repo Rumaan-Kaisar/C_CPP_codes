@@ -187,50 +187,47 @@ int main(){
 
 
 
+/*  Order of the operands: 
+        The operator-() function is implemented similarly to operator+(). 
+            However the order of the operands is important while overloading an operator.
+
+        The order of the left-operand which "generates the call to operator-()" and 
+            the right-operand which "passed as an argument  to the operator-()" 
+            is important for subtraction because  A-B not equal to B-A, 
+            It must be in the order:        x - ob2.x;
+
+        The order of the left-operand and right-operand is also important 
+            when we use built-in-type variables as right-operand .
+
+        The order of the left-operand and the right-operand is not important for addition.
 
 
-// --------  rev[16-Dec-2024]  --------
+    The assignment operator function:
+        Here the left-operand is modified by the operation (that is, the object being assigned a value).  
+            This is in keeping with the normal meaning of assignment. 
 
-// **** use GPT to explain the overloading in short word
+        The function returns *this:
+            That is, the operator=() function "returns the object" that is being assigned to. 
 
+        The reason for this is to allow a series of assignments to be made. 
+            Eg: we used a = b = c = d = 0; 
 
-/* 
+        For variables, returning "*this" by overloaded assignment operator 
+            allows us to use o3 = o2 = o1; for multiple objects.
 
-Order of the operands: 
-    The operator-() function is implemented similarly to operator+(). 
-        However the order of the operands is important while overloading an operator.
-
-    The order of the left-operand which "generates the call to operator-()" and 
-        the right-operand which "passed as an argument  to the operator-()" 
-        is important for subtraction because  A-B not equal to B-A, 
-        It must be in the order:        x - ob2.x;
-
-    The order of the left-operand and right-operand is also important 
-        when we use built-in-type variables as right-operand .
-
-    The order of the left-operand and the right-operand is not important for addition.
-
-
-The assignment operator function:
-    Here the left-operand is modified by the operation (that is, the object being assigned a value).  
-        This is in keeping with the normal meaning of assignment. 
-
-    The function returns *this:
-        That is, the operator=() function "returns the object" that is being assigned to. 
-
-    The reason for this is to allow a series of assignments to be made. 
-        Eg: we used a = b = c = d = 0; 
-
-    For variables, returning "*this" by overloaded assignment operator 
-        allows us to use o3 = o2 = o1; for multiple objects.
-
-
-There is no rule that requires an overloaded assignment function to return the object that receives the assignment. However, if you want the overloaded = to behave relative to its class the way it does for the built-in types, it must return *this.
-
-
+        An overloaded assignment function isn't required to "return the object that receives the assignment"
+        However, if you want the overloaded = to behave relative to its class 
+            the way it does for the built-in types, it must return "*this"
  */
 
 
+
+
+
+
+// --------  rev[17-Dec-2024]  --------
+
+// **** use GPT to explain the overloading in short word
 
 
 . When the operator+() function was created, it did not
