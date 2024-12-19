@@ -12,7 +12,6 @@
         using order of objects, implicit first object, assignment operator
         using built-in-type objects i.e. int-float-char, order of the operands
         using reference parameter in operator funtion
-
 */
 
 
@@ -230,29 +229,9 @@ int main(){
 
 
 
-// --------  rev[17-Dec-2024]  --------
+// --------  rev[19-Dec-2024]  --------
 
 // **** use GPT to explain the overloading in short word
-
-
-
-Now look at the assignment operator function. The first thing you should notice that the
-left operand (that is, the object being assigned a value) is modified by the operation. This
-is in keeping with the normal meaning of assignment. The second thing to notice is that
-the function returns *this. That is, the operator=() function returns the object that is
-being assigned to. The reason for this is to allow a series of assignments to be made. As
-you should know, in C++, the following type of statement is syntactically correct (and
-indeed very common):
-a = b = c = d = 0;
-By returning *this, the overloaded assignment operator allows objects of type coord to
-be used in a similar fashion. For example, this is perfectly valid:
-o3 = o2 = o1;
-Keep in mind that there is no rule that requires an overloaded assignment function to
-return the object that receives the assignment. However, if you want the overloaded = to
-behave relative to its class the way it does for the built-in types, it must return *this.
-
-
-
 
 Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
 
