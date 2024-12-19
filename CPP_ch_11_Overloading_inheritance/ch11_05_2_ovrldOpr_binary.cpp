@@ -199,7 +199,12 @@ int main(){
         The order of the left-operand and right-operand is also important 
             when we use built-in-type variables as right-operand .
 
+        When overloading a binary operator, the left operand is passed implicitly, 
+            and the right operand is passed as an argument.
+
         The order of the left-operand and the right-operand is not important for addition.
+            That is, A + B is the same as B + A
+            However, the subtraction operation is order dependent.
 
 
     The assignment operator function:
@@ -230,14 +235,7 @@ int main(){
 // **** use GPT to explain the overloading in short word
 
 
-. When the operator+() function was created, it did not
-matter which order the operands were in. (That is, A + B is the same as B + A.) However,
-the subtraction operation is order dependent. Therefore, to subtract the operand on the
-right from the operand on the left. Because it is the left operand that generates the call
-to operator-(), the subtraction must be in this order:
-x - ob2 .x;
-Remember: When a binary operator is overloaded, the left operand is passed implicitly
-to the function and the right operand is passed as an argument.
+
 Now look at the assignment operator function. The first thing you should notice that the
 left operand (that is, the object being assigned a value) is modified by the operation. This
 is in keeping with the normal meaning of assignment. The second thing to notice is that
