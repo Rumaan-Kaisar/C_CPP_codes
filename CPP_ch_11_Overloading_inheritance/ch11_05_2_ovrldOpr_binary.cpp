@@ -233,7 +233,63 @@ int main(){
 
 // **** use GPT to explain the overloading in short word
 
-Example 3( built-in-type objects i.e. int-float-char, order of the operands ):  Overload the + operator relative to the coord class with built-in-type objects (i.e int, float, char etc). This class is used to maintain X, Y coordinates  similar to previous example.
+/* Example 3 (built-in-type objects i.e. int-float-char, order of the operands ):  
+                Overload the + operator relative to the coord class with "built-in-type objects" (i.e int, float, char etc). 
+                This class is used to maintain X, Y coordinates  similar to previous example.
+
+                An operator can be overloaded relative to a class so that 
+                    the right operand is a built-in type, like an int, 
+                    instead of the class type for which the operator function is a member
+*/
+// Overload the + for "ob + int" as well as "ob + ob"
+
+
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; };
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator +( coord ob2); // ob + ob
+coord operator +( int i); // ob + int
+};
+// Overload + relative to coord class .
+coord coord :: operator +( coord ob2)
+{
+coord temp ;
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+153TEACH YOURSELF
+C++
+return temp ;
+}
+// Overload + for ob + int
+coord coord :: operator +( int i)
+{
+coord temp ;
+temp .x = x + i;
+temp .y = y + i;
+return temp ;
+}
+int main ()
+{
+coord o1 (10 , 10) , o2 (5, 3) , o3;
+int x, y;
+o3 = o1 + o2; // add two objects - calls operator +( coord )
+o3. get_xy (x, y);
+cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1 + 100; // add object + int - calls operator +( int )
+o3. get_xy (x, y);
+cout << "(o1 +100) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
+
+
 
 class coord { 
 	public: 	
@@ -282,53 +338,18 @@ When a binary operator is overloaded, the left operand is passed implicitly to t
 
 
 
-3. It is possible to overload an operator relative to a class so that the operand on the right
-side is an object of a built-in type, such as an integer, instead of the class for which the
-operator function is a member. For example, here the + operator is overloaded to add an
+
+
+
+
+
+
+
+For example, here the + operator is overloaded to add an
 integer value to a coord object:
-// Overload the + for ob + int as well as ob + ob.
-# include <iostream >
-using namespace std ;
-class coord
-{
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; };
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-coord operator +( coord ob2); // ob + ob
-coord operator +( int i); // ob + int
-};
-// Overload + relative to coord class .
-coord coord :: operator +( coord ob2)
-{
-coord temp ;
-temp .x = x + ob2 .x;
-temp .y = y + ob2 .y;
-153TEACH YOURSELF
-C++
-return temp ;
-}
-// Overload + for ob + int
-coord coord :: operator +( int i)
-{
-coord temp ;
-temp .x = x + i;
-temp .y = y + i;
-return temp ;
-}
-int main ()
-{
-coord o1 (10 , 10) , o2 (5, 3) , o3;
-int x, y;
-o3 = o1 + o2; // add two objects - calls operator +( coord )
-o3. get_xy (x, y);
-cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
-o3 = o1 + 100; // add object + int - calls operator +( int )
-o3. get_xy (x, y);
-cout << "(o1 +100) X: " << x << ", Y: " << y << "\n";
-return 0;
-}
+
+
+
 It is important to remember that when you are overloading a member operator function
 so that an object can be used in an operation involving a built-in type, the built-in type
 must be on the right side of the operator. The reason for this is easy to understand: It is
@@ -368,6 +389,9 @@ possible for the destructor to destroy something needed by the calling object. I
 case, using a reference parameter instead of a value parameter is an easy (and efficient)
 way around the problem. Of course, you could also define a copy constructor that would
 prevent this problem in the general case.
+
+
+
 
 
 EXERCISES
