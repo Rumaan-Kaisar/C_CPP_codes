@@ -285,57 +285,30 @@ int main(){
 }
 
 
+/*  The order of operands matters when using built-in types (e.g., int) as the "right operand" in operator overloading.
+        This is because the "object on the left" generates the call to the operator function.
+        For example:
+                        o3 = 19 + ob1;   // int + object
 
-// --------  rev[19-Dec-2024]  --------
+            This causes a "compile-time error" since there is no built-in operation to handle adding an integer to an object.
+            The overloaded operator function, such as operator+(int i), "only works" when the object is on the "left":
 
-// **** use GPT to explain the overloading in short word
-/* 
-The reason is: It is the object on the left that generates the call to the operator function. 
-    For instance,  o3 = 19 + o1; // int + obj  
-    generates a compile-time error. Because there is no built-in operation defined to handle the addition of an integer to an object.
-	The overloaded operator+(int i) function works only when the object is on the left. (However there is a solution around this restriction.)
+                        o3 = ob1 + 19;   // object + int
 
+            This works as intended.
 
-
-The order of operands matters when using built-in types (e.g., int) as the right operand in operator overloading.
-
-This is because the object on the left generates the call to the operator function.
-
-For example:
-
-cpp
-Copy code
-o3 = 19 + o1; // int + object
-This causes a compile-time error since there is no built-in operation to handle adding an integer to an object.
-
-The overloaded operator function, such as operator+(int i), only works when the object is on the left:
-
-cpp
-Copy code
-o3 = o1 + 19; // object + int
-This works as intended.
-
-To handle operations where the built-in type is on the left (e.g., int + object), a different approach must be used.
-
+        To handle operations where the built-in type is on the left (e.g., int + object), a different approach must be used.
+            There is a solution around this restriction
 
 */
 
 
-For example, here the + operator is overloaded to add an integer value to a coord object:
-
-It is important to remember that when you are overloading a member operator function
-so that an object can be used in an operation involving a built-in type, the built-in type
-must be on the right side of the operator. The reason for this is easy to understand: It is
-the object on the left that generates the call to the operator function. For instance, what
-happens when the compiler sees the following statement?
-o3 = 19 + o1; // int + ob
-There is no built-in operation defined to handle the addition of an integer to an object.
-The overloaded operator+(int i) function works only when the object is on the left.
-Therefore, this statement generates a compile-time error. (Soon you will see one way
-around this restriction.)
 
 
 
+// --------  rev[23-Dec-2024]  --------
+
+// **** use GPT to explain the overloading in short word
 
 
 /* Example 4 (reference parameter in operator funtion):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example. */
@@ -350,14 +323,6 @@ return temp ; }
 	However, we could also define a copy constructor that would prevent this problem in the general case.
 Note:
 When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
-
-
-
-
-
-
-
-
 
 
 
