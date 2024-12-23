@@ -285,7 +285,9 @@ int main(){
 }
 
 
-/*  The order of operands matters when using built-in types (e.g., int) as the "right operand" in operator overloading.
+/*  ------------    restrictions    ------------
+
+    The order of operands matters when using built-in types (e.g., int) as the "right operand" in operator overloading.
         This is because the "object on the left" generates the call to the operator function.
         For example:
                         o3 = 19 + ob1;   // int + object
@@ -299,7 +301,6 @@ int main(){
 
         To handle operations where the built-in type is on the left (e.g., int + object), a different approach must be used.
             There is a solution around this restriction
-
 */
 
 
