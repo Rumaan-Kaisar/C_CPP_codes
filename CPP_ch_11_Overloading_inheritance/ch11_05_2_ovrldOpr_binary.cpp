@@ -319,21 +319,16 @@ int main(){
                 This class is used to maintain X, Y coordinates  similar to previous example. 
 */
 
-
-// Overload + relative to coord class using references .
-coord coord :: operator +( coord &ob2)
-{
-coord temp ;
-temp .x = x + ob2 .x;
-temp .y = y + ob2 .y;
-return temp ;
+// Overload + relative to coord class using "references"
+coord coord::operator+(coord &ob2){
+    coord temp;
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    return temp;
 }
 
 
-coord coord :: operator+( coord &ob2) {	coord temp ; 	// using references
-temp.x = x + ob2.x;
-temp.y = y + ob2.y;
-return temp ; }
+
 	Efficiency: Passing the address of an object is always quick and efficient and do not consume CPU cycles as much as normal object parameters do. If the operator is going to be used often, using a reference parameter is a good choice.
 	Prevent temporary object/operand destruction after execution (recall 10.10):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
 	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
@@ -341,13 +336,6 @@ return temp ; }
 
 Note:
 When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
-
-
-
-
-
-
-
 
 
 One reason for using a reference parameter in an operator function is efficiency. Passing
@@ -365,7 +353,25 @@ way around the problem. Of course, you could also define a copy constructor that
 prevent this problem in the general case.
 
 
+----  GPT  ----
 
+Efficiency of Using Reference Parameters in Operator Overloading:
+Improved Performance:
+
+Passing the address of an object (using a reference) is faster and more efficient than passing the object itself, as it avoids creating copies.
+This is especially important if the operator is used frequently, as it reduces CPU overhead.
+Preventing Temporary Object Destruction:
+
+When an argument is passed by value, a copy of the object is created.
+If the object has a destructor, the destructor for the copy is called when the function ends, potentially destroying something needed by the original object.
+Using a reference parameter avoids this problem by directly working with the original object instead of a copy.
+Alternative Solution:
+
+Defining a proper copy constructor can also handle the issue of object destruction, but using references is a simpler and more efficient approach.
+Important Note:
+In binary operator overloading:
+The left operand is passed implicitly to the operator function using the this pointer.
+The right operand is passed as an explicit argument.
 
 
 EXERCISES
