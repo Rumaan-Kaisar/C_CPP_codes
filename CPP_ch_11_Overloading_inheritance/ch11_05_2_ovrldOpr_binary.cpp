@@ -312,7 +312,23 @@ int main(){
 // **** use GPT to explain the overloading in short word
 
 
-/* Example 4 (reference parameter in operator funtion):  Overload the + operator relative to the coord class using reference. This class is used to maintain X, Y coordinates  similar to previous example. */
+/* Example 4 (reference parameter in operator funtion):  
+                We can use a "reference parameter" in an operator function.
+
+                Overload the + operator relative to the coord class using "reference". 
+                This class is used to maintain X, Y coordinates  similar to previous example. 
+*/
+
+
+// Overload + relative to coord class using references .
+coord coord :: operator +( coord &ob2)
+{
+coord temp ;
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+return temp ;
+}
+
 
 coord coord :: operator+( coord &ob2) {	coord temp ; 	// using references
 temp.x = x + ob2.x;
@@ -322,23 +338,18 @@ return temp ; }
 	Prevent temporary object/operand destruction after execution (recall 10.10):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
 	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
 	However, we could also define a copy constructor that would prevent this problem in the general case.
+
 Note:
 When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
 
 
 
-4. You can use a reference parameter in an operator function. For example, this is a perfectly
-acceptable way to overload the + operator relative to the coord class:
-// Overload + relative to coord class using references .
-coord coord :: operator +( coord &ob2)
-{
-coord temp ;
-temp .x = x + ob2 .x;
-temp .y = y + ob2 .y;
-154INTRODUCING OPERATOR OVERLOADING
-6.3. OVERLOADING THE RELATIONAL AND LOGICAL OPERATORS
-return temp ;
-}
+
+
+
+
+
+
 One reason for using a reference parameter in an operator function is efficiency. Passing
 objects as parameters to functions often incurs a large amount of overhead and consumes
 a significant number of CPU cycles. However, passing the address of an object is always
