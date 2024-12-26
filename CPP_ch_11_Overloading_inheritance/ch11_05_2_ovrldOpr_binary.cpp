@@ -329,8 +329,16 @@ coord coord::operator+(coord &ob2){
 
 
 
-	Efficiency: Passing the address of an object is always quick and efficient and do not consume CPU cycles as much as normal object parameters do. If the operator is going to be used often, using a reference parameter is a good choice.
-	Prevent temporary object/operand destruction after execution (recall 10.10):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
+/*  Efficiency of Using Reference Parameters in Operator Overloading:
+
+    Improved Performance:
+        Passing the address of an object (using a reference) is faster and more efficient 
+            than passing the object itself, as it avoids creating copies.
+        This is especially important if the operator is used frequently, as it reduces CPU overhead.
+
+
+
+	Prevent temporary object/operand destruction after execution (recall 10.10 passing/returning object to/form function):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
 	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
 	However, we could also define a copy constructor that would prevent this problem in the general case.
 
@@ -338,11 +346,9 @@ Note:
 When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
 
 
-One reason for using a reference parameter in an operator function is efficiency. Passing
-objects as parameters to functions often incurs a large amount of overhead and consumes
-a significant number of CPU cycles. However, passing the address of an object is always
-quick and efficient. If the operator is going to be used often, using a reference parameter
-will generally improve performance significantly.
+
+
+
 Another reason for using a reference parameter is to avoid the trouble caused when a
 copy of an operand is destroyed. As you know from previous chapters, when an argument
 is passed by value, a copy of that argument is made. If that object has a destructor
@@ -355,11 +361,14 @@ prevent this problem in the general case.
 
 ----  GPT  ----
 
-Efficiency of Using Reference Parameters in Operator Overloading:
-Improved Performance:
 
-Passing the address of an object (using a reference) is faster and more efficient than passing the object itself, as it avoids creating copies.
-This is especially important if the operator is used frequently, as it reduces CPU overhead.
+
+    Recall:
+        ch10_06_2_pass_obj_to_func.cpp
+        ch10_06_3_return_obj_from_func.cpp
+
+
+
 Preventing Temporary Object Destruction:
 
 When an argument is passed by value, a copy of the object is created.
@@ -372,6 +381,9 @@ Important Note:
 In binary operator overloading:
 The left operand is passed implicitly to the operator function using the this pointer.
 The right operand is passed as an explicit argument.
+ */
+
+
 
 
 EXERCISES
