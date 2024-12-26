@@ -337,51 +337,22 @@ coord coord::operator+(coord &ob2){
         This is especially important if the operator is used frequently, as it reduces CPU overhead.
 
 
+    Preventing Temporary Object Destruction:
+        (Recall ch10_06_2_pass_obj_to_func.cpp, ch10_06_3_return_obj_from_func.cpp passing/returning object to/form function)
+        When an argument is passed by value, a copy of the object is created.
+        If the object has a destructor, the destructor for the copy is called when the function ends, 
+            potentially destroying something needed by the original object.
+        Using a reference parameter avoids this problem by directly working with the original object instead of a copy.
 
-	Prevent temporary object/operand destruction after execution (recall 10.10 passing/returning object to/form function):  when an argument is passed by value, a copy of that argument is made. If that object has a destructor function, when the function terminates, the copy's destructor is called. 
-	Using a reference parameter instead of a value parameter is an easy (and efficient) way around the problem. 
-	However, we could also define a copy constructor that would prevent this problem in the general case.
-
-Note:
-When a binary operator is overloaded, the left operand is passed implicitly to the function and the right operand is passed as an argument.
-
-
-
-
-
-Another reason for using a reference parameter is to avoid the trouble caused when a
-copy of an operand is destroyed. As you know from previous chapters, when an argument
-is passed by value, a copy of that argument is made. If that object has a destructor
-function, when the function terminates, the copy’s destructor is called. In some cases it is
-possible for the destructor to destroy something needed by the calling object. If this is the
-case, using a reference parameter instead of a value parameter is an easy (and efficient)
-way around the problem. Of course, you could also define a copy constructor that would
-prevent this problem in the general case.
+        Alternative Solution:
+            Defining a proper copy constructor can also handle the issue of object destruction, 
+                but using references is a simpler and more efficient approach.
 
 
-----  GPT  ----
-
-
-
-    Recall:
-        ch10_06_2_pass_obj_to_func.cpp
-        ch10_06_3_return_obj_from_func.cpp
-
-
-
-Preventing Temporary Object Destruction:
-
-When an argument is passed by value, a copy of the object is created.
-If the object has a destructor, the destructor for the copy is called when the function ends, potentially destroying something needed by the original object.
-Using a reference parameter avoids this problem by directly working with the original object instead of a copy.
-Alternative Solution:
-
-Defining a proper copy constructor can also handle the issue of object destruction, but using references is a simpler and more efficient approach.
-Important Note:
-In binary operator overloading:
-The left operand is passed implicitly to the operator function using the this pointer.
-The right operand is passed as an explicit argument.
- */
+    In binary operator overloading-
+        The left operand is passed implicitly to the operator function using the this pointer.
+        The right operand is passed as an explicit argument.
+*/
 
 
 
