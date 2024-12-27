@@ -322,7 +322,6 @@ coord coord::operator+(coord &ob2){
 }
 
 
-
 /*  Efficiency of Using Reference Parameters in Operator Overloading:
 
     Improved Performance:
@@ -351,29 +350,72 @@ coord coord::operator+(coord &ob2){
 
 
 
+/* Example 5: Relative to coord, overload the * and / operators. Demonstrate that they work. 
 
-// --------  rev[23-Dec-2024]  --------
+                On your own, experiment by changing the "return types" of the operator functions to something other than coord. 
+                See what types of errors result
+*/
 
-// **** use GPT to explain the overloading in short word
+#include <iostream>
+
+class coord{
+        int x, y; // coordinate values
+    public:
+        coord(){ x =0; y =0; }
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+        // Overload the * and / relative to coord class
+        coord operator *(coord ob2);
+        coord operator /(coord ob2);
+};
+
+// Overload * relative to coord class .
+coord coord::operator *( coord ob2){
+    coord temp;
+    temp.x = x*ob2.x;
+    temp.y = y*ob2.y;
+    return temp;
+}
+
+// Overload / relative to coord class .
+coord coord::operator/(coord ob2){
+    coord temp;
+    temp.x = x/ob2.x;
+    temp.y = y/ob2.y;
+    return temp;
+}
 
 
-/* Example 1: Relative to coord, overload the * and / operators. Demonstrate that they work. */
+int main(){
+    coord o1(10,10), o2(5,3), o3;
+    int x, y;
 
+    o3 = o1*o2;
+    o3.get_xy(x, y);
+    std::cout << "(o1*o2) X: " << x << ", Y: " << y << "\n";
 
+    o3 = o1/o2;
+    o3.get_xy(x, y);
+    std::cout << "(o1/o2) X: " << x << ", Y: " << y << "\n";
 
-/* Example 2: Why would the following be an inappropriate use of an overloaded operator? */
-coord coord :: operator %( coord ob)
-{
-double i;
-cout << " Enter a number : ";
-cin >> i;
-cout << " root of " << i << " is ";
-cout << sqrt (i);
+    return 0;
 }
 
 
 
-/* Example 3: On your own, experiment by changing the return types of the operator functions to something other than coord. See what types of errors result */
 
+/* Example 6: Why would the following be an inappropriate use of an overloaded operator? 
 
+                coord coord::operator %( coord ob){
+                    double i;
+                    std::cout << " Enter a number : ";
+                    std::cin >> i;
+                    std::cout << " root of " << i << " is ";
+                    std::cout << sqrt (i);
+                }
+
+                ans:
+                    The overloading of the % operator is inappropriate 
+                    because its operation is unrelated to the traditional use
+*/
 
