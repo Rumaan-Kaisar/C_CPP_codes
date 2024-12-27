@@ -306,12 +306,6 @@ int main(){
 
 
 
-
-// --------  rev[23-Dec-2024]  --------
-
-// **** use GPT to explain the overloading in short word
-
-
 /* Example 4 (reference parameter in operator funtion):  
                 We can use a "reference parameter" in an operator function.
 
@@ -357,9 +351,17 @@ coord coord::operator+(coord &ob2){
 
 
 
-EXERCISES
-1. Relative to coord, overload the * and / operators. Demonstrate that they work.
-2. Why would the following be an inappropriate use of an overloaded operator?
+
+// --------  rev[23-Dec-2024]  --------
+
+// **** use GPT to explain the overloading in short word
+
+
+/* Example 1: Relative to coord, overload the * and / operators. Demonstrate that they work. */
+
+
+
+/* Example 2: Why would the following be an inappropriate use of an overloaded operator? */
 coord coord :: operator %( coord ob)
 {
 double i;
@@ -368,7 +370,10 @@ cin >> i;
 cout << " root of " << i << " is ";
 cout << sqrt (i);
 }
-3. On your own, experiment by changing the return types of the operator functions to something other than coord. See what types of errors result
+
+
+
+/* Example 3: On your own, experiment by changing the return types of the operator functions to something other than coord. See what types of errors result */
 
 
 
