@@ -1,10 +1,29 @@
 
 /*  ------------------------    operator overloading : RELATIONAL and LOGICAL    ------------------------
-11.10 Overloading the RELATIONAL and LOGICAL operators
-Overloading the relational and logical operators so that they behave in their traditional manner, they will return an integer that indicates either true or false.
+    
+    Relational (<, >, <=, >=, ==, !=) and logical operators (&&, ||, !) can be overloaded.
 
-	It allows the operators to be integrated into larger relational and logical expressions that involve other types of data.
-Example 1. In the following program, the == and && operators are overloaded: comparing two objects- same/true/false/different.
+    Return Type:
+        Operator functions should not return an "object" of the class they are defined for.
+        Instead, return an integer (int) to indicate true (non-zero) or false (zero).
+        This maintains traditional behavior and ensures compatibility with larger expressions.
+
+
+    Modern C++ Option "bool":
+        In modern C++ compilers, these operators can return a "bool" type.
+        Although there's no functional advantage since bool automatically 
+            converts to int (true → nonzero, false → 0) and vice versa.
+*/
+
+
+
+
+/* Example 1: The program overloads the == and && operators to compare two objects, 
+                determining if they are the same (true) or different (false).
+*/
+
+// rev ---- 30-Dec-2024
+
 class coord { public: /* similar to 11.9 Ex 1 */ 	int operator==(coord ob2); int  operator&&(coord ob2); };
 int coord::operator==(coord ob2)
 {
@@ -23,21 +42,9 @@ return 0;}
 
 
 
-*/  
 
 
-/*  Relational (<, >, <=, >=, ==, !=) and logical operators (&&, ||, !) can be overloaded.
-
-    Return Type:
-        Operator functions should not return an "object" of the class they are defined for.
-        Instead, return an integer (int) to indicate true (non-zero) or false (zero).
-        This maintains traditional behavior and ensures compatibility with larger expressions.
 
 
-    Modern C++ Option "bool":
-        In modern C++ compilers, these operators can return a "bool" type.
-        Although there's no functional advantage since bool automatically 
-            converts to int (true → nonzero, false → 0) and vice versa.
-*/
 
 
