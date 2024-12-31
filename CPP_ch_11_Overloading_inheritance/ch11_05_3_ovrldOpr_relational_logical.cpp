@@ -20,30 +20,16 @@
 
 /* Example 1: The program overloads the == and && operators to compare two objects, 
                 determining if they are the same (true) or different (false).
+
+            
+                overload the == and && relative to coord class as below:
+
+                    Both objects corresponding "member elements" are compared, 
+                        and the result is returned as true or false
+
+                    Notice that both operator==() and operator&&() are declared to "return an int" functions
+                        This is because 'true' and 'false' correspond to the integer values 1 and 0.
 */
-
-// rev ---- 30-Dec-2024
-
-class coord { public: /* similar to 11.9 Ex 1 */ 	int operator==(coord ob2); int  operator&&(coord ob2); };
-int coord::operator==(coord ob2)
-{
- return (x==ob2.x)&&(y==ob2.y);
-}	int coord::operator&&(coord ob2)
-{
-return (x&&ob2.x)&&(y&&ob2.y);
-}	int main(){coord o1(10, 10), o2(5, 3);
-     if(o1 == o2) cout<<" same \n"; 
-          else cout<<" differs \n";
-     if(o1&&o2) cout<<" true \n"; 
-          else cout << " false \n";
-return 0;}
-	Here both objects corresponding member elements are compared and then gives true or false value.
-	Notice that in the declaration of both operator==() and operator&&() returns int. This is because true and false are corresponds to the values 1 and 0.
-
-
-
-/* Example 1: In the following program, the == and && operators are overloaded: */
-// Overload the == and && relative to coord class .
 
 #include <iostream>
 
