@@ -1,17 +1,16 @@
 
 /*  ------------------------    operator overloading : unary    ------------------------
+    Overloading A UNARY Operator
+        Overloading is similar to binary operator except theres only one operand
 
-Overloading a unary operator
+        Overloading a "unary" operator as a member function requires "no parameters"
+        The single operand triggers the call to the operator function
 
-
-11.11 Overloading A UNARY Operator
-Overloading a unary operator is similar to overloading a binary operator except that there is only one operand to deal with. 
-	When you overload a unary operator using a member function, the function has no parameters. 
-	Since there is only one operand, it is this operand that generates the call to the operator function. 
-
+*/
 
 
-	Example 1:  The following program overloads the increment operator (++) relative to the coord class
+
+/* Example 1:  The following program overloads the increment operator (++) relative to the coord class */
 
 class coord { 
 	public: 	
@@ -25,7 +24,7 @@ coord operator++();
 	    o1.get_xy(x, y); 
 	    cout<<"(++o1) X:"<<x<<", Y:"<<y;
 	    return 0;}
-
+/*  
 	++ is designed to increase its operand by 1, the overloaded ++ modifies the object it operates upon. 
 	The function returns the object that it increments allowing ++ to be used as part of a larger statement, such as: o2 = ++o1;
 	There is no rule that says we must overload a unary operator so that it reflects its normal meaning. 
