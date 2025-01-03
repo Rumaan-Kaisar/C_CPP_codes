@@ -24,6 +24,49 @@ coord operator++();
 	    o1.get_xy(x, y); 
 	    cout<<"(++o1) X:"<<x<<", Y:"<<y;
 	    return 0;}
+
+
+
+// Overload ++ relative to coord class .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; };
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator ++() ;
+};
+// Overload ++ for coord .
+coord coord :: operator ++()
+{
+x ++;
+y ++;
+return * this ;
+}
+int main ()
+{
+coord o1 (10 , 10) ;
+int x, y;
+++ o1; // increment an object
+o1. get_xy (x, y);
+cout << " (++ o1) X: " << x << ", Y: " << y << "\n";
+157TEACH YOURSELF
+C++
+return 0;
+}
+Since the increment operator is designed to increase its operand by 1, the overloaded
+++ modifies the object it operates upon. The function also returns the object that it
+increments. This allows the increment operator to be used as part of a larger statement,
+such as this:
+o2 = ++ o1;
+As with the binary operators, there is no rule that says you must overload a unary operator
+so that it reflects its normal meaning. However, most of the time this is what you will
+want to do
+
+
 /*  
 	++ is designed to increase its operand by 1, the overloaded ++ modifies the object it operates upon. 
 	The function returns the object that it increments allowing ++ to be used as part of a larger statement, such as: o2 = ++o1;
