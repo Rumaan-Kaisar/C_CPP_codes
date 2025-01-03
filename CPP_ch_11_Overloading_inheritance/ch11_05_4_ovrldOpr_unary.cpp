@@ -58,33 +58,28 @@ int main(){
 
 
 
-/*  
-
-	In early version of C++ there was no way to determine whether an overloaded ++ or --  preceded or followed its operand. That is these two statements would have been identical:  o1++;  and   ++o1;
-	In modern C++ to distinguish between these two statements we declare following by which the compiler can distinguish.
-coord coord :: operator++( int notused );
-	If the ++ operator precedes its operand, the operator++() function is called. 
-	If the ++ follows its operand, the operator++( int notused ) function is used. In this case, notused will always be passed the value 0. 
-	So, if the difference between prefix and postfix increment or decrement is important to your class objects, you will need to implement both operator functions.
-coord coord :: operator++();
-coord coord :: operator++( int notused );
+/*  ------------    Prefix and Postfix    ------------
+In early versions of C++, there was no way to differentiate whether the 
+    "overloaded" ++ or -- came before (prefix) or after (postfix) the operand
+    For example, o1++ and ++o1 were treated the same
 
 
-In early version of C++, when an increment or decrement operator was overloaded, there
-was no way to determine whether an overloaded ++ or { preceded or followed its operand.
-That is, assuming the preceding program, these two statements would have been identical:
-o1 ++;
-++ o1;
-However, the modern specification for C++ has defined a way by which the compiler can
-distinguish between these two statements. To accomplish this, create two versions of the
-operator++() function. The first is defined as shown in the preceding example. The
-second is declared like this:
-coord coord :: operator ++( int notused );
-If the ++ operator precedes its operand, the operator++() function is called. However,
-if the ++ follows its operand, the operator++(int notused) function is used. In this
-case, notused will always be passed the value 0. Therefor, if the difference between prefix
-and postfix increment or decrement is important to your class objects, you will need to
-implement both operator functions.
+Modern C++ allows distinguishing between prefix and postfix operators 
+    by using different function signatures.
+    To accomplish this, create two versions of the operator++() function
+
+    The first is defined as shown in the preceding example. As:
+
+            coord coord::operator++();
+
+
+    The second is declared like this:
+
+            coord coord :: operator++(int notused);
+
+    If the ++ "operator" precedes its operand, the operator++() function is called.
+    if the ++ "follows" its operand, the operator++(int notused) function is used. 
+        In this case, "notused" will always be passed the value 0
 
 */
 
