@@ -81,6 +81,39 @@ Modern C++ allows distinguishing between prefix and postfix operators
     if the ++ "follows" its operand, the operator++(int notused) function is used. 
         In this case, "notused" will always be passed the value 0
 
+
+// ---- rev[03-Jan-2025]  ----
+
+Prefix modifies the operand and returns the object directly.
+Postfix typically creates a temporary object, increments the operand, 
+    and returns the temporary object to preserve the original value before the increment.
+
+Yes, both statements are true. Here's a breakdown:
+
+1. Prefix (++o1) Behavior:
+Modifies the operand directly: The prefix increment operator modifies the operand (increases it by 1) before returning it.
+Returns the modified object directly: The updated value of the object is returned immediately.
+Efficient: This approach does not require creating a temporary object, making it more efficient than the postfix operator.
+Example behavior:
+
+cpp
+Copy code
+++o1; // Increments the value of o1 and returns the updated o1
+2. Postfix (o1++) Behavior:
+Creates a temporary object: Postfix increment first creates a temporary copy of the object to preserve the original value.
+Increments the operand: The operand is then incremented after the temporary copy is made.
+Returns the temporary object: The temporary object (with the original value) is returned, and the operand remains modified.
+Example behavior:
+
+cpp
+Copy code
+o1++; // Returns the original value of o1 (via the temporary object) and then increments o1
+Why the Difference?
+The prefix operator is faster and more efficient because it doesn't involve creating a temporary copy. It simply modifies and returns the object directly.
+The postfix operator has to create a temporary copy to retain the original state of the object for returning, which incurs additional overhead.
+Summary:
+Prefix (++o1): Directly modifies and returns the object. Efficient.
+Postfix (o1++): Creates a temporary copy, increments the object, and returns the temporary copy. Less efficient due to temporary object creation.
 */
 
 /* 	Example 2 (Use – as "unary" and "binary" both in a program):  The solution is: you simply overload it twice, once as a binary operator and once as a unary operator. This program shows how: */
