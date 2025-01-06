@@ -95,12 +95,74 @@ int main(){
         and returns the temporary object to preserve the original value before the increment.
 
             o1++; // Returns the original value of o1 (via the temporary object) and then increments o1
-
 */
 
 
 
-/* 	Example 2 (Use – as "unary" and "binary" both in a program):  The solution is: you simply overload it twice, once as a binary operator and once as a unary operator. This program shows how: */
+
+/* Example 2 (Use '–' as "unary" and "binary" both in a program): 
+                The minus sign (-) serves as both a binary and unary operator in C++.
+                
+                To retain both uses for a custom class, overload it twice:
+                    once as a binary operator and 
+                    once as a unary operator.
+
+                The process is straightforward and can be implemented easily.
+*/
+
+// Overload the - relative to coord class .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; };
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator -( coord ob2); // binary minus
+coord operator -() ; // unary minus
+};
+
+// Overload - relative to coord class .
+coord coord :: operator -( coord ob2)
+{
+coord temp ;
+temp .x = x - ob2 .x;
+temp .y = y - ob2 .y;
+return temp ;
+}
+// Overload unary - relative to coord class .
+coord coord :: operator -()
+{
+x = -x;
+y = -y;
+return * this ;
+}
+int main ()
+{
+coord o1 (10 , 10) , o2 (5, 7);
+int x, y;
+o1 = o1 - o2; // subtraction
+o1. get_xy (x, y);
+cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+o1 = -o1; // negation
+o1. get_xy (x, y);
+cout << "(-o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
+
+As you can see, when the minus is overloaded as a binary operator, it takes one parameter.
+When it is overloaded as a unary operator, it takes no parameter. This difference in the
+number of parameters is what makes it possible for the minus to be overloaded for both
+operations. As the program indicates., when the minus sign is used as a binary operator,
+the operator-(coord ob2) function is called. When it is used as a unary minus, the
+operator-() function is called
+
+
+
 
 class coord { 
 	public: 	
