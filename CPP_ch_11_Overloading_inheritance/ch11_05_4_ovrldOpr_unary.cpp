@@ -120,11 +120,13 @@ public :
 coord () { x =0; y =0; };
 coord ( int i, int j) { x=i; y=j; }
 void get_xy ( int &i, int &j) { i=x; j=y; }
-coord operator -( coord ob2); // binary minus
-coord operator -() ; // unary minus
+
+// operator overloading
+coord operator-( coord ob2); // binary minus
+coord operator-() ; // unary minus
 };
 
-// Overload - relative to coord class .
+// Overload binary '-' relative to coord class .
 coord coord :: operator -( coord ob2)
 {
 coord temp ;
@@ -132,7 +134,7 @@ temp .x = x - ob2 .x;
 temp .y = y - ob2 .y;
 return temp ;
 }
-// Overload unary - relative to coord class .
+// Overload unary '-' relative to coord class .
 coord coord :: operator -()
 {
 x = -x;
@@ -161,25 +163,6 @@ operations. As the program indicates., when the minus sign is used as a binary o
 the operator-(coord ob2) function is called. When it is used as a unary minus, the
 operator-() function is called
 
-
-
-
-class coord { 
-	public: 	
-// all elements similar to Example 1 
-coord operator-(coord ob2);  //binary
-coord operator-(); };       //unary	coord coord :: operator-(){
-		x = -x;
-		y = -y;
-	return *this ;}	coord coord :: operator-( coord ob2){
-		coord temp ;
-		temp.x = x - ob2.x;
-		temp.y = y - ob2.y;
-		return temp ; }
-int main() { coord o1(10, 10), o2(5, 7);	  int x, y;
-	o1=o1-o2;  	o1.get_xy(x, y);  cout<< "(o1 -o2) X:"<< x <<", Y:"<< y << "\n"; // subtraction 
-	o1=-o1;  	o1.get_xy(x, y);  cout<< "(-o1) X:" << x << ", Y: " << y << "\n"; // negation 
-	return 0; }
 
 
 
