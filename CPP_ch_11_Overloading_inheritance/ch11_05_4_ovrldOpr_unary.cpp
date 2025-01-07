@@ -172,6 +172,47 @@ int main(){
 /* Example 3: Overload the '{' operator for the coord class. 
                 Create both its prefix and postfix forms
 */
+1. // Overload the -- relative to coord class .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+477TEACH YOURSELF
+C++
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator - -(); // prefix
+coord operator --( int notused ); // postfix
+};
+// Overload prefix -- for coord class .
+coord coord :: operator - -()
+{
+x --;
+y --;
+return * this ;
+}
+// Overload postfix -- for coord class .
+coord coord :: operator --( int notused )
+{
+x --;
+y --;
+return * this ;
+}
+int main ()
+{
+coord o1 (10 , 10) ;
+int x, y;
+o1 --; // decrement an object
+o1. get_xy (x, y);
+cout << "(o1 --) X: " << x << ", Y: " << y << "\n";
+--o1; // decrement an object
+o1. get_xy (x, y);
+cout << "(--o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
 
 
 
@@ -182,4 +223,49 @@ int main(){
             UNARY:
                 When it is used as a unary operator, have the + make any negative coordinate value positive 
 */
+2. // Overload the + relative to coord class .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator +( coord ob2); // binary plus
+478ANSWERS
+6.5 EXERCISES
+coord operator +() ; // unary plus
+};
+// Overload + relative to coord class .
+coord coord :: operator +( coord ob2)
+{
+coord temp ;
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+return temp ;
+}
+// Overload unary + for coord class .
+coord coord :: operator +()
+{
+if(x <0)
+x = -x;
+if(y <0)
+y = -y;
+return * this ;
+}
+int main ()
+{
+coord o1 (10 , 10) , o2(-2, -2);
+int x, y;
+o1 = o1 + o2; // addition
+o1. get_xy (x, y);
+cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+o2 = +o2; // absolute value
+o2. get_xy (x, y);
+cout << "(+ o2) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
 
