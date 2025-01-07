@@ -167,3 +167,19 @@ int main(){
 */
 
 
+
+
+/* Example 3: Overload the '{' operator for the coord class. 
+                Create both its prefix and postfix forms
+*/
+
+
+
+
+/* Example 4: (making + an UNARY) Overload the + operator for the coord class 
+                so that it is both a binary operator (as shown earlier) and a unary operator
+
+            UNARY:
+                When it is used as a unary operator, have the + make any negative coordinate value positive 
+*/
+
