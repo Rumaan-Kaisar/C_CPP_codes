@@ -53,11 +53,6 @@ int main(){
 
 
 
-
-
-
-
-
 /*  ------------    Prefix and Postfix    ------------
     In early versions of C++, there was no way to differentiate whether the 
         "overloaded" ++ or -- came before (prefix) or after (postfix) the operand
@@ -162,21 +157,13 @@ int main(){
 
 
 
-As you can see, when the minus is overloaded as a binary operator, it takes one parameter.
-When it is overloaded as a unary operator, it takes no parameter. This difference in the
-number of parameters is what makes it possible for the minus to be overloaded for both
-operations. As the program indicates., when the minus sign is used as a binary operator,
-the operator-(coord ob2) function is called. When it is used as a unary minus, the
-operator-() function is called
+/* Notice:
+        when '-' is overloaded as a BINARY operator, it takes "one" parameter.
+        When '-' is overloaded as a UNARY operator, it takes no parameter.
+
+        This difference in parameters allows the minus '-' to be "overloaded" for both operations
+            For a binary minus, "operator-(coord ob2)" is called.
+            For a unary minus, "operator-()" is called.
+*/
 
 
-
-
-/*  
-	This difference in the number of parameters is what makes it possible for the minus to be overloaded for both operations. 
-	When the minus is overloaded as a binary operator, it takes one parameter. When the minus sign is used as a binary operator, the operator-(coord ob2) function is called. 
-	When it is overloaded as a unary operator, it takes no parameter. When it is used as a unary minus, the operator-() function is called.
-
-
-
-*/  
