@@ -9,37 +9,63 @@
     Overloading FRIEND OPERATOR FUNCTIONS
         We can overload an operator relative to a class by using a "FRIEND" rather than a "member" function.
 
-  Since a FRIEND function does not have a "this" pointer: 
-	In the case of a binary operator, this means that a friend operator function is passed both operands explicitly. 
-	For unary operators, the single operand is passed.
-	You cannot use a friend to overload the assignment operator. The assignment operator can be overloaded only by a member operator function.
+
+    Since a FRIEND function does not have a "this" pointer: 
+        For BINARY operators, a friend operator function is passed both operands explicitly
+        For UNARY operators, the single operand is passed explicitly
+        The assignment operator (=) cannot be overloaded using a friend function
+            It can only be overloaded using a member function
+*/
 
 
 
 
+/* Example 1: Here operator+() is overloaded for the coord class using a FRIEND function.
+                Notice that the left operand is passed to the first parameter and
+                the right operand is passed to the second parameter. 
+*/
+#include <iostream>
 
-For binary operators, a friend function receives both operands explicitly as arguments.
-For unary operators, the single operand is passed explicitly to the friend function.
-The assignment operator (=) cannot be overloaded using a friend function. It can only be overloaded using a member function.
+class coord{
+        int x, y;   // coordinate values
+    public:
+        coord(){ x =0; y =0; };
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+
+        // operator overlading using a friend
+        friend coord operator+(coord ob1, coord ob2);   // passed both operands explicitly
+};
+
+
+// Overload + using a FRIEND
+coord operator+(coord ob1, coord ob2){
+    coord temp;
+    temp.x = ob1.x + ob2.x;
+    temp.y = ob1.y + ob2.y;
+    return temp;
+}
+
+
+int main(){
+    coord o1(10,10), o2(5,3), o3;
+    int x, y;
+
+    o3 = o1 + o2; // add two objects - this calls operator +()
+    o3.get_xy(x, y);
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
 
 
 
-Example 1: 	class coord { int x, y; 		/* coordinate values */ 
-			public : 	coord() { x=0; y=0; };
-					coord(int i, int j) { x=i; y=j; }
-					void get_xy(int &i, int &j) { i=x; j=y; }
-					friend coord operator+(coord ob1, coord ob2); };
-coord operator+(coord ob1, coord ob2) {
-			coord temp ;
-			temp.x = ob1.x + ob2.x;
-			temp.y = ob1.y + ob2.y;
-			return temp ; }	int main(){ 	coord o1(10, 10), o2 (5, 3), o3;
-		int x, y;
-		o3 = o1 + o2;  o3.get_xy(x, y);
-		cout<< "(o1+o2) X:"<< x <<", Y: "<< y << "\n";
-		return 0;}
-	Notice that there are two parameters present in both declaration and definition of the friend operator function. 
-	Also the left operand is passed to the first parameter and the right operand is passed to the second parameter.
+
+// rev[10-Jan-2025]
+
+All other things being equal, there is no reason to use a friend rather than a member operator
+function, with one important exception, which is discussed in the examples.
+
 	Example 2 (No-order for objects): For an overloaded member operator function ob1=10+ob2; is illegal. And the member operator function works only when the built-in object type is on the left.
 	A friend operator function allows objects to be used in operations involving built-in types in which the built-in type is on the left side of the operator. 
 	To do this we have to make the overloaded operator functions friends and define both possible situations. We can define one overloaded friend function so that the left operand is an object and the right operand is the other type. Then we could overload the operator again with the left operand being the built-in type and the right operand being the object. The following program illustrates this method:
