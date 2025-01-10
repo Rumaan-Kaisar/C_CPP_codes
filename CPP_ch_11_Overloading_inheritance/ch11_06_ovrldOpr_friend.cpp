@@ -1,18 +1,29 @@
 
 /*  ------------------------    overload using FRIEND    ------------------------
 
-    friend functions basics: 
+    Friend functions basics: 
         previously discussed in "ch10_07_friend_func.cpp"
-
-    
-    overload an operator relative to a class by using a friend
+        Here we'll discuss OVERLOAD an operator relative to a class by using a FRIEND
 
 
-11.12 Overloading FRIEND OPERATOR FUNCTIONS
-It is possible to overload an operator relative to a class by using a friend rather than a member function.  Since a friend function does not have a this pointer: 
+    Overloading FRIEND OPERATOR FUNCTIONS
+        We can overload an operator relative to a class by using a "FRIEND" rather than a "member" function.
+
+  Since a FRIEND function does not have a "this" pointer: 
 	In the case of a binary operator, this means that a friend operator function is passed both operands explicitly. 
 	For unary operators, the single operand is passed.
 	You cannot use a friend to overload the assignment operator. The assignment operator can be overloaded only by a member operator function.
+
+
+
+
+
+For binary operators, a friend function receives both operands explicitly as arguments.
+For unary operators, the single operand is passed explicitly to the friend function.
+The assignment operator (=) cannot be overloaded using a friend function. It can only be overloaded using a member function.
+
+
+
 Example 1: 	class coord { int x, y; 		/* coordinate values */ 
 			public : 	coord() { x=0; y=0; };
 					coord(int i, int j) { x=i; y=j; }
