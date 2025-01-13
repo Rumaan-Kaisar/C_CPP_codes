@@ -63,12 +63,20 @@ int main(){
 
 // rev[10-Jan-2025]
 
-All other things being equal, there is no reason to use a friend rather than a member operator
-function, with one important exception, which is discussed in the examples.
+/* Example 2: All else being equal, there is no reason to use a "friend" function instead of a "member" operator function, 
+                except for one important exception discussed in the following programs. 
+*/
 
-	Example 2 (No-order for objects): For an overloaded member operator function ob1=10+ob2; is illegal. And the member operator function works only when the built-in object type is on the left.
+
+
+	Example 2 (No-order for objects): For an overloaded member operator function ob1=10+ob2; is illegal. 
+And the member operator function works only when the built-in object type is on the left.
 	A friend operator function allows objects to be used in operations involving built-in types in which the built-in type is on the left side of the operator. 
 	To do this we have to make the overloaded operator functions friends and define both possible situations. We can define one overloaded friend function so that the left operand is an object and the right operand is the other type. Then we could overload the operator again with the left operand being the built-in type and the right operand being the object. The following program illustrates this method:
+
+
+
+
 class coord { 
 	public: 	
 /* all elements similar to Example 1 */ 
@@ -89,6 +97,8 @@ int main() { coord o1(10, 10); int x, y;
   o1=o1+10;  	o1.get_xy(x, y); 	cout<< "(o1 +10) X:"<< x <<", Y:"<< y <<"\n"; /* object + integer */ 
   o1=99+o1;  	o1.get_xy(x, y); 	cout<< "(99+ o1) X:"<< x <<", Y:"<< y <<"\n"; /* integer + object  */
 return 0; }
+
+
 
 	Example 3 (unary friend operator with prefix, postfix and reference parameter ):  to overload either the ++ or -- unary operator, you must pass the operand to the function as a reference parameter (otherwise any modification inside the friend will not affect the object that generates the call). This is because friend functions do not have "this" pointers.
 	If you pass the operand to the friend as a reference parameter, changes that occur inside the friend function affect the object that generates the call ("this"  connects the friend and object through reference). For example, here is a program that overloads the ++ operator by using a friend function:
