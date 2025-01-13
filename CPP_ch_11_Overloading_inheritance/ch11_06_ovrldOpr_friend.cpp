@@ -165,7 +165,7 @@ As a result of overloading friend operator functions for both situations, both o
 statements are now valid:
 o1 = o1 + 10;
 o1 = 99 + o1;
-3.
+
 
 
 
@@ -202,3 +202,56 @@ coord operator++( coord &ob, int notused ); 	// postfix
 
 
 */  
+
+
+3. If you want to use a friend operator function to overload either the ++ or { unary
+operator, you must pass the operand to the function as a reference parameter. This is
+because friend functions do not have this pointers. Remember that the increment and
+decrement operators imply that the operand will be modified. However, if you overload
+these operators by using a friend that uses a value parameter, any modifications that
+occur to the parameter inside the friend operator function will not affect the object that
+generated the call. And since no pointer to the object is passed implicitly (that is, there
+is no this pointer) when a friend function is used, there is no way for the increment or
+decrement to affect the operand.
+However, if you pass the operand to the friend as a reference parameter, changes that
+occur inside the friend function affect the object that generates the call. For example,
+here is a program that overloads the ++ operator by using a friend function:
+// Overload the ++ using a friend .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; };
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+friend coord operator ++( coord &ob);
+162INTRODUCING OPERATOR OVERLOADING
+6.6. A CLOSER LOOK AT THE ASSIGNMENT OPERATOR
+};
+// Overload ++ using a friend .
+coord operator ++( coord &ob) // use reference parameter
+{
+ob.x ++;
+ob.y ++;
+return ob;
+}
+int main ()
+{
+coord o1 (10 , 10) ;
+int x, y;
+++ o1; // o1 is passed by reference
+o1. get_xy (x, y);
+cout << " (++ o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+If you are using a modern compiler, you can also distinguish between the prefix and
+the postfix forms of the increment or decrement operators when using a friend operator
+function in much the same way you did when using member functions. You simply add an
+integer parameter when defining the postfix version. For example, here are the prototypes
+for both the prefix and postfix versions of the increment operator relative to the coord
+class:
+coord operator ++( coord &ob); // prefix
+coord operator ++( coord &ob , int notused ); // postfix
+If the ++ precedes its operand, the operator++(coord &ob) function is called. However, if the ++ follows its operand, the operator++(coord &ob, int notused) function is used. In this case, notused will be passed the value 0.
