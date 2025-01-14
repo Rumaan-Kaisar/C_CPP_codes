@@ -63,8 +63,27 @@ int main(){
 
 // rev[10-Jan-2025]
 
-/* Example 2: All else being equal, there is no reason to use a "friend" function instead of a "member" operator function, 
+/* Example 2 (No-order for objects): 
+                All else being equal, there is no reason to use a "friend" function instead of a "member" operator function, 
                 except for one important exception discussed in the following program. 
+
+                Overloading an operator using a "friend" function provides a key advantage over "member" functions.
+                Friend operator functions allow operations where a built-in type can appear on the "left side" of the operator, 
+                which is not possible with member functions.
+                
+                For example:
+                            ob1 = ob2 + 10;     // Legal  
+                            ob1 = 10 + ob2;     // Illegal with member functions  
+
+                    With "member" functions, the object must "always be on the left side"
+
+To solve this, you can make operator functions friends and define two versions:
+One where the left operand is an object and the right operand is a built-in type.
+Another where the left operand is a built-in type and the right operand is an object.
+This approach removes the order restrictions and allows flexibility in mixed-type operations.
+The following program demonstrates this method.
+
+
 */
 
 
@@ -118,6 +137,9 @@ possible to define one overloaded friend function so that the left operand is an
 the right operand is the other type. Then you could overload the operator again with the
 left operand being the built-in type and the right operand being the object. The following
 program illustrates this method:
+
+
+
 // Use friend operator functions to add flexibility .
 # include <iostream >
 using namespace std ;
