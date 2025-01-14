@@ -61,8 +61,6 @@ int main(){
 
 
 
-// rev[10-Jan-2025]
-
 /* Example 2 (No-order for objects using FRIEND): 
                 All else being equal, there is no reason to use a "friend" function instead of a "member" operator function, 
                 except for one "Important Exception" discussed in the following program. 
@@ -85,95 +83,72 @@ int main(){
                     This approach removes the "order restrictions" and allows flexibility in mixed-type operations.
                     
                     The following program demonstrates this method:
+
+
+                As a result of overloading friend operator functions for both situations, 
+                    both of these statements are now valid:
+
+                        o1 = o1 + 10;
+                        o1 = 99 + o1;
 */
 
+// friend operator functions has flexibility : No-order for objects
 
+#include <iostream>
 
-
-
-
-
-
-
-
-
-class coord { 
-	public: 	
-/* all elements similar to Example 1 */ 
-friend coord operator+(coord ob1, int i);
-friend coord operator+(int i, coord ob1);
-};  	/*  Overload + for ob + int   */
-coord operator+(coord ob1, int i)
-    {	coord temp ;
-	temp.x = ob1.x + i;
-	temp.y = ob1.y + i;
-	return temp ;	}	/*  Overload + for int + ob  */
-coord operator+( int i, coord ob1)
-    {	coord temp ;
-	temp.x = ob1.x + i;
-	temp.y = ob1.y + i;
-	return temp ;	}
-int main() { coord o1(10, 10); int x, y;
-  o1=o1+10;  	o1.get_xy(x, y); 	cout<< "(o1 +10) X:"<< x <<", Y:"<< y <<"\n"; /* object + integer */ 
-  o1=99+o1;  	o1.get_xy(x, y); 	cout<< "(99+ o1) X:"<< x <<", Y:"<< y <<"\n"; /* integer + object  */
-return 0; }
-
-
-
-// Use friend operator functions to add flexibility .
-# include <iostream >
-using namespace std ;
-class coord
-{
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; };
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-friend coord operator +( coord ob1 , int i);
-friend coord operator +( int i, coord ob1 );
+class coord{
+        int x, y;   // coordinate values
+    public:
+        coord(){ x =0; y =0; };
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+        // above is similar to Example 1
+        
+        // operator overlading using a friend, two versions makes sure No-order for objects
+        friend coord operator+(coord ob1, int i);   // ob + int
+        friend coord operator+(int i, coord ob1);   // int + ob
 };
-// Overload + for ob + int
-coord operator +( coord ob1 , int i)
-{
-coord temp ;
-temp .x = ob1 .x + i;
-temp .y = ob1 .y + i;
-return temp ;
+
+
+// Overload '+' for ob + int
+coord operator+(coord ob1 , int i){
+    coord temp;
+    temp.x = ob1.x + i;
+    temp.y = ob1.y + i;
+    return temp;
 }
-// Overload + for int + ob
-coord operator +( int i, coord ob1)
-{
-coord temp ;
-161TEACH YOURSELF
-C++
-temp .x = ob1 .x + i;
-temp .y = ob1 .y + i;
-return temp ;
+
+
+// Overload '+' for int + ob
+coord operator+(int i, coord ob1){
+    coord temp;
+    temp.x = ob1.x + i;
+    temp.y = ob1.y + i;
+    return temp;
 }
-int main ()
-{
-coord o1 (10 , 10) ;
-int x, y;
-o1 = o1 + 10; // object + integer
-o1. get_xy (x, y);
-cout << "(o1 +10) X: " << x << ", Y: " << y << "\n";
-o1 = 99 + o1; // integer + object
-o1. get_xy (x, y);
-cout << " (99+ o1) X: " << x << ", Y: " << y << "\n";
-return 0;
+
+
+int main(){
+    coord o1(10,10);
+    int x, y;
+
+    o1 = o1 + 10; // object + integer
+    o1.get_xy(x, y);
+    std::cout << "(o1 +10) X: " << x << ", Y: " << y << "\n";
+
+    o1 = 99 + o1; // integer + object
+    o1.get_xy(x, y);
+    std::cout << "(99+ o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
 }
-As a result of overloading friend operator functions for both situations, both of these
-statements are now valid:
-o1 = o1 + 10;
-o1 = 99 + o1;
 
 
 
 
 
 
-
+// ----  rev[14-Jan-2025]  ----
 
 
 
