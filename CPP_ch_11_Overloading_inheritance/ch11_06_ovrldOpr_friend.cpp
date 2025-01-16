@@ -200,6 +200,23 @@ int main(){
     return 0;
 }
 
+
+
+
+	To distinguish between the prefix and the postfix forms of the increment or decrement operators when using a friend operator function: 
+simply add an integer parameter when defining the postfix version (similar to member operator). 
+For example, consider the previous coord class, the prototypes for both will be:
+
+coord operator++( coord &ob); 			// prefix
+coord operator++( coord &ob, int notused ); 	// postfix
+
+	If the ++ precedes its operand, the operator++(coord &ob) function is called. 
+	If the ++ follows its operand, the operator++(coord &ob, int notused) function is used. In this case, notused will be passed the value 0.
+
+
+
+
+
 If you are using a modern compiler, you can also distinguish between the prefix and
 the postfix forms of the increment or decrement operators when using a friend operator
 function in much the same way you did when using member functions. You simply add an
