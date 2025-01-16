@@ -146,15 +146,26 @@ int main(){
 
 
 
+/* Example 3 (unary friend operator with prefix, postfix and reference parameter ):  
+                To overload either the ++ or -- unary operator, 
+                    you must pass the "operand" to the function "as a reference parameter" 
+                (otherwise any modification inside the friend will not affect the object that generates the call). 
+                This is because friend functions do not have "this" pointers.
 
+                Without a reference parameter, the function will work on a copy of the object, 
+                    and any changes made will not affect the original object
 
-// ----  rev[14-Jan-2025]  ----
+                If you pass the operand to the friend as a reference parameter, 
+                    changes that occur inside the friend function affect the object that generates the call 
+    
+            How Reference Works:
+                A reference acts as a link between the friend function and the object, 
+                    effectively replicating the behavior of "this".
+                This ensures that the friend function can modify the object directly, just like a member function can.
 
+            Folloing program that overloads the ++ operator by using a friend function.
+*/
 
-
-
-	Example 3 (unary friend operator with prefix, postfix and reference parameter ):  to overload either the ++ or -- unary operator, you must pass the operand to the function as a reference parameter (otherwise any modification inside the friend will not affect the object that generates the call). This is because friend functions do not have "this" pointers.
-	If you pass the operand to the friend as a reference parameter, changes that occur inside the friend function affect the object that generates the call ("this"  connects the friend and object through reference). For example, here is a program that overloads the ++ operator by using a friend function:
 class coord { 
 	public: 	
 /* all elements similar to Example 1 */ 
