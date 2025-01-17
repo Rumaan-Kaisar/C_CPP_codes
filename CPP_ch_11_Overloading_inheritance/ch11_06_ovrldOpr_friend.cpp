@@ -216,3 +216,162 @@ int main(){
 */
 
 
+
+
+1. Overload the - and / operators for the coord class using friend functions.
+
+1. // Overload the - and / relative to coord class .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+479TEACH YOURSELF
+C++
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+friend coord operator -( coord ob1 , coord ob2 );
+friend coord operator /( coord ob1 , coord ob2 );
+};
+// Overload - relative to coord class using friend .
+coord operator -( coord ob1 , coord ob2)
+{
+coord temp ;
+temp .x = ob1 .x - ob2 .x;
+temp .y = ob1 .y - ob2 .y;
+return temp ;
+}
+// Overload / relative to coord class using friend .
+coord operator /( coord ob1 , coord ob2)
+{
+coord temp ;
+temp .x = ob1 .x / ob2 .x;
+temp .y = ob1 .y / ob2 .y;
+return temp ;
+}
+int main ()
+{
+coord o1 (10 , 10) , o2 (5, 3) , o3;
+int x, y;
+o3 = o1 - o2;
+o3. get_xy (x, y);
+cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1 / o2;
+o3. get_xy (x, y);
+cout << "(o1/o2) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
+
+
+
+2. Overload the coord class so it can use coord objects in operations in which an integer
+value can be multiplied by each coordinate. Allow the operations to use either order: ob
+* int or int * ob.
+
+2. // Overload the * for ob*int and int *ob.
+# include <iostream >
+using namespace std ;
+class coord
+{
+480ANSWERS
+6.5 EXERCISES
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+friend coord operator *( coord ob1 , int i);
+friend coord operator *( int i, coord ob2 );
+};
+// Overload * one way .
+coord operator *( coord ob1 , int i)
+{
+coord temp ;
+temp .x = ob1 .x * i;
+temp .y = ob1 .y * i;
+return temp ;
+}
+// Overload * another way .
+coord operator *( int i, coord ob2)
+{
+coord temp ;
+temp .x = ob2 .x * i;
+temp .y = ob2 .y * i;
+return temp ;
+}
+int main ()
+{
+coord o1 (10 , 10) , o2;
+int x, y;
+o2 = o1 * 2; // ob * int
+o2. get_xy (x, y);
+cout << "(o1 *2) X: " << x << ", Y: " << y << "\n";
+o2 = 3 * o1;
+o2. get_xy (x, y);
+cout << " (3* o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
+
+
+3. Explain why the solution to Exercise 2 requires the use of friend operator functions.
+
+3. By using friend functions, you make it possible to have a built-in type as the left operand.
+When member functions are used, the left operand must be an object of the class for
+which the operator is defined.
+
+
+
+
+4. Using a friend, show how to overload the { relative to the coord class. Define both the
+prefix and postfix forms
+
+4. // Overload the -- relative to coord class using a friend .
+481TEACH YOURSELF
+C++
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+friend coord operator --( coord &ob); // prefix
+friend coord operator --( coord &ob , int notused ); //
+postfix
+};
+// Overload -- ( prefix ) for coord class using a friend .
+coord operator --( coord &ob)
+{
+ob.x --;
+ob.y --;
+return ob;
+}
+// Overload -- ( postfix ) for coord class using a friend .
+coord operator --( coord &ob , int notused )
+{
+ob.x --;
+ob.y --;
+return ob;
+}
+int main ()
+{
+coord o1 (10 , 10) ;
+int x, y;
+--o1; // decrement an object
+o1. get_xy (x, y);
+cout << "(--o1) X: " << x << ", Y: " << y << "\n";
+o1 --;
+o1. get_xy (x, y);
+cout << "(o1 --) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
