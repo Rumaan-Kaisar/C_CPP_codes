@@ -134,11 +134,11 @@ int main(){
 
     o1 = o1 + 10; // object + integer
     o1.get_xy(x, y);
-    std::cout << "(o1 +10) X: " << x << ", Y: " << y << "\n";
+    std::cout << "(o1 + 10) X: " << x << ", Y: " << y << "\n";
 
     o1 = 99 + o1; // integer + object
     o1.get_xy(x, y);
-    std::cout << "(99+ o1) X: " << x << ", Y: " << y << "\n";
+    std::cout << "(99 + o1) X: " << x << ", Y: " << y << "\n";
 
     return 0;
 }
@@ -217,10 +217,11 @@ int main(){
 
 
 
+// ----  rev[18-Jan-2025]  ----
 
-1. Overload the - and / operators for the coord class using friend functions.
+/* 1. Overload the - and / operators for the coord class using friend functions. */
 
-1. // Overload the - and / relative to coord class .
+// Overload the - and / relative to coord class .
 # include <iostream >
 using namespace std ;
 class coord
@@ -268,11 +269,11 @@ return 0;
 
 
 
-2. Overload the coord class so it can use coord objects in operations in which an integer
+/* 2. Overload the coord class so it can use coord objects in operations in which an integer
 value can be multiplied by each coordinate. Allow the operations to use either order: ob
-* int or int * ob.
+* int or int * ob. */
 
-2. // Overload the * for ob*int and int *ob.
+// Overload the * for ob*int and int *ob.
 # include <iostream >
 using namespace std ;
 class coord
@@ -319,21 +320,20 @@ return 0;
 
 
 
-3. Explain why the solution to Exercise 2 requires the use of friend operator functions.
+/* 3. Explain why the solution to Exercise 2 requires the use of friend operator functions. */
 
-3. By using friend functions, you make it possible to have a built-in type as the left operand.
+By using friend functions, you make it possible to have a built-in type as the left operand.
 When member functions are used, the left operand must be an object of the class for
 which the operator is defined.
 
 
 
 
-4. Using a friend, show how to overload the { relative to the coord class. Define both the
-prefix and postfix forms
+/* 4. Using a friend, show how to overload the { relative to the coord class. Define both the
+prefix and postfix forms */
 
-4. // Overload the -- relative to coord class using a friend .
-481TEACH YOURSELF
-C++
+// Overload the -- relative to coord class using a friend .
+
 # include <iostream >
 using namespace std ;
 class coord
