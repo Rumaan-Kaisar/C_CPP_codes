@@ -219,7 +219,7 @@ int main(){
 
 // ----  rev[18-Jan-2025]  ----
 
-/* 1. Overload the - and / operators for the coord class using friend functions. */
+/* Example 4: Overload the - and / operators for the coord class using friend functions. */
 
 // Overload the - and / relative to coord class .
 # include <iostream >
@@ -269,7 +269,7 @@ return 0;
 
 
 
-/* 2. Overload the coord class so it can use coord objects in operations in which an integer
+/* Example 5: Overload the coord class so it can use coord objects in operations in which an integer
 value can be multiplied by each coordinate. Allow the operations to use either order: ob
 * int or int * ob. */
 
@@ -320,7 +320,7 @@ return 0;
 
 
 
-/* 3. Explain why the solution to Exercise 2 requires the use of friend operator functions. */
+/* Example 6: Explain why the solution to Example 5 requires the use of friend operator functions. */
 
 By using friend functions, you make it possible to have a built-in type as the left operand.
 When member functions are used, the left operand must be an object of the class for
@@ -329,7 +329,7 @@ which the operator is defined.
 
 
 
-/* 4. Using a friend, show how to overload the { relative to the coord class. Define both the
+/* Example 7: Using a friend, show how to overload the { relative to the coord class. Define both the
 prefix and postfix forms */
 
 // Overload the -- relative to coord class using a friend .
