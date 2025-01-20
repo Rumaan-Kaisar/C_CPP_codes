@@ -272,28 +272,34 @@ int main(){
 
 
 
-// ----  rev[18-Jan-2025]  ----
+// ----  rev[20-Jan-2025]  ----
 
-/* Example 5: Overload the coord class so it can use coord objects in operations in which an integer
-value can be multiplied by each coordinate. Allow the operations to use either order: ob
-* int or int * ob. */
+/* Example 5: Overload the coord class so it can use "coord objects" in operations in which 
+                an integer value can be multiplied by each coordinate. 
 
-// Overload the * for ob*int and int *ob.
-# include <iostream >
-using namespace std ;
-class coord
-{
-480ANSWERS
-6.5 EXERCISES
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; }
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-friend coord operator *( coord ob1 , int i);
-friend coord operator *( int i, coord ob2 );
+                Allow the operations to use either order: 
+                        ob * int or int * ob. 
+*/
+
+// Overload the '*' for ob*int and int*ob.
+#include <iostream>
+
+class coord{
+        int x, y; // coordinate values
+    public:
+        coord(){ x =0; y =0; };
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+        // above is similar to Example 1
+
+        // Overload the * operator using a friend
+        friend coord operator*(coord ob1, int i);
+        friend coord operator*(int i, coord ob2);
 };
-// Overload * one way .
+
+
+
+// Overload * one way
 coord operator *( coord ob1 , int i)
 {
 coord temp ;
@@ -301,7 +307,7 @@ temp .x = ob1 .x * i;
 temp .y = ob1 .y * i;
 return temp ;
 }
-// Overload * another way .
+// Overload * another way
 coord operator *( int i, coord ob2)
 {
 coord temp ;
@@ -309,6 +315,8 @@ temp .x = ob2 .x * i;
 temp .y = ob2 .y * i;
 return temp ;
 }
+
+
 int main ()
 {
 coord o1 (10 , 10) , o2;
