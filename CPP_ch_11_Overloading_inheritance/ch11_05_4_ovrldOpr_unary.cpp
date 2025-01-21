@@ -191,8 +191,8 @@ class coord{
 // Overload PREFIX -- for coord class
 // notice the use of "this"
 coord coord::operator--(){
-    x --;
-    y --;
+    x--;
+    y--;
     return *this;
 }
 
@@ -200,8 +200,8 @@ coord coord::operator--(){
 // Overload POSTFIX -- for coord class
 // notice the use of "this"
 coord coord::operator--(int notused){
-    x --;
-    y --;
+    x--;
+    y--;
     return *this;
 }
 
