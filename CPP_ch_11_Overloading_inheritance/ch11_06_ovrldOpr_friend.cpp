@@ -272,8 +272,6 @@ int main(){
 
 
 
-// ----  rev[20-Jan-2025]  ----
-
 /* Example 5: Overload the coord class so it can use "coord objects" in operations in which 
                 an integer value can be multiplied by each coordinate. 
 
@@ -334,14 +332,20 @@ int main(){
 
 
 
-/* Example 6: Explain why the solution to Example 5 requires the use of friend operator functions. */
+/* Example 6: Explain why the solution to Example 5 requires the use of friend operator functions. 
 
-By using friend functions, you make it possible to have a built-in type as the left operand.
-When member functions are used, the left operand must be an object of the class for
-which the operator is defined.
+                ans:
+                    By using "friend functions", you make it possible 
+                        to have a "built-in type" as the "left operand".
+                    
+                    When "member functions" are used, the left operand must be an object 
+                        of the class for which the operator is defined.
+*/
 
 
 
+
+// ----  rev[20-Jan-2025]  ----
 
 /* Example 7: Using a friend, show how to overload the { relative to the coord class. Define both the
 prefix and postfix forms */
