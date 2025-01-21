@@ -345,51 +345,57 @@ int main(){
 
 
 
-// ----  rev[20-Jan-2025]  ----
-
-/* Example 7: Using a friend, show how to overload the { relative to the coord class. Define both the
-prefix and postfix forms */
+/* Example 7: Using a FRIEND, show how to overload the "--" relative to the coord class. 
+                Define both the prefix and postfix forms 
+*/
 
 // Overload the -- relative to coord class using a friend .
+#include <iostream>
 
-# include <iostream >
-using namespace std ;
-class coord
-{
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; }
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-friend coord operator --( coord &ob); // prefix
-friend coord operator --( coord &ob , int notused ); //
-postfix
+class coord{
+        int x, y; // coordinate values
+    public:
+        coord(){ x =0; y =0; };
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+        // above is similar to Example 1
+
+        // Overload the "--" operator using a friend
+        friend coord operator--(coord &ob);   // prefix
+        friend coord operator--(coord &ob, int notused);     // postfix
 };
-// Overload -- ( prefix ) for coord class using a friend .
-coord operator --( coord &ob)
-{
-ob.x --;
-ob.y --;
-return ob;
+
+
+// Overload -- (prefix) for coord class using a friend
+coord operator--(coord &ob){
+    ob.x--;
+    ob.y--;
+    return ob;
 }
-// Overload -- ( postfix ) for coord class using a friend .
-coord operator --( coord &ob , int notused )
-{
-ob.x --;
-ob.y --;
-return ob;
+
+
+// Overload -- (postfix) for coord class using a friend
+coord operator--(coord &ob, int notused){
+    ob.x--;
+    ob.y--;
+    return ob;
 }
-int main ()
-{
-coord o1 (10 , 10) ;
-int x, y;
---o1; // decrement an object
-o1. get_xy (x, y);
-cout << "(--o1) X: " << x << ", Y: " << y << "\n";
-o1 --;
-o1. get_xy (x, y);
-cout << "(o1 --) X: " << x << ", Y: " << y << "\n";
-return 0;
+// notice in both cases we don't need to use "this", as we did for member function
+
+
+int main(){
+    coord o1(10,10);
+    int x, y;
+
+    --o1;   // decrement an object
+    o1. get_xy (x, y);
+    std::cout << "(--o1) X: " << x << ", Y: " << y << "\n";
+
+    o1--;
+    o1. get_xy (x, y);
+    std::cout << "(o1--) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
 }
 
 
