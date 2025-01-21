@@ -388,11 +388,11 @@ int main(){
     int x, y;
 
     --o1;   // decrement an object
-    o1. get_xy (x, y);
+    o1.get_xy(x, y);
     std::cout << "(--o1) X: " << x << ", Y: " << y << "\n";
 
     o1--;
-    o1. get_xy (x, y);
+    o1.get_xy(x, y);
     std::cout << "(o1--) X: " << x << ", Y: " << y << "\n";
 
     return 0;
