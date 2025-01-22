@@ -1,20 +1,30 @@
 
-/*  ------------------------    overloading : '='    ------------------------
-A closer look at the assignment operator
+/*  ------------------------    overloading ASSIGNMENT operator : '='    ------------------------
 
-11.13 Assignment Operator Advanced
-By default (without overloading), when the assignment operator is applied to an object, a bitwise copy of the object on the right is put into the object on the left. If this is what you want, there is no reason to provide your own operator=() function (i.e. overloading has no reason). 
+
+overloading ASSIGNMENT operator:
+By default (without overloading), when the assignment operator is applied to an object, 
+    a bitwise copy of the object on the right is put into the object on the left. 
+    If this is what you want, there is no reason to provide your own operator=() function (i.e. overloading has no reason). 
+
 	However, there are cases in which a strict bitwise copy is not desirable and we need to provide a special assignment operation.
-Example: Following program overloads the = operator so that the pointer p is not overwritten by an assignment operation.
+
+*/  
+
+
+
+
+/* Example 1: Following program overloads the = operator so that the pointer p is not overwritten by an assignment operation. */
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+
 using namespace std;	class strtype { char *p; int len;
 public :
 strtype( char *s);
 ~ strtype(){cout<< "Freeing"<< (unsigned)p <<'\n'; delete [] p; }
 char *get() { return p; }
-strtype &operator=(strtype &ob); };      /* reference operator function */
+strtype &operator=(strtype &ob); };      // reference operator function
 strtype :: strtype( char *s) {
 int l;
 l = strlen(s)+1;
@@ -22,9 +32,9 @@ p = new char [l];
 if(!p) { 
 cout << "Allocation error \n"; 
 exit(1) ; }
-len = l;      strcpy(p, s); }	/* Assign an object. */
+len = l;      strcpy(p, s); }	// Assign an object. 
 strtype &strtype :: operator=(strtype &ob){
-/* need to allocate more memory */
+// need to allocate more memory 
 if(len < ob.len ){ delete []p;
 p = new char [ob.len ];
 if(!p) {cout<<"Alloc. error \n"; exit(1);} }
@@ -38,6 +48,9 @@ cout << b.get () << '\n';
 a = b; // now p is not overwritten
 cout<<a.get()<<b.get();
 return 0; }
+
+
+/* 
 	The overloaded assignment operator prevents p from being overwritten.
 	It first checks to see if the object on the left has allocated enough memory to hold the string that is being assigned to it. If it hasn't, that memory is freed and another portion is allocated. 
 	Then the string is copied to that memory and the length is copied into len.
@@ -52,7 +65,4 @@ return 0; }
 Note: We know creating a copy constructor is another way to prevent both of the problems described in the preceding two paragraphs. But the copy constructor might not be as efficient a solution as using a reference parameter and a return reference type. This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
 
 There are often several ways to accomplish the same end in C++. Learning to choose between them is part of becoming an excellent C++ programmer.
-
-
-
-*/  
+ */
