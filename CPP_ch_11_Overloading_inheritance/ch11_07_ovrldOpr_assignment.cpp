@@ -1,20 +1,24 @@
 
 /*  ------------------------    overloading ASSIGNMENT operator : '='    ------------------------
+    By default (without overloading), when the assignment operator is applied to an object, 
+        a bitwise copy (also called a "shallow copy") of the object on the right is put into the object on the left. 
+    
+    This means that the contents of the memory of the object on the right-hand side 
+        are copied directly into the memory of the object on the left-hand side.
 
+    If this is what you want, 
+        there is no reason to provide your own operator=() function (i.e. overloading has no reason). 
 
-overloading ASSIGNMENT operator:
-By default (without overloading), when the assignment operator is applied to an object, 
-    a bitwise copy of the object on the right is put into the object on the left. 
-    If this is what you want, there is no reason to provide your own operator=() function (i.e. overloading has no reason). 
-
-	However, there are cases in which a strict bitwise copy is not desirable and we need to provide a special assignment operation.
-
+    However, there are cases in which a strict bitwise copy is not desirable 
+        and we need to provide a special assignment operation.
 */  
 
 
 
 
-/* Example 1: Following program overloads the = operator so that the pointer p is not overwritten by an assignment operation. */
+/* Example 1: Following program overloads the = operator so that the pointer p is not overwritten by an assignment operation. 
+overloading ASSIGNMENT operator:
+*/
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
