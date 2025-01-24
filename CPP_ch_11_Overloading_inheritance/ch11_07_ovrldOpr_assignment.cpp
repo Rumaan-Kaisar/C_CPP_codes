@@ -26,7 +26,7 @@ public :
 strtype( char *s);
 ~ strtype(){cout<< "Freeing"<< (unsigned)p <<'\n'; delete [] p; }
 char *get() { return p; }
-strtype &operator=(strtype &ob); };      // reference operator function
+strtype &operator=(strtype &ob); };      
 strtype :: strtype( char *s) {
 int l;
 l = strlen(s)+1;
@@ -86,20 +86,16 @@ class strtype{
         char *p;
         int len;
     public:
-        // constructor
-        strtype(char *s);
-        // destructor
-        ~strtype(){
+        strtype(char *s);   // constructor
+        ~strtype(){         // destructor
             std::cout << " Freeing " << ( unsigned ) p << '\n';
             delete [] p;    // delete dynamically allocate a 1D array. "delete [] p_var;"
             // recall "ch10_09_3_more_new_delete.cpp"
         }
         char *get(){ return p; }
-
-
-// overload '='
-strtype &operator=(strtype &ob);
-
+        
+        // Overload '=': It is an operator function that returns a reference to the object
+        strtype &operator=(strtype &ob);    // reference operator function
 };
 
 
