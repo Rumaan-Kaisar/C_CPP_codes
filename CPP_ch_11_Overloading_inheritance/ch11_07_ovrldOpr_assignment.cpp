@@ -74,9 +74,9 @@ There are often several ways to accomplish the same end in C++. Learning to choo
 
 
 
-1. Here is another version of the strtype class that you have seen in various forms in the
+/* Example 1; Here is another version of the strtype class that you have seen in various forms in the
 preceding chapters. However, this version overloads the = operator so that the pointer p
-is not overwritten by an assignment operation.
+is not overwritten by an assignment operation. */
 # include <iostream >
 # include <cstring >
 # include <cstdlib >
@@ -112,8 +112,7 @@ strcpy (p, s);
 strtype & strtype :: operator =( strtype &ob)
 {
 // see if more memory is needed
-164INTRODUCING OPERATOR OVERLOADING
-6.6. A CLOSER LOOK AT THE ASSIGNMENT OPERATOR
+
 if( len < ob. len ) // need to allocate more memory
 {
 delete []p;
@@ -159,8 +158,7 @@ temporary object from being created.
 Note: As you learned in Chapter 5, creating a coy constructor is another way to prevent
 both of the problems described in the preceding two paragraphs. But the copy constructor
 might not be as efficient a solution as using a reference parameter and a return reference
-165TEACH YOURSELF
-C++
+
 type. This is because using a reference prevents the overhead associated with copying an
 object in either circumstances. As you can see, there are often several ways to accomplish
 the same end in C++. Learning to choose between them is part of becoming an excellent
@@ -169,8 +167,8 @@ C++ programmer.
 
 
 
-EXERCISES
-1. Given the following class declaration, fill in all the details that will create a dynamic
+
+/* Example 2: Given the following class declaration, fill in all the details that will create a dynamic
 array type. That is, allocate memory for the array, storing a pointer to this memory in
 p. Store the size of the array, in bytes, in size. Have put() return a reference to the
 specified element, and have get() return the value of a specified element. Don’t allow the
@@ -187,7 +185,7 @@ int & put ( int i); // return reference to element i
 int get ( int i); // return value of element i
 // create operator =() function
 };
-
+ */
 6.6 EXERCISE
 1. # include <iostream >
 # include <cstdlib >
