@@ -77,24 +77,33 @@ There are often several ways to accomplish the same end in C++. Learning to choo
 /* Example 1; Here is another version of the strtype class that you have seen in various forms in the
 preceding chapters. However, this version overloads the = operator so that the pointer p
 is not overwritten by an assignment operation. */
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char *s);
-~ strtype ()
-{
-cout << " Freeing " << ( unsigned ) p << ’\n’;
-delete [] p;
-}
-char * get () { return p; }
-strtype & operator =( strtype &ob);
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+        int len;
+    public:
+        // constructor
+        strtype(char *s);
+        // destructor
+        ~strtype(){
+            std::cout << " Freeing " << ( unsigned ) p << '\n';
+            delete [] p;    // delete dynamically allocate a 1D array. "delete [] p_var;"
+            // recall "ch10_09_3_more_new_delete.cpp"
+        }
+        char *get(){ return p; }
+
+
+// overload '='
+strtype &operator=(strtype &ob);
+
 };
+
+
+
 strtype :: strtype ( char *s)
 {
 int l;
@@ -137,6 +146,24 @@ cout << a. get () << ’\n’;
 cout << b. get () << ’\n’;
 return 0;
 }
+
+
+
+/* ------------    Note: using space wit &    ------------
+    Common Styles (without space):      strtype &operator=(strtype &ob);
+     
+    Both
+            strtype &operator=(strtype &ob);
+    and 
+            strtype & operator=(strtype &ob); 
+    
+    are syntactically correct in C++. 
+    
+    The placement of the space between & and operator is purely 
+        a matter of style preference and does not affect functionality.
+*/
+
+
 As you can see, the overloaded assignment operator prevents p from being overwritten.
 It first checks to see if the object on the left has allocated enough memory to hold the
 string that is being assigned to it. If it hasn’t, that memory is freed and another portion
