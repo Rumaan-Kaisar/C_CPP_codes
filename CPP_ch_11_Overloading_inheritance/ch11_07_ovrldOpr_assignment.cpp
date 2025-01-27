@@ -21,8 +21,6 @@
                 the pointer 'p' is not overwritten during assignment.
 */
 
-
-
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
@@ -33,7 +31,8 @@ class strtype{
     public:
         strtype(char *s);   // constructor
         ~strtype(){         // destructor
-            std::cout << " Freeing " << ( unsigned ) p << '\n';
+            // std::cout << " Freeing " << (unsigned)p << '\n';     // ERR: cast from ‘char*’ to ‘unsigned int’ loses precision
+            std::cout << " Freeing " << (void*)p << '\n';
             delete [] p;    // delete dynamically allocate a 1D array. "delete [] p_var;"
             // recall "ch10_09_3_more_new_delete.cpp"
         }
@@ -44,51 +43,89 @@ class strtype{
 };
 
 
+strtype::strtype(char *s){
+    int l;
 
-strtype :: strtype ( char *s)
-{
-int l;
-l = strlen (s) +1;
-p = new char [l];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-len = l;
-strcpy (p, s);
+    l = strlen(s) + 1;
+    p = new char [l];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+
+    len = l;
+    strcpy(p, s);
 }
 
 
 // overload '=': Assign an object
-strtype & strtype :: operator =( strtype &ob)
-{
-// see if more memory is needed
+strtype &strtype::operator=(strtype &ob){
+    
+    // see if more memory is needed
+    if(len < ob.len){ 
+        // allocate more memory
+        delete [] p;
+        p = new char[ob.len];
 
-if( len < ob. len ) // need to allocate more memory
-{
-delete []p;
-p = new char [ob.len ];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
+        if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+        }
+    }
+
+    len = ob.len;
+    strcpy(p, ob.p);
+    return *this;
 }
+
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    std::cout << a.get() << '\n';
+    std::cout << b.get() << '\n';
+
+    a = b; // now p is not overwritten
+
+    std::cout << a. get () << '\n';
+    std::cout << b. get () << '\n';
+
+    return 0;
 }
-len = ob. len ;
-strcpy (p, ob.p);
-return * this ;
-}
-int main ()
-{
-strtype a(" Hello "), b(" There ");
-cout << a. get () << ’\n’;
-cout << b. get () << ’\n’;
-a = b; // now p is not overwritten
-cout << a. get () << ’\n’;
-cout << b. get () << ’\n’;
-return 0;
-}
+
+
+// ----  rev[27-Jan-2025]  ----
+
+/*  
+
+
+The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
+    which might lead to a loss of precision, especially on 64-bit systems 
+    where pointers are 64 bits but unsigned int is typically 32 bits.
+
+Solution:
+cast the pointer p to an uintptr_t or void* instead, 
+as these types are specifically designed to safely store pointer values.
+
+#include <cstdint> // Include this for uintptr_t
+
+change:
+    std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
+
+
+The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
+#include <cstdint> is needed for uintptr_t.
+
+On a 64-bit system, pointers are typically 64-bit, while unsigned is only 32-bit. Casting to unsigned can truncate the pointer value, leading to potential data loss and this
+
+
+Alternative:
+If you don't need to perform arithmetic or formatting operations on the pointer, you can also directly cast p to void* for printing.
+std::cout << " Freeing " << (void*)p << '\n';
+
+*/
+
+
 
 
 
