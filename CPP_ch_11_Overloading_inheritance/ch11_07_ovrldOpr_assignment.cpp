@@ -14,17 +14,14 @@
 */  
 
 
-// ----  rev[25-Jan-2025]  ----
 
-/* Example 1: Following program overloads the '=' operator so that 
-                the pointer p is not overwritten by an assignment operation.
+
+/*  Example 1: Following is another version of the strtype class (from previous chapters)
+                This version overloads the '=' operator to ensure 
+                the pointer 'p' is not overwritten during assignment.
 */
-      
 
 
-/* Example 1; Here is another version of the strtype class that you have seen in various forms in the
-preceding chapters. However, this version overloads the = operator so that the pointer p
-is not overwritten by an assignment operation. */
 
 #include <iostream>
 #include <cstring>
