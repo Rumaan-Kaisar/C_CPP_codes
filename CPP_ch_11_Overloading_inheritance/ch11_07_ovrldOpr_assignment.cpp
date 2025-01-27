@@ -93,31 +93,25 @@ int main(){
     return 0;
 }
 
+/*  The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
+        which might lead to a loss of precision, especially on 64-bit systems 
+        where pointers are 64 bits but unsigned int is typically 32 bits.
+        Casting to unsigned can truncate the pointer value, leading to potential data loss
 
-// ----  rev[27-Jan-2025]  ----
+    Solution:
+        cast the pointer p to an uintptr_t or void* instead, 
+        as these types are specifically designed to safely store pointer values.
 
-/*  
+                #include <cstdint> // Include this for uintptr_t
 
+        change:
+                std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
 
-The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
-    which might lead to a loss of precision, especially on 64-bit systems 
-    where pointers are 64 bits but unsigned int is typically 32 bits.
+    uintptr_t
+        The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. 
+        Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
 
-Solution:
-cast the pointer p to an uintptr_t or void* instead, 
-as these types are specifically designed to safely store pointer values.
-
-#include <cstdint> // Include this for uintptr_t
-
-change:
-    std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
-
-
-The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
-#include <cstdint> is needed for uintptr_t.
-
-On a 64-bit system, pointers are typically 64-bit, while unsigned is only 32-bit. Casting to unsigned can truncate the pointer value, leading to potential data loss and this
-
+                #include <cstdint> is needed for uintptr_t.
 
 Alternative:
 If you don't need to perform arithmetic or formatting operations on the pointer, you can also directly cast p to void* for printing.
@@ -126,7 +120,7 @@ std::cout << " Freeing " << (void*)p << '\n';
 */
 
 
-
+// ----  rev[27-Jan-2025]  ----
 
 
 /* ------------    Note: using space wit &    ------------
@@ -183,15 +177,17 @@ C++ programmer.
 	Notice two other important features about the operator=() function. 
 	First, it takes a reference parameter. This prevents a copy of the object on the right side of the assignment from being made. 
 
-[Recall 10.10 and 10.12 : when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. In this case, destroying the copy would call the destructor function, which would free p. However, this is the same p still needed by the object used as an argument. Using a reference parameter prevents this problem.]
+[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. In this case, destroying the copy would call the destructor function, which would free p. However, this is the same p still needed by the object used as an argument. Using a reference parameter prevents this problem.]
 	The second important feature of the operator=() function is that it returns a reference, not an object. The reason for this is the same as the reason it uses a reference parameter.
 
-[Recall 10.10 and 10.12 :When a function returns an object, a temporary object is created that is destroyed after the return is complete. However, this means that the temporary object's destructor will be called, causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. Therefore, by returning a reference, you prevent a temporary object from being created.]
+[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : When a function returns an object, a temporary object is created that is destroyed after the return is complete. However, this means that the temporary object's destructor will be called, causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. Therefore, by returning a reference, you prevent a temporary object from being created.]
 
 Note: We know creating a copy constructor is another way to prevent both of the problems described in the preceding two paragraphs. But the copy constructor might not be as efficient a solution as using a reference parameter and a return reference type. This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
 
 There are often several ways to accomplish the same end in C++. Learning to choose between them is part of becoming an excellent C++ programmer.
- */
+
+
+*/
 
 
 
