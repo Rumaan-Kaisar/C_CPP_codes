@@ -11,7 +11,45 @@
 
     However, there are cases in which a strict bitwise copy is not desirable 
         and we need to provide a special assignment operation.
-*/  
+
+
+    -------  rev[28-Jan-2025]  -------
+
+    
+Key points about the operator=() function:
+
+Uses a Reference Parameter:
+
+Passing by reference avoids creating a copy of the right-side object.
+If a copy were made, its destructor would free p, which is still needed by the original object.
+Returns a Reference:
+
+Returning a reference avoids creating a temporary object.
+A temporary object's destructor would also free p, leading to issues.
+Alternatively, a copy constructor could handle these problems, 
+    but it may not be as efficient since references avoid the overhead of copying objects. 
+    C++ provides multiple ways to solve the same problem, and choosing the best one is a skill learned with experience.
+
+
+
+
+
+
+
+	Notice two other important features about the operator=() function. 
+	First, it takes a reference parameter. This prevents a copy of the object on the right side of the assignment from being made. 
+
+[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. In this case, destroying the copy would call the destructor function, which would free p. However, this is the same p still needed by the object used as an argument. Using a reference parameter prevents this problem.]
+	The second important feature of the operator=() function is that it returns a reference, not an object. The reason for this is the same as the reason it uses a reference parameter.
+
+[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : When a function returns an object, a temporary object is created that is destroyed after the return is complete. However, this means that the temporary object's destructor will be called, causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. Therefore, by returning a reference, you prevent a temporary object from being created.]
+
+Note: We know creating a copy constructor is another way to prevent both of the problems described in the preceding two paragraphs. But the copy constructor might not be as efficient a solution as using a reference parameter and a return reference type. This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
+
+There are often several ways to accomplish the same end in C++. Learning to choose between them is part of becoming an excellent C++ programmer.
+
+
+*/
 
 
 
@@ -19,6 +57,11 @@
 /*  Example 1: Following is another version of the strtype class (from previous chapters)
                 This version overloads the '=' operator to ensure 
                 the pointer 'p' is not overwritten during assignment.
+
+                The overloaded assignment operator prevents p from being overwritten.
+                        It checks if the object on the left has enough allocated memory to hold the assigned string.
+                        If not, it frees the old memory and allocates new memory. 
+                        Then, it copies the string and updates the length (len).
 */
 
 #include <iostream>
@@ -113,17 +156,15 @@ int main(){
 
                 #include <cstdint> is needed for uintptr_t.
 
-Alternative:
-If you don't need to perform arithmetic or formatting operations on the pointer, you can also directly cast p to void* for printing.
-std::cout << " Freeing " << (void*)p << '\n';
+    Alternative (void*):
+        If you don't need to perform arithmetic or formatting operations on the pointer, 
+            you can also directly cast p to void* for printing.
 
-*/
-
-
-// ----  rev[27-Jan-2025]  ----
+                std::cout << " Freeing " << (void*)p << '\n';
 
 
-/* ------------    Note: using space wit &    ------------
+
+    ------------    Note: using space wit &    ------------
     Common Styles (without space):      strtype &operator=(strtype &ob);
      
     Both
@@ -138,56 +179,11 @@ std::cout << " Freeing " << (void*)p << '\n';
 */
 
 
-As you can see, the overloaded assignment operator prevents p from being overwritten.
-It first checks to see if the object on the left has allocated enough memory to hold the
-string that is being assigned to it. If it hasn’t, that memory is freed and another portion
-is allocated. Then the string is copied to that memory and the length is copied into len.
-Notice two other important features about the operator=() function. First, it takes a
-reference parameter. This prevents a copy of the object on the right side of the assignment
-from being made. As you know from previous chapters, when a copy of an object is made
-when passed to a function, that copy is destroyed when the function terminates. In
-this case, destroying the copy would call the destructor function, which would free p.
-However, this is the same p still needed by the object used as an argument. Using a
-reference parameter prevents this problem.
-The second important feature of the operator=() function is that it returns a reference,
-not an object. The reason for this is the same as the reason it uses a reference parameter.
-When a function returns an object, a temporary object is created that is destroyed after
-the return is complete. However, this means that the temporary object’s destructor will
-be called, causing p to be freed, but p (and the memory it points to) is still needed by
-the object being assigned a value. Therefore, by returning a reference, you prevent a
-temporary object from being created.
-Note: As you learned in Chapter 5, creating a coy constructor is another way to prevent
-both of the problems described in the preceding two paragraphs. But the copy constructor
-might not be as efficient a solution as using a reference parameter and a return reference
-
-type. This is because using a reference prevents the overhead associated with copying an
-object in either circumstances. As you can see, there are often several ways to accomplish
-the same end in C++. Learning to choose between them is part of becoming an excellent
-C++ programmer.
 
 
 
+// -------  rev[28-Jan-2025]  -------
 
-
-
-/* 
-	The overloaded assignment operator prevents p from being overwritten.
-	It first checks to see if the object on the left has allocated enough memory to hold the string that is being assigned to it. If it hasn't, that memory is freed and another portion is allocated. 
-	Then the string is copied to that memory and the length is copied into len.
-	Notice two other important features about the operator=() function. 
-	First, it takes a reference parameter. This prevents a copy of the object on the right side of the assignment from being made. 
-
-[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. In this case, destroying the copy would call the destructor function, which would free p. However, this is the same p still needed by the object used as an argument. Using a reference parameter prevents this problem.]
-	The second important feature of the operator=() function is that it returns a reference, not an object. The reason for this is the same as the reason it uses a reference parameter.
-
-[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : When a function returns an object, a temporary object is created that is destroyed after the return is complete. However, this means that the temporary object's destructor will be called, causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. Therefore, by returning a reference, you prevent a temporary object from being created.]
-
-Note: We know creating a copy constructor is another way to prevent both of the problems described in the preceding two paragraphs. But the copy constructor might not be as efficient a solution as using a reference parameter and a return reference type. This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
-
-There are often several ways to accomplish the same end in C++. Learning to choose between them is part of becoming an excellent C++ programmer.
-
-
-*/
 
 
 
