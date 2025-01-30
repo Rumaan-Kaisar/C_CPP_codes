@@ -13,42 +13,43 @@
         and we need to provide a special assignment operation.
 
 
-    -------  rev[28-Jan-2025]  -------
 
-    
-Key points about the operator=() function:
+    -------  two important features about the operator=() function:  -------
 
-Uses a Reference Parameter:
+    Uses a Reference Parameter:
+        First, it takes a reference parameter. 
+        This prevents a copy of the "object on the right" side of the assignment from being made. 
 
-Passing by reference avoids creating a copy of the right-side object.
-If a copy were made, its destructor would free p, which is still needed by the original object.
-Returns a Reference:
+        [Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4]
+        when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. 
+        In this case, destroying the copy would call the destructor function, which would free p. 
+        However, this is the same p still needed by the object used as an argument. 
+        
+        Solution: Using a reference parameter prevents this problem.
+            [Recall: 
+                Example 4 :: ch10_01_3_constructor_param.cpp, and
+                Example 4 :: ch10_06_1_assign_obj.cpp & modification
+            ]
 
-Returning a reference avoids creating a temporary object.
-A temporary object's destructor would also free p, leading to issues.
-Alternatively, a copy constructor could handle these problems, 
-    but it may not be as efficient since references avoid the overhead of copying objects. 
-    C++ provides multiple ways to solve the same problem, and choosing the best one is a skill learned with experience.
+    Returns a Reference:
+        The second important feature of the operator=() function is that:
+        it returns a "reference", not an "object". 
+        The reason for this is the same as the reason it uses a reference parameter.
 
+        [Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4]
+        When a function returns an object, a temporary object is created that is destroyed after the return is complete. 
+        However, this means that the temporary object's destructor will be called, 
+        causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. 
 
-
-
-
-
-
-	Notice two other important features about the operator=() function. 
-	First, it takes a reference parameter. This prevents a copy of the object on the right side of the assignment from being made. 
-
-[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. In this case, destroying the copy would call the destructor function, which would free p. However, this is the same p still needed by the object used as an argument. Using a reference parameter prevents this problem.]
-	The second important feature of the operator=() function is that it returns a reference, not an object. The reason for this is the same as the reason it uses a reference parameter.
-
-[Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4 : When a function returns an object, a temporary object is created that is destroyed after the return is complete. However, this means that the temporary object's destructor will be called, causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. Therefore, by returning a reference, you prevent a temporary object from being created.]
-
-Note: We know creating a copy constructor is another way to prevent both of the problems described in the preceding two paragraphs. But the copy constructor might not be as efficient a solution as using a reference parameter and a return reference type. This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
-
-There are often several ways to accomplish the same end in C++. Learning to choose between them is part of becoming an excellent C++ programmer.
+        Solution: Therefore, by returning a reference, you prevent a temporary object from being created
 
 
+    Note: We know creating a "copy constructor" is another way to prevent both of the above problems
+        But the "copy constructor" might not be as efficient a solution as using a "reference parameter" and a return "reference type". 
+        This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
+
+        There are often several ways to accomplish the same end in C++. 
+        Learning to choose between them is part of becoming an excellent C++ programmer.
 */
 
 
