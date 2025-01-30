@@ -183,13 +183,7 @@ int main(){
 
 
 
-// -------  rev[28-Jan-2025]  -------
-
-
-
-
-
-
+// -------  rev[30-Jan-2025]  -------
 
 /* Example 2: Given the following class declaration, fill in all the details that will create a dynamic
 array type. That is, allocate memory for the array, storing a pointer to this memory in
@@ -198,32 +192,57 @@ specified element, and have get() return the value of a specified element. Don�
 boundaries of the array to be overrun. Also, overload the assignment operator so that the
 allocated memory of each array is not accidentally destroyed when one array is assigned to
 another. (In the next section you will see a way to improve your solution to this exercise.)
-class dynarray
-{
-int *p;
-int size ;
-public :
-dynarray ( int s); // pass size of array in s
-int & put ( int i); // return reference to element i
-int get ( int i); // return value of element i
-// create operator =() function
-};
- */
-6.6 EXERCISE
-1. # include <iostream >
-# include <cstdlib >
+
+
+Example 2:
+You are given a class declaration. Your task is to complete it to create a dynamic array. Here’s what you need to do:
+
+Allocate memory for the array and store a pointer to this memory in p.
+
+Store the size of the array (in bytes) in size.
+
+Implement a put() function that returns a reference to a specific element in the array.
+
+Implement a get() function that returns the value of a specific element in the array.
+
+Ensure that the array boundaries are not overrun (e.g., prevent accessing invalid indices).
+
+Overload the assignment operator (=) to prevent issues when one array is assigned to another. Specifically, ensure that the memory allocated for one array is not accidentally destroyed during assignment.
+
+(Note: In the next section, you’ll learn how to improve this solution further.)
+
+Let me know if you need further clarification or help with the implementation!
+
+
+
+                        class dynarray{
+                                int *p;
+                                int size;
+                            public:
+                                dynarray(int s);    // pass size of array in s
+                                int &put(int i);    // return reference to element i
+                                int get(int i);     // return value of element i
+
+                                // create operator=() function
+                        };
+*/
+
+
+
+#include <iostream>
+#include <cstdlib>
 482ANSWERS
-6.6 EXERCISE
-using namespace std ;
-class dynarray
-{
-int *p;
-int size ;
-public :
-dynarray ( int s);
-int & put ( int i);
-int get ( int i);
-dynarray & operator =( dynarray &ob);
+
+class dynarray{
+        int *p;
+        int size;
+    public:
+        dynarray(int s);    // pass size of array in s
+        int &put(int i);    // return reference to element i
+        int get(int i);     // return value of element i
+
+        // overload "=", i.e. create operator=() function
+        dynarray & operator =( dynarray &ob);
 };
 // Constructor
 dynarray :: dynarray ( int s)
