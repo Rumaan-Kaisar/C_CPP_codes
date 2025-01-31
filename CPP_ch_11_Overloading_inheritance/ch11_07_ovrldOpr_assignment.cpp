@@ -182,49 +182,24 @@ int main(){
 
 
 
+/* Example 2: Given the following class declaration, your task is to complete it to create a "dynamic array". 
+                Fill in all the details that will create a dynamic array type
 
-// -------  rev[30-Jan-2025]  -------
+                Here's what you need to do:
+                    Allocate memory for the array and store a pointer to this memory in p.
+                    Store the size of the array (in bytes) in size.
 
-/* Example 2: Given the following class declaration, 
+                Implement
+                    put() that returns a reference to a specified element
+                    get() that returns the value of a specified element
 
-.
+                Ensure that the array boundaries are not overrun.
 
-That is:
- 
+                Also, overload the assignment operator(=):
+                    To ensure that the memory allocated for one array 
+                        is not accidentally destroyed during assignment.
 
-
-
-
-
-
-Example 2: Given the following class declaration, your task is to complete it to create a "dynamic array". 
-
-                fill in all the details that will create a dynamic array type
-
-
-Here's what you need to do:
-    Allocate memory for the array and store a pointer to this memory in p.
-    Store the size of the array (in bytes) in size.
-
-Implement
-    put() that returns a reference to a specified element
-    get() that returns the value of a specified element
-
-Ensure that the array boundaries are not overrun (e.g., prevent accessing invalid indices).
-
-Overload the assignment operator (=) to prevent issues when one array is assigned to another. Specifically, 
-ensure that the memory allocated for one array is not accidentally destroyed during assignment.
-
-(Note: In the next section, you’ll learn how to improve this solution further.)
-
-Let me know if you need further clarification or help with the implementation!
-
-
-
-Don’t allow the
-boundaries of the array to be overrun. Also, overload the assignment operator so that the
-allocated memory of each array is not accidentally destroyed when one array is assigned to
-another. (In the next section you will see a way to improve your solution to this exercise.)
+                    (Note: In the next section, you’ll learn how to improve this solution further.)
 
 
 
@@ -240,11 +215,10 @@ another. (In the next section you will see a way to improve your solution to thi
                         };
 */
 
-
+// -------  rev[31-Jan-2025]  -------
 
 #include <iostream>
 #include <cstdlib>
-482ANSWERS
 
 class dynarray{
         int *p;
@@ -255,8 +229,9 @@ class dynarray{
         int get(int i);     // return value of element i
 
         // overload "=", i.e. create operator=() function
-        dynarray & operator =( dynarray &ob);
+        dynarray &operator=(dynarray &ob);
 };
+
 // Constructor
 dynarray :: dynarray ( int s)
 {
@@ -268,6 +243,7 @@ exit (1) ;
 }
 size = s;
 }
+
 // Store an element .
 int & dynarray :: put ( int i)
 {
@@ -278,6 +254,7 @@ exit (1) ;
 }
 return p[i];
 }
+
 // Get an element
 int dynarray :: get ( int i)
 {
@@ -288,6 +265,8 @@ exit (1) ;
 }
 return p[i];
 }
+
+
 // Overload = for dynarray
 483TEACH YOURSELF
 C++
