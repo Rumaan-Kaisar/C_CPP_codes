@@ -215,8 +215,6 @@ int main(){
                         };
 */
 
-// -------  rev[31-Jan-2025]  -------
-
 #include <iostream>
 #include <cstdlib>
 
@@ -233,59 +231,51 @@ class dynarray{
 };
 
 // Constructor
-dynarray :: dynarray ( int s)
-{
-p = new int [s];
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-size = s;
+dynarray::dynarray(int s){
+    p = new int [s];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    size = s;
 }
 
-// Store an element .
-int & dynarray :: put ( int i)
-{
-if(i <0 || i >= size )
-{
-cout << " Bounds error !\n";
-exit (1) ;
-}
-return p[i];
+// Store an element
+int &dynarray::put(int i){
+    if((i<0) || (i >= size)){
+        std::cout << " Bounds error !\n";
+        exit(1);
+    }
+    return p[i];
 }
 
 // Get an element
-int dynarray :: get ( int i)
-{
-if(i <0 || i >= size )
-{
-cout << " Bounds error !\n";
-exit (1) ;
-}
-return p[i];
+int dynarray::get(int i){
+    if((i<0) || (i >= size)){
+        std::cout << " Bounds error !\n";
+        exit(1);
+    }
+    return p[i];
 }
 
 
 // Overload = for dynarray
-483TEACH YOURSELF
-C++
-dynarray & dynarray :: operator =( dynarray &ob)
-{
-int i;
-if( size != ob. size )
-{
-cout << " Cannot copy arrays of differing size !\n";
-exit (1) ;
+dynarray &dynarray::operator=(dynarray &ob){
+    int i;
+    if(size != ob.size){
+        std::cout << " Cannot copy arrays of differing size !\n";
+        exit(1);
+    }
+    // assigning
+    for(i=0; i<size; i++) p[i] = ob.p[i];
+    return *this;
 }
-for (i = 0; i< size ; i++)
-p[i] = ob.p[i];
-return * this ;
-}
-int main ()
-{
-int i;
-dynarray ob1 (10) , ob2 (10) , ob3 (100) ;
+
+
+int main(){
+    int i;
+    dynarray ob1 (10) , ob2 (10) , ob3 (100) ;
+
 ob1 . put (3) = 10;
 i = ob1 . get (3) ;
 cout << i << ’\n’;
