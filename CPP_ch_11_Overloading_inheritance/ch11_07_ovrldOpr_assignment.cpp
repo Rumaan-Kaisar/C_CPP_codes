@@ -274,19 +274,20 @@ dynarray &dynarray::operator=(dynarray &ob){
 
 int main(){
     int i;
-    dynarray ob1 (10) , ob2 (10) , ob3 (100) ;
+    dynarray ob1(10), ob2(10), ob3(100);
 
-ob1 . put (3) = 10;
-i = ob1 . get (3) ;
-cout << i << ’\n’;
-ob2 = ob1 ;
-i = ob2 . get (3) ;
-cout << i << ’\n’;
-// generates an error
-ob1 = ob3 ; // !!!
-return 0;
+    ob1.put(3) = 10;
+    i = ob1.get(3);
+    std::cout << i << '\n';
+
+    ob2 = ob1;
+    i = ob2.get(3);
+    std::cout << i << '\n';
+
+    // generates an error, for arrays of differing size
+    ob1 = ob3; // arrays of differing size
+
+    return 0;
 }
-
-
 
 
