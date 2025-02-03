@@ -1,11 +1,16 @@
 
-/*  ------------------------    overloading : []-operator   ------------------------
+/*  ------------------------    overloading "subscript" : []-operator   ------------------------
 
-Overloading the [ ] subscript operator
+    Overloading The '[]' SUBSCRIPT Operator:
+        The general form of a member "operator[]()" function is:
+        
+                return_type class_name::operator[](int index) {
+                    // Function implementation
+                }
 
-11.14 Overloading The [ ] SUBSCRIPT Operator
-The general form of a member operator[ ]() function is:
-type class_name :: operator[](int index) {  // ...  }
+    // rev[03-Feb-2025]
+
+
 	Technically, the parameter does not have to be of type int, but operator[ ]() functions are typically used to provide array subscripting and as such an integer value is generally used.
 	In C++, the [] is considered a binary operator for the purposes of overloading. 
 	The [] can be overloaded only by a member function. 
