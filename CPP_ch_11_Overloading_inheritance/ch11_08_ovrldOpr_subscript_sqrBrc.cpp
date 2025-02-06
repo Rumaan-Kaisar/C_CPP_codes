@@ -23,14 +23,34 @@
 
             The value of the expression within [] is passed to operator[]() in its explicit parameter. 
             The "this" pointer will point to "ob", the object that generated the call.
+*/
 
 
 
 
-	Example 1: In the following program, arraytype declares an array of five integers. 
-[1]	Its constructor function initializes each member of the array. 
-[2]	The overloaded operator[]() function returns the value of the element specified by its parameter.
 
+/* Example 1: Following program demonstrates how to overload the [] operator to create a simple array-like class
+
+                "arraytype" declares an array of five integers. 
+                    Its constructor initializes each member of the array (with values 0, 1, 2, 3, 4)
+                    This specific initialization is just for demonstration purposes
+                
+                The overloaded operator[]() returns the value of the element specified by its parameter.
+                    i.e. it returns the value "int" at the specified index
+                    Does not allow modification of array elements (returns by value, not reference)
+
+                Limitations:
+                    No bounds checking (accessing ob[5] would cause undefined behavior)
+                    Cannot modify elements via ob[i] = new_value
+
+    Note: The initialization of the "array a" by the constructor in this and the following programs 
+        is for the sake of illustration only. It is not required. 
+*/
+
+
+
+/*  
+    
 const int SIZE = 5;
 class arraytype { int a[ SIZE ];
 		public :
@@ -41,15 +61,17 @@ class arraytype { int a[ SIZE ];
 		for(i=0; i< SIZE; i++)
 		cout << ob[i] << " ";
 	return 0; }
- [The initialization of the array a by the constructor in this and the following programs is for the sake of illustration only. It is not required.]
+
+
+
 
 ============================  DS  =========================================
 
 Example 1: Subscript Operator Overloading
-This program demonstrates how to overload the [] operator to create a simple array-like class.
 
-cpp
-Copy
+This 
+
+
 #include <iostream>
 using namespace std;
 
@@ -79,40 +101,13 @@ int main() {
     }
     return 0;
 }
-Key Points:
-
-
-1. Constructor Behavior:
-
-Initializes the array with values 0, 1, 2, 3, 4
-
-This specific initialization is just for demonstration purposes
 
 
 
-2. Subscript Operator ([]):
-
-Returns the value (int) at the specified index
-
-Does not allow modification of array elements (returns by value, not reference)
 
 
 
-3. Usage in main():
 
-ob[i] is converted to ob.operator[](i)
-
-Output: 0 1 2 3 4
-
-
-
-4. Limitations:
-
-No bounds checking (accessing ob[5] would cause undefined behavior)
-
-Cannot modify elements via ob[i] = new_value
-
-Note: The constructor's initialization pattern is purely illustrative. The core functionality being demonstrated is the operator overloading mechanism.
 
 
 	Example 2 -Assigning values to & form using reference and []: It is possible to design the operator[]() function in such a way that the [] can be used on both the left and right sides of an assignment statement (i.e. a=b[i] and b[i]=a. Assigning values to & form array ). To do this, return a reference to the element being indexed. 
