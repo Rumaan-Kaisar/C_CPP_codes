@@ -94,6 +94,12 @@ int main() {
 /*  Limitation 2: Cannot Modify Elements
         The operator[]() function returns the array element by "value", not by "reference". 
         This means you cannot modify the array elements using ob[i] = new_value. 
+        
+        Solution: 
+            to make a referance just use '&' before 'operator[]'  i.e. 
+            
+            int &operator[](int i){ return a[i]; }
+
 */
 int main() {
     arraytype ob;
@@ -102,7 +108,7 @@ int main() {
     ob[2] = 99;  // This will NOT modify the array
 
     // Print array to confirm no changes
-    for(int i = 0; i < SIZE; i++) std:: cout << ob[i] << " ";  // Output: 0 1 2 3 4
+    for(int i = 0; i < SIZE; i++) std::cout << ob[i] << " ";  // Output: 0 1 2 3 4
 
     return 0;
 }
@@ -113,54 +119,6 @@ int main() {
         Add bounds checking to prevent invalid index access.
         Return a reference (int&) from operator[] to allow modification of array elements. 
 */
-
-
-#include <iostream>
-using namespace std;
-
-const int SIZE = 5;
-
-class arraytype {
-    int a[SIZE];  // Private array
-    
-public:
-    // Constructor initializes array (0-4)
-    arraytype() {
-        for(int i = 0; i < SIZE; i++) {
-            a[i] = i;
-        }
-    }
-
-    // Overloaded [] operator with bounds checking and reference return
-    int& operator[](int i) {
-        if(i < 0 || i >= SIZE) {
-            cout << "Index " << i << " is out of bounds.\n";
-            exit(1);  // Terminate program on error
-        }
-        return a[i];  // Return reference to element
-    }
-};
-
-int main() {
-    arraytype ob;
-
-    // Modify an element
-    ob[2] = 99;  // This works now
-
-    // Print array to confirm changes
-    for(int i = 0; i < SIZE; i++) {
-        cout << ob[i] << " ";  // Output: 0 1 99 3 4
-    }
-
-    // Accessing an invalid index
-    ob[5] = 10;  // Output: Index 5 is out of bounds.
-
-    return 0;
-}
-
-
-
-
 #include <iostream>
 
 const int SIZE = 5;
@@ -170,32 +128,35 @@ class arraytype{
     public:
         arraytype(){ for(int i=0; i<SIZE; i++) a[i] = i; }
         
-        // overload []
-        int operator[](int i){ return a[i]; }
-        // Overloaded [] operator with bounds checking and reference return
+        // Overloaded [] operator with "bounds checking" and "reference" return
         int &operator[](int i) {
-        if((i<0) || (i>=SIZE)) {
-            cout << "Index " << i << " is out of bounds.\n";
-            exit(1);  // Terminate program on error
-        }
-        return a[i];  // Return reference to element
+            if((i<0) || (i>=SIZE)) {
+                std::cout << "Index " << i << " is out of bounds.\n";
+                exit(1);  // Terminate program on error
+            }
+            return a[i];  // Return reference to element
     }
 };
 
 
-int main(){
+int main() {
     arraytype ob;
-    int i;
 
-    for (i=0; i < SIZE; i++) std::cout << ob[i] << " ";
+    // Attempting to modify an element
+    ob[2] = 99;  // This works now
+
+    // Print array to confirm changes
+    for(int i = 0; i < SIZE; i++) std::cout << ob[i] << " ";  // Output: 0 1 2 3 4
     
+    // Accessing an invalid index
+    ob[5] = 10;  // Output: Index 5 is out of bounds.
+
     return 0;
 }
 
+
+
 /*  
-    
-
-
 
 ============================  DS  =========================================
 
