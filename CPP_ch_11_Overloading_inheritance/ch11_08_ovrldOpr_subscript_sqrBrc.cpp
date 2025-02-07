@@ -82,7 +82,7 @@ int main() {
     arraytype ob;
 
     // Accessing valid indices (0-4)
-    for(int i = 0; i < SIZE; i++) std:: cout << ob[i] << " ";  // Output: 0 1 2 3 4
+    for(int i=0; i<SIZE; i++) std::cout << ob[i] << " ";  // Output: 0 1 2 3 4
 
     // Accessing an invalid index (5)
     std::cout << ob[5];  // Undefined behavior (may crash or return garbage)
@@ -108,7 +108,7 @@ int main() {
     ob[2] = 99;  // This will NOT modify the array
 
     // Print array to confirm no changes
-    for(int i = 0; i < SIZE; i++) std::cout << ob[i] << " ";  // Output: 0 1 2 3 4
+    for(int i=0; i<SIZE; i++) std::cout << ob[i] << " ";  // Output: 0 1 2 3 4
 
     return 0;
 }
