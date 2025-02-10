@@ -158,10 +158,13 @@ int main() {
 
 
 
-/* Example 2: It is possible to design the operator[ ]() function in such a way that the [ ] can be used on
-both the left and right sides of an assignment statement. To do this, return a reference to
-the element being indexed. For example, this program makes this change and illustrates
-its use: */
+/* Example 2: It is possible to design the operator[]() function in such a way that 
+                the [] can be used on both the left and right sides of an assignment statement. 
+                
+                To do this, return a "reference" to the element being indexed. 
+                
+                For example, following program makes this change and illustrates its use 
+*/
 # include <iostream >
 using namespace std ;
 const int SIZE = 5;
