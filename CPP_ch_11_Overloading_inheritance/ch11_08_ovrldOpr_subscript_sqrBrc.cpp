@@ -156,7 +156,6 @@ int main() {
 
 
 
-// rev[10-Feb-2025]
 
 /* Example 2: It is possible to design the operator[]() function in such a way that 
                 the [] can be used on both the left and right sides of an assignment statement. 
@@ -178,22 +177,25 @@ class arraytype{
             for(i=0; i<SIZE; i++) a[i] = i;
         }
         // overload [], with referance
-        int &operator []( int i){ return a[i]; }
+        int &operator[]( int i){ return a[i]; }
 };
 
-int main ()
-{
-arraytype ob;
-int i;
-for (i =0; i< SIZE ; i ++)
-cout << ob[i] << " ";
-cout << "\n";
-// add 10 to each element in the array
-for (i =0; i< SIZE ; i ++)
-ob[i] = ob[i ]+10; // [] on left of =
-for (i =0; i< SIZE ; i ++)
-cout << ob[i] << " ";
-return 0;
+
+int main(){
+    arraytype ob;
+    int i;
+
+    // Print array
+    for(i=0; i<SIZE; i++) std::cout << ob[i] << " ";
+    std::cout << "\n";
+
+    // add 10 to each element in the array
+    for(i=0; i<SIZE; i++) ob[i] = ob[i]+10;     // [] on the left of '=', i.e., modifying elements
+
+    // Print array to confirm changes
+    for(i=0; i<SIZE; i++) std::cout << ob[i] << " ";
+
+    return 0;
 }
 
 
