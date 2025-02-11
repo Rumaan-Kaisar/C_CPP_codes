@@ -157,8 +157,17 @@ int main() {
 
 
 
-/* Example 2: It is possible to design the operator[]() function in such a way that 
-                the [] can be used on both the left and right sides of an assignment statement. 
+/* ----------------    Why Use References?    ----------------
+    Returning a reference allows direct modification of the array elements.
+    Without a reference, the [] operator could only be used for reading values, not writing. 
+*/
+
+
+
+
+/* Example 2 (modify elements, use referance): It is possible to design the operator[]() function in such a way that 
+                the [] can be used on both the left and right sides of an assignment statement.
+                ( i.e. a=b[i] and b[i]=a. Assigning values to/form array )
                 
                 To do this, return a "reference" to the element being indexed. 
                 Just as we did to fix the limitations in the previous example.
@@ -203,8 +212,9 @@ int main(){
             0 1 2 3 4
             10 11 12 13 14
 
-        Since the operator[]() returns a "reference" to the array element, 
+        Since the operator[]() now returns a "reference" to the array element, 
             it allows modification of the array elements, just like normal arrays. 
+            (i.e. it can be used on the left side of '=' to modify an element)
         It can still be used on the right side of an assignment as well.
 */
 
@@ -212,115 +222,6 @@ int main(){
 
 
 /*  
-
-============================  DS  =========================================
-
-
-
-
-	Example 2 -Assigning values to & form using reference and []: It is possible to design the operator[]() function in such a way that the [] can be used on both the left and right sides of an assignment statement (i.e. a=b[i] and b[i]=a. Assigning values to & form array ). To do this, return a reference to the element being indexed. 
-
-class arraytype
-{. . . . 
-public: 
-// as same as Example 1 of 11.14
-int &operator[](int i){return a[i]; }    //reference
-};	int main(){ arraytype ob;  int i;
-      for(i=0; i<SIZE; i++) cout<<ob[i]<<" ";
-cout << "\n";
-// add 10 to each element in the array
-for(i=0; i< SIZE ; i++){
-		ob[i] = ob[i ]+10;}  // [] on left of =
-      for(i=0; i<SIZE; i++) cout<<ob[i]<<" ";
-return 0;}
-
-	Because the operator[]() function now returns a reference to the array element indexed by i, it can be used on the left side of an assignment to modify an element of the array (just like normal arrays).
-
-============================  DS  =========================================
-
-Example 2: Using Reference with [] for Assignment
-This program demonstrates how to overload the [] operator to allow it to be used on both sides of an assignment (e.g., a = b[i] and b[i] = a). This is achieved by returning a reference to the array element.
-
-cpp
-Copy
-#include <iostream>
-using namespace std;
-
-const int SIZE = 5;
-
-class arraytype {
-    int a[SIZE];  // Private array of 5 integers
-    
-public:
-    // Constructor initializes array with index values (0-4)
-    arraytype() {
-        for(int i = 0; i < SIZE; i++) {
-            a[i] = i;  // Sets a[0] = 0, a[1] = 1, etc.
-        }
-    }
-    
-    // Overloaded subscript operator returning a reference
-    int& operator[](int i) {
-        return a[i];  // Returns a reference to the element at index i
-    }
-};
-
-int main() {
-    arraytype ob;  // Create object
-
-    // Print initial array values
-    for(int i = 0; i < SIZE; i++) {
-        cout << ob[i] << " ";  // Uses overloaded [] operator
-    }
-    cout << "\n";
-
-    // Add 10 to each element in the array
-    for(int i = 0; i < SIZE; i++) {
-        ob[i] = ob[i] + 10;  // [] on the left side of assignment
-    }
-
-    // Print modified array values
-    for(int i = 0; i < SIZE; i++) {
-        cout << ob[i] << " ";  // Uses overloaded [] operator
-    }
-
-    return 0;
-}
-
-
-Key Points:
-
-
-1. Reference Return Type (int&):
-
-The operator[] function now returns a reference to the array element (int&).
-
-This allows the [] operator to be used on both sides of an assignment:
-
-Right side: a = ob[i] (reads the value at index i)
-
-Left side: ob[i] = a (modifies the value at index i)
-
-
-2. Behavior in main():
-
-Initial array values: 0 1 2 3 4
-
-After adding 10 to each element: 10 11 12 13 14
-
-
-3. Why Use References?
-
-Returning a reference allows direct modification of the array elements.
-
-Without a reference, the [] operator could only be used for reading values, not writing.
-
-
-
-4. Limitations:
-
-Still no bounds checking (accessing ob[5] would cause undefined behavior).
-
 
 
 	Example 3 (Safe array): Recall that a safe array is an array that is encapsulated within a class that performs bounds checking. This approach prevents the array boundaries from being overrun. 
