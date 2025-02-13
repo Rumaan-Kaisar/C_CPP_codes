@@ -220,12 +220,94 @@ int main(){
 
 
 
+/* Example 3 (Safe array, bound checking): Recall that a safe array is an array that is 
+                encapsulated within a class that performs bounds checking. 
+
+                prevents overrun: This approach prevents the array boundaries from being overrun.
+
+                To create a safe array with overloaded [] operator, 
+                    simply add "bounds checking" to the operator[]() function.
+                    Following program proves that it works by generating a boundary error
+                
+                The operator[]() must also return a reference to the element being indexed.
+*/
+
+3. One advantage of being able to overload the [ ] operator is that it allows a better means
+of implementing safe array indexing. Earlier in this book you saw a simplified way to
+implement a safe array that relied upon functions such as get() and put() to access the
+elements of the array. 
+
+Here you will see a better way to create a safe array that utilizes an overloaded [] operator.
+
+ Recall that a safe array is an array that is encapsulated within a
+class that performs bounds checking. This approach prevents the array boundaries from
+being overrun. By overloading the [ ] operator for such an array, you allow it to be
+
+
+accessed just like a regular array.
+To create a safe array, simply add bounds checking to the operator[ ]() function. The
+operator[ ]() must also return a reference to the element being indexed. For example,
+this program adds a range check to the previous array program and proves that it works
+by generating a boundary error:
+// A safe array example .
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+const int SIZE = 5;
+class arraytype
+{
+int a[ SIZE ];
+public :
+arraytype ()
+{
+int i;
+for (i =0; i< SIZE ; i++)
+a[i] = i;
+}
+int & operator []( int i);
+};
+// Provide range checking for arraytype .
+int & arraytype :: operator []( int i)
+{
+if(i <0 || i>SIZE -1)
+{
+cout << "\ nIndex value of ";
+cout << i << " is out of bounds .\n";
+exit (1) ;
+}
+return a[i];
+}
+int main ()
+{
+arraytype ob;
+int i;
+// this is OK
+for (i =0; i< SIZE ; i ++)
+cout << ob[i] << " ";
+/*
+this generates a run - time error because
+SIZE +100 is out of range
+*/
+ob[ SIZE +100] = 99; // error
+169TEACH YOURSELF
+C++
+return 0;
+}
+In this program, when the statement
+ob[ SIZE +100] = 99;
+executes, the boundary error is intercepted by operator[ ]() and the program is terminated before any damage can be done.
+Because the overloading of the [ ] operator allows you to create safe arrays that look
+and act just like regular arrays, they can be seamlessly integrated into your programming
+environment. But be careful. A safe array adds overhead that might not be acceptable
+in all situations. In fact, the added overhead is why C++ does not perform boundary
+checking on array in the first place. However, in applications in which you want to be
+sure that a boundary error does not take place, a safe array will be worth the effort
+
 
 /*  
 
 
-	Example 3 (Safe array): Recall that a safe array is an array that is encapsulated within a class that performs bounds checking. This approach prevents the array boundaries from being overrun. 
-	To create a safe array with overloaded [] operator, simply add bounds checking to the operator[]() function. The operator[]() must also return a reference to the element being indexed.  Following program proves that it works by generating a boundary error:
+
 
 { public:. . . . 
 // as same as Example 1 of 11.14
