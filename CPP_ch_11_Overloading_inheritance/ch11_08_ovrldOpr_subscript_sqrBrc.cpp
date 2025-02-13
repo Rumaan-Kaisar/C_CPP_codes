@@ -220,10 +220,16 @@ int main(){
 
 
 
+
 /* Example 3 (Safe array, bound checking): Recall that a safe array is an array that is 
                 encapsulated within a class that performs bounds checking. 
 
                 prevents overrun: This approach prevents the array boundaries from being overrun.
+
+                Overloading the [] operator provides a "better way" to implement safe array indexing. 
+                    Earlier methods used functions like get() and put() to access elements 
+                    (ch10_10_3_return_ref.cpp: Example 2 and Example 3), 
+                    but overloading [] allows the array to be accessed like a regular array while maintaining safety.
 
                 To create a safe array with overloaded [] operator, 
                     simply add "bounds checking" to the operator[]() function.
@@ -232,23 +238,9 @@ int main(){
                 The operator[]() must also return a reference to the element being indexed.
 */
 
-3. One advantage of being able to overload the [ ] operator is that it allows a better means
-of implementing safe array indexing. Earlier in this book you saw a simplified way to
-implement a safe array that relied upon functions such as get() and put() to access the
-elements of the array. 
 
-Here you will see a better way to create a safe array that utilizes an overloaded [] operator.
+// ---- rev[13-Feb-2025] ----
 
- Recall that a safe array is an array that is encapsulated within a
-class that performs bounds checking. This approach prevents the array boundaries from
-being overrun. By overloading the [ ] operator for such an array, you allow it to be
-
-
-accessed just like a regular array.
-To create a safe array, simply add bounds checking to the operator[ ]() function. The
-operator[ ]() must also return a reference to the element being indexed. For example,
-this program adds a range check to the previous array program and proves that it works
-by generating a boundary error:
 // A safe array example .
 # include <iostream >
 # include <cstdlib >
