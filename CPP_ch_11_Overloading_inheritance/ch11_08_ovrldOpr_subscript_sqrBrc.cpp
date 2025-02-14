@@ -28,7 +28,6 @@
 
 
 
-
 /* Example 1: Following program demonstrates how to overload the [] operator to create a simple array-like class
 
                 "arraytype" declares an array of five integers. 
@@ -236,10 +235,20 @@ int main(){
                     Following program proves that it works by generating a boundary error
                 
                 The operator[]() must also return a reference to the element being indexed.
+
+
+                When 
+                        ob[SIZE + 100] = 99; 
+                
+                    executes, the boundary error is intercepted by operator[]() and stops the program, preventing errors. 
+                    
+                Overloading [] allows safe arrays to function like regular arrays, making them easy to use.    
+                However, this safety comes with added overhead, which may not be suitable for all cases. 
+                Despite this, safe arrays are valuable in applications where preventing boundary errors is critical.
 */
 
 
-// ---- rev[13-Feb-2025] ----
+
 
 // A safe array example .
 # include <iostream >
@@ -285,15 +294,11 @@ ob[ SIZE +100] = 99; // error
 C++
 return 0;
 }
-In this program, when the statement
-ob[ SIZE +100] = 99;
-executes, the boundary error is intercepted by operator[ ]() and the program is terminated before any damage can be done.
-Because the overloading of the [ ] operator allows you to create safe arrays that look
-and act just like regular arrays, they can be seamlessly integrated into your programming
-environment. But be careful. A safe array adds overhead that might not be acceptable
-in all situations. In fact, the added overhead is why C++ does not perform boundary
-checking on array in the first place. However, in applications in which you want to be
-sure that a boundary error does not take place, a safe array will be worth the effort
+
+
+// ---- rev[13-Feb-2025] ----
+
+
 
 
 /*  
