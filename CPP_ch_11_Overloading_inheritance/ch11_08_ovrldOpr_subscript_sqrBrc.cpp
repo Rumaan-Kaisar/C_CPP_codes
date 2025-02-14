@@ -246,57 +246,51 @@ int main(){
                 However, this safety comes with added overhead, which may not be suitable for all cases. 
                 Despite this, safe arrays are valuable in applications where preventing boundary errors is critical.
 */
+// --------  A safe array  --------
+#include <iostream>
+#include <cstdlib>
 
-
-
-
-// A safe array example .
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
 const int SIZE = 5;
-class arraytype
-{
-int a[ SIZE ];
-public :
-arraytype ()
-{
-int i;
-for (i =0; i< SIZE ; i++)
-a[i] = i;
-}
-int & operator []( int i);
+
+class arraytype{
+        int a[SIZE];
+    public:
+        arraytype(){
+            int i;
+            for(i=0; i<SIZE; i++) a[i] = i;
+        }
+        
+        // using referance for overloaded []
+        int &operator[](int i);
 };
-// Provide range checking for arraytype .
-int & arraytype :: operator []( int i)
-{
-if(i <0 || i>SIZE -1)
-{
-cout << "\ nIndex value of ";
-cout << i << " is out of bounds .\n";
-exit (1) ;
-}
-return a[i];
-}
-int main ()
-{
-arraytype ob;
-int i;
-// this is OK
-for (i =0; i< SIZE ; i ++)
-cout << ob[i] << " ";
-/*
-this generates a run - time error because
-SIZE +100 is out of range
-*/
-ob[ SIZE +100] = 99; // error
-169TEACH YOURSELF
-C++
-return 0;
+
+
+// In overloaded [] bound checking for arrayType. Also notice the referance
+int &arraytype::operator[](int i){
+    if((i<0) || (i>(SIZE-1))){
+        std::cout << "\nIndex value of " << i << " is out of bounds.\n";
+        exit(1);
+    }
+    return a[i];
 }
 
 
-// ---- rev[13-Feb-2025] ----
+int main(){
+    arraytype ob;
+    int i;
+
+    // this is OK
+    for(i=0; i<SIZE; i++) std::cout << ob[i] << " ";
+
+    // following generates a run-time error because SIZE+100 is out of range
+    ob[SIZE+100] = 99; // error
+
+    return 0;
+}
+
+
+
+// ---- rev[14-Feb-2025] ----
 
 
 
@@ -305,24 +299,6 @@ return 0;
 
 
 
-
-{ public:. . . . 
-// as same as Example 1 of 11.14
-int &operator[](int i) }; 			//reference
-// only declaration given inside class	
-// Bound checks inside the if statement
-int &arraytype :: operator[](int i){
-if(i<0 || i>(SIZE-1)){
-   cout<<i<< "is out of bounds.\n"; exit(1);}
-return a[i]; }
-	int main() { 	arraytype ob;  int i;
-			for(i=0; i<SIZE; i++) cout<< ob[i] << " "; // this is OK
-			ob[SIZE +100] = 99;  // generates a run - time error because SIZE +100 is out of range
-		return 0;}
-
-	In this program, when the statement ob[ SIZE +100] = 99; executes, the boundary error is intercepted by operator[]() and the program is terminated before any damage can be done.
-	Remark 1: Because the overloading of the [] operator allows you to create safe arrays that look and act just like regular arrays.
-	Remark 2: Be careful. A safe array adds overhead that might not be acceptable in all situations.  However, in applications in which you want to be sure that a boundary error does not take place, a safe array will be worth the effort.
 
 =========================================  GPT  ============================
 Safe Array Using Overloaded [] Operator
