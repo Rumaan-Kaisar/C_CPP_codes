@@ -289,3 +289,13 @@ int main(){
 }
 
 
+
+/* Example 4: ModifyExample 1 in Section 6.6 so that strtype overloads the [ ] operator. Have this
+operator return the character at the specified index. Also, allow the [ ] to be used on the
+left side of the assignment statement. Demonstrate its use. */
+
+
+
+ /* Example 5: 2. Modify your answer to Exercise 1 from Section 6.6 so that it uses [ ] to index the dynamic
+array. That is, replace the get() and put() functions with the [ ] operator. */
+
