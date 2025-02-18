@@ -290,12 +290,263 @@ int main(){
 
 
 
-/* Example 4: ModifyExample 1 in Section 6.6 so that strtype overloads the [ ] operator. Have this
-operator return the character at the specified index. Also, allow the [ ] to be used on the
-left side of the assignment statement. Demonstrate its use. */
+/* Example 4: Modify Example 1 (strtype class) in "ch11_07_ovrldOpr_assignment.cpp" 
+   so that strtype overloads the [] operator. 
+   Have this operator return the character at the specified index. 
+   Also, allow [] to be used on the left side of the assignment statement 
+   (i.e., modification of the object). Demonstrate its use. */
 
 
 
- /* Example 5: 2. Modify your answer to Exercise 1 from Section 6.6 so that it uses [ ] to index the dynamic
-array. That is, replace the get() and put() functions with the [ ] operator. */
+
+
+
+
+
+/* Example 5: Modify Example 2 (dynarray) from "ch11_07_ovrldOpr_assignment.cpp" 
+   so that it uses [] to index the dynamic array. 
+   That is, replace the get() and put() functions with the [] operator. */
+
+
+
+
+
+
+
+
+
+/*  Example 1: Following is another version of the strtype class (from previous chapters)
+                This version overloads the '=' operator to ensure 
+                the pointer 'p' is not overwritten during assignment.
+
+                The overloaded assignment operator prevents p from being overwritten.
+                        It checks if the object on the left has enough allocated memory to hold the assigned string.
+                        If not, it frees the old memory and allocates new memory. 
+                        Then, it copies the string and updates the length (len).
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype{
+        char *p;
+        int len;
+    public:
+        strtype(char *s);   // constructor
+        ~strtype(){         // destructor
+            // std::cout << " Freeing " << (unsigned)p << '\n';     // ERR: cast from ‘char*’ to ‘unsigned int’ loses precision
+            std::cout << " Freeing " << (void*)p << '\n';
+            delete [] p;    // delete dynamically allocate a 1D array. "delete [] p_var;"
+            // recall "ch10_09_3_more_new_delete.cpp"
+        }
+        char *get(){ return p; }
+        
+        // Overload '=': It is an operator function that returns a reference to the object
+        strtype &operator=(strtype &ob);    // reference operator function
+};
+
+
+strtype::strtype(char *s){
+    int l;
+
+    l = strlen(s) + 1;
+    p = new char [l];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+
+    len = l;
+    strcpy(p, s);
+}
+
+
+// overload '=': Assign an object
+strtype &strtype::operator=(strtype &ob){
+    
+    // see if more memory is needed
+    if(len < ob.len){ 
+        // allocate more memory
+        delete [] p;
+        p = new char[ob.len];
+
+        if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+        }
+    }
+
+    len = ob.len;
+    strcpy(p, ob.p);
+    return *this;
+}
+
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    std::cout << a.get() << '\n';
+    std::cout << b.get() << '\n';
+
+    a = b; // now p is not overwritten
+
+    std::cout << a. get () << '\n';
+    std::cout << b. get () << '\n';
+
+    return 0;
+}
+
+/*  The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
+        which might lead to a loss of precision, especially on 64-bit systems 
+        where pointers are 64 bits but unsigned int is typically 32 bits.
+        Casting to unsigned can truncate the pointer value, leading to potential data loss
+
+    Solution:
+        cast the pointer p to an uintptr_t or void* instead, 
+        as these types are specifically designed to safely store pointer values.
+
+                #include <cstdint> // Include this for uintptr_t
+
+        change:
+                std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
+
+    uintptr_t
+        The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. 
+        Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
+
+                #include <cstdint> is needed for uintptr_t.
+
+    Alternative (void*):
+        If you don't need to perform arithmetic or formatting operations on the pointer, 
+            you can also directly cast p to void* for printing.
+
+                std::cout << " Freeing " << (void*)p << '\n';
+
+
+
+    ------------    Note: using space with &    ------------
+    Common Styles (without space):      strtype &operator=(strtype &ob);
+     
+    Both
+            strtype &operator=(strtype &ob);
+    and 
+            strtype & operator=(strtype &ob); 
+    
+    are syntactically correct in C++. 
+    
+    The placement of the space between & and operator is purely 
+        a matter of style preference and does not affect functionality.
+*/
+
+
+
+
+/* Example 2: Given the following class declaration, your task is to complete it to create a "dynamic array". 
+                Fill in all the details that will create a dynamic array type
+
+                Here's what you need to do:
+                    Allocate memory for the array and store a pointer to this memory in p.
+                    Store the size of the array (in bytes) in size.
+
+                Implement
+                    put() that returns a reference to a specified element
+                    get() that returns the value of a specified element
+
+                Ensure that the array boundaries are not overrun.
+
+                Also, overload the assignment operator(=):
+                    To ensure that the memory allocated for one array 
+                        is not accidentally destroyed during assignment.
+
+                    (Note: In the next section, you’ll learn how to improve this solution further.)
+
+
+
+                        class dynarray{
+                                int *p;
+                                int size;
+                            public:
+                                dynarray(int s);    // pass size of array in s
+                                int &put(int i);    // return reference to element i
+                                int get(int i);     // return value of element i
+
+                                // create operator=() function
+                        };
+*/
+
+#include <iostream>
+#include <cstdlib>
+
+class dynarray{
+        int *p;
+        int size;
+    public:
+        dynarray(int s);    // pass size of array in s
+        int &put(int i);    // return reference to element i
+        int get(int i);     // return value of element i
+
+        // overload "=", i.e. create operator=() function
+        dynarray &operator=(dynarray &ob);
+};
+
+// Constructor
+dynarray::dynarray(int s){
+    p = new int [s];
+    if(!p){
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    size = s;
+}
+
+// Store an element
+int &dynarray::put(int i){
+    if((i<0) || (i >= size)){
+        std::cout << " Bounds error !\n";
+        exit(1);
+    }
+    return p[i];
+}
+
+// Get an element
+int dynarray::get(int i){
+    if((i<0) || (i >= size)){
+        std::cout << " Bounds error !\n";
+        exit(1);
+    }
+    return p[i];
+}
+
+
+// Overload = for dynarray
+dynarray &dynarray::operator=(dynarray &ob){
+    int i;
+    if(size != ob.size){
+        std::cout << " Cannot copy arrays of differing size !\n";
+        exit(1);
+    }
+    // assigning
+    for(i=0; i<size; i++) p[i] = ob.p[i];
+    return *this;
+}
+
+
+int main(){
+    int i;
+    dynarray ob1(10), ob2(10), ob3(100);
+
+    ob1.put(3) = 10;
+    i = ob1.get(3);
+    std::cout << i << '\n';
+
+    ob2 = ob1;
+    i = ob2.get(3);
+    std::cout << i << '\n';
+
+    // generates an error, for arrays of differing size
+    ob1 = ob3; // arrays of differing size
+
+    return 0;
+}
 
