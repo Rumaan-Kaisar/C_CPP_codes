@@ -165,7 +165,7 @@ int main(){
 
 
 
-    ------------    Note: using space wit &    ------------
+    ------------    Note: using space with &    ------------
     Common Styles (without space):      strtype &operator=(strtype &ob);
      
     Both
