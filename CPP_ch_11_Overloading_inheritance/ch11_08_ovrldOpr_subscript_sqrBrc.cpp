@@ -296,6 +296,88 @@ int main(){
    Also, allow [] to be used on the left side of the assignment statement 
    (i.e., modification of the object). Demonstrate its use. */
 
+1. # include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char *s);
+~ strtype ()
+{
+484ANSWERS
+6.7 EXERCISES
+cout << " Freeing " << ( unsigned ) p << ’\n’;
+delete [] p;
+}
+char * get () { return p; }
+strtype & operator =( strtype &ob);
+char & operator []( int i);
+};
+strtype :: strtype ( char *s)
+{
+int l ;
+l = strlen (s) +1;
+p = new char [l];
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+len = l;
+strcpy (p, s);
+}
+// Assign an object .
+strtype & strtype :: operator =( strtype &ob)
+{
+// see if more memory is needed
+if( len < ob. len ) // need to allocate more memory
+{
+delete [] p;
+p = new char (ob.len);
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+}
+len = ob. len ;
+strcpy (p, ob.p);
+return * this ;
+}
+// Index characters in string .
+char & strtype :: operator []( int i)
+{
+if(i <0 || i>len -1)
+{
+cout << "\ nIndex value of ";
+cout << i << " is out -of - bounds .\n";
+exit (1) ;
+485TEACH YOURSELF
+C++
+}
+return p[i];
+}
+int main ()
+{
+strtype a(" Hello "), b(" There ");
+cout << a. get () << ’\n’;
+cout << b. get () << ’\n’;
+a = b; // now p is not overwritten
+cout << a. get () << ’\n’;
+cout << b. get () << ’\n’;
+// access characters using array indexing
+cout << a [0] << a [1] << a[2] << ’\n’;
+// assign characters using array indexing
+a [0] = ’X’;
+a [1] = ’Y’;
+a [2] = ’Z’;
+cout << a. get () << ’\n’;
+return 0;
+}
 
 
 
@@ -306,6 +388,73 @@ int main(){
 /* Example 5: Modify Example 2 (dynarray) from "ch11_07_ovrldOpr_assignment.cpp" 
    so that it uses [] to index the dynamic array. 
    That is, replace the get() and put() functions with the [] operator. */
+
+
+2. # include <iostream >
+# include <cstdlib >
+using namespace std ;
+class dynarray
+{
+int *p;
+int size ;
+public :
+dynarray ( int s);
+dynarray & operator =( dynarray &ob);
+int & operator []( int i);
+};
+// Constructor
+dynarray :: dynarray ( int s)
+{
+p = new int [s];
+if (!p)
+{
+cout << " Allocation error \n";
+486ANSWERS
+6.7 EXERCISES
+exit (1) ;
+}
+size = s;
+}
+// Overload = for dynarray
+dynarray & dynarray :: operator =( dynarray &ob)
+{
+int i;
+if( size != ob. size )
+{
+cout << " Cannot copy arrays of differing size !\n";
+exit (1) ;
+}
+for (i = 0; i< size ; i++)
+p[i] = ob.p[i];
+return * this ;
+}
+// Overload []
+int & dynarray :: operator []( int i)
+{
+if(i <0 || i> size )
+{
+cout << "\ nIndex value of ";
+cout << i << " is out -of - bounds .\n";
+exit (1) ;
+}
+return p[i];
+}
+int main ()
+{
+int i;
+dynarray ob1 (10) , ob2 (10) , ob3 (100) ;
+ob1 [3] = 10;
+i = ob1 [3];
+cout << i << "\n";
+ob2 = ob1 ;
+i = ob2 [3];
+cout << i << "\n";
+// generates an error
+ob1 = ob3 ; // arrays differ sizes
+487TEACH YOURSELF
+C++
+return 0;
+}
 
 
 
@@ -549,4 +698,16 @@ int main(){
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
