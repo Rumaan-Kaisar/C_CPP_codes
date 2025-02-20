@@ -290,13 +290,15 @@ int main(){
 
 
 
-/* Example 4: Modify Example 1 (strtype class) in "ch11_07_ovrldOpr_assignment.cpp" 
-   so that strtype overloads the [] operator. 
-   Have this operator return the character at the specified index. 
-   Also, allow [] to be used on the left side of the assignment statement 
-   (i.e., modification of the object). Demonstrate its use. */
+/* Example 4: Modify Example 1 (strtype class) in "ch11_07_ovrldOpr_assignment.cpp" so that strtype overloads the [] operator. 
+                Have this operator return the character at the specified "index". 
+                Also, allow [] to be used on the left side of the assignment statement (i.e., modification of the object). 
+                Demonstrate its use. 
+   
 
-1. # include <iostream >
+*/
+
+# include <iostream >
 # include <cstring >
 # include <cstdlib >
 using namespace std ;
@@ -385,9 +387,9 @@ return 0;
 
 
 
-/* Example 5: Modify Example 2 (dynarray) from "ch11_07_ovrldOpr_assignment.cpp" 
-   so that it uses [] to index the dynamic array. 
-   That is, replace the get() and put() functions with the [] operator. */
+/* Example 5: Modify Example 2 (dynarray) from "ch11_07_ovrldOpr_assignment.cpp" so that it uses [] to index the dynamic array. 
+                That is, replace the get() and put() functions with the [] operator. 
+*/
 
 
 2. # include <iostream >
@@ -698,16 +700,6 @@ int main(){
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
