@@ -112,8 +112,8 @@ strtype &strtype::operator=(strtype &ob){
         p = new char[ob.len];
 
         if(!p){
-        std::cout << " Allocation error \n";
-        exit(1);
+            std::cout << " Allocation error \n";
+            exit(1);
         }
     }
 
