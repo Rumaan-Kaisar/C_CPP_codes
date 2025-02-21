@@ -112,8 +112,8 @@ strtype &strtype::operator=(strtype &ob){
         p = new char[ob.len];
 
         if(!p){
-            std::cout << " Allocation error \n";
-            exit(1);
+        std::cout << " Allocation error \n";
+        exit(1);
         }
     }
 
@@ -131,8 +131,8 @@ int main(){
 
     a = b; // now p is not overwritten
 
-    std::cout << a. get () << '\n';
-    std::cout << b. get () << '\n';
+    std::cout << a. get() << '\n';
+    std::cout << b. get() << '\n';
 
     return 0;
 }
