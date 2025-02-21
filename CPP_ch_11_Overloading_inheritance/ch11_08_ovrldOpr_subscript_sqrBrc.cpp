@@ -290,6 +290,7 @@ int main(){
 
 
 
+
 /* Example 4: Modify Example 1 (strtype class) in "ch11_07_ovrldOpr_assignment.cpp" so that strtype overloads the [] operator. 
 
                 The overloaded = operator prevents p from being overwritten during assignment- by checking memory size. 
@@ -396,33 +397,16 @@ int main(){
 }
 
 
-
 /*  The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
         which might lead to a loss of precision, especially on 64-bit systems 
         where pointers are 64 bits but unsigned int is typically 32 bits.
         Casting to unsigned can truncate the pointer value, leading to potential data loss
 
     Solution:
-        cast the pointer p to an uintptr_t or void* instead, 
-        as these types are specifically designed to safely store pointer values.
-
-                #include <cstdint> // Include this for uintptr_t
-
-        change:
-                std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
-
-    uintptr_t
-        The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. 
-        Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
-
-                #include <cstdint> is needed for uintptr_t.
-
-    Alternative (void*):
         If you don't need to perform arithmetic or formatting operations on the pointer, 
             you can also directly cast p to void* for printing.
 
                 std::cout << " Freeing " << (void*)p << '\n';
-
 */
 
 
