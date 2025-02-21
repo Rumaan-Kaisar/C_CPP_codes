@@ -359,6 +359,20 @@ strtype &strtype::operator=(strtype &ob){
 }
 
 
+// Index characters in string. (Overload [])
+char &strtype::operator[]( int i){
+    if((i<0) || (i>(len-1))){
+        // both conditions are logically the same:
+            // if ((i<0) || i>(SIZE - 1))
+            // if ((i<0) || i>= SIZE)
+        std::cout << "\nIndex value of ";
+        std::cout << i << " is out -of - bounds .\n";
+        exit(1);
+    }
+    return p[i];
+}
+
+
 // rev-pt-2 [20-feb-2025]
 
 
@@ -375,6 +389,33 @@ int main(){
 
     return 0;
 }
+
+
+
+
+int main(){
+    strtype a(" Hello "), b(" There ");
+
+    std::cout << a.get() << '\n';
+    std::cout << b.get() << '\n';
+
+    a = b;  // now p is not overwritten
+    std::cout << a.get() << '\n';
+    std::cout << b.get() << '\n';
+
+    // access characters using array indexing
+    std::cout << a [0] << a [1] << a[2] << '\n';
+
+    // assign characters using array indexing
+    a[0] = 'X';
+    a[1] = 'Y';
+    a[2] = 'Z';
+    std::cout << a.get() << '\n';
+
+    return 0;
+}
+
+
 
 /*  The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
         which might lead to a loss of precision, especially on 64-bit systems 
@@ -407,41 +448,9 @@ int main(){
 
 
 
-// rev-pt-1 [20-feb-2025]
 
 
-// Index characters in string. (Overload [])
-char & strtype :: operator []( int i)
-{
-if(i <0 || i>len -1)
-{
-cout << "\ nIndex value of ";
-cout << i << " is out -of - bounds .\n";
-exit (1) ;
-485TEACH YOURSELF
-C++
-}
-return p[i];
-}
 
-
-int main ()
-{
-strtype a(" Hello "), b(" There ");
-cout << a. get () << ’\n’;
-cout << b. get () << ’\n’;
-a = b; // now p is not overwritten
-cout << a. get () << ’\n’;
-cout << b. get () << ’\n’;
-// access characters using array indexing
-cout << a [0] << a [1] << a[2] << ’\n’;
-// assign characters using array indexing
-a [0] = ’X’;
-a [1] = ’Y’;
-a [2] = ’Z’;
-cout << a. get () << ’\n’;
-return 0;
-}
 
 
 
