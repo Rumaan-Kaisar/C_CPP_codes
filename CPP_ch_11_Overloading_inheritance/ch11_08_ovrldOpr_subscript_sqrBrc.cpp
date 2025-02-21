@@ -373,26 +373,6 @@ char &strtype::operator[]( int i){
 }
 
 
-// rev-pt-2 [20-feb-2025]
-
-
-int main(){
-    strtype a(" Hello "), b(" There ");
-
-    std::cout << a.get() << '\n';
-    std::cout << b.get() << '\n';
-
-    a = b; // now p is not overwritten
-
-    std::cout << a. get () << '\n';
-    std::cout << b. get () << '\n';
-
-    return 0;
-}
-
-
-
-
 int main(){
     strtype a(" Hello "), b(" There ");
 
@@ -404,7 +384,7 @@ int main(){
     std::cout << b.get() << '\n';
 
     // access characters using array indexing
-    std::cout << a [0] << a [1] << a[2] << '\n';
+    std::cout << a[0] << a[1] << a[2] << '\n';
 
     // assign characters using array indexing
     a[0] = 'X';
