@@ -411,19 +411,36 @@ int main(){
 
 
 
-
-
-
-
-
-
-
-
-
-
+// rev[21-Feb-2025]
 
 /* Example 5: Modify Example 2 (dynarray) from "ch11_07_ovrldOpr_assignment.cpp" so that it uses [] to index the dynamic array. 
                 That is, replace the get() and put() functions with the [] operator. 
+
+            What we did before:
+                To create a dynamic array type
+                    Allocate memory for the array and store a pointer to this memory in p.
+                    Store the size of the array (in bytes) in size.
+
+                Implement
+                    put() that returns a reference to a specified element
+                    get() that returns the value of a specified element
+
+                Ensure that the array boundaries are not overrun.
+
+                Also, overload the assignment operator(=):
+                    To ensure that the memory allocated for one array 
+                        is not accidentally destroyed during assignment.
+
+                        class dynarray{
+                                int *p;
+                                int size;
+                            public:
+                                dynarray(int s);    // pass size of array in s
+                                int &put(int i);    // return reference to element i
+                                int get(int i);     // return value of element i
+
+                                // create operator=() function
+                        };
 */
 
 
@@ -504,37 +521,7 @@ return 0;
 
 
 
-/* Example 2: Given the following class declaration, your task is to complete it to create a "dynamic array". 
-                Fill in all the details that will create a dynamic array type
-
-                Here's what you need to do:
-                    Allocate memory for the array and store a pointer to this memory in p.
-                    Store the size of the array (in bytes) in size.
-
-                Implement
-                    put() that returns a reference to a specified element
-                    get() that returns the value of a specified element
-
-                Ensure that the array boundaries are not overrun.
-
-                Also, overload the assignment operator(=):
-                    To ensure that the memory allocated for one array 
-                        is not accidentally destroyed during assignment.
-
-                    (Note: In the next section, you’ll learn how to improve this solution further.)
-
-
-
-                        class dynarray{
-                                int *p;
-                                int size;
-                            public:
-                                dynarray(int s);    // pass size of array in s
-                                int &put(int i);    // return reference to element i
-                                int get(int i);     // return value of element i
-
-                                // create operator=() function
-                        };
+/*
 */
 
 #include <iostream>
