@@ -505,16 +505,32 @@ dynarray &dynarray::operator=(dynarray &ob){
 }
 
 
+// Overload []. Replaced put(), get()
+int &dynarray::operator[](int i){
+    if(i<0 || i>size){
+        std::cout << "\nIndex value of ";
+        std::cout << i << " is out -of - bounds.\n";
+        exit(1);
+    }
+    return p[i];
+}
+
+
 int main(){
     int i;
     dynarray ob1(10), ob2(10), ob3(100);
 
-    ob1.put(3) = 10;
-    i = ob1.get(3);
+    // notice we're using [] instead of put(), get()
+
+    // ob1.put(3) = 10;
+    // i = ob1.get(3);
+    ob1[3] = 10;
+    i = ob1[3];
     std::cout << i << '\n';
 
     ob2 = ob1;
-    i = ob2.get(3);
+    // i = ob2.get(3);
+    i = ob2[3];
     std::cout << i << '\n';
 
     // generates an error, for arrays of differing size
@@ -523,50 +539,4 @@ int main(){
     return 0;
 }
 
-
-
-
-
-
-
-// Overload = for dynarray
-dynarray & dynarray :: operator =( dynarray &ob)
-{
-int i;
-if( size != ob. size )
-{
-cout << " Cannot copy arrays of differing size !\n";
-exit (1) ;
-}
-for (i = 0; i< size ; i++)
-p[i] = ob.p[i];
-return * this ;
-}
-// Overload []
-int & dynarray :: operator []( int i)
-{
-if(i <0 || i> size )
-{
-cout << "\ nIndex value of ";
-cout << i << " is out -of - bounds .\n";
-exit (1) ;
-}
-return p[i];
-}
-int main ()
-{
-int i;
-dynarray ob1 (10) , ob2 (10) , ob3 (100) ;
-ob1 [3] = 10;
-i = ob1 [3];
-cout << i << "\n";
-ob2 = ob1 ;
-i = ob2 [3];
-cout << i << "\n";
-// generates an error
-ob1 = ob3 ; // arrays differ sizes
-487TEACH YOURSELF
-C++
-return 0;
-}
 
