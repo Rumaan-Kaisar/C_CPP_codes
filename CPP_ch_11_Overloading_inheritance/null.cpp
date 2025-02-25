@@ -137,5 +137,603 @@ the prefix forms of ++ and {.)
 
 // ------------    Cumulative/Masery/Review skill check    ------------
 
+MASTERY SKILLS CHECK: Chapter 6
+1. // Overload << and
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y; // coordinate values
+public :
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator <<( int i);
+coord operator >>( int i);
+};
+// Overload <<.
+coord coord :: operator <<( int i)
+{
+coord temp ;
+temp .x = x << i;
+temp .y = y << i;
+return temp ;
+}
+// Overload >>.
+coord coord :: operator >>( int i)
+{
+coord temp ;
+temp .x = x >> i;
+temp .y = y >> i;
+return temp ;
+}
+int main ()
+{
+coord o1 (4, 4) , o2;
+int x, y;
+o2 = o1 << 2; // ob << int
+o2. get_xy (x, y);
+cout << "(o1 < <2) X: " << x << ", Y: " << y << ’\n’;
+488ANSWERS
+MASTERY SKILLS CHECK: Chapter 6
+o2 = o1 >> 2; // ob >> int
+o2. get_xy (x, y);
+cout << "(o1 > >2) X: " << x << ", Y: " << y << ’\n’;
+return 0;
+}
+2. # include <iostream >
+using namespace std ;
+class three_d
+{
+int x, y, z;
+public :
+three_d ( int i, int j, int k)
+{
+x = i; y = j; z = k;
+}
+three_d () { x =0; y =0; z=0; }
+void get ( int &i, int &j, int &k)
+{
+i = x; j = y; k = z;
+}
+three_d operator +( three_d ob2 );
+three_d operator -( three_d ob2 );
+three_d operator ++() ;
+three_d operator - -();
+};
+three_d three_d :: operator +( three_d ob2 )
+{
+three_d temp ;
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+temp .z = z + ob2 .z;
+return temp ;
+}
+three_d three_d :: operator -( three_d ob2 )
+{
+three_d temp ;
+temp .x = x - ob2 .x;
+temp .y = y - ob2 .y;
+temp .z = z - ob2 .z;
+return temp ;
+}
+three_d three_d :: operator ++()
+{
+489TEACH YOURSELF
+C++
+x ++;
+y ++;
+z ++;
+return * this ;
+}
+three_d three_d :: operator - -()
+{
+x --;
+y --;
+z --;
+return * this ;
+}
+int main ()
+{
+three_d o1 (10 , 10, 10) , o2 (2, 3, 4) , o3;
+int x, y, z;
+o3 = o1 + o2;
+o3. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+o3 = o1 - o2;
+o3. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+++ o1;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+--o1;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+return 0;
+}
+3. # include <iostream >
+using namespace std ;
+class three_d
+{
+int x, y, z;
+public :
+490ANSWERS
+MASTERY SKILLS CHECK: Chapter 6
+three_d ( int i, int j, int k)
+{
+x = i; y = j; z = k;
+}
+three_d () { x =0; y =0; z=0; }
+void get ( int &i, int &j, int &k)
+{
+i = x; j = y; k = z;
+}
+three_d operator +( three_d &ob2 );
+three_d operator -( three_d &ob2 );
+friend three_d operator ++( three_d &ob);
+friend three_d operator --( three_d &ob);
+};
+three_d three_d :: operator +( three_d &ob2 )
+{
+three_d temp ;
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+temp .z = z + ob2 .z;
+return temp ;
+}
+three_d three_d :: operator -( three_d &ob2 )
+{
+three_d temp ;
+temp .x = x - ob2 .x;
+temp .y = y - ob2 .y;
+temp .z = z - ob2 .z;
+return temp ;
+}
+three_d operator ++( three_d &ob)
+{
+ob.x ++;
+ob.y ++;
+ob.z ++;
+return ob;
+}
+three_d operator --( three_d &ob)
+{
+ob.x --;
+ob.y --;
+ob.z --;
+return ob;
+491TEACH YOURSELF
+C++
+}
+int main ()
+{
+three_d o1 (10 , 10, 10) , o2 (2, 3, 4) , o3;
+int x, y, z;
+o3 = o1 + o2;
+o3. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+o3 = o1 - o2;
+o3. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+++ o1;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+--o1;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+return 0;
+}
+
+4. A binary member operator function is passed the left operand implicitly via this pointer.
+A binary friend operator function is passed both operands explicitly. Unary member
+operator functions have no explicit parameters. A friend unary operator function has one
+parameter.
+5. You will need to overload the = operator when the default bitwise copy is insufficient.
+For example, you might have a situation in which you want only parts of the data in one
+object to be assigned to another object.
+6. No.
+7. # include <iostream >
+using namespace std ;
+class three_d
+{
+int x, y, z;
+public :
+three_d ( int i, int j, int k)
+{
+x = i; y = j; z = k;
+}
+492ANSWERS
+MASTERY SKILLS CHECK: Chapter 6
+three_d () { x =0; y =0; z=0; }
+void get ( int &i, int &j, int &k)
+{
+i = x; j = y; k = z;
+}
+friend three_d operator +( three_d ob , int i);
+friend three_d operator +( int i, three_d ob);
+};
+three_d operator +( three_d ob , int i)
+{
+three_d temp ;
+temp .x = ob.x + i;
+temp .y = ob.y + i;
+temp .z = ob.z + i;
+return temp ;
+}
+three_d operator +( int i, three_d ob)
+{
+three_d temp ;
+temp .x = ob.x + i;
+temp .y = ob.y + i;
+temp .z = ob.z + i;
+return temp ;
+}
+int main ()
+{
+three_d o1 (10 , 10, 10) ;
+int x, y, z;
+o1 = o1 + 10;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+o1 = -20 + o1;
+o1. get (x, y, z);
+cout << "X: " << x << ", Y: " << y;
+cout << ", Z: " << z << "\n";
+return 0;
+}
+8. # include <iostream >
+using namespace std ;
+class three_d
+493TEACH YOURSELF
+C++
+{
+int x, y, z;
+public :
+three_d ( int i, int j, int k)
+{
+x = i; y = j; z = k;
+}
+three_d () { x =0; y =0; z=0; }
+void get ( int &i, int &j, int &k)
+{
+i = x; j = y; k = z;
+}
+int operator ==( three_d ob2);
+int operator !=( three_d ob2);
+int operator ||( three_d ob2);
+};
+int three_d :: operator ==( three_d ob2)
+{
+return x== ob2 .x && y== ob2.y && z== ob2 .z;
+}
+int three_d :: operator !=( three_d ob2)
+{
+return x!= ob2 .x && y!= ob2.y && z!= ob2 .z;
+}
+int three_d :: operator ||( three_d ob2)
+{
+return x|| ob2 .x && y|| ob2.y && z|| ob2 .z;
+}
+int main ()
+{
+three_d o1 (10 , 10, 10) , o2 (2, 3, 4) , o3 (0, 0, 0);
+if(o1 == o1)
+cout << "o1 == o1\n";
+if(o1 != o2)
+cout << "o1 != o2\n";
+if(o3 || o1)
+cout << "o1 or o3 is true \n";
+return 0;
+}
+9. The [ ] is usually overloaded to allow an array encapsulated within a class to be indexed
+with the normal array indexing syntax.
 
 
+
+
+
+CUMULATIVE SKILLS CHECK: Chapter 6
+1. /*
+For clarity , no error checking has been used . However
+you should add some if using this code for a real
+application .
+*/
+# include <iostream >
+# include <cstring >
+using namespace std ;
+class strtype
+{
+char s [80];
+public :
+strtype () { *s = ’\0 ’; }
+strtype ( char *p) { strcpy (s, p); }
+char * get () { return s; }
+strtype operator +( strtype s2);
+strtype operator =( strtype s2);
+int operator <( strtype s2);
+int operator >( strtype s2);
+int operator ==( strtype s2);
+};
+strtype strtype :: operator +( strtype s2)
+{
+strtype temp ;
+strcpy ( temp .s, s);
+strcat ( temp .s, s2.s);
+return temp ;
+}
+strtype strtype :: operator =( strtype s2)
+{
+strcpy (s, s2.s);
+return * this ;
+}
+int strtype :: operator <( strtype s2)
+{
+return strcmp (s, s2.s) < 0;
+}
+int strtype :: operator >( strtype s2)
+{
+return strcmp (s, s2.s) > 0;
+}
+495TEACH YOURSELF
+C++
+int strtype :: operator ==( strtype s2)
+{
+return strcmp (s, s2.s) == 0;
+}
+int main ()
+{
+strtype o1(" Hello "), o2(" There "), o3;
+o3 = o1 + o2;
+cout << o3. get () << ’\n’;
+o3 = o1;
+if(o1 == o3)
+cout << "o1 equals o3\n";
+if(o1 >o2)
+cout << "o1 > o2\n";
+if(o1 <o2)
+cout << "o1 < o2\n";\
+return 0;
+}
+
+
+
+
+
+REVIEW SKILLS CHECK: Chapter 7
+1. No. Overloading an operator simply expands the data types upon which it can operate,
+but no preexisting operations are affected.
+2. Yes. You cannot overload an operator relative to one of C++’s built-in types.
+3. No, the precedence cannot be changed. No, the number of operands cannot be altered.
+4. # include <iostream >
+using namespace std ;
+class array
+{
+int nums [10];
+public :
+array ();
+void set ( int n [10]) ;
+void show ();
+array operator +( array ob2);
+array operator -( array ob2);
+int operator ==( array ob2);
+};
+array :: array ()
+{
+int i;
+496ANSWERS
+REVIEW SKILLS CHECK: Chapter 7
+for (i =0; i <10; i ++)
+nums [i] = 0;
+}
+void array :: set ( int *n)
+{
+int i;
+for (i =0; i <10; i ++)
+nums [i] = n[i];
+}
+void array :: show ()
+{
+int i;
+for (i =0; i <10; i ++)
+cout << nums [i] << ’ ’;
+cout << "\n";
+}
+array array :: operator +( array ob2)
+{
+int i;
+array temp ;
+for (i =0; i <10; i ++)
+temp . nums [i] = nums [i] + ob2 . nums [i];
+return temp ;
+}
+array array :: operator -( array ob2)
+{
+int i;
+array temp ;
+for (i =0; i <10; i ++)
+temp . nums [i] = nums [i] - ob2 . nums [i];
+return temp ;
+}
+int array :: operator ==( array ob2)
+{
+int i;
+for (i =0; i <10; i ++)
+if( nums [i ]!= ob2 . nums [i])
+return 0;
+497TEACH YOURSELF
+C++
+return 1;
+}
+int main ()
+{
+array o1 , o2 , o3;
+int i [10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+o1. set (i);
+o2. set (i);
+o3 = o1 + o2;
+o3. show ();
+o3 = o1 - o3;
+o3. show ();
+if(o1 == o2)
+cout << "o1 equals o2\n";
+else
+cout << "o1 does not equal o2\n";
+if(o1 == o3)
+cout << "o1 equals o3\n";
+else
+cout << "o1 does not equal o3\n";
+return 0;
+}
+5. # include <iostream >
+using namespace std ;
+class array
+{
+int nums [10];
+public :
+array ();
+void set ( int n [10]) ;
+void show ();
+friend array operator +( array ob1 , array ob2 );
+friend array operator -( array ob1 , array ob2 );
+friend int operator ==( array ob1 , array ob2 );
+};
+array :: array ()
+{
+int i;
+for (i =0; i <10; i ++)
+nums [i] = 0;
+498ANSWERS
+REVIEW SKILLS CHECK: Chapter 7
+}
+void array :: set ( int *n)
+{
+int i;
+for (i =0; i <10; i ++)
+nums [i] = n[i];
+}
+void array :: show ()
+{
+int i;
+for (i =0; i <10; i ++)
+cout << nums [i] << ’ ’;
+cout << "\n";
+}
+array operator +( array ob1 , array ob2)
+{
+int i;
+array temp ;
+for (i =0; i <10; i ++)
+temp . nums [i] = ob1 . nums [i] + ob2 . nums [i];
+return temp ;
+}
+array operator -( array ob1 , array ob2)
+{
+int i;
+array temp ;
+for (i =0; i <10; i ++)
+temp . nums [i] = ob1 . nums [i] - ob2 . nums [i];
+return temp ;
+}
+int operator ==( array ob1 , array ob2)
+{
+int i;
+for (i =0; i <10; i ++)
+if( ob1 . nums [i ]!= ob2 . nums [i])
+return 0;
+return 1;
+}
+499TEACH YOURSELF
+C++
+int main ()
+{
+array o1 , o2 , o3;
+int i [10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+o1. set (i);
+o2. set (i);
+o3 = o1 + o2;
+o3. show ();
+o3 = o1 - o3;
+o3. show ();
+if(o1 == o2)
+cout << "o1 equals o2\n";
+else
+cout << "o1 does not equal o2\n";
+if(o1 == o3)
+cout << "o1 equals o3\n";
+else
+cout << "o1 does not equal o3\n";
+return 0;
+}
+6. # include <iostream >
+using namespace std ;
+class array
+{
+int nums [10];
+public :
+array ();
+void set ( int n [10]) ;
+void show ();
+array operator ++() ;
+friend array operator --( array &ob);
+};
+array :: array ()
+{
+int i;
+for (i =0; i <10; i ++)
+nums [i] = 0;
+}
+void array :: set ( int *n)
+{
+500ANSWERS
+REVIEW SKILLS CHECK: Chapter 7
+int i;
+for (i =0; i <10; i ++)
+nums [i] = n[i];
+}
+void array :: show ()
+{
+int i;
+for (i =0; i <10; i ++)
+cout << nums [i] << ’ ’;
+cout << "\n";
+}
+// Overload unary op using member function .
+array array :: operator ++()
+{
+int i;
+for (i =0; i <10; i ++)
+nums [i ]++;
+return * this ;
+}
+// Use a friend ./
+array operator --( array &ob)
+{
+int i;
+for (i =0; i <10; i ++)
+ob. nums [i]--;
+return ob;
+}
+int main ()
+{
+array o1 , o2 , o3;
+int i [10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+o1. set (i);
+o2. set (i);
+o3 = ++ o1;
+o3. show ();
+o3 = --o1;
+501TEACH YOURSELF
+C++
+o3. show ();
+return 0;
+}
+7. No. To overload the assignment operator you must use a member function.
