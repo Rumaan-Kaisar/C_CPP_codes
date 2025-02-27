@@ -5,13 +5,24 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 Mastery Skills Check
+
 At this point you should be able to perform the following exercises and answer the questions.
-1. Overload the >> and << shift operator relative to the coord class so that the following
+
+
+
+
+
+
+/* Example 1: Overload the >> and << shift operator relative to the coord class so that the following
 types of operations are allowed:
 ob << integer
 ob >> integer
-Make sure your operations shift the x and y values by the amount specified.
-2. Given the class
+Make sure your operations shift the x and y values by the amount specified. */
+
+
+
+
+/* Example 2: Given the class
 class three_d
 {
 int x, y, z;
@@ -30,33 +41,64 @@ i = x; j = y; k = z;
 SKILLS CHECK
 overload the +, -, ++, and { operators for this class. (For the increment and decrement
 operators, overload only the prefix form.)
-3. Rewrite your answer to Question 2 so that it uses reference parameters instead of value
+ */
+
+
+
+/* Example 3: Rewrite your answer to Question 2 so that it uses reference parameters instead of value
 parameters to the operator functions. (Hint: You will need to use friend functions for the
-increment and decrement operators.)
-4. How do friend operator functions differ from member operator functions?
-5. Explain why you might need to overload the assignment operator.
-6. Can operator=() be a friend function?
-7. Overload the + for the three d class in Question 2 so that it accepts the following types
+increment and decrement operators.) */
+
+
+
+
+/* Example 4: How do friend operator functions differ from member operator functions? */
+
+
+
+
+/* Example 5: Explain why you might need to overload the assignment operator. */
+
+
+
+
+/* Example 6: Can operator=() be a friend function? */
+
+
+
+
+/* Example 7: Overload the + for the three d class in Question 2 so that it accepts the following types
 of operations:
 ob + int ;
-int + ob;
-8. Overload the ==, !=, and jj operators relative to the three d class from Question 2.
-9. Explain the main reason for overloading the [ ] operator.
+int + ob; */
+
+
+
+
+/* Example 8: Overload the ==, !=, and jj operators relative to the three d class from Question 2. */
+
+
+
+
+/* Example 9: Explain the main reason for overloading the [ ] operator. */
 
 
 
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-Cumulative Skills Check
+
+/* Cumulative Skills Check
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapters.
-1. Create a strtype class that allows the following types of operators:
+
+
+Example 1: Create a strtype class that allows the following types of operators:
 ➤ string concatenation using the + operator
 ➤ string assignment using the = operator
 ➤ string comparisons using <, >, and ==
 Feel free to use fixed-length strings. This is a challenging assignment, but with some
-thought (and experimentation), you should be able to accomplish it.
+thought (and experimentation), you should be able to accomplish it. */
 
 
 
