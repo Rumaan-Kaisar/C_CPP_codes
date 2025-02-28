@@ -1,6 +1,6 @@
 
 
-// --------    rev[25-Feb-25]    --------
+// --------    rev[28-Feb-25]    --------
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
@@ -78,27 +78,22 @@ return 0;
 
 
 /* Example 2: Given the class
-class three_d
-{
-int x, y, z;
-public :
-three_d ( int i, int j, int k)
-{
-x = i; y = j; z = k;
-}
-three_d () { x =0; y =0; z=0; }
-void get ( int &i, int &j, int &k)
-{
-i = x; j = y; k = z;
-}
-};
-170INTRODUCING OPERATOR OVERLOADING
-SKILLS CHECK
-overload the +, -, ++, and { operators for this class. (For the increment and decrement
-operators, overload only the prefix form.)
- */
-2. # include <iostream >
-using namespace std ;
+
+                        class three_d {
+                                int x, y, z;
+                            public:
+                                three_d(int i, int j, int k){ x = i; y = j; z = k; }
+                                three_d(){ x =0; y =0; z=0; }
+                                void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
+                        };
+
+                overload the +, -, ++, and -- operators for this class. 
+                (For the increment and decrement operators, overload only the prefix form.)
+*/
+
+
+#include <iostream >
+
 class three_d
 {
 int x, y, z;
