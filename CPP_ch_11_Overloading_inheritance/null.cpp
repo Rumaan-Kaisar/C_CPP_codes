@@ -41,28 +41,29 @@ class coord{
         coord(int i, int j){ x=i; y=j; }
         void get_xy(int &i, int &j){ i=x; j=y; }
 
-        // Overload << and >>
-        coord operator <<( int i);
-        coord operator >>( int i);
+        // Overload << and >>. Notice in this case no referance is used
+        coord operator<<(int i);
+        coord operator>>(int i);
 };
 
-
 // Overload <<.
-coord coord :: operator <<( int i)
-{
-coord temp ;
-temp .x = x << i;
-temp .y = y << i;
-return temp ;
+coord coord::operator<<(int i){
+    coord temp;
+    temp.x = x << i;
+    temp.y = y << i;
+    return temp ;
 }
+
 // Overload >>.
-coord coord :: operator >>( int i)
-{
-coord temp ;
-temp .x = x >> i;
-temp .y = y >> i;
-return temp ;
+coord coord::operator>>(int i){
+    coord temp;
+    temp.x = x >> i;
+    temp.y = y >> i;
+    return temp;
 }
+
+// rev[03-Mar-2025]
+
 int main ()
 {
 coord o1 (4, 4) , o2;
