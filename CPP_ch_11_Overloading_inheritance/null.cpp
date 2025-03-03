@@ -30,19 +30,23 @@ At this point you should be able to perform the following exercises and answer t
                         };
 */
 
-// Overload << and
-# include <iostream >
-using namespace std ;
-class coord
-{
-int x, y; // coordinate values
-public :
-coord () { x =0; y =0; }
-coord ( int i, int j) { x=i; y=j; }
-void get_xy ( int &i, int &j) { i=x; j=y; }
-coord operator <<( int i);
-coord operator >>( int i);
+
+
+#include <iostream>
+
+class coord{
+        int x, y;   // coordinate values
+    public:
+        coord(){ x =0; y =0; };
+        coord(int i, int j){ x=i; y=j; }
+        void get_xy(int &i, int &j){ i=x; j=y; }
+
+        // Overload << and >>
+        coord operator <<( int i);
+        coord operator >>( int i);
 };
+
+
 // Overload <<.
 coord coord :: operator <<( int i)
 {
