@@ -1,83 +1,12 @@
 
 
-// --------    rev[28-Feb-25]    --------
+// --------    rev[04-Mar-25]    --------
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 Mastery Skills Check
 
 At this point you should be able to perform the following exercises and answer the questions.
-
-
-
-
-
-
-/* Example 1: Overload the >> and << shift operator relative to the coord class (ch11_05_1, ch11_05_2, ch11_05_3, ch11_05_4, ch11_06) 
-                so that the following types of operations are allowed:
-
-                        ob << integer
-                        ob >> integer
-
-                Make sure your operations shift the x and y values by the amount specified. 
-
-                        class coord{
-                                int x, y;   // coordinate values
-                            public:
-                                coord(){ x =0; y =0; };
-                                coord(int i, int j){ x=i; y=j; }
-                                void get_xy(int &i, int &j){ i=x; j=y; }
-                        };
-*/
-
-
-
-#include <iostream>
-
-class coord{
-        int x, y;   // coordinate values
-    public:
-        coord(){ x =0; y =0; };
-        coord(int i, int j){ x=i; y=j; }
-        void get_xy(int &i, int &j){ i=x; j=y; }
-
-        // Overload << and >>. Notice in this case no referance is used
-        coord operator<<(int i);
-        coord operator>>(int i);
-};
-
-// Overload <<.
-coord coord::operator<<(int i){
-    coord temp;
-    temp.x = x << i;
-    temp.y = y << i;
-    return temp ;
-}
-
-// Overload >>.
-coord coord::operator>>(int i){
-    coord temp;
-    temp.x = x >> i;
-    temp.y = y >> i;
-    return temp;
-}
-
-// rev[03-Mar-2025]
-
-int main(){
-    coord o1(4,4), o2;
-    int x, y;
-
-    o2 = o1 << 2; // ob << int
-    o2.get_xy(x,y);
-    std::cout << "(o1 < <2) X: " << x << ", Y: " << y << '\n';
-
-    o2 = o1 >> 2; // ob >> int
-    o2.get_xy (x, y);
-    std::cout << "(o1 > >2) X: " << x << ", Y: " << y << ’\n’;
-
-    return 0;
-}
 
 
 
@@ -97,7 +26,7 @@ int main(){
 */
 
 
-#include <iostream >
+#include <iostream>
 
 class three_d
 {
