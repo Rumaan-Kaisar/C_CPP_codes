@@ -64,19 +64,19 @@ coord coord::operator>>(int i){
 
 // rev[03-Mar-2025]
 
-int main ()
-{
-coord o1 (4, 4) , o2;
-int x, y;
-o2 = o1 << 2; // ob << int
-o2. get_xy (x, y);
-cout << "(o1 < <2) X: " << x << ", Y: " << y << ’\n’;
-488ANSWERS
-MASTERY SKILLS CHECK: Chapter 6
-o2 = o1 >> 2; // ob >> int
-o2. get_xy (x, y);
-cout << "(o1 > >2) X: " << x << ", Y: " << y << ’\n’;
-return 0;
+int main(){
+    coord o1(4,4), o2;
+    int x, y;
+
+    o2 = o1 << 2; // ob << int
+    o2.get_xy(x,y);
+    std::cout << "(o1 < <2) X: " << x << ", Y: " << y << '\n';
+
+    o2 = o1 >> 2; // ob >> int
+    o2.get_xy (x, y);
+    std::cout << "(o1 > >2) X: " << x << ", Y: " << y << ’\n’;
+
+    return 0;
 }
 
 
