@@ -29,6 +29,8 @@
             dereferencing: 
                 In C++, the "dereferencing symbol" is the asterisk (*). 
                 you can use the dereferencing operator to get the value stored at the memory address held by the pointer.
+                Dereferencing is the method where we are using a "pointer" to access the element whose address is being stored. 
+                We use the * operator to get the value of the variable from its address.
 
 
 
