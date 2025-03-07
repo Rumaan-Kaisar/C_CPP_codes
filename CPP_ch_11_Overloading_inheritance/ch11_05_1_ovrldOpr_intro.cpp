@@ -105,6 +105,64 @@
 
 
     Finally, do not use any operator overloading abnormally that causes unexpected or illogical behavior
-*/  
+
+
+    --------    *this    --------
+    Why use *this:
+        *this represents the "current object". 
+        In operator overloading, returning *this allows the function 
+            to return the "modified object itself" rather than a "temporary copy". 
+            This ensures proper chaining of operations like a = b = c; or ++a = b;.
+
+    ----  Purpose of using * (dereferencing)?  ----
+    Dereferencing (recall ch10_10_1_reference.cpp): 
+        Dereferencing is the method where we are using a "pointer" to access the element whose address is being stored. 
+        We use the * operator to get the value of the variable from its address.
+
+        In return *this;, the * operator dereferences the "this" pointer to return the "actual object", not the pointer. 
+            This ensures that the operator returns a reference or a value of the modified object, 
+            making the overloaded operator behave naturally in expressions.
+
+
+    What if If *this is not used and this (a pointer) is returned instead:
+        If *this is not used and "this" (a pointer) is returned instead, 
+            the function would return a "pointer to the current object" instead of the object itself. 
+            This can lead to incorrect behavior and unintended pointer operations.
+
+        Example Without *:
+
+                        three_d* three_d::operator++() {
+                            x++;
+                            y++;
+                            z++;
+                            return this;  // Returns a pointer, not the object itself
+                        }
+        
+            Problems:
+                Returning a pointer when an object is expected may cause issues in expressions like ++a = b;, which expect an object reference.
+                Expressions like a = ++b; won't work correctly because a expects an object, not a pointer.
+
+        Correct Version Using *this:
+
+                        three_d three_d::operator++() {
+                            x++;
+                            y++;
+                            z++;
+                            return *this;  // Returns the updated object itself
+                        }
+
+            Why *this Works Correctly?
+                It returns the modified object, allowing proper assignment and chaining.
+                Ensures natural usage in expressions like a = ++b;.
+
+
+    Operators that frequently use *this in their overloaded functions:
+
+        1.  Assignment Operator (=)
+        2.  Increment (++) and Decrement (--) Operators, for both prefix and postfix versions.
+        3.  Compound Assignment Operators (+=, -=, *=, /=, etc.)
+        4.  Dereference Operator (*). Often used in custom pointer-like classes (e.g., smart pointers).
+        5.  Stream Insertion (<<) and Extraction (>>) or shift operators. Used in operator<< and operator>> for std::ostream and std::istream.
+*/
 
 
