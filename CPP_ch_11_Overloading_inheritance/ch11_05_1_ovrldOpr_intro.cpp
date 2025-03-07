@@ -163,6 +163,10 @@
         3.  Compound Assignment Operators (+=, -=, *=, /=, etc.)
         4.  Dereference Operator (*). Often used in custom pointer-like classes (e.g., smart pointers).
         5.  Stream Insertion (<<) and Extraction (>>) or shift operators. Used in operator<< and operator>> for std::ostream and std::istream.
+
+        Note: Both shift operators (<<, >>) and stream insertion-extraction operators (<<, >>) 
+                use the same symbols but serve different purposes in C++. 
+                The implementation of overloading differs based on how they are used.
 */
 
 
