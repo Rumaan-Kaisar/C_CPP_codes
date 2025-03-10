@@ -124,10 +124,25 @@
             making the overloaded operator behave naturally in expressions.
 
 
-    What if If *this is not used and this (a pointer) is returned instead:
-        If *this is not used and "this" (a pointer) is returned instead, 
-            the function would return a "pointer to the current object" instead of the object itself. 
+    What if *this is not used and "this" (a pointer) is returned instead:
+        If *this is not used and "this" (a pointer) is returned instead not the actual object, 
+            the function would return a "pointer to the current object" instead of the "current object itself." 
             This can lead to incorrect behavior and unintended pointer operations.
+
+    Use *this: 
+        When you want to return the object itself (this is the most common case in operator overloading).
+        *this dereferences the "this" pointer, returning the "actual object" (not a pointer)
+        The return type would be the object type itself 
+        *this is the current object itself, obtained by dereferencing the this pointer.
+        It’s the actual object itself (e.g., three_d if the object is of type three_d).
+        When you dereference this, you get the object itself, which is what you typically return in operator overloads.
+
+    Use this: 
+        When you need to return a pointer to the object (less common in operator overloading).
+        You would need to adjust the return type to be a pointer (class_name*)
+        "this" is a pointer that points to the current object (the object on which the member function is called). 
+        It points to the object, but to access the members of the object, you need to dereference it (e.g., this->x or (*this).x).
+        If you return "this", you're returning a pointer to the current object.
 
         Example Without *:
 
@@ -135,7 +150,7 @@
                             x++;
                             y++;
                             z++;
-                            return this;  // Returns a pointer, not the object itself
+                            return this;  // Returns a pointer, not the current object itself
                         }
         
             Problems:
@@ -148,7 +163,7 @@
                             x++;
                             y++;
                             z++;
-                            return *this;  // Returns the updated object itself
+                            return *this;  // Returns the updated current object itself
                         }
 
             Why *this Works Correctly?
