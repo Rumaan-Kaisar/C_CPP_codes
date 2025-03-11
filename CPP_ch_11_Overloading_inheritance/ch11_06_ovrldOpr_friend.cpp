@@ -401,8 +401,113 @@ int main(){
 
 
 
+/* Example 8: Given the class
 
-/* Example 6: Rewrite previous program so that it uses "reference parameters" 
+                        class three_d {
+                                int x, y, z;
+                            public:
+                                three_d(int i, int j, int k){ x = i; y = j; z = k; }
+                                three_d(){ x =0; y =0; z=0; }
+                                void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
+                        };
+
+                overload the +, -, ++, and -- operators for this class. 
+                (For the increment and decrement operators, overload only the prefix form.)
+*/
+
+#include <iostream>
+
+class three_d{
+        int x, y, z;
+    public:
+        three_d(int i, int j, int k){ x = i; y = j; z = k; }
+        three_d(){ x =0; y =0; z=0; }
+        void get ( int &i, int &j, int &k){ i = x; j = y; k = z; }
+
+        // overload the +, -, ++, and -- operators
+        three_d operator+( three_d ob2 );
+        three_d operator-( three_d ob2 );
+        three_d operator++();
+        three_d operator--();
+};
+
+
+// overload +
+three_d three_d::operator+( three_d ob2 ){
+    three_d temp;
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    temp.z = z + ob2.z;
+    return temp;
+}
+
+
+// overload -
+three_d three_d::operator-( three_d ob2 ){
+    three_d temp;
+    temp.x = x - ob2.x;
+    temp.y = y - ob2.y;
+    temp.z = z - ob2.z;
+    return temp ;
+}
+
+
+// overload ++
+three_d three_d::operator++(){
+    x++;
+    y++;
+    z++;
+    return *this;
+}
+
+// overload --
+three_d three_d::operator--(){
+    x--;
+    y--;
+    z--;
+    return *this;
+}
+
+
+int main(){
+    three_d o1(10,10,10), o2(2,3,4), o3;
+    int x, y, z;
+
+    o3 = o1 + o2;
+    o3.get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y;
+    std::cout << ", Z: " << z << "\n";
+
+    o3 = o1 - o2;
+    o3.get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y;
+    std::cout << ", Z: " << z << "\n";
+
+    ++o1;
+    o1. get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y;
+    std::cout << ", Z: " << z << "\n";
+
+    --o1;
+    o1. get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y;
+    std::cout << ", Z: " << z << "\n";
+
+    return 0;
+}
+/* 
+    notice the use of *this:
+        *this represents the "current object itself". 
+
+        only 'this' represents the "pointer to current object itself"
+            in this case You would need to adjust the return type to be a pointer (three_d*). 
+            to return the current object itself (not a pointer to current object) we're using *this
+*/
+
+
+
+
+/* Example 9: Rewrite previous program so that it uses "reference parameters" 
                 instead of value parameters to the operator functions. 
                 (Hint: You will need to use friend functions for the increment and decrement operators.) 
 
@@ -520,3 +625,5 @@ int main(){
 
     return 0;
 }
+
+
