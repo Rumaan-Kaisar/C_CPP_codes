@@ -6,31 +6,69 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-/* Example 3: Rewrite your answer to Question 2 so that it uses reference parameters instead of value
-parameters to the operator functions. (Hint: You will need to use friend functions for the
-increment and decrement operators.) */
-3. # include <iostream >
-using namespace std ;
-class three_d
-{
-int x, y, z;
-public :
-490ANSWERS
-MASTERY SKILLS CHECK: Chapter 6
-three_d ( int i, int j, int k)
-{
-x = i; y = j; z = k;
-}
-three_d () { x =0; y =0; z=0; }
-void get ( int &i, int &j, int &k)
-{
-i = x; j = y; k = z;
-}
-three_d operator +( three_d &ob2 );
-three_d operator -( three_d &ob2 );
-friend three_d operator ++( three_d &ob);
-friend three_d operator --( three_d &ob);
+/* Example 6: Rewrite previous program so that it uses "reference parameters" 
+                instead of value parameters to the operator functions. 
+                (Hint: You will need to use friend functions for the increment and decrement operators.) 
+
+                Purpose of Using friend for Overloading ++ and --
+
+                    friend is Needed Because ++ and -- Are Unary Operators
+                        ++ and -- operate on a single operand (the object itself).
+
+                    When these overloaded as member functions, they implicitly receive the calling object as "this".
+                        that's why we need to use "return *this"
+                        
+                    Friend Functions Allow Operator Overloading Without Using "this"
+                        Since ++ and -- modify private members (x, y, z), a "non-member function" don't have acess to these
+                        "friend" allows them direct access to the private data of the class.
+
+
+            Notice:
+                If operator++() were a member function
+                    This function modifies the calling object (this->x, this->y, this->z).
+                    It is called as ob1++ or ++ob1, where ob1 is the calling object.
+
+                            three_d three_d::operator++() {
+                                x++;
+                                y++;
+                                z++;
+                                return *this;
+                            }
+
+                Using operator++() as a friend function:
+                    Here, ob is explicitly passed as an argument (instead of using this).
+                    The function modifies ob directly because it has friend access to x, y, z.
+
+                            three_d operator++(three_d &ob) {
+                                ob.x++;
+                                ob.y++;
+                                ob.z++;
+                                return ob;
+                            }
+*/
+
+#include <iostream>
+
+class three_d{
+        int x, y, z;
+    public:
+        three_d(int i, int j, int k){ x = i; y = j; z = k; }
+        three_d(){ x =0; y =0; z=0; }
+        void get ( int &i, int &j, int &k){ i = x; j = y; k = z; }
+
+        // overload the +, -, ++, and -- operators
+        three_d operator+( three_d &ob2 );
+        three_d operator-( three_d &ob2 );
+        // notice the use of friend for overloading ++ and --
+        friend three_d operator++( three_d &ob );
+        friend three_d operator--( three_d &ob );
 };
+ 
+
+
+
+
+
 three_d three_d :: operator +( three_d &ob2 )
 {
 three_d temp ;
