@@ -627,3 +627,22 @@ int main(){
 }
 
 
+
+
+/* Example 10: How do friend operator functions differ from member operator functions? 
+
+                Binary:
+                    A "binary member operator function" is passed the "left operand "implicitly via this pointer.
+                    A "binary friend operator function" is passed "both operands" explicitly. 
+
+                Unary:
+                    An "Unary member operator functions" have no explicit parameters. 
+                    A "friend unary operator function" has one parameter.
+*/
+
+
+
+
+/* Example 11: Can operator=() be a friend function? 
+                ans: No.
+*/
