@@ -1,29 +1,9 @@
 
 
-// --------    rev[11-Mar-25]    --------
+// --------    rev[13-Mar-25]    --------
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-
-
-
-/* Example 4: How do friend operator functions differ from member operator functions? */
-4. A binary member operator function is passed the left operand implicitly via this pointer.
-A binary friend operator function is passed both operands explicitly. Unary member
-operator functions have no explicit parameters. A friend unary operator function has one
-parameter.
-
-
-
-/* Example 5: Explain why you might need to overload the assignment operator. */
-5. You will need to overload the = operator when the default bitwise copy is insufficient.
-For example, you might have a situation in which you want only parts of the data in one
-object to be assigned to another object.
-
-
-
-/* Example 6: Can operator=() be a friend function? */
-6. No.
 
 
 
