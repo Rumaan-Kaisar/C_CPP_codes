@@ -291,3 +291,30 @@ int main(){
 }
 
 
+
+
+/* Example 3: Explain why you might need to overload the assignment operator. 
+
+                We'll need to overload the "=" operator when the "default bitwise copy" is insufficient.
+                For example, we might have a situation in which we want-
+                    only "parts" of the data in "one object" to be assigned to "another object".
+*/
+
+
+
+
+/* Example 4: Can operator=() be a friend function? 
+
+                No, operator=() cannot be a friend function because:
+
+                Must Modify the Calling Object: 
+                    since "=" modifies the existing object
+                    Requires "this" pointer, which friend functions don't have.
+
+                C++ Restriction:
+                    operator=() must be a non-static member function, while friend functions are non-members.
+
+                Thus, operator=() must always be a member function to modify the existing object.
+*/
+
+
