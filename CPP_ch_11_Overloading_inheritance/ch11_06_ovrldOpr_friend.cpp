@@ -646,3 +646,68 @@ int main(){
 /* Example 11: Can operator=() be a friend function? 
                 ans: No.
 */
+
+
+
+
+/* Example 12: Overload the '+' for the "three_d class" in 'Example 8' so that it accepts the following types of operations:
+                    ob + int;
+                    int + ob;
+
+                three_d class:
+                    class three_d {
+                            int x, y, z;
+                        public:
+                            three_d(int i, int j, int k){ x = i; y = j; z = k; }
+                            three_d(){ x =0; y =0; z=0; }
+                            void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
+                    };
+*/
+
+#include <iostream>
+
+class three_d{
+        int x, y, z;
+    public:
+        three_d(int i, int j, int k){ x=i; y=j; z=k; }
+        three_d(){ x=0; y=0; z=0; }
+        void get(int &i, int &j, int &k){ i=x; j=y; k=z; }
+
+        // overload the + using friend (No-order for objects)
+        friend three_d operator+(three_d ob, int i);
+        friend three_d operator+(int i, three_d ob);
+};
+
+three_d operator+(three_d ob, int i){
+    three_d temp;
+    temp.x = ob.x + i;
+    temp.y = ob.y + i;
+    temp.z = ob.z + i;
+    return temp;
+}
+
+three_d operator+(int i, three_d ob){
+    three_d temp;
+    temp.x = ob.x + i;
+    temp.y = ob.y + i;
+    temp.z = ob.z + i;
+    return temp;
+}
+
+
+int main(){
+    three_d o1(10,10,10) ;
+    int x, y, z;
+
+    o1 = o1 + 10;
+    o1.get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y << ", Z: " << z << "\n";
+
+    o1 = -20 + o1;
+    o1.get(x, y, z);
+    std::cout << "X: " << x << ", Y: " << y << ", Z: " << z << "\n";
+
+    return 0;
+}
+
+
