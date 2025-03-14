@@ -1,67 +1,9 @@
 
 
-// --------    rev[13-Mar-25]    --------
+// --------    rev[14-Mar-25]    --------
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-
-
-
-/* Example 7: Overload the + for the three d class in Question 2 so that it accepts the following types
-of operations:
-ob + int ;
-int + ob; */
-
-7. # include <iostream >
-using namespace std ;
-class three_d
-{
-int x, y, z;
-public :
-three_d ( int i, int j, int k)
-{
-x = i; y = j; z = k;
-}
-492ANSWERS
-MASTERY SKILLS CHECK: Chapter 6
-three_d () { x =0; y =0; z=0; }
-void get ( int &i, int &j, int &k)
-{
-i = x; j = y; k = z;
-}
-friend three_d operator +( three_d ob , int i);
-friend three_d operator +( int i, three_d ob);
-};
-three_d operator +( three_d ob , int i)
-{
-three_d temp ;
-temp .x = ob.x + i;
-temp .y = ob.y + i;
-temp .z = ob.z + i;
-return temp ;
-}
-three_d operator +( int i, three_d ob)
-{
-three_d temp ;
-temp .x = ob.x + i;
-temp .y = ob.y + i;
-temp .z = ob.z + i;
-return temp ;
-}
-int main ()
-{
-three_d o1 (10 , 10, 10) ;
-int x, y, z;
-o1 = o1 + 10;
-o1. get (x, y, z);
-cout << "X: " << x << ", Y: " << y;
-cout << ", Z: " << z << "\n";
-o1 = -20 + o1;
-o1. get (x, y, z);
-cout << "X: " << x << ", Y: " << y;
-cout << ", Z: " << z << "\n";
-return 0;
-}
 
 
 
