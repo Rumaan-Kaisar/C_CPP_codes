@@ -711,3 +711,124 @@ int main(){
 }
 
 
+
+
+/* Example 13: Overload the ==, !=, and || operators relative to the "three_d class" from Example 8. 
+
+
+                Previously used:
+                                int three_d::operator==(three_d ob2){
+                                    return (x == ob2.x) && (y == ob2.y) && (z == ob2.z);
+                                }
+
+                                int three_d::operator!=(three_d ob2){
+                                    return (x != ob2.x) && (y !=  ob2.y) && (z != ob2.z);
+                                }
+
+                                int three_d::operator||(three_d ob2){
+                                    return (x || ob2.x) && (y || ob2.y) && (z || ob2.z);
+                                }
+
+
+            issues:
+                The code isn’t entirely correct. Here are the issues:
+
+                operator == is Correct:
+                    It correctly returns true (nonzero) when all three coordinates are equal.
+
+                operator != is Incorrect:
+                    It uses logical AND (&&) to check if each coordinate is different, which means it will only return true if all coordinates differ.
+                    The correct behavior is to return true if any coordinate is different (or simply the logical negation of operator==).
+                    Fix it by using !(*this == ob2) to logically invert ==
+
+                operator || is Non-Standard:
+                    Its implementation returns true only if both objects have all coordinates nonzero (using && on each pair).
+                    Usually, a logical OR would be expected to return true if at least one operand is "true" (nonzero) in any meaningful way.
+
+*/
+// corrected
+#include <iostream>
+
+class three_d{
+        int x, y, z;
+    public:
+        three_d(int i, int j, int k){ x = i; y = j; z = k; }
+        three_d(){ x =0; y =0; z=0; }
+        void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
+
+        // Overload the ==, !=, and || operators
+        int operator==(three_d ob2);
+        int operator!=(three_d ob2);
+        int operator||(three_d ob2);
+};
+
+
+int three_d::operator==(three_d ob2){
+    return (x == ob2.x) && (y == ob2.y) && (z == ob2.z);
+}
+
+int three_d::operator!=(three_d ob2){
+    return (x != ob2.x) || (y !=  ob2.y) || (z != ob2.z);
+}
+
+int three_d::operator||(three_d ob2){
+    return (x || ob2.x) || (y || ob2.y) || (z || ob2.z);
+}
+
+int main(){
+    three_d o1(10,10,10) , o2(2,3,4), o3(0,0,0);
+
+    if(o1 == o1) std::cout << "o1 == o1\n";
+
+    if(o1 != o2) std::cout << "o1 != o2\n";
+
+    if(o3 || o1) std::cout << "o1 or o3 is true \n";
+
+    return 0;
+}
+
+
+
+// VERSION 2: another version using == inversion and useing 'const' 
+// using 'const' avoid making unnecessary copies
+#include <iostream>
+
+class three_d {
+    int x, y, z;
+public:
+    three_d(int i, int j, int k) : x(i), y(j), z(k) {}
+    three_d() : x(0), y(0), z(0) {}
+    void get(int &i, int &j, int &k) const { i = x; j = y; k = z; }
+
+    // Overloaded operators with const correctness and references
+    bool operator==(const three_d &ob2) const;
+    bool operator!=(const three_d &ob2) const;
+    bool operator||(const three_d &ob2) const;
+};
+
+// Corrected == operator
+bool three_d::operator==(const three_d &ob2) const {
+    return (x == ob2.x) && (y == ob2.y) && (z == ob2.z);
+}
+
+// Corrected != operator using logical inversion of ==
+bool three_d::operator!=(const three_d &ob2) const {
+    return !(*this == ob2);
+}
+
+// Corrected || operator (now uses logical OR between coordinates)
+bool three_d::operator||(const three_d &ob2) const {
+    return (x || ob2.x) || (y || ob2.y) || (z || ob2.z);
+}
+
+int main() {
+    three_d o1(10, 10, 10), o2(2, 3, 4), o3(0, 0, 0);
+
+    if (o1 == o1) std::cout << "o1 == o1\n";          // Works
+    if (o1 != o2) std::cout << "o1 != o2\n";          // Works
+    if (o3 || o1) std::cout << "o1 or o3 is true\n";  // Now works correctly
+
+    return 0;
+}
+
+
