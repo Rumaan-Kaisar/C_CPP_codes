@@ -8,27 +8,29 @@
 
 
 
-/* Example 8: Overload the ==, !=, and jj operators relative to the three d class from Question 2. */
-8. # include <iostream >
-using namespace std ;
-class three_d
-493TEACH YOURSELF
-C++
-{
-int x, y, z;
-public :
-three_d ( int i, int j, int k)
-{
-x = i; y = j; z = k;
-}
-three_d () { x =0; y =0; z=0; }
-void get ( int &i, int &j, int &k)
-{
-i = x; j = y; k = z;
-}
-int operator ==( three_d ob2);
-int operator !=( three_d ob2);
-int operator ||( three_d ob2);
+/* Example 8: Overload the ==, !=, and || operators relative to the "three_d class" from Example 8. */
+
+#include <iostream>
+
+class three_d{
+        int x, y, z;
+    public:
+        three_d(int i, int j, int k){ x = i; y = j; z = k; }
+        three_d(){ x =0; y =0; z=0; }
+        void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
+
+        // overload the +, -, ++, and -- operators
+        three_d operator+( three_d ob2 );
+        three_d operator-( three_d ob2 );
+        three_d operator++();
+        three_d operator--();
+};
+
+
+// Overload the ==, !=, and || operators
+int operator ==(three_d ob2);
+int operator !=(three_d ob2);
+int operator ||(three_d ob2);
 };
 int three_d :: operator ==( three_d ob2)
 {
