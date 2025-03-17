@@ -1,54 +1,10 @@
 
 
-// --------    rev[14-Mar-25]    --------
+// --------    rev[17-Mar-25]    --------
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-
-
-
-/* Example 8: Overload the ==, !=, and || operators relative to the "three_d class" from Example 8. */
-
-#include <iostream>
-
-class three_d{
-        int x, y, z;
-    public:
-        three_d(int i, int j, int k){ x = i; y = j; z = k; }
-        three_d(){ x =0; y =0; z=0; }
-        void get(int &i, int &j, int &k){ i = x; j = y; k = z; }
-
-        // Overload the ==, !=, and || operators
-        int operator==(three_d ob2);
-        int operator!=(three_d ob2);
-        int operator||(three_d ob2);
-};
-
-
-int three_d::operator==(three_d ob2){
-    return (x == ob2.x) && (y == ob2.y) && (z == ob2.z);
-}
-
-int three_d::operator!=(three_d ob2){
-    return (x != ob2.x) || (y !=  ob2.y) || (z != ob2.z);
-}
-
-int three_d::operator||(three_d ob2){
-    return (x || ob2.x) || (y || ob2.y) || (z || ob2.z);
-}
-
-int main(){
-    three_d o1(10,10,10) , o2(2,3,4), o3(0,0,0);
-
-    if(o1 == o1) std::cout << "o1 == o1\n";
-
-    if(o1 != o2) std::cout << "o1 != o2\n";
-
-    if(o3 || o1) std::cout << "o1 or o3 is true \n";
-
-    return 0;
-}
 
 
 
