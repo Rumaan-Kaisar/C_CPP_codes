@@ -539,3 +539,19 @@ int main(){
 }
 
 
+
+
+/* Example 6: Explain the main reason for overloading the [] operator. 
+
+                The [] is usually overloaded to allow an array encapsulated within a class 
+                    to be indexed with the normal array indexing syntax.
+
+                Encapsulation of an Array:
+                    If a class contains an array (e.g., int arr[10] inside a class), 
+                    overloading [] allows direct access to elements while maintaining control over how they are accessed.
+
+                Bounds Checking:
+                    Unlike raw arrays, the overloaded [] can include range checking, preventing out-of-bounds access.
+*/
+
+
