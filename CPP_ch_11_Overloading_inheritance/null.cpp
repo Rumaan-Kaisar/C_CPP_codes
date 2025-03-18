@@ -6,41 +6,27 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-
-
-
-/* Example 9: Explain the main reason for overloading the [ ] operator. */
-9. The [ ] is usually overloaded to allow an array encapsulated within a class to be indexed
-with the normal array indexing syntax.
-
-
-
-
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-/* Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
 
 
-Example 1: Create a strtype class that allows the following types of operators:
-➤ string concatenation using the + operator
-➤ string assignment using the = operator
-➤ string comparisons using <, >, and ==
-Feel free to use fixed-length strings. This is a challenging assignment, but with some
-thought (and experimentation), you should be able to accomplish it. */
-1. /*
-For clarity , no error checking has been used . However
-you should add some if using this code for a real
-application .
+/* Example 1: Create a strtype class that allows the following types of operators:
+                "string concatenation" using the + operator
+                "string assignment" using the = operator
+                "string comparisons" using <, >, and ==
+
+                Feel free to use fixed-length strings.
+
+                For clarity , no error checking has been used . 
+                However you should add some if using this code for a real application
 */
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class strtype
-{
-char s [80];
-public :
+
+#include <iostream>
+#include <cstring>
+
+class strtype{
+        char s[80];
+    public:
 strtype () { *s = ’\0 ’; }
 strtype ( char *p) { strcpy (s, p); }
 char * get () { return s; }
