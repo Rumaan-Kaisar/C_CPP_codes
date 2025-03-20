@@ -318,3 +318,74 @@ int main(){
 */
 
 
+
+
+/* Example 5: Create a strtype class that allows the following types of operators:
+                "string concatenation" using the + operator
+                "string assignment" using the = operator
+                "string comparisons" using <, >, and ==
+
+                Feel free to use fixed-length strings.
+
+                For clarity , no error checking has been used . 
+                However you should add some if using this code for a real application
+*/
+
+#include <iostream>
+#include <cstring>
+
+class strtype{
+        char s[80];
+    public:
+        strtype(){ *s = '\0' ;}
+        strtype(char *p){ strcpy(s, p); }
+        char *get(){ return s;}
+
+        // overload +, =, <, >, ==
+        strtype operator+(strtype s2);
+        strtype operator=(strtype s2);
+        int operator<(strtype s2);
+        int operator>(strtype s2);
+        int operator==(strtype s2);
+};
+
+
+strtype strtype::operator+(strtype s2){
+    strtype temp;
+    strcpy(temp .s, s);
+    strcat(temp .s, s2.s);
+    return temp;
+}
+
+strtype strtype::operator=(strtype s2){
+    strcpy(s, s2.s);
+    return *this;
+}
+
+int strtype::operator<(strtype s2){
+    return strcmp(s, s2.s) < 0;
+}
+
+int strtype::operator>(strtype s2){
+    return strcmp(s, s2.s) > 0;
+}
+
+int strtype::operator==(strtype s2){
+    return strcmp(s, s2.s) == 0;
+}
+
+
+int main(){
+    strtype o1(" Hello "), o2(" There "), o3;
+
+    o3 = o1 + o2;
+    std::cout << o3. get() << '\n';
+
+    o3 = o1;
+    if(o1 == o3) std::cout << "o1 equals o3\n";
+    if(o1 > o2) std::cout << "o1 > o2\n";
+    if(o1 < o2) std::cout << "o1 < o2\n";
+
+    return 0;
+}
+
