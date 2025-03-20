@@ -185,3 +185,38 @@
 */
 
 
+
+
+/* Example 1: Does an overloaded operator lose its original functionality?
+            ans: 
+                No. 
+                When an operator is overloaded, it retains its original functionality for built-in data types. 
+                Overloading only extends the operator's usability to user-defined types 
+                    without affecting its existing operations on primitive types. 
+*/
+
+
+
+
+/* Example 2: Can an operator be overloaded for built-in data types?
+            ans: 
+                No. 
+                An operator can only be overloaded for user-defined types (such as classes or structs). 
+                C++ does not allow overloading an operator for built-in types like int, char, or float. 
+*/
+
+
+
+
+/* Example 3: Can overloading change the precedence or number of operands of an operator?
+
+            Precedence: 
+                No, overloading does not change the precedence of an operator. 
+                It always follows the standard precedence rules defined in C++.
+
+            Number of Operands: 
+                No, the number of operands (arity) of an operator cannot be changed during overloading. 
+                For example, a binary operator (e.g., +) must remain binary, 
+                    and a unary operator (e.g., ++) must remain unary.
+*/
+
