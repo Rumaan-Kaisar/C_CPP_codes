@@ -9,136 +9,71 @@
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
 
+// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
-/* Example 1: Create a strtype class that allows the following types of operators:
-                "string concatenation" using the + operator
-                "string assignment" using the = operator
-                "string comparisons" using <, >, and ==
 
-                Feel free to use fixed-length strings.
 
-                For clarity , no error checking has been used . 
-                However you should add some if using this code for a real application
-*/
+
+
+
+/* Example 4: Given the following partially completed program, fill in the "needed operator functions":
+
+note:
+
+is array::array(){
+    for(int i=0; i<10; i ++) nums[i] = 0;
+}
+
+is same as
+
+array::array(){ int i;
+
+    for(i=0; i<10; i ++) nums[i] = 0;
+}
 
 #include <iostream>
-#include <cstring>
 
-class strtype{
-        char s[80];
+class array{
+        int nums[10];
     public:
-strtype () { *s = ’\0 ’; }
-strtype ( char *p) { strcpy (s, p); }
-char * get () { return s; }
-strtype operator +( strtype s2);
-strtype operator =( strtype s2);
-int operator <( strtype s2);
-int operator >( strtype s2);
-int operator ==( strtype s2);
+        array();
+        void set(int n[10]);
+        void show();
+        
+        // overload +, -, ==
+        array operator+(array ob2);
+        array operator-(array ob2);
+        array operator==(array ob2);
 };
-strtype strtype :: operator +( strtype s2)
-{
-strtype temp ;
-strcpy ( temp .s, s);
-strcat ( temp .s, s2.s);
-return temp ;
-}
-strtype strtype :: operator =( strtype s2)
-{
-strcpy (s, s2.s);
-return * this ;
-}
-int strtype :: operator <( strtype s2)
-{
-return strcmp (s, s2.s) < 0;
-}
-int strtype :: operator >( strtype s2)
-{
-return strcmp (s, s2.s) > 0;
-}
-495TEACH YOURSELF
-C++
-int strtype :: operator ==( strtype s2)
-{
-return strcmp (s, s2.s) == 0;
-}
-int main ()
-{
-strtype o1(" Hello "), o2(" There "), o3;
-o3 = o1 + o2;
-cout << o3. get () << ’\n’;
-o3 = o1;
-if(o1 == o3)
-cout << "o1 equals o3\n";
-if(o1 >o2)
-cout << "o1 > o2\n";
-if(o1 <o2)
-cout << "o1 < o2\n";\
-return 0;
+
+
+array::array(){
+    for(int i=0; i<10; i ++) nums[i] = 0;
 }
 
 
-
-
-// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-Review Skills Check
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
-
-
-
-
-/* Example 1: When an operator is overloaded, does it lose any of its original functionality? */
-1. No. Overloading an operator simply expands the data types upon which it can operate,
-but no preexisting operations are affected.
-
-
-
-/* Example 2: Must an operator be overloaded relative to a user-defined type, such as a class? */
-2. Yes. You cannot overload an operator relative to one of C++’s built-in types.
-
-
-
-/* Example 3: Can the precedence of an overloaded operator be changed? Can the number of operands be altered? */
-3. No, the precedence cannot be changed. No, the number of operands cannot be altered.
-
-
-
-/* Example 4: Given the following partially completed program, fill in the needed operator functions:
-# include <iostream >
-using namespace std ;
-class array
-{
-int nums [10];
-public :
-array ();
-void set ( int n [10]) ;
-void show ();
-array operator +( array ob2);
-array operator -( array ob2);
-array operator ==( array ob2);
-};
-array :: array ()
-{
-int i;
-for (i =0; i <10; i ++)
-nums [i] = 0;
-}
 void array :: set ( int *n)
 {
 int i;
 for (i =0; i <10; i ++)
 nums [i] = n[i];
 }
+
+
 void array :: show ()
-174INHERITANCE
+
 {
 int i;
 for (i =0; i <10; i ++)
 cout << nums [i] << ’ ’;
 cout << "\n";
 }
-// Fill in operator functions .
+
+
+// Fill in operator functions.
+
+
+
 int main ()
 {
 array o1 , o2 , o3;
@@ -163,6 +98,8 @@ Have the overloaded + add each element of each operand. Have the overloaded - su
 each element of the right operand from the left. Have the overloaded == return true if
 each element of each operand is the same and return false otherwise.
  */
+
+
 
 4. # include <iostream >
 using namespace std ;
