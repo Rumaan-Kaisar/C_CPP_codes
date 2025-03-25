@@ -13,36 +13,10 @@
 
 
 
+// add to       ch11_06_ovrldOpr_friend.cpp
 
-
-
-/* Example 4: Given the following partially completed program, fill in the "needed operator functions":
-
-                Have the "overloaded +" add each element of each operand. 
-                Have the "overloaded -" subtract each element of the "right operand" from the left. 
-                Have the "overloaded ==" return 'true' if each element of each operand is the same 
-                    and return 'false' otherwise.
-
-            note:
-
-                In following context
-
-                        is array::array(){
-                            for(int i=0; i<10; i ++) nums[i] = 0;      
-                            // Scope of i exists only inside the loop.
-                        }
-
-                is same as
-
-                        array::array(){ 
-                            int i;      
-                            // Scope of i exists throughout the constructor but is still local to the function.
-                            for(i=0; i<10; i ++) nums[i] = 0;
-                        }
-
-                However, the scope of i is different.
-                The first one is generally preferred for better scoping and readability.
-
+/* Example 5: Convert the solution from "Example 3" from "ch11_05_3_ovrldOpr_relational_logical.cpp" 
+                so it overloads the operators by using friend functions. 
 
 
                 // overload +, -, == for array objects
@@ -58,7 +32,7 @@
                         // overload +, -, ==
                         array operator+(array ob2);
                         array operator-(array ob2);
-                        array operator==(array ob2);
+                        int operator==(array ob2);
                 };
 
 
@@ -81,7 +55,28 @@
                 }
 
 
-                // Fill in operator functions.
+                // implement overloading: Fill in operator functions.
+                array array::operator+(array ob2){
+                    int i;
+                    array temp;
+                    for(i=0; i<10; i++) temp.nums[i] = nums[i] + ob2.nums[i];
+                    return temp;
+                }
+
+
+                array array::operator-(array ob2){
+                    int i;
+                    array temp;
+                    for(i=0; i<10; i++) temp.nums[i] = nums[i] - ob2.nums[i];
+                    return temp;
+                }
+
+
+                int array::operator==(array ob2){
+                    int i;
+                    for(i=0; i<10; i++) if(nums[i] != ob2.nums[i]) return 0;
+                    return 1;
+                }
 
 
                 int main(){
@@ -109,201 +104,7 @@
 
                     return 0;
                 }
-
 */
-
-// overload +, -, == for array objects
-#include <iostream>
-
-class array{
-        int nums[10];
-    public:
-        array();
-        void set(int n[10]);
-        void show();
-        
-        // overload +, -, ==
-        array operator+(array ob2);
-        array operator-(array ob2);
-        array operator==(array ob2);
-};
-
-
-array::array(){
-    int i;
-    for(i=0; i<10; i ++) nums[i] = 0;
-}
-
-
-void array::set(int *n){
-    int i;
-    for(i=0; i<10; i++) nums[i] = n[i];
-}
-
-
-void array::show(){
-    int i;
-    for(i =0; i<10; i++) std::cout << nums[i] << ' ';
-    std::cout << "\n";
-}
-
-
-// implement overloading: Fill in operator functions.
-array array::operator+(array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = nums[i] + ob2.nums[i];
-    return temp;
-}
-
-
-array array::operator-(array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = nums[i] - ob2.nums[i];
-    return temp;
-}
-
-
-int array::operator==(array ob2){
-    int i;
-    for(i=0; i<10; i++) if(nums[i] != ob2.nums[i]) return 0;
-    return 1;
-}
-
-
-int main(){
-    array o1, o2, o3;
-    int i[10] = {1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10 };
-
-    o1.set(i);
-    o2.set(i);
-
-    o3 = o1 + o2;
-    o3.show();
-
-    o3 = o1 - o3;
-    o3.show();
-
-    if(o1 == o2) 
-        std::cout << "o1 equals o2\n";
-    else 
-        std::cout << "o1 does not equal o2\n";
-
-    if(o1 == o3) 
-        std::cout << "o1 equals o3\n";
-    else
-        std::cout << "o1 does not equal o3\n";
-
-    return 0;
-}
-
-
-
-
-// ------   corrected   -------------
-
-// overload +, -, == for array objects
-#include <iostream>
-
-class array{
-        int nums[10];
-    public:
-        array();
-        void set(int n[10]);
-        void show();
-        
-        // overload +, -, ==
-        array operator+(array ob2);
-        array operator-(array ob2);
-        int operator==(array ob2);
-};
-
-
-array::array(){
-    int i;
-    for(i=0; i<10; i ++) nums[i] = 0;
-}
-
-
-void array::set(int *n){
-    int i;
-    for(i=0; i<10; i++) nums[i] = n[i];
-}
-
-
-void array::show(){
-    int i;
-    for(i =0; i<10; i++) std::cout << nums[i] << ' ';
-    std::cout << "\n";
-}
-
-
-// implement overloading: Fill in operator functions.
-array array::operator+(array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = nums[i] + ob2.nums[i];
-    return temp;
-}
-
-
-array array::operator-(array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = nums[i] - ob2.nums[i];
-    return temp;
-}
-
-
-int array::operator==(array ob2){
-    int i;
-    for(i=0; i<10; i++) if(nums[i] != ob2.nums[i]) return 0;
-    return 1;
-}
-
-
-int main(){
-    array o1, o2, o3;
-    int i[10] = {1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10 };
-
-    o1.set(i);
-    o2.set(i);
-
-    o3 = o1 + o2;
-    o3.show();
-
-    o3 = o1 - o3;
-    o3.show();
-
-    if(o1 == o2) 
-        std::cout << "o1 equals o2\n";
-    else 
-        std::cout << "o1 does not equal o2\n";
-
-    if(o1 == o3) 
-        std::cout << "o1 equals o3\n";
-    else
-        std::cout << "o1 does not equal o3\n";
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Example 5: Convert the solution from Exercise 4 so it overloads the operators by using friend functions. */
 
 5. # include <iostream >
 using namespace std ;
@@ -388,6 +189,7 @@ return 0;
 
 
 
+// add to       ch11_06_ovrldOpr_friend.cpp
 
 /* Example 6: Using the class and support functions from Exercise 4, overload the ++ operator by
 using a member function and overload the { operator by using a friend. (Overload only
