@@ -15,10 +15,11 @@
 
 // add to       ch11_06_ovrldOpr_friend.cpp
 
-/* Example 6: Using the class and support functions from Exercise 14 (previous program), overload the ++ operator by
-using a member function and overload the { operator by using a friend. (Overload only
-the prefix forms of ++ and {.) */
-
+/* Example 6: Using the class and support functions from Exercise 14 (previous program), 
+                overload the ++ operator by using a member function and
+                overload the -- operator by using a friend. 
+                (Overload only the prefix forms of ++ and --) 
+*/
 
 // overload +, -, == for array objects using friend
 #include <iostream>
@@ -30,16 +31,15 @@ class array{
         void set(int n[10]);
         void show();
         
-        // overload +, -, == using friend
-        friend array operator+(array ob1, array ob2);
-        friend array operator-(array ob1, array ob2);
-        friend int operator==(array ob1, array ob2);
+        // overload ++ as member, overload -- as friend
+        array operator++();
+        friend array operator--(array &ob);
 };
 
 
 array::array(){
     int i;
-    for(i=0; i<10; i ++) nums[i] = 0;
+    for(i=0; i<10; i++) nums[i] = 0;
 }
 
 
@@ -56,28 +56,7 @@ void array::show(){
 }
 
 
-// implement overloading: Fill in operator functions. notice no "::array" used
-array operator+(array ob1, array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = ob1.nums[i] + ob2.nums[i];
-    return temp;
-}
-
-
-array operator-(array ob1, array ob2){
-    int i;
-    array temp;
-    for(i=0; i<10; i++) temp.nums[i] = ob1.nums[i] - ob2.nums[i];
-    return temp;
-}
-
-
-int operator==(array ob1, array ob2){
-    int i;
-    for(i=0; i<10; i++) if(ob1.nums[i] != ob2.nums[i]) return 0;
-    return 1;
-}
+// implement overloading:
 
 
 int main(){
@@ -109,38 +88,9 @@ int main(){
 
 
 6. # include <iostream >
-using namespace std ;
-class array
-{
-int nums [10];
-public :
-array ();
-void set ( int n [10]) ;
-void show ();
-array operator ++() ;
-friend array operator --( array &ob);
-};
-array :: array ()
-{
-int i;
-for (i =0; i <10; i ++)
-nums [i] = 0;
-}
-void array :: set ( int *n)
-{
-500ANSWERS
-REVIEW SKILLS CHECK: Chapter 7
-int i;
-for (i =0; i <10; i ++)
-nums [i] = n[i];
-}
-void array :: show ()
-{
-int i;
-for (i =0; i <10; i ++)
-cout << nums [i] << ’ ’;
-cout << "\n";
-}
+
+
+
 // Overload unary op using member function .
 array array :: operator ++()
 {
@@ -149,6 +99,7 @@ for (i =0; i <10; i ++)
 nums [i ]++;
 return * this ;
 }
+
 // Use a friend ./
 array operator --( array &ob)
 {
@@ -157,6 +108,8 @@ for (i =0; i <10; i ++)
 ob. nums [i]--;
 return ob;
 }
+
+
 int main ()
 {
 array o1 , o2 , o3;
