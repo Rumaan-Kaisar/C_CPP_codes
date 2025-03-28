@@ -389,3 +389,11 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 6: Can the assignment operator be overloaded by using a "friend" function? 
+            ans:
+                No. To overload the assignment operator you must use a member function.
+*/
+
