@@ -4,6 +4,8 @@
 INHERITANCE basics: 
     previously discussed in "ch10_02_inheritance_intro.cpp"
 
+--------    rev[28-Mar-25]    --------
+
 11.15 INHERITANCE: access control of base class
 	When one class inherits another, it uses this general form:
 class derived_class_name : access base_class_name { // ... }
