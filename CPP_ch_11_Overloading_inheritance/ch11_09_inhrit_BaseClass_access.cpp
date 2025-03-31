@@ -5,36 +5,90 @@
         previously discussed in "ch10_02_inheritance_intro.cpp"
 
 
---------    rev[28-Mar-25]    --------
+    Inheritance:
+        When one class inherits another, it uses this general form:
 
-INHERITANCE: 
-    When one class inherits another, it uses this general form:
+                    class derived_class_name : access_specifier base_class_name { 
+                        // ... 
+                        // ... 
+                    }
 
-                class derived_class_name : access_specifier base_class_name { 
-                    // ... 
-                    // ... 
-                }
-
-        Here access_specifier is one of three keywords: 
-            public, 
-            private, or 
-            protected.
+            Here access_specifier is one of three keywords: 
+                public, 
+                private, or 
+                protected.
 
 
-// correct GPT ----------------
-    Access specifiers:
-Access specifiers controlls Control ACCESS of base class from derived class
-	
+
+    --------  Access specifiers  --------
+    We've already introduced these in "ch10_02_inheritance_intro.cpp"
+
+    Access specifiers:        
+        Access specifiers control how base class members are accessible in the derived class.
+        The three access specifiers in C++ are public, private, and protected.
+
+        These access specifiers define the "Inheritance Access Modes"
+            The access specifier determines how elements of the base class are inherited by the derived class. 
 
 
-	The access specifier determines how elements of the base class are inherited by the derived class. 
+
+--------    rev[31-Mar-25]    --------
+
+
+
+
 	When the access specifer for the inherited base class is public, all public members of the base become public members of the derived class. 
 	If the access specifier is private, all public members of the base class become private members of the derived class. 
 	But these private members are still accessible by member functions of the derived class.
+
+
 	In either case, any private members of the base remain private to it and are inaccessible by the derived class.
 	Technically, access is optional:		If the specifier is not present,  it is private by default if the derived class is a class. 
 	If the derived class is a struct, public is the default in the absence of an explicit access specifier. 
 	However, we explicitly specify access for the sake of clarity.
+
+
+In C++ inheritance, we can derive a child class from the base class in different 'ACCESS MODES'. For example,
+
+        class Base {
+            .... 
+            .... 
+            ....
+        };
+
+        class Derived : public Base {
+            .... 
+            .... 
+            ....
+        };
+
+
+        Notice the keyword 'public' in the code:
+
+                class Derived : public Base
+
+            This means that we have created a derived class from the base class in 'public mode'. 
+                Alternatively, we can also derive classes in 'protected' or 'private' modes.
+
+            These 3 keywords (public, protected, and private) are known as access specifiers in C++ inheritance.
+
+
+
+    public, protected, and private inheritance have the following features:
+
+        public:
+            public inheritance makes 'PUBLIC members' of the base class "public" in the derived class, and 
+                the PROTECTED members of the base class "remain protected" in the derived class.
+
+        protected:
+            protected inheritance makes the 'PUBLIC and PROTECTED members' of the base class "protected" in the derived class.
+
+        private:
+            private inheritance makes the 'public and protected members' of the base class "private" in the derived class.
+
+    Note: 'private members' of the base class are inaccessible to the derived class.
+
+
 
 
 	Example 1: Here because base is inherited as public, the public members of base- setx() and showx() - become public members of derived and are, therefore, accessible by any other part of the program. Specifically, they are legally called within main().
