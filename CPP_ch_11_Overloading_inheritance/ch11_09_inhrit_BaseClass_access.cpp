@@ -34,32 +34,33 @@
 
 --------    rev[31-Mar-25]    --------
 
+public:
+When the access specifer for the inherited base class is public, all public members of the base become public members of the derived class. 
 
-
-
-	When the access specifer for the inherited base class is public, all public members of the base become public members of the derived class. 
-	If the access specifier is private, all public members of the base class become private members of the derived class. 
-	But these private members are still accessible by member functions of the derived class.
+private:
+If the access specifier is private, all public members of the base class become private members of the derived class. 
+But these private members are still accessible by member functions of the derived class.
 
 
 	In either case, any private members of the base remain private to it and are inaccessible by the derived class.
-	Technically, access is optional:		If the specifier is not present,  it is private by default if the derived class is a class. 
+	Technically, access is optional:	
+	If the specifier is not present,  it is private by default if the derived class is a class. 
+
+
 	If the derived class is a struct, public is the default in the absence of an explicit access specifier. 
 	However, we explicitly specify access for the sake of clarity.
+
+
 
 
 In C++ inheritance, we can derive a child class from the base class in different 'ACCESS MODES'. For example,
 
         class Base {
-            .... 
-            .... 
-            ....
+            // .... 
         };
 
         class Derived : public Base {
-            .... 
-            .... 
-            ....
+            // .... 
         };
 
 
