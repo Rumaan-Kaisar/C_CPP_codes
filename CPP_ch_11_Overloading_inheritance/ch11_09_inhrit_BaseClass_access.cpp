@@ -79,6 +79,17 @@
     Note: 'private members' of the base class are inaccessible to the derived class.
 
 
+-------  GPT  -------
+
+Protected Inheritance: Public and protected members of the base class become protected in the derived class.
+
+Private Inheritance: Public and protected members of the base class become private in the derived class. Private is the default for classes if no access specifier is given.
+
+Public Inheritance: Public members remain public, and protected members remain protected in the derived class. Private members of the base class remain inaccessible. Public is the default for structs if no access specifier is given.
+
+-------------------
+
+
 
 
 	Example 1: Here because base is inherited as public, the public members of base- setx() and showx() - become public members of derived and are, therefore, accessible by any other part of the program. Specifically, they are legally called within main().
