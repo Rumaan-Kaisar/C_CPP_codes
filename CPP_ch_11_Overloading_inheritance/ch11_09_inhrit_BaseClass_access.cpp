@@ -81,7 +81,7 @@
 
 -------  GPT  -------
 
-Protected Inheritance: Public and protected members of the base class become protected in the derived class.
+
 
 Private Inheritance: Public and protected members of the base class become private in the derived class. Private is the default for classes if no access specifier is given.
 
