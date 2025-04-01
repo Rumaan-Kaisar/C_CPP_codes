@@ -34,27 +34,8 @@
 
 --------    rev[31-Mar-25]    --------
 
-:
 
-
-:
-
-
-
-
-	
-
-
-
-
-
-	If the derived class is a struct, public is the default in the absence of an explicit access specifier. 
-	However, we explicitly specify access for the sake of clarity.
-
-
-
-
-In C++ inheritance, we can derive a child class from the base class in different 'ACCESS MODES'. For example,
+    In C++ inheritance, we can derive a child class from the base class in different 'ACCESS MODES'. For example,
 
         class Base {
             // .... 
@@ -78,9 +59,6 @@ In C++ inheritance, we can derive a child class from the base class in different
 
     public, protected, and private inheritance have the following features:
 
-
-
-
         protected:
             protected inheritance makes the 'PUBLIC and PROTECTED members' of the base class "protected" in the derived class.
 
@@ -95,6 +73,7 @@ In C++ inheritance, we can derive a child class from the base class in different
                 the PROTECTED members of the base class "remain protected" in the derived class.
             When the access specifer for the inherited base class is public, all public members of the base become public members of the derived class. 
             In either case (private/public), any private members of the base remain private to it and are inaccessible by the derived class.
+            If the derived class is a struct, public is the default in the absence of an explicit access specifier.
 
 
     Note: 'private members' of the base class are inaccessible to the derived class.
