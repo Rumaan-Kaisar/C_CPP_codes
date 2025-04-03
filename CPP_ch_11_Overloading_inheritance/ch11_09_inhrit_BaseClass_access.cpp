@@ -54,6 +54,9 @@
             These 3 keywords (public, protected, and private) are known as access specifiers in C++ inheritance.
 
 
+        Also notice the use of a single colon ':' for inheritance, 
+            whereas '::' (scope resolution operator) is used to specify scope.
+
 
     public, protected, and private inheritance have the following features:
 
@@ -80,35 +83,87 @@
             For a "class", inheritance is "private" by default.
             For a "struct", inheritance is "public" by default.
 
+*/
 
 
- 
+// -----------  rev[03-apr-25]  -----------
 
--------------------
+/* Example 1: In the following program, a base class is inherited as "public" by a derived class.
+                
+                Here because base is "inherited as public", the public members of base- setx() and showx() 
+                    become public members of derived and are, therefore, accessible by any other part of the program. 
+                    Specifically, they are legally called within main(). 
+*/
 
 
--------  chk pt 2  -------
 
-	Example 1: Here because base is inherited as public, the public members of base- setx() and showx() - become public members of derived and are, therefore, accessible by any other part of the program. Specifically, they are legally called within main().
-class base { int x;
-    	public :
-	void setx (int n) { x = n; }
-	void showx() {cout<< x <<'\n';}     };	// Inherit as public .
+
+#include <iostream>
+
+class base { 
+        int x;
+    public :
+        void setx(int n){ x = n; }
+        void showx(){ std::cout<< x <<'\n'; }
+};  
+
+
+// Inherit as public. notice single colon ':'
 class derived : public base { int y;
-  public : void sety (int n) { y = n; }
-           void showy() {cout<< y <<'\n';}  };
-	int main() { 	derived ob; 		// derived type object 
-			ob.setx(10) ; 	// access member of base class through the derived class's object 
-			ob.sety(20) ; 	// access member of derived class 
-			ob.showx(); 		// access member of base class through the derived class's object 
-			ob.showy(); 		// access member of derived class 
-	return 0; }
+public : void sety (int n) { y = n; }
+void showy() {cout<< y <<'\n';}  };
+int main() {derived ob; // derived type object 
+ob.setx(10); // access member of base class through the derived class's object 
+ob.sety(20); // access member of derived class 
+ob.showx();  // access member of base class through the derived class's object 
+ob.showy();  // access member of derived class 
+return 0; }
+
+
+
+
+
+class base
+{
+int x;
+public :
+void setx ( int n) { x = n; }
+void showx () { cout << x << ’\n’; }
+};
+// Inherit as public .
+class derived : public base
+{
+int y;
+public :
+void sety ( int n) { y = n; }
+void showy () { cout << y << ’\n’; }
+};
+int main ()
+{
+derived ob;
+ob. setx (10) ; // access member of base class
+176INHERITANCE
+7.1. BASE CLASS ACCESS CONTROL
+ob. sety (20) ; // access member of derived class
+ob. showx (); // access member of base class
+ob. showy (); // access member of derived class
+return 0;
+}
+
+
+/*
+
+// -------  chk pt 2  -------
+
 	Example 2: It is important to understand that just because a derived class inherits a base as public, it does not mean that the derived class has access to the base's private members. For example, in previous example 1 : 
 
 class derived : public base { int y;
   			      public:  // Error! : x is a private member of base and not available within derived . 
    void show_sum() {cout<< x+y << '\n';}  
 	In this example, the derived class attempts to access x, which is a private member of base. This is an error because the private parts of a base class remain private to it no matter how it is inherited.
+
+
+
 	Example 3 (with private specifier, public member of base become private to derived): this time derived inherits base as private. 
 
 class base { all same as Example 1     };
@@ -122,6 +177,9 @@ return 0; }
 base base_ob ;
 base_ob.setx(1) ; 
 Is legal because base_ob is of type base  and the call to setx() is legal because setx() is public within base.
+
+
+
 	Example 4: Even though public members of a base class become private members of a derived class when inherited using the private specifier, they are still accessible within the derived class. In this case, the functions setx() and showx() are accessed inside the derived class, which is perfectly legal because they are private members of that class.
 class derived : private base { 
 int y;
