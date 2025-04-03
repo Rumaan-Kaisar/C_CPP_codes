@@ -25,25 +25,23 @@
 
     Access specifiers:        
         Access specifiers control how base class members are accessible in the derived class.
-        The three access specifiers in C++ are public, private, and protected.
+        The three access specifiers in C++ are: 
+                            
+                            public, private, and protected.
 
         These access specifiers define the "Inheritance Access Modes"
             The access specifier determines how elements of the base class are inherited by the derived class. 
 
 
-
---------    rev[31-Mar-25]    --------
-
-
     In C++ inheritance, we can derive a child class from the base class in different 'ACCESS MODES'. For example,
 
-        class Base {
-            // .... 
-        };
+                    class Base {
+                        // .... 
+                    };
 
-        class Derived : public Base {
-            // .... 
-        };
+                    class Derived : public Base {
+                        // .... 
+                    };
 
 
         Notice the keyword 'public' in the code:
@@ -65,23 +63,31 @@
         private:
             Technically, private access is optional: If the specifier is not present,  it is private by default if the derived class is a class. 
             private inheritance makes the 'public and protected members' of the base class "private" in the derived class.
-            If the access specifier is private, all public members of the base class become private members of the derived class. 
             But these private members are still accessible by member functions of the derived class.
 
         public:
             public inheritance makes 'PUBLIC members' of the base class "public" in the derived class, and 
                 the PROTECTED members of the base class "remain protected" in the derived class.
-            When the access specifer for the inherited base class is public, all public members of the base become public members of the derived class. 
-            In either case (private/public), any private members of the base remain private to it and are inaccessible by the derived class.
-            If the derived class is a struct, public is the default in the absence of an explicit access specifier.
+            
+        i.e. in either case (private/public), any "private" members of the base "remain private" to it and are inaccessible by the derived class.
+        
 
 
-    Note: 'private members' of the base class are inaccessible to the derived class.
+    Note: 
+        'private members' of the base class are inaccessible to the derived class.
+
+        In C++, the "default access specifier" for inheritance differs based on whether a "class" or "struct" is used:
+            For a "class", inheritance is "private" by default.
+            For a "struct", inheritance is "public" by default.
 
 
 
+ 
+
+-------------------
 
 
+-------  chk pt 2  -------
 
 	Example 1: Here because base is inherited as public, the public members of base- setx() and showx() - become public members of derived and are, therefore, accessible by any other part of the program. Specifically, they are legally called within main().
 class base { int x;
