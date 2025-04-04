@@ -139,18 +139,66 @@ int main(){
 
 
 
+
+
+/* Example 2: It is important to understand that just because a derived class inherits a base as "public", 
+                it does not mean that the derived class has access to the base's "private" members. 
+                
+                For example, in previous Example 1 : 
+
+
+                // Inherit as public.
+                class derived : public base { 
+                        int y;
+                    public:
+                        void sety(int n){ y = n; }
+                        void showy(){ std::cout<< y <<'\n'; }
+                        // Error! : x is a private member of base and not available within derived . 
+                        void show_sum(){ std::cout<< x+y << '\n';}  // Error!
+                }
+
+*/
+
+It is important to understand that just because a derived class inherits a base as public,
+it does not mean that the derived class has access to the base’s private members. For
+example, this addition to derived from the preceding example is incorrect:
+class base
+{
+int x;
+public :
+void setx ( int n) { x = n; }
+void showx () { cout << x << ’\n’; }
+};
+// Inherit as public - this has an error !
+class derived : public base
+{
+int y;
+public :
+void sety ( int n) { y = n; }
 /*
+Cannot access private member of base class .
+x is a private member of base and not available
+within derived .
+*/
+void show_sum () { cout << x+y << ’\n’; } // Error !
+void showy () { cout << y << ’\n’; }
+};
+In this example, the derived class attempts to access x, which is a private member of
+base. This is an error because the private parts of a base class remain private to it no
+matter how it is inherited.
 
-// -------  chk pt 2  -------
 
-	Example 2: It is important to understand that just because a derived class inherits a base as public, it does not mean that the derived class has access to the base's private members. For example, in previous example 1 : 
 
-class derived : public base { int y;
-  			      public:  // Error! : x is a private member of base and not available within derived . 
-   void show_sum() {cout<< x+y << '\n';}  
+   
+
+
+
 	In this example, the derived class attempts to access x, which is a private member of base. This is an error because the private parts of a base class remain private to it no matter how it is inherited.
 
 
+/*
+
+// -------  chk pt 2  -------
 
 	Example 3 (with private specifier, public member of base become private to derived): this time derived inherits base as private. 
 
