@@ -86,7 +86,7 @@
 */
 
 
-// -----------  rev[03-apr-25]  -----------
+
 
 /* Example 1: In the following program, a base class is inherited as "public" by a derived class.
                 
@@ -94,9 +94,6 @@
                     become public members of derived and are, therefore, accessible by any other part of the program. 
                     Specifically, they are legally called within main(). 
 */
-
-
-
 
 #include <iostream>
 
@@ -119,33 +116,27 @@ class derived : public base {
 
 int main(){
     derived ob; // derived type object 
-ob.setx(10); // access member of base class through the derived class's object 
-ob.sety(20); // access member of derived class 
-ob.showx();  // access member of base class through the derived class's object 
-ob.showy();  // access member of derived class 
-return 0; }
 
+    ob.setx(10); // access member of base class through the derived class's object 
+    ob.sety(20); // access member of derived class 
 
+    ob.showx();  // access member of base class through the derived class's object 
+    ob.showy();  // access member of derived class 
 
-
-
-
-
-
-
-
-
-int main ()
-{
-derived ob;
-ob. setx (10) ; // access member of base class
-176INHERITANCE
-7.1. BASE CLASS ACCESS CONTROL
-ob. sety (20) ; // access member of derived class
-ob. showx (); // access member of base class
-ob. showy (); // access member of derived class
-return 0;
+    return 0; 
 }
+
+
+
+
+
+
+
+
+
+// -----------  rev[04-apr-25]  -----------
+
+
 
 
 /*
