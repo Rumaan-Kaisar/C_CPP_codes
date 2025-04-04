@@ -100,7 +100,7 @@
 
 #include <iostream>
 
-class base { 
+class base {
         int x;
     public :
         void setx(int n){ x = n; }
@@ -109,10 +109,16 @@ class base {
 
 
 // Inherit as public. notice single colon ':'
-class derived : public base { int y;
-public : void sety (int n) { y = n; }
-void showy() {cout<< y <<'\n';}  };
-int main() {derived ob; // derived type object 
+class derived : public base { 
+        int y;
+    public : 
+        void sety(int n) { y = n; }
+        void showy(){ std::cout<< y <<'\n'; }  
+};
+
+
+int main(){
+    derived ob; // derived type object 
 ob.setx(10); // access member of base class through the derived class's object 
 ob.sety(20); // access member of derived class 
 ob.showx();  // access member of base class through the derived class's object 
@@ -123,21 +129,12 @@ return 0; }
 
 
 
-class base
-{
-int x;
-public :
-void setx ( int n) { x = n; }
-void showx () { cout << x << ’\n’; }
-};
-// Inherit as public .
-class derived : public base
-{
-int y;
-public :
-void sety ( int n) { y = n; }
-void showy () { cout << y << ’\n’; }
-};
+
+
+
+
+
+
 int main ()
 {
 derived ob;
