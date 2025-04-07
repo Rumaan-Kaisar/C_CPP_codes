@@ -78,6 +78,7 @@
 
     Note: 
         'private members' of the base class are inaccessible to the derived class.
+            "private parts of a base class remain private" to it no matter how it is inherited.
 
         In C++, the "default access specifier" for inheritance differs based on whether a "class" or "struct" is used:
             For a "class", inheritance is "private" by default.
@@ -129,18 +130,6 @@ int main(){
 
 
 
-
-
-
-
-
-// -----------  rev[04-apr-25]  -----------
-
-
-
-
-
-
 /* Example 2: It is important to understand that just because a derived class inherits a base as "public", 
                 it does not mean that the derived class has access to the base's "private" members. 
                 
@@ -157,18 +146,11 @@ int main(){
                         void show_sum(){ std::cout<< x+y << '\n';}  // Error!
                 }
 
-In this example, the derived class attempts to access x, which is a private member of
-base. This is an error because the private parts of a base class remain private to it no
-matter how it is inherited.
+    In this example, the derived class attempts to access x, which is a "private member of base". 
+    This is an error because the "private parts of a base class remain private" to it no matter how it is inherited.
 */
 
 // folloing derived class is incorrect
-
-
-
-
-
-
 
 class base {
         int x;
@@ -192,8 +174,8 @@ class derived : public base {
 
 
 
-	In this example, the derived class attempts to access x, which is a private member of base. This is an error because the private parts of a base class remain private to it no matter how it is inherited.
 
+// -----------  rev[07-apr-25]  -----------
 
 /*
 
