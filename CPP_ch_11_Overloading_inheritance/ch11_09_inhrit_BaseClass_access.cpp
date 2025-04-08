@@ -179,10 +179,8 @@ class derived : public base {
                 This change causes the program to be in error.
 */
 
-
 // This program contains an error
 #include <iostream>
-
 
 class base {
         int x;
@@ -191,8 +189,7 @@ class base {
         void showx(){ std::cout<< x <<'\n'; }
 };  
 
-
-// Notice, now "base" is derived as private
+// Notice, now "base" is inherited as private
 class derived : private base { 
         int y;
     public:
@@ -201,25 +198,22 @@ class derived : private base {
 }
 
 
+int main(){
+    derived ob; // derived type object 
 
+    ob.setx(10); // Trying to access base member through derived object gives an ERROR
+    // 'x' is now private in derived.
+    ob.sety(20); // access member of derived class - OK
 
-// Inherit base as private .
-class derived : private base
-{
-int y;
-public :
-void sety ( int n) { y = n; }
-void showy () { cout << y << ’\n’; }
-};
-int main ()
-{
-derived ob;
-ob. setx (10) ; // ERROR - now private to derived class
-ob. sety (20) ; // access member of derived class - OK
-ob. showx (); // ERROR - now private to derived class
-ob. showy (); // access member of derived class - OK
-return 0;
+    ob.showx();  // ERROR - 'x' now private to derived class
+    ob.showy();  // access member of derived class - OK
+
+    return 0; 
 }
+
+
+
+
 As the comments in this (incorrect) program illustrate, both showx() and setx() become
 private to derived and are not accessible outside of it.
 Keep in mind that showx() and setx() are still public within base no matter how they
@@ -230,6 +224,10 @@ base base_ob ;
 base_ob . setx (1) ; // is legal because base_ob is of type base
 the call to setx() is legal because setx() is public within base.
 
+GPT Simplified:
+Even if showx() and setx() are public in base, they become private in derived when inherited privately.
+So, they can't be accessed through derived objects.
+But they can still be accessed through base objects since they remain public in base.
 
 
 
