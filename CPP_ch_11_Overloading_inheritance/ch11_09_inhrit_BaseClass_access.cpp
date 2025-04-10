@@ -174,9 +174,20 @@ class derived : public base {
 
 
 
-
 /* Example 3: Here is a variation of  Example 1; this time 'derived' inherits 'base' as "private". 
                 This change causes the program to be in error.
+
+    Notice:
+        Even if showx() and setx() are public in base, they become private in derived when "inherited privately".
+        So, they can't be accessed through "derived" type objects.
+        But they can still be accessed through "base" type objects since they remain public in base.
+
+        For example, given this fragment:
+
+                    base base_ob;
+                    base_ob.setx(1);    // is legal because base_ob is of type base
+
+            the call to setx() is legal because setx() is public within base.
 */
 
 // This program contains an error
@@ -214,20 +225,6 @@ int main(){
 
 
 
-As the comments in this (incorrect) program illustrate, both showx() and setx() become
-private to derived and are not accessible outside of it.
-Keep in mind that showx() and setx() are still public within base no matter how they
-are inherited by some derived class. This means that an object of type base could access
-these functions anywhere. However, relative to objects of type derived, they become
-private. For example, given this fragment:
-base base_ob ;
-base_ob . setx (1) ; // is legal because base_ob is of type base
-the call to setx() is legal because setx() is public within base.
-
-GPT Simplified:
-Even if showx() and setx() are public in base, they become private in derived when inherited privately.
-So, they can't be accessed through derived objects.
-But they can still be accessed through base objects since they remain public in base.
 
 
 
