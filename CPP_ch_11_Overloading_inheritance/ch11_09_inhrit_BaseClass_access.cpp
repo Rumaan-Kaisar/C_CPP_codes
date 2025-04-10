@@ -174,7 +174,8 @@ class derived : public base {
 
 
 
-/* Example 3: Here is a variation of  Example 1; this time 'derived' inherits 'base' as "private". 
+/* Example 3: (with private specifier, public member of base become private to derived)
+                Here is a variation of  Example 1; this time 'derived' inherits 'base' as "private". 
                 This change causes the program to be in error.
 
     Notice:
@@ -213,7 +214,7 @@ int main(){
     derived ob; // derived type object 
 
     ob.setx(10); // Trying to access base member through derived object gives an ERROR
-    // 'x' is now private in derived.
+    // ERROR - 'x' is now private in derived.
     ob.sety(20); // access member of derived class - OK
 
     ob.showx();  // ERROR - 'x' now private to derived class
@@ -228,27 +229,9 @@ int main(){
 
 
 
-// -----------  rev[07-apr-25]  -----------
+// -----------  rev[09-apr-25]  -----------
 
-/*
-
-// -------  chk pt 2  -------
-
-	Example 3 (with private specifier, public member of base become private to derived): this time derived inherits base as private. 
-
-class base { all same as Example 1     };
-// Inherit as private .
-class derived : private base { same inside };	int main(){ derived ob; 	// derived type object 
-	ob.setx(10) ; // ERROR - now setx() private to derived class 
-	ob.showx(); // ERROR - now showx() private to derived class 
-return 0; }
-	Both showx() and setx() become private to derived and are not accessible outside of it. Relative to objects of type derived, they become private.
-	Keep in mind that showx() and setx() are still public within base no matter how they are inherited by some derived class. This means that an object of type base could access these functions anywhere. For example, given this fragment:
-base base_ob ;
-base_ob.setx(1) ; 
-Is legal because base_ob is of type base  and the call to setx() is legal because setx() is public within base.
-
-
+/*  
 
 	Example 4: Even though public members of a base class become private members of a derived class when inherited using the private specifier, they are still accessible within the derived class. In this case, the functions setx() and showx() are accessed inside the derived class, which is perfectly legal because they are private members of that class.
 class derived : private base { 
@@ -262,7 +245,42 @@ derived ob; // derived type
     ob.showxy();
 return 0; }
 
+
+As stated, even though public members of a base class become private members of a
+derived class when inherited using the private specifier, they are still accessible within
+the derived class. For example, here is a *fixed* version of the preceding program:
+
+In this case, the functions setx() and showx() are accessed inside the derived class, which
+is perfectly legal because they are private members of that class
+
 */
 
+// This program is fixed .
+#include <iostream>
 
+class base{
+        int x;
+public :
+void setx ( int n) { x = n; }
+void showx () { cout << x << ’\n’; }
+};
+
+
+// Inherit base as private .
+class derived : private base
+{
+int y;
+public :
+// setx is accessible from within derived
+void setxy ( int n, int m) { setx (n); y = m; }
+// show is accessible from within derived
+void showxy () { showx (); cout << y << ’\n’; }
+};
+int main ()
+{
+derived ob;
+ob. setxy (10 , 20) ;
+ob. showxy ();
+return 0;
+}
 
