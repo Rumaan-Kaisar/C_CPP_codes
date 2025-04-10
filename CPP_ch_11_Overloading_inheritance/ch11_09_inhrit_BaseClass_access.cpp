@@ -169,7 +169,7 @@ class derived : public base {
         // Error! : x is a private member of base and not available within derived.
         // Cannot access private member of base class
         void show_sum(){ std::cout<< x+y << '\n';}  // Error!
-}
+};
    
 
 
@@ -206,7 +206,7 @@ class derived : private base {
     public:
         void sety(int n){ y = n; }
         void showy(){ std::cout<< y <<'\n'; }
-}
+};
 
 
 int main(){
