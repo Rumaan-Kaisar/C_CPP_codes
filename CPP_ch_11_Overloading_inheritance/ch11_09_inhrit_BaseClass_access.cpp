@@ -230,52 +230,16 @@ int main(){
 
 
 
-
-
-
-// -----------  rev[09-apr-25]  -----------
-
 /* Example 4: When a base class is inherited privately, its public and protected members become "private" in the derived class.
+                They are still accessible within the derived class because they are private members of that class.
 
-So even though they’re no longer public outside the derived class, they are still accessible from inside it.
-
-In the corrected version of the program:
-
-setx() and showx() were originally public in the base class.
-
-After private inheritance, they became private in the derived class.
-
-Since private members can still be accessed inside the class, the derived class can use them.
-
-This is valid and allowed in C++.
-
-
- They are still accessible within the derived class because they are private members of that class.
- 
-  In this case, the functions setx() and showx() are accessed inside the derived class, which 
-  
-  
-
-
-class derived : private base { 
-int y;
-public :
-void setxy(int n, int m) { setx(n); y=m; }  // setx is accessible from within derived  
-void showxy() { showx(); cout<< y; }  };    // show is accessible from within derived 	
-int main(){
-derived ob; // derived type
-    ob.setxy(10, 20);
-    ob.showxy();
-return 0; }
-
-
-As stated, even though public members of a base class become private members of a
-derived class when inherited using the private specifier, they are still accessible within
-the derived class. For example, here is a *fixed* version of the preceding program:
-
-In this case, the functions setx() and showx() are accessed inside the derived class, which
-is perfectly legal because they are private members of that class
-
+                So even though they’re no longer public outside the derived class, they are still accessible from inside it.
+                
+                In the corrected version of the previous program:
+                    setx() and showx() were originally public in the base class.
+                    After private inheritance, they became private in the derived class.
+                    Since private members can still be accessed inside the class, the derived class can use them.
+                    This is valid and allowed in C++.
 */
 
 // This program is fixed .
@@ -283,26 +247,37 @@ is perfectly legal because they are private members of that class
 
 class base{
         int x;
-public :
-void setx ( int n) { x = n; }
-void showx () { cout << x << ’\n’; }
+    public:
+        void setx(int n) { x = n; }
+        void showx(){ std::cout << x << '\n'; }
 };
 
 
-// Inherit base as private .
-class derived : private base
-{
-int y;
-public :
-// setx is accessible from within derived
-void setxy ( int n, int m) { setx (n); y = m; }
-// show is accessible from within derived
-void showxy () { showx (); cout << y << ’\n’; }
+// Inherit base as private
+class derived : private base{
+        int y;
+    public:
+        // setx() is accessible within derived because it has become a "private member of derived".
+        void setxy(int n, int m){ 
+            setx(n); 
+            y = m; 
+        }
+        // show() is also accessible from within derived
+        void showxy(){ 
+            showx(); 
+            std::cout << y << '\n'; 
+        }
 };
-int main ()
-{
-derived ob;
-ob. setxy (10 , 20) ;
-ob. showxy ();
-return 0;
+
+
+int main(){
+    derived ob;
+
+    ob.setxy(10 , 20);
+    ob.showxy();
+
+    return 0;
 }
+
+
+
