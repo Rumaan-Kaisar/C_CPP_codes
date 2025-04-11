@@ -80,6 +80,10 @@
         'private members' of the base class are inaccessible to the derived class.
             "private parts of a base class remain private" to it no matter how it is inherited.
 
+        When a base class is inherited "privately", its public and protected members become private in the derived class.
+            So even though they’re "no longer public OUTSIDE" the derived class, they are still "accessible from INSIDE" derived class.
+            They are still accessible within the derived class because they are private members of that class.
+
         In C++, the "default access specifier" for inheritance differs based on whether a "class" or "struct" is used:
             For a "class", inheritance is "private" by default.
             For a "struct", inheritance is "public" by default.
@@ -231,9 +235,28 @@ int main(){
 
 // -----------  rev[09-apr-25]  -----------
 
-/*  
+/* Example 4: When a base class is inherited privately, its public and protected members become "private" in the derived class.
 
-	Example 4: Even though public members of a base class become private members of a derived class when inherited using the private specifier, they are still accessible within the derived class. In this case, the functions setx() and showx() are accessed inside the derived class, which is perfectly legal because they are private members of that class.
+So even though they’re no longer public outside the derived class, they are still accessible from inside it.
+
+In the corrected version of the program:
+
+setx() and showx() were originally public in the base class.
+
+After private inheritance, they became private in the derived class.
+
+Since private members can still be accessed inside the class, the derived class can use them.
+
+This is valid and allowed in C++.
+
+
+ They are still accessible within the derived class because they are private members of that class.
+ 
+  In this case, the functions setx() and showx() are accessed inside the derived class, which 
+  
+  
+
+
 class derived : private base { 
 int y;
 public :
@@ -283,4 +306,3 @@ ob. setxy (10 , 20) ;
 ob. showxy ();
 return 0;
 }
-
