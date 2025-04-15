@@ -1,12 +1,24 @@
 
 /*  ------------------------    inheritance and "protected"    ------------------------
-Using protected members
 
-11.16Accessing PROTECTED members
-There will be times when you want to keep a member of a base class private but still allow a derived class access to it. To accomplish this goal, C++ includes the protected access specifier.
+    Protected:
+        Sometimes we want to keep a member of a BASE class "private" but still allow a DERIVED class access to it.
+        To do this, use the "protected" access specifier.
+
+
+// ----  rev[14-Apr-2025]  ----
+
+ccessing PROTECTED members
+
+
+
+
+
 	Protected members of a base class are accessible to members of any class derived from that base.
 	Outside the base or derived classes, protected members are not accessible.
 	The protected access specifier can occur anywhere in the class declaration, although typically it occurs after the (default) private members are declared and before the public members. The full general form of a class declaration is shown here:
+
+
 class class_name { 		/* private members */ 
 protected: 	/* protected members (optional)*/ 
 public: 	/* public members */ 
