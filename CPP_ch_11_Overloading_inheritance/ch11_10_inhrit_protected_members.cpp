@@ -6,17 +6,18 @@
         To do this, use the "protected" access specifier.
 
 
-// ----  rev[14-Apr-2025]  ----
+    Accessing PROTECTED members:
+        Protected members of a base class can be accessed by any class derived from that base.
+        Outside the base or derived classes, protected members are not accessible.
+        The protected access specifier can occur anywhere in the class declaration
+        They're usually placed after private (default) members and before public ones in a class.
 
-ccessing PROTECTED members
+
+// ----  rev[15-Apr-2025]  ----
+
+The full general form of a class declaration is shown here:
 
 
-
-
-
-	Protected members of a base class are accessible to members of any class derived from that base.
-	Outside the base or derived classes, protected members are not accessible.
-	The protected access specifier can occur anywhere in the class declaration, although typically it occurs after the (default) private members are declared and before the public members. The full general form of a class declaration is shown here:
 
 
 class class_name { 		/* private members */ 
