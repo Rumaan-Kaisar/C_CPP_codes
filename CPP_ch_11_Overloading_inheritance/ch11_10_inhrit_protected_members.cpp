@@ -40,9 +40,6 @@
 */  
 
 
-// ----  rev[15-Apr-2025]  ----
-
-
 
 
 /* Example1: This program illustrates how public, private, and protected members of a class can be accessed 
@@ -54,6 +51,8 @@
                 However, outside of these two classes, a and b are effectively private and inaccessible.
 */
 
+#include <iostream>
+
 class base { 
         int t;      //  private member
     protected:
@@ -62,6 +61,7 @@ class base {
         int s;
         void setab(int n, int m){ a=n; b=m; }
 };
+
 
 //  new class 
 class derived : public base {   
@@ -72,16 +72,27 @@ class derived : public base {
         void showbc(){ std::cout<< a <<' '<< b <<' '<< c; }
 };
 
-int main(){ base ob_bs; //  base type object 
-derived ob_drv; //  derived type object 
-ob_bs.t=5;  //  error: t is private member of base
-ob_bs.a=3; ob_bs.b=4;   //  error: a,b is protected member of base but accessible inside derived
-ob_bs.s=9   // ok: s is public member of base
-ob_bs.setab (3, 4); // ok: setab() is public member of base
-ob_drv.setab(1, 2); // ok: setab() is also public to derived because of public specifier in class declaration of derived 
-ob_drv.setc(3) ;    // ok: c is public member of derived
-ob_drv.a=3; ob_drv.b=4; //  error: a,b is protected member of base but accessible inside derived
-ob_drv.showabc(); 	return 0;}  //  accessing a,b inside of derived class
+
+int main(){ 
+    base ob_bs; //  base type object 
+    derived ob_drv; //  derived type object 
+
+    // ob_bs.t=5;  //  error: t is private member of base
+    // ob_bs.a=3;  //  error: 
+    // ob_bs.b=4;  //  error: a,b is protected member of base but accessible inside derived
+    ob_bs.s=9;   //  ok: s is public member of base
+
+    ob_bs.setab (3, 4);     // ok: setab() is public member of base
+    ob_drv.setab(1, 2);     // ok: setab() is also public to derived because it derived publicly
+    ob_drv.setc(3);         // ok: c is public member of derived
+
+    // ob_drv.a=3; //  error:
+    // ob_drv.b=4; //  error: a,b is protected member of base but accessible inside derived
+    ob_drv.showbc(); 	//  accessing a,b inside of derived class
+    
+    return 0;
+}  
+
 
 
 
