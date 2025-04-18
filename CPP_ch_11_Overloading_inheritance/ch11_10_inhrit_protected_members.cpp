@@ -95,36 +95,38 @@ int main(){
 
 
 
+// following is more simplified version of previous program
+// The commented line in main() is invalid because b is protected, so it's still hidden from outside the class.
+# include <iostream>
 
-
-1. This program illustrates how public, private, and protected members of a class can be
-accessed:
-# include <iostream >
-using namespace std ;
-class samp
-{
-// private by default
-int a;
-protected : // still private relative to samp
-int b;
-public :
-int c;
-samp ( int n, int m) { a = n; b = m; }
-int geta () { return a; }
-int getb () { return b; }
+class samp{
+        // private by default
+        int a;
+    protected:
+        // still private relative to samp
+        int b;
+    public:
+        int c;
+        samp(int n, int m){ a = n; b = m; }
+        int geta(){ return a; }
+        int getb(){ return b; }
 };
-int main ()
-{
-samp ob (10 , 10) ;
-// ob.b = 99; Error ! b is protected and thus private
-ob.c = 30; // OK , c is public
-cout << ob. geta () << ’ ’;
-cout << ob. getb () << ’ ’ << ob.c << ’\n’;
-return 0;
-}
-As you can see, the commented-out line is not permissible in main() because b is protected
-and is thus still private to samp.
 
+
+int main(){
+    samp ob(10 , 10);
+
+    // ob.b = 99; Error ! b is protected and thus private
+    ob.c = 30; // OK , c is public
+    std::cout << ob.geta() << ' ';
+    std::cout << ob.getb() << ' ' << ob.c << '\n';
+    
+    return 0;
+}
+
+
+
+// ----  rev[18-Apr-2025]  ----
 
 
 
