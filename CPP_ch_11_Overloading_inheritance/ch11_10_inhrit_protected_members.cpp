@@ -170,49 +170,80 @@ int main(){
 
 
 
+/* Example 3: When a base class is "inherited as protected", PUBLIC and PROTECTED members of the base class 
+                become "protected" members of the DERIVED class. 
+
+                For example following statement returns error because of inheriting base as protected instead of public 
+                in the class declaration of derived in the preceding program
 
 
+                        class derived : protected base {
+                            //  same as before
+                        }
 
+                        int main(){ 
+                            derived ob_drv;         // derived type object 
+                            ob_drv.setab(1, 2);     // ERROR : setab() is now a protected member of base. setab() is not accessible here . 
+                            // ...
+                        }
 
-2. The following program illustrates what occurs when protected members are inherited as
-public:
-# include <iostream >
-using namespace std ;
-181TEACH YOURSELF
-C++
-class base
-{
-protected : // private to base
-int a, b; // but still accessible by derived
-public :
-void setab ( int n, int m) { a = n; b = m; }
-};
-class derived : public base
-{
-int c;
-public :
-void setc ( int n) { c = n; }
-// this function has access to a and b from base
-void showbc ()
-{
-cout << a << ’ ’ << b << ’ ’ << c << ’\n’;
-}
-};
-int main ()
-{
-derived ob;
-/*
-a and b are not accessible here because they are
-private to both base and derived .
+                Because BASE is inherited as "protected", its "public" and "protected" elements become protected members of 
+                DERIVED and are therefore inaccessible within main().
 */
-ob. setab (1, 2);
-ob. setc (3) ;
-ob. showbc ();
-return 0;
+
+// This program will not compile.
+#include <iostream>
+
+class base{
+    // private by default
+    protected: 
+        int a, b; // private to base, but still accessible by derived
+    public:
+        void setab(int n, int m){ a = n; b = m; }
+};
+
+// inherit as protected
+class derived : protected base{
+        int c;
+    public:
+        void setc(int n){ c = n; }
+        // this function has access to a and b from base
+        void showabc(){ std::cout << a << ' ' << b << ' ' << c << '\n'; }
+};
+
+
+int main(){
+    derived ob;
+
+    // a and b are not accessible here because they are private to both "base" and "derived".
+    ob.setab(1, 2);
+    ob.setc(3);
+    ob.showbc();
+
+    return 0;
+};
+
+
+int main(){
+    derived ob;
+    
+    // ERROR : setab() is now a protected member of base .
+    ob.setab(1, 2); // setab() is not accessible here .
+    ob.setc(3);
+    ob.showabc();
+
+    return 0;
 }
-Because a and b are protected in base and inherited as public by derived, they are
-available for use by member functions of derived. However, outside of these two classes,
-a and b are effectively private and inaccessible.
+
+
+
+
+
+
+
+
+
+
 
 
 
