@@ -234,13 +234,69 @@ int main(){
 // ----  rev[22-Apr-2025]  ----
 
 
-EXERCISES
-1. What happens when a protected member is inherited as public? What happens when it
-is inherited as private? What happens when it is inherited as protected?
-2. Explain why the protected category is needed?
-3. In Exercise 1 from Section 7.1, if the a and b inside myclass were made into protected
-instead of private (by default) members, would any of your answers to that exercise
-change? If so, how?
 
+/* Example 4: What happens when a protected member is inherited as public? What happens when it
+is inherited as private? What happens when it is inherited as protected? */
+
+When a protected member of a base class is inherited as public, it becomes a protected
+member of the derived class. If it is inherited as private, it becomes a private member of
+the derived class. If it is inherited as protected, it becomes a protected member of the
+derived class.
+
+
+
+
+/* Example 5: Explain why the protected category is needed? */
+
+The protected category is needed to allow a base class to keep certain members private
+while still allowing a derived class to have access to them.
+
+
+
+
+/* Example 6: In "Example 5 (skeleton-code)" from previous section (ch11_09_inhrit_BaseClass_access.cpp), if the a and b inside myclass were made into protected
+instead of private (by default) members, would any of your answers to that exercise
+change? If so, how? */
+
+/* Example: Examine following skeleton-code:
+
+                Within main(), which of the following statements are legal?
+
+                    A. o1.getab(i, j);
+                    B. o2.getab(i, j);
+                    C. o1.c = 10;
+                    D. o2.c = 10; 
+
+            ans:
+                A and C are valid.
+*/
+
+#include <iostream>
+
+class mybase{
+        int a, b;
+    public:
+        int c;
+        void setab(int i, int j){ a = i; b = j; }
+        void getab(int &i, int &j){ i = a; j = b; }
+};
+
+class derived1 : public mybase{
+    // ...
+};
+
+class derived2 : private mybase{
+    // ...
+};
+
+
+int main(){
+    derived1 o1;
+    derived2 o2;
+    int i, j;
+    // ...
+}
+
+// ANS: No.
 
 
