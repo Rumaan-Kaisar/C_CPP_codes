@@ -126,7 +126,6 @@ int main(){
 
 
 
-// ----  rev[18-Apr-2025]  ----
 
 /* Example 2: The following program illustrates what occurs when protected members are inherited as public.
 
@@ -191,7 +190,7 @@ int main(){
                 DERIVED and are therefore inaccessible within main().
 */
 
-// This program will not compile.
+// This program will not compile. To compile it- inherit "base" publicly
 #include <iostream>
 
 class base{
@@ -214,21 +213,9 @@ class derived : protected base{
 
 int main(){
     derived ob;
-
-    // a and b are not accessible here because they are private to both "base" and "derived".
-    ob.setab(1, 2);
-    ob.setc(3);
-    ob.showbc();
-
-    return 0;
-};
-
-
-int main(){
-    derived ob;
     
-    // ERROR : setab() is now a protected member of base .
-    ob.setab(1, 2); // setab() is not accessible here .
+    // ERROR : setab() is now a protected member of base.
+    ob.setab(1, 2); // setab() is not accessible here.
     ob.setc(3);
     ob.showabc();
 
@@ -244,7 +231,7 @@ int main(){
 
 
 
-
+// ----  rev[22-Apr-2025]  ----
 
 
 EXERCISES
