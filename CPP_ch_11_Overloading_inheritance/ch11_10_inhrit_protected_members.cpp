@@ -225,23 +225,18 @@ int main(){
 
 
 
+/* Example 4: What is the resulting access level of a "protected member" 
+                when inherited as public, private, or protected?
+
+            ans:
+                When a protected member of a base class is inherited as public, 
+                    it becomes a protected member of the derived class. 
+                If it is inherited as private, it becomes a private member of the derived class. 
+                If it is inherited as protected, it becomes a protected member of the derived class.
+
+*/
 
 
-
-
-
-
-// ----  rev[22-Apr-2025]  ----
-
-
-
-/* Example 4: What happens when a protected member is inherited as public? What happens when it
-is inherited as private? What happens when it is inherited as protected? */
-
-When a protected member of a base class is inherited as public, it becomes a protected
-member of the derived class. If it is inherited as private, it becomes a private member of
-the derived class. If it is inherited as protected, it becomes a protected member of the
-derived class.
 
 
 
