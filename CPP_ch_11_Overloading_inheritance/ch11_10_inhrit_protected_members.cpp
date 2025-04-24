@@ -255,15 +255,24 @@ int main(){
 
 
 
+/* Example 6: In "Example 5 (skeleton-code)" from previous section (ch11_09_inhrit_BaseClass_access.cpp), 
+                if the 'a' and 'b' inside 'myclass' were made into 'protected' instead of 'private' (by default) members,
 
+                    Would any of that Example code would change? 
+                    If so, how? 
 
-/* Example 6: In "Example 5 (skeleton-code)" from previous section (ch11_09_inhrit_BaseClass_access.cpp), if the a and b inside myclass were made into protected
-instead of private (by default) members, would any of your answers to that exercise
-change? If so, how? */
+                So which of the following statements are legal? (previously A and C weare valid for private 'a', 'b')
 
-/* Example: Examine following skeleton-code:
-
-                Within main(), which of the following statements are legal?
+                Now say:
+                class mybase{
+                        // no private by default int a, b;
+                    protected:
+                        int a, b;
+                    public:
+                        int c;
+                        void setab(int i, int j){ a = i; b = j; }
+                        void getab(int &i, int &j){ i = a; j = b; }
+                };
 
                     A. o1.getab(i, j);
                     B. o2.getab(i, j);
@@ -271,7 +280,7 @@ change? If so, how? */
                     D. o2.c = 10; 
 
             ans:
-                A and C are valid.
+                A and C are valid in this case too. So no changes to the previous ans.
 */
 
 #include <iostream>
@@ -299,7 +308,4 @@ int main(){
     int i, j;
     // ...
 }
-
-// ANS: No.
-
 
