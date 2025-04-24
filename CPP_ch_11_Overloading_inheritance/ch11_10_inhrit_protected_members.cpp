@@ -234,17 +234,25 @@ int main(){
                 If it is inherited as private, it becomes a private member of the derived class. 
                 If it is inherited as protected, it becomes a protected member of the derived class.
 
+
+                Inheritance Mode        Protected Member in Derived Class
+                ---------------------------------------------------------
+                Public                  Protected
+                Private                 Private
+                Protected               Protected
 */
 
 
 
 
+/* Example 5: Explain why the protected category is needed? 
+
+            ans:
+                The protected category is needed to allow a BASE class to keep certain members "private" 
+                while still allowing a DERIVED class to have access to them.
+*/
 
 
-/* Example 5: Explain why the protected category is needed? */
-
-The protected category is needed to allow a base class to keep certain members private
-while still allowing a derived class to have access to them.
 
 
 
