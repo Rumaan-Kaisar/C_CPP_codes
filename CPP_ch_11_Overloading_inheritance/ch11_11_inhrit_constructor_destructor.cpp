@@ -4,15 +4,19 @@
     Constructors, Destructors, and INHERITANCE
         The BASE class, the DERIVED class, or both may have constructor and/or destructor functions.
  
-    When both BASE and DERIVED classes have their own constructors and destructors:
+    
+    --------  When both BASE and DERIVED classes have their own constructors and destructors  --------
 
-Constructor (Base-class first): 
-    The constructor functions are executed in order of derivation. That is, the base class constructor is executed before the constructor in the derived class. Because a base class has no knowledge of any derived class, any initialization it performs is separate from.
+    Constructor (Base-class first): 
+        Constructors run in "order of inheritance": base class constructor runs first, then derived class.
+        Because a base class has no knowledge of any derived class, so it handles its own initialization separately
 
-Destructor (Derived-class first): 
-    The destructor functions are executed in reverse order.  That is, the derived class's destructor is executed before the base class's destructor because the base class underlies the derived class. If the base class's destructor were executed first, it would imply the destruction of the derived class. 
+    Destructor (Derived-class first): 
+        Destructors run in "reverse order": DERIVED class's destructor is executed before the BASE class's destructor
+        Because the DERIVED depends on the BASE, destroying the base first would break the derived.
+    
 
-
+--------rev[25-apr-2025]--------
 
 	Passing arguments: It is possible to passed arguments to either a derived or base class constructor. There are two cases: 
 	Only derived class takes arguments: When only the derived class takes an initialization, arguments are passed to the derived class's constructor in the normal fashion (as we did before).
