@@ -16,37 +16,48 @@
         Because the DERIVED depends on the BASE, destroying the base first would break the derived.
     
 
---------rev[25-apr-2025]--------
 
-	Passing arguments: It is possible to passed arguments to either a derived or base class constructor. There are two cases: 
+    --------    parameterized constructors    --------
+
+
+ Parameterized constructors discussed in ch10_01_3_constructor_param.cpp
+
+It is possible to passed arguments to either a derived or base class constructor. There are two cases: 
 	Only derived class takes arguments: When only the derived class takes an initialization, arguments are passed to the derived class's constructor in the normal fashion (as we did before).
 	Base class takes arguments along with derived class: to pass an argument to the constructor of the base class, a chain of argument passing is established. 
 	First, all necessary arguments to both the base class and the derived class are passed to the derived class's constructor. 
 	Then using an expanded form of the derived class's constructor declaration, pass the appropriate arguments along to the base class. 
 	The syntax for passing along an argument from the derived class to the base class is:
 derived_constructor( arg_list ): base( arg_list ){
-`				/* body of derived class constructor */ 
+`				// body of derived class constructor
 }
 	Here base is the name of the base class. 
 	Both the derived class and the base class can use the same argument (example 3).
 	It is also possible for the derived class to ignore all arguments and just pass them along to the base (example 5).
 	Example 1 (Base-Derived Constructor-Destructor execution): 
 
+
+
+--------rev[25-apr-2025]--------
+
+
+
+
 class base {
 public :
   base(){ cout<< "Constructing base \n"; }
   ~base(){ cout<< "Destructing base \n"; } 
-};	class derived : public base{ /* no-arguments allowed */
+};	class derived : public base{ // no-arguments allowed 
 public :
    derived(){ cout<< "Constructing derived \n"; }
    ~derived(){ cout<< "Destructing derived \n"; }
 };
-		int main() { 	derived obj; 		/* By declaring object Constructor-Destructor executes */
+		int main() { 	derived obj; 		// By declaring object Constructor-Destructor executes 
 				return 0; }
 This program displays the following output:	Constructing base 
 Constructing derived 
-Destructing derived  	/* Reverse order*/
-Destructing base  	/* Reverse order*/
+Destructing derived  	// Reverse order
+Destructing base  	// Reverse order
 
 	As you can see :		the constructors are executed in order of derivation and 
 	The destructors are executed in reverse order.
@@ -70,7 +81,7 @@ public :
 	void showi() { cout << i << '\n';}   };	class derived : public base {
 	int j;
 public :
-derived(int n) : base(n) {  /* pass arg to base */
+derived(int n) : base(n) {  // pass arg to base 
 		    cout<< "Constructing derived \n";
 		    j = n;}
 ~derived() { cout<< "Destructing derived \n"; }
@@ -83,7 +94,7 @@ int main() { 	derived obj(10) ; 	obj.showi(); 	   obj.showj(); 	return 0; }
 	Then the derived class simply passes along to the base those arguments required by it. 
 class derived : public base { int j;
    public :
-derived(int n, int m) : base(m) {cout<< "Constructing derived \n"; j=n;}  /* pass arg to base */ 
+derived(int n, int m) : base(m) {cout<< "Constructing derived \n"; j=n;}  // pass arg to base 
 ~derived() { cout<< "Destructing derived \n"; }
 void showj() { cout<< j << '\n'; }  };
 int main() { derived ob(10 , 20);    ob.showi ();    ob.showj ();     return 0; }
@@ -95,7 +106,7 @@ base(int n){ cout<< "Constructing base \n"; i=n;}
 void showi() { cout<< i << '\n'; } 
 };	class derived : public base { int j;
 	public :
-derived(int n) : base(n) 	   /* pass arg to base */ 
+derived(int n) : base(n) 	   // pass arg to base 
  	{cout<< "Constructing derived \n"; j=0; }
 ~derived() { cout<< "Destructing derived \n"; }
 void showj() { cout << j << '\n'; } 	};
