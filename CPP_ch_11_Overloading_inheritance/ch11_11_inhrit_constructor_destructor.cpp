@@ -17,30 +17,95 @@
     
 
 
+--------rev[28-Apr-2025]--------
+
+
     --------    parameterized constructors    --------
-
-
- Parameterized constructors discussed in ch10_01_3_constructor_param.cpp
+    Parameterized constructors discussed in ch10_01_3_constructor_param.cpp
 
 It is possible to passed arguments to either a derived or base class constructor. There are two cases: 
-	Only derived class takes arguments: When only the derived class takes an initialization, arguments are passed to the derived class's constructor in the normal fashion (as we did before).
-	Base class takes arguments along with derived class: to pass an argument to the constructor of the base class, a chain of argument passing is established. 
+
+Only derived class takes arguments: 
+    When only the derived class takes an initialization, arguments are passed to the derived class's constructor in the normal fashion (as we did before).
+
+Base class takes arguments along with derived class: 
+    to pass an argument to the constructor of the base class, a chain of argument passing is established. 
 	First, all necessary arguments to both the base class and the derived class are passed to the derived class's constructor. 
 	Then using an expanded form of the derived class's constructor declaration, pass the appropriate arguments along to the base class. 
+
 	The syntax for passing along an argument from the derived class to the base class is:
 derived_constructor( arg_list ): base( arg_list ){
 `				// body of derived class constructor
 }
+
+
 	Here base is the name of the base class. 
 	Both the derived class and the base class can use the same argument (example 3).
 	It is also possible for the derived class to ignore all arguments and just pass them along to the base (example 5).
-	Example 1 (Base-Derived Constructor-Destructor execution): 
+
+
+
+It’s possible to pass arguments to both base and derived class constructors. There are two cases:
+
+1️⃣ Only the derived class takes arguments:
+Arguments are passed directly to the derived class constructor in the usual way.
+
+2️⃣ Both base and derived classes take arguments:
+A chain of argument passing is needed.
+
+All arguments are first passed to the derived class constructor.
+
+The derived class then forwards the relevant arguments to the base class using an expanded constructor initializer list.
+
+derived_constructor(arg_list) : base(arg_list) {
+    // body of derived constructor
+}
+
+
+
+
+
+-------------------------------------------
+
+ If Only the Base Class Takes Arguments:
+The derived class must still pass those arguments to the base class constructor, since the base class constructor needs them for proper initialization.
+
+The derived class can either:
+
+Accept the necessary arguments itself and forward them to the base class.
+
+Or hard-code the values when calling the base class constructor.
+
+
+
+class Base {
+    int x;
+public:
+    Base(int a) { x = a; }
+};
+
+class Derived : public Base {
+public:
+    // Pass value to base class constructor using initializer list
+    Derived(int a) : Base(a) {
+        // body of derived class constructor (if needed)
+    }
+};
+
+
+
+Key Point:
+If a base class has no default constructor (a constructor with no parameters), the derived class must explicitly call one of the base class’s constructors through its own initializer list.
+
+
+
 
 
 
 --------rev[25-apr-2025]--------
 
 
+	Example 1 (Base-Derived Constructor-Destructor execution): 
 
 
 class base {
