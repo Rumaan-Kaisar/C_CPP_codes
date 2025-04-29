@@ -17,58 +17,45 @@
     
 
 
---------rev[28-Apr-2025]--------
-
-
     --------    parameterized constructors    --------
     Parameterized constructors discussed in ch10_01_3_constructor_param.cpp
 
-It is possible to passed arguments to either a derived or base class constructor. There are two cases: 
+    It is possible to pass arguments to either a derived or base class constructor. 
+    There are three cases: 
 
-Only derived class takes arguments: 
-    When only the derived class takes an initialization, arguments are passed to the derived class's constructor in the normal fashion (as we did before).
-
-Base class takes arguments along with derived class: 
-    to pass an argument to the constructor of the base class, a chain of argument passing is established. 
-	First, all necessary arguments to both the base class and the derived class are passed to the derived class's constructor. 
-	Then using an expanded form of the derived class's constructor declaration, pass the appropriate arguments along to the base class. 
-
-	The syntax for passing along an argument from the derived class to the base class is:
-derived_constructor( arg_list ): base( arg_list ){
-`				// body of derived class constructor
-}
+        Only derived class takes arguments: 
+            When only the derived class takes an initialization.
+            Arguments are passed directly to the derived class constructor in the usual way.
 
 
-	Here base is the name of the base class. 
-	Both the derived class and the base class can use the same argument (example 3).
-	It is also possible for the derived class to ignore all arguments and just pass them along to the base (example 5).
+        Both base and derived classes take arguments:
+            A chain of argument passing is needed.
+            All arguments are "first" passed to the DERIVED class constructor.
+            The derived class then forwards the relevant arguments to the base class using an expanded constructor initializer list.
 
+            The syntax for passing along an argument from the derived class to the base class is:
 
+                    derived_constructor(arg_list) : base(arg_list) {
+                        // body of derived constructor
+                    }
 
-It’s possible to pass arguments to both base and derived class constructors. There are two cases:
-
-1️⃣ Only the derived class takes arguments:
-Arguments are passed directly to the derived class constructor in the usual way.
-
-2️⃣ Both base and derived classes take arguments:
-A chain of argument passing is needed.
-
-All arguments are first passed to the derived class constructor.
-
-The derived class then forwards the relevant arguments to the base class using an expanded constructor initializer list.
-
-derived_constructor(arg_list) : base(arg_list) {
-    // body of derived constructor
-}
+            Both the derived class and the base class can use the same argument (Example 3).
+            It is also possible for the derived class to ignore all arguments and just pass them along to the base (Example 5).
+            It's also true for following case
 
 
 
 
+    
+
+
+--------rev[28-Apr-2025]--------
 
 -------------------------------------------
 
- If Only the Base Class Takes Arguments:
-The derived class must still pass those arguments to the base class constructor, since the base class constructor needs them for proper initialization.
+If Only the Base Class Takes Arguments:
+    The derived class must still pass those arguments to the base class constructor, 
+    since the base class constructor needs them for proper initialization.
 
 The derived class can either:
 
@@ -136,6 +123,8 @@ class derived : public base { int j;
 obj.showj();
 return 0; }
 	Notice that the argument is passed to the derived class's constructor in the normal fashion.
+
+
 	Example 3 ( Base and derived uses same arguments ): 
 class base { 
 	int i;
@@ -163,6 +152,7 @@ derived(int n, int m) : base(m) {cout<< "Constructing derived \n"; j=n;}  // pas
 ~derived() { cout<< "Destructing derived \n"; }
 void showj() { cout<< j << '\n'; }  };
 int main() { derived ob(10 , 20);    ob.showi ();    ob.showj ();     return 0; }
+
 	Example 5 ( Base uses the arguments and derived just pass these to base without using  ):  
 class base { int i;
 public :
