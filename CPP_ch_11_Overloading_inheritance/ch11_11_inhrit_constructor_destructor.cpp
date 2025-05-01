@@ -88,15 +88,38 @@
 
 
 /* Example 1: (Base-Derived Constructor-Destructor execution):  
+                Notice the CONSTRUCTORS are executed in "order of derivation" and 
+                The DESTRUCTORS are executed in "reverse order".
 
-This program displays the following output:	Constructing base 
-Constructing derived 
-Destructing derived  	// Reverse order
-Destructing base  	// Reverse order
-
-	As you can see :		the constructors are executed in order of derivation and 
-	The destructors are executed in reverse order.
+                The output will be:	
+                                    Constructing base 
+                                    Constructing derived 
+                                    Destructing derived     // Reverse order
+                                    Destructing base        // Reverse order
 */
+
+
+# include <iostream >
+using namespace std ;
+class base
+{
+public :
+base () { cout << " Constructing base class \n"; }
+~ base () { cout << " Destructing base class \n"; }
+};
+class derived : public base
+{
+public :
+derived () { cout << " Constructing derived class \n"; }
+~ derived () { cout << " Destructing derived class \n"; }
+};
+
+int main ()
+{
+derived o;
+return 0;
+}
+
 
 
 class base {
@@ -242,7 +265,7 @@ Example 7: If Only the Base Class Takes Arguments:
                     // body of derived constructor
                 }
 
-            Notice Example 7
+    
 
 
 Summary:
