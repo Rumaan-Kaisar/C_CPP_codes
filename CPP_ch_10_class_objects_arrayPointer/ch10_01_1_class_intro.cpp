@@ -6,6 +6,20 @@
     A class is declared using the 'class' keyword. 
         The syntax of a class declaration is similar to that of a 'structure' 
         (actually class is a kind of "structure" with more feature). 
+
+
+    ----  C++ vs Java  ----
+    In C++: After a class definition, a semicolon is required:
+    
+            class MyClass {
+                // members
+            };
+    
+    In Java: After a class definition, no semicolon is needed:
+    
+            class MyClass {
+                // members
+            } 
 */
 
 // General form:
