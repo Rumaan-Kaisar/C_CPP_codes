@@ -38,6 +38,21 @@
                     // body of derived constructor
                 }
 
+        Example: 
+                class Base {
+                        int x;
+                    public:
+                        Base(int a) { x = a; }
+                };
+
+                class Derived : public Base {
+                    public:
+                        // Pass value to base class constructor using initializer list
+                        Derived(int a) : Base(a) {
+                            // body of derived class constructor (if needed)
+                        }
+                };
+
         Both the derived class and the base class can use the same argument (Example 3).
         It is also possible for the derived class to ignore all arguments and just pass them along to the base (Example 5).
         It's also true for following case.
@@ -57,9 +72,9 @@
                     // body of derived constructor
                 }
 
-            Notice Example 7
+            Notice "Example 7"
 
-
+*/  
 
 
 --------rev[29-Apr-2025]--------
@@ -67,19 +82,7 @@
 -------------------------------------------
 
 
-class Base {
-    int x;
-public:
-    Base(int a) { x = a; }
-};
 
-class Derived : public Base {
-public:
-    // Pass value to base class constructor using initializer list
-    Derived(int a) : Base(a) {
-        // body of derived class constructor (if needed)
-    }
-};
 
 
 
@@ -105,6 +108,9 @@ Destructing base  	// Reverse order
 
 	As you can see :		the constructors are executed in order of derivation and 
 	The destructors are executed in reverse order.
+
+
+
 	Example 2 (Only pass argument to derived class constructor – Normal fashion): The BASE is SAME as Example 1
 class derived : public base { int j;
 			public :
@@ -115,6 +121,8 @@ class derived : public base { int j;
 obj.showj();
 return 0; }
 	Notice that the argument is passed to the derived class's constructor in the normal fashion.
+
+
 
 
 	Example 3 ( Base and derived uses same arguments ): 
@@ -134,6 +142,9 @@ derived(int n) : base(n) {  // pass arg to base
 void showj() { cout << j << '\n'; }	};
 int main() { 	derived obj(10) ; 	obj.showi(); 	   obj.showj(); 	return 0; }
 	In the declaration of derived's constructor, the parameter n (which receives the initialization argument) is both used by derived() and passed to base().In this specific case, both use the same argument, and the derived class simply passes along the argument to the base.
+
+
+
 	Example 4 ( Base and derived uses different arguments ):  Mostly the constructors for the base & derived won't use same argument. 
 	When this is the case and you need to pass one or more arguments to each : 
 	To the derived class's constructor, we must pass those arguments: which are needed by both derived and base.
@@ -144,6 +155,8 @@ derived(int n, int m) : base(m) {cout<< "Constructing derived \n"; j=n;}  // pas
 ~derived() { cout<< "Destructing derived \n"; }
 void showj() { cout<< j << '\n'; }  };
 int main() { derived ob(10 , 20);    ob.showi ();    ob.showj ();     return 0; }
+
+
 
 	Example 5 ( Base uses the arguments and derived just pass these to base without using  ):  
 class base { int i;
@@ -160,7 +173,7 @@ void showj() { cout << j << '\n'; } 	};
 	If the derived class does not need an argument, it ignores the argument and simply passes it along. For example, in this fragment, parameter n is not used by derived(). Instead, it is simply passed to base().
 
 
-*/  
+
 
 
 
@@ -283,6 +296,7 @@ int main() {
     Derived obj;  // Creating an object of the Derived class
     return 0;
 }
+
 Explanation:
 The Derived class constructor does not take any arguments.
 
