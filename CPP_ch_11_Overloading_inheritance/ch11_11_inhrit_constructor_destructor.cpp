@@ -77,14 +77,6 @@
 */  
 
 
-// --------rev[29-Apr-2025]--------
-
-
-
-
-
-
-
 
 
 /* Example 1: (Base-Derived Constructor-Destructor execution):  
@@ -98,45 +90,28 @@
                                     Destructing base        // Reverse order
 */
 
+#include <iostream>
 
-# include <iostream >
-using namespace std ;
-class base
-{
-public :
-base () { cout << " Constructing base class \n"; }
-~ base () { cout << " Destructing base class \n"; }
-};
-class derived : public base
-{
-public :
-derived () { cout << " Constructing derived class \n"; }
-~ derived () { cout << " Destructing derived class \n"; }
+class base{
+    public:
+        base(){ std::cout << " Constructing base class \n"; }
+        ~base(){ std::cout << " Destructing base class \n"; }
 };
 
-int main ()
-{
-derived o;
-return 0;
+class derived : public base{    // no-arguments allowed in this line
+    public:
+        derived(){ std::cout << " Constructing derived class \n"; }
+        ~derived(){ std::cout << " Destructing derived class \n"; }
+};
+
+int main(){
+    derived ob; // By declaring object, Constructor-Destructor executes 
+    return 0;
 }
 
 
 
-class base {
-public :
-  base(){ cout<< "Constructing base \n"; }
-  ~base(){ cout<< "Destructing base \n"; } 
-};	class derived : public base{ // no-arguments allowed 
-public :
-   derived(){ cout<< "Constructing derived \n"; }
-   ~derived(){ cout<< "Destructing derived \n"; }
-};
-		int main() { 	derived obj; 		// By declaring object Constructor-Destructor executes 
-				return 0; }
-
-
-
-
+// --------rev[01-May-2025]--------
 
 
 /* Example 2: (Only pass argument to derived class constructor – Normal fashion): The BASE is SAME as Example 1 
