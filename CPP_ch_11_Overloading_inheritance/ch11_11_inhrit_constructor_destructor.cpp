@@ -98,6 +98,9 @@ class base{
         ~base(){ std::cout << " Destructing base class \n"; }
 };
 
+// cannot pass constructor arguments to the base class in following line. 
+// Only the inheritance type (public, protected, or private) is specified here.
+// arguments passed in derive's constructor declaration
 class derived : public base{    // no-arguments allowed in this line
     public:
         derived(){ std::cout << " Constructing derived class \n"; }
@@ -111,23 +114,42 @@ int main(){
 
 
 
-// --------rev[01-May-2025]--------
 
-
-/* Example 2: (Only pass argument to derived class constructor – Normal fashion): The BASE is SAME as Example 1 
-	Notice that the argument is passed to the derived class's constructor in the normal fashion.
+/* Example 2: (Only pass argument to derive's  constructor – Normal fashion): The BASE is SAME as Example 1
+                This program shows how to pass an argument to a derived class's constructor:
+                Notice that the argument is passed to the derived class's constructor in the normal fashion
 */
-class derived : public base { int j;
-			public :
-		derived(int n) { cout<< "Constructing derived \n";
-				    j = n; }
-		~derived() { cout<< "Destructing derived \n"; }
-		void showj() { cout << j << '\n'; } 	};	int main() { 	derived obj(10);
-obj.showj();
-return 0; }
+
+#include <iostream>
+
+class base{
+    public:
+        base(){ std::cout << " Constructing base class \n"; }
+        ~base(){ std::cout << " Destructing base class \n"; }
+};
+
+class derived : public base{
+        int j;
+    public:
+        derived(int n){     // pass argument to derive's  constructor – Normal fashion
+            std::cout << " Constructing derived class \n";
+            j = n;
+        } 
+        ~derived(){ std::cout << " Destructing derived class \n"; }
+        void showj(){ std::cout << j << '\n'; }
+};
+
+
+int main(){
+    derived o(10) ;
+    o.showj();
+
+    return 0;
+}
 
 
 
+// --------rev[02-May-2025]--------
 
 
 /* Example 3: ( Base and derived uses same arguments ):  
