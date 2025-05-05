@@ -112,6 +112,44 @@
         Through inheritance, it is possible to describe an object 
             by stating what general class (or classes) it belongs to along with those specific traits that make it unique. 
 
+
+	
+	----------------    The Classic 3 OOP Principles:   ----------------
+	All object-oriented languages (like Java, C++, Python, etc.) are typically defined by:
+	
+	    Encapsulation:
+	        Bundling data and methods together, and restricting direct access to some of an object's components.
+	
+	    Inheritance:
+	        Creating new classes from existing ones, inheriting fields and methods.
+	
+	    Polymorphism:
+	        The ability for different classes to be treated through the same interface, 
+	        typically via method overriding or overloading.
+	
+	
+	----------------   So why do some add Abstraction as a fourth?   ----------------
+	Because Abstraction is conceptually distinct from the other three — and equally important in OOP design.
+	Even though it overlaps slightly with Encapsulation.
+	
+	Abstraction means:
+	    Hiding complex implementation details and showing only the necessary features to the user.
+	
+	    For example, you can drive a car without knowing how its engine works internally — 
+	        you just interact with the steering, pedals, and gear.
+	
+	    In code:
+	        Using abstract classes, interfaces, or method signatures without implementation.
+	        It helps reduce complexity and isolate impact of changes.
+	
+	
+	
+	Some teaching models list "3 core principles" (Encapsulation, Inheritance, Polymorphism), 
+	    while others expand it to 4 principles by explicitly naming "Abstraction" 
+	        because it plays a crucial role in good OOP design, even if it overlaps with the effects of encapsulation.
+	
+	Both views are correct — it's just about whether abstraction is "bundled conceptually with encapsulation" or highlighted separately. 
+	Many modern OOP textbooks and instructors prefer emphasizing all four for clarity.
 */
 
 
