@@ -154,7 +154,26 @@ int main(){
                 Notice, both the derived class and the base class constructors take arguments. 
                     In this specific case, both use the "same argument", the parameter n 
                     and the derived class simply passes along the argument to the base
+
+
+                Note that:
+                    n is the same variable name in 'base' and 'derived'
+                    even though same value passed, they have same name — but different variables.
+
+                Inside base's constructor, the parameter n is local to base.
+                Inside derived's constructor, the parameter n is local to derived.
+
+
+                What's happenning is-
+                    Even though they both receive the same value (10 in this case), 
+                        they are separate local parameters in their respective constructors.
+                        i.e. two different variables, holding the same value temporarily passed at construction time.
+
+                    Only the data members i in base and j in derived remain in the object after construction.
+                    The n parameters themselves are temporary variables local to the constructors and 
+                        cease to exist once their respective constructors complete.
 */
+
 #include <iostream>
 
 class base{
@@ -191,7 +210,7 @@ int main(){
 
 
 
-// --------rev[02-May-2025]--------
+// --------rev[05-May-2025]--------
 
 
 /* Example 4: ( Base and derived uses different arguments ):  Mostly the constructors for the base & derived won't use same argument.  
