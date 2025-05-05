@@ -141,7 +141,7 @@ class derived : public base{
 
 
 int main(){
-    derived o(10) ;
+    derived o(10);
     o.showj();
 
     return 0;
@@ -149,30 +149,49 @@ int main(){
 
 
 
-// --------rev[02-May-2025]--------
 
-
-/* Example 3: ( Base and derived uses same arguments ):  
-	In the declaration of derived's constructor, the parameter n (which receives the initialization argument) is both used by derived() and passed to base().
-In this specific case, both use the same argument, and the derived class simply passes along the argument to the base.
+/* Example 3: (Base and derived uses same arguments)
+                Notice, both the derived class and the base class constructors take arguments. 
+                    In this specific case, both use the "same argument", the parameter n 
+                    and the derived class simply passes along the argument to the base
 */
-class base { 
-	int i;
-public :
-	base(int n) {	cout<< "Constructing base \n";
-			i = n;}
-	~base() { cout<< "Destructing base \n"; }
-	void showi() { cout << i << '\n';}   };	class derived : public base {
-	int j;
-public :
-derived(int n) : base(n) {  // pass arg to base 
-		    cout<< "Constructing derived \n";
-		    j = n;}
-~derived() { cout<< "Destructing derived \n"; }
-void showj() { cout << j << '\n'; }	};
-int main() { 	derived obj(10) ; 	obj.showi(); 	   obj.showj(); 	return 0; }
+#include <iostream>
+
+class base{
+        int i;
+    public:
+        base(int n){
+            std::cout << " Constructing base class \n";
+            i = n;
+        } 
+        ~base(){ std::cout << " Destructing base class \n"; }
+        void showi(){ std::cout << i << '\n';}
+};
+
+class derived : public base{
+        int j;
+    public:
+        derived(int n) : base (n){  // pass arg to base class.
+            std::cout << " Constructing derived class \n";
+            j = n;
+        }
+        ~derived(){ std::cout << " Destructing derived class \n";}
+        void showj(){ std::cout << j << '\n'; }
+};
 
 
+int main(){
+    derived o(10);
+    
+    o.showi();
+    o.showj();
+    
+    return 0;
+}
+
+
+
+// --------rev[02-May-2025]--------
 
 
 /* Example 4: ( Base and derived uses different arguments ):  Mostly the constructors for the base & derived won't use same argument.  
