@@ -160,8 +160,8 @@ int main(){
                     n is the same variable name in 'base' and 'derived'
                     even though same value passed, they have same name — but different variables.
 
-                Inside base's constructor, the parameter n is local to base.
-                Inside derived's constructor, the parameter n is local to derived.
+                    Inside base's constructor, the parameter n is local to base.
+                    Inside derived's constructor, the parameter n is local to derived.
 
 
                 What's happenning is-
@@ -213,11 +213,55 @@ int main(){
 // --------rev[05-May-2025]--------
 
 
-/* Example 4: ( Base and derived uses different arguments ):  Mostly the constructors for the base & derived won't use same argument.  
-	When this is the case and you need to pass one or more arguments to each : 
-	To the derived class's constructor, we must pass those arguments: which are needed by both derived and base.
-	Then the derived class simply passes along to the base those arguments required by it. 
+/* Example 4: (Base and derived uses different arguments)
+
+                Mostly, the constructors for the base and derived classes won't use the same arguments.
+                When this is the case and you need to pass one or more arguments to each:
+
+                Pass all required arguments to the derived class’s constructor- 
+                    both those needed by the "derived class" itself and those meant for the "base class"
+
+                Then the derived class simply passes along to the base those arguments required by it.
+
 */
+
+
+# include <iostream >
+using namespace std ;
+class base
+{
+int i;
+public :
+base ( int n)
+{
+cout << " Constructing base class \n";
+i = n;
+} ~
+base () { cout << " Destructing base class \n"; }
+void showi () { cout << i << ’\n’; }
+};
+class derived : public base
+{
+int j;
+public :
+derived ( int n, int m) : base (m) // pass arg to base class
+.
+{
+cout << " Constructing derived class \n";
+j = n;
+} ~
+derived () { cout << " Destructing derived class \n"; }
+void showj () { cout << j << ’\n’; }
+};
+int main ()
+{
+derived o(10 , 20) ;
+o. showi ();
+o. showj ();
+return 0;
+}
+5. 
+
 
 class derived : public base { int j;
    public :
