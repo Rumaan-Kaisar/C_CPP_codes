@@ -190,7 +190,7 @@ class base{
 class derived : public base{
         int j;
     public:
-        derived(int n) : base (n){  // pass arg to base class.
+        derived(int n) : base(n){  // pass arg to base class.
             std::cout << " Constructing derived class \n";
             j = n;
         }
@@ -210,8 +210,6 @@ int main(){
 
 
 
-// --------rev[05-May-2025]--------
-
 
 /* Example 4: (Base and derived uses different arguments)
 
@@ -225,52 +223,44 @@ int main(){
 
 */
 
+#include <iostream>
 
-# include <iostream >
-using namespace std ;
-class base
-{
-int i;
-public :
-base ( int n)
-{
-cout << " Constructing base class \n";
-i = n;
-} ~
-base () { cout << " Destructing base class \n"; }
-void showi () { cout << i << ’\n’; }
+class base{
+        int i;
+    public:
+        base(int n){
+            std::cout << " Constructing base class \n";
+            i = n;
+        } 
+        ~base(){ std::cout << " Destructing base class \n"; }
+        void showi(){ std::cout << i << '\n';}
 };
-class derived : public base
-{
-int j;
-public :
-derived ( int n, int m) : base (m) // pass arg to base class
-.
-{
-cout << " Constructing derived class \n";
-j = n;
-} ~
-derived () { cout << " Destructing derived class \n"; }
-void showj () { cout << j << ’\n’; }
+
+
+class derived : public base{
+        int j;
+    public:
+        derived(int n, int m) : base(m){  // pass arg to base class.
+            std::cout << " Constructing derived class \n";
+            j = n;
+        }
+        ~derived(){ std::cout << " Destructing derived class \n";}
+        void showj(){ std::cout << j << '\n'; }
 };
-int main ()
-{
-derived o(10 , 20) ;
-o. showi ();
-o. showj ();
-return 0;
+
+
+int main(){
+    derived o(10, 20);
+
+    o.showi();
+    o.showj();
+
+    return 0;
 }
-5. 
 
 
-class derived : public base { int j;
-   public :
-derived(int n, int m) : base(m) {cout<< "Constructing derived \n"; j=n;}  // pass arg to base 
-~derived() { cout<< "Destructing derived \n"; }
-void showj() { cout<< j << '\n'; }  };
-int main() { derived ob(10 , 20);    ob.showi ();    ob.showj ();     return 0; }
 
-
+// --------rev[05-May-2025]--------
 
 /* Example 5: ( Base uses the arguments and derived just pass these to base without using  ):   
 	If the derived class does not need an argument, it ignores the argument and simply passes it along. For example, 
