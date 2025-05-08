@@ -312,13 +312,24 @@ int main(){
                 Derived class constructor does not require any arguments, 
                     just pass an argument (10) to the base class constructor.
 
-Notice we left arhument empty "Derived() : Base(10)" in case we're just passing a constant (fixed default value).
-bot to pass a varible we must argument in Derived: "Derived(int m) : Base(m)"
 
+                Case 1: You can leave the Derived() constructor's argument list empty, 
+                    and directly pass the constant in the "initializer list":
+                    No need for a parameter in Derived() because there's nothing dynamic to receive
 
-You can leave the Derived() constructor's argument list empty, and directly pass the constant in the initializer list:
+                                Derived() : Base(10) {
+                                    // Derived constructor body
+                                }
+
+                Case 2: You must declare a parameter in the Derived constructor, 
+                    because now it needs to accept a value at runtime to pass along to Base
+
+                                Derived(int m) : Base(m) {
+                                    // Derived constructor body
+                                }
+
 */
-
+// case 1:
 
 #include <iostream>
 
@@ -340,6 +351,7 @@ int main() {
     Derived obj;  // Creating an object of the derived class
     return 0;
 }
+
 
 
 
