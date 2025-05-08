@@ -305,13 +305,18 @@ int main(){
 
 // --------rev[06-May-2025]--------
 
-/* Example 6: Here is an example demonstrating the case where only the base class takes arguments, and the derived class does not need any additional arguments: 
-Explanation:
-Base class constructor takes an integer argument int x.
+/* Example 6: Here is an example demonstrating the case where only the base class takes arguments, 
+                and the derived class does not need any additional arguments: 
 
-Derived class constructor does not require any arguments, but it needs to pass an argument (10) to the base class constructor.
+                Base class constructor takes an integer argument int x.
+                Derived class constructor does not require any arguments, 
+                    just pass an argument (10) to the base class constructor.
 
-When you create an object of the Derived class, the Base class constructor is called first with the argument 10, followed by the body of the derived class constructor.
+Notice we left arhument empty "Derived() : Base(10)" in case we're just passing a constant (fixed default value).
+bot to pass a varible we must argument in Derived: "Derived(int m) : Base(m)"
+
+
+You can leave the Derived() constructor's argument list empty, and directly pass the constant in the initializer list:
 */
 
 
