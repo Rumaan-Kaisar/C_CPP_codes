@@ -303,8 +303,6 @@ int main(){
 
 
 
-// --------rev[06-May-2025]--------
-
 /* Example 6: Here is an example demonstrating the case where only the base class takes arguments, 
                 and the derived class does not need any additional arguments: 
 
@@ -354,8 +352,62 @@ int main() {
 
 
 
+// case 2 (similar to Example 5):
+#include <iostream>
+
+class Base {
+    int x;
+public:
+    Base(int n) {
+        x = n;
+        std::cout << "Base class constructor called with value: " << x << std::endl;
+    }
+    void show() {
+        std::cout << "Value in Base: " << x << std::endl;
+    }
+};
+
+class Derived : public Base {
+    int y;
+public:
+    Derived(int m) : Base(m) {  // Passing variable 'm' to Base constructor
+        y = m;
+        std::cout << "Derived class constructor called with value: " << y << std::endl;
+    }
+
+    void showDerived() {
+        std::cout << "Value in Derived: " << y << std::endl;
+    }
+};
+
+int main() {
+    int value = 25;
+    Derived obj(value);   // Passing variable to derived class constructor
+
+    obj.show();
+    obj.showDerived();
+
+    return 0;
+}
 
 
+
+// Keeping both (OVERLOAD): both options — a Derived(int m) constructor and a Derived() with a default value
+class Derived : public Base {
+    public:
+        Derived() : Base(10) {  // default value passed to Base
+            std::cout << "Derived() called\n";
+        }
+
+        Derived(int m) : Base(m) {  // pass variable to Base
+            std::cout << "Derived(int) called with " << m << '\n';
+        }
+};
+
+
+
+
+// --------rev[08-May-2025]--------
 
 /* 
 Example 7: If Only the Base Class Takes Arguments:
