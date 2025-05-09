@@ -409,46 +409,23 @@ class Derived : public Base {
 
 // --------rev[08-May-2025]--------
 
-/* 
-Example 7: If Only the Base Class Takes Arguments:
-        The derived class must still pass those arguments to the base class constructor, 
-        since the base class constructor needs them for proper initialization.
+/* Example 7: If Only the Base Class Takes Arguments:
+                The derived class must still pass those arguments to the base class constructor, 
+                since the base class constructor needs them for proper initialization.
 
-        The derived class can either:
-            Accept the necessary arguments itself and forward them to the base class.
-                uses above cases syntax
+                Case 1:
+                    demonstrates the derived class accepting arguments and forwarding them to the base class constructor.
+                    Derived Class Accepts the Necessary Arguments and Forwards Them to the Base Class
+                    In this case, the derived class accepts arguments and then forwards them to the base class constructor. 
 
-            Or hard-code the values when calling the base class constructor. Using following syntax:
-
-                derived_constructor() : base(arg_list) {
-                    // body of derived constructor
-                }
-
-    
-
-
-Summary:
-Case 1 demonstrates the derived class accepting arguments and forwarding them to the base class constructor.
-
-Case 2 demonstrates the derived class hard-coding values when calling the base class constructor.
-
- */
-/* Case 1: Derived Class Accepts the Necessary Arguments and Forwards Them to the Base Class
-In this case, the derived class accepts arguments and then forwards them to the base class constructor. 
-Explanation:
-The Derived class constructor takes two arguments a and b.
-
-It forwards these arguments to the Base class constructor using the initializer list: Base(a, b).
-
-When the Derived class object is created, it calls both the Base class constructor and the Derived class constructor with the given arguments.
-
-Output:
-pgsql
-Copy
-Edit
-Base class constructor called with values: 10 and 20
-Derived class constructor called with values: 10 and 20
+                Case 2:
+                    demonstrates the derived class hard-coding values when calling the base class constructor.
 */
+
+
+// Case 1: 
+
+
 
 #include <iostream>
 
