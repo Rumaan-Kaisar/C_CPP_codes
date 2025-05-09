@@ -407,40 +407,34 @@ class Derived : public Base {
 
 
 
-// --------rev[08-May-2025]--------
-
 /* Example 7: If Only the Base Class Takes Arguments:
                 The derived class must still pass those arguments to the base class constructor, 
                 since the base class constructor needs them for proper initialization.
 
                 Case 1:
-                    demonstrates the derived class accepting arguments and forwarding them to the base class constructor.
                     Derived Class Accepts the Necessary Arguments and Forwards Them to the Base Class
                     In this case, the derived class accepts arguments and then forwards them to the base class constructor. 
 
                 Case 2:
-                    demonstrates the derived class hard-coding values when calling the base class constructor.
+                    The Derived class constructor does not take any arguments.
+                    Instead, derived Class Hard-Codes the Values When Calling the Base Class Constructor (not dynamic)
 */
 
-
 // Case 1: 
-
-
-
 #include <iostream>
 
 class Base {
-public:
-    Base(int x, int y) {
-        std::cout << "Base class constructor called with values: " << x << " and " << y << std::endl;
-    }
+    public:
+        Base(int x, int y) {
+            std::cout << "Base class constructor called with values: " << x << " and " << y << std::endl;
+        }
 };
 
 class Derived : public Base {
-public:
-    Derived(int a, int b) : Base(a, b) {  // Forwarding arguments to the Base class constructor
-        std::cout << "Derived class constructor called with values: " << a << " and " << b << std::endl;
-    }
+    public:
+        Derived(int a, int b) : Base(a, b) {  // Forwarding arguments to the Base class constructor
+            std::cout << "Derived class constructor called with values: " << a << " and " << b << std::endl;
+        }
 };
 
 int main() {
@@ -450,36 +444,21 @@ int main() {
 
 
 
-
-/* Case 2: Derived Class Hard-Codes the Values When Calling the Base Class Constructor
-In this case, the derived class hard-codes the values when calling the base class constructor. 
-Explanation:
-The Derived class constructor does not take any arguments.
-
-Instead, it hard-codes the values 100 and 200 when calling the Base class constructor via the initializer list: Base(100, 200).
-
-When the Derived class object is created, it calls the Base class constructor with the hard-coded values.
-
-Output:
-Base class constructor called with values: 100 and 200
-Derived class constructor called with hard-coded values.
-*/
-
-
+// Case 2: 
 #include <iostream>
 
 class Base {
-public:
-    Base(int x, int y) {
-        std::cout << "Base class constructor called with values: " << x << " and " << y << std::endl;
-    }
+    public:
+        Base(int x, int y) {
+            std::cout << "Base class constructor called with values: " << x << " and " << y << std::endl;
+        }
 };
 
 class Derived : public Base {
-public:
-    Derived() : Base(100, 200) {  // Hard-coding values when calling Base class constructor
-        std::cout << "Derived class constructor called with hard-coded values." << std::endl;
-    }
+    public:
+        Derived() : Base(100, 200) {  // Hard-coding values when calling Base class constructor
+            std::cout << "Derived class constructor called with hard-coded values." << std::endl;
+        }
 };
 
 int main() {
@@ -488,6 +467,6 @@ int main() {
 }
 
 
-
+// --------rev[09-May-2025]--------
 
 
