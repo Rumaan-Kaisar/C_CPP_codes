@@ -470,12 +470,15 @@ int main() {
 
 // --------rev[09-May-2025]--------
 
-1. Given the following skeleton, fill in the constructor function for myderived. Have it pass
-along a pointer to an initialization string to mybase. Also, have myderived() initialize
-len to the length of the string.
+/* Example 1: Given the following skeleton, fill in the "constructor" function for myderived. 
+                Have it pass along a pointer to an "initialization string" to mybase. 
+                Also, have myderived() initialize len to the length of the string. 
+*/
+
+
 # include <iostream >
 # include <cstring >
-using namespace std ;
+
 class mybase
 {
 char str [80];
@@ -500,10 +503,16 @@ ob. show ();
 cout << ob. getlen () << ’\n’;
 return 0;
 }
-2. Using the following skeleton, create appropriate car() and truck() constructor functions.
-Have each pass along appropriate arguments to vehicle. In addition, have car() initialize
-passengers as specified when object is created. Have truck() initialize loadlimit as
-specified when an object is created.
+
+
+
+
+/* Example 2: Using the following skeleton, create appropriate car() and truck() constructor functions.
+                Have each pass along appropriate arguments to vehicle. 
+                In addition, have car() initialize passengers as specified when object is created. 
+                Have truck() initialize loadlimit as specified when an object is created. 
+*/
+
 # include <iostream >
 using namespace std ;
 // A base class for various types of vehicle .
