@@ -468,38 +468,74 @@ int main() {
 }
 
 
-// --------rev[09-May-2025]--------
 
-/* Example 1: Given the following skeleton, fill in the "constructor" function for myderived. 
+
+
+// --------rev[12-May-2025]--------
+
+/* Example 8: Given the following skeleton, fill in the "constructor" function for myderived. 
                 Have it pass along a pointer to an "initialization string" to mybase. 
                 Also, have myderived() initialize len to the length of the string. 
 */
 
+#include <iostream>
+#include <cstring>
 
-# include <iostream >
+class mybase{
+        char str[80];
+    public:
+        mybase(char *s){ strcpy(str, s); }
+        char *get() { return str; }
+};
+
+class myderived : public mybase{
+        int len;
+    public:
+        // add myderived () here
+        int getlen(){ return len; }
+        void show(){ std::cout << get () << '\n'; }
+};
+
+
+int main(){
+    myderived ob(" hello ");
+
+    ob.show();
+    std::cout << ob.getlen() << '\n';
+
+    return 0;
+}
+
+
+
+
+1. # include <iostream >
 # include <cstring >
-
+using namespace std ;
 class mybase
 {
 char str [80];
 public :
-mybase ( char *s); { strcpy (str , s); }
+mybase ( char *s) { strcpy (str , s); }
 char * get () { return str ; }
 };
 class myderived : public mybase
 {
 int len ;
 public :
-// add myderived () here
+myderived ( char *s) : mybase (s)
+{
+len = strlen (s);
+}
 int getlen () { return len; }
 void show () { cout << get () << ’\n’; }
+502ANSWERS
+7.3 EXERCISES
 };
 int main ()
 {
 myderived ob(" hello ");
 ob. show ();
-188INHERITANCE
-7.3. CONSTRUCTORS, DESTRUCTORS, AND INHERITANCE
 cout << ob. getlen () << ’\n’;
 return 0;
 }
@@ -507,19 +543,19 @@ return 0;
 
 
 
-/* Example 2: Using the following skeleton, create appropriate car() and truck() constructor functions.
+
+/* Example 9: Using the following skeleton, create appropriate car() and truck() constructor functions.
                 Have each pass along appropriate arguments to vehicle. 
                 In addition, have car() initialize passengers as specified when object is created. 
                 Have truck() initialize loadlimit as specified when an object is created. 
 */
 
 # include <iostream >
-using namespace std ;
+
 // A base class for various types of vehicle .
-class vehicle
-{
-int num_wheels ;
-int range ;
+class vehicle{
+        int num_wheels;
+        int range;
 public :
 vehicle ( int w, int r)
 {
@@ -569,3 +605,65 @@ return 0;
 Have car() and truck() declare objects like this:
 car ob( passengers , wheels , range );
 truck ( loadlimit , wheels , range );
+
+
+
+2. # include <iostream >
+using namespace std ;
+// A base class for various types of vehicles .
+class vehicle
+{
+int num_wheels ;
+int range ;
+public :
+vehicle ( int w, int r)
+{
+num_wheels = w;
+range = r;
+}
+void showv ()
+{
+cout << " Wheels : " << num_wheels << ’\n’;
+cout << " Range : " << range << ’\n’;
+}
+};
+class car : public vehicle
+{
+int passengers ;
+public :
+car ( int p, int w, int r) : vehicle (w, r)
+{
+passengers = p;
+}
+void show ()
+{
+showv ();
+cout << " Passengers : " << passengers << ’\n’;
+}
+};
+class truck : public vehicle
+{
+int loadlimit ;
+503TEACH YOURSELF
+C++
+public :
+truck ( int l, int w, int r) : vehicle (w, r)
+{
+loadlimit = l;
+}
+void show ()
+{
+showv ();
+cout << " loadlimit " << loadlimit << ’\n’;
+}
+};
+int main ()
+{
+car c(5, 4, 500) ;
+truck t (30000 , 12, 1200) ;
+cout << " Car : \n";
+c. show ();
+cout << "\ nTruck :\n";
+t. show ();
+return 0;
+}
