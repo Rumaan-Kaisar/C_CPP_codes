@@ -473,6 +473,35 @@ int main() {
 /* Example 8: Given the following skeleton, fill in the "constructor" function for myderived. 
                 Have it pass along a pointer to an "initialization string" to mybase. 
                 Also, have myderived() initialize len to the length of the string. 
+
+                    #include <iostream>
+                    #include <cstring>
+
+                    class mybase{
+                            char str[80];
+                        public:
+                            mybase(char *s){ strcpy(str, s); }
+                            char *get() { return str; }
+                    };
+
+                    class myderived : public mybase{
+                            int len;
+                        public:
+                            // add myderived() here
+
+                            int getlen(){ return len; }
+                            void show(){ std::cout << get() << '\n'; }
+                    };
+
+
+                    int main(){
+                        myderived ob(" hello ");
+
+                        ob.show();
+                        std::cout << ob.getlen() << '\n';
+
+                        return 0;
+                    }
 */
 
 #include <iostream>
