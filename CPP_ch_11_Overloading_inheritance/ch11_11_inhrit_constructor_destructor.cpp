@@ -537,15 +537,70 @@ int main(){
 
 
 
-
-// --------rev[12-May-2025]--------
-
-
-
 /* Example 9: Using the following skeleton, create appropriate car() and truck() constructor functions.
                 Have each pass along appropriate arguments to vehicle. 
                 In addition, have car() initialize passengers as specified when object is created. 
                 Have truck() initialize loadlimit as specified when an object is created. 
+
+
+                    #include <iostream>
+
+                    // A base class for various types of vehicle .
+                    class vehicle{
+                            int num_wheels;
+                            int range;
+                        public:
+                            vehicle(int w, int r){
+                                num_wheels = w;
+                                range = r;
+                            }
+                            void showv(){
+                                std::cout << "Wheels : " << num_wheels << '\n';
+                                std::cout << "Range : " << range << '\n';
+                            }
+                    };
+
+
+                    class car : public vehicle{
+                            int passengers;
+                        public:
+                            // insert car () constructor here
+                            void show(){
+                                showv();
+                                std::cout << "Passengers : " << passengers << '\n';
+                            }
+                    };
+
+
+                    class truck : public vehicle{
+                            int loadlimit;
+                        public:
+                            // insert truck () constructor here
+                            void show(){
+                                showv();
+                                std::cout << "Loadlimit : " << loadlimit << '\n';
+                            }
+                    };
+
+
+                    int main(){
+                        car c(5,4,500) ;
+                        truck t(3000,12,1200) ;
+
+                        std::cout << " Car : \n";
+                        c.show();
+
+                        std::cout << "\ nTruck :\n";
+                        t.show();
+
+                        return 0;
+                    }
+
+
+
+                Have car() and truck() declare objects like this:
+                    car ob(passengers , wheels , range);
+                    truck ob(loadlimit , wheels , range);
 */
 
 # include <iostream >
