@@ -590,7 +590,7 @@ int main(){
                         std::cout << " Car : \n";
                         c.show();
 
-                        std::cout << "\ nTruck :\n";
+                        std::cout << "\n Truck :\n";
                         t.show();
 
                         return 0;
@@ -603,120 +603,56 @@ int main(){
                     truck ob(loadlimit , wheels , range);
 */
 
-# include <iostream >
+#include <iostream>
 
 // A base class for various types of vehicle .
 class vehicle{
         int num_wheels;
         int range;
-public :
-vehicle ( int w, int r)
-{
-num_wheels = w;
-range = r;
-}
-void showv ()
-{
-cout << " Wheels : " << num_wheels << ’\n’;
-cout << " Range : " << range << ’\n’;
-}
+    public:
+        vehicle(int w, int r){
+            num_wheels = w;
+            range = r;
+        }
+        void showv(){
+            std::cout << "Wheels : " << num_wheels << '\n';
+            std::cout << "Range : " << range << '\n';
+        }
 };
-class car : public vehicle
-{
-int passengers ;
-public :
-// insert car () constructor here
-void show ()
-{
-showv ();
-cout << " Passengers : " << passengers << ’\n’;
-}
-};
-class truck : public vehicle
-{
-int loadlimit ;
-public :
-// insert truck () constructor here
-void show ()
-{
-showv ();
-cout << " Loadlimit : " << loadlimit << ’\n’;
-189TEACH YOURSELF
-C++
-}
-};
-int main ()
-{
-car c(5, 4, 500) ;
-truck t (3000 , 12, 1200) ;
-cout << " Car : \n";
-c. show ();
-cout << "\ nTruck :\n";
-t. show ();
-return 0;
-}
-Have car() and truck() declare objects like this:
-car ob( passengers , wheels , range );
-truck ( loadlimit , wheels , range );
 
 
+class car : public vehicle{
+        int passengers;
+    public:
+        car(int p, int w, int r) : vehicle(w, r){ passengers = p; }     // car() constructor
+        void show(){
+            showv();
+            std::cout << "Passengers : " << passengers << '\n';
+        }
+};
 
-2. # include <iostream >
-using namespace std ;
-// A base class for various types of vehicles .
-class vehicle
-{
-int num_wheels ;
-int range ;
-public :
-vehicle ( int w, int r)
-{
-num_wheels = w;
-range = r;
-}
-void showv ()
-{
-cout << " Wheels : " << num_wheels << ’\n’;
-cout << " Range : " << range << ’\n’;
-}
+
+class truck : public vehicle{
+        int loadlimit;
+    public:
+        truck(int lod, int w, int r) : vehicle(w, r){ loadlimit = lod; }     // truck() constructor here
+        void show(){
+            showv();
+            std::cout << "Loadlimit : " << loadlimit << '\n';
+        }
 };
-class car : public vehicle
-{
-int passengers ;
-public :
-car ( int p, int w, int r) : vehicle (w, r)
-{
-passengers = p;
+
+
+int main(){
+    car c(5,4,500) ;
+    truck t(3000,12,1200) ;
+
+    std::cout << " Car : \n";
+    c.show();
+
+    std::cout << "\nTruck :\n";
+    t.show();
+
+    return 0;
 }
-void show ()
-{
-showv ();
-cout << " Passengers : " << passengers << ’\n’;
-}
-};
-class truck : public vehicle
-{
-int loadlimit ;
-503TEACH YOURSELF
-C++
-public :
-truck ( int l, int w, int r) : vehicle (w, r)
-{
-loadlimit = l;
-}
-void show ()
-{
-showv ();
-cout << " loadlimit " << loadlimit << ’\n’;
-}
-};
-int main ()
-{
-car c(5, 4, 500) ;
-truck t (30000 , 12, 1200) ;
-cout << " Car : \n";
-c. show ();
-cout << "\ nTruck :\n";
-t. show ();
-return 0;
-}
+
