@@ -1,6 +1,10 @@
 
 /*  ------------------------    Multi inheritance    ------------------------
+
+------------    rev[13-May-2025]    ------------
+
 Multiple inheritance
+
 
 11.18 MULTIPLE INHERITANCE
 There are two ways that a derived class can inherit more than one base class. 
@@ -14,30 +18,40 @@ There are two ways that a derived class can inherit more than one base class.
 	A derived class can directly inherit more than one base class. In this situation, 
 	Two or more base classes are combined to help create the derived class. 
 	One derived with multiple base: When a derived class directly inherits multiple base classes, it uses this expanded form:
-class derived_class_name : access base_1 , access base_2 , ... , access base_N { /* body */  }
+
+
+class derived_class_name : access base_1 , access base_2 , ... , access base_N { // body }
 	Here base_1 through base_N are the base class names and 
 	access is the access specifier (private/public/protected), which can be different for each base class.
 	Execution of constructors & destructors: When multiple base classes are inherited, constructors are executed in the order, left to right, that the base classes are specified. Destructors are executed in the opposite order.
 	Argument passing: The derived passes the necessary arguments to the multiple base  by using this expanded form of the derived class's constructor function:
 
-derived_constructor(arg-list) : base_1(arg-list), base_2(arg-list),... , base_N(arg-list) { /* body */ }
+derived_constructor(arg-list) : base_1(arg-list), base_2(arg-list),... , base_N(arg-list) { // body }
 	Here base_1 through base_N are the base class names and 
-	Example 1:  A derived class that inherits a class derived from another class.
+
+    
+    
+    
+    Example 1:  A derived class that inherits a class derived from another class.
 class B1 { int a;
 public :
 B1(int x) { a = x; }
 int geta() {return a;}
-};	/* Inherit direct base class.*/
+};	
+
+// Inherit direct base class.
 class D1 : public B1 { int b;
 	public :
-/* Notice how pass y to B1*/
+// Notice how pass y to B1
 D1(int x, int y) : B1(y) {b = x;}
 int getb() {return b;}
 };
-	/* Inherit a derived and an indirect base .*/
+
+
+// Inherit a derived and an indirect base .
 class D2 : public D1 { int c;
 	public :
-/* Notice how pass args to D1*/
+// Notice how pass args to D1
 D2(int x, int y, int z) : D1(y, z){
 				 c = x; }
 void show(){	cout << geta() <<' ';
@@ -45,7 +59,7 @@ void show(){	cout << geta() <<' ';
 		cout << c << '\n';} };
 int main() { 	D2 ob_d2(1, 2, 3);
 		ob_d2.show();
-				/* geta() and getb() are still public here, because both are public elements of B1 and D1 */ 
+				// geta() and getb() are still public here, because both are public elements of B1 and D1 
 		cout << ob_d2.geta() << ' ' << ob_d2.getb() << '\n';	return 0;}
 	The call to ob_d2.show() displays 3 2 1. In this example, B1 is an indirect base class of D2.
 	Notice that D2 has access to public elements/members of both B1 and D1, because all access specifire is public .
@@ -54,15 +68,20 @@ int main() { 	D2 ob_d2(1, 2, 3);
 D2
 D1
 B1
+
+
+
+
+
 	Example 2: Here a derived class directly inherits two base classes. And illustrates how the destructor and constructors are called.
-class B1 { 	int a; 	/* first base class */
+class B1 { 	int a; 	// first base class
 	public : B1(int x) { a = x; }
 		  int geta() { return a; } 
-};	class B2 { 	int b; 	/* second base class */
+};	class B2 { 	int b; 	// second base class
 	public : B2(int x) { b = x; }
 		  int getb() { return b; }	
 };
-/* Directly inherit two base classes .*/
+// Directly inherit two base classes 
 class D : public B1, public B2{ int c;
 	public :
 // here z and y are passed directly to B1 and B2
@@ -82,6 +101,10 @@ B1
 D
 
 	B2
+
+
+
+
 
 	Example 3: The following program illustrates the order in which constructor and destructor functions are called when a derived directly inherits multiple base:
 class B1 { 		
