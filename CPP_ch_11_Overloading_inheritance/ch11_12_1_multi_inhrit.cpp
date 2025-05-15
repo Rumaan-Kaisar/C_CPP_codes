@@ -5,8 +5,6 @@
 
 Multiple inheritance
 
-
-11.18 MULTIPLE INHERITANCE
 There are two ways that a derived class can inherit more than one base class. 
 	A derived class can be used as a base class for another derived class, creating a multilevel class hierarchy. In this case, 
 	The original base class is said to be an indirect base class of the second derived class. 
@@ -31,7 +29,79 @@ derived_constructor(arg-list) : base_1(arg-list), base_2(arg-list),... , base_N(
 
     
     
-    
+
+
+Multilevel Inheritance
+In multilevel inheritance, a derived class becomes a base for another derived class, creating a chain (hierarchy).
+
+Example:
+Base1 → Derived1 → Derived2
+
+In this case:
+
+Base1 is an indirect base for Derived2.
+
+Any class can be used as a base class, no matter how it was created.
+
+✅ Constructor & Destructor Call Order
+Constructors are called in the order of inheritance, from base to derived:
+
+Base1
+
+Derived1
+
+Derived2
+
+Destructors are called in reverse order:
+
+Derived2
+
+Derived1
+
+Base1
+
+✅ Argument Passing
+In a class chain, each derived class must pass required arguments to its immediate base class during construction.
+
+Example:
+
+cpp
+Copy
+Edit
+Derived2(int x, int y, int z) : Derived1(x, y), ownValue(z) { }
+✅ Multiple Inheritance
+In multiple inheritance, a derived class inherits directly from two or more base classes.
+
+Syntax:
+
+cpp
+Copy
+Edit
+class Derived : access Base1, access Base2, ..., access BaseN {
+    // body
+};
+Each base can have its own access specifier: public, protected, or private.
+
+✅ Constructor & Destructor Order
+Constructors are called left to right in the order of base classes listed in the derived class declaration.
+
+Destructors are called right to left, the reverse of constructors.
+
+✅ Argument Passing in Multiple Inheritance
+The derived class passes arguments to multiple base classes via an expanded constructor initializer list:
+
+cpp
+Copy
+Edit
+Derived(int a, int b) : Base1(a), Base2(b) {
+    // derived constructor body
+}
+📌 Summary:
+Type	Constructor Order	Destructor Order
+Multilevel Inheritance	Base → Derived1 → Derived2	Derived2 → Derived1 → Base
+Multiple Inheritance	Left to Right (Base1 → Base2)	Right to Left (Base2 → Base1)
+
+
     Example 1:  A derived class that inherits a class derived from another class.
 class B1 { int a;
 public :
