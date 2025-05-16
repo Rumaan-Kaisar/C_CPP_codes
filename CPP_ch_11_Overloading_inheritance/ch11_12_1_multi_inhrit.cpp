@@ -9,8 +9,8 @@
 
 Multi-level inheritance
 
-A derived class can be used as a base class for another derived class, creating a multilevel class hierarchy. In this case, 
-	The original base class is said to be an indirect base class of the second derived class. 
+ In this case, 
+
 	Note: Any class-no matter how it is created-can be used as a base class.
 	
     
@@ -38,27 +38,26 @@ derived_constructor(arg-list) : base_1(arg-list), base_2(arg-list),... , base_N(
     
 ----------------------------------------
     
-Multilevel Inheritance
+--------  Multi-level Inheritance  --------
 A derived class can act as a base for another derived class, forming a chain.
 
-Example:
-Base → Derived1 → Derived2
-Here, Base becomes an indirect base of Derived2.
+        Base > Derived1 > Derived2
 
-Any class can be used as a base class.
+    Here, original "Base" becomes an "indirect base" of Derived2.
+    Creating a multilevel class hierarchy.
 
-Constructor & Destructor Order:
+    Constructor & Destructor Order:
+        Constructors run in order of inheritance:       Base > Derived1 > Derived2.
+        Destructors run in reverse order:     Derived2 > Derived1 > Base.
 
-Constructors run in order of inheritance: Base → Derived1 → Derived2.
+    Argument Passing:
+        Each derived class must pass required arguments to its "immediate base class" during construction.
 
-Destructors run in reverse: Derived2 → Derived1 → Base.
+            Derived2(int x, int y, int z) : Derived1(x, y), ownValue(z) { }
 
-Argument Passing:
 
-Each derived class must pass required arguments to its immediate base class during construction.
-
-✅ Multiple Inheritance
-A derived class can inherit from more than one base class directly.
+--------  Multiple Inheritance  --------
+A derived class can inherit from "more than one base class" directly.
 
 Syntax:
 
