@@ -6,45 +6,25 @@
         2. Multiple inheritance
 
 
+    Multi-level Inheritance
+        Constructor Order:      Base > Derived1 > Derived2
+        Destructor Order:       Derived2 > Derived1 > Base
 
-Multi-level inheritance
-
- In this case, 
-
-	Note: Any class-no matter how it is created-can be used as a base class.
-	
-    
-    When a base B1 is used for a derive D1 and this derived is used as a base for another derived D2. (i.e. "B1 inherited by D1" & "D1 inherited by D2").	 base_1 B1→derived_1 base_2  D1→derived_2  D2 .  The general case of 11.17 appears.
-	
-    Constructors called in the order of derivation. That is B1 first, D1 second and D2 third.   
-	Destructors called in the reverse order of derivation. That is D2 first, D1 second and B1 third.   
-	Argument passing:  When a derived class inherits a hierarchy of classes, each derived class in the chain must pass back to its preceding base any arguments it needs.
-	
-    
-    A derived class can directly inherit more than one base class. In this situation, 
-	Two or more base classes are combined to help create the derived class. 
-	One derived with multiple base: When a derived class directly inherits multiple base classes, it uses this expanded form:
+    Multiple Inheritance
+        Constructor Order:      Left to Right (Base1 > Base2)
+        Destructor Order:       Right to Left (Base2 > Base1)
 
 
-class derived_class_name : access base_1 , access base_2 , ... , access base_N { // body }
-	Here base_1 through base_N are the base class names and 
-	access is the access specifier (private/public/protected), which can be different for each base class.
-	Execution of constructors & destructors: When multiple base classes are inherited, constructors are executed in the order, left to right, that the base classes are specified. Destructors are executed in the opposite order.
-	Argument passing: The derived passes the necessary arguments to the multiple base  by using this expanded form of the derived class's constructor function:
 
-derived_constructor(arg-list) : base_1(arg-list), base_2(arg-list),... , base_N(arg-list) { // body }
-	Here base_1 through base_N are the base class names and 
 
-    
-----------------------------------------
-    
---------  Multi-level Inheritance  --------
-A derived class can act as a base for another derived class, forming a chain.
+    --------  Multi-level Inheritance  --------
 
-        Base > Derived1 > Derived2
+    A derived class can act as a base for another derived class, forming a chain.
 
-    Here, original "Base" becomes an "indirect base" of Derived2.
-    Creating a multilevel class hierarchy.
+            Base > Derived1 > Derived2
+
+        Here, original "Base" becomes an "indirect base" of Derived2.
+        Creating a multilevel class hierarchy.
 
     Constructor & Destructor Order:
         Constructors run in order of inheritance:       Base > Derived1 > Derived2.
@@ -53,112 +33,40 @@ A derived class can act as a base for another derived class, forming a chain.
     Argument Passing:
         Each derived class must pass required arguments to its "immediate base class" during construction.
 
-            Derived2(int x, int y, int z) : Derived1(x, y), ownValue(z) { }
+                    Derived2(int x, int y, int z) : Derived1(x, y), ownValue(z) { }
 
 
---------  Multiple Inheritance  --------
-A derived class can inherit from "more than one base class" directly.
 
-Syntax:
 
-cpp
-Copy
-Edit
-class Derived : access Base1, access Base2, ..., access BaseN {
-    // body
-};
-Each base can have its own public, protected, or private specifier.
+    --------  Multiple Inheritance  --------
 
-Constructor & Destructor Order:
+    One derived with multiple base: 
+        A derived class can inherit from "more than one base class" directly.
+        In this case, a derived class is created by combining two or more base classes.
+        When a derived class directly inherits multiple base classes, it uses this expanded form:
 
-Constructors run left to right, in the order of base class listing.
+                    class Derived : access Base1, access Base2, ..., access BaseN {
+                        // body
+                    };
 
-Destructors run right to left (reverse order).
+            Each base can have its own "access" specifier: public, protected, or private.
 
-Argument Passing:
+    Constructor & Destructor Order:
+        Constructors run left to right, in the "order of base class listing".
+        Destructors run right to left (reverse order).
 
-The derived class passes arguments to each base using:
+    Argument Passing:
+        The derived class passes necessary arguments to the multiple base  by using this expanded form:
+        
+                    Derived(args) : Base1(arg1), Base2(arg2), ..., BaseN(argN) {
+                        // derived constructor body
+                    }
 
-cpp
-Copy
-Edit
-Derived(args) : Base1(arg1), Base2(arg2), ..., BaseN(argN) {
-    // derived constructor body
-}
-Would you like a quick code demo for both too?
 
-----------------------------------------------
 
-Multilevel Inheritance
-In multilevel inheritance, a derived class becomes a base for another derived class, creating a chain (hierarchy).
 
-Example:
-Base1 → Derived1 → Derived2
 
-In this case:
-
-Base1 is an indirect base for Derived2.
-
-Any class can be used as a base class, no matter how it was created.
-
-✅ Constructor & Destructor Call Order
-Constructors are called in the order of inheritance, from base to derived:
-
-Base1
-
-Derived1
-
-Derived2
-
-Destructors are called in reverse order:
-
-Derived2
-
-Derived1
-
-Base1
-
-✅ Argument Passing
-In a class chain, each derived class must pass required arguments to its immediate base class during construction.
-
-Example:
-
-cpp
-Copy
-Edit
-Derived2(int x, int y, int z) : Derived1(x, y), ownValue(z) { }
-✅ Multiple Inheritance
-In multiple inheritance, a derived class inherits directly from two or more base classes.
-
-Syntax:
-
-cpp
-Copy
-Edit
-class Derived : access Base1, access Base2, ..., access BaseN {
-    // body
-};
-Each base can have its own access specifier: public, protected, or private.
-
-✅ Constructor & Destructor Order
-Constructors are called left to right in the order of base classes listed in the derived class declaration.
-
-Destructors are called right to left, the reverse of constructors.
-
-✅ Argument Passing in Multiple Inheritance
-The derived class passes arguments to multiple base classes via an expanded constructor initializer list:
-
-cpp
-Copy
-Edit
-Derived(int a, int b) : Base1(a), Base2(b) {
-    // derived constructor body
-}
-📌 Summary:
-Type	Constructor Order	Destructor Order
-Multilevel Inheritance	Base → Derived1 → Derived2	Derived2 → Derived1 → Base
-Multiple Inheritance	Left to Right (Base1 → Base2)	Right to Left (Base2 → Base1)
-
+// ----  rev[16-May-2025]  ----
 
     Example 1:  A derived class that inherits a class derived from another class.
 class B1 { int a;
