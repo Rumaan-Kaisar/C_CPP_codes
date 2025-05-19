@@ -128,56 +128,62 @@ Destructing B1	when multiple direct base classes are inherited, constructors are
 
 
 
+// ----  rev[19-May-2025]  ----
+
+
 /* Example 1 (Multi-level Inheritance):  
                 A derived class that inherits a class derived from another class. 
                 Notice how arguments are passed along the chain from D2 to B1.
 
-The call to ob.show() displays 3 2 1. Here, B1 is an indirect base of D2. Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. Each class must pass the required arguments to its base classes, or a compile-time error occurs. Inheritance diagrams in C++ traditionally point arrows from derived classes to base classes, though it might feel unintuitive at first.
+                Multi-level Inheritance (class hierarchy in this program ):
+                                D2 -> D1 -> B1
+
+                In this casee bases B1 and D1 inherited as public, 
+                    so D2 has access to public elements of both B1 and D1.
+                    For example: geta() getb()
+
+The call to ob.show() displays 3 2 1. Here, B1 is an indirect base of D2. Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. 
+Each class must pass the required arguments to its base classes, or a compile-time error occurs. 
+Inheritance diagrams in C++ traditionally point arrows from derived classes to base classes, though it might feel unintuitive at first.
 */
 
 
 
+#include <iostream>
 
-// 
-# include <iostream >
-using namespace std ;
-class B1
-{
-int a;
-public :
-B1( int x) { a = x; }
-int geta () { return a; }
+class B1{
+        int a;
+    public:
+        B1(int x){ a = x; }
+        int geta(){ return a; }
 };
-// Inherit direct base class .
-class D1 : public B1
-{
-int b;
-public :
-D1( int x, int y) : B1(y) // pass y to B1
-{
-b = x;
-}
-int getb () { return b; }
+
+
+// Inherit direct base class B1.
+class D1 : public B1{
+        int b;
+    public:
+        D1(int x, int y) : B1(y){    // pass y to B1
+            b = x;
+        }
+        int getb(){ return b; }
 };
-// Inherit a derived class and an indirect base .
-class D2 : public D1
-{
-int c;
-public :
-D2( int x, int y, int z) : D1(y, z) // pass args to D1
-{
-c = x;
-}
-/*
-Because bases inherited as public , D2 has access
-to public elements of both B1 and D1.
-*/
+
+
+// Inherit a derived class D1 and an indirect base B1.
+class D2 : public D1{
+        int c;
+    public:
+        D2(int x, int y, int z) : D1(y, z){     // pass args to D1
+            c = x;
+        }
+        // Since bases B1 and D1 inherited as public, D2 has access to public elements of both B1 and D1.
+
 void show ()
 {
-191TEACH YOURSELF
-C++
-cout << geta () << ’ ’ << getb () << ’ ’;
-cout << c << ’\n’;
+
+std::cout << geta() << ' ' << getb() << ' ';
+std::cout << c << '\n';
 }
 };
 int main ()
@@ -185,7 +191,7 @@ int main ()
 D2 ob (1, 2, 3);
 ob. show ();
 // geta () and getb () are still public here
-cout << ob. geta () << ’ ’ << ob. getb () << ’\n’;
+cout << ob. geta () << ' ' << ob. getb () << '\n';
 return 0;
 }
 
