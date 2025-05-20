@@ -142,9 +142,9 @@ Destructing B1	when multiple direct base classes are inherited, constructors are
                     so D2 has access to public elements of both B1 and D1.
                     For example: geta() getb()
 
-The call to ob.show() displays 3 2 1. Here, B1 is an indirect base of D2. Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. 
-Each class must pass the required arguments to its base classes, or a compile-time error occurs. 
-Inheritance diagrams in C++ traditionally point arrows from derived classes to base classes, though it might feel unintuitive at first.
+                Here, B1 is an indirect base of D2. 
+                    Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. 
+                    Each class must pass the required arguments to its base classes, or a compile-time error occurs. 
 */
 
 
@@ -178,22 +178,24 @@ class D2 : public D1{
             c = x;
         }
         // Since bases B1 and D1 inherited as public, D2 has access to public elements of both B1 and D1.
-
-void show ()
-{
-
-std::cout << geta() << ' ' << getb() << ' ';
-std::cout << c << '\n';
-}
+        void show(){
+            std::cout << geta() << ' ' << getb() << ' ';
+            std::cout << c << '\n';
+        }
 };
-int main ()
-{
-D2 ob (1, 2, 3);
-ob. show ();
-// geta () and getb () are still public here
-cout << ob. geta () << ' ' << ob. getb () << '\n';
-return 0;
+
+
+int main(){
+    D2 ob(1, 2, 3);
+    ob.show();
+
+    // geta () and getb () are still public here
+    std::cout << ob.geta() << ' ' << ob.getb() << '\n';
+
+    return 0;
 }
+
+
 
 
 class B1 { int a;
