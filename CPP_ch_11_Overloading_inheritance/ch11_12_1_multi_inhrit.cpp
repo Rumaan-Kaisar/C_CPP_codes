@@ -61,17 +61,99 @@
                     Derived(args) : Base1(arg1), Base2(arg2), ..., BaseN(argN) {
                         // derived constructor body
                     }
+*/  
+
+
+
+
+/* Example 1 (Multi-level Inheritance):  
+                A derived class that inherits a class derived from another class. 
+                Notice how arguments are passed along the chain from D2 to B1.
+
+                Multi-level Inheritance (class hierarchy in this program ):
+                                D2 -> D1 -> B1
+
+                In this casee bases B1 and D1 inherited as public, 
+                    Because all access specifire is public.
+                    so D2 has access to public elements of both B1 and D1.
+                    For example: geta() getb()
+
+                Here, B1 is an indirect base of D2. 
+                    Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. 
+                    Each class must pass the required arguments to its base classes, or a compile-time error occurs. 
+
+                Notice how arguments are passed along the chain from D2 to B1. 
+                Each class in a "class hierarchy" must pass all arguments required by each preceding base class.  
+                    D1(int x, int y) : B1(y)
+                        and 
+                    D2(int x, int y, int z) : D1(y, z) 
+*/
+
+#include <iostream>
+
+class B1{
+        int a;
+    public:
+        B1(int x){ a = x; }
+        int geta(){ return a; }
+};
+
+
+// Inherit direct base class B1.
+class D1 : public B1{
+        int b;
+    public:
+        // Notice how pass y to B1
+        D1(int x, int y) : B1(y){b = x;}
+        int getb(){ return b; }
+};
+
+
+// Inherit a derived class D1 and an indirect base B1.
+class D2 : public D1{
+        int c;
+    public:
+        // Notice how args passed to D1
+        D2(int x, int y, int z) : D1(y, z){c = x;}
+        // Since bases B1 and D1 inherited as public, D2 has access to public elements of both B1 and D1.
+        void show(){
+            std::cout << geta() << ' ' << getb() << ' ';
+            std::cout << c << '\n';
+        }
+};
+
+
+int main(){
+    D2 ob(1, 2, 3);
+    ob.show();
+
+    // geta() and getb() are still public here because both are public elements of B1 and D1 
+    std::cout << ob.geta() << ' ' << ob.getb() << '\n';
+
+    return 0;
+}
 
 
 
 
 
-// ----  rev[16-May-2025]  ----
+// ----  rev[20-May-2025]  ----
 
 
 
 
-	Example 2: Here a derived class directly inherits two base classes. And illustrates how the destructor and constructors are called.
+/* Example 2: Here a derived class directly inherits two base classes. And illustrates how the destructor and constructors are called. 
+
+The call to ob_d2.show() displays 3 2 1.
+Because bases inherited as public , D has access to public elements of both B1 and B2.
+The arguments to B1 and B2 are passed individually to these classes by D. This program creates a class that looks like this:
+
+
+B1
+D
+
+B2
+*/
 class B1 { 	int a; 	// first base class
 	public : B1(int x) { a = x; }
 		  int geta() { return a; } 
@@ -90,21 +172,25 @@ void show() {	cout<< geta() <<' '<< getb()<<' ';
 		return 0;	}
 
 
-	The call to ob_d2.show() displays 3 2 1.
-	Because bases inherited as public , D has access to public elements of both B1 and B2.
-	The arguments to B1 and B2 are passed individually to these classes by D. This program creates a class that looks like this:
-
-
-B1
-D
-
-	B2
 
 
 
 
 
-	Example 3: The following program illustrates the order in which constructor and destructor functions are called when a derived directly inherits multiple base:
+
+/* Example 3: The following program illustrates the order in which constructor and destructor functions are called when a derived directly inherits multiple base: 
+
+
+This program displays :	Constructing B1
+Constructing B2
+Constructing D
+Destructing D
+Destructing B2
+Destructing B1
+when multiple direct base classes are inherited, constructors are called in order, left to right, as specified in the inheritance list. Destructors are called in reverse order.
+
+
+*/
 class B1 { 		
 public : 
  B1(){cout< " Constructing B1\n";}
@@ -116,121 +202,3 @@ public :
 D(){cout< " Constructing D\n";}
 ~D(){cout<<" Destructing D\n";}  };
 		int main() { D ob_d; 	return 0; }
-
-	This program displays :	Constructing B1
-Constructing B2
-Constructing D
-Destructing D
-Destructing B2
-Destructing B1	when multiple direct base classes are inherited, constructors are called in order, left to right, as specified in the inheritance list. Destructors are called in reverse order.
-
-*/  
-
-
-
-// ----  rev[19-May-2025]  ----
-
-
-/* Example 1 (Multi-level Inheritance):  
-                A derived class that inherits a class derived from another class. 
-                Notice how arguments are passed along the chain from D2 to B1.
-
-                Multi-level Inheritance (class hierarchy in this program ):
-                                D2 -> D1 -> B1
-
-                In this casee bases B1 and D1 inherited as public, 
-                    so D2 has access to public elements of both B1 and D1.
-                    For example: geta() getb()
-
-                Here, B1 is an indirect base of D2. 
-                    Public members stay public when inherited publicly, so D2 can access members of both D1 and B1. 
-                    Each class must pass the required arguments to its base classes, or a compile-time error occurs. 
-*/
-
-
-
-#include <iostream>
-
-class B1{
-        int a;
-    public:
-        B1(int x){ a = x; }
-        int geta(){ return a; }
-};
-
-
-// Inherit direct base class B1.
-class D1 : public B1{
-        int b;
-    public:
-        D1(int x, int y) : B1(y){    // pass y to B1
-            b = x;
-        }
-        int getb(){ return b; }
-};
-
-
-// Inherit a derived class D1 and an indirect base B1.
-class D2 : public D1{
-        int c;
-    public:
-        D2(int x, int y, int z) : D1(y, z){     // pass args to D1
-            c = x;
-        }
-        // Since bases B1 and D1 inherited as public, D2 has access to public elements of both B1 and D1.
-        void show(){
-            std::cout << geta() << ' ' << getb() << ' ';
-            std::cout << c << '\n';
-        }
-};
-
-
-int main(){
-    D2 ob(1, 2, 3);
-    ob.show();
-
-    // geta () and getb () are still public here
-    std::cout << ob.geta() << ' ' << ob.getb() << '\n';
-
-    return 0;
-}
-
-
-
-
-class B1 { int a;
-public :
-B1(int x) { a = x; }
-int geta() {return a;}
-};	
-
-// Inherit direct base class.
-class D1 : public B1 { int b;
-	public :
-// Notice how pass y to B1
-D1(int x, int y) : B1(y) {b = x;}
-int getb() {return b;}
-};
-
-
-// Inherit a derived and an indirect base .
-class D2 : public D1 { int c;
-	public :
-// Notice how pass args to D1
-D2(int x, int y, int z) : D1(y, z){
-				 c = x; }
-void show(){	cout << geta() <<' ';
-		cout << getb() <<' ';
-		cout << c << '\n';} };
-int main() { 	D2 ob_d2(1, 2, 3);
-		ob_d2.show();
-				// geta() and getb() are still public here, because both are public elements of B1 and D1 
-		cout << ob_d2.geta() << ' ' << ob_d2.getb() << '\n';	return 0;}
-	The call to ob_d2.show() displays 3 2 1. In this example, B1 is an indirect base class of D2.
-	Notice that D2 has access to public elements/members of both B1 and D1, because all access specifire is public .
-	Notice how arguments are passed along the chain from D2 to B1. Each class in a class hierarchy must pass all arguments required by each preceding base class.  D1(int x, int y) : B1(y)  and D2(int x, int y, int z) : D1(y, z) Otherwise  compile-time error occurs.
-	How to draw C++-style inheritance graphs: Traditionally, C++ programmers usually draw inheritance charts as directed graphs in which the arrow points from the derived class to the base class.  For example the class hierarchy created in preceding program is :
-D2
-D1
-B1
-
