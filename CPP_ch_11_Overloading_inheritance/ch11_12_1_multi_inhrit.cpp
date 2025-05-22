@@ -94,36 +94,36 @@
 class B1{
         int a;
     public:
-        B1(int x){ a = x; }
-        int geta(){ return a; }
+        B1(int x) { a = x; }
+        int geta() { return a; }
 };
 
 
 // Inherit direct base class B1.
-class D1 : public B1{
+class D1 : public B1 {
         int b;
     public:
         // Notice how pass y to B1
-        D1(int x, int y) : B1(y){b = x;}
-        int getb(){ return b; }
+        D1(int x, int y) : B1(y) {b = x;}
+        int getb() { return b; }
 };
 
 
 // Inherit a derived class D1 and an indirect base B1.
-class D2 : public D1{
+class D2 : public D1 {
         int c;
     public:
         // Notice how args passed to D1
-        D2(int x, int y, int z) : D1(y, z){c = x;}
+        D2(int x, int y, int z) : D1(y, z) {c = x;}
         // Since bases B1 and D1 inherited as public, D2 has access to public elements of both B1 and D1.
-        void show(){
+        void show() {
             std::cout << geta() << ' ' << getb() << ' ';
             std::cout << c << '\n';
         }
 };
 
 
-int main(){
+int main() {
     D2 ob(1, 2, 3);
     ob.show();
 
@@ -134,7 +134,6 @@ int main(){
 }
 
 
-// ----  rev[22-May-2025]  ----
 
 
 /* Example 2 (Multiple Inheritance):
@@ -152,35 +151,57 @@ int main(){
             class hierarchy:                
                 This program creates a class hierarchy (Multiple Inheritance) that looks like this:
 
-                    B1       B1
+                  B1         B2
                     \      /
                      \   /
                       \/
                       D
-
 */
-class B1 { 	int a; 	// first base class
-	public : B1(int x) { a = x; }
-		  int geta() { return a; } 
-};	class B2 { 	int b; 	// second base class
-	public : B2(int x) { b = x; }
-		  int getb() { return b; }	
+
+#include <iostream>
+
+// Create first base class.
+class B1{
+        int a;
+    public:
+        B1(int x) { a = x; }
+        int geta() { return a; }
 };
-// Directly inherit two base classes 
-class D : public B1, public B2{ int c;
-	public :
-// here z and y are passed directly to B1 and B2
-D(int x, int y, int z) : B1(z), B2(y) {c=x;}
-void show() {	cout<< geta() <<' '<< getb()<<' ';
-		cout << c << '\n';}	};	int main(){	D ob_d(1, 2, 3);
-		ob_d.show();
-		return 0;	}
+
+
+// Create second base class.
+class B2 {
+        int b;
+    public:
+        B2(int x) { b = x; }
+        int getb() { return b; }
+};
+
+
+// Directly inherit two base classes.
+class D : public B1, public B2{
+        int c;
+    public:
+        // here z and y are passed directly to B1 and B2
+        D(int x, int y, int z) : B1(z), B2(y) { c = x; }
+        // bases inherited publicly, D has access to public elements of both B1 and B2.
+        void show() {
+            std::cout << geta () << ' ' << getb () << ' ';
+            std::cout << c << '\n';
+        }
+};
+
+
+int main() {
+    D ob(1,2,3);
+    ob.show();
+    return 0;
+}
 
 
 
 
-
-
+// ----  rev[22-May-2025]  ----
 
 
 /* Example 3: The following program illustrates the order in which constructor and destructor functions are called when a derived directly inherits multiple base: 
