@@ -134,25 +134,30 @@ int main(){
 }
 
 
+// ----  rev[22-May-2025]  ----
 
 
+/* Example 2 (Multiple Inheritance):
+                Here a derived class directly inherits two base classes. 
+                And illustrates how the destructor and constructors are called. 
 
-// ----  rev[20-May-2025]  ----
+                The call to ob_d2.show() displays 3 2 1.
 
+            Access:
+                Because bases inherited as public, D has access to public elements of both B1 and B2.
 
+            Argumnets:
+                The arguments to B1 and B2 are passed individually to these classes by D.
+            
+            class hierarchy:                
+                This program creates a class hierarchy (Multiple Inheritance) that looks like this:
 
+                    B1       B1
+                    \      /
+                     \   /
+                      \/
+                      D
 
-/* Example 2: Here a derived class directly inherits two base classes. And illustrates how the destructor and constructors are called. 
-
-The call to ob_d2.show() displays 3 2 1.
-Because bases inherited as public , D has access to public elements of both B1 and B2.
-The arguments to B1 and B2 are passed individually to these classes by D. This program creates a class that looks like this:
-
-
-B1
-D
-
-B2
 */
 class B1 { 	int a; 	// first base class
 	public : B1(int x) { a = x; }
