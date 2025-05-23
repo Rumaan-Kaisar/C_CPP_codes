@@ -206,7 +206,7 @@ int main() {
 
 /* Example 3: The following program illustrates the order in which 
                 CONSTRUCTOR and DESTRUCTOR functions are called 
-                when a derived directly inherits multiple base: 
+                when a derived "directly inherits" multiple base: 
 
                 This program displays:
                     Constructing B1
@@ -216,9 +216,39 @@ int main() {
                     Destructing B2
                     Destructing B1
 
-            when multiple direct base classes are inherited, constructors are called in order, "left to right", 
-                as specified in the inheritance list. Destructors are called in reverse order.
+            when multiple direct base classes are inherited, 
+                Constructors are called in order, "left to right", as specified in the inheritance list. 
+                Destructors are called in reverse order.
 */
+
+# include <iostream >
+using namespace std ;
+class B1
+{
+public :
+B1 () { cout << " Constructing B1\n"; }
+~B1 () { cout << " Destructing B1\n"; }
+};
+class B2
+{
+public :
+B2 () { cout << " Constructing B2\n"; }
+~B2 () { cout << " Destructing B2\n"; }
+};
+// Inherit two base classes .
+class D : public B1 , public B2
+{
+public :
+D() { cout << " Constructing D\n"; }
+~D() { cout << " Destructing D\n"; }
+};
+int main ()
+{
+D ob;
+return 0;
+}
+
+
 class B1 { 		
 public : 
  B1(){cout< " Constructing B1\n";}
