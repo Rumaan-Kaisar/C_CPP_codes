@@ -204,18 +204,20 @@ int main() {
 // ----  rev[22-May-2025]  ----
 
 
-/* Example 3: The following program illustrates the order in which constructor and destructor functions are called when a derived directly inherits multiple base: 
+/* Example 3: The following program illustrates the order in which 
+                CONSTRUCTOR and DESTRUCTOR functions are called 
+                when a derived directly inherits multiple base: 
 
+                This program displays:
+                    Constructing B1
+                    Constructing B2
+                    Constructing D
+                    Destructing D
+                    Destructing B2
+                    Destructing B1
 
-This program displays :	Constructing B1
-Constructing B2
-Constructing D
-Destructing D
-Destructing B2
-Destructing B1
-when multiple direct base classes are inherited, constructors are called in order, left to right, as specified in the inheritance list. Destructors are called in reverse order.
-
-
+            when multiple direct base classes are inherited, constructors are called in order, "left to right", 
+                as specified in the inheritance list. Destructors are called in reverse order.
 */
 class B1 { 		
 public : 
