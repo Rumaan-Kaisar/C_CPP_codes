@@ -248,45 +248,48 @@ int main(){
 
 
 
-/* Example 4: What does the following program display? (Try to determine this without actually running the program.) 
-ans:
-                    Constructing A
-                    Constructing B
-                    Constructing C
-                    Destructing C
-                    Destructing B
-                    Destructing A
+/* Example 4: What does the following program display? 
+                (Try to determine this without actually running the program.) 
+
+            ans:
+                Constructing A
+                Constructing B
+                Constructing C
+                Destructing C
+                Destructing B
+                Destructing A
 */
 
-# include <iostream >
-using namespace std ;
-class A
-{
-public :
-A() { cout << " Constructing A\n"; }
-~A() { cout << " Destructing A\n"; }
+#include <iostream>
+
+class A {
+    public :
+        A() { std::cout << " Constructing A\n"; }
+        ~A() { std::cout << " Destructing A\n"; }
 };
-class B
-{
-public :
-B() { cout << " Constructing B\n"; }
-~B() { cout << " Destructing B\n"; }
+
+class B {
+    public :
+        B() { std::cout << " Constructing B\n"; }
+        ~B() { std::cout << " Destructing B\n"; }
 };
-class C : public A, public B
-{
-public :
-C() { cout << " Constructing C\n"; }
-~C() { cout << " Destructing C\n"; }
+
+class C : public A, public B {
+    public :
+        C() { std::cout << " Constructing C\n"; }
+        ~C() { std::cout << " Destructing C\n"; }
 };
-int main ()
-{
-C ob;
-return 0;
+
+int main() {
+    C ob;
+    return 0;
 }
 
 
-/* Example 5: Using the following class hierarchy, create C’s constructor so that it initializes k and
-passes on argument to A() and B(). */
+
+
+/* Example 5: Using the following class hierarchy, create C's constructor 
+                so that it initializes k and passes on argument to A() and B(). */
 # include <iostream >
 using namespace std ;
 class A
@@ -295,8 +298,7 @@ int i;
 public :
 A( int a) { i = a; }
 };
-195TEACH YOURSELF
-C++
+
 class B
 {
 int j;
