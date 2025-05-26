@@ -248,4 +248,99 @@ int main(){
 
 
 
+/* Example 4: What does the following program display? (Try to determine this without actually running the program.) 
+ans:
+                    Constructing A
+                    Constructing B
+                    Constructing C
+                    Destructing C
+                    Destructing B
+                    Destructing A
+*/
+
+# include <iostream >
+using namespace std ;
+class A
+{
+public :
+A() { cout << " Constructing A\n"; }
+~A() { cout << " Destructing A\n"; }
+};
+class B
+{
+public :
+B() { cout << " Constructing B\n"; }
+~B() { cout << " Destructing B\n"; }
+};
+class C : public A, public B
+{
+public :
+C() { cout << " Constructing C\n"; }
+~C() { cout << " Destructing C\n"; }
+};
+int main ()
+{
+C ob;
+return 0;
+}
+
+
+/* Example 5: Using the following class hierarchy, create C’s constructor so that it initializes k and
+passes on argument to A() and B(). */
+# include <iostream >
+using namespace std ;
+class A
+{
+int i;
+public :
+A( int a) { i = a; }
+};
+195TEACH YOURSELF
+C++
+class B
+{
+int j;
+public :
+B( int a) { j = a; }
+};
+class C : public A, public B
+{
+int k;
+public :
+/*
+Create C() so that it initializes k
+and passes arguments to both A() and B()
+*/
+};
+
+
+2. # include <iostream >
+using namespace std ;
+class A
+{
+int i;
+public :
+A( int a) { i = a; }
+};
+class B
+{
+int j;
+public :
+504ANSWERS
+7.5 EXERCISES
+B( int a) { j = a; }
+};
+class C : public A, public B
+{
+int k;
+public :
+C( int c, int b, int a) : A(a), B(b)
+{
+k = c;
+}
+};
+
+
 // ----  rev[22-May-2025]  ----
+
+
