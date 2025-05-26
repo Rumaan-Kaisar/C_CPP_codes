@@ -317,50 +317,22 @@ int main() {
 class A {
         int i;
     public :
-        A( int a) { i = a; }
+        A(int a) { i = a; }
 };
 
 class B {
         int j;
     public :
-        B( int a) { j = a; }
+        B(int a) { j = a; }
 };
 
 class C : public A, public B {
-    int k;
-        public :
+        int k;
+    public :
         // Create C() so that it initializes k and passes arguments to both A() and B()
+        C(int a, int b, int c) : A(a), B(b) {
+            k = c;
+        }
 };
-
-
-
-2. # include <iostream >
-using namespace std ;
-class A
-{
-int i;
-public :
-A( int a) { i = a; }
-};
-class B
-{
-int j;
-public :
-504ANSWERS
-7.5 EXERCISES
-B( int a) { j = a; }
-};
-class C : public A, public B
-{
-int k;
-public :
-C( int c, int b, int a) : A(a), B(b)
-{
-k = c;
-}
-};
-
-
-// ----  rev[22-May-2025]  ----
 
 
