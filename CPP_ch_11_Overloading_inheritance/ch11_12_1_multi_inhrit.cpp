@@ -201,9 +201,6 @@ int main() {
 
 
 
-// ----  rev[22-May-2025]  ----
-
-
 /* Example 3: The following program illustrates the order in which 
                 CONSTRUCTOR and DESTRUCTOR functions are called 
                 when a derived "directly inherits" multiple base: 
@@ -221,31 +218,32 @@ int main() {
                 Destructors are called in reverse order.
 */
 
-# include <iostream >
-using namespace std ;
-class B1
-{
-public :
-B1 () { cout << " Constructing B1\n"; }
-~B1 () { cout << " Destructing B1\n"; }
+#include <iostream>
+
+class B1{
+    public :
+        B1() { std::cout << " Constructing B1\n"; }
+        ~B1() { std::cout << " Destructing B1\n"; }
 };
-class B2
-{
-public :
-B2 () { cout << " Constructing B2\n"; }
-~B2 () { cout << " Destructing B2\n"; }
+
+class B2{
+    public :
+        B2() { std::cout << " Constructing B2\n"; }
+        ~B2() { std::cout << " Destructing B2\n"; }
 };
+
+
 // Inherit two base classes .
-class D : public B1 , public B2
-{
-public :
-D() { cout << " Constructing D\n"; }
-~D() { cout << " Destructing D\n"; }
+class D : public B1 , public B2{
+    public :
+        D() { std::cout << " Constructing D\n"; }
+        ~D() { std::cout << " Destructing D\n"; }
 };
-int main ()
-{
-D ob;
-return 0;
+
+
+int main(){
+    D ob;
+    return 0;
 }
 
 
@@ -260,3 +258,7 @@ public :
 D(){cout< " Constructing D\n";}
 ~D(){cout<<" Destructing D\n";}  };
 		int main() { D ob_d; 	return 0; }
+
+
+
+// ----  rev[22-May-2025]  ----
