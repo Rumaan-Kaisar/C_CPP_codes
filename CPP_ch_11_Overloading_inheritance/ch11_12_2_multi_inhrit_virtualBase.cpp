@@ -1,11 +1,57 @@
 
 /*  ------------------------    virtual BASE and Multi inheritance   ------------------------
 
+// rev[27-May-2025]
+
+Sure — let’s clarify and simplify this explanation about virtual base classes:
+
+Virtual Base Classes
+When a class is inherited multiple times indirectly through different paths in a class hierarchy, it can cause a problem called the "diamond problem" — where a base class ends up with multiple copies in the final derived class.
+
+
+
+
+📌 Example Scenario:
+Base is inherited by both Derived1 and Derived2.
+
+Derived3 inherits both Derived1 and Derived2.
+
+Now, Derived3 has two copies of Base — one through Derived1 and one through Derived2.
+
+This creates a conflict (ambiguity) if Derived3 tries to access a member of Base — because it won’t be clear which Base to use.
+
+✅ Solution: Virtual Base Class
+To avoid this problem:
+
+Inherit Base as a virtual base class in both Derived1 and Derived2.
+
+This ensures only one shared copy of Base exists in Derived3, no matter how many paths inherit it.
+
+📖 How to declare:
+cpp
+Copy
+Edit
+class Derived1 : virtual public Base { };
+class Derived2 : virtual public Base { };
+The keyword virtual before the access specifier (public) handles this.
+
+📌 Summary:
+Problem	Solution
+Multiple indirect copies of a base class	Use virtual base classes to share one copy
+Ambiguity accessing base members	Virtual inheritance prevents this issue
+
+Would you like a full code example for this too?
+
+
+
+
+
+
 
 Virtual base classes
 
-11.19 VIRTUAL BASE (problems with "one derived" & "multiple direct base")
-	A potential problem exists when multiple base classes are directly inherited by a derived class. Consider the following class hierarchy:
+problems with "one derived" & "multiple direct base"
+A potential problem exists when multiple base classes are directly inherited by a derived class. Consider the following class hierarchy:
 
 
 Derived1 (inherited by Derived 3)
@@ -33,6 +79,12 @@ Base
 	To resolve this ambiguity: in which a derived class indirectly inherits the same base class more than once.  We use the virtual base class.
 	If the base class inherited as virtual by any derived classes, it prevents two copies of the base from being present in the derived object.
 	The virtual keyword precedes the base class access specifier  when it is inherited by a derived class.
+
+
+	The only difference between a normal base and a virtual base occurs when an object inherits the base more than once. 
+
+
+
 
 
 	Example 1:  Here virtual base class prevents two copies of base from being present in derived3.
@@ -63,6 +115,8 @@ return 0; }
 	It is important to understand that when a base is inherited as virtual by a derived, that base still exists within that derived. For example, this fragment is perfectly valid:
 derived1 ob_drv1;  	// we've used derived3 type object in the above
 ob_drv1.i = 100;
+
+
 	The only difference between a normal base and a virtual base occurs when an object inherits the base more than once. 
 
 
