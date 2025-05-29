@@ -2,46 +2,53 @@
 /*  ------------------------    virtual BASE and Multi inheritance   ------------------------
 
     Problems with "one derived" & "multiple direct base":
-        A potential problem exists when multiple base classes are directly inherited by a derived class. 
+        A potential problem exists when multiple classes are directly inherited by a derived class. 
+
+        When a class is inherited multiple times indirectly through different paths in a class hierarchy, 
+            it can cause a problem called the "diamond problem" — 
+            where a base class ends up with multiple copies in the final derived class.
+        
         Consider the following class hierarchy:
 
-                Base
-                /   \
-                /     \
-            Derived1  Derived2
-                \     /
-                \   /
-                Derived3
+                           Base
+                          /   \
+                         /     \
+                        /       \
+                    Derived1   Derived2
+                        \       /
+                         \     /
+                          \   /
+                        Derived3
+
+            Here the base class "Base" is inherited by both "Derived1" and "Derived2". 
+            "Derived3" directly inherits both "Derived1" and "Derived2". 
+
+        Now, "Derived3" has two copies of Base — one through "Derived1" and one through "Derived2".
+        This creates a conflict (ambiguity) if "Derived3" tries to access a member of "Base" — 
+            because it won't be clear which "Base" to use.
 
 
-        Here the base class "Base" is inherited by both "Derived1" and "Derived2". 
-        "Derived3" directly inherits both "Derived1" and "Derived2". 
+
+    Virtual Base Class
+        To avoid this problem, inherit "Base" as a "virtual base class" in both "Derived1" and "Derived2".
+        This ensures only one shared copy of Base exists in "Derived3", no matter how many paths inherit it.
+        The "virtual" keyword precedes the base class "access specifier" when it is inherited by a derived class.
 
 
-// rev[27-May-2025]
+
+// rev[29-May-2025]
 
 Virtual Base Classes
-When a class is inherited multiple times indirectly through different paths in a class hierarchy, 
-it can cause a problem called the "diamond problem" — where a base class ends up with multiple copies in the final derived class.
 
 
 
+-----------------------------------
 
 📌 Example Scenario:
-Base is inherited by both Derived1 and Derived2.
 
-Derived3 inherits both Derived1 and Derived2.
 
-Now, Derived3 has two copies of Base — one through Derived1 and one through Derived2.
 
-This creates a conflict (ambiguity) if Derived3 tries to access a member of Base — because it won’t be clear which Base to use.
 
-✅ Solution: Virtual Base Class
-To avoid this problem:
-
-Inherit Base as a virtual base class in both Derived1 and Derived2.
-
-This ensures only one shared copy of Base exists in Derived3, no matter how many paths inherit it.
 
 📖 How to declare:
 cpp
@@ -58,6 +65,7 @@ Ambiguity accessing base members	Virtual inheritance prevents this issue
 
 Would you like a full code example for this too?
 
+-----------------------------------
 
 
 
@@ -67,11 +75,8 @@ Would you like a full code example for this too?
 Virtual base classes
 
 
-	These implies that Base is actually inherited (indirectly) twice by Derived3 -first through Derived1, and then again through Derived2. 
-	This causes ambiguity when a " member of Base "  is used by Derived3. Since two copies of Base are included in Derived3, which member should it refer/use. 
-	To resolve this ambiguity: in which a derived class indirectly inherits the same base class more than once.  We use the virtual base class.
-	If the base class inherited as virtual by any derived classes, it prevents two copies of the base from being present in the derived object.
-	The virtual keyword precedes the base class access specifier  when it is inherited by a derived class.
+
+
 
 
 	The only difference between a normal base and a virtual base occurs when an object inherits the base more than once. 
