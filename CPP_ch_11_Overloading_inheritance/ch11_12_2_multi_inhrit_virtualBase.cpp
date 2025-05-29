@@ -1,12 +1,28 @@
 
 /*  ------------------------    virtual BASE and Multi inheritance   ------------------------
 
+    Problems with "one derived" & "multiple direct base":
+        A potential problem exists when multiple base classes are directly inherited by a derived class. 
+        Consider the following class hierarchy:
+
+                Base
+                /   \
+                /     \
+            Derived1  Derived2
+                \     /
+                \   /
+                Derived3
+
+
+        Here the base class "Base" is inherited by both "Derived1" and "Derived2". 
+        "Derived3" directly inherits both "Derived1" and "Derived2". 
+
+
 // rev[27-May-2025]
 
-Sure — let’s clarify and simplify this explanation about virtual base classes:
-
 Virtual Base Classes
-When a class is inherited multiple times indirectly through different paths in a class hierarchy, it can cause a problem called the "diamond problem" — where a base class ends up with multiple copies in the final derived class.
+When a class is inherited multiple times indirectly through different paths in a class hierarchy, 
+it can cause a problem called the "diamond problem" — where a base class ends up with multiple copies in the final derived class.
 
 
 
@@ -49,29 +65,6 @@ Would you like a full code example for this too?
 
 
 Virtual base classes
-
-problems with "one derived" & "multiple direct base"
-A potential problem exists when multiple base classes are directly inherited by a derived class. Consider the following class hierarchy:
-
-
-Derived1 (inherited by Derived 3)
-
-Base (inherited by Derived 1& Derived 2)
-
-  Derived3
-	Derived2 (inherited by Derived 3)	
-		
-
-Derived1
-Base
-Derived3
-[Base is inherited twice (indirectly) by Derived3]	
-	Derived2
-Base
-
-( a )	 Here the base class Base is inherited by both Derived1 and Derived2. 
-( b )	 Derived3 directly inherits both Derived1 and Derived2. 
-
 
 
 	These implies that Base is actually inherited (indirectly) twice by Derived3 -first through Derived1, and then again through Derived2. 
