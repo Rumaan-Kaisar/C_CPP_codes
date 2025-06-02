@@ -60,48 +60,50 @@
 
 // This program uses a virtual base class .
 # include <iostream >
-using namespace std ;
-class base
-{
-public :
-int i;
+
+class base {
+    public:
+        int i;
 };
+
+
 // Inherit base as virtual .
-class derived1 : virtual public base
-{
-public :
-int j;
+class derived1 : virtual public base {
+    public:
+        int j;
 };
+
+
 // Inherit base as virtual here , too .
-class derived2 : virtual public base
-{
-public :
-int k;
+class derived2 : virtual public base {
+    public:
+        int k;
 };
-/*
-Here , derived3 inherits both derived1 and derived2 .
-However , only one copy of base is present .
-*/
-class derived3 : public derived1 , public derived2
-{
-public :
-int product () { return i * j * k; }
+
+
+// Here, derived3 inherits both derived1 and derived2 . However, only one copy of base is present .
+
+class derived3 : public derived1, public derived2 {
+    public:
+        int product() { return i*j*k; }
 };
-int main ()
-{
-derived3 ob;
-ob.i = 10; // unambiguous because only one copy present
-ob.j = 3;
-ob.k = 5;
-cout << " Product is " << ob. product () << ’\n’;
-return 0;
+
+
+int main() {
+    derived3 ob;
+
+    ob.i = 10; // unambiguous because only one copy present
+    ob.j = 3;
+    ob.k = 5;
+
+    std::cout << " Product is " << ob. product () << ’\n’;
+
+    return 0;
 }
-If derived1 and derived2 had not inherited base as virtual, the statement
-ob.i = 10;
-would have been ambiguous and a compile-time error would have resulted. (See Exercise
-1, below.)
-197TEACH YOURSELF
-C++
+
+
+
+
 
 
 class base {
@@ -145,11 +147,17 @@ class, that base class still exists within that derived class. For example, assu
 preceding program, this fragment is perfectly valid:
 derived1 ob;
 ob.i = 100;
+
 The only difference between a normal base class and a virtual one occurs when an object
 inherits the base more than once. If virtual base classes are used, only one base class is
 present in the object. Otherwise, multiple copies will be found.
+
+
 EXERCISES
 1. Using the program in Example 1, remove the virtual keyword and try to compile the
 program. See what type of errors result.
-2. Explain why a virtual base class might be necessary */
+2. Explain why a virtual base class might be necessary 
+
+
+*/
 
