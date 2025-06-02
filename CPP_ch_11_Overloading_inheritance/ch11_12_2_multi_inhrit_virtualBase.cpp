@@ -59,7 +59,7 @@
 */
 
 // This program uses a virtual base class .
-# include <iostream >
+# include <iostream>
 
 class base {
     public:
@@ -67,22 +67,21 @@ class base {
 };
 
 
-// Inherit base as virtual .
+// Inherit base as virtual
 class derived1 : virtual public base {
     public:
         int j;
 };
 
 
-// Inherit base as virtual here , too .
+// Inherit base as virtual here, too
 class derived2 : virtual public base {
     public:
         int k;
 };
 
 
-// Here, derived3 inherits both derived1 and derived2 . However, only one copy of base is present .
-
+// Here, derived3 inherits both derived1 and derived2 . However, only one copy of base is present
 class derived3 : public derived1, public derived2 {
     public:
         int product() { return i*j*k; }
@@ -96,7 +95,7 @@ int main() {
     ob.j = 3;
     ob.k = 5;
 
-    std::cout << " Product is " << ob. product () << ’\n’;
+    std::cout << "Product is" << ob.product() << '\n';
 
     return 0;
 }
@@ -106,37 +105,15 @@ int main() {
 
 
 
-class base {
-   public :
-       int i;
-};	// Base as virtual.
-class derived1 : virtual public base {
-		public :  int j;	   };	// base as virtual here , too.
-class derived2 : virtual public base {
-		public : int k; 
-		};
-// only one copy of base is present 
-class derived3 : public derived1, public derived2
-{
-public :
-	int product() { return i*j*k; }
-};	int main() { derived3 ob;
-	ob.i=10; // unambiguous : only one copy present
-	ob.j=3;
-	ob.k=5;
-	cout<< "Product is"<< ob.product() <<'\n';
-return 0; }
 
 
 
-
-
-
+// rev [02-Jun-2025]
 
 
 /* 
 
-	It is important to understand that when a base is inherited as "virtual" by a derived, 
+Note: It is important to understand that when a base is inherited as "virtual" by a derived, 
 that base still exists within that derived. For example, this fragment is perfectly valid:
 derived1 ob_drv1;  	// we've used derived3 type object in the above
 ob_drv1.i = 100;
