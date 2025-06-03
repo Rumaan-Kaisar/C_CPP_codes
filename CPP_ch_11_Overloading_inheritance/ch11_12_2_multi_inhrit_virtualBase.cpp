@@ -113,27 +113,35 @@ int main() {
 
 /* 
 
-Note: It is important to understand that when a base is inherited as "virtual" by a derived, 
+Note:  when a base is inherited as "virtual" by a derived, 
 that base still exists within that derived. For example, this fragment is perfectly valid:
 derived1 ob_drv1;  	// we've used derived3 type object in the above
 ob_drv1.i = 100;
 
+It is important to understand that- even if a base class is inherited as virtual (derived1 or derived2),
+its members still exist inside the derived class (derived1, derived2). 
 
-2. It is important to understand that when a base class is inherited as virtual by a derived
-class, that base class still exists within that derived class. For example, assuming the
-preceding program, this fragment is perfectly valid:
-derived1 ob;
-ob.i = 100;
+The virtual keyword only ensures that one shared copy of the base class is included (eg: derived3), 
+    avoiding duplication in cases of multiple inheritance — 
+    but it doesn't remove the base's presence in derived1 or derived2.
 
-The only difference between a normal base class and a virtual one occurs when an object
-inherits the base more than once. If virtual base classes are used, only one base class is
-present in the object. Otherwise, multiple copies will be found.
+This is valid because i (from the base class) still exists inside derived1, whether or not it was inherited virtually. 
+
+The virtual inheritance affects how inheritance is managed in deeper hierarchies (like when derived3 inherits both derived1 and derived2), not the accessibility within direct derived classes.
 
 
-EXERCISES
-1. Using the program in Example 1, remove the virtual keyword and try to compile the
-program. See what type of errors result.
+
 2. Explain why a virtual base class might be necessary 
+A virtual base class is needed when a derived class inherits two (or more) classes, both of
+which are derived from the same base class. Without virtual base classes, two (or more)
+copies of the common base class would exist in the final derived class, However, if the
+original base is virtual, only one copy is present in the final derived class.
+
+
+Example 2: Using the program in Example 1, remove the virtual keyword and try to compile the program. 
+                See what type of errors result.
+
+
 
 
 */
