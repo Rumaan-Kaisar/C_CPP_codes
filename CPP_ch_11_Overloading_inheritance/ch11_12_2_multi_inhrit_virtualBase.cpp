@@ -48,7 +48,31 @@
         The only difference between a "normal base" and a "virtual base" occurs 
             when an object inherits the base more than once. 
 
+
+
+    ----------------    How "virtual inheritance" works    ----------------
+
+    It is important to understand that- even if a base class is inherited as virtual (derived1 or derived2),
+    its members still exist inside the derived class (derived1, derived2). 
+
+    The virtual keyword only ensures that one shared copy of the base class is included (eg: derived3), 
+        avoiding duplication in cases of multiple inheritance — 
+        but it doesn't remove the base's presence in derived1 or derived2.
+
+        For example:
+                    derived1 ob_drv1;
+                    ob_drv1.i = 100;
+
+            This is valid because i (from the base class) still exists inside derived1, 
+            whether or not it was inherited virtually. 
+
+        The "virtual inheritance" only affects how inheritance is managed in deeper hierarchies 
+            (like when derived3 inherits both derived1 and derived2), 
+            not the accessibility within direct derived classes.
+
 */  
+
+
 
 
 /* Example 1:  Here virtual base class prevents two copies of base from being present in derived3.
@@ -108,28 +132,12 @@ int main() {
 
 
 
-// rev [02-Jun-2025]
 
 
-/* 
 
-Note:  when a base is inherited as "virtual" by a derived, 
-that base still exists within that derived. For example, this fragment is perfectly valid:
-derived1 ob_drv1;  	// we've used derived3 type object in the above
-ob_drv1.i = 100;
+/*  
 
-It is important to understand that- even if a base class is inherited as virtual (derived1 or derived2),
-its members still exist inside the derived class (derived1, derived2). 
-
-The virtual keyword only ensures that one shared copy of the base class is included (eg: derived3), 
-    avoiding duplication in cases of multiple inheritance — 
-    but it doesn't remove the base's presence in derived1 or derived2.
-
-This is valid because i (from the base class) still exists inside derived1, whether or not it was inherited virtually. 
-
-The virtual inheritance affects how inheritance is managed in deeper hierarchies (like when derived3 inherits both derived1 and derived2), not the accessibility within direct derived classes.
-
-
+// rev [03-Jun-2025]
 
 2. Explain why a virtual base class might be necessary 
 A virtual base class is needed when a derived class inherits two (or more) classes, both of
