@@ -135,22 +135,56 @@ int main() {
 
 
 
-/*  
-
-// rev [03-Jun-2025]
-
-2. Explain why a virtual base class might be necessary 
-A virtual base class is needed when a derived class inherits two (or more) classes, both of
-which are derived from the same base class. Without virtual base classes, two (or more)
-copies of the common base class would exist in the final derived class, However, if the
-original base is virtual, only one copy is present in the final derived class.
-
-
-Example 2: Using the program in Example 1, remove the virtual keyword and try to compile the program. 
+/*  Example 2: Using the program in Example 1, remove the virtual keyword and try to compile the program. 
                 See what type of errors result.
 
 
+// This program uses a virtual base class .
+# include <iostream>
 
+class base {
+    public:
+        int i;
+};
+
+class derived1 : public base {
+    public:
+        int j;
+};
+
+class derived2 : public base {
+    public:
+        int k;
+};
+
+class derived3 : public derived1, public derived2 {
+    public:
+        int product() { return i*j*k; }
+};
+
+
+int main() {
+    derived3 ob;
+
+    ob.i = 10; // ambiguous because multiple copies present
+    ob.j = 3;
+    ob.k = 5;
+
+    std::cout << "Product is" << ob.product() << '\n';
+
+    return 0;
+}
 
 */
+
+
+
+/* Example 3: Explain why a virtual base class might be necessary.
+            ans:
+A virtual base class is needed when a derived class inherits two (or more) classes, both of
+which are derived from the same base class. Without virtual base classes, two (or more)
+copies of the common base class would exist in the final derived class, However, if the
+original base is virtual, only one copy is present in the final derived class. */
+
+
 
