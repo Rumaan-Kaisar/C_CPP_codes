@@ -175,16 +175,30 @@ int main() {
     return 0;
 }
 
+
+            ans:
+                a compile time error will occur. error: reference to 'i' is ambiguous
 */
 
 
 
+
 /* Example 3: Explain why a virtual base class might be necessary.
+            
             ans:
-A virtual base class is needed when a derived class inherits two (or more) classes, both of
-which are derived from the same base class. Without virtual base classes, two (or more)
-copies of the common base class would exist in the final derived class, However, if the
-original base is virtual, only one copy is present in the final derived class. */
+                A virtual base class is needed in multiple inheritance situations.
+
+                It’s used when a derived class inherits from two (or more) classes, 
+                    and those classes themselves share a common base class.
+
+                Without virtual inheritance:
+                    Multiple copies of the common base class would be included in the final derived class.
+                    This creates ambiguity and redundancy.
+
+                With virtual inheritance:
+                    Only one shared copy of the base class exists in the final derived class.
+                    This avoids duplication and resolves ambiguity.
+*/
 
 
 
