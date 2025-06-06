@@ -178,6 +178,44 @@ int main() {
 
             ans:
                 a compile time error will occur. error: reference to 'i' is ambiguous
+
+In the class derived3, both derived1 and derived2 inherit from base non-virtually.
+So, when derived3 inherits from both of them:
+    It ends up with two separate copies of base, one from derived1 and one from derived2.
+
+The problem line is:
+
+                ob.i = 10;
+
+    This is ambiguous, because derived3 has two members named i
+        one from derived1::base and one from derived2::base.
+    The compiler won't know which i you're referring to.
+
+
+
+You'll get a compile-time error like:
+
+error: reference to 'i' is ambiguous
+
+
+To resolve this, we can:
+
+Either use scope resolution:
+
+                ob.derived1::i = 10;
+                or
+                ob.derived2::i = 10;
+
+
+Or better — declare "base" as a virtual base class:
+
+                class derived1 : virtual public base { ... };
+                class derived2 : virtual public base { ... };
+
+    Now, derived3 will have only one shared copy of base, 
+    and "ob.i = 10;" would work fine.
+
+
 */
 
 
