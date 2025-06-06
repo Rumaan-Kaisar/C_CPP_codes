@@ -127,14 +127,6 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
 /*  Example 2: Using the program in Example 1, remove the virtual keyword and try to compile the program. 
                 See what type of errors result.
 
@@ -177,46 +169,84 @@ int main() {
 
 
             ans:
-                a compile time error will occur. error: reference to 'i' is ambiguous
-
-In the class derived3, both derived1 and derived2 inherit from base non-virtually.
-So, when derived3 inherits from both of them:
-    It ends up with two separate copies of base, one from derived1 and one from derived2.
-
-The problem line is:
-
-                ob.i = 10;
-
-    This is ambiguous, because derived3 has two members named i
-        one from derived1::base and one from derived2::base.
-    The compiler won't know which i you're referring to.
+                A compile time error will occur. error: reference to 'i' is ambiguous
 
 
+                In the class derived3, both derived1 and derived2 inherit from base non-virtually.
+                So, when derived3 inherits from both of them:
+                    It ends up with two separate copies of base, one from derived1 and one from derived2.
 
-You'll get a compile-time error like:
+                The problem line is:
 
-error: reference to 'i' is ambiguous
+                                ob.i = 10;
 
-
-To resolve this, we can:
-
-Either use scope resolution:
-
-                ob.derived1::i = 10;
-                or
-                ob.derived2::i = 10;
+                    This is ambiguous, because derived3 has two members named i
+                        one from derived1::base and one from derived2::base.
+                    The compiler won't know which i you're referring to.
 
 
-Or better — declare "base" as a virtual base class:
 
-                class derived1 : virtual public base { ... };
-                class derived2 : virtual public base { ... };
+                You'll get a compile-time error like:
 
-    Now, derived3 will have only one shared copy of base, 
-    and "ob.i = 10;" would work fine.
+                                error: reference to 'i' is ambiguous
 
 
+                To resolve this, we can:
+
+                    1. Either use scope resolution:
+
+                                    ob.derived1::i = 10;
+                                    or
+                                    ob.derived2::i = 10;
+
+
+                    2. Or better — declare "base" as a virtual base class:
+
+                                    class derived1 : virtual public base { ... };
+                                    class derived2 : virtual public base { ... };
+
+                        Now, derived3 will have only one shared copy of base, 
+                        and "ob.i = 10;" would work fine.
 */
+
+// This program uses scope resolution '::' instead
+# include <iostream>
+
+class base {
+    public:
+        int i;
+};
+
+class derived1 : public base {
+    public:
+        int j;
+};
+
+class derived2 : public base {
+    public:
+        int k;
+};
+
+class derived3 : public derived1, public derived2 {
+    public:
+        int product() { 
+            // specify which 'i' to use
+            return derived1::i*j*k; 
+        }
+};
+
+
+int main() {
+    derived3 ob;
+
+    ob.derived1::i = 10; // avoid ambiguous by specifying derived1's 'i'
+    ob.j = 3;
+    ob.k = 5;
+
+    std::cout << "Product is " << ob.product() << '\n';
+
+    return 0;
+}
 
 
 
