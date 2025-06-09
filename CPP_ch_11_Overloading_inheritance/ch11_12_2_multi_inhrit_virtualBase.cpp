@@ -256,7 +256,7 @@ int main() {
             ans:
                 A virtual base class is needed in multiple inheritance situations.
 
-                It’s used when a derived class inherits from two (or more) classes, 
+                It's used when a derived class inherits from two (or more) classes, 
                     and those classes themselves share a common base class.
 
                 Without virtual inheritance:
