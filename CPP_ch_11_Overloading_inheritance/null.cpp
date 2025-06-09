@@ -18,6 +18,157 @@
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
+At this point you should be able to perform the following exercises and answer the questions.
+1. Create a generic base class called building that stores the number of floors a building has,
+the number of rooms, and its total square footage. Create derived class called house that
+inherits building and also stores the number of bedrooms and the number of bathrooms.
+Next, create a derived class called office that inherits building and also stores the number
+of fire extinguishers and the number of telephones. Note: Your solution may differ from
+the answer given in the back of this book. However, if it is functionally the same, count
+it as correct.
+2. When a base class is inherited as public by the derived class, what happens to its public
+members? What happens to its private members? If the base is inherited as private by
+the derived class, what happens to its public and private members?
+3. Explain what protected means. (Be sure to explain what it means both when referring
+to members of a class and when it is used as an inheritance access specifier.)
+4. When one class inherits another, when are the classes’ constructors called? When are
+their destructors called?
+5. Given this skeleton, fill in the details as indicated in the comments:
+# include <iostream >
+using namespace std ;
+class planet
+{
+protected :
+double distance ; // miles from the sun
+int revolve ; // in days
+public :
+planet ( double d, int r) { distance = d; revolve = r; }
+};
+198INHERITANCE
+SKILLS CHECK
+class earth : public planet
+{
+double circumference ; // circumference of orbit
+public :
+/*
+Create earth ( double d, int r). Have it pass the
+distance and days of revolution back to planet .
+Have it compute the circumference of the orbit .
+( Hint : circumference = 2r *3.1416.)
+*/
+/*
+Create a function called show () that displays the
+information .
+*/
+};
+int main ()
+{
+earth ob (93000000 , 365) ;
+ob. show ();
+return 0;
+}
+6. Fix the following program:
+/*
+A variation on the vehicle hierarchy . But
+this program contains an error . Fix it. Hind :
+try compiling it as is and observe the error
+messages .
+*/
+# include <iostream >
+using namespace std ;
+// A base class for various types of vehicles .
+class vehicle
+{
+int num_wheels ;
+int range ;
+public :
+vehicle ( int w, int r)
+{
+num_wheels = w;
+range = r;
+}
+void showv ()
+{
+cout << " Wheels : " << num_wheels << ’\n’;
+cout << " Range : " << range << ’\n’;
+199TEACH YOURSELF
+C++
+}
+};
+enum motor {gas , electric , diesel };
+class motorized : public vehicle
+{
+enum motor mtr ;
+public :
+motorized ( enum motor m, int w, int r) : vehicle (w, r)
+{
+mtr = m;
+}
+void showm ()
+{
+cout << " Motor : ";
+switch ( mtr )
+{
+case gas : cout << "Gas \n";
+break ;
+case electric : cout << " Electric \n";
+break ;
+case diesel : cout << " Diesel \n";
+break ;
+}
+}
+};
+class road_use : public vehicle
+{
+int passengers ;
+public :
+road_use ( int p, int w, int r) : vehicle (w, r)
+{
+passengers = p;
+}
+void showr ()
+{
+cout << " Passengers : " << passengers << ’\n’;
+}
+};
+enum steering { power , rack_pinion , manual };
+class car : public motorized , public road_use
+{
+enum steering strng ;
+public :
+car ( enum steering s, enum motor m, int w, int r, int p) :
+road_use (p, w, r), motorized (m, w, r), vehicle (w, r)
+{
+200INHERITANCE
+SKILLS CHECK
+strng = s;
+}
+void show ()
+{
+showv ();
+showr ();
+showm ();
+cout << " Steering : ";
+switch ( strng )
+{
+case power : cout << " Power \n";
+break ;
+case rack_pinion : cout << " Rack and Pinion \n";
+break ;
+case manual : cout << " Manual \n";
+break ;
+}
+}
+};
+int main ()
+{
+car c(power , gas , 4, 500 , 5);
+c. show ();
+return 0;
+}
+
+
+
 MASTERY SKILLS CHECK: Chapter 7
 1. # include <iostream >
 using namespace std ;
@@ -134,7 +285,137 @@ Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
 
 
 
+
+
+
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
+
+Cumulative Skills Check
+This section checks how well you have integrated material in this chapter with that from the
+preceding chapters.
+1. In Exercise 6 from the preceding Mastery Skills Check section, you might have seen a
+warning message (or perhaps an error message) concerning the use of the switch statement
+within car and motorized. Why?
+2. As you know from the preceding chapter, most operators overloaded in a base class are
+available for use in a derived class. Which one or ones are not? Can you offer a reason
+why this is the case?
+3. Following is a reworked version of the coord class from the previous chapter. This time
+it is used as a base for another class called quad, which also maintains the quadrant the
+specific point is in. On your own, run this program and try to understand its output.
+/*
+Overload the +, -, and = relative to coord class . Then
+use coord as a base for quad .
+*/
+# include <iostream >
+using namespace std ;
+201TEACH YOURSELF
+C++
+class coord
+{
+public :
+int x, y; // coordinate values
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator +( coord ob2);
+coord operator -( coord ob2);
+coord operator =( coord ob2);
+};
+// Overload + relative to coord class .
+coord coord :: operator +( coord ob2)
+{
+coord temp ;
+cout << " Using coord operator +() \n";
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+return temp ;
+}
+// Overload - relative to coord class .
+coord coord :: operator -( coord ob2)
+{
+coord temp ;
+cout << " Using coord operator -() \n";
+temp .x = x - ob2 .x;
+temp .y = y - ob2 .y;
+return temp ;
+}
+// Overload = relative to coord .
+coord coord :: operator =( coord ob2)
+{
+cout << " Using coord operator =() \n";
+x = ob2 .x;
+y = ob2 .y;
+return * this ; // return the object that is assigned to
+}
+class quad : public coord
+{
+202INHERITANCE
+SKILLS CHECK
+int quadrant ;
+public :
+quad ()
+{
+x = 0;
+y = 0;
+quadrant = 0;
+}
+quad ( int x, int y) : coord (x, y)
+{
+if(x >=0 && y >= 0)
+quadrant = 1;
+else if(x <0 && y >=0)
+quadrant = 2;
+else if(x <0 && y <0)
+quadrant = 3;
+else
+quadrant = 4;
+}
+void showq ()
+{
+cout << " Point in Quadrant : " << quadrant << ’\n’;
+}
+quad operator =( coord ob2 );
+};
+quad quad :: operator =( coord ob2 )
+{
+cout << " Using quad operator =() \n";
+x = ob2 .x;
+y = ob2 .y;
+if(x >=0 && y >= 0)
+quadrant = 1;
+else if(x <0 && y >=0)
+quadrant = 2;
+else if(x <0 && y <0)
+quadrant = 3;
+else
+quadrant = 4;
+return * this ;
+}
+int main ()
+{
+quad o1 (10 , 10) , o2 (15 , 3) , o3;
+int x, y;
+o3 = o1 + o2; // add two objects - this calls operator +()
+o3. get_xy (x, y);
+203TEACH YOURSELF
+C++
+o3. showq ();
+cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1 - o2; // subtract two objects
+o3. get_xy (x, y);
+o3. showq ();
+cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1; // assign an object
+o3. get_xy (x, y);
+o3. showq ();
+cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+4. Again on your own, convert the program shown in Exercise 3 so that it uses friend operator
+functions.
+
+
+
 CUMULATIVE SKILLS CHECK: Chapter 7
 1. Some compilers will not allow you to use a switch in an in-line function. If this is the
 case with your compiler, the functions were automatically made into "regular" functions.
@@ -147,7 +428,84 @@ the derived class and, as such, cannot properly copy those new members.
 
 
 
+
+
+
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
+Before proceeding, you should be able to correctly answer the following questions and do the
+exercises.
+1. Create a class hierarchy that stores information about airships. Start with a general
+base class called airship that stores the number of passengers and the amount of cargo
+(in pounds) that can be carried. Then create two derived classes called airplane and
+balloon from airship. Have airplane store the type of engine used (propeller or jet)
+and range, in miles. Have balloon store information about the type of gas used to lift
+the balloon (hydrogen or helium) and its maximum altitude (in feet). Create a short
+program that demonstrates this class hierarchy. (Your solution will, no doubt, differ from
+the answer shown in the back of this book. If it is functionally similar, count it as correct.)
+2. What is protected used for?
+3. Given the following class hierarchy, in what order are the constructor functions called? In
+what order are the destructor functions called?
+# include <iostream >
+using namespace std ;
+class A
+{
+public :
+A() { cout << " Constructing A\n"; }
+206INTRODUCING THE C++ I/O SYSTEM
+~A() { cout << " Destructing A\n"; }
+};
+class B : public A
+{
+public :
+B() { cout << " Constructing B\n"; }
+~B() { cout << " Destructing B\n"; }
+};
+class C : public B
+{
+public :
+C() { cout << " Constructing C\n"; }
+~C() { cout << " Destructing C\n"; }
+};
+int main ()
+{
+C ob;
+return 0;
+}
+4. Given the following fragment, in what order are the constructor functions called?
+class myclass : public A, public B, public C
+{
+// ...
+};
+5. Fill in the missing constructor functions in this program:
+# include <iostream >
+using namespace std ;
+class base
+{
+int i, j;
+public :
+// need constructor
+void showij () { cout << i << ’ ’ << j << ’\n’; }
+};
+class derived : public base
+{
+int k;
+public :
+// need constructor
+void show () { cout << k << ’ ’; showij (); }
+};
+int main ()
+207TEACH YOURSELF
+C++
+{
+derived ob (1, 2, 3);
+ob. show ();
+return 0;
+}
+6. In general, when you define a class hierarchy, you begin with the most
+class and move to the most class. (Fill in the missing words.)
+
+
+
 REVIEW SKILLS CHECK: Chapter 8
 1. # include <iostream >
 using namespace std ;
