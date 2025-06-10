@@ -19,21 +19,123 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 At this point you should be able to perform the following exercises and answer the questions.
-1. Create a generic base class called building that stores the number of floors a building has,
+
+
+
+/* Example 1: Create a generic base class called building that stores the number of floors a building has,
 the number of rooms, and its total square footage. Create derived class called house that
 inherits building and also stores the number of bedrooms and the number of bathrooms.
 Next, create a derived class called office that inherits building and also stores the number
 of fire extinguishers and the number of telephones. Note: Your solution may differ from
 the answer given in the back of this book. However, if it is functionally the same, count
-it as correct.
-2. When a base class is inherited as public by the derived class, what happens to its public
+it as correct. */
+
+
+1. # include <iostream >
+using namespace std ;
+class building
+{
+protected :
+int floors ;
+int rooms ;
+double footage ;
+};
+class house : public building
+{
+int bedrooms ;
+int bathrooms ;
+public :
+house ( int f, int r, double ft , int br , int bth)
+{
+floors = f;
+rooms = r;
+footage = ft;
+bedrooms = br;
+bathrooms = bth;
+}
+void show ()
+{
+cout << " floors : " << floors << ’\n’;
+505TEACH YOURSELF
+C++
+cout << " rooms : " << rooms << ’\n’;
+cout << " square footage : " << footage << ’\n’;
+cout << " bedrooms : " << bedrooms << ’\n’;
+cout << " bathrooms : " << bathrooms << ’\n’;
+}
+};
+class office : public building
+{
+int phones ;
+int extinguishers ;
+public :
+office ( int f, int r, double ft , int p, int ext )
+{
+floors = f;
+rooms = r;
+footage = ft;
+phones = p;
+extinguishers = ext;
+}
+void show ()
+{
+cout << " floors : " << floors << ’\n’;
+cout << " floors : " << floors << ’\n’;
+cout << " rooms : " << rooms << ’\n’;
+cout << " square footage : " << footage << ’\n’;
+cout << " Telephones : " << phones << ’\n’;
+cout << " fore extinguishers : ";
+cout << extinguishers << ’\n’;
+}
+};
+int main ()
+{
+house h_ob (2, 12, 5000 , 6, 4);
+office o_ob (4, 25, 12000 , 30, 8);
+cout << " House :\n";
+h_ob . show ();
+cout << "\ nOffice :\n";
+o_ob . show ();
+return 0;
+}
+
+
+
+
+/* Example 2: When a base class is inherited as public by the derived class, what happens to its public
 members? What happens to its private members? If the base is inherited as private by
-the derived class, what happens to its public and private members?
-3. Explain what protected means. (Be sure to explain what it means both when referring
-to members of a class and when it is used as an inheritance access specifier.)
-4. When one class inherits another, when are the classes’ constructors called? When are
-their destructors called?
-5. Given this skeleton, fill in the details as indicated in the comments:
+the derived class, what happens to its public and private members? */
+
+2. When a base class is inherited as public, the public members of the base become public
+members of the derived class, and the base’s private members remain private to the base.
+If the base is inherited as private, all members of the base become private members of the
+derived class.
+
+
+
+
+/* Example 3: Explain what protected means. (Be sure to explain what it means both when referring
+to members of a class and when it is used as an inheritance access specifier.) */
+
+3. Members declared as protected are private to the base class but can be inherited (and
+506ANSWERS
+CUMULATIVE SKILLS CHECK: Chapter 7
+accessed) by any derived class. When used as an inheritance access specifier, protected
+causes all public and protected members of the base class to become protected members
+of the derived class.
+
+
+
+
+/* Example 4: When one class inherits another, when are the classes’ constructors called? When are
+their destructors called? */
+
+4. Constructors are called in order of derivation. Destructors are called in reverse order.
+
+
+
+
+/* Example 5: Given this skeleton, fill in the details as indicated in the comments: */
 # include <iostream >
 using namespace std ;
 class planet
@@ -67,7 +169,45 @@ earth ob (93000000 , 365) ;
 ob. show ();
 return 0;
 }
-6. Fix the following program:
+
+
+5. # include <iostream >
+using namespace std ;
+class planet
+{
+protected :
+double distance ; // miles from the sun
+int revolve ; // in days
+public :
+planet ( double d, int r) { distance = d; revolve = r; }
+};
+class earth : public planet
+{
+double circumference ;
+public :
+earth ( double d, int r) : planet (d, r)
+{
+circumference = 2* distance *3.1416;
+}
+void show ()
+{
+cout << " Distance from sun : " << distance << ’\n’;
+cout << " Days in orbit : " << revolve << ’\n’;
+cout << " Circumference of orbit : ";
+cout << circumference << ’\n’;
+}
+};
+int main ()
+{
+earth ob (93000000 , 365) ;
+ob. show ();
+return 0;
+}
+
+
+
+
+/* Example 6: Fix the following program: */
 /*
 A variation on the vehicle hierarchy . But
 this program contains an error . Fix it. Hind :
@@ -168,121 +308,8 @@ return 0;
 }
 
 
-
-MASTERY SKILLS CHECK: Chapter 7
-1. # include <iostream >
-using namespace std ;
-class building
-{
-protected :
-int floors ;
-int rooms ;
-double footage ;
-};
-class house : public building
-{
-int bedrooms ;
-int bathrooms ;
-public :
-house ( int f, int r, double ft , int br , int bth)
-{
-floors = f;
-rooms = r;
-footage = ft;
-bedrooms = br;
-bathrooms = bth;
-}
-void show ()
-{
-cout << " floors : " << floors << ’\n’;
-505TEACH YOURSELF
-C++
-cout << " rooms : " << rooms << ’\n’;
-cout << " square footage : " << footage << ’\n’;
-cout << " bedrooms : " << bedrooms << ’\n’;
-cout << " bathrooms : " << bathrooms << ’\n’;
-}
-};
-class office : public building
-{
-int phones ;
-int extinguishers ;
-public :
-office ( int f, int r, double ft , int p, int ext )
-{
-floors = f;
-rooms = r;
-footage = ft;
-phones = p;
-extinguishers = ext;
-}
-void show ()
-{
-cout << " floors : " << floors << ’\n’;
-cout << " floors : " << floors << ’\n’;
-cout << " rooms : " << rooms << ’\n’;
-cout << " square footage : " << footage << ’\n’;
-cout << " Telephones : " << phones << ’\n’;
-cout << " fore extinguishers : ";
-cout << extinguishers << ’\n’;
-}
-};
-int main ()
-{
-house h_ob (2, 12, 5000 , 6, 4);
-office o_ob (4, 25, 12000 , 30, 8);
-cout << " House :\n";
-h_ob . show ();
-cout << "\ nOffice :\n";
-o_ob . show ();
-return 0;
-}
-2. When a base class is inherited as public, the public members of the base become public
-members of the derived class, and the base’s private members remain private to the base.
-If the base is inherited as private, all members of the base become private members of the
-derived class.
-3. Members declared as protected are private to the base class but can be inherited (and
-506ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 7
-accessed) by any derived class. When used as an inheritance access specifier, protected
-causes all public and protected members of the base class to become protected members
-of the derived class.
-4. Constructors are called in order of derivation. Destructors are called in reverse order.
-5. # include <iostream >
-using namespace std ;
-class planet
-{
-protected :
-double distance ; // miles from the sun
-int revolve ; // in days
-public :
-planet ( double d, int r) { distance = d; revolve = r; }
-};
-class earth : public planet
-{
-double circumference ;
-public :
-earth ( double d, int r) : planet (d, r)
-{
-circumference = 2* distance *3.1416;
-}
-void show ()
-{
-cout << " Distance from sun : " << distance << ’\n’;
-cout << " Days in orbit : " << revolve << ’\n’;
-cout << " Circumference of orbit : ";
-cout << circumference << ’\n’;
-}
-};
-int main ()
-{
-earth ob (93000000 , 365) ;
-ob. show ();
-return 0;
-}
 6. To fix the program, have motorized and road use inherit vehicle as a virtual base class.
 Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
-
 
 
 
