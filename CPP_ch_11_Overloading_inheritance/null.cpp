@@ -493,89 +493,6 @@ program that demonstrates this class hierarchy. (Your solution will, no doubt, d
 the answer shown in the back of this book. If it is functionally similar, count it as correct.) */
 
 
-
-
-/* Example 2: What is protected used for? */
-
-
-
-
-/* Example 3: Given the following class hierarchy, in what order are the constructor functions called? In
-what order are the destructor functions called? */
-# include <iostream >
-using namespace std ;
-class A
-{
-public :
-A() { cout << " Constructing A\n"; }
-206INTRODUCING THE C++ I/O SYSTEM
-~A() { cout << " Destructing A\n"; }
-};
-class B : public A
-{
-public :
-B() { cout << " Constructing B\n"; }
-~B() { cout << " Destructing B\n"; }
-};
-class C : public B
-{
-public :
-C() { cout << " Constructing C\n"; }
-~C() { cout << " Destructing C\n"; }
-};
-int main ()
-{
-C ob;
-return 0;
-}
-
-
-
-
-/* Example 4: Given the following fragment, in what order are the constructor functions called?
-class myclass : public A, public B, public C
-{
-// ...
-};
-*/
-
-
-
-/* Example 5: Fill in the missing constructor functions in this program: */
-# include <iostream >
-using namespace std ;
-class base
-{
-int i, j;
-public :
-// need constructor
-void showij () { cout << i << ’ ’ << j << ’\n’; }
-};
-class derived : public base
-{
-int k;
-public :
-// need constructor
-void show () { cout << k << ’ ’; showij (); }
-};
-int main ()
-207TEACH YOURSELF
-C++
-{
-derived ob (1, 2, 3);
-ob. show ();
-return 0;
-}
-
-
-
-
-/* Example 6: In general, when you define a class hierarchy, you begin with the most
-class and move to the most class. (Fill in the missing words.) */
-
-
-
-REVIEW SKILLS CHECK: Chapter 8
 1. # include <iostream >
 using namespace std ;
 class airship
@@ -645,8 +562,47 @@ cout << ’\n’;
 b727 . show ();
 return 0;
 }
+
+
+
+
+/* Example 2: What is protected used for? */
+
 2. The protected access specifier causes a class member to be private to its class but still
 accessible by any derived class.
+
+
+
+
+/* Example 3: Given the following class hierarchy, in what order are the constructor functions called? In
+what order are the destructor functions called? */
+# include <iostream >
+using namespace std ;
+class A
+{
+public :
+A() { cout << " Constructing A\n"; }
+206INTRODUCING THE C++ I/O SYSTEM
+~A() { cout << " Destructing A\n"; }
+};
+class B : public A
+{
+public :
+B() { cout << " Constructing B\n"; }
+~B() { cout << " Destructing B\n"; }
+};
+class C : public B
+{
+public :
+C() { cout << " Constructing C\n"; }
+~C() { cout << " Destructing C\n"; }
+};
+int main ()
+{
+C ob;
+return 0;
+}
+
 3. The program displays the following output, which indicates when the constructors and
 destructors are called.
 Constructing A
@@ -655,7 +611,47 @@ Constructing C
 Destructing C
 Destructing B
 Destructing A
+
+
+/* Example 4: Given the following fragment, in what order are the constructor functions called?
+class myclass : public A, public B, public C
+{
+// ...
+};
+*/
 4. Constructors are called in the order ABC, destructors in the order CBA.
+
+
+
+
+/* Example 5: Fill in the missing constructor functions in this program: */
+# include <iostream >
+using namespace std ;
+class base
+{
+int i, j;
+public :
+// need constructor
+void showij () { cout << i << ’ ’ << j << ’\n’; }
+};
+class derived : public base
+{
+int k;
+public :
+// need constructor
+void show () { cout << k << ’ ’; showij (); }
+};
+int main ()
+207TEACH YOURSELF
+C++
+{
+derived ob (1, 2, 3);
+ob. show ();
+return 0;
+}
+
+
+
 5. # include <iostream >
 using namespace std ;
 509TEACH YOURSELF
@@ -683,6 +679,18 @@ derived ob (1, 2, 3);
 ob. show ();
 return 0;
 }
+
+
+
+
+/* Example 6: In general, when you define a class hierarchy, you begin with the most
+class and move to the most class. (Fill in the missing words.) */
+
+
 6. The missing words are "general" and "specific".
+
+
+
+
 
 
