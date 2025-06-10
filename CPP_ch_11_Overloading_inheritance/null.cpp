@@ -320,15 +320,36 @@ Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
 Cumulative Skills Check
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapters.
-1. In Exercise 6 from the preceding Mastery Skills Check section, you might have seen a
+
+
+
+
+/* Example 1: In Exercise 6 from the preceding Mastery Skills Check section, you might have seen a
 warning message (or perhaps an error message) concerning the use of the switch statement
-within car and motorized. Why?
-2. As you know from the preceding chapter, most operators overloaded in a base class are
+within car and motorized. Why? */
+
+1. Some compilers will not allow you to use a switch in an in-line function. If this is the
+case with your compiler, the functions were automatically made into "regular" functions.
+
+
+
+
+/* Example 2: As you know from the preceding chapter, most operators overloaded in a base class are
 available for use in a derived class. Which one or ones are not? Can you offer a reason
-why this is the case?
-3. Following is a reworked version of the coord class from the previous chapter. This time
+why this is the case? */
+
+2. The assignment operators is the only operator that is not inherited. The reason for this
+is easy to understand. Since a derived class will contain members not found in the base
+class, the overloaded = relative to the base has no knowledge of the members added by
+the derived class and, as such, cannot properly copy those new members.
+
+
+
+
+/* Example 3: Following is a reworked version of the coord class from the previous chapter. This time
 it is used as a base for another class called quad, which also maintains the quadrant the
-specific point is in. On your own, run this program and try to understand its output.
+specific point is in. On your own, run this program and try to understand its output. */
+
 /*
 Overload the +, -, and = relative to coord class . Then
 use coord as a base for quad .
@@ -438,20 +459,17 @@ o3. showq ();
 cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
 return 0;
 }
-4. Again on your own, convert the program shown in Exercise 3 so that it uses friend operator
-functions.
 
 
 
-CUMULATIVE SKILLS CHECK: Chapter 7
-1. Some compilers will not allow you to use a switch in an in-line function. If this is the
-case with your compiler, the functions were automatically made into "regular" functions.
-507TEACH YOURSELF
-C++
-2. The assignment operators is the only operator that is not inherited. The reason for this
-is easy to understand. Since a derived class will contain members not found in the base
-class, the overloaded = relative to the base has no knowledge of the members added by
-the derived class and, as such, cannot properly copy those new members.
+/* Example 4: Again on your own, convert the program shown in Exercise 3 so that it uses friend operator
+functions. */
+
+
+
+
+
+
 
 
 
@@ -461,17 +479,29 @@ the derived class and, as such, cannot properly copy those new members.
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 Before proceeding, you should be able to correctly answer the following questions and do the
 exercises.
-1. Create a class hierarchy that stores information about airships. Start with a general
+
+
+
+
+/* Example 1: Create a class hierarchy that stores information about airships. Start with a general
 base class called airship that stores the number of passengers and the amount of cargo
 (in pounds) that can be carried. Then create two derived classes called airplane and
 balloon from airship. Have airplane store the type of engine used (propeller or jet)
 and range, in miles. Have balloon store information about the type of gas used to lift
 the balloon (hydrogen or helium) and its maximum altitude (in feet). Create a short
 program that demonstrates this class hierarchy. (Your solution will, no doubt, differ from
-the answer shown in the back of this book. If it is functionally similar, count it as correct.)
-2. What is protected used for?
-3. Given the following class hierarchy, in what order are the constructor functions called? In
-what order are the destructor functions called?
+the answer shown in the back of this book. If it is functionally similar, count it as correct.) */
+
+
+
+
+/* Example 2: What is protected used for? */
+
+
+
+
+/* Example 3: Given the following class hierarchy, in what order are the constructor functions called? In
+what order are the destructor functions called? */
 # include <iostream >
 using namespace std ;
 class A
@@ -498,12 +528,20 @@ int main ()
 C ob;
 return 0;
 }
-4. Given the following fragment, in what order are the constructor functions called?
+
+
+
+
+/* Example 4: Given the following fragment, in what order are the constructor functions called?
 class myclass : public A, public B, public C
 {
 // ...
 };
-5. Fill in the missing constructor functions in this program:
+*/
+
+
+
+/* Example 5: Fill in the missing constructor functions in this program: */
 # include <iostream >
 using namespace std ;
 class base
@@ -528,8 +566,12 @@ derived ob (1, 2, 3);
 ob. show ();
 return 0;
 }
-6. In general, when you define a class hierarchy, you begin with the most
-class and move to the most class. (Fill in the missing words.)
+
+
+
+
+/* Example 6: In general, when you define a class hierarchy, you begin with the most
+class and move to the most class. (Fill in the missing words.) */
 
 
 
