@@ -22,13 +22,20 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 1: Create a generic base class called building that stores the number of floors a building has,
-the number of rooms, and its total square footage. Create derived class called house that
-inherits building and also stores the number of bedrooms and the number of bathrooms.
-Next, create a derived class called office that inherits building and also stores the number
-of fire extinguishers and the number of telephones. Note: Your solution may differ from
-the answer given in the back of this book. However, if it is functionally the same, count
-it as correct. */
+/* Example 1: Create a generic "base" class called "building" that stores:
+                    the number of floors a building has,
+                    the number of rooms, and 
+                    its total square footage. 
+
+                Create "derived" class called "house" that:
+                    inherits building and also 
+                    stores the number of bedrooms and 
+                    the number of bathrooms.
+
+                Next, create a "derived" class called "office" that inherits "building" and also stores 
+                    the number of fire extinguishers and 
+                    the number of telephones.
+*/
 
 
 1. # include <iostream >
