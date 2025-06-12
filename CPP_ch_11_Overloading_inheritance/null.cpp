@@ -124,8 +124,10 @@ derived class.
 
 
 
-/* Example 3: Explain what protected means. (Be sure to explain what it means both when referring
-to members of a class and when it is used as an inheritance access specifier.) */
+/* Example 3: Explain what "protected" means.
+                Explain what it means both when referring to members of a class and 
+                when it is used as an inheritance access specifier.
+*/
 
 3. Members declared as protected are private to the base class but can be inherited (and
 506ANSWERS
