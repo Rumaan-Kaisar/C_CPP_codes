@@ -38,10 +38,9 @@ At this point you should be able to perform the following exercises and answer t
 */
 
 
-1. # include <iostream >
-using namespace std ;
-class building
-{
+#include <iostream>
+
+class building{
 protected :
 int floors ;
 int rooms ;
@@ -109,9 +108,13 @@ return 0;
 
 
 
-/* Example 2: When a base class is inherited as public by the derived class, what happens to its public
-members? What happens to its private members? If the base is inherited as private by
-the derived class, what happens to its public and private members? */
+/* Example 2: When a "base" class is inherited as "public" by the derived class, 
+                    what happens to its public members? 
+                    What happens to its private members? 
+
+                If the base is inherited as private by the derived class, 
+                    what happens to its public and private members? 
+*/
 
 2. When a base class is inherited as public, the public members of the base become public
 members of the derived class, and the base’s private members remain private to the base.
