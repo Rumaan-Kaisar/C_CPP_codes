@@ -113,12 +113,16 @@ int main() {
 
                 If the base is inherited as private by the derived class, 
                     what happens to its public and private members? 
-*/
 
-2. When a base class is inherited as public, the public members of the base become public
-members of the derived class, and the base’s private members remain private to the base.
-If the base is inherited as private, all members of the base become private members of the
-derived class.
+
+                Public inheritance:
+                    Public members of the base stay public in the derived class.
+                    Private members of the base stay private to the base.
+
+                Private inheritance:
+                    All members of the base become private in the derived class.
+
+*/
 
 
 
@@ -126,22 +130,29 @@ derived class.
 /* Example 3: Explain what "protected" means.
                 Explain what it means both when referring to members of a class and 
                 when it is used as an inheritance access specifier.
+
+
+                When declaring members:
+                    protected members are like private members — they aren't accessible by outside code,
+                    but can be accessed by derived classes.
+
+                When "protected" used as an inheritance access specifier:
+                    If a class inherits a base class as protected, then:
+                    The base's public and protected members become protected in the derived class.
+                    Private members of the base still stay private to the base.
 */
 
-3. Members declared as protected are private to the base class but can be inherited (and
-506ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 7
-accessed) by any derived class. When used as an inheritance access specifier, protected
-causes all public and protected members of the base class to become protected members
-of the derived class.
 
 
 
+/* Example 4: When one class inherits another, when are the classe's constructors called? 
+                When are their destructors called? 
+            ans:
+                Constructors are called in "order of derivation". 
+                Destructors are called in "reverse order".
+*/
 
-/* Example 4: When one class inherits another, when are the classes’ constructors called? When are
-their destructors called? */
 
-4. Constructors are called in order of derivation. Destructors are called in reverse order.
 
 
 
