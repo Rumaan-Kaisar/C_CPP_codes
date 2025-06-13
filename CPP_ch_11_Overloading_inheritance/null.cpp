@@ -18,7 +18,7 @@
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-At this point you should be able to perform the following exercises and answer the questions.
+
 
 
 
@@ -37,72 +37,71 @@ At this point you should be able to perform the following exercises and answer t
                     the number of telephones.
 */
 
-
 #include <iostream>
 
-class building{
-protected :
-int floors ;
-int rooms ;
-double footage ;
+class building {
+    protected :
+        int floors;
+        int rooms;
+        double footage;
 };
-class house : public building
-{
-int bedrooms ;
-int bathrooms ;
-public :
-house ( int f, int r, double ft , int br , int bth)
-{
-floors = f;
-rooms = r;
-footage = ft;
-bedrooms = br;
-bathrooms = bth;
-}
-void show ()
-{
-cout << " floors : " << floors << ’\n’;
-505TEACH YOURSELF
-C++
-cout << " rooms : " << rooms << ’\n’;
-cout << " square footage : " << footage << ’\n’;
-cout << " bedrooms : " << bedrooms << ’\n’;
-cout << " bathrooms : " << bathrooms << ’\n’;
-}
+
+
+class house : public building {
+        int bedrooms;
+        int bathrooms;
+    public:
+        house(int f, int r, double ft, int br, int bth) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            bedrooms = br;
+            bathrooms = bth;
+        }
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " bedrooms : " << bedrooms << '\n';
+            std::cout << " bathrooms : " << bathrooms << '\n';
+        }
 };
-class office : public building
-{
-int phones ;
-int extinguishers ;
-public :
-office ( int f, int r, double ft , int p, int ext )
-{
-floors = f;
-rooms = r;
-footage = ft;
-phones = p;
-extinguishers = ext;
-}
-void show ()
-{
-cout << " floors : " << floors << ’\n’;
-cout << " floors : " << floors << ’\n’;
-cout << " rooms : " << rooms << ’\n’;
-cout << " square footage : " << footage << ’\n’;
-cout << " Telephones : " << phones << ’\n’;
-cout << " fore extinguishers : ";
-cout << extinguishers << ’\n’;
-}
+
+
+class office : public building {
+        int phones;
+        int extinguishers;
+    public :
+        office(int f, int r, double ft , int pn, int ext) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            phones = pn;
+            extinguishers = ext;
+        }
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " Telephones : " << phones << '\n';
+            std::cout << " fore extinguishers : ";
+            std::cout << extinguishers << '\n';
+        }
 };
-int main ()
-{
-house h_ob (2, 12, 5000 , 6, 4);
-office o_ob (4, 25, 12000 , 30, 8);
-cout << " House :\n";
-h_ob . show ();
-cout << "\ nOffice :\n";
-o_ob . show ();
-return 0;
+
+
+int main() {
+    house h_ob(2, 12, 5000 , 6, 4);
+    office o_ob(4, 25, 12000 , 30, 8);
+
+    std::cout << " House :\n";
+    h_ob.show();
+
+    std::cout << "\ nOffice :\n";
+    o_ob.show();
+
+    return 0;
 }
 
 
