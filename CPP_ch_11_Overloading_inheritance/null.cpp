@@ -21,7 +21,7 @@
 
 
 
-
+// basic
 /* Example 1: Create a generic "base" class called "building" that stores:
                     the number of floors a building has,
                     the number of rooms, and 
@@ -106,6 +106,7 @@ int main() {
 
 
 
+// access specifier
 
 /* Example 2: When a "base" class is inherited as "public" by the derived class, 
                     what happens to its public members? 
@@ -126,6 +127,7 @@ int main() {
 
 
 
+// access specifier
 
 /* Example 3: Explain what "protected" means.
                 Explain what it means both when referring to members of a class and 
@@ -144,7 +146,7 @@ int main() {
 
 
 
-
+// constructors destructors orders
 /* Example 4: When one class inherits another, when are the classe's constructors called? 
                 When are their destructors called? 
             ans:
@@ -158,38 +160,34 @@ int main() {
 
 
 /* Example 5: Given this skeleton, fill in the details as indicated in the comments: */
-# include <iostream >
-using namespace std ;
-class planet
-{
-protected :
-double distance ; // miles from the sun
-int revolve ; // in days
-public :
-planet ( double d, int r) { distance = d; revolve = r; }
+
+# include <iostream>
+
+class planet {
+    protected:
+        double distance;    // miles from the sun
+        int revolve;        // in days
+    public:
+        planet(double d, int r) { distance = d; revolve = r; }
 };
-198INHERITANCE
-SKILLS CHECK
-class earth : public planet
-{
-double circumference ; // circumference of orbit
-public :
-/*
-Create earth ( double d, int r). Have it pass the
-distance and days of revolution back to planet .
-Have it compute the circumference of the orbit .
-( Hint : circumference = 2r *3.1416.)
-*/
-/*
-Create a function called show () that displays the
-information .
-*/
+
+class earth : public planet {
+        double circumference;   // circumference of orbit
+    public:
+
+        // Create earth( double d, int r). 
+            // Have it pass the distance and days of revolution back to planet.
+            // Have it compute the circumference of the orbit.
+            // (Hint : circumference = 2r *3.1416.)
+            // Create a function called show() that displays the information
 };
-int main ()
-{
-earth ob (93000000 , 365) ;
-ob. show ();
-return 0;
+
+
+int main() {
+    earth ob(93000000 , 365) ;
+    ob.show();
+
+    return 0;
 }
 
 
