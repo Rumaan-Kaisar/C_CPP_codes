@@ -21,7 +21,7 @@
 
 
 
-// basic
+// basic: tested
 /* Example 1: Create a generic "base" class called "building" that stores:
                     the number of floors a building has,
                     the number of rooms, and 
@@ -98,7 +98,7 @@ int main() {
     std::cout << " House :\n";
     h_ob.show();
 
-    std::cout << "\ nOffice :\n";
+    std::cout << "\nOffice :\n";
     o_ob.show();
 
     return 0;
@@ -159,9 +159,41 @@ int main() {
 
 
 
-/* Example 5: Given this skeleton, fill in the details as indicated in the comments: */
+/* Example 5: Given this skeleton, fill in the details as indicated in the comments: 
 
-# include <iostream>
+
+                # include <iostream>
+
+                class planet {
+                    protected:
+                        double distance;    // miles from the sun
+                        int revolve;        // in days
+                    public:
+                        planet(double d, int r) { distance = d; revolve = r; }
+                };
+
+                class earth : public planet {
+                        double circumference;   // circumference of orbit
+                    public:
+
+                        // Create earth( double d, int r). 
+                            // Have it pass the distance and days of revolution back to planet.
+                            // Have it compute the circumference of the orbit.
+                            // (Hint : circumference = 2r *3.1416.)
+                            // Create a function called show() that displays the information
+                };
+
+
+                int main() {
+                    earth ob(93000000 , 365) ;
+                    ob.show();
+
+                    return 0;
+                }
+*/
+
+#include <iostream>
+
 
 class planet {
     protected:
@@ -171,15 +203,22 @@ class planet {
         planet(double d, int r) { distance = d; revolve = r; }
 };
 
+
 class earth : public planet {
         double circumference;   // circumference of orbit
     public:
-
         // Create earth( double d, int r). 
-            // Have it pass the distance and days of revolution back to planet.
-            // Have it compute the circumference of the orbit.
-            // (Hint : circumference = 2r *3.1416.)
-            // Create a function called show() that displays the information
+        earth(double d, int r) : planet(d, r) { // pass the distance and days of revolution back to planet.
+            // circumference of the orbit.
+            circumference = 2* distance *3.1416;
+        }
+        // show() displays the information
+        void show() {
+            std::cout << " Distance from sun : " << distance << '\n';
+            std::cout << " Days in orbit : " << revolve << '\n';
+            std::cout << " Circumference of orbit : ";
+            std::cout << circumference << '\n';
+        }            
 };
 
 
@@ -191,38 +230,9 @@ int main() {
 }
 
 
-5. # include <iostream >
-using namespace std ;
-class planet
-{
-protected :
-double distance ; // miles from the sun
-int revolve ; // in days
-public :
-planet ( double d, int r) { distance = d; revolve = r; }
-};
-class earth : public planet
-{
-double circumference ;
-public :
-earth ( double d, int r) : planet (d, r)
-{
-circumference = 2* distance *3.1416;
-}
-void show ()
-{
-cout << " Distance from sun : " << distance << ’\n’;
-cout << " Days in orbit : " << revolve << ’\n’;
-cout << " Circumference of orbit : ";
-cout << circumference << ’\n’;
-}
-};
-int main ()
-{
-earth ob (93000000 , 365) ;
-ob. show ();
-return 0;
-}
+
+
+// rev[16-Jun-2025]
 
 
 
