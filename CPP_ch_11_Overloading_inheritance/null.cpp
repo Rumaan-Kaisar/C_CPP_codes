@@ -241,9 +241,22 @@ int main() {
                 But this program contains an error, Fix it. 
 
                 Hint: try compiling it as is and observe the error messages.
+
+
+                Error:
+                    sol.cpp: In constructor ‘car::car(steering, motor, int, int, int)’:
+                    sol.cpp:73:106: error: type ‘vehicle’ is not a direct base of ‘car’
+                        |         car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+                        |                                                                                                          ^~~~~~~
+                    sol.cpp: In member function ‘void car::show()’:
+                    sol.cpp:77:13: error: reference to ‘showv’ is ambiguous
+                        |             showv();
+                        |             ^~~~~
+                    sol.cpp:20:10: note: candidates are: ‘void vehicle::showv()’
+
 */
 
-# include <iostream>
+#include <iostream>
 
 // A base class for various types of vehicles .
 class vehicle {
