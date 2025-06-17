@@ -237,59 +237,59 @@ int main() {
 
 
 
-/* Example 6: Fix the following program: */
-/*
-A variation on the vehicle hierarchy . But
-this program contains an error . Fix it. Hind :
-try compiling it as is and observe the error
-messages .
+/* Example 6: Fix the following program: A variation on the vehicle hierarchy.
+                But this program contains an error, Fix it. 
+
+                Hint: try compiling it as is and observe the error messages.
 */
-# include <iostream >
-using namespace std ;
+
+# include <iostream>
+
 // A base class for various types of vehicles .
-class vehicle
-{
-int num_wheels ;
-int range ;
-public :
-vehicle ( int w, int r)
-{
-num_wheels = w;
-range = r;
-}
-void showv ()
-{
-cout << " Wheels : " << num_wheels << ’\n’;
-cout << " Range : " << range << ’\n’;
-199TEACH YOURSELF
-C++
-}
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
 };
-enum motor {gas , electric , diesel };
-class motorized : public vehicle
-{
-enum motor mtr ;
-public :
-motorized ( enum motor m, int w, int r) : vehicle (w, r)
-{
-mtr = m;
-}
-void showm ()
-{
-cout << " Motor : ";
-switch ( mtr )
-{
-case gas : cout << "Gas \n";
-break ;
-case electric : cout << " Electric \n";
-break ;
-case diesel : cout << " Diesel \n";
-break ;
-}
-}
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
 };
-class road_use : public vehicle
-{
+
+
+class road_use : public vehicle {
 int passengers ;
 public :
 road_use ( int p, int w, int r) : vehicle (w, r)
@@ -309,8 +309,7 @@ public :
 car ( enum steering s, enum motor m, int w, int r, int p) :
 road_use (p, w, r), motorized (m, w, r), vehicle (w, r)
 {
-200INHERITANCE
-SKILLS CHECK
+
 strng = s;
 }
 void show ()
@@ -330,6 +329,9 @@ break ;
 }
 }
 };
+
+
+
 int main ()
 {
 car c(power , gas , 4, 500 , 5);
