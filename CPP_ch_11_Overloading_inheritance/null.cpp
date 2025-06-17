@@ -290,60 +290,59 @@ class motorized : public vehicle {
 
 
 class road_use : public vehicle {
-int passengers ;
-public :
-road_use ( int p, int w, int r) : vehicle (w, r)
-{
-passengers = p;
-}
-void showr ()
-{
-cout << " Passengers : " << passengers << ’\n’;
-}
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
 };
+
+
 enum steering { power , rack_pinion , manual };
-class car : public motorized , public road_use
-{
-enum steering strng ;
-public :
-car ( enum steering s, enum motor m, int w, int r, int p) :
-road_use (p, w, r), motorized (m, w, r), vehicle (w, r)
-{
 
-strng = s;
-}
-void show ()
-{
-showv ();
-showr ();
-showm ();
-cout << " Steering : ";
-switch ( strng )
-{
-case power : cout << " Power \n";
-break ;
-case rack_pinion : cout << " Rack and Pinion \n";
-break ;
-case manual : cout << " Manual \n";
-break ;
-}
-}
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
 };
 
 
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
 
-int main ()
-{
-car c(power , gas , 4, 500 , 5);
-c. show ();
-return 0;
+    return 0;
 }
 
-
+/* 
+ans:
 6. To fix the program, have motorized and road use inherit vehicle as a virtual base class.
 Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
 
-
+ */
 
 
 
