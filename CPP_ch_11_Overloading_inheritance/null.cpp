@@ -254,6 +254,103 @@ int main() {
                         |             ^~~~~
                     sol.cpp:20:10: note: candidates are: ‘void vehicle::showv()’
 
+                error message concerning the use of the switch statement within "car" and "motorized".
+
+
+#include <iostream>
+
+// A base class for various types of vehicles .
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
+};
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
+};
+
+
+class road_use : public vehicle {
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
+};
+
+
+enum steering { power , rack_pinion , manual };
+
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
+};
+
+
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
+
+    return 0;
+}
+
 */
 
 #include <iostream>
@@ -352,8 +449,8 @@ int main() {
 
 /* 
 ans:
-6. To fix the program, have motorized and road use inherit vehicle as a virtual base class.
-Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
+6. To fix the program, have "motorized" and "road" use inherit vehicle as a "virtual base class".
+Also, refer to next Example in the Cumulative Skills Check in this chapter.
 
  */
 
@@ -361,16 +458,11 @@ Also, refer to Question 1 in the Cumulative Skills Check in this chapter.
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
 
+/* Example 1: In previous Example, you might have seen a warning message (or perhaps an error message) 
+                concerning the use of the switch statement within car and motorized. Why? 
 
-
-
-/* Example 1: In Exercise 6 from the preceding Mastery Skills Check section, you might have seen a
-warning message (or perhaps an error message) concerning the use of the switch statement
-within car and motorized. Why? */
+*/
 
 1. Some compilers will not allow you to use a switch in an in-line function. If this is the
 case with your compiler, the functions were automatically made into "regular" functions.
