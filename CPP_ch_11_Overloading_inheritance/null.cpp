@@ -254,7 +254,7 @@ int main() {
                         |             ^~~~~
                     sol.cpp:20:10: note: candidates are: ‘void vehicle::showv()’
 
-                error message concerning the use of the switch statement within "car" and "motorized".
+                
 
 
 #include <iostream>
@@ -449,8 +449,33 @@ int main() {
 
 /* 
 ans:
-6. To fix the program, have "motorized" and "road" use inherit vehicle as a "virtual base class".
-Also, refer to next Example in the Cumulative Skills Check in this chapter.
+    To fix the program, have "motorized" and "road" use inherit vehicle as a "virtual base class".
+    Also, refer to next Example in the Cumulative Skills Check in this chapter.
+
+you might have seen a warning message (or perhaps an error message) 
+                concerning the use of the switch statement within car and motorized. Why? 
+
+
+
+1. Some compilers will not allow you to use a switch in an in-line function. If this is the
+case with your compiler, the functions were automatically made into "regular" functions.
+
+error message concerning the use of the switch statement within "car" and "motorized".
+
+-------------------------------------------
+
+Answer:
+
+To fix the program, make motorized and road inherit vehicle as a virtual base class.
+
+Also, check the next example in the chapter’s Cumulative Skills Check.
+
+About the warning/error:
+
+Some compilers don’t allow a switch statement inside an inline function.
+
+If that happens, the compiler automatically treats the function as a regular (non-inline) function.
+
 
  */
 
@@ -459,13 +484,10 @@ Also, refer to next Example in the Cumulative Skills Check in this chapter.
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
 
-/* Example 1: In previous Example, you might have seen a warning message (or perhaps an error message) 
-                concerning the use of the switch statement within car and motorized. Why? 
 
-*/
 
-1. Some compilers will not allow you to use a switch in an in-line function. If this is the
-case with your compiler, the functions were automatically made into "regular" functions.
+
+
 
 
 
