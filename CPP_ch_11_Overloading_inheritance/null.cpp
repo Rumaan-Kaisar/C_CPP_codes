@@ -232,11 +232,6 @@ int main() {
 
 
 
-// rev[16-Jun-2025]
-
-
-
-
 /* Example 6: Fix the following program: A variation on the vehicle hierarchy.
                 But this program contains an error, Fix it. 
 
@@ -351,6 +346,15 @@ int main() {
     return 0;
 }
 
+
+
+            ans:
+                To fix the program, make 'motorized' and 'road_use' inherit 'vehicle' as a "virtual base class".
+                
+                you might have seen a warning message (or perhaps an error message):
+                    Some compilers don't allow a switch statement inside an inline function.
+                    If that happens, the compiler automatically treats the function as a regular (non-inline) function.
+
 */
 
 #include <iostream>
@@ -374,7 +378,7 @@ class vehicle {
 enum motor { gas , electric , diesel };
 
 
-class motorized : public vehicle {
+class motorized : virtual public vehicle {
         enum motor mtr;
     public:
         motorized(enum motor m, int w, int r) : vehicle (w, r) {
@@ -399,7 +403,7 @@ class motorized : public vehicle {
 };
 
 
-class road_use : public vehicle {
+class road_use : virtual public vehicle {
         int passengers;
     public:
         road_use(int p, int w, int r) : vehicle (w, r) {
@@ -447,42 +451,12 @@ int main() {
     return 0;
 }
 
-/* 
-ans:
-    To fix the program, have "motorized" and "road" use inherit vehicle as a "virtual base class".
-    Also, refer to next Example in the Cumulative Skills Check in this chapter.
-
-you might have seen a warning message (or perhaps an error message) 
-                concerning the use of the switch statement within car and motorized. Why? 
-
-
-
-1. Some compilers will not allow you to use a switch in an in-line function. If this is the
-case with your compiler, the functions were automatically made into "regular" functions.
-
-error message concerning the use of the switch statement within "car" and "motorized".
-
--------------------------------------------
-
-Answer:
-
-To fix the program, make motorized and road inherit vehicle as a virtual base class.
-
-Also, check the next example in the chapter’s Cumulative Skills Check.
-
-About the warning/error:
-
-Some compilers don’t allow a switch statement inside an inline function.
-
-If that happens, the compiler automatically treats the function as a regular (non-inline) function.
-
-
- */
 
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
+// rev[20-Jun-2025]
 
 
 
@@ -491,8 +465,8 @@ If that happens, the compiler automatically treats the function as a regular (no
 
 
 
-
-/* Example 2: As you know from the preceding chapter, most operators overloaded in a base class are
+/* Example 2: from the preceding examples (in C++ operator overloading ch11_05_1-4), 
+most operators overloaded in a base class are
 available for use in a derived class. Which one or ones are not? Can you offer a reason
 why this is the case? */
 
