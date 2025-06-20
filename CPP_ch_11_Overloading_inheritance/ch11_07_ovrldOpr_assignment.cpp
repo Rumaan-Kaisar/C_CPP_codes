@@ -1,399 +1,845 @@
 
-/*  ------------------------    overloading ASSIGNMENT operator : '='    ------------------------
-    By default (without overloading), when the assignment operator is applied to an object, 
-        a bitwise copy (also called a "shallow copy") of the object on the right is put into the object on the left. 
-    
-    This means that the contents of the memory of the object on the right-hand side 
-        are copied directly into the memory of the object on the left-hand side.
 
-    If this is what you want, 
-        there is no reason to provide your own operator=() function (i.e. overloading has no reason). 
-
-    However, there are cases in which a strict bitwise copy is not desirable 
-        and we need to provide a special assignment operation.
+// --------    rev[09-Jun-25]    --------
 
 
-
-    -------  two important features about the operator=() function:  -------
-
-    Uses a Reference Parameter:
-        First, it takes a reference parameter. 
-        This prevents a copy of the "object on the right" side of the assignment from being made. 
-
-        [Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4]
-        when a copy of an object is made when passed to a function, that copy is destroyed when the function terminates. 
-        In this case, destroying the copy would call the destructor function, which would free p. 
-        However, this is the same p still needed by the object used as an argument. 
-        
-        Solution: Using a reference parameter prevents this problem.
-            [Recall: 
-                Example 4 :: ch10_01_3_constructor_param.cpp, and
-                Example 4 :: ch10_06_1_assign_obj.cpp & modification
-            ]
-
-    Returns a Reference:
-        The second important feature of the operator=() function is that:
-        it returns a "reference", not an "object". 
-        The reason for this is the same as the reason it uses a reference parameter.
-
-        [Recall ch10_06_1 - ch10_06_3 and ch10_10_1 - ch10_10_4]
-        When a function returns an object, a temporary object is created that is destroyed after the return is complete. 
-        However, this means that the temporary object's destructor will be called, 
-        causing p to be freed, but p (and the memory it points to) is still needed by the object being assigned a value. 
-
-        Solution: Therefore, by returning a reference, you prevent a temporary object from being created
+// -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-    Note: We know creating a "copy constructor" is another way to prevent both of the above problems
-        But the "copy constructor" might not be as efficient a solution as using a "reference parameter" and a return "reference type". 
-        This is because using a reference prevents the overhead associated with copying an object in either circumstances. 
+// -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-        There are often several ways to accomplish the same end in C++. 
-        Learning to choose between them is part of becoming an excellent C++ programmer.
-*/
+
+// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
 
 
-/*  Example 1: Following is another version of the strtype class (from previous chapters)
-                This version overloads the '=' operator to ensure 
-                the pointer 'p' is not overwritten during assignment.
 
-                The overloaded assignment operator prevents p from being overwritten.
-                        It checks if the object on the left has enough allocated memory to hold the assigned string.
-                        If not, it frees the old memory and allocates new memory. 
-                        Then, it copies the string and updates the length (len).
+
+
+// -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
+
+
+
+// basic: tested
+/* Example 1: Create a generic "base" class called "building" that stores:
+                    the number of floors a building has,
+                    the number of rooms, and 
+                    its total square footage. 
+
+                Create "derived" class called "house" that:
+                    inherits building and also 
+                    stores the number of bedrooms and 
+                    the number of bathrooms.
+
+                Next, create a "derived" class called "office" that inherits "building" and also stores 
+                    the number of fire extinguishers and 
+                    the number of telephones.
 */
 
 #include <iostream>
-#include <cstring>
-#include <cstdlib>
 
-class strtype{
-        char *p;
-        int len;
+class building {
+    protected :
+        int floors;
+        int rooms;
+        double footage;
+};
+
+
+class house : public building {
+        int bedrooms;
+        int bathrooms;
     public:
-        strtype(char *s);   // constructor
-        ~strtype(){         // destructor
-            // std::cout << " Freeing " << (unsigned)p << '\n';     // ERR: cast from ‘char*’ to ‘unsigned int’ loses precision
-            std::cout << " Freeing " << (void*)p << '\n';
-            delete [] p;    // delete dynamically allocate a 1D array. "delete [] p_var;"
-            // recall "ch10_09_3_more_new_delete.cpp"
+        house(int f, int r, double ft, int br, int bth) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            bedrooms = br;
+            bathrooms = bth;
         }
-        char *get(){ return p; }
-        
-        // Overload '=': It is an operator function that returns a reference to the object
-        strtype &operator=(strtype &ob);    // reference operator function
-};
-
-
-strtype::strtype(char *s){
-    int l;
-
-    l = strlen(s) + 1;
-    p = new char [l];
-    if(!p){
-        std::cout << " Allocation error \n";
-        exit(1);
-    }
-
-    len = l;
-    strcpy(p, s);
-}
-
-
-// overload '=': Assign an object
-strtype &strtype::operator=(strtype &ob){
-    
-    // see if more memory is needed
-    if(len < ob.len){ 
-        // allocate more memory
-        delete [] p;
-        p = new char[ob.len];
-
-        if(!p){
-            std::cout << " Allocation error \n";
-            exit(1);
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " bedrooms : " << bedrooms << '\n';
+            std::cout << " bathrooms : " << bathrooms << '\n';
         }
-    }
-
-    len = ob.len;
-    strcpy(p, ob.p);
-    return *this;
-}
-
-
-int main(){
-    strtype a(" Hello "), b(" There ");
-
-    std::cout << a.get() << '\n';
-    std::cout << b.get() << '\n';
-
-    a = b; // now p is not overwritten
-
-    std::cout << a. get() << '\n';
-    std::cout << b. get() << '\n';
-
-    return 0;
-}
-
-/*  The error occurs because we're trying to cast a char* pointer to an "unsigned int", 
-        which might lead to a loss of precision, especially on 64-bit systems 
-        where pointers are 64 bits but unsigned int is typically 32 bits.
-        Casting to unsigned can truncate the pointer value, leading to potential data loss
-
-    Solution:
-        cast the pointer p to an uintptr_t or void* instead, 
-        as these types are specifically designed to safely store pointer values.
-
-                #include <cstdint> // Include this for uintptr_t
-
-        change:
-                std::cout << " Freeing " << (uintptr_t)p << '\n';   // Use uintptr_t for pointer-to-integer cast
-
-    uintptr_t
-        The uintptr_t type is an unsigned integer type guaranteed to be large enough to hold a pointer. 
-        Casting a pointer to uintptr_t ensures compatibility and avoids precision loss.
-
-                #include <cstdint> is needed for uintptr_t.
-
-    Alternative (void*):
-        If you don't need to perform arithmetic or formatting operations on the pointer, 
-            you can also directly cast p to void* for printing.
-
-                std::cout << " Freeing " << (void*)p << '\n';
-
-
-
-    ------------    Note: using space with &    ------------
-    Common Styles (without space):      strtype &operator=(strtype &ob);
-     
-    Both
-            strtype &operator=(strtype &ob);
-    and 
-            strtype & operator=(strtype &ob); 
-    
-    are syntactically correct in C++. 
-    
-    The placement of the space between & and operator is purely 
-        a matter of style preference and does not affect functionality.
-*/
-
-
-
-
-/* Example 2: Given the following class declaration, your task is to complete it to create a "dynamic array". 
-                Fill in all the details that will create a dynamic array type
-
-                Here's what you need to do:
-                    Allocate memory for the array and store a pointer to this memory in p.
-                    Store the size of the array (in bytes) in size.
-
-                Implement
-                    put() that returns a reference to a specified element
-                    get() that returns the value of a specified element
-
-                Ensure that the array boundaries are not overrun.
-
-                Also, overload the assignment operator(=):
-                    To ensure that the memory allocated for one array 
-                        is not accidentally destroyed during assignment.
-
-                    (Note: In the next section, you’ll learn how to improve this solution further.)
-
-
-
-                        class dynarray{
-                                int *p;
-                                int size;
-                            public:
-                                dynarray(int s);    // pass size of array in s
-                                int &put(int i);    // return reference to element i
-                                int get(int i);     // return value of element i
-
-                                // create operator=() function
-                        };
-*/
-
-#include <iostream>
-#include <cstdlib>
-
-class dynarray{
-        int *p;
-        int size;
-    public:
-        dynarray(int s);    // pass size of array in s
-        int &put(int i);    // return reference to element i
-        int get(int i);     // return value of element i
-
-        // overload "=", i.e. create operator=() function
-        dynarray &operator=(dynarray &ob);
-};
-
-// Constructor
-dynarray::dynarray(int s){
-    p = new int [s];
-    if(!p){
-        std::cout << " Allocation error \n";
-        exit(1);
-    }
-    size = s;
-}
-
-// Store an element
-int &dynarray::put(int i){
-    if((i<0) || (i >= size)){
-        std::cout << " Bounds error !\n";
-        exit(1);
-    }
-    return p[i];
-}
-
-// Get an element
-int dynarray::get(int i){
-    if((i<0) || (i >= size)){
-        std::cout << " Bounds error !\n";
-        exit(1);
-    }
-    return p[i];
-}
-
-
-// Overload = for dynarray
-dynarray &dynarray::operator=(dynarray &ob){
-    int i;
-    if(size != ob.size){
-        std::cout << " Cannot copy arrays of differing size !\n";
-        exit(1);
-    }
-    // assigning
-    for(i=0; i<size; i++) p[i] = ob.p[i];
-    return *this;
-}
-
-
-int main(){
-    int i;
-    dynarray ob1(10), ob2(10), ob3(100);
-
-    ob1.put(3) = 10;
-    i = ob1.get(3);
-    std::cout << i << '\n';
-
-    ob2 = ob1;
-    i = ob2.get(3);
-    std::cout << i << '\n';
-
-    // generates an error, for arrays of differing size
-    ob1 = ob3; // arrays of differing size
-
-    return 0;
-}
-
-
-
-
-/* Example 3: Explain why you might need to overload the assignment operator. 
-
-                We'll need to overload the "=" operator when the "default bitwise copy" is insufficient.
-                For example, we might have a situation in which we want-
-                    only "parts" of the data in "one object" to be assigned to "another object".
-*/
-
-
-
-
-/* Example 4: Can operator=() be a friend function? 
-
-                No, operator=() cannot be a friend function because:
-
-                Must Modify the Calling Object: 
-                    since "=" modifies the existing object
-                    Requires "this" pointer, which friend functions don't have.
-
-                C++ Restriction:
-                    operator=() must be a non-static member function, while friend functions are non-members.
-
-                Thus, operator=() must always be a member function to modify the existing object.
-*/
-
-
-
-
-/* Example 5: Create a strtype class that allows the following types of operators:
-                "string concatenation" using the + operator
-                "string assignment" using the = operator
-                "string comparisons" using <, >, and ==
-
-                Feel free to use fixed-length strings.
-
-                For clarity , no error checking has been used . 
-                However you should add some if using this code for a real application
-*/
-
-#include <iostream>
-#include <cstring>
-
-class strtype{
-        char s[80];
-    public:
-        strtype(){ *s = '\0' ;}
-        strtype(char *p){ strcpy(s, p); }
-        char *get(){ return s;}
-
-        // overload +, =, <, >, ==
-        strtype operator+(strtype s2);
-        strtype operator=(strtype s2);
-        int operator<(strtype s2);
-        int operator>(strtype s2);
-        int operator==(strtype s2);
 };
 
 
-strtype strtype::operator+(strtype s2){
-    strtype temp;
-    strcpy(temp .s, s);
-    strcat(temp .s, s2.s);
-    return temp;
-}
-
-strtype strtype::operator=(strtype s2){
-    strcpy(s, s2.s);
-    return *this;
-}
-
-int strtype::operator<(strtype s2){
-    return strcmp(s, s2.s) < 0;
-}
-
-int strtype::operator>(strtype s2){
-    return strcmp(s, s2.s) > 0;
-}
-
-int strtype::operator==(strtype s2){
-    return strcmp(s, s2.s) == 0;
-}
+class office : public building {
+        int phones;
+        int extinguishers;
+    public :
+        office(int f, int r, double ft , int pn, int ext) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            phones = pn;
+            extinguishers = ext;
+        }
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " Telephones : " << phones << '\n';
+            std::cout << " fore extinguishers : ";
+            std::cout << extinguishers << '\n';
+        }
+};
 
 
-int main(){
-    strtype o1(" Hello "), o2(" There "), o3;
+int main() {
+    house h_ob(2, 12, 5000 , 6, 4);
+    office o_ob(4, 25, 12000 , 30, 8);
 
-    o3 = o1 + o2;
-    std::cout << o3. get() << '\n';
+    std::cout << " House :\n";
+    h_ob.show();
 
-    o3 = o1;
-    if(o1 == o3) std::cout << "o1 equals o3\n";
-    if(o1 > o2) std::cout << "o1 > o2\n";
-    if(o1 < o2) std::cout << "o1 < o2\n";
+    std::cout << "\nOffice :\n";
+    o_ob.show();
 
     return 0;
 }
 
 
 
+// access specifier
 
-/* Example 6: Can the assignment operator be overloaded by using a "friend" function? 
+/* Example 2: When a "base" class is inherited as "public" by the derived class, 
+                    what happens to its public members? 
+                    What happens to its private members? 
+
+                If the base is inherited as private by the derived class, 
+                    what happens to its public and private members? 
+
+
+                Public inheritance:
+                    Public members of the base stay public in the derived class.
+                    Private members of the base stay private to the base.
+
+                Private inheritance:
+                    All members of the base become private in the derived class.
+
+*/
+
+
+
+// access specifier
+
+/* Example 3: Explain what "protected" means.
+                Explain what it means both when referring to members of a class and 
+                when it is used as an inheritance access specifier.
+
+
+                When declaring members:
+                    protected members are like private members — they aren't accessible by outside code,
+                    but can be accessed by derived classes.
+
+                When "protected" used as an inheritance access specifier:
+                    If a class inherits a base class as protected, then:
+                    The base's public and protected members become protected in the derived class.
+                    Private members of the base still stay private to the base.
+*/
+
+
+
+// constructors destructors orders
+/* Example 4: When one class inherits another, when are the classe's constructors called? 
+                When are their destructors called? 
             ans:
-                No. To overload the assignment operator you must use a member function.
+                Constructors are called in "order of derivation". 
+                Destructors are called in "reverse order".
 */
+
+
+
+
+
+
+/* Example 5: Given this skeleton, fill in the details as indicated in the comments: 
+
+
+                # include <iostream>
+
+                class planet {
+                    protected:
+                        double distance;    // miles from the sun
+                        int revolve;        // in days
+                    public:
+                        planet(double d, int r) { distance = d; revolve = r; }
+                };
+
+                class earth : public planet {
+                        double circumference;   // circumference of orbit
+                    public:
+
+                        // Create earth( double d, int r). 
+                            // Have it pass the distance and days of revolution back to planet.
+                            // Have it compute the circumference of the orbit.
+                            // (Hint : circumference = 2r *3.1416.)
+                            // Create a function called show() that displays the information
+                };
+
+
+                int main() {
+                    earth ob(93000000 , 365) ;
+                    ob.show();
+
+                    return 0;
+                }
+*/
+
+#include <iostream>
+
+
+class planet {
+    protected:
+        double distance;    // miles from the sun
+        int revolve;        // in days
+    public:
+        planet(double d, int r) { distance = d; revolve = r; }
+};
+
+
+class earth : public planet {
+        double circumference;   // circumference of orbit
+    public:
+        // Create earth( double d, int r). 
+        earth(double d, int r) : planet(d, r) { // pass the distance and days of revolution back to planet.
+            // circumference of the orbit.
+            circumference = 2* distance *3.1416;
+        }
+        // show() displays the information
+        void show() {
+            std::cout << " Distance from sun : " << distance << '\n';
+            std::cout << " Days in orbit : " << revolve << '\n';
+            std::cout << " Circumference of orbit : ";
+            std::cout << circumference << '\n';
+        }            
+};
+
+
+int main() {
+    earth ob(93000000 , 365) ;
+    ob.show();
+
+    return 0;
+}
+
+
+
+
+/* Example 6: Fix the following program: A variation on the vehicle hierarchy.
+                But this program contains an error, Fix it. 
+
+                Hint: try compiling it as is and observe the error messages.
+
+
+                Error:
+                    sol.cpp: In constructor ‘car::car(steering, motor, int, int, int)’:
+                    sol.cpp:73:106: error: type ‘vehicle’ is not a direct base of ‘car’
+                        |         car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+                        |                                                                                                          ^~~~~~~
+                    sol.cpp: In member function ‘void car::show()’:
+                    sol.cpp:77:13: error: reference to ‘showv’ is ambiguous
+                        |             showv();
+                        |             ^~~~~
+                    sol.cpp:20:10: note: candidates are: ‘void vehicle::showv()’
+
+                
+
+
+#include <iostream>
+
+// A base class for various types of vehicles .
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
+};
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
+};
+
+
+class road_use : public vehicle {
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
+};
+
+
+enum steering { power , rack_pinion , manual };
+
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
+};
+
+
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
+
+    return 0;
+}
+
+
+
+            ans:
+                To fix the program, make 'motorized' and 'road_use' inherit 'vehicle' as a "virtual base class".
+                
+                you might have seen a warning message (or perhaps an error message):
+                    Some compilers don't allow a switch statement inside an inline function.
+                    If that happens, the compiler automatically treats the function as a regular (non-inline) function.
+
+*/
+
+#include <iostream>
+
+// A base class for various types of vehicles .
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
+};
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : virtual public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
+};
+
+
+class road_use : virtual public vehicle {
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
+};
+
+
+enum steering { power , rack_pinion , manual };
+
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
+};
+
+
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
+
+    return 0;
+}
+
+
+
+
+// -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
+
+// rev[20-Jun-2025]
+
+/* Example 2: from the preceding examples (in C++ operator overloading ch11_05_1 - ch11_05_4), 
+                most operators overloaded in a base class are available for use in a derived class. 
+                
+                Which one or ones are not? 
+                Can you offer a reason why this is the case?
+
+
+
+Answer:
+In C++, most overloaded operators in a base class are inherited by the derived class and remain usable.
+However, the assignment operator (operator=) is not automatically inherited by a derived class.
+
+📌 Why?
+Because:
+
+Each class needs to handle its own resources and member variables safely during assignment.
+
+The compiler-generated or base class operator= would only copy the base class members — ignoring any new members added in the derived class.
+
+To ensure safe and complete assignment, it's recommended (and often necessary) for a derived class to explicitly define its own operator= if it introduces new data members.
+
+
+
+Operator	Inherited by Derived Class?	Reason
+Most operators (+, -, *, [], etc.)	✔️ Yes	Behaves properly through inheritance
+operator=	❌ No	Needs to handle new members in derived class
+
+*/
+
+The assignment operators is the only operator that is not inherited. The reason for this
+is easy to understand. Since a derived class will contain members not found in the base
+class, the overloaded = relative to the base has no knowledge of the members added by
+the derived class and, as such, cannot properly copy those new members.
+
+
+
+
+/* Example 3: Following is a reworked version of the coord class from the previous chapter. This time
+it is used as a base for another class called quad, which also maintains the quadrant the
+specific point is in. On your own, run this program and try to understand its output. */
+
+/*
+Overload the +, -, and = relative to coord class . Then
+use coord as a base for quad .
+*/
+# include <iostream >
+using namespace std ;
+201TEACH YOURSELF
+C++
+class coord
+{
+public :
+int x, y; // coordinate values
+coord () { x =0; y =0; }
+coord ( int i, int j) { x=i; y=j; }
+void get_xy ( int &i, int &j) { i=x; j=y; }
+coord operator +( coord ob2);
+coord operator -( coord ob2);
+coord operator =( coord ob2);
+};
+// Overload + relative to coord class .
+coord coord :: operator +( coord ob2)
+{
+coord temp ;
+cout << " Using coord operator +() \n";
+temp .x = x + ob2 .x;
+temp .y = y + ob2 .y;
+return temp ;
+}
+// Overload - relative to coord class .
+coord coord :: operator -( coord ob2)
+{
+coord temp ;
+cout << " Using coord operator -() \n";
+temp .x = x - ob2 .x;
+temp .y = y - ob2 .y;
+return temp ;
+}
+// Overload = relative to coord .
+coord coord :: operator =( coord ob2)
+{
+cout << " Using coord operator =() \n";
+x = ob2 .x;
+y = ob2 .y;
+return * this ; // return the object that is assigned to
+}
+class quad : public coord
+{
+202INHERITANCE
+SKILLS CHECK
+int quadrant ;
+public :
+quad ()
+{
+x = 0;
+y = 0;
+quadrant = 0;
+}
+quad ( int x, int y) : coord (x, y)
+{
+if(x >=0 && y >= 0)
+quadrant = 1;
+else if(x <0 && y >=0)
+quadrant = 2;
+else if(x <0 && y <0)
+quadrant = 3;
+else
+quadrant = 4;
+}
+void showq ()
+{
+cout << " Point in Quadrant : " << quadrant << ’\n’;
+}
+quad operator =( coord ob2 );
+};
+quad quad :: operator =( coord ob2 )
+{
+cout << " Using quad operator =() \n";
+x = ob2 .x;
+y = ob2 .y;
+if(x >=0 && y >= 0)
+quadrant = 1;
+else if(x <0 && y >=0)
+quadrant = 2;
+else if(x <0 && y <0)
+quadrant = 3;
+else
+quadrant = 4;
+return * this ;
+}
+int main ()
+{
+quad o1 (10 , 10) , o2 (15 , 3) , o3;
+int x, y;
+o3 = o1 + o2; // add two objects - this calls operator +()
+o3. get_xy (x, y);
+203TEACH YOURSELF
+C++
+o3. showq ();
+cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1 - o2; // subtract two objects
+o3. get_xy (x, y);
+o3. showq ();
+cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+o3 = o1; // assign an object
+o3. get_xy (x, y);
+o3. showq ();
+cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+return 0;
+}
+
+
+
+/* Example 4: Again on your own, convert the program shown in Exercise 3 so that it uses friend operator
+functions. */
+
+
+
+
+
+
+
+
+
+
+
+
+// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
+Before proceeding, you should be able to correctly answer the following questions and do the
+exercises.
+
+
+
+
+/* Example 1: Create a class hierarchy that stores information about airships. Start with a general
+base class called airship that stores the number of passengers and the amount of cargo
+(in pounds) that can be carried. Then create two derived classes called airplane and
+balloon from airship. Have airplane store the type of engine used (propeller or jet)
+and range, in miles. Have balloon store information about the type of gas used to lift
+the balloon (hydrogen or helium) and its maximum altitude (in feet). Create a short
+program that demonstrates this class hierarchy. (Your solution will, no doubt, differ from
+the answer shown in the back of this book. If it is functionally similar, count it as correct.) */
+
+
+1. # include <iostream >
+using namespace std ;
+class airship
+{
+protected :
+int passengers ;
+double cargo ;
+};
+class airplane : public airship
+{
+char engine ; // p for propeller , j for jet
+double range ;
+public :
+airplane ( int p, double c, char e, double r)
+{
+passengers = p;
+cargo = c;
+engine = e;
+range = r;
+}
+void show ();
+};
+class balloon : public airship
+{
+char gas ; // h for hydrogen , e for helium
+double altitude ;
+public :
+balloon ( int p, double c, char g, double a)
+{
+passengers = p;
+cargo = c;
+gas = g;
+altitude = a;
+}
+void show ();
+};
+void airplane :: show ()
+{
+cout << " Passengers : " << passengers << ’\n’;
+cout << " Cargo capacity : " << cargo << ’\n’;
+508ANSWERS
+REVIEW SKILLS CHECK: Chapter 8
+cout << " Engine : ";
+if( engine == ’p’)
+cout << " Propeller \n";
+else
+cout << " Jet \n";
+cout << " Range : " << range << ’\n’;
+}
+void balloon :: show ()
+{
+cout << " Passengers : " << passengers << ’\n’;
+cout << " Cargo capacity : " << cargo << ’\n’;
+cout << " Gas : ";
+if( gas == ’h’)
+cout << " Hydrogen \n";
+else
+cout << " Helium \n";
+cout << " Altitude : " << altitude << ’\n’;
+}
+int main ()
+{
+balloon b(2, 500.0 , ’h’, 12000.0) ;
+airplane b727 (100 , 40000.0 , ’j’, 40000.0) ;
+b. show ();
+cout << ’\n’;
+b727 . show ();
+return 0;
+}
+
+
+
+
+/* Example 2: What is protected used for? */
+
+2. The protected access specifier causes a class member to be private to its class but still
+accessible by any derived class.
+
+
+
+
+/* Example 3: Given the following class hierarchy, in what order are the constructor functions called? In
+what order are the destructor functions called? */
+# include <iostream >
+using namespace std ;
+class A
+{
+public :
+A() { cout << " Constructing A\n"; }
+206INTRODUCING THE C++ I/O SYSTEM
+~A() { cout << " Destructing A\n"; }
+};
+class B : public A
+{
+public :
+B() { cout << " Constructing B\n"; }
+~B() { cout << " Destructing B\n"; }
+};
+class C : public B
+{
+public :
+C() { cout << " Constructing C\n"; }
+~C() { cout << " Destructing C\n"; }
+};
+int main ()
+{
+C ob;
+return 0;
+}
+
+3. The program displays the following output, which indicates when the constructors and
+destructors are called.
+Constructing A
+Constructing B
+Constructing C
+Destructing C
+Destructing B
+Destructing A
+
+
+/* Example 4: Given the following fragment, in what order are the constructor functions called?
+class myclass : public A, public B, public C
+{
+// ...
+};
+*/
+4. Constructors are called in the order ABC, destructors in the order CBA.
+
+
+
+
+/* Example 5: Fill in the missing constructor functions in this program: */
+# include <iostream >
+using namespace std ;
+class base
+{
+int i, j;
+public :
+// need constructor
+void showij () { cout << i << ’ ’ << j << ’\n’; }
+};
+class derived : public base
+{
+int k;
+public :
+// need constructor
+void show () { cout << k << ’ ’; showij (); }
+};
+int main ()
+207TEACH YOURSELF
+C++
+{
+derived ob (1, 2, 3);
+ob. show ();
+return 0;
+}
+
+
+
+5. # include <iostream >
+using namespace std ;
+509TEACH YOURSELF
+C++
+class base
+{
+int i, j;
+public :
+base ( int x, int y) { i = x; j = y; }
+void showij () { cout << i << ’ ’ << j << ’\n’; }
+};
+class derived : public base
+{
+int k;
+public :
+derived ( int a, int b, int c) : base (b, c)
+{
+k = a;
+}
+void show () { cout << k << ’ ’; showij (); }
+};
+int main ()
+{
+derived ob (1, 2, 3);
+ob. show ();
+return 0;
+}
+
+
+
+
+/* Example 6: In general, when you define a class hierarchy, you begin with the most
+class and move to the most class. (Fill in the missing words.) */
+
+
+6. The missing words are "general" and "specific".
+
+
+
+
+
 
