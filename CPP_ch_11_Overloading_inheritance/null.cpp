@@ -466,31 +466,37 @@ int main() {
 
 
 
-Answer:
-In C++, most overloaded operators in a base class are inherited by the derived class and remain usable.
-However, the assignment operator (operator=) is not automatically inherited by a derived class.
+ans:
+    The assignment operators "=" is the only operator that is not inherited.
+        In C++, most "Overloaded Operators" in a base class are inherited by the derived class and remain usable.
+        However, the "Assignment" operator (operator=) is not automatically inherited by a derived class.
 
-📌 Why?
-Because:
+    Reason:
+        A derived class often has "extra members" not present in the base class. 
+        The base class's overloaded "operator=" doesn't know about these new members, so it can't copy them correctly.
+
+        That's why a derived class should define its own operator= if needed.
+
+
+
+also:
 
 Each class needs to handle its own resources and member variables safely during assignment.
 
 The compiler-generated or base class operator= would only copy the base class members — ignoring any new members added in the derived class.
 
-To ensure safe and complete assignment, it's recommended (and often necessary) for a derived class to explicitly define its own operator= if it introduces new data members.
 
 
 
-Operator	Inherited by Derived Class?	Reason
-Most operators (+, -, *, [], etc.)	✔️ Yes	Behaves properly through inheritance
-operator=	❌ No	Needs to handle new members in derived class
+
+
+Most operators (+, -, *, [], etc.) behaves properly through inheritance
+operator= needs to handle new members in derived class
 
 */
 
-The assignment operators is the only operator that is not inherited. The reason for this
-is easy to understand. Since a derived class will contain members not found in the base
-class, the overloaded = relative to the base has no knowledge of the members added by
-the derived class and, as such, cannot properly copy those new members.
+
+
 
 
 
