@@ -456,7 +456,7 @@ int main() {
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-// rev[20-Jun-2025]
+// ----------------    operator overloading and inheritance    ----------------
 
 /* Example 2: from the preceding examples (in C++ operator overloading ch11_05_1 - ch11_05_4), 
                 most operators overloaded in a base class are available for use in a derived class. 
@@ -465,36 +465,30 @@ int main() {
                 Can you offer a reason why this is the case?
 
 
+            ans:
+                The assignment operators "=" is the only operator that is not inherited.
+                    In C++, most "Overloaded Operators" in a base class are inherited by the derived class and remain usable.
+                    However, the "Assignment" operator (operator=) is not automatically inherited by a derived class.
 
-ans:
-    The assignment operators "=" is the only operator that is not inherited.
-        In C++, most "Overloaded Operators" in a base class are inherited by the derived class and remain usable.
-        However, the "Assignment" operator (operator=) is not automatically inherited by a derived class.
+                Reason:
+                    A derived class often has "extra members" not present in the base class. 
+                    The base class's overloaded "operator=" doesn't know about these new members, so it can't copy them correctly.
 
-    Reason:
-        A derived class often has "extra members" not present in the base class. 
-        The base class's overloaded "operator=" doesn't know about these new members, so it can't copy them correctly.
+                    That's why a derived class should define its own operator= if needed.
 
-        That's why a derived class should define its own operator= if needed.
+                    Most operators (+, -, *, [], etc.) behaves properly through inheritance
+                    operator= needs to handle new members in derived class
 
-
-
-also:
-
-Each class needs to handle its own resources and member variables safely during assignment.
-
-The compiler-generated or base class operator= would only copy the base class members — ignoring any new members added in the derived class.
-
-
-
-
-
-
-Most operators (+, -, *, [], etc.) behaves properly through inheritance
-operator= needs to handle new members in derived class
-
+                also:
+                    Each class needs to handle its own resources and member variables safely during assignment.
+                    The compiler-generated or base class operator= would only copy the base class members — 
+                        ignoring any new members added in the derived class.
 */
 
+
+// ----  rev[23-Jun-2025]  ----
+
+// cp 1/2
 
 
 
