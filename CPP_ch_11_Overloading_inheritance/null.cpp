@@ -547,36 +547,6 @@ coord coord::operator=(coord ob2) {
     // return the object that is assigned. Noticem, no "temp" is used
 }
 
-
-int main(){
-    coord o1(10,10), o2(5,3), o3;
-    int x, y;
-
-    o3 = o1 + o2;   // add two objects - this calls operator +
-    o3.get_xy(x,y);
-    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
-
-    o3 = o1 - o2;   // subtract two objects
-    o3.get_xy(x,y);
-    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
-
-    o3 = o1;        // assign an object
-    o3.get_xy(x,y);
-    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
-
-    return 0;
-}
-
-
-
-
-// ----  raw  ----
-
-#include <iostream>
-
-
-
-
 // "quad" class inheriting "coord"
 class quad : public coord {
         int quadrant;
@@ -624,26 +594,29 @@ quad quad :: operator=( coord ob2 ) {
 }
 
 
-int main ()
-{
-quad o1 (10 , 10) , o2 (15 , 3) , o3;
-int x, y;
-o3 = o1 + o2; // add two objects - this calls operator +()
-o3. get_xy (x, y);
-203TEACH YOURSELF
-C++
-o3. showq ();
-cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
-o3 = o1 - o2; // subtract two objects
-o3. get_xy (x, y);
-o3. showq ();
-cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
-o3 = o1; // assign an object
-o3. get_xy (x, y);
-o3. showq ();
-cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
-return 0;
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2; // add two objects - this calls operator +()
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2; // subtract two objects
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1; // assign an object
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
 }
+
+
 
 
 
