@@ -596,28 +596,34 @@ class quad : public coord {
             else 
                 quadrant = 4;
         }
-
-// ---- rev[]24-Jun-2025 ----
-void showq() {
-    std::cout << " Point in Quadrant : " << quadrant << ’\n’;
-}
-quad operator =( coord ob2 );
+        void showq() {
+            std::cout << " Point in Quadrant : " << quadrant << '\n';
+        }
+        // quad's own overladed '=' operator
+        quad operator=( coord ob2 );
 };
-quad quad :: operator =( coord ob2 )
-{
-cout << " Using quad operator =() \n";
-x = ob2 .x;
-y = ob2 .y;
-if(x >=0 && y >= 0)
-quadrant = 1;
-else if(x <0 && y >=0)
-quadrant = 2;
-else if(x <0 && y <0)
-quadrant = 3;
-else
-quadrant = 4;
-return * this ;
+
+
+// Overload '=' relative to 'quad' class again
+quad quad :: operator=( coord ob2 ) {
+    std::cout << " Using quad operator =() \n";
+
+    x = ob2.x;
+    y = ob2.y;
+
+    if(x >=0 && y >= 0)
+        quadrant = 1;
+    else if(x <0 && y >=0)
+        quadrant = 2;
+    else if(x <0 && y <0)
+        quadrant = 3;
+    else
+        quadrant = 4;
+
+    return * this;
 }
+
+
 int main ()
 {
 quad o1 (10 , 10) , o2 (15 , 3) , o3;
