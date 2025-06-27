@@ -501,6 +501,10 @@ int main() {
                     (recall Example 2 of ch11_05_2_ovrldOpr_binary.cpp)
 
                 On your own, run this program and try to understand its output. 
+
+            issues:                
+                in coord class, private coordinate variables x, y cause problems.
+                If we can make them public, the program compiles properly.
 */
 
 
