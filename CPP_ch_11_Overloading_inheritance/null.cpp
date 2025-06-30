@@ -506,68 +506,39 @@ int main() {
                 in coord class, private coordinate variables x, y cause problems.
                 If we can make them public, the program compiles properly.
 
+                What happens if we make 'x' and 'y' public in 'coord'?
+                    The program will compile and work fine as written.
+                    Because then, both "coord's" member functions and "any derived class (like 'quad')" 
+                    can directly access those members without restriction.
 
 
-Excellent question — let’s clarify this cleanly:
+            Not a good idea though:
+                We're avoiding "data encapsulation" — meaning internal data (like 'x' and 'y') 
+                    should be "hidden (private or protected)"
 
----
-
-## ✅ What happens if we make `x` and `y` **public** in `coord`?
-
-**Yes — if you make `x` and `y` public**, the program will compile and work fine as written.
-Because then, both `coord`'s member functions **and any derived class (like `quad`)** can directly access those members without restriction.
-
----
-
-## 📌 Example:
-
-```cpp
-class coord {
-public:       // <--- changed from private to public
-    int x, y;
-    ...
-};
-```
-
-Now in `quad`:
-
-```cpp
-x = ob2.x;
-y = ob2.y;
-```
-
-is valid, and compiles cleanly.
-
----
-
-## ✅ Is it a good idea though?
-
-**Not really.**
-Good OOP design encourages **data encapsulation** — meaning internal data (like `x` and `y`) should be **hidden (private or protected)** and only accessed through public methods.
-
-If you make them `public`:
-
-* You lose control over how those values are modified.
-* Any code outside the class can freely change `x` and `y`, which can lead to bugs or inconsistent object states.
+                If you make them 'public':
+                    You lose control over how those values are modified.
+                    Any code outside the class can freely change 'x' and 'y', 
+                    which can lead to bugs or inconsistent object states.
 
 ---
 
 ## 📌 Best Practice
 
-If `quad` needs to access them:
+If 'quad' needs to access them:
 
-* Make them `protected` instead of `public`.
+* Make them 'protected' instead of 'public'.
 * Or, use getter and setter functions.
 
 Example:
 
-```cpp
+
 class coord {
-protected:
-    int x, y;
-    ...
+    protected:
+        int x, y;
+        ...
 };
-```
+
 
 This way, only derived classes can access them directly — external code cannot.
 
@@ -577,7 +548,7 @@ This way, only derived classes can access them directly — external code cannot
 
 * ✔️ **Making them public will fix compilation issues.**
 * ⚠️ **But it’s poor design — breaks encapsulation.**
-* ✅ **Recommended: make them `protected` or use accessors.**
+* ✅ **Recommended: make them 'protected' or use accessors.**
 
 
 */
@@ -694,6 +665,8 @@ int main() {
 
     return 0;
 }
+
+
 
 /* 
 Excellent — let’s carefully analyze and clarify what’s happening in this code.
