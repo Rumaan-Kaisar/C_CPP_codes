@@ -521,35 +521,20 @@ int main() {
                     Any code outside the class can freely change 'x' and 'y', 
                     which can lead to bugs or inconsistent object states.
 
----
 
-## 📌 Best Practice
+            Best Practice:
 
-If 'quad' needs to access them:
+                If 'quad' needs to access them-
+                    1. Make them 'protected' instead of 'public'.
+                    2. Or, use getter and setter functions.
+                Eg:
+                    class coord {
+                        protected:
+                            int x, y;
+                            ...
+                    };
 
-* Make them 'protected' instead of 'public'.
-* Or, use getter and setter functions.
-
-Example:
-
-
-class coord {
-    protected:
-        int x, y;
-        ...
-};
-
-
-This way, only derived classes can access them directly — external code cannot.
-
----
-
-## ✅ Summary:
-
-* ✔️ **Making them public will fix compilation issues.**
-* ⚠️ **But it’s poor design — breaks encapsulation.**
-* ✅ **Recommended: make them 'protected' or use accessors.**
-
+                This way, only derived classes can access them directly — external code cannot.
 
 */
 
