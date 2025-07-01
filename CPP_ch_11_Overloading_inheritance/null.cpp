@@ -992,32 +992,29 @@ return 0;
 
 
 
-5. # include <iostream >
-using namespace std ;
-509TEACH YOURSELF
-C++
-class base
-{
-int i, j;
-public :
-base ( int x, int y) { i = x; j = y; }
-void showij () { cout << i << ’ ’ << j << ’\n’; }
+5. 
+
+#include <iostream>
+
+class base {
+        int i, j;
+    public:
+        base(int x, int y) { i = x; j = y; }
+        void showij() { std::cout << i << ' ' << j << '\n'; }
 };
-class derived : public base
-{
-int k;
-public :
-derived ( int a, int b, int c) : base (b, c)
-{
-k = a;
-}
-void show () { cout << k << ’ ’; showij (); }
+
+class derived : public base {
+        int k;
+    public:
+        derived(int a, int b, int c) : base(b, c) { k = a; }
+        void show() { std::cout << k << ' '; showij(); }
 };
-int main ()
-{
-derived ob (1, 2, 3);
-ob. show ();
-return 0;
+
+int main() {
+    derived ob(1, 2, 3);
+    ob. show();
+    
+    return 0;
 }
 
 
