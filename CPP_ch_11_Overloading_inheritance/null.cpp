@@ -621,7 +621,10 @@ quad quad :: operator=( coord ob2 ) {
     y = ob2.y;  // change this as below
 
     // int xi, yi;
+    
     // ob2.get_xy(xi, yi);  // safely get values
+    // x = xi;
+    // y = yi;
 
     if(x >=0 && y >= 0)
         quadrant = 1;
