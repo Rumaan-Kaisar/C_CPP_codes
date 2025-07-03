@@ -685,6 +685,22 @@ int main() {
 
     So — even if x and y in main are uninitialized, 
         calling get_xy() will set them to the current object's x and y values.
+
+
+--------------------------------
+Your OUTPUT:
+        Using coord operator +() 
+        Using quad operator =() 
+        Point in Quadrant : 1
+        (o1+o2) X: 25, Y: 13
+        Using coord operator -() 
+        Using quad operator =() 
+        Point in Quadrant : 2
+        (o1 -o2) X: -5, Y: 7
+        Using coord operator =() 
+        Point in Quadrant : 1
+        (o3=o1) X: 10, Y: 10
+--------------------------------        
 */
 
 
@@ -818,7 +834,7 @@ int main() {
                     For BINARY operators, a friend operator function is passed both operands explicitly
                     The assignment operator (=) cannot be overloaded using a friend function
 */
-
+// Following will not compile
 #include <iostream>
 
 class coord {
@@ -907,71 +923,125 @@ int main() {
 }
 
 
-
 /* Note: 
-In abvoe code using '=' as friend is not the proper way.
+        In abvoe code using '=' as friend is not the proper way.
+        And raise error
+
+    
+    Can you declare?
+                friend coord operator=(coord &ob1, coord ob2);
+        in C++ Technically you can declare it — but it will not behave as a proper assignment operator should.
+        Because, Assignment needs to modify the left-hand object (caller)
+
+        In a normal assignment:
+                a = b;
+            the left-hand side 'a' is modified by copying data from 'b'.
+            A member function "operator=()" has access to "this", so it knows which object to modify.
+
+        A friend function version like:
+                friend coord operator=(coord &ob1, coord ob2);
+
+            Can technically modify 'ob1' since it's passed by reference.
+            But it won't integrate cleanly with C++'s built-in assignment syntax expectations.
+
+        Since, C++ requires 'operator=()' to be a non-static member function
+            The compiler expects to call a "member function for assignment".
+            It will not look for a friend non-member "operator=" during an assignment.
 
 
-
-Can you declare
-
-friend coord operator=(coord &ob1, coord ob2);
-
-in C++ Technically you can declare it — but it will not behave as a proper assignment operator should.
-
-Because, Assignment needs to modify the left-hand object (caller)
-
-* In a normal assignment:
-
-
-a = b;
-
-
-the left-hand side 'a' is modified by copying data from 'b'.
-A member function "operator=()" has access to "this", so it knows which object to modify.
-
-
-
-
-A friend function version like:
-
-friend coord operator=(coord &ob1, coord ob2);
-
-```
-
-Can technically modify 'ob1' since it's passed by reference.
-But it won't integrate cleanly with C++'s built-in assignment syntax expectations.
-
-Since, C++ requires 'operator=()' to be a non-static member function
-
-The compiler expects to call a "member function for assignment".
-It will not look for a friend non-member "operator=" during an assignment.
-
----
-
-So What Happens If You Declare That Friend Function?
-
-* It's just treated as a **regular friend function with an arbitrary name (overloaded "operator=")
-* You could call it manually like:
-
-
-  ob1 = ob2; // uses member operator=
-  operator=(ob1, ob2); // would call friend version, if declared
-
-But it won't be invoked automatically on "ob1 = ob2 "
-
-And that's the critical difference.
-
-
-The correct way is always:
-
-
-coord& operator=(const coord &ob2); // as a member function
-
-
+    The correct way is always:
+            
+            coord& operator=(const coord &ob2); // as a member function
 */
 
 
+// FIXED code
+#include <iostream>
+
+class coord {
+    int x, y;
+public:
+    coord() { x = 0; y = 0; }
+    coord(int i, int j) { x = i; y = j; }
+    void get_xy(int &i, int &j) { i = x; j = y; }
+
+    // Friend operator functions
+    friend coord operator+(coord ob1, coord ob2);
+    friend coord operator-(coord ob1, coord ob2);
+    friend coord operator=(coord &ob1, coord ob2);
+};
+
+// Friend Overload '+'
+coord operator+(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator +() \n";
+    temp.x = ob1.x + ob2.x;
+    temp.y = ob1.y + ob2.y;
+    return temp;
+}
+
+// Friend Overload '-'
+coord operator-(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator -() \n";
+    temp.x = ob1.x - ob2.x;
+    temp.y = ob1.y - ob2.y;
+    return temp;
+}
+
+// Friend Overload '='
+coord operator=(coord &ob1, coord ob2) {
+    std::cout << " Using friend coord operator =() \n";
+    ob1.x = ob2.x;
+    ob1.y = ob2.y;
+    return ob1;
+}
+
+// 'quad' class inheriting 'coord'
+class quad : public coord {
+    int quadrant;
+public:
+    quad() {
+        x = 0;
+        y = 0;
+        quadrant = 0;
+    }
+    quad(int x, int y) : coord(x, y) {
+        if (x >= 0 && y >= 0)
+            quadrant = 1;
+        else if (x < 0 && y >= 0)
+            quadrant = 2;
+        else if (x < 0 && y < 0)
+            quadrant = 3;
+        else
+            quadrant = 4;
+    }
+    void showq() {
+        std::cout << " Point in Quadrant : " << quadrant << '\n';
+    }
+};
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
 
 
 
