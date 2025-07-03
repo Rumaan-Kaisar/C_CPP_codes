@@ -693,7 +693,8 @@ int main() {
 // ----  rev[30-Jun-2025]  ----
 
 
-/* Example 4: Convert the previous program so that it uses friend operator functions. */
+/* Example 4: Convert the previous program so that it uses friend operator functions.
+
 #include <iostream>
 
 class coord{
@@ -807,8 +808,100 @@ int main() {
 }
 
 
+            Following is the same program converted to friend operator functions:
+                Now the operators are declared as friends inside coord
+                Defined outside the class body
+                No need for this or indirect access issues, 
+                    since friend functions can directly access private members.
 
+*/
 
+#include <iostream>
+
+class coord {
+    int x, y;
+public:
+    coord() { x = 0; y = 0; }
+    coord(int i, int j) { x = i; y = j; }
+    void get_xy(int &i, int &j) { i = x; j = y; }
+
+    // Friend operator functions
+    friend coord operator+(coord ob1, coord ob2);
+    friend coord operator-(coord ob1, coord ob2);
+    friend coord operator=(coord &ob1, coord ob2);
+};
+
+// Friend Overload '+'
+coord operator+(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator +() \n";
+    temp.x = ob1.x + ob2.x;
+    temp.y = ob1.y + ob2.y;
+    return temp;
+}
+
+// Friend Overload '-'
+coord operator-(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator -() \n";
+    temp.x = ob1.x - ob2.x;
+    temp.y = ob1.y - ob2.y;
+    return temp;
+}
+
+// Friend Overload '='
+coord operator=(coord &ob1, coord ob2) {
+    std::cout << " Using friend coord operator =() \n";
+    ob1.x = ob2.x;
+    ob1.y = ob2.y;
+    return ob1;
+}
+
+// 'quad' class inheriting 'coord'
+class quad : public coord {
+    int quadrant;
+public:
+    quad() {
+        x = 0;
+        y = 0;
+        quadrant = 0;
+    }
+    quad(int x, int y) : coord(x, y) {
+        if (x >= 0 && y >= 0)
+            quadrant = 1;
+        else if (x < 0 && y >= 0)
+            quadrant = 2;
+        else if (x < 0 && y < 0)
+            quadrant = 3;
+        else
+            quadrant = 4;
+    }
+    void showq() {
+        std::cout << " Point in Quadrant : " << quadrant << '\n';
+    }
+};
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
 
 
 
