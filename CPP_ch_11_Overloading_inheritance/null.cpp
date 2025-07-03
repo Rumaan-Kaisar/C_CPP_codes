@@ -811,9 +811,12 @@ int main() {
             Following is the same program converted to friend operator functions:
                 Now the operators are declared as friends inside coord
                 Defined outside the class body
-                No need for this or indirect access issues, 
+                No need for 'this' or indirect access issues, 
                     since friend functions can directly access private members.
 
+                Since a FRIEND function does not have a "this" pointer: 
+                    For BINARY operators, a friend operator function is passed both operands explicitly
+                    The assignment operator (=) cannot be overloaded using a friend function
 */
 
 #include <iostream>
@@ -903,6 +906,101 @@ int main() {
     return 0;
 }
 
+
+Excellent question — and let’s clarify this precisely and cleanly, because this is a **common misconception for C++ learners.**
+
+---
+
+## 🔍 Can you declare
+
+```cpp
+friend coord operator=(coord &ob1, coord ob2);
+```
+
+**in C++? Technically yes you can declare it — but it will not behave as a proper assignment operator should.**
+
+---
+
+## 📌 Why? What’s wrong with this friend assignment function?
+
+1️⃣ **Assignment needs to modify the left-hand object (caller)**
+
+* In a normal assignment:
+
+  ```cpp
+  a = b;
+  ```
+
+  the left-hand side `a` is modified by copying data from `b`.
+* A **member function `operator=()`** has access to `this`, so it knows which object to modify.
+
+---
+
+2️⃣ **A friend function version like**:
+
+```cpp
+friend coord operator=(coord &ob1, coord ob2);
+```
+
+* Can technically modify `ob1` since it’s passed by reference.
+* But it won't integrate cleanly with C++'s built-in assignment syntax expectations.
+
+3️⃣ **The real issue: C++ requires `operator=()` to be a non-static member function**
+
+* The C++ standard [§12.8/19 (C++17)](https://en.cppreference.com/w/cpp/language/copy_assignment) explicitly states:
+
+> *A user-declared copy assignment operator X::operator= must be a non-static member function.*
+
+Meaning — you cannot make a **friend assignment operator** work as a proper `=` operator because:
+
+* The compiler expects to call a **member function for assignment**.
+* It will *not look for a friend non-member `operator=`* during an assignment.
+
+---
+
+## 📌 So What Happens If You Declare That Friend Function?
+
+* It’s just treated as a **regular friend function with an arbitrary name** (overloaded `operator=`)
+* You could call it manually like:
+
+  ```cpp
+  ob1 = ob2; // uses member operator=
+  operator=(ob1, ob2); // would call friend version, if declared
+  ```
+* **But it won't be invoked automatically on `ob1 = ob2;`**
+
+And that's the critical difference.
+
+---
+
+## ✅ Clean Summary:
+
+| Case                           | Can be Friend? | Invoked Automatically with `=` | Reason           |
+| :----------------------------- | :------------- | :----------------------------- | :--------------- |
+| `operator+`, `operator-`, etc. | ✅              | ✅                              | No `this` needed |
+| `operator=()` (assignment)     | ❌              | Must be member function        | Requires `this`  |
+
+---
+
+## 📎 Conclusion:
+
+That line you saw
+
+```cpp
+friend coord operator=(coord &ob1, coord ob2);
+```
+
+**is not a valid replacement for a proper assignment operator** — it won’t be called automatically by `a = b;`.
+
+✅ **The correct way is always**:
+
+```cpp
+coord& operator=(const coord &ob2); // as a member function
+```
+
+---
+
+Great catch — these little nuances are what separate casual C++ coders from those with a solid grasp of the language's design philosophy. ⚙️
 
 
 
