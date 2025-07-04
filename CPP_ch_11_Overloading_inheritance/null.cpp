@@ -1151,11 +1151,7 @@ quad quad::operator=(coord ob2) {
 
 
 
-// ----  rev[03-Jul-2025]  ----
-
-
-
-
+// ----  rev[04-Jul-2025]  ----
 
 
 
@@ -1166,14 +1162,25 @@ exercises.
 
 
 
-/* Example 1: Create a class hierarchy that stores information about airships. Start with a general
-base class called airship that stores the number of passengers and the amount of cargo
-(in pounds) that can be carried. Then create two derived classes called airplane and
-balloon from airship. Have airplane store the type of engine used (propeller or jet)
-and range, in miles. Have balloon store information about the type of gas used to lift
-the balloon (hydrogen or helium) and its maximum altitude (in feet). Create a short
-program that demonstrates this class hierarchy. (Your solution will, no doubt, differ from
-the answer shown in the back of this book. If it is functionally similar, count it as correct.) */
+/* Example 1: Create a class hierarchy that stores information about "airships". 
+
+                Start with a general BASE class called "airship" that stores: 
+                    the number of passengers and 
+                    the amount of cargo (in pounds) that can be carried. 
+
+                Then create two derived classes called "airplane" and "balloon" from "airship". 
+
+                Have "airplane" store 
+                    the type of engine used (propeller or jet) and 
+                    range, in miles.
+
+                Have "balloon" store information about 
+                    the type of gas used to lift
+                    the balloon (hydrogen or helium) and 
+                    its maximum altitude (in feet). 
+
+        Create a short program that demonstrates this class hierarchy.
+*/
 
 
 1. # include <iostream >
