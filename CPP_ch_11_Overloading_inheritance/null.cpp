@@ -1156,10 +1156,6 @@ quad quad::operator=(coord ob2) {
 
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
-
-
 
 
 /* Example 1: Create a class hierarchy that stores information about "airships". 
@@ -1182,43 +1178,42 @@ exercises.
         Create a short program that demonstrates this class hierarchy.
 */
 
+#include <iostream>
 
-1. # include <iostream >
-using namespace std ;
-class airship
-{
-protected :
-int passengers ;
-double cargo ;
+class airship {
+    protected:
+        int passengers;
+        double cargo;
 };
-class airplane : public airship
-{
-char engine ; // p for propeller , j for jet
-double range ;
-public :
-airplane ( int p, double c, char e, double r)
-{
-passengers = p;
-cargo = c;
-engine = e;
-range = r;
-}
-void show ();
+
+class airplane : public airship {
+        char engine;    // p for propeller , j for jet
+        double range;
+    public:
+        airplane(int p, double c, char e, double r) {
+            passengers = p;
+            cargo = c;
+            engine = e;
+            range = r;
+        }
+        void show();
 };
-class balloon : public airship
-{
-char gas ; // h for hydrogen , e for helium
-double altitude ;
-public :
-balloon ( int p, double c, char g, double a)
-{
-passengers = p;
-cargo = c;
-gas = g;
-altitude = a;
-}
-void show ();
+
+class balloon : public airship {
+        char gas;   // h for hydrogen , e for helium
+        double altitude;
+    public:
+        balloon(int p, double c, char g, double a) {
+            passengers = p;
+            cargo = c;
+            gas = g;
+            altitude = a;
+        }
+        void show();
 };
+
+// rev
+
 void airplane :: show ()
 {
 cout << " Passengers : " << passengers << ’\n’;
@@ -1232,6 +1227,8 @@ else
 cout << " Jet \n";
 cout << " Range : " << range << ’\n’;
 }
+
+
 void balloon :: show ()
 {
 cout << " Passengers : " << passengers << ’\n’;
