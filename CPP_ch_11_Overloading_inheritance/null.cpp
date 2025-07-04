@@ -158,7 +158,7 @@ int main() {
 
 
 
-// tested
+// tested: basic of base
 /* Example 5: Given this skeleton, fill in the details as indicated in the comments: 
 
 
