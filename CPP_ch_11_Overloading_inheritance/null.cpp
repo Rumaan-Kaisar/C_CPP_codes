@@ -1151,13 +1151,13 @@ quad quad::operator=(coord ob2) {
 
 
 
-// ----  rev[04-Jul-2025]  ----
+
 
 
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
-
+// tested
 /* Example 1: Create a class hierarchy that stores information about "airships". 
 
                 Start with a general BASE class called "airship" that stores: 
@@ -1243,18 +1243,22 @@ void balloon :: show() {
 }
 
 
-int main ()
-{
-balloon b(2, 500.0 , ’h’, 12000.0) ;
-airplane b727 (100 , 40000.0 , ’j’, 40000.0) ;
-b. show ();
-cout << ’\n’;
-b727 . show ();
-return 0;
+int main(){
+    balloon b(2, 500.0 , 'h', 12000.0) ;
+    airplane b727(100 , 40000.0 , 'j', 40000.0) ;
+
+    b.show();
+    std::cout << '\n';
+    b727.show();
+
+    return 0;
 }
 
 
 
+
+
+// ----  rev[07-Jul-2025]  ----
 
 /* Example 2: What is protected used for? */
 
