@@ -1212,34 +1212,37 @@ class balloon : public airship {
         void show();
 };
 
-// rev
 
-void airplane :: show ()
-{
-cout << " Passengers : " << passengers << ’\n’;
-cout << " Cargo capacity : " << cargo << ’\n’;
-508ANSWERS
-REVIEW SKILLS CHECK: Chapter 8
-cout << " Engine : ";
-if( engine == ’p’)
-cout << " Propeller \n";
-else
-cout << " Jet \n";
-cout << " Range : " << range << ’\n’;
+// rev 139843: 1,39,000
+
+void airplane :: show() {
+    std::cout << " Passengers : " << passengers << '\n';
+    std::cout << " Cargo capacity : " << cargo << '\n';
+    std::cout << " Engine : ";
+
+    if( engine == 'p')
+        std::cout << " Propeller \n";
+    else
+        std::cout << " Jet \n";
+
+    std::cout << " Range : " << range << '\n';
 }
 
 
-void balloon :: show ()
-{
-cout << " Passengers : " << passengers << ’\n’;
-cout << " Cargo capacity : " << cargo << ’\n’;
-cout << " Gas : ";
-if( gas == ’h’)
-cout << " Hydrogen \n";
-else
-cout << " Helium \n";
-cout << " Altitude : " << altitude << ’\n’;
+void balloon :: show() {
+    std::cout << " Passengers : " << passengers << '\n';
+    std::cout << " Cargo capacity : " << cargo << '\n';
+    std::cout << " Gas : ";
+
+    if( gas == 'h')
+        std::cout << " Hydrogen \n";
+    else
+        std::cout << " Helium \n";
+
+    std::cout << " Altitude : " << altitude << '\n';
 }
+
+
 int main ()
 {
 balloon b(2, 500.0 , ’h’, 12000.0) ;
