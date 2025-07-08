@@ -1260,10 +1260,20 @@ int main(){
 
 // ----  rev[07-Jul-2025]  ----
 
-/* Example 2: What is protected used for? */
+/* Example 2: What is protected used for? 
 
-2. The protected access specifier causes a class member to be private to its class but still
-accessible by any derived class.
+
+In C++, the protected access specifier is used to control the visibility and accessibility of class members (data members and member functions). Its primary purpose is to enable controlled access for derived classes while restricting access from external code.
+Key characteristics and usage of protected:
+Accessibility within the class:
+Members declared as protected are accessible from within the class in which they are declared.
+Accessibility in derived classes:
+This is the defining feature of protected. Members declared as protected in a base class can be accessed directly by member functions of classes derived from that base class (through public or protected inheritance). This allows derived classes to interact with the internal workings of their base class in a controlled manner, facilitating inheritance-based functionality.
+Restricted external access:
+Unlike public members, protected members cannot be directly accessed from outside the class hierarchy (i.e., by objects of the class or other unrelated functions). This helps maintain encapsulation and prevents unauthorized modification of internal state.
+*/
+
+2. The protected access specifier causes a class member to be private to its class but still accessible by any derived class.
 
 
 
