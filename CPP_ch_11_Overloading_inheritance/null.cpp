@@ -1339,71 +1339,68 @@ int main() {
 
 
 
+/* Example 5: Fill in the missing constructor functions in this program: 
 
-/* Example 5: Fill in the missing constructor functions in this program: */
-# include <iostream >
-using namespace std ;
-class base
-{
-int i, j;
-public :
-// need constructor
-void showij () { cout << i << ’ ’ << j << ’\n’; }
-};
-class derived : public base
-{
-int k;
-public :
-// need constructor
-void show () { cout << k << ’ ’; showij (); }
-};
-int main ()
-207TEACH YOURSELF
-C++
-{
-derived ob (1, 2, 3);
-ob. show ();
-return 0;
-}
+                #include <iostream>
 
+                class base {
+                        int i, j;
+                    public:
+                        // need constructor
+                        void show_ij() { std::cout << i << ' ' << j << '\n'; }
+                };
 
+                class derived : public base {
+                        int k;
+                    public:
+                        // need constructor
+                        void show() { 
+                            std::cout << k << ' '; 
+                            show_ij(); 
+                        }
+                };
 
-5. 
+                int main(){
+                    derived ob(1, 2, 3);
+                    ob.show();
+                    return 0;
+                }
+*/
 
 #include <iostream>
 
 class base {
         int i, j;
     public:
-        base(int x, int y) { i = x; j = y; }
-        void showij() { std::cout << i << ' ' << j << '\n'; }
+        base(int x, int y) { i = x; j = y; }    // constructor
+        void show_ij() { std::cout << i << ' ' << j << '\n'; }
 };
 
 class derived : public base {
         int k;
     public:
-        derived(int a, int b, int c) : base(b, c) { k = a; }
-        void show() { std::cout << k << ' '; showij(); }
+        derived(int a, int b, int c) : base(b, c) { k = a; }    // constructor
+        void show() { 
+            std::cout << k << ' '; 
+            show_ij(); 
+        }
 };
 
-int main() {
+int main(){
     derived ob(1, 2, 3);
-    ob. show();
-    
+    ob.show();
     return 0;
 }
 
 
 
 
-/* Example 6: In general, when you define a class hierarchy, you begin with the most
-class and move to the most class. (Fill in the missing words.) */
+/* Example 6: In general, when you define a class hierarchy, 
+                you begin with the most ___ class and move to the ___ most class. 
+                (Fill in the missing words.) 
 
-
-6. The missing words are "general" and "specific".
-
-
-
-
+            ans:
+                The missing words are "general" and "specific".
+*/
 
 
