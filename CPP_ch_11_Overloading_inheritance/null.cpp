@@ -1283,49 +1283,59 @@ int main(){
 
 /* Example 3: Given the following class hierarchy, in "what order" are the constructor functions called? 
                 In what order are the destructor functions called? 
+
+            ans:
+                The program displays the following output, 
+                which indicates when the constructors and destructors are called.
+
+                    Constructing A
+                    Constructing B
+                    Constructing C
+                    Destructing C
+                    Destructing B
+                    Destructing A
 */
+
 #include <iostream>
 
 class A {
     public:
-        A() { cout << " Constructing A\n"; }
-        ~A() { cout << " Destructing A\n"; }
+        A() { std::cout << " Constructing A\n"; }
+        ~A() { std::cout << " Destructing A\n"; }
 };
-class B : public A
-{
-public :
-B() { cout << " Constructing B\n"; }
-~B() { cout << " Destructing B\n"; }
+
+class B : public A {
+    public:
+        B() { std::cout << " Constructing B\n"; }
+        ~B() { std::cout << " Destructing B\n"; }
 };
-class C : public B
-{
-public :
-C() { cout << " Constructing C\n"; }
-~C() { cout << " Destructing C\n"; }
+
+class C : public B {
+    public:
+        C() { std::cout << " Constructing C\n"; }
+        ~C() { std::cout << " Destructing C\n"; }
 };
-int main ()
-{
-C ob;
-return 0;
+
+
+int main() {
+    C ob;
+
+    return 0;
 }
 
-3. The program displays the following output, which indicates when the constructors and
-destructors are called.
-Constructing A
-Constructing B
-Constructing C
-Destructing C
-Destructing B
-Destructing A
+
 
 
 /* Example 4: Given the following fragment, in what order are the constructor functions called?
-class myclass : public A, public B, public C
-{
-// ...
-};
+
+                class myclass : public A, public B, public C {
+                    // ...
+                };
+
+            ans:
+                Constructors are called in the order A, B, C, destructors in the order C, B, A.
 */
-4. Constructors are called in the order ABC, destructors in the order CBA.
+
 
 
 
