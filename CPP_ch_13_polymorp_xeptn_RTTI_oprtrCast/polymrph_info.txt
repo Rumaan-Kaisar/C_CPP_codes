@@ -1,0 +1,17 @@
+
+10.1 Pointers to derived classes
+10.2 Introduction to virtual functions
+10.3 More about virtual functions
+10.4 Applying polymorphism
+
+11.1 Generic functions
+11.2 Generic classes
+11.3 Exception handling
+11.4 More about exception handling
+11.5 Handling exceptions thrown by new
+
+
+12.1 Understanding Run-Time Type Identification (RTTI)
+12.2 Using dynamic cast
+12.3 Using const cast, reinterpret cast, and static cast
+
