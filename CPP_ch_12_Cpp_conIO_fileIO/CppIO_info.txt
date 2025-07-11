@@ -18,20 +18,19 @@
 
 ---------------------------
 
-8_1_io_basics.cpp
-8_2_formatted_io.cpp
-8_3_width_precision_fill.cpp
-8_4_io_manipulators.cpp
-8_5_custom_inserters.cpp
-8_6_custom_extractors.cpp
-
-9_1_custom_manipulators.cpp
-9_2_file_io_basics.cpp
-9_3_unformatted_bin_io.cpp
-9_4_more_unformatted_io.cpp
-9_5_random_access.cpp
-9_6_io_status_check.cpp
-9_7_custom_io_files.cpp
+ch12_01_io_basics.cpp
+ch12_02_formatted_io.cpp
+ch12_03_width_precision_fill.cpp
+ch12_04_io_manipulators.cpp
+ch12_05_custom_inserters.cpp
+ch12_06_custom_extractors.cpp
+ch12_07_custom_manipulators.cpp
+ch12_08_file_io_basics.cpp
+ch12_09_unformatted_bin_io.cpp
+ch12_10_more_unformatted_io.cpp
+ch12_11_random_access.cpp
+ch12_12_io_status_check.cpp
+ch12_13_custom_io_files.cpp
 
 
 
