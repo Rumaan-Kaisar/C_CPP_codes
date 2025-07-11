@@ -1,0 +1,38 @@
+
+8.1 Some C++ I/O basics
+8.2 Formatted I/O
+8.3 Using width(), precision(),and fill()
+8.4 Using I/O manipulators
+8.5 Creating your own inserters
+8.6 Creating extractors
+
+
+9.1 Creating your own manipulators
+9.2 File I/O basics
+9.3 Unformatted, binary I/O
+9.4 More unformatted I/O functions
+9.5 Random access
+9.6 Checking the I/O status
+9.7 Customized I/O and files
+
+
+---------------------------
+
+8_1_io_basics.cpp
+8_2_formatted_io.cpp
+8_3_width_precision_fill.cpp
+8_4_io_manipulators.cpp
+8_5_custom_inserters.cpp
+8_6_custom_extractors.cpp
+
+9_1_custom_manipulators.cpp
+9_2_file_io_basics.cpp
+9_3_unformatted_bin_io.cpp
+9_4_more_unformatted_io.cpp
+9_5_random_access.cpp
+9_6_io_status_check.cpp
+9_7_custom_io_files.cpp
+
+
+
+
