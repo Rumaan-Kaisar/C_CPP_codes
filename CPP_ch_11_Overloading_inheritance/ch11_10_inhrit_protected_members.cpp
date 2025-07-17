@@ -597,3 +597,445 @@ Your OUTPUT:
 --------------------------------        
 */
 
+
+
+
+/* Example 11: Convert the previous program so that it uses friend operator functions.
+
+
+#include <iostream>
+
+class coord{
+        int x, y; // coordinate values
+    public:
+        coord() { x =0; y =0; }
+        coord(int i, int j) { x=i; y=j; }
+        void get_xy(int &i, int &j) { i=x; j=y; }
+
+        // OPERATOR OVERLOADING: coord type used for overloaded operator
+        coord operator+(coord ob2);
+        coord operator-(coord ob2);
+        coord operator=(coord ob2);
+};
+
+
+// Overload '+' relative to coord class.
+coord coord::operator+(coord ob2) {
+    coord temp;
+    std::cout << " Using coord operator +() \n";
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    return temp;
+}
+
+// Overload '-' relative to coord class.
+coord coord::operator-(coord ob2) {
+    coord temp;
+    std::cout << " Using coord operator -() \n";
+    temp.x = x - ob2.x;
+    temp.y = y - ob2.y;
+    return temp;
+}
+
+// Overload '=' relative to coord class.
+coord coord::operator=(coord ob2) {
+    std::cout << " Using coord operator =() \n";
+    x = ob2.x;
+    y = ob2.y;
+    return *this;
+    // return the object that is assigned. Noticem, no "temp" is used
+}
+
+// "quad" class inheriting "coord"
+class quad : public coord {
+        int quadrant;
+    public:
+        quad() {
+            x = 0;
+            y = 0;
+            quadrant = 0;
+        }
+        quad(int x, int y) : coord (x, y) {
+            if(x >=0 && y >= 0) 
+                quadrant = 1;
+            else if(x <0 && y >=0) 
+                quadrant = 2;
+            else if(x <0 && y <0) 
+                quadrant = 3;
+            else 
+                quadrant = 4;
+        }
+        void showq() {
+            std::cout << " Point in Quadrant : " << quadrant << '\n';
+        }
+        // quad's own overladed '=' operator
+        quad operator=( coord ob2 );
+};
+
+
+// Overload '=' relative to 'quad' class again
+quad quad :: operator=( coord ob2 ) {
+    std::cout << " Using quad operator =() \n";
+
+    x = ob2.x;
+    y = ob2.y;
+
+    if(x >=0 && y >= 0)
+        quadrant = 1;
+    else if(x <0 && y >=0)
+        quadrant = 2;
+    else if(x <0 && y <0)
+        quadrant = 3;
+    else
+        quadrant = 4;
+
+    return * this;
+}
+
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2; // add two objects - this calls operator +()
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2; // subtract two objects
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1; // assign an object
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
+
+
+            Following is the same program converted to friend operator functions:
+                Now the operators are declared as friends inside coord
+                Defined outside the class body
+                No need for 'this' or indirect access issues, 
+                    since friend functions can directly access private members.
+
+                Since a FRIEND function does not have a "this" pointer: 
+                    For BINARY operators, a friend operator function is passed both operands explicitly
+                    The assignment operator (=) cannot be overloaded using a friend function
+*/
+// ERR: Following will not compile (try FIXED version)
+#include <iostream>
+
+class coord {
+    int x, y;
+public:
+    coord() { x = 0; y = 0; }
+    coord(int i, int j) { x = i; y = j; }
+    void get_xy(int &i, int &j) { i = x; j = y; }
+
+    // Friend operator functions
+    friend coord operator+(coord ob1, coord ob2);
+    friend coord operator-(coord ob1, coord ob2);
+    friend coord operator=(coord &ob1, coord ob2);
+};
+
+// Friend Overload '+'
+coord operator+(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator +() \n";
+    temp.x = ob1.x + ob2.x;
+    temp.y = ob1.y + ob2.y;
+    return temp;
+}
+
+// Friend Overload '-'
+coord operator-(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator -() \n";
+    temp.x = ob1.x - ob2.x;
+    temp.y = ob1.y - ob2.y;
+    return temp;
+}
+
+// Friend Overload '='
+coord operator=(coord &ob1, coord ob2) {
+    std::cout << " Using friend coord operator =() \n";
+    ob1.x = ob2.x;
+    ob1.y = ob2.y;
+    return ob1;
+}
+
+// 'quad' class inheriting 'coord'
+class quad : public coord {
+    int quadrant;
+public:
+    quad() {
+        x = 0;
+        y = 0;
+        quadrant = 0;
+    }
+    quad(int x, int y) : coord(x, y) {
+        if (x >= 0 && y >= 0)
+            quadrant = 1;
+        else if (x < 0 && y >= 0)
+            quadrant = 2;
+        else if (x < 0 && y < 0)
+            quadrant = 3;
+        else
+            quadrant = 4;
+    }
+    void showq() {
+        std::cout << " Point in Quadrant : " << quadrant << '\n';
+    }
+};
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1;
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
+
+
+/* Note: 
+        In abvoe code using '=' as friend is not the proper way.
+        And raise error
+
+    
+    Can you declare?
+                friend coord operator=(coord &ob1, coord ob2);
+        in C++ Technically you can declare it — but it will not behave as a proper assignment operator should.
+        Because, Assignment needs to modify the left-hand object (caller)
+
+        In a normal assignment:
+                a = b;
+            the left-hand side 'a' is modified by copying data from 'b'.
+            A member function "operator=()" has access to "this", so it knows which object to modify.
+
+        A friend function version like:
+                friend coord operator=(coord &ob1, coord ob2);
+
+            Can technically modify 'ob1' since it's passed by reference.
+            But it won't integrate cleanly with C++'s built-in assignment syntax expectations.
+
+        Since, C++ requires 'operator=()' to be a non-static member function
+            The compiler expects to call a "member function for assignment".
+            It will not look for a friend non-member "operator=" during an assignment.
+
+
+    The correct way is always:
+            
+            coord& operator=(const coord &ob2); // as a member function
+*/
+
+// ----------------------------------------------------------------
+// FIXED code: 
+// Notice, no 'protected' is used also in quad's '=' get_xy() used to get (x, y) values insted of direct access
+#include <iostream>
+
+class coord {
+        int x, y;
+    public:
+        coord() { x = 0; y = 0; }
+        coord(int i, int j) { x = i; y = j; }
+        void get_xy(int &i, int &j) { i = x; j = y; }
+
+        // Friend operator functions
+        friend coord operator+(coord ob1, coord ob2);
+        friend coord operator-(coord ob1, coord ob2);
+
+        // '=' as member
+        coord operator=(coord ob2);
+};
+
+// Friend Overload '+'
+coord operator+(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator +() \n";
+    temp.x = ob1.x + ob2.x;
+    temp.y = ob1.y + ob2.y;
+    return temp;
+}
+
+// Friend Overload '-'
+coord operator-(coord ob1, coord ob2) {
+    coord temp;
+    std::cout << " Using friend coord operator -() \n";
+    temp.x = ob1.x - ob2.x;
+    temp.y = ob1.y - ob2.y;
+    return temp;
+}
+
+// Overload '=' relative to coord class.
+coord coord::operator=(coord ob2) {
+    std::cout << " Using coord operator =() \n";
+    x = ob2.x;
+    y = ob2.y;
+    return *this;
+    // return the object that is assigned. Noticem, no "temp" is used
+}
+
+// 'quad' class inheriting 'coord'
+class quad : public coord {
+        int quadrant;
+    public:
+        /*
+        quad() {
+            x = 0;
+            y = 0;
+            quadrant = 0;
+        }
+
+        is invalid because quad is trying to access the private members x and y 
+            of its base class coord directly — which isn’t allowed in C++.
+        */
+
+        // Instead, you should call the "coord base class constructor" to initialize those members properly.
+        quad() : coord() {
+            quadrant = 0;
+        }
+
+        quad(int x, int y) : coord(x, y) {
+            int xi, yi;
+            get_xy(xi, yi);
+            if (xi >= 0 && yi >= 0)
+                quadrant = 1;
+            else if (xi < 0 && yi >= 0)
+                quadrant = 2;
+            else if (xi < 0 && yi < 0)
+                quadrant = 3;
+            else
+                quadrant = 4;
+        }
+        void showq() {
+            std::cout << " Point in Quadrant : " << quadrant << '\n';
+        }
+        // quad's own overladed '=' operator
+        quad operator=( coord ob2 );
+};
+
+
+// Overload '=' relative to 'quad' class again
+quad quad :: operator=( coord ob2 ) {
+    std::cout << " Using quad operator =() \n";
+
+    int xi, yi;
+    
+    /* 
+    x and y are private to 'quad' and isn't allowed to write directly
+    so following assignments are illigal 
+
+    x = xi;
+    y = yi;
+
+    calling coord::operator=(ob2) is the cleanest, correct, and 
+    necessary way to assign the base part.
+    */
+
+    coord::operator=(ob2);   // call base class assignment
+    
+    ob2.get_xy(xi, yi);  // safely get values
+
+    if(xi >=0 && yi >= 0)
+        quadrant = 1;
+    else if(xi <0 && yi >=0)
+        quadrant = 2;
+    else if(xi <0 && yi <0)
+        quadrant = 3;
+    else
+        quadrant = 4;
+
+    return * this;
+}
+
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2;   // add
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2;   // subtract
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1-o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1;    // assignment
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
+
+
+
+// ----------------------------------------------------------------
+// refactored code-part for 'quad' class inheriting 'coord'
+class quad : public coord {
+        int quadrant;
+    public:
+        quad() : coord() {
+            quadrant = 0;
+        }
+
+        quad(int x, int y) : coord(x, y) {
+            set_quadrant();
+        }
+
+        void showq() {
+            std::cout << " Point in Quadrant : " << quadrant << '\n';
+        }
+
+        // quad's own overloaded '=' operator
+        quad operator=(coord ob2);
+
+    private:
+        void set_quadrant() {
+            int xi, yi;
+            get_xy(xi, yi);
+            if (xi >= 0 && yi >= 0)
+                quadrant = 1;
+            else if (xi < 0 && yi >= 0)
+                quadrant = 2;
+            else if (xi < 0 && yi < 0)
+                quadrant = 3;
+            else
+                quadrant = 4;
+        }
+};
+
+// Overload '=' relative to 'quad' class
+quad quad::operator=(coord ob2) {
+    std::cout << " Using quad operator =() \n";
+
+    coord::operator=(ob2);   // call base class assignment
+
+    set_quadrant();          // update quadrant based on new x,y
+
+    return *this;
+}
+
+// ----------------------------------------------------------------
+
