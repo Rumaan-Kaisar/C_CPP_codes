@@ -248,6 +248,7 @@ int main(){
 
 
 
+
 /* Example 4: What does the following program display? 
                 (Try to determine this without actually running the program.) 
 
@@ -335,4 +336,128 @@ class C : public A, public B {
         }
 };
 
+
+
+
+/* Example 6: Given the following class hierarchy, in "what order" are the constructor functions called? 
+                In what order are the destructor functions called? 
+
+            ans:
+                The program displays the following output, 
+                which indicates when the constructors and destructors are called.
+
+                    Constructing A
+                    Constructing B
+                    Constructing C
+                    Destructing C
+                    Destructing B
+                    Destructing A
+*/
+
+#include <iostream>
+
+class A {
+    public:
+        A() { std::cout << " Constructing A\n"; }
+        ~A() { std::cout << " Destructing A\n"; }
+};
+
+class B : public A {
+    public:
+        B() { std::cout << " Constructing B\n"; }
+        ~B() { std::cout << " Destructing B\n"; }
+};
+
+class C : public B {
+    public:
+        C() { std::cout << " Constructing C\n"; }
+        ~C() { std::cout << " Destructing C\n"; }
+};
+
+
+int main() {
+    C ob;
+
+    return 0;
+}
+
+
+
+
+/* Example 7: Given the following fragment, in what order are the constructor functions called?
+
+                class myclass : public A, public B, public C {
+                    // ...
+                };
+
+            ans:
+                Constructors are called in the order A, B, C, destructors in the order C, B, A.
+*/
+
+
+
+
+/* Example 8: Fill in the missing constructor functions in this program: 
+
+                #include <iostream>
+
+                class base {
+                        int i, j;
+                    public:
+                        // need constructor
+                        void show_ij() { std::cout << i << ' ' << j << '\n'; }
+                };
+
+                class derived : public base {
+                        int k;
+                    public:
+                        // need constructor
+                        void show() { 
+                            std::cout << k << ' '; 
+                            show_ij(); 
+                        }
+                };
+
+                int main(){
+                    derived ob(1, 2, 3);
+                    ob.show();
+                    return 0;
+                }
+*/
+
+#include <iostream>
+
+class base {
+        int i, j;
+    public:
+        base(int x, int y) { i = x; j = y; }    // constructor
+        void show_ij() { std::cout << i << ' ' << j << '\n'; }
+};
+
+class derived : public base {
+        int k;
+    public:
+        derived(int a, int b, int c) : base(b, c) { k = a; }    // constructor
+        void show() { 
+            std::cout << k << ' '; 
+            show_ij(); 
+        }
+};
+
+int main(){
+    derived ob(1, 2, 3);
+    ob.show();
+    return 0;
+}
+
+
+
+
+/* Example 9: In general, when you define a class hierarchy, 
+                you begin with the most ___ class and move to the ___ most class. 
+                (Fill in the missing words.) 
+
+            ans:
+                The missing words are "general" and "specific".
+*/
 
