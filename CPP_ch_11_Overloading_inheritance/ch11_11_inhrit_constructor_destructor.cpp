@@ -656,3 +656,13 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 10: When one class inherits another, when are the classe's constructors called? 
+                When are their destructors called? 
+            ans:
+                Constructors are called in "order of derivation". 
+                Destructors are called in "reverse order".
+*/
+
