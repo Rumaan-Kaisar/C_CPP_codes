@@ -347,3 +347,253 @@ int main(){
                     Private members of the base still stay private to the base.
 */
 
+
+
+
+// ----------------    operator overloading and inheritance    ----------------
+
+/* Example 9: from the preceding examples (in C++ operator overloading ch11_05_1 - ch11_05_4), 
+                most operators overloaded in a base class are available for use in a derived class. 
+                
+                Which one or ones are not? 
+                Can you offer a reason why this is the case?
+
+
+            ans:
+                The assignment operators "=" is the only operator that is not inherited.
+                    In C++, most "Overloaded Operators" in a base class are inherited by the derived class and remain usable.
+                    However, the "Assignment" operator (operator=) is not automatically inherited by a derived class.
+
+                Reason:
+                    A derived class often has "extra members" not present in the base class. 
+                    The base class's overloaded "operator=" doesn't know about these new members, so it can't copy them correctly.
+
+                    That's why a derived class should define its own operator= if needed.
+
+                    Most operators (+, -, *, [], etc.) behaves properly through inheritance
+                    operator= needs to handle new members in derived class
+
+                also:
+                    Each class needs to handle its own resources and member variables safely during assignment.
+                    The compiler-generated or base class operator= would only copy the base class members — 
+                        ignoring any new members added in the derived class.
+*/
+
+
+
+
+/* Example 10: Following is a reworked version of the coord class from the previous 
+                operator overloading codes (eg: ch11_06_ovrldOpr_friend.cpp)
+
+                This time it is used as a "base" for another class called "quad", 
+                    which also maintains the quadrant the specific point is in. 
+
+                So we Overload the +, -, and = relative to "coord" class.
+                    Then use coord as a base for quad.
+                    (recall Example 2 of ch11_05_2_ovrldOpr_binary.cpp)
+
+                On your own, run this program and try to understand its output. 
+
+            issue 1:
+                in coord class, private coordinate variables x, y cause problems.
+                If we can make them public, the program compiles properly.
+
+                What happens if we make 'x' and 'y' public in 'coord'?
+                    The program will compile and work fine as written.
+                    Because then, both "coord's" member functions and "any derived class (like 'quad')" 
+                    can directly access those members without restriction.
+
+
+            Not a good idea though:
+                We're avoiding "data encapsulation" — meaning internal data (like 'x' and 'y') 
+                    should be "hidden (private or protected)"
+
+                If you make them 'public':
+                    You lose control over how those values are modified.
+                    Any code outside the class can freely change 'x' and 'y', 
+                    which can lead to bugs or inconsistent object states.
+
+
+            Best Practice:
+
+                If 'quad' needs to access them-
+                    1. Make them 'protected' instead of 'public'.
+                    2. Or, use getter and setter functions.
+                Eg:
+                    class coord {
+                        protected:
+                            int x, y;
+                            ...
+                    };
+
+                This way, only derived classes can access them directly — external code cannot.
+
+
+            issue 2:
+                Operator = Should Return a Reference (in declaration inside the classes):
+                By convention, operator= should return a reference to the current object (*this), not a copy.
+                Correct declaration:
+                        coord& operator=(coord ob2);
+                        quad& operator=(coord ob2);
+*/
+
+#include <iostream>
+
+class coord{
+        int x, y; // coordinate values. Change these to "protected"
+    public:
+        coord() { x =0; y =0; }
+        coord(int i, int j) { x=i; y=j; }
+        void get_xy(int &i, int &j) { i=x; j=y; }
+
+        // OPERATOR OVERLOADING: coord type used for overloaded operator
+        coord operator+(coord ob2);
+        coord operator-(coord ob2);
+        coord operator=(coord ob2);
+};
+
+
+// Overload '+' relative to coord class.
+coord coord::operator+(coord ob2) {
+    coord temp;
+    std::cout << " Using coord operator +() \n";
+    temp.x = x + ob2.x;
+    temp.y = y + ob2.y;
+    return temp;
+}
+
+// Overload '-' relative to coord class.
+coord coord::operator-(coord ob2) {
+    coord temp;
+    std::cout << " Using coord operator -() \n";
+    temp.x = x - ob2.x;
+    temp.y = y - ob2.y;
+    return temp;
+}
+
+// Overload '=' relative to coord class.
+coord coord::operator=(coord ob2) {
+    std::cout << " Using coord operator =() \n";
+    x = ob2.x;
+    y = ob2.y;
+    return *this;
+    // return the object that is assigned. Noticem, no "temp" is used
+}
+
+// "quad" class inheriting "coord"
+class quad : public coord {
+        int quadrant;
+    public:
+        quad() {
+            x = 0;
+            y = 0;
+            quadrant = 0;
+        }
+        quad(int x, int y) : coord (x, y) {
+            if(x >=0 && y >= 0) 
+                quadrant = 1;
+            else if(x <0 && y >=0) 
+                quadrant = 2;
+            else if(x <0 && y <0) 
+                quadrant = 3;
+            else 
+                quadrant = 4;
+        }
+        void showq() {
+            std::cout << " Point in Quadrant : " << quadrant << '\n';
+        }
+        // quad's own overladed '=' operator
+        quad operator=( coord ob2 );
+};
+
+
+// Overload '=' relative to 'quad' class again
+quad quad :: operator=( coord ob2 ) {
+    std::cout << " Using quad operator =() \n";
+
+    x = ob2.x;  // change this as below
+    y = ob2.y;  // change this as below
+
+    // int xi, yi;
+    
+    // ob2.get_xy(xi, yi);  // safely get values
+    // x = xi;
+    // y = yi;
+
+    if(x >=0 && y >= 0)
+        quadrant = 1;
+    else if(x <0 && y >=0)
+        quadrant = 2;
+    else if(x <0 && y <0)
+        quadrant = 3;
+    else
+        quadrant = 4;
+
+    return * this;
+}
+
+
+int main() {
+    quad o1(10, 10), o2(15, 3), o3;
+    int x, y;
+
+    o3 = o1 + o2; // add two objects - this calls operator +()
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1+o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1 - o2; // subtract two objects
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o1 -o2) X: " << x << ", Y: " << y << "\n";
+
+    o3 = o1; // assign an object
+    o3.get_xy(x, y);
+    o3.showq();
+    std::cout << "(o3=o1) X: " << x << ", Y: " << y << "\n";
+
+    return 0;
+}
+
+
+/*  ----------------    Notice    ----------------
+    In our code get_xy(x, y) writes values into x and y in main via reference.
+    No need to initialize x and y before calling get_xy()
+
+    int x, y; // declared, but not initialized
+    ...
+    ...
+    o3.get_xy(x, y); // passing them by reference
+
+
+    Does get_xy() assign values to them?
+    Yes.
+
+    Because in coord class:
+
+            void get_xy(int &i, int &j) { i = x; j = y; }
+
+        i and j are references to x and y in main.
+        i = x; assigns the value of coord's x to i (which is actually x in main).
+        Similarly for j.
+
+    So — even if x and y in main are uninitialized, 
+        calling get_xy() will set them to the current object's x and y values.
+
+
+--------------------------------
+Your OUTPUT:
+        Using coord operator +() 
+        Using quad operator =() 
+        Point in Quadrant : 1
+        (o1+o2) X: 25, Y: 13
+        Using coord operator -() 
+        Using quad operator =() 
+        Point in Quadrant : 2
+        (o1 -o2) X: -5, Y: 7
+        Using coord operator =() 
+        Point in Quadrant : 1
+        (o3=o1) X: 10, Y: 10
+--------------------------------        
+*/
+
