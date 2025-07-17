@@ -333,3 +333,87 @@ int main(){
 */
 
 
+
+
+/* Example 7: Create a generic "base" class called "building" that stores:
+                    the number of floors a building has,
+                    the number of rooms, and 
+                    its total square footage. 
+
+                Create "derived" class called "house" that:
+                    inherits building and also 
+                    stores the number of bedrooms and 
+                    the number of bathrooms.
+
+                Next, create a "derived" class called "office" that inherits "building" and also stores 
+                    the number of fire extinguishers and 
+                    the number of telephones.
+*/
+
+#include <iostream>
+
+class building {
+    protected :
+        int floors;
+        int rooms;
+        double footage;
+};
+
+
+class house : public building {
+        int bedrooms;
+        int bathrooms;
+    public:
+        house(int f, int r, double ft, int br, int bth) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            bedrooms = br;
+            bathrooms = bth;
+        }
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " bedrooms : " << bedrooms << '\n';
+            std::cout << " bathrooms : " << bathrooms << '\n';
+        }
+};
+
+
+class office : public building {
+        int phones;
+        int extinguishers;
+    public :
+        office(int f, int r, double ft , int pn, int ext) {
+            floors = f;
+            rooms = r;
+            footage = ft;
+            phones = pn;
+            extinguishers = ext;
+        }
+        void show() {
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " floors : " << floors << '\n';
+            std::cout << " rooms : " << rooms << '\n';
+            std::cout << " square footage : " << footage << '\n';
+            std::cout << " Telephones : " << phones << '\n';
+            std::cout << " fore extinguishers : ";
+            std::cout << extinguishers << '\n';
+        }
+};
+
+
+int main() {
+    house h_ob(2, 12, 5000 , 6, 4);
+    office o_ob(4, 25, 12000 , 30, 8);
+
+    std::cout << " House :\n";
+    h_ob.show();
+
+    std::cout << "\nOffice :\n";
+    o_ob.show();
+
+    return 0;
+}
+
