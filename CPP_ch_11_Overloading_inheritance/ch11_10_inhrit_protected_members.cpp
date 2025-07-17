@@ -350,9 +350,30 @@ int main(){
 
 
 
+/* Example 9: What is protected used for? 
+
+            ans:
+                The "protected" access specifier controls how "class members" are accessed:
+                    Accessible within the same class.
+                    Accessible in derived classes (via public or protected inheritance).
+                    Not accessible from outside the class hierarchy.
+
+                Why use 'protected'?
+                    It lets derived classes access base class members "while keeping them hidden from external code" 
+                    offering controlled inheritance and better encapsulation.
+
+
+                In short:
+                    'protected' = private to the world, but visible to derived classes.
+                    protected = "Private, but shared with child classes."
+*/
+
+
+
+
 // ----------------    operator overloading and inheritance    ----------------
 
-/* Example 9: from the preceding examples (in C++ operator overloading ch11_05_1 - ch11_05_4), 
+/* Example 10 (pre): from the preceding examples (in C++ operator overloading ch11_05_1 - ch11_05_4), 
                 most operators overloaded in a base class are available for use in a derived class. 
                 
                 Which one or ones are not? 
