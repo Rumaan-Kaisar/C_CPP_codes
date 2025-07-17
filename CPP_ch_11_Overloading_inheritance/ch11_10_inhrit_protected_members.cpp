@@ -309,3 +309,41 @@ int main(){
     // ...
 }
 
+
+
+
+/* Example 7: When a "base" class is inherited as "public" by the derived class, 
+                    what happens to its public members? 
+                    What happens to its private members? 
+
+                If the base is inherited as private by the derived class, 
+                    what happens to its public and private members? 
+
+
+                Public inheritance:
+                    Public members of the base stay public in the derived class.
+                    Private members of the base stay private to the base.
+
+                Private inheritance:
+                    All members of the base become private in the derived class.
+
+*/
+
+
+
+
+/* Example 8: Explain what "protected" means.
+                Explain what it means both when referring to members of a class and 
+                when it is used as an inheritance access specifier.
+
+
+                When declaring members:
+                    protected members are like private members — they aren't accessible by outside code,
+                    but can be accessed by derived classes.
+
+                When "protected" used as an inheritance access specifier:
+                    If a class inherits a base class as protected, then:
+                    The base's public and protected members become protected in the derived class.
+                    Private members of the base still stay private to the base.
+*/
+
