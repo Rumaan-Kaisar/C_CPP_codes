@@ -270,3 +270,221 @@ int main() {
 
 
 
+
+/* Example 4: Fix the following program: A variation on the vehicle hierarchy.
+                But this program contains an error, Fix it. 
+
+                Hint: try compiling it as is and observe the error messages.
+
+
+                Error:
+                    sol.cpp: In constructor ‘car::car(steering, motor, int, int, int)’:
+                    sol.cpp:73:106: error: type ‘vehicle’ is not a direct base of ‘car’
+                        |         car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+                        |                                                                                                          ^~~~~~~
+                    sol.cpp: In member function ‘void car::show()’:
+                    sol.cpp:77:13: error: reference to ‘showv’ is ambiguous
+                        |             showv();
+                        |             ^~~~~
+                    sol.cpp:20:10: note: candidates are: ‘void vehicle::showv()’
+
+                
+#include <iostream>
+
+// A base class for various types of vehicles .
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
+};
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
+};
+
+
+class road_use : public vehicle {
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
+};
+
+
+enum steering { power , rack_pinion , manual };
+
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
+};
+
+
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
+
+    return 0;
+}
+
+
+
+            ans:
+                To fix the program, make 'motorized' and 'road_use' inherit 'vehicle' as a "virtual base class".
+                
+                you might have seen a warning message (or perhaps an error message):
+                    Some compilers don't allow a switch statement inside an inline function.
+                    If that happens, the compiler automatically treats the function as a regular (non-inline) function.
+
+*/
+
+#include <iostream>
+
+// A base class for various types of vehicles .
+class vehicle {
+        int num_wheels;
+        int range;
+    public:
+        vehicle(int w, int r) {
+            num_wheels = w;
+            range = r;
+        }
+    void showv() {
+        std::cout << " Wheels : " << num_wheels << '\n';
+        std::cout << " Range : " << range << '\n';
+    }
+};
+
+
+enum motor { gas , electric , diesel };
+
+
+class motorized : virtual public vehicle {
+        enum motor mtr;
+    public:
+        motorized(enum motor m, int w, int r) : vehicle (w, r) {
+            mtr = m;
+        }
+        void showm() {
+            std::cout << " Motor : ";
+            switch(mtr) {
+                case gas:
+                    std::cout << "Gas \n";
+                    break;
+
+                case electric:
+                    std::cout << " Electric \n";
+                    break;
+
+                case diesel:
+                    std::cout << " Diesel \n";
+                    break ;
+            }
+        }
+};
+
+
+class road_use : virtual public vehicle {
+        int passengers;
+    public:
+        road_use(int p, int w, int r) : vehicle (w, r) {
+            passengers = p;
+        }
+    void showr() {
+        std::cout << " Passengers : " << passengers << '\n';
+    }
+};
+
+
+enum steering { power , rack_pinion , manual };
+
+
+class car : public motorized , public road_use {
+        enum steering strng;
+    public:
+        car(enum steering s, enum motor m, int w, int r, int p) : road_use(p, w, r), motorized(m, w, r), vehicle(w, r) {
+            strng = s;
+        }
+        void show() {
+            showv();
+            showr();
+            showm();
+            std::cout << " Steering : ";
+            switch(strng) {
+                case power:
+                    std::cout << " Power \n";
+                    break;
+                case rack_pinion:
+                    std::cout << " Rack and Pinion \n";
+                    break;
+                case manual:
+                    std::cout << " Manual \n";
+                    break;
+            }
+        }
+};
+
+
+int main() {
+    car c(power , gas , 4, 500 , 5);
+    c.show();
+
+    return 0;
+}
+
