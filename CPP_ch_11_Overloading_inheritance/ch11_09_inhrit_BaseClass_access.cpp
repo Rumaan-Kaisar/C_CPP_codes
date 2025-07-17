@@ -488,3 +488,100 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 9: Create a class hierarchy that stores information about "airships". 
+
+                Start with a general BASE class called "airship" that stores: 
+                    the number of passengers and 
+                    the amount of cargo (in pounds) that can be carried. 
+
+                Then create two derived classes called "airplane" and "balloon" from "airship". 
+
+                Have "airplane" store 
+                    the type of engine used (propeller or jet) and 
+                    range, in miles.
+
+                Have "balloon" store information about 
+                    the type of gas used to lift
+                    the balloon (hydrogen or helium) and 
+                    its maximum altitude (in feet). 
+
+        Create a short program that demonstrates this class hierarchy.
+*/
+
+#include <iostream>
+
+class airship {
+    protected:
+        int passengers;
+        double cargo;
+};
+
+class airplane : public airship {
+        char engine;    // p for propeller , j for jet
+        double range;
+    public:
+        airplane(int p, double c, char e, double r) {
+            passengers = p;
+            cargo = c;
+            engine = e;
+            range = r;
+        }
+        void show();
+};
+
+class balloon : public airship {
+        char gas;   // h for hydrogen , e for helium
+        double altitude;
+    public:
+        balloon(int p, double c, char g, double a) {
+            passengers = p;
+            cargo = c;
+            gas = g;
+            altitude = a;
+        }
+        void show();
+};
+
+
+void airplane :: show() {
+    std::cout << " Passengers : " << passengers << '\n';
+    std::cout << " Cargo capacity : " << cargo << '\n';
+    std::cout << " Engine : ";
+
+    if( engine == 'p')
+        std::cout << " Propeller \n";
+    else
+        std::cout << " Jet \n";
+
+    std::cout << " Range : " << range << '\n';
+}
+
+
+void balloon :: show() {
+    std::cout << " Passengers : " << passengers << '\n';
+    std::cout << " Cargo capacity : " << cargo << '\n';
+    std::cout << " Gas : ";
+
+    if( gas == 'h')
+        std::cout << " Hydrogen \n";
+    else
+        std::cout << " Helium \n";
+
+    std::cout << " Altitude : " << altitude << '\n';
+}
+
+
+int main(){
+    balloon b(2, 500.0 , 'h', 12000.0) ;
+    airplane b727(100 , 40000.0 , 'j', 40000.0) ;
+
+    b.show();
+    std::cout << '\n';
+    b727.show();
+
+    return 0;
+}
+
