@@ -417,3 +417,74 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 8: Given this skeleton, fill in the details as indicated in the comments: 
+
+                # include <iostream>
+
+                class planet {
+                    protected:
+                        double distance;    // miles from the sun
+                        int revolve;        // in days
+                    public:
+                        planet(double d, int r) { distance = d; revolve = r; }
+                };
+
+                class earth : public planet {
+                        double circumference;   // circumference of orbit
+                    public:
+
+                        // Create earth( double d, int r). 
+                            // Have it pass the distance and days of revolution back to planet.
+                            // Have it compute the circumference of the orbit.
+                            // (Hint : circumference = 2r *3.1416.)
+                            // Create a function called show() that displays the information
+                };
+
+
+                int main() {
+                    earth ob(93000000 , 365) ;
+                    ob.show();
+
+                    return 0;
+                }
+*/
+
+#include <iostream>
+
+class planet {
+    protected:
+        double distance;    // miles from the sun
+        int revolve;        // in days
+    public:
+        planet(double d, int r) { distance = d; revolve = r; }
+};
+
+
+class earth : public planet {
+        double circumference;   // circumference of orbit
+    public:
+        // Create earth( double d, int r). 
+        earth(double d, int r) : planet(d, r) { // pass the distance and days of revolution back to planet.
+            // circumference of the orbit.
+            circumference = 2* distance *3.1416;
+        }
+        // show() displays the information
+        void show() {
+            std::cout << " Distance from sun : " << distance << '\n';
+            std::cout << " Days in orbit : " << revolve << '\n';
+            std::cout << " Circumference of orbit : ";
+            std::cout << circumference << '\n';
+        }            
+};
+
+
+int main() {
+    earth ob(93000000 , 365) ;
+    ob.show();
+
+    return 0;
+}
+
