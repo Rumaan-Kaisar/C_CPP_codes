@@ -1,13 +1,16 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    C++ I/O Stream    ------------------------
+    The C++ I/O system, like the C I/O system, operates through streams. 
+
+    Some important points about streams are:
+        A stream is a logical channel that sends or receives data.
+        The C++ I/O system connects a stream to a physical device (like a file, screen, or printer).
+        All streams work the same way, no matter which device they're connected to.
+        For example, the same output function can send data to a screen, a file, or a printer.
 
 
 
-12.1 C++ I/O Stream
-	C++ I/O stream:  The C++ I/O system, like the C I/O system, operates through streams. Some important points about streams are:
-	A stream is a logical device that either produces or consumes information. 
-	A stream is linked to a physical device by the C++ I/O system. 
-	All streams behave in the same manner, even if the actual physical devices they are linked to differ. For example, the same function that you use to write to the screen can be used to write to a disk file or to the printer.
+
 	Predefined streams of C++: when a C program begins execution, three predefined streams are automatically opened: stdin, stdout, and stderr. Similarly when a C++ program begins, these four streams are automatically opened:
 Stream	Meaning	Default Devices	Stream	Meaning	Default Devices
 cin	Standard input	Keyboard	cerr	Standard error	Screen
