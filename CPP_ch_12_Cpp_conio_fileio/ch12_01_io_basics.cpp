@@ -11,7 +11,8 @@
 
 
 
-	Predefined streams of C++: when a C program begins execution, three predefined streams are automatically opened: stdin, stdout, and stderr. Similarly when a C++ program begins, these four streams are automatically opened:
+
+when a C program begins execution, three predefined streams are automatically opened: stdin, stdout, and stderr. Similarly when a C++ program begins, these four streams are automatically opened:
 Stream	Meaning	Default Devices	Stream	Meaning	Default Devices
 cin	Standard input	Keyboard	cerr	Standard error	Screen
 cout	Standard output	Screen	clog	Buffered version of cerr	Screen
@@ -20,7 +21,8 @@ cout	Standard output	Screen	clog	Buffered version of cerr	Screen
 	By default, the standard streams are used to communicate with the console. However, in proper environments these streams can be redirected to other devices.
 
 
-Predefined Streams in C++:
+----------------    Predefined Streams in C++    ----------------
+
 Automatically opened streams in C++ at program start:
 
 cin → standard input (keyboard)
@@ -54,7 +56,7 @@ They can be redirected to files or other devices in the right setup
 
 
 
-
+-----------------------------
 
 	<iostream> and template classes: C++ provides support for its I/O system in the header file <iostream>. In this file, a rather complicated set of class hierarchies is defined that supports I/O operations.
 	The I/O classes begin with a system of template classes. 
@@ -78,6 +80,8 @@ C++ creates two versions of its I/O template classes:
 One for 8-bit (normal) characters
 
 One for wide (16-bit) characters
+
+-----------------------------
 
 
 
@@ -121,6 +125,7 @@ basic_istream	Input stream
 basic_ostream	Output stream
 basic_iostream	Input + Output stream
 
+-----------------------------
 
 
 
@@ -136,6 +141,7 @@ basic_iostream		iostream	basic_ofstream		ofstream
 Note:
 1:	If you include <iostream> in you program, you will have access to ios class.
 2:	The ios class contains many member functions and variables that control or monitor the fundamental operation of a stream. 
+
 
 
 Character-Based Class Names in C++ I/O:
