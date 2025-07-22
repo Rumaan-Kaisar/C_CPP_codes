@@ -69,32 +69,25 @@
 
 
 
------------------------------
+    --------    <iostream> and Template Classes    --------
 
-	<iostream> and template classes: C++ provides support for its I/O system in the header file <iostream>. In this file, a rather complicated set of class hierarchies is defined that supports I/O operations.
-	The I/O classes begin with a system of template classes. 
-	Template classes/ generic classes: Template classes, also called generic classes (will be discussed in next Chapter). Briefly, a template class defines the form of a class without fully specifying the data upon which it will operate. Once a template class has been defined, specific instances of it can be created. 
-	Standard C++ creates 2 specific versions of the I/O template classes: one for 8-bit characters and another for wide characters.
+    The <iostream> header provides support for C++ input/output.
+        It defines a complex class hierarchy for handling I/O.
+        The I/O classes begin with a "system of template classes". 
+
+    Template classes/ generic classes (will be discussed in next Chapter) :
+        A template class defines the form of a class "without fully specifying the data" upon which it will operate. 
+        Once a template class has been defined, specific instances of it can be created/added.
+
+    C++ creates two versions of its I/O template classes:
+        One for 8-bit (normal) characters
+        One for wide (16-bit) characters
 
 
-<iostream> and Template Classes in C++ I/O:
-The <iostream> header provides support for C++ input/output.
 
-It defines a complex class hierarchy for handling I/O.
 
-The I/O system starts with template (generic) classes.
 
-A template class defines a general structure without fixing the data type.
-
-Later, specific versions (instances) of that class can be created with actual types.
-
-C++ creates two versions of its I/O template classes:
-
-One for 8-bit (normal) characters
-
-One for wide (16-bit) characters
-
------------------------------
+--------------  rev[22-Jul-2025]  ---------------
 
 
 
