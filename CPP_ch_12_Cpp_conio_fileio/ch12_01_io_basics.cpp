@@ -10,63 +10,61 @@
 
 
 
+    ----------------    Predefined Streams in C++    ----------------
+
+    Three predefined streams "automatically" opened, when a "C program" begins execution:
+            stdin
+            stdout
+            stderr
+
+    Similarly when a C++ program begins, these four streams are automatically opened:
+
+            cin
+                standard input (keyboard)
+
+            cout
+                standard output (screen)
+
+            cerr
+                standard error (unbuffered, screen)
+
+            clog
+                buffered error output i.e. buffered version of cerr (screen)
+
+
+        Correspondence with C streams:
+            The streams cin, cout, and cerr correspond to C's stdin, stdout, and stderr. 
+            clog is buffered version of cerr.
+
+                cin     <>  stdin
+                cout    <>  stdout
+                cerr    <>  stderr
+                clog:  extra in C++, buffered version of "cerr"
 
 
 
+    --------    Wide Character Versions    --------
+
+    above cin, cout, cerr, clog are 8-bit (narrow) versions
+        Standard C++ uses char for regular 8-bit characters (ASCII-based)
+        but for non-English languages (like Chinese, Arabic, Bengali, etc.), 8 bits aren’t enough.
+
+    To solve this, C++ provides wide characters using the type "wchar_t", 
+        which typically holds 16-bit or 32-bit characters.
+
+                Narrow (8-bit)      Wide (16/32-bit) 
+
+                cin                 wcin
+                cout                wcout
+                cerr                wcerr
+                clog                wclog
+    
+        These wide streams work with "wchar_t" type instead of "char"
 
 
-
- 
- 
-
-
-
-	The streams cin, cout, and cerr correspond to C's stdin, stdout, and stderr. clog is buffered version of cerr.
-	Standard C++ also opens wide (16-bit) character versions of these streams called wcin, wcout, wcerr, and wclog.
-	By default, the standard streams are used to communicate with the console. However, in proper environments these streams can be redirected to other devices.
-
-
-----------------    Predefined Streams in C++    ----------------
-Three predefined streams "automatically" opened, when a "C program" begins execution:
-        stdin
-        stdout
-        stderr
-
-Similarly when a C++ program begins, these four streams are automatically opened:
-
-        cin
-            standard input (keyboard)
-
-        cout
-            standard output (screen)
-
-        cerr
-            standard error (unbuffered, screen)
-
-        clog
-            buffered error output i.e. buffered version of cerr (screen)
-
-
-
-Correspondence with C streams:
-
-cin ↔ stdin
-
-cout ↔ stdout
-
-cerr ↔ stderr
-
-clog → extra in C++, buffered version of cerr
-
-Wide character versions also exist:
-
-wcin, wcout, wcerr, wclog — for 16-bit character input/output
-
-Default behavior:
-
-These streams use the console (keyboard/screen) by default
-
-They can be redirected to files or other devices in the right setup
+    Default behavior:
+        These streams use the console (keyboard/screen) by default
+        They can be redirected to files or other devices in the right setup
 
 
 
