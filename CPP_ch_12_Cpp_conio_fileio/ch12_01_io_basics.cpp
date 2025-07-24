@@ -86,32 +86,33 @@
 
 
 
+    --------    C++ I/O template Class Hierarchy    --------
+    The C++ I/O system is build upon two related, but different, template class hierarchies. 
 
---------------  rev[22-Jul-2025]  ---------------
+    basic_streambuf:
+        Derived from the low-level I/O class.
+        Handles basic, low-level (raw) input/output operations.
+        Forms the foundation of the I/O system.
+        Used in advanced I/O programming.
 
 
 
 
+basic_ios:
+The class hierarchy that you will most commonly be working with is derived from basic_ios. This is a high-level I/O class that provides: formatting, error-checking, and status information related to stream I/O. 
 
-
-
-	The C++ I/O system is build upon two related, but different, template class hierarchies. 
-	basic_streambuf: Derived from the low-level I/O class. This class supplies the basic, low-level input and output operations and provides the underlying support for the entire C++ I/O system. It is used in advanced I/O programming.
-	basic_ios: The class hierarchy that you will most commonly be working with is derived from basic_ios. This is a high-level I/O class that provides: formatting, error-checking, and status information related to stream I/O. 
-	basic_ios is used as a base for several derived classes, including : 
+basic_ios is used as a base for several derived classes, including : 
 1:	basic_istream	2:	basic_ostream	3:	basic_iostream
 These classes are used to create streams capable of input, output, and input/output, respectively.
 
 
-C++ I/O Class Hierarchy (Simplified):
+
+
+
+    
 The C++ I/O system is built on two related template class hierarchies:
 
-A. basic_streambuf (low-level)
-Handles raw input/output operations
 
-Forms the foundation of the I/O system
-
-Used in advanced I/O programming
 
 B. basic_ios (high-level)
 Adds support for:
@@ -135,7 +136,7 @@ basic_iostream	Input + Output stream
 
 
 
-
+--------------  rev[24-Jul-2025]  ---------------
 
 	The following character-based names will be used throughout the remainder of this note.
 Template Class	8-Bit Character-Based Class	Template Class	8-Bit Character-Based Class
