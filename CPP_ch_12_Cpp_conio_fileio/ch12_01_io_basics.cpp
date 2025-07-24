@@ -96,41 +96,22 @@
         Used in advanced I/O programming.
 
 
+    basic_ios:
+        Most of our work in C++ I/O is based on this class
+        
+        This is a high-level I/O class that provides: 
+            Formatting, 
+            Error-checking, and 
+            Stream status info
 
-
-basic_ios:
-The class hierarchy that you will most commonly be working with is derived from basic_ios. This is a high-level I/O class that provides: formatting, error-checking, and status information related to stream I/O. 
-
-basic_ios is used as a base for several derived classes, including : 
-1:	basic_istream	2:	basic_ostream	3:	basic_iostream
-These classes are used to create streams capable of input, output, and input/output, respectively.
-
-
-
-
-
-    
-The C++ I/O system is built on two related template class hierarchies:
+        basic_ios is used as a base for several derived classes, including : 
+            1: basic_istream    -   Input stream
+            2: basic_ostream    -   Output stream
+            3: basic_iostream   -   Input + Output stream
 
 
 
-B. basic_ios (high-level)
-Adds support for:
 
-Formatting
-
-Error-checking
-
-Stream status info
-
-Most of our work in C++ I/O is based on this class
-
-basic_ios is the base for these key classes:
-
-Class	Purpose
-basic_istream	Input stream
-basic_ostream	Output stream
-basic_iostream	Input + Output stream
 
 -----------------------------
 
