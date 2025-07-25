@@ -112,49 +112,28 @@
 
 
 
+    --------    Character-Based Class Names    --------
 
------------------------------
+    Character-Based Class Names in C++ I/O:
+        C++ uses template classes for I/O, but provides shorter 8-bit versions for regular use.
 
+            Template Class          8-bit Character-Based
 
-
---------------  rev[24-Jul-2025]  ---------------
-
-	The following character-based names will be used throughout the remainder of this note.
-Template Class	8-Bit Character-Based Class	Template Class	8-Bit Character-Based Class
-basic_ios		ios	basic_streambuf		streambuf
-basic_istream		istream	basic_fstream		fstream
-basic_ostream		ostream	basic_ifstream		ifstream
-basic_iostream		iostream	basic_ofstream		ofstream
-
-Note:
-1:	If you include <iostream> in you program, you will have access to ios class.
-2:	The ios class contains many member functions and variables that control or monitor the fundamental operation of a stream. 
+            basic_ios               ios
+            basic_istream           istream
+            basic_ostream           ostream
+            basic_iostream          iostream
+            basic_streambuf         streambuf
+            basic_fstream           fstream
+            basic_ifstream          ifstream
+            basic_ofstream          ofstream
 
 
+    Notes:
+        Including <iostream> gives access to the "ios class" and other I/O types.
+        The "ios class" has many built-in member functions and variables to:
+            Control stream behavior
+            Monitor stream status
 
-Character-Based Class Names in C++ I/O:
-C++ uses template classes for I/O, but provides shorter 8-bit versions for regular use.
-
-Template Class	8-bit Character-Based
-basic_ios	ios
-basic_istream	istream
-basic_ostream	ostream
-basic_iostream	iostream
-basic_streambuf	streambuf
-basic_fstream	fstream
-basic_ifstream	ifstream
-basic_ofstream	ofstream
-
-Notes:
-Including <iostream> gives access to the ios class and other I/O types.
-
-The ios class has many built-in functions and variables to:
-
-Control stream behavior
-
-Monitor stream status
-
-
-*/  
-
+*/
 
