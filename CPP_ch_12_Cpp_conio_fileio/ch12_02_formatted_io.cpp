@@ -1,6 +1,7 @@
 
 /*  ------------------------    chapter    ------------------------
 
+    ----  rev[28-Jul-2025]  ----
 
 12.2 Formatted I/O
 It is possible to output information in a wide variety of forms using C++'s I/O system as we did before with  C's printf() function
@@ -8,22 +9,41 @@ It is possible to output information in a wide variety of forms using C++'s I/O 
 adjustfield	dec	hex	oct	showbase	skipws
 basefield	fixed	internal	right	showpoint	unitbuf
 boolalpha	floatfield	left	scientific	showpos	uppercase
+
+
 	These values are used to set or clear the format flags and are defined within ios. 
 
-	skipws: When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) will be cleared for new input. When skipws is cleared, whitespace characters are not discarded.		left, right, internal (for justified output): Default is right.
+
+	skipws: When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) will be cleared for new input. When skipws is cleared, whitespace characters are not discarded.	
+
+
+	left, right, internal (for justified output): Default is right.
 	left and right flags make, left and right justified output.
 	internal flag makes a numeric value is padded to fill a field by inserting spaces between sign/base character. 
+
+
 	Dec, oct, hex : Decimal output is default
 	oct and hex flags produce octal and hexadecimal output respectively. 
-	To return output to decimal, set the dec flag.		showbase displays the base of numeric values. Eg. for hexadecimal conversion, 1F will be displayed as 0x1F.
+	To return output to decimal, set the dec flag.	
+
+	showbase displays the base of numeric values. Eg. for hexadecimal conversion, 1F will be displayed as 0x1F.
 	By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, setting uppercase flag displays these characters in uppercase.
-	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.		showpos flag displays "+" before positive values.
+	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.	
+
+	showpos flag displays "+" before positive values.
 	showpoint flag display ".000000" for all floating-point output-whether needed or not.
 	When neither flag is set, the compiler chooses an appropriate method.
-	unitbuf flushes the buffer after each insertion operation.		Booleans can be input or output using the keywords true and false, when boolalpha is set.
+
+
+	Booleans can be input or output using the keywords true and false, when boolalpha is set.
+
+	unitbuf flushes the buffer after each insertion operation.	
 	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
 	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
 	floatfield: the scientific and fixed fields collectively referenced as floatfield.
+
+
+
 
 	To set a format flag, use the setf() function which is a member of ios. Its form is:       fmtflags setf (fmtflags flags);
 	This function returns the previous settings of the format flags and turns on those flags specified by flags. (All other flags are unaffected.)  For example, to turn on the showpos flag:
@@ -44,9 +64,29 @@ void unsetf ( fmtflags flags );
 	The flags() also allows to set/reset all format flags associated with a stream to those specified in the argument to flags(). The prototype for this version of flags() is:
 fmtflags flags ( fmtflags f);
 	For this version, the bit pattern found in f is copied to the variable used to hold the format flags associated with the stream, and overwrites all previous flag settings. The function returns the previous settings.
-	Example 1:    following program shows how to set several flags.
+
+
+
+
+
+
+*/  
+
+
+
+
+
+/* Example 1:    following program shows how to set several flags. 
+
+
+	This program displays: 	1.232300e+02 hello  64 	    a  fffffff6 	+100.000000
+	Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). It does not affect the value 10 when output in hexadecimal. 
+	Also notice the unsetf() call that turns off the dec flag (which is on by default). It is necessary to turn it off when turning on either hex or oct. In general, it is better to set only the number base that you want to use and clear the others.
+
+
+*/
 int main(){
-	cout.unsetf(ios::dec); /* not required by all compilers */ 
+	cout.unsetf(ios::dec); // not required by all compilers 
 	cout.setf (ios::hex | ios::scientific);
 	cout<< 123.23 << "hello" << 100 <<'\n';	
 cout.setf(ios::showpos );
@@ -54,23 +94,31 @@ cout<< 10 <<' '<< -10 <<'\n';
 cout.setf(ios::showpoint | ios::fixed );
 cout<< 100.0;
 return 0; }
-	This program displays: 	1.232300e+02 hello  64 	    a  fffffff6 	+100.000000
-	Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). It does not affect the value 10 when output in hexadecimal. 
-	Also notice the unsetf() call that turns off the dec flag (which is on by default). It is necessary to turn it off when turning on either hex or oct. In general, it is better to set only the number base that you want to use and clear the others.
-	Example 2: The following program illustrates the effect of the uppercase flag. It first enable uppercase, showbase, and hex flags to output: 99 in hexadecimal. Then disables the uppercase.
+
+
+
+/* Example 2: The following program illustrates the effect of the uppercase flag. It first enable uppercase, showbase, and hex flags to output: 99 in hexadecimal. Then disables the uppercase.
 int main() { cout.unsetf(ios :: dec );
 	cout.setf(ios::uppercase | ios::showbase | ios::hex);
 	cout << 88 << '\n';	cout.unsetf(ios::uppercase );
 cout << 88 << '\n';
 return 0; }
-	Example3: The following illustrates the showflags() function. Displays which flag is on and which is off.
-void showflags(); 								/* Declaration of the function */
-int main(){	showflags(); 							/* first shows default flag settings */
-		cout.setf(ios::oct | ios::showbase | ios::fixed ); 	/* Changing flags */
-		showflags();		/* shows changed flag settings */			return 0;}
+ */
+
+
+
+
+/* Example3: The following illustrates the showflags() function. Displays which flag is on and which is off. */
+
+
+void showflags(); 								// Declaration of the function
+int main(){	showflags(); 							// first shows default flag settings
+		cout.setf(ios::oct | ios::showbase | ios::fixed ); 	// Changing flags
+		showflags();		// shows changed flag settings
+        			return 0;}
 void showflags(){
 ios::fmtflags f;
-f = cout.flags(); /* get flag settings */ 
+f = cout.flags(); // get flag settings
 if(f & ios :: skipws ) cout <<"skipws on \n";
 else cout << " skipws off \n";
 
@@ -113,8 +161,8 @@ if(f & ios :: boolalpha ) cout << " boolalpha on\n";
 else cout << " boolalpha off \n";
 
 cout << "\n"; }
-	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
 
 
+// 	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
 
-*/  
+
