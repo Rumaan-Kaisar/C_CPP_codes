@@ -1,9 +1,9 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Formatted I/O    ------------------------
 
     ----  rev[28-Jul-2025]  ----
 
-12.2 Formatted I/O
+
 It is possible to output information in a wide variety of forms using C++'s I/O system as we did before with  C's printf() function
 	Each stream has associated with it a set of format flags that control the way information is formatted. The ios class declares a bitmask enumeration called fmtflags, in which the values are defined:
 adjustfield	dec	hex	oct	showbase	skipws
@@ -42,7 +42,75 @@ boolalpha	floatfield	left	scientific	showpos	uppercase
 	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
 	floatfield: the scientific and fixed fields collectively referenced as floatfield.
 
+-----------------------
 
+🧾 C++ Format Flags (like printf() in C)
+C++ streams (like cout) have format flags that control how output looks.
+These flags are part of the ios class and are grouped under an enum called fmtflags.
+
+📌 Format Flag Groups
+Group	Flags
+basefield	dec, oct, hex
+adjustfield	left, right, internal
+floatfield	fixed, scientific
+
+🔹 Flag Descriptions
+Whitespace handling:
+
+skipws (default ON): skips spaces, tabs, newlines during input
+
+Turn it OFF to read whitespace as input
+
+Output alignment (justification):
+
+left → left-justified output
+
+right (default) → right-justified
+
+internal → pads numeric output between sign/base (e.g., - 123)
+
+Number base:
+
+dec → decimal (default)
+
+oct → octal (e.g., 075)
+
+hex → hexadecimal (e.g., 0x1F)
+
+showbase → shows base prefix (e.g., 0x for hex)
+
+Floating-point format:
+
+scientific → outputs in scientific notation (e.g., 1.23e+03)
+
+fixed → disables scientific form, shows normal decimal
+
+showpoint → always shows decimal point (e.g., 5.000000)
+
+Signs and casing:
+
+showpos → shows + sign for positive numbers
+
+uppercase → displays E (not e) in scientific, X in hex
+
+Boolean formatting:
+
+boolalpha → displays true/false instead of 1/0
+
+Buffer behavior:
+
+unitbuf → forces output to flush after every insertion
+
+🧠 Notes:
+Flags can be combined, set, or cleared using stream member functions like setf(), unsetf(), or manipulators like std::hex.
+
+These flags affect how data is displayed or input through streams like cin, cout, etc.
+
+Let me know if you want a code example demonstrating each of these.
+
+
+
+-----------------------
 
 
 	To set a format flag, use the setf() function which is a member of ios. Its form is:       fmtflags setf (fmtflags flags);
@@ -57,6 +125,9 @@ stream.setf ( ios :: showpos );
 	To set more than one flag in a single call to setf(): use "OR" together the values of the flags. For example, this call sets the showbase and hex flags for cout:
 cout.setf( ios :: showbase | ios :: hex );
 	Note: showpos, showbase, hex all are enumerated constants within the ios class. Therefore, it is necessary to tell the compiler this fact by preceding showpos/showbase/hex with the class name "ios" and the scope resolution operator "::". Otherwise showpos/showbase/hex will not be recognized. We must specify  ios::showpos or ios::showbase or ios::hex.
+
+
+
 	The complement of setf() is unsetf().This member function of ios clears one or more format flags. Its prototype form is:
 void unsetf ( fmtflags flags );
 	The flags specified by flags are cleared. (All other flags are unaffected.)
@@ -67,6 +138,81 @@ fmtflags flags ( fmtflags f);
 
 
 
+-----------------------
+
+🎯 Setting and Managing Format Flags in C++
+🔹 1. Setting Format Flags with setf()
+Syntax:
+
+cpp
+Copy
+Edit
+fmtflags setf(fmtflags flags);
+Purpose: Sets one or more format flags for a specific stream
+
+Returns the previous flag settings
+
+Does not affect flags that are not mentioned
+
+Example:
+
+cpp
+Copy
+Edit
+stream.setf(ios::showpos);  // turns on showpos for the stream
+Important Notes:
+
+setf() must be called on a specific stream like cout, cin, etc.
+
+Flags like showpos, hex are part of the ios class, so you must use ios::flagname
+
+No global format state in C++ — each stream maintains its own format settings
+
+Setting Multiple Flags Together:
+
+cpp
+Copy
+Edit
+cout.setf(ios::showbase | ios::hex);
+🔹 2. Clearing Flags with unsetf()
+Syntax:
+
+cpp
+Copy
+Edit
+void unsetf(fmtflags flags);
+Purpose: Clears (turns off) one or more specified format flags
+
+Other flags remain unchanged
+
+Example:
+
+cpp
+Copy
+Edit
+cout.unsetf(ios::hex);  // turns off hex format
+🔹 3. Reading / Replacing All Format Flags with flags()
+To Read Current Settings:
+
+cpp
+Copy
+Edit
+fmtflags current = stream.flags();
+To Set All Flags at Once:
+
+cpp
+Copy
+Edit
+stream.flags(ios::dec | ios::showpos);  // replaces all existing flags
+Returns: the old settings before the change
+
+✅ Summary:
+Function	Use
+setf()	Set specific format flags
+unsetf()	Clear specific format flags
+flags()	Read or replace all flag bits
+
+Let me know if you'd like a small C++ program using all three (setf, unsetf, flags).
 
 
 
