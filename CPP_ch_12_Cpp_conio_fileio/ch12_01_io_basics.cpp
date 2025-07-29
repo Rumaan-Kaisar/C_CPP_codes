@@ -138,6 +138,8 @@
 */
 
 
+
+
 /* Example 1: Wide streams work with wchar_t instead of char. 
                 Following prints a strin g in bengali.
 
@@ -153,4 +155,15 @@ int main() {
     std::wcout << L"Wide output: " << wtext << std:: endl;
     return 0;
 }
+
+
+// some online compiler may rise ERROR, following is the simle fix, just using (char*)
+#include <iostream>
+
+int main() {
+    char* text = "উইকিপিডিয়া, একটি মুক্ত বিশ্বকোষ";  // UTF-8 without u8 prefix
+    std::cout << text << std::endl;
+    return 0;
+}
+
 
