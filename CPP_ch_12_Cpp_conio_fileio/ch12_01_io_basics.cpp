@@ -137,3 +137,20 @@
 
 */
 
+
+/* Example 1: Wide streams work with wchar_t instead of char. 
+                Following prints a strin g in bengali.
+
+            Notice:
+                L"..." prefix creates a wide-character string literal.
+                "wcout" prints it using wide-character formatting.
+*/
+
+#include <iostream>
+
+int main() {
+    wchar_t wtext[] = L"উইকিপিডিয়া, একটি মুক্ত বিশ্বকোষ";  // Bengali wikipedia
+    std::wcout << L"Wide output: " << wtext << std:: endl;
+    return 0;
+}
+
