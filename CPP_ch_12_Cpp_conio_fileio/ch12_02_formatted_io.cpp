@@ -1,17 +1,29 @@
 
 /*  ------------------------    Formatted I/O    ------------------------
 
-    ----  rev[28-Jul-2025]  ----
+    It is possible to output information in a wide variety of forms using C++'s I/O system 
+        as we did before with  C's printf() function
+
+----  rev[28-Jul-2025]  ----
+
+    C++ Format Flags (like printf() in C):
+        C++ streams (like cout) have format flags that control how output looks.
+        These flags are part of the ios class and are grouped under an enum called fmtflags.
 
 
-It is possible to output information in a wide variety of forms using C++'s I/O system as we did before with  C's printf() function
-	Each stream has associated with it a set of format flags that control the way information is formatted. The ios class declares a bitmask enumeration called fmtflags, in which the values are defined:
+	Each stream has associated with it a set of format flags that control the way information is formatted. The ios class declares a bitmask enumeration called fmtflags, 
+
+
+in which the values are defined:
 adjustfield	dec	hex	oct	showbase	skipws
 basefield	fixed	internal	right	showpoint	unitbuf
 boolalpha	floatfield	left	scientific	showpos	uppercase
 
 
 	These values are used to set or clear the format flags and are defined within ios. 
+
+
+
 
 
 	skipws: When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) will be cleared for new input. When skipws is cleared, whitespace characters are not discarded.	
