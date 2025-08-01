@@ -11,7 +11,8 @@
         These flags are part of the "ios" class and are grouped under a bitmask enumeration called "fmtflags".
 
 
-    These values are defined "fmtflags":
+    These values are used to set or clear the format flags and are defined within ios.
+
         adjustfield
         basefield
         boolalpha
@@ -43,42 +44,33 @@
 
 
 
-----  rev[31-Aug-2025]  ----
+    
 
-	These values are used to set or clear the format flags and are defined within ios. 
-
-
+	 
 
 
 
-	skipws: When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) will be cleared for new input. When skipws is cleared, whitespace characters are not discarded.	
 
 
-	left, right, internal (for justified output): Default is right.
-	left and right flags make, left and right justified output.
-	internal flag makes a numeric value is padded to fill a field by inserting spaces between sign/base character. 
+skipws:
+    When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) 
+        will be cleared for new input. 
+    When skipws is cleared, whitespace characters are not discarded.	
 
 
-	Dec, oct, hex : Decimal output is default
-	oct and hex flags produce octal and hexadecimal output respectively. 
-	To return output to decimal, set the dec flag.	
-
-	showbase displays the base of numeric values. Eg. for hexadecimal conversion, 1F will be displayed as 0x1F.
-	By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, setting uppercase flag displays these characters in uppercase.
-	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.	
-
-	showpos flag displays "+" before positive values.
-	showpoint flag display ".000000" for all floating-point output-whether needed or not.
-	When neither flag is set, the compiler chooses an appropriate method.
+Justification (Alignment): 
+    Default is "right".
+    left, right:    flags make- left and right justified output (e.g., "    10" or "10    ").
+    internal:       Pads the inside of a number, between the sign and the value (e.g., "+   10").
 
 
-	Booleans can be input or output using the keywords true and false, when boolalpha is set.
+Number Base
+    dec (Default):  Displays numbers in base 10 (e.g., 255).
+    oct, hex:       produce octal and hexadecimal output respectively. 
+    
+    To return output to decimal, set the dec flag.
 
-	unitbuf flushes the buffer after each insertion operation.	
-	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
-	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
-	floatfield: the scientific and fixed fields collectively referenced as floatfield.
-
+    showbase: Shows the base prefix (e.g., 0xff for hex, 0377 for oct).
 
 
 -----------------------
