@@ -67,13 +67,19 @@
 
     Boolean Values
         boolalpha:      Displays true and false as words instead of 1 and 0.
+        
+        Booleans can be input or output using the keywords true and false, when boolalpha is set.
 
 
     Floating-Point Numbers:
         scientific:     Uses scientific notation (e.g., 1.5e+10).
         fixed:          Uses standard decimal notation (e.g., 15000000000.000000).
-        showpoint:      Always shows the decimal point, even for whole numbers (e.g., 10.0 instead of 10).
+        showpoint:      Always shows the decimal point ".000000", even for whole numbers (e.g., 10.0 instead of 10).
         uppercase:      Uses uppercase letters in scientific/hex notation (e.g., 1.5E+10, 0XFF).
+
+        By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, 
+        setting uppercase flag displays these characters in uppercase.
+        When neither flag is set, the compiler chooses an appropriate method.
 
 
     Number Sign
@@ -83,19 +89,7 @@
 
 
 
-    ----  rev[01-Aug-2025]  ----
-
-
-	By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, setting uppercase flag displays these characters in uppercase.
-
-	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.	
-
-	showpos flag displays "+" before positive values.
-	showpoint flag display ".000000" for all floating-point output-whether needed or not.
-	When neither flag is set, the compiler chooses an appropriate method.
-
-
-	Booleans can be input or output using the keywords true and false, when boolalpha is set.
+    ----  rev[04-Aug-2025]  ----
 
 	unitbuf flushes the buffer after each insertion operation.	
 	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
