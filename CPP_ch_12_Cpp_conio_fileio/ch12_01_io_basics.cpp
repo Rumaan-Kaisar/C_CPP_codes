@@ -1,400 +1,170 @@
 
-/*  ------------------------    Formatted I/O    ------------------------
+/*  ------------------------    C++ I/O Stream    ------------------------
+    The C++ I/O system, like the C I/O system, operates through streams. 
 
-    It is possible to output information in a wide variety of forms using C++'s I/O system 
-        as we did before with  C's printf() function
-
-
-    C++ Format Flags (like printf in C):
-        C++ streams (like 'cout') have "format flags" that control how output looks.
-        You can think of them as switches that you can turn 'on' or 'off' to change the output format.
-        These flags are part of the "ios" class and are grouped under a bitmask enumeration called "fmtflags".
-
-
-    These values are used to set or clear the format flags and are defined within ios.
-
-        adjustfield
-        basefield
-        boolalpha
-        dec
-        fixed
-        floatfield
-        hex
-        internal
-        left
-        oct
-        right
-        scientific
-        showbase
-        showpoint
-        showpos
-        skipws
-        unitbuf
-        uppercase
+    Some important points about streams are:
+        A stream is a logical channel that sends or receives data.
+        The C++ I/O system connects a stream to a physical device (like a file, screen, or printer).
+        All streams work the same way, no matter which device they're connected to.
+        For example, the same output function can send data to a screen, a file, or a printer.
 
 
 
-    Format Flag Groups:
+    ----------------    Predefined Streams in C++    ----------------
 
-        Group           Flags
-        --------------------------------------
-        basefield       dec, oct, hex
-        adjustfield     left, right, internal
-        floatfield      fixed, scientific
+    Three predefined streams "automatically" opened, when a "C program" begins execution:
+            stdin
+            stdout
+            stderr
+
+    Similarly when a C++ program begins, these four streams are automatically opened:
+
+            cin
+                standard input (keyboard)
+
+            cout
+                standard output (screen)
+
+            cerr
+                standard error (unbuffered, screen)
+
+            clog
+                buffered error output i.e. buffered version of cerr (screen)
+
+
+        Correspondence with C streams:
+            The streams cin, cout, and cerr correspond to C's stdin, stdout, and stderr. 
+            clog is buffered version of cerr.
+
+                cin     <>  stdin
+                cout    <>  stdout
+                cerr    <>  stderr
+                clog:  extra in C++, buffered version of "cerr"
 
 
 
-    skipws:
-        When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) 
-            will be cleared for new input. 
-        When skipws is cleared, whitespace characters are not discarded.	
+    --------    Wide Character Versions    --------
+
+    above cin, cout, cerr, clog are 8-bit (narrow) versions
+        Standard C++ uses char for regular 8-bit characters (ASCII-based)
+        but for non-English languages (like Chinese, Arabic, Bengali, etc.), 8 bits aren’t enough.
+
+    To solve this, C++ provides wide characters using the type "wchar_t", 
+        which typically holds 16-bit or 32-bit characters.
+
+                Narrow (8-bit)      Wide (16/32-bit) 
+
+                cin                 wcin
+                cout                wcout
+                cerr                wcerr
+                clog                wclog
+    
+        These wide streams work with "wchar_t" type instead of "char"
 
 
-    Justification (Alignment): 
-        Default is "right".
-        left, right:    flags make- left and right justified output (e.g., "    10" or "10    ").
-        internal:       Pads the inside of a number, between the sign and the value (e.g., "+   10").
+    Default behavior:
+        These streams use the console (keyboard/screen) by default
+        They can be redirected to files or other devices in the right setup
 
 
-    Number Base
-        dec (Default):  Displays numbers in base 10 (e.g., 255).
-        oct, hex:       produce octal and hexadecimal output respectively. 
+
+
+    --------    <iostream> and Template Classes    --------
+
+    The <iostream> header provides support for C++ input/output.
+        It defines a complex class hierarchy for handling I/O.
+        The I/O classes begin with a "system of template classes". 
+
+    Template classes/ generic classes (will be discussed in next Chapter) :
+        A template class defines the form of a class "without fully specifying the data" upon which it will operate. 
+        Once a template class has been defined, specific instances of it can be created/added.
+
+    C++ creates two versions of its I/O template classes:
+        One for 8-bit (normal) characters
+        One for wide (16-bit) characters
+
+
+
+
+    --------    C++ I/O template Class Hierarchy    --------
+    The C++ I/O system is build upon two related, but different, template class hierarchies. 
+
+    basic_streambuf:
+        Derived from the low-level I/O class.
+        Handles basic, low-level (raw) input/output operations.
+        Forms the foundation of the I/O system.
+        Used in advanced I/O programming.
+
+
+    basic_ios:
+        Most of our work in C++ I/O is based on this class
         
-        To return output to decimal, set the dec flag.
+        This is a high-level I/O class that provides: 
+            Formatting, 
+            Error-checking, and 
+            Stream status info
 
-        showbase: Shows the base prefix (e.g., 0xff for hex, 0377 for oct).
+        basic_ios is used as a base for several derived classes, including : 
+            1: basic_istream    -   Input stream
+            2: basic_ostream    -   Output stream
+            3: basic_iostream   -   Input + Output stream
 
 
-    Boolean Values
-        boolalpha:      Displays true and false as words instead of 1 and 0.
 
 
-    Floating-Point Numbers:
-        scientific:     Uses scientific notation (e.g., 1.5e+10).
-        fixed:          Uses standard decimal notation (e.g., 15000000000.000000).
-        showpoint:      Always shows the decimal point, even for whole numbers (e.g., 10.0 instead of 10).
-        uppercase:      Uses uppercase letters in scientific/hex notation (e.g., 1.5E+10, 0XFF).
+    --------    Character-Based Class Names    --------
 
+    Character-Based Class Names in C++ I/O:
+        C++ uses template classes for I/O, but provides shorter 8-bit versions for regular use.
 
-    Number Sign
-        showpos:        Displays a + sign for positive numbers (e.g., +10 instead of 10).
+            Template Class          8-bit Character-Based
 
+            basic_ios               ios
+            basic_istream           istream
+            basic_ostream           ostream
+            basic_iostream          iostream
+            basic_streambuf         streambuf
+            basic_fstream           fstream
+            basic_ifstream          ifstream
+            basic_ofstream          ofstream
 
 
-
-
-    ----  rev[01-Aug-2025]  ----
-
-
-	By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, setting uppercase flag displays these characters in uppercase.
-
-	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.	
-
-	showpos flag displays "+" before positive values.
-	showpoint flag display ".000000" for all floating-point output-whether needed or not.
-	When neither flag is set, the compiler chooses an appropriate method.
-
-
-	Booleans can be input or output using the keywords true and false, when boolalpha is set.
-
-	unitbuf flushes the buffer after each insertion operation.	
-	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
-	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
-	floatfield: the scientific and fixed fields collectively referenced as floatfield.
-
-
-
------------------------
-
-
-
-
-
-
-Input Behavior
-    skipws: (Default) Ignores leading whitespace (spaces, tabs, newlines) during input.
-
-
-7. Buffer Control
-unitbuf: Flushes the output buffer after every single operation, ensuring data is written immediately.
-
-
-Flag Groups (Bitmask)
-Some flags work together as groups. When you set a group, you clear all other flags in that same group.
-
-basefield: The group for number base (dec, hex, oct).
-adjustfield: The group for justification (left, right, internal).
-floatfield: The group for floating-point notation (scientific, fixed).
-
-
-
------------------------
-
-🧾 C++ Format Flags (like printf() in C)
-C++ streams (like cout) have format flags that control how output looks.
-These flags are part of the ios class and are grouped under an enum called fmtflags.
-
-📌 Format Flag Groups
-Group	Flags
-basefield	dec, oct, hex
-adjustfield	left, right, internal
-floatfield	fixed, scientific
-
-🔹 Flag Descriptions
-Whitespace handling:
-
-skipws (default ON): skips spaces, tabs, newlines during input
-
-Turn it OFF to read whitespace as input
-
-Output alignment (justification):
-
-left → left-justified output
-
-right (default) → right-justified
-
-internal → pads numeric output between sign/base (e.g., - 123)
-
-Number base:
-
-dec → decimal (default)
-
-oct → octal (e.g., 075)
-
-hex → hexadecimal (e.g., 0x1F)
-
-showbase → shows base prefix (e.g., 0x for hex)
-
-Floating-point format:
-
-scientific → outputs in scientific notation (e.g., 1.23e+03)
-
-fixed → disables scientific form, shows normal decimal
-
-showpoint → always shows decimal point (e.g., 5.000000)
-
-Signs and casing:
-
-showpos → shows + sign for positive numbers
-
-uppercase → displays E (not e) in scientific, X in hex
-
-Boolean formatting:
-
-boolalpha → displays true/false instead of 1/0
-
-Buffer behavior:
-
-unitbuf → forces output to flush after every insertion
-
-🧠 Notes:
-Flags can be combined, set, or cleared using stream member functions like setf(), unsetf(), or manipulators like std::hex.
-
-These flags affect how data is displayed or input through streams like cin, cout, etc.
-
-Let me know if you want a code example demonstrating each of these.
-
-
-
------------------------
-
-
-	To set a format flag, use the setf() function which is a member of ios. Its form is:       fmtflags setf (fmtflags flags);
-	This function returns the previous settings of the format flags and turns on those flags specified by flags. (All other flags are unaffected.)  For example, to turn on the showpos flag:
-stream.setf ( ios :: showpos );
-	Here stream is the stream that you wish to affect. 
-	Notice the use of the scope resolution operator (::). Because the format flags are defined within the ios class, you must access their values by using ios and the scope resolution operator. 
-	setf() is a member function of the ios class and affects streams created by that class. 
-	Therefore, any call to setf() is done relative to a specific stream.
-	setf() cannot be called by itself 
-	There is no concept in C++ of global format status. Each stream maintains its own format status information individually.
-	To set more than one flag in a single call to setf(): use "OR" together the values of the flags. For example, this call sets the showbase and hex flags for cout:
-cout.setf( ios :: showbase | ios :: hex );
-	Note: showpos, showbase, hex all are enumerated constants within the ios class. Therefore, it is necessary to tell the compiler this fact by preceding showpos/showbase/hex with the class name "ios" and the scope resolution operator "::". Otherwise showpos/showbase/hex will not be recognized. We must specify  ios::showpos or ios::showbase or ios::hex.
-
-
-
-	The complement of setf() is unsetf().This member function of ios clears one or more format flags. Its prototype form is:
-void unsetf ( fmtflags flags );
-	The flags specified by flags are cleared. (All other flags are unaffected.)
-	To know the current format settings without altering: Use the special member function of ios, flags(), which simply returns the current setting for each format flag. Its prototype is:   fmtflags flags();
-	The flags() also allows to set/reset all format flags associated with a stream to those specified in the argument to flags(). The prototype for this version of flags() is:
-fmtflags flags ( fmtflags f);
-	For this version, the bit pattern found in f is copied to the variable used to hold the format flags associated with the stream, and overwrites all previous flag settings. The function returns the previous settings.
-
-
-
------------------------
-
-🎯 Setting and Managing Format Flags in C++
-🔹 1. Setting Format Flags with setf()
-Syntax:
-
-cpp
-Copy
-Edit
-fmtflags setf(fmtflags flags);
-Purpose: Sets one or more format flags for a specific stream
-
-Returns the previous flag settings
-
-Does not affect flags that are not mentioned
-
-Example:
-
-cpp
-Copy
-Edit
-stream.setf(ios::showpos);  // turns on showpos for the stream
-Important Notes:
-
-setf() must be called on a specific stream like cout, cin, etc.
-
-Flags like showpos, hex are part of the ios class, so you must use ios::flagname
-
-No global format state in C++ — each stream maintains its own format settings
-
-Setting Multiple Flags Together:
-
-cpp
-Copy
-Edit
-cout.setf(ios::showbase | ios::hex);
-🔹 2. Clearing Flags with unsetf()
-Syntax:
-
-cpp
-Copy
-Edit
-void unsetf(fmtflags flags);
-Purpose: Clears (turns off) one or more specified format flags
-
-Other flags remain unchanged
-
-Example:
-
-cpp
-Copy
-Edit
-cout.unsetf(ios::hex);  // turns off hex format
-🔹 3. Reading / Replacing All Format Flags with flags()
-To Read Current Settings:
-
-cpp
-Copy
-Edit
-fmtflags current = stream.flags();
-To Set All Flags at Once:
-
-cpp
-Copy
-Edit
-stream.flags(ios::dec | ios::showpos);  // replaces all existing flags
-Returns: the old settings before the change
-
-✅ Summary:
-Function	Use
-setf()	Set specific format flags
-unsetf()	Clear specific format flags
-flags()	Read or replace all flag bits
-
-Let me know if you'd like a small C++ program using all three (setf, unsetf, flags).
-
-
-
-*/  
-
-
-
-
-
-/* Example 1:    following program shows how to set several flags. 
-
-
-	This program displays: 	1.232300e+02 hello  64 	    a  fffffff6 	+100.000000
-	Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). It does not affect the value 10 when output in hexadecimal. 
-	Also notice the unsetf() call that turns off the dec flag (which is on by default). It is necessary to turn it off when turning on either hex or oct. In general, it is better to set only the number base that you want to use and clear the others.
-
+    Notes:
+        Including <iostream> gives access to the "ios class" and other I/O types.
+        The "ios class" has many built-in member functions and variables to:
+            Control stream behavior
+            Monitor stream status
 
 */
-int main(){
-	cout.unsetf(ios::dec); // not required by all compilers 
-	cout.setf (ios::hex | ios::scientific);
-	cout<< 123.23 << "hello" << 100 <<'\n';	
-cout.setf(ios::showpos );
-cout<< 10 <<' '<< -10 <<'\n';
-cout.setf(ios::showpoint | ios::fixed );
-cout<< 100.0;
-return 0; }
-
-
-
-/* Example 2: The following program illustrates the effect of the uppercase flag. It first enable uppercase, showbase, and hex flags to output: 99 in hexadecimal. Then disables the uppercase.
-int main() { cout.unsetf(ios :: dec );
-	cout.setf(ios::uppercase | ios::showbase | ios::hex);
-	cout << 88 << '\n';	cout.unsetf(ios::uppercase );
-cout << 88 << '\n';
-return 0; }
- */
 
 
 
 
-/* Example3: The following illustrates the showflags() function. Displays which flag is on and which is off. */
+/* Example 1: Wide streams work with wchar_t instead of char. 
+                Following prints a strin g in bengali.
+
+            Notice:
+                L"..." prefix creates a wide-character string literal.
+                "wcout" prints it using wide-character formatting.
+*/
+
+#include <iostream>
+
+int main() {
+    wchar_t wtext[] = L"উইকিপিডিয়া, একটি মুক্ত বিশ্বকোষ";  // Bengali wikipedia
+    std::wcout << L"Wide output: " << wtext << std:: endl;
+    return 0;
+}
 
 
-void showflags(); 								// Declaration of the function
-int main(){	showflags(); 							// first shows default flag settings
-		cout.setf(ios::oct | ios::showbase | ios::fixed ); 	// Changing flags
-		showflags();		// shows changed flag settings
-        			return 0;}
-void showflags(){
-ios::fmtflags f;
-f = cout.flags(); // get flag settings
-if(f & ios :: skipws ) cout <<"skipws on \n";
-else cout << " skipws off \n";
+// some online compiler may rise ERROR, following is the simle fix, just using (char*)
+#include <iostream>
 
-if(f & ios :: left ) cout << " left on\n";
-else cout << " left off \n";
+int main() {
+    char* text = "উইকিপিডিয়া, একটি মুক্ত বিশ্বকোষ";  // UTF-8 without u8 prefix
+    std::cout << text << std::endl;
+    return 0;
+}
 
-if(f & ios :: right ) cout << " right on\n";
-else cout << " right off \n";
-
-if(f& ios :: internal) cout<<"internal on\n";
-else cout << " internal off \n";
-
-if(f & ios :: dec ) cout << "dec on\n";
-else cout << "dec off \n";	if(f & ios :: oct ) cout << "oct on\n";
-else cout << "oct off \n";
-
-if(f & ios :: hex ) cout << "hex on\n";
-else cout << "hex off \n";
-
-if(f&ios:: showbase ) cout<<"showbase on\n";
-else cout << " showbase off \n";
-
-if(f&ios::showpoint) cout<<"showpoint on\n";
-else cout << " showpoint off \n";
-
-if(f& ios :: showpos ) cout << " showpos on\n";
-else cout << " showpos off \n";
-
-if(f&ios::uppercase) cout<<"uppercase on\n";
-else cout << " uppercase off \n";	if(f&ios::scientific) cout << " scientific on\n";
-else cout << " scientific off \n";
-
-if(f & ios :: fixed ) cout << " fixed on\n";
-else cout << " fixed off \n";
-
-if(f & ios :: unitbuf ) cout << " unitbuf on\n";
-else cout << " unitbuf off \n";
-
-if(f & ios :: boolalpha ) cout << " boolalpha on\n";
-else cout << " boolalpha off \n";
-
-cout << "\n"; }
-
-
-// 	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
 
 
