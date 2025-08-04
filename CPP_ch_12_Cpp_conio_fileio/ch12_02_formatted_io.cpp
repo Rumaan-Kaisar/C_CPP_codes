@@ -65,6 +65,10 @@
         showbase: Shows the base prefix (e.g., 0xff for hex, 0377 for oct).
 
 
+    Boolean Values
+        boolalpha:      Displays true and false as words instead of 1 and 0.
+
+
     Floating-Point Numbers:
         scientific:     Uses scientific notation (e.g., 1.5e+10).
         fixed:          Uses standard decimal notation (e.g., 15000000000.000000).
@@ -82,8 +86,8 @@
     ----  rev[01-Aug-2025]  ----
 
 
-	showbase displays the base of numeric values. Eg. for hexadecimal conversion, 1F will be displayed as 0x1F.
 	By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, setting uppercase flag displays these characters in uppercase.
+
 	scientific, fixed: If the scientific flag produce floating-point values using scientific notation. And fixed flag makes scientific-notation disabled, and normal notation returned.	
 
 	showpos flag displays "+" before positive values.
@@ -101,23 +105,14 @@
 
 
 -----------------------
-----  chatGLM  ----
-
-
-Of course. Here is a simplified version of the provided text, organized into a clear and easy-to-understand format.
-
-Simplified Guide to C++ I/O Formatting Flags
-C++ uses formatting flags to control how data is displayed. You can think of them as switches that you can turn on or off to change the output format.
 
 
 
 
-5. Boolean Values
-boolalpha: Displays true and false as words instead of 1 and 0.
 
 
-6. Input Behavior
-skipws: (Default) Ignores leading whitespace (spaces, tabs, newlines) during input.
+Input Behavior
+    skipws: (Default) Ignores leading whitespace (spaces, tabs, newlines) during input.
 
 
 7. Buffer Control
@@ -130,6 +125,8 @@ Some flags work together as groups. When you set a group, you clear all other fl
 basefield: The group for number base (dec, hex, oct).
 adjustfield: The group for justification (left, right, internal).
 floatfield: The group for floating-point notation (scientific, fixed).
+
+
 
 -----------------------
 
