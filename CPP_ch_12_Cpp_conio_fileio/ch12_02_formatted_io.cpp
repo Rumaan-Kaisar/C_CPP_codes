@@ -82,11 +82,13 @@
 
 
 
-    ----  rev[04-Aug-2025]  ----
+    --------  Format Flag Groups  --------
+    Some flags work together as groups. When you set a group, you clear all other flags in that same group.
 
+        basefield:      The group for number base (dec, hex, oct).
+        adjustfield:    The group for justification (left, right, internal).
+        floatfield:     The group for floating-point notation (scientific, fixed).
 
-
-    Format Flag Groups:
 
         Group           Flags
         --------------------------------------
@@ -97,43 +99,26 @@
 
 
 
-	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
-	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
-	floatfield: the scientific and fixed fields collectively referenced as floatfield.
+
+
 
 
 
 -----------------------
 
 
+----  rev[05-Aug-2025]  ----
+----  clear following GPT using rev above  ----
 
 
 
 
-Input Behavior
-    skipws: (Default) Ignores leading whitespace (spaces, tabs, newlines) during input.
 
-
-Flag Groups (Bitmask)
-Some flags work together as groups. When you set a group, you clear all other flags in that same group.
-
-basefield: The group for number base (dec, hex, oct).
-adjustfield: The group for justification (left, right, internal).
-floatfield: The group for floating-point notation (scientific, fixed).
 
 
 
 -----------------------
 
-🧾 C++ Format Flags (like printf() in C)
-C++ streams (like cout) have format flags that control how output looks.
-These flags are part of the ios class and are grouped under an enum called fmtflags.
-
-📌 Format Flag Groups
-Group	Flags
-basefield	dec, oct, hex
-adjustfield	left, right, internal
-floatfield	fixed, scientific
 
 🔹 Flag Descriptions
 Whitespace handling:
