@@ -34,16 +34,6 @@
 
 
 
-    Format Flag Groups:
-
-        Group           Flags
-        --------------------------------------
-        basefield       dec, oct, hex
-        adjustfield     left, right, internal
-        floatfield      fixed, scientific
-
-
-
     skipws:
         When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) 
             will be cleared for new input. 
@@ -86,12 +76,27 @@
         showpos:        Displays a + sign for positive numbers (e.g., +10 instead of 10).
 
 
+    Buffer Control
+        unitbuf:        Flushes the output buffer after each insertion operation.
+                        Ensures data is written immediately.
 
 
 
     ----  rev[04-Aug-2025]  ----
 
-	unitbuf flushes the buffer after each insertion operation.	
+
+
+    Format Flag Groups:
+
+        Group           Flags
+        --------------------------------------
+        basefield       dec, oct, hex
+        adjustfield     left, right, internal
+        floatfield      fixed, scientific
+
+
+
+
 	basefield: the oct, dec, and hex fields can be collectively referred as basefield. 
 	adjustfield: the left, right, and internal fields collectively referred as adjustfield.
 	floatfield: the scientific and fixed fields collectively referenced as floatfield.
@@ -107,10 +112,6 @@
 
 Input Behavior
     skipws: (Default) Ignores leading whitespace (spaces, tabs, newlines) during input.
-
-
-7. Buffer Control
-unitbuf: Flushes the output buffer after every single operation, ensuring data is written immediately.
 
 
 Flag Groups (Bitmask)
