@@ -34,10 +34,11 @@
 
 
 
-    skipws:
-        When the skipws flag is set, whitespace characters (spaces, tabs, and newlines) 
-            will be cleared for new input. 
-        When skipws is cleared, whitespace characters are not discarded.	
+    Whitespace handling:
+        skipws:         When the skipws flag is set, whitespace characters 
+                        (spaces, tabs, and newlines) will be cleared for new input. 
+                        (default ON)
+                        When skipws is cleared, whitespace characters are not discarded.	
 
 
     Justification (Alignment): 
@@ -65,7 +66,7 @@
         scientific:     Uses scientific notation (e.g., 1.5e+10).
         fixed:          Uses standard decimal notation (e.g., 15000000000.000000).
         showpoint:      Always shows the decimal point ".000000", even for whole numbers (e.g., 10.0 instead of 10).
-        uppercase:      Uses uppercase letters in scientific/hex notation (e.g., 1.5E+10, 0XFF).
+        uppercase:      Uses uppercase letters (E, not e) in scientific/hex notation (e.g., 1.5E+10, 0XFF).
 
         By default, the scientific notation "e" and hexadecimal notation "x" is displayed in lowercase, 
         setting uppercase flag displays these characters in uppercase.
@@ -97,19 +98,16 @@
         floatfield      fixed, scientific
 
 
+    Notes:
+        Flags can be combined, set, or cleared using stream member functions like 
+        setf(), unsetf(), or manipulators like std::hex.
 
-
-
-
+        These flags affect how data is displayed or input through streams like cin, cout, etc.
 
 
 
 -----------------------
-
-
-----  rev[05-Aug-2025]  ----
-----  clear following GPT using rev above  ----
-
+----  CP 1  ----
 
 
 
@@ -376,5 +374,6 @@ cout << "\n"; }
 
 
 // 	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
+
 
 
