@@ -106,88 +106,46 @@
 
 
 
------------------------
-----  CP 1  ----
+    ----------------    set a format flag    ----------------
+    setf():
+        To set a format flag, use the setf() function which is a member of ios.
+
+        Its form is:
+                        fmtflags setf (fmtflags flags);
+
+            This function returns the previous settings of the format flags and 
+            turns "on" those flags specified by "flags". (All other flags are unaffected.)  
+
+
+            For example, to turn on the showpos flag:
+
+                        stream.setf( ios :: showpos );
+
+                Here "stream" is the stream that you wish to affect. 
+
+                Notice the use of the scope resolution operator (::). 
+                    Because the format flags are defined within the "ios" class, 
+                    you must access their values by using "ios" and the scope resolution operator. 
 
 
 
 
+----  rev[07-Aug-2025]  ----
 
 
 
------------------------
-
-
-🔹 Flag Descriptions
-Whitespace handling:
-
-skipws (default ON): skips spaces, tabs, newlines during input
-
-Turn it OFF to read whitespace as input
-
-Output alignment (justification):
-
-left → left-justified output
-
-right (default) → right-justified
-
-internal → pads numeric output between sign/base (e.g., - 123)
-
-Number base:
-
-dec → decimal (default)
-
-oct → octal (e.g., 075)
-
-hex → hexadecimal (e.g., 0x1F)
-
-showbase → shows base prefix (e.g., 0x for hex)
-
-Floating-point format:
-
-scientific → outputs in scientific notation (e.g., 1.23e+03)
-
-fixed → disables scientific form, shows normal decimal
-
-showpoint → always shows decimal point (e.g., 5.000000)
-
-Signs and casing:
-
-showpos → shows + sign for positive numbers
-
-uppercase → displays E (not e) in scientific, X in hex
-
-Boolean formatting:
-
-boolalpha → displays true/false instead of 1/0
-
-Buffer behavior:
-
-unitbuf → forces output to flush after every insertion
-
-🧠 Notes:
-Flags can be combined, set, or cleared using stream member functions like setf(), unsetf(), or manipulators like std::hex.
-
-These flags affect how data is displayed or input through streams like cin, cout, etc.
-
-Let me know if you want a code example demonstrating each of these.
-
-
-
------------------------
-
-
-	To set a format flag, use the setf() function which is a member of ios. Its form is:       fmtflags setf (fmtflags flags);
-	This function returns the previous settings of the format flags and turns on those flags specified by flags. (All other flags are unaffected.)  For example, to turn on the showpos flag:
-stream.setf ( ios :: showpos );
-	Here stream is the stream that you wish to affect. 
-	Notice the use of the scope resolution operator (::). Because the format flags are defined within the ios class, you must access their values by using ios and the scope resolution operator. 
 	setf() is a member function of the ios class and affects streams created by that class. 
 	Therefore, any call to setf() is done relative to a specific stream.
 	setf() cannot be called by itself 
 	There is no concept in C++ of global format status. Each stream maintains its own format status information individually.
+
+
+
 	To set more than one flag in a single call to setf(): use "OR" together the values of the flags. For example, this call sets the showbase and hex flags for cout:
 cout.setf( ios :: showbase | ios :: hex );
+
+
+
 	Note: showpos, showbase, hex all are enumerated constants within the ios class. Therefore, it is necessary to tell the compiler this fact by preceding showpos/showbase/hex with the class name "ios" and the scope resolution operator "::". Otherwise showpos/showbase/hex will not be recognized. We must specify  ios::showpos or ios::showbase or ios::hex.
 
 
@@ -195,6 +153,9 @@ cout.setf( ios :: showbase | ios :: hex );
 	The complement of setf() is unsetf().This member function of ios clears one or more format flags. Its prototype form is:
 void unsetf ( fmtflags flags );
 	The flags specified by flags are cleared. (All other flags are unaffected.)
+
+
+
 	To know the current format settings without altering: Use the special member function of ios, flags(), which simply returns the current setting for each format flag. Its prototype is:   fmtflags flags();
 	The flags() also allows to set/reset all format flags associated with a stream to those specified in the argument to flags(). The prototype for this version of flags() is:
 fmtflags flags ( fmtflags f);
@@ -374,6 +335,5 @@ cout << "\n"; }
 
 
 // 	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
-
 
 
