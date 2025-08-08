@@ -130,23 +130,26 @@
                     you must access their values by using "ios" and the scope resolution operator. 
 
 
-        setf() is a member function of the "ios" class and affects streams created by that class. 
-            Therefore, any call to setf() is done relative to a specific stream.
-            setf() cannot be called by itself 
-
+        Notes:
+            setf() must be called on a specific stream like cout, cin, etc.
+            Flags like showpos, showbase, hex are part of the "ios" class, so you must use ios::flagname
+                Otherwise showpos/showbase/hex will not be recognized. 
+                We must specify  ios::showpos or ios::showbase or ios::hex.
+            
             There is no concept in C++ of global format status. 
             Each stream maintains its own format status information individually.
 
 
 
+    Setting Multiple Flags Together:
+        in a single call to setf() use "OR" together the values of the flags. 
+        For example, this call sets the showbase and hex flags for cout:
+        
+                    cout.setf(  ios::showbase | ios::hex );
+
+
+
 ----  rev[08-Aug-2025]  ----
-
-	To set more than one flag in a single call to setf(): use "OR" together the values of the flags. For example, this call sets the showbase and hex flags for cout:
-cout.setf( ios :: showbase | ios :: hex );
-
-
-
-	Note: showpos, showbase, hex all are enumerated constants within the ios class. Therefore, it is necessary to tell the compiler this fact by preceding showpos/showbase/hex with the class name "ios" and the scope resolution operator "::". Otherwise showpos/showbase/hex will not be recognized. We must specify  ios::showpos or ios::showbase or ios::hex.
 
 
 
@@ -165,20 +168,13 @@ fmtflags flags ( fmtflags f);
 
 -----------------------
 
-Important Notes:
 
-setf() must be called on a specific stream like cout, cin, etc.
 
-Flags like showpos, hex are part of the ios class, so you must use ios::flagname
 
-No global format state in C++ — each stream maintains its own format settings
 
-Setting Multiple Flags Together:
 
-cpp
-Copy
-Edit
-cout.setf(ios::showbase | ios::hex);
+
+
 🔹 2. Clearing Flags with unsetf()
 Syntax:
 
