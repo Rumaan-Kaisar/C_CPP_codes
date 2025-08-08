@@ -111,15 +111,17 @@
         To set a format flag, use the setf() function which is a member of ios.
 
         Its form is:
-                        fmtflags setf (fmtflags flags);
+                        fmtflags setf( fmtflags flags );
 
+            Sets one or more format flags for a specific stream
             This function returns the previous settings of the format flags and 
-            turns "on" those flags specified by "flags". (All other flags are unaffected.)  
+            turns "on" those flags specified by "flags". 
+            (All other flags are unaffected. Does not affect flags that are not mentioned)  
 
 
             For example, to turn on the showpos flag:
 
-                        stream.setf( ios :: showpos );
+                        stream.setf( ios :: showpos );  // turns on showpos for the stream
 
                 Here "stream" is the stream that you wish to affect. 
 
@@ -128,18 +130,16 @@
                     you must access their values by using "ios" and the scope resolution operator. 
 
 
+        setf() is a member function of the "ios" class and affects streams created by that class. 
+            Therefore, any call to setf() is done relative to a specific stream.
+            setf() cannot be called by itself 
+
+            There is no concept in C++ of global format status. 
+            Each stream maintains its own format status information individually.
 
 
-----  rev[07-Aug-2025]  ----
 
-
-
-	setf() is a member function of the ios class and affects streams created by that class. 
-	Therefore, any call to setf() is done relative to a specific stream.
-	setf() cannot be called by itself 
-	There is no concept in C++ of global format status. Each stream maintains its own format status information individually.
-
-
+----  rev[08-Aug-2025]  ----
 
 	To set more than one flag in a single call to setf(): use "OR" together the values of the flags. For example, this call sets the showbase and hex flags for cout:
 cout.setf( ios :: showbase | ios :: hex );
@@ -165,26 +165,6 @@ fmtflags flags ( fmtflags f);
 
 -----------------------
 
-🎯 Setting and Managing Format Flags in C++
-🔹 1. Setting Format Flags with setf()
-Syntax:
-
-cpp
-Copy
-Edit
-fmtflags setf(fmtflags flags);
-Purpose: Sets one or more format flags for a specific stream
-
-Returns the previous flag settings
-
-Does not affect flags that are not mentioned
-
-Example:
-
-cpp
-Copy
-Edit
-stream.setf(ios::showpos);  // turns on showpos for the stream
 Important Notes:
 
 setf() must be called on a specific stream like cout, cin, etc.
