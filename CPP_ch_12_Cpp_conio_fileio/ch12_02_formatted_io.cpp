@@ -5,6 +5,13 @@
         as we did before with  C's printf() function
 
 
+        Format flags control things like:
+            How numbers are displayed (decimal, hexadecimal, scientific notation, etc.)
+            Text alignment (left or right)
+            Whether to show signs (+ or -) for positive numbers
+            Precision, filling characters, uppercase/lowercase, etc.
+
+
     C++ Format Flags (like printf in C):
         C++ streams (like 'cout') have "format flags" that control how output looks.
         You can think of them as switches that you can turn 'on' or 'off' to change the output format.
@@ -106,7 +113,7 @@
 
 
 
-    ----------------    set a format flag    ----------------
+    ----------------    set a format flag : setf()    ----------------
     setf():
         To set a format flag, use the setf() function which is a member of ios.
 
@@ -149,77 +156,52 @@
 
 
 
-----  rev[08-Aug-2025]  ----
 
+    ----------------    clearing format flags : unsetf()    ----------------
+    unsetf():
+        The complement of setf() is unsetf().
+        This member function of ios clears one or more format flags. Its prototype form is:
 
+                        void unsetf( fmtflags flags );
 
-	The complement of setf() is unsetf().This member function of ios clears one or more format flags. Its prototype form is:
-void unsetf ( fmtflags flags );
-	The flags specified by flags are cleared. (All other flags are unaffected.)
+            The flags specified by "flags" are cleared. (All other flags are unaffected.)
 
-
-
-	To know the current format settings without altering: Use the special member function of ios, flags(), which simply returns the current setting for each format flag. Its prototype is:   fmtflags flags();
-	The flags() also allows to set/reset all format flags associated with a stream to those specified in the argument to flags(). The prototype for this version of flags() is:
-fmtflags flags ( fmtflags f);
-	For this version, the bit pattern found in f is copied to the variable used to hold the format flags associated with the stream, and overwrites all previous flag settings. The function returns the previous settings.
-
-
-
------------------------
+        Example:
+            cout.unsetf(ios::hex);      // turns off hex format
 
 
 
 
+    --------  current format settings & set/reset  --------
+    flags():
+        use flags() to know the current format settings without altering
+        Its a special member function of ios, its prototype is:   
+
+                        fmtflags flags();
+
+        set/reset ability:
+            The flags() also allows to set/reset all format flags associated with 
+                a stream to those specified in the argument to flags(). 
+            The prototype for this version of flags() is:
+
+                        fmtflags flags( fmtflags f);
+
+                For this version, the bit pattern found in "f" is copied to the variable used to hold the format flags 
+                    associated with the stream, and overwrites all previous flag settings. 
+                The function returns the previous settings.
 
 
+        To Read Current Settings:
+                        fmtflags current = stream.flags();
 
+        To Set All Flags at Once:
+                        stream.flags(ios::dec | ios::showpos);  // replaces all existing flags
 
-🔹 2. Clearing Flags with unsetf()
-Syntax:
-
-cpp
-Copy
-Edit
-void unsetf(fmtflags flags);
-Purpose: Clears (turns off) one or more specified format flags
-
-Other flags remain unchanged
-
-Example:
-
-cpp
-Copy
-Edit
-cout.unsetf(ios::hex);  // turns off hex format
-🔹 3. Reading / Replacing All Format Flags with flags()
-To Read Current Settings:
-
-cpp
-Copy
-Edit
-fmtflags current = stream.flags();
-To Set All Flags at Once:
-
-cpp
-Copy
-Edit
-stream.flags(ios::dec | ios::showpos);  // replaces all existing flags
-Returns: the old settings before the change
-
-✅ Summary:
-Function	Use
-setf()	Set specific format flags
-unsetf()	Clear specific format flags
-flags()	Read or replace all flag bits
-
-Let me know if you'd like a small C++ program using all three (setf, unsetf, flags).
-
-
-
+        Returns: the old settings before the change
 */  
 
 
+// ----  rev[11-Aug-2025]  ----
 
 
 
