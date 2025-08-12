@@ -201,16 +201,11 @@
 */  
 
 
-// ----  rev[11-Aug-2025]  ----
+// ----  rev[12-Aug-2025]  ----
 
 
 
-/* Example 1:    following program shows how to set several flags. 
-
-
-	This program displays: 	1.232300e+02 hello  64 	    a  fffffff6 	+100.000000
-	Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). It does not affect the value 10 when output in hexadecimal. 
-	Also notice the unsetf() call that turns off the dec flag (which is on by default). It is necessary to turn it off when turning on either hex or oct. In general, it is better to set only the number base that you want to use and clear the others.
+/* Example 1:    
 
 
 */
@@ -297,7 +292,23 @@ cout << "\n"; }
 
 
 
-/* Example 1: Here is an example that shows how to set several of the format flags: */
+/* Example 1: Following program shows how to set several flags. 
+
+
+This program displays: 
+    1.232300e+02    hello   64      a  fffffff6     +100.000000
+
+Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
+    It does not affect the value 10 when output in hexadecimal. 
+
+Also notice the unsetf() call that turns off the dec flag (which is on by default). 
+It is necessary to turn it off when turning on either hex or oct. 
+
+In general, it is better to set only the number base that you want to use and clear the others.
+
+
+
+*/
 
 
 # include <iostream >
