@@ -292,6 +292,233 @@ else cout << " boolalpha off \n";
 cout << "\n"; }
 
 
-// 	Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
+// Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
+
+
+
+
+/* Example 1: Here is an example that shows how to set several of the format flags: */
+
+
+# include <iostream >
+using namespace std ;
+int main ()
+{
+// display using default settings
+cout << 123.23 << " hello " << 100 << ’\n’;
+cout << 10 << ’ ’ << -10 << ’\n’;
+cout << 100.0 << "\n\n";
+// now , change formats
+cout . unsetf ( ios :: dec ); // not required by all compilers
+cout . setf ( ios :: hex | ios :: scientific );
+cout << 123.23 << " hello " << 100 << ’\n’;
+cout . setf ( ios :: showpos );
+cout << 10 << ’ ’ << -10 << ’\n’;
+cout . setf ( ios :: showpoint | ios :: fixed );
+cout << 100.0;
+return 0;
+}
+This program displays the following output:
+123.23 hello 100
+10 -10
+100
+1.232300e+02 hello 64
+a fffffff6
+211TEACH YOURSELF
+C++
++100.000000
+Notice that the showpos flag affects only decimal output. It does not affect the value
+10 when output in hexadecimal. Also notice the unsetf() call that turns off the dec flag
+(which is on by default). This call is not needed for all compilers. But for some compilers,
+the dec flag overrides the other flags, so it is necessary to turn it off when turning on
+either hex or oct. In general, for maximum portability, it is better to set only the number
+base that you want to use and clear the others.
+
+
+
+
+Example 1: The following program illustrates the effect of the uppercase flag. It first sets the uppercase, showbase, and hex flags. It then outputs 99 in hexadecimal. In this case, the
+X used in the hexadecimal notation is uppercase. Next, it clears the uppercase flag by
+using unsetf() and again outputs 88 in hexadecimal. This time, the x is lowercase.
+# include <iostream >
+using namespace std ;
+int main ()
+{
+cout . unsetf ( ios :: dec );
+cout . setf ( ios :: uppercase | ios :: showbase | ios :: hex );
+cout << 88 << ’\n’;
+cout . unsetf ( ios :: uppercase );
+cout << 88 << ’\n’;
+return 0;
+}
+
+
+
+
+Example 1: The following program uses flags() to display the settings of the format flags relative to
+cout. Pay special attention to the showflags() function. You might find it useful in
+programs you write.
+# include <iostream >
+using namespace std ;
+void showflags ();
+int main ()
+{
+// show default condition of format flags
+showflags ();
+cout . setf ( ios :: oct | ios :: showbase | ios :: fixed );
+showflags ();
+return 0;
+}
+// This function displays the status of the format flags .
+void showflags ()
+212INTRODUCING THE C++ I/O SYSTEM
+8.2. FORMATTED I/O
+{
+ios :: fmtflags f;
+f = cout . flags (); // get flag settings
+if(f & ios :: skipws )
+cout << " skipws on\n";
+else
+cout << " skipws off \n";
+if(f & ios :: left )
+cout << " left on\n";
+else
+cout << " left off \n";
+if(f & ios :: right )
+cout << " right on\n";
+else
+cout << " right off \n";
+if(f & ios :: internal )
+cout << " internal on\n";
+else
+cout << " internal off \n";
+if(f & ios :: dec )
+cout << " dec on\n";
+else
+cout << " dec off \n";
+if(f & ios :: oct )
+cout << " oct on\n";
+else
+cout << " oct off \n";
+if(f & ios :: hex )
+cout << " hex on\n";
+else
+cout << " hex off \n";
+if(f & ios :: showbase )
+cout << " showbase on\n";
+else
+cout << " showbase off \n";
+if(f & ios :: showpoint )
+cout << " showpoint on\n";
+else
+cout << " showpoint off \n";
+if(f & ios :: showpos )
+213TEACH YOURSELF
+C++
+cout << " showpos on\n";
+else
+cout << " showpos off \n";
+if(f & ios :: uppercase )
+cout << " uppercase on\n";
+else
+cout << " uppercase off \n";
+if(f & ios :: scientific )
+cout << " scientific on\n";
+else
+cout << " scientific off \n";
+if(f & ios :: fixed )
+cout << " fixed on\n";
+else
+cout << " fixed off \n";
+if(f & ios :: unitbuf )
+cout << " unitbuf on\n";
+else
+cout << " unitbuf off \n";
+if(f & ios :: boolalpha )
+cout << " boolalpha on\n";
+else
+cout << " boolalpha off \n";
+cout << "\n";
+}
+Inside showflags(), the local variable f is declared to be of type fmtflags. If your
+compiler does not define fmtflags, declare this variable as long instead. The output from
+the program is shown here:
+skipws on
+left off
+right off
+internal off
+dec on
+oct off
+hex off
+showbase off
+showpoint off
+showpos off
+uppercase off
+scientific off
+214INTRODUCING THE C++ I/O SYSTEM
+8.2. FORMATTED I/O
+fixed off
+unitbuf off
+boolalpha off
+skipws on
+left off
+right off
+internal off
+dec on
+oct on
+hex off
+showbase on
+showpoint off
+showpos off
+uppercase off
+scientific off
+fixed on
+unitbuf off
+boolalpha off
+
+
+
+
+Example 1: The next program illustrates the second version of flags(). It first constructs a flag mask
+that turns on showpos, showbase, oct, and right. It then uses flags() to set the flag
+variable associated with cout to these settings. The function showflags() verifies that
+the flags are set as indicated. (This is the same function used in the previous program.)
+# include <iostream >
+using namespace std ;
+void showflags ();
+int main ()
+{
+// show default condition of format flags
+showflags ();
+// showpos , showbase , oct , right are on , others off
+ios :: fmtflags f = ios :: showpos | ios :: showbase | ios :: oct
+| ios :: right ;
+cout . flags (f); // set flags
+showflags ();
+return 0;
+}
+215TEACH YOURSELF
+C++
+EXERCISES
+
+
+
+
+Example 1: Write a program that sets cout’s flags so that integers display a + sign when positive
+values are displayed. Demonstrate that you have set the format flags correctly.
+
+
+
+
+Example 1: Write a program that sets cout’s flags so that the decimal point is always shown when
+floating-point values are displayed. Also, display all floating-point values in scientific
+notation with an uppercase E.
+
+
+
+
+Example 1: Write a program that saves the current state of the format flags, sets showbase and hex,
+and displays the value 100. Then reset the flags to their previous values
+
 
 
