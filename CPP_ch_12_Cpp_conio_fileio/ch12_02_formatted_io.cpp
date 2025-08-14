@@ -205,19 +205,7 @@
 
 
 
-/* Example 1:    
 
-
-*/
-int main(){
-	cout.unsetf(ios::dec); // not required by all compilers 
-	cout.setf (ios::hex | ios::scientific);
-	cout<< 123.23 << "hello" << 100 <<'\n';	
-cout.setf(ios::showpos );
-cout<< 10 <<' '<< -10 <<'\n';
-cout.setf(ios::showpoint | ios::fixed );
-cout<< 100.0;
-return 0; }
 
 
 
@@ -294,41 +282,61 @@ cout << "\n"; }
 
 /* Example 1: Following program shows how to set several flags. 
 
+                This program displays: 
+                    1.232300e+02    hello   64      a  fffffff6     +100.000000
 
-This program displays: 
-    1.232300e+02    hello   64      a  fffffff6     +100.000000
+                Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
+                    It does not affect the value 10 when output in hexadecimal. 
 
-Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
-    It does not affect the value 10 when output in hexadecimal. 
+                Also notice the unsetf() call that turns off the dec flag (which is on by default). 
+                    It is necessary to turn it off when turning on either hex or oct. 
 
-Also notice the unsetf() call that turns off the dec flag (which is on by default). 
-It is necessary to turn it off when turning on either hex or oct. 
-
-In general, it is better to set only the number base that you want to use and clear the others.
-
+                In general, it is better to set only the number base that you want to use and clear the others.
 
 
+showpos affects only decimal output
+
+Example: +100 in decimal
+
+No effect on hexadecimal or octal output.
+
+dec flag is ON by default
+
+In some compilers, dec can override hex or oct.
+
+For portability, clear the unwanted base flag before setting a new one.
+
+Good practice:
+
+Always set the base you want (dec, hex, oct)
+
+Always unset the others to avoid conflicts.
 */
 
+#include <iostream>
 
-# include <iostream >
-using namespace std ;
-int main ()
-{
-// display using default settings
-cout << 123.23 << " hello " << 100 << ’\n’;
-cout << 10 << ’ ’ << -10 << ’\n’;
-cout << 100.0 << "\n\n";
-// now , change formats
-cout . unsetf ( ios :: dec ); // not required by all compilers
-cout . setf ( ios :: hex | ios :: scientific );
-cout << 123.23 << " hello " << 100 << ’\n’;
-cout . setf ( ios :: showpos );
-cout << 10 << ’ ’ << -10 << ’\n’;
-cout . setf ( ios :: showpoint | ios :: fixed );
-cout << 100.0;
-return 0;
+int main(){
+    // display using default settings
+    std::cout << 123.23 << " hello " << 100 << '\n';
+    std::cout << 10 << ' ' << -10 << '\n';
+    std::cout << 100.0 << "\n\n";
+
+    // now , change formats
+    cout.unsetf( ios :: dec ); // not required by all compilers
+
+    cout.setf( ios :: hex | ios :: scientific );
+    cout << 123.23 << " hello " << 100 << '\n';
+
+    cout.setf ( ios :: showpos );
+    cout << 10 << ' ' << -10 << '\n';
+
+    cout.setf ( ios :: showpoint | ios :: fixed );
+    cout << 100.0;
+
+    return 0;
 }
+
+
 This program displays the following output:
 123.23 hello 100
 10 -10
@@ -338,6 +346,8 @@ a fffffff6
 211TEACH YOURSELF
 C++
 +100.000000
+
+
 Notice that the showpos flag affects only decimal output. It does not affect the value
 10 when output in hexadecimal. Also notice the unsetf() call that turns off the dec flag
 (which is on by default). This call is not needed for all compilers. But for some compilers,
@@ -357,9 +367,9 @@ int main ()
 {
 cout . unsetf ( ios :: dec );
 cout . setf ( ios :: uppercase | ios :: showbase | ios :: hex );
-cout << 88 << ’\n’;
+cout << 88 << '\n';
 cout . unsetf ( ios :: uppercase );
-cout << 88 << ’\n’;
+cout << 88 << '\n';
 return 0;
 }
 
@@ -515,13 +525,13 @@ EXERCISES
 
 
 
-Example 1: Write a program that sets cout’s flags so that integers display a + sign when positive
+Example 1: Write a program that sets cout's flags so that integers display a + sign when positive
 values are displayed. Demonstrate that you have set the format flags correctly.
 
 
 
 
-Example 1: Write a program that sets cout’s flags so that the decimal point is always shown when
+Example 1: Write a program that sets cout's flags so that the decimal point is always shown when
 floating-point values are displayed. Also, display all floating-point values in scientific
 notation with an uppercase E.
 
