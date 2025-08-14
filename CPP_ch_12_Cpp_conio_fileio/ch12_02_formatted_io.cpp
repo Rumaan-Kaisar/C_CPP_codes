@@ -19,6 +19,7 @@
 
 
     These values are used to set or clear the format flags and are defined within ios.
+    Note: "ios" is in the "std" namespace, so you have to use std::ios to acces these
 
         adjustfield
         basefield
@@ -201,9 +202,151 @@
 */  
 
 
-// ----  rev[12-Aug-2025]  ----
+// ----  rev[14-Aug-2025]  ----
 
 
+
+/* Example 1: Following program shows how to set several flags. 
+
+                This program displays: 
+                    1.232300e+02    hello   64      a  fffffff6     +100.000000
+
+                Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
+                    It does not affect the value 10 when output in hexadecimal. 
+
+                Also notice the unsetf() call that turns off the dec flag (which is on by default). 
+                    It is necessary to turn it off when turning on either hex or oct. 
+
+                In general, it is better to set only the number base that you want to use and clear the others.
+
+
+showpos affects only decimal output
+
+Example: +100 in decimal
+
+No effect on hexadecimal or octal output.
+
+dec flag is ON by default
+
+In some compilers, dec can override hex or oct.
+
+For portability, clear the unwanted base flag before setting a new one.
+
+Good practice:
+
+Always set the base you want (dec, hex, oct)
+
+Always unset the others to avoid conflicts.
+*/
+
+#include <iostream>
+
+int main(){
+    // display using default settings
+    std::cout << 123.23 << " hello " << 100 << '\n';
+    std::cout << 10 << ' ' << -10 << '\n';
+    std::cout << 100.0 << "\n\n";
+
+    // now , change formats
+    std::cout.unsetf( std::ios::dec ); // not required by all compilers
+
+    std::cout.setf( std::ios::hex | std::ios::scientific );
+    std::cout << 123.23 << " hello " << 100 << '\n';
+
+    std::cout.setf ( std::ios::showpos );
+    std::cout << 10 << ' ' << -10 << '\n';
+
+    std::cout.setf ( std::ios::showpoint | std::ios::fixed );
+    std::cout << 100.0;
+
+    return 0;
+}
+
+
+This program displays the following output:
+
+123.23 hello 100
+10 -10
+100
+
+1.232300e+02 hello 64
+a fffffff6
++0x1.9p+6
+
+
+1.232300e+02 hello 64
+a fffffff6
++100.000000
+
+
+Notice that the showpos flag affects only decimal output. It does not affect the value
+10 when output in hexadecimal. Also notice the unsetf() call that turns off the dec flag
+(which is on by default). This call is not needed for all compilers. But for some compilers,
+the dec flag overrides the other flags, so it is necessary to turn it off when turning on
+either hex or oct. In general, for maximum portability, it is better to set only the number
+base that you want to use and clear the others.
+
+
+// GPT explanation:
+
+in the last output, why its not showing "+100.000000 "  instead it shwowing "+0x1.9p+6"?
+ChatGPT said:
+
+That last output is in hexadecimal floating-point notation, which explains the +0x1.9p+6 instead of +100.000000.
+
+Why this happens
+
+In your code, you call:
+
+std::cout.setf(std::ios::hex | std::ios::scientific);
+
+
+This sets hexadecimal integer output (std::ios::hex) and scientific notation for floating-point numbers.
+
+Later you do:
+
+std::cout.setf(std::ios::showpoint | std::ios::fixed);
+
+
+But you never cleared the std::ios::hex flag for floating-point output.
+In C++, std::ios::hex affects both integer and floating-point formatting (in the latter case, it triggers C++11’s hexfloat style).
+
+What +0x1.9p+6 means
+
+This is the hexadecimal floating-point representation of 100.0:
+
+0x1.9 → significand in hex (1.5625 in decimal)
+
+p+6 → multiply by 2^6 (which is 64)
+
+1.5625 × 64 = 100.0
+
+How to fix it
+
+Before setting fixed-point format, clear the hex flag:
+
+std::cout.unsetf(std::ios::hex);          // Clear hex mode
+std::cout.setf(std::ios::showpoint | std::ios::fixed);
+std::cout << 100.0;
+
+Corrected section:
+// Showpoint + fixed, after clearing hex mode
+std::cout.unsetf(std::ios::hex);
+std::cout.setf(std::ios::showpoint | std::ios::fixed);
+std::cout << 100.0;
+
+Best practice:
+
+When switching bases or float formats:
+
+Unset std::ios::dec, std::ios::hex, std::ios::oct if changing number base.
+
+Unset std::ios::scientific or std::ios::fixed before switching float formats.
+
+If you want, I can rewrite your program to cleanly reset and set flags so it behaves consistently across all compilers.
+
+
+// ------------------------------------------------------------
 
 
 
@@ -280,80 +423,6 @@ cout << "\n"; }
 
 
 
-/* Example 1: Following program shows how to set several flags. 
-
-                This program displays: 
-                    1.232300e+02    hello   64      a  fffffff6     +100.000000
-
-                Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
-                    It does not affect the value 10 when output in hexadecimal. 
-
-                Also notice the unsetf() call that turns off the dec flag (which is on by default). 
-                    It is necessary to turn it off when turning on either hex or oct. 
-
-                In general, it is better to set only the number base that you want to use and clear the others.
-
-
-showpos affects only decimal output
-
-Example: +100 in decimal
-
-No effect on hexadecimal or octal output.
-
-dec flag is ON by default
-
-In some compilers, dec can override hex or oct.
-
-For portability, clear the unwanted base flag before setting a new one.
-
-Good practice:
-
-Always set the base you want (dec, hex, oct)
-
-Always unset the others to avoid conflicts.
-*/
-
-#include <iostream>
-
-int main(){
-    // display using default settings
-    std::cout << 123.23 << " hello " << 100 << '\n';
-    std::cout << 10 << ' ' << -10 << '\n';
-    std::cout << 100.0 << "\n\n";
-
-    // now , change formats
-    cout.unsetf( ios :: dec ); // not required by all compilers
-
-    cout.setf( ios :: hex | ios :: scientific );
-    cout << 123.23 << " hello " << 100 << '\n';
-
-    cout.setf ( ios :: showpos );
-    cout << 10 << ' ' << -10 << '\n';
-
-    cout.setf ( ios :: showpoint | ios :: fixed );
-    cout << 100.0;
-
-    return 0;
-}
-
-
-This program displays the following output:
-123.23 hello 100
-10 -10
-100
-1.232300e+02 hello 64
-a fffffff6
-211TEACH YOURSELF
-C++
-+100.000000
-
-
-Notice that the showpos flag affects only decimal output. It does not affect the value
-10 when output in hexadecimal. Also notice the unsetf() call that turns off the dec flag
-(which is on by default). This call is not needed for all compilers. But for some compilers,
-the dec flag overrides the other flags, so it is necessary to turn it off when turning on
-either hex or oct. In general, for maximum portability, it is better to set only the number
-base that you want to use and clear the others.
 
 
 
