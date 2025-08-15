@@ -427,9 +427,9 @@ cout << "\n"; }
 
 
 
-Example 2: The following program illustrates the effect of the uppercase flag. It first sets the uppercase, showbase, and hex flags. It then outputs 99 in hexadecimal. In this case, the
+/* Example 2: The following program illustrates the effect of the uppercase flag. It first sets the uppercase, showbase, and hex flags. It then outputs 99 in hexadecimal. In this case, the
 X used in the hexadecimal notation is uppercase. Next, it clears the uppercase flag by
-using unsetf() and again outputs 88 in hexadecimal. This time, the x is lowercase.
+using unsetf() and again outputs 88 in hexadecimal. This time, the x is lowercase. */
 # include <iostream >
 using namespace std ;
 int main ()
@@ -445,8 +445,8 @@ return 0;
 
 
 
-Example 3: The following program uses flags() to display the settings of the format flags relative to
-cout. Pay special attention to the showflags() function. You might find it useful in
+/* Example 3: The following program uses flags() to display the settings of the format flags relative to
+cout. Pay special attention to the showflags() function. You might find it useful in */
 programs you write.
 # include <iostream >
 using namespace std ;
@@ -569,10 +569,10 @@ boolalpha off
 
 
 
-Example 4: The next program illustrates the second version of flags(). It first constructs a flag mask
+/* Example 4: The next program illustrates the second version of flags(). It first constructs a flag mask
 that turns on showpos, showbase, oct, and right. It then uses flags() to set the flag
 variable associated with cout to these settings. The function showflags() verifies that
-the flags are set as indicated. (This is the same function used in the previous program.)
+the flags are set as indicated. (This is the same function used in the previous program.) */
 # include <iostream >
 using namespace std ;
 void showflags ();
@@ -592,8 +592,8 @@ return 0;
 
 
 
-Example 5: Write a program that sets cout's flags so that integers display a + sign when positive
-values are displayed. Demonstrate that you have set the format flags correctly.
+/* Example 5: Write a program that sets cout's flags so that integers display a + sign when positive
+values are displayed. Demonstrate that you have set the format flags correctly. */
 
 # include <iostream >
 using namespace std ;
@@ -607,8 +607,8 @@ return 0;
 
 
 
-Example 6: Write a program that sets cout's flags so that the decimal point is always shown when
-floating-point values are displayed. Also, display all floating-point values in scientific
+/* Example 6: Write a program that sets cout's flags so that the decimal point is always shown when
+floating-point values are displayed. Also, display all floating-point values in scientific */
 notation with an uppercase E.
 
 # include <iostream >
@@ -623,8 +623,8 @@ return 0;
 
 
 
-Example 7: Write a program that saves the current state of the format flags, sets showbase and hex,
-and displays the value 100. Then reset the flags to their previous values
+/* Example 7: Write a program that saves the current state of the format flags, sets showbase and hex,
+and displays the value 100. Then reset the flags to their previous values */
 
 # include <iostream >
 using namespace std ;
