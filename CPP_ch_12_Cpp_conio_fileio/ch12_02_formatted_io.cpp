@@ -587,15 +587,22 @@ cout . flags (f); // set flags
 showflags ();
 return 0;
 }
-215TEACH YOURSELF
-C++
-EXERCISES
+
 
 
 
 
 Example 5: Write a program that sets cout's flags so that integers display a + sign when positive
 values are displayed. Demonstrate that you have set the format flags correctly.
+
+# include <iostream >
+using namespace std ;
+int main ()
+{
+cout . setf ( ios :: showpos );
+cout << -10 << ’ ’ << 10 << ’\n’;
+return 0;
+}
 
 
 
@@ -604,11 +611,31 @@ Example 6: Write a program that sets cout's flags so that the decimal point is a
 floating-point values are displayed. Also, display all floating-point values in scientific
 notation with an uppercase E.
 
+# include <iostream >
+using namespace std ;
+int main ()
+{
+cout . setf ( ios :: showpoint | ios :: uppercase |
+ios :: scientific );
+cout << 100.0;
+return 0;
+}
 
 
 
 Example 7: Write a program that saves the current state of the format flags, sets showbase and hex,
 and displays the value 100. Then reset the flags to their previous values
 
-
+# include <iostream >
+using namespace std ;
+int main ()
+{
+ios :: fmtflags f;
+f = cout . flags (); // store flags
+cout . unsetf ( ios :: dec );
+cout . setf ( ios :: showbase | ios :: hex );
+cout << 100 << ’\n’;
+cout . flags (f); // reset flags
+return 0;
+}
 
