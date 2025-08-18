@@ -212,31 +212,20 @@
                     1.232300e+02    hello   64      a  fffffff6     +100.000000
 
                 Here showpos flag affects only decimal output (i.e. a  fffffff6 is unaffected). 
-                    It does not affect the value 10 when output in hexadecimal. 
+                    It does not affect the value 10 when output in Hexadecimal or Octal. 
 
-                Also notice the unsetf() call that turns off the dec flag (which is on by default). 
+                Also notice the unsetf() call that turns off the "dec" flag (which is on by default). 
                     It is necessary to turn it off when turning on either hex or oct. 
 
                 In general, it is better to set only the number base that you want to use and clear the others.
 
 
-showpos affects only decimal output
+                In some compilers, dec can override hex or oct.
+                For portability, clear the unwanted base flag before setting a new one.
 
-Example: +100 in decimal
-
-No effect on hexadecimal or octal output.
-
-dec flag is ON by default
-
-In some compilers, dec can override hex or oct.
-
-For portability, clear the unwanted base flag before setting a new one.
-
-Good practice:
-
-Always set the base you want (dec, hex, oct)
-
-Always unset the others to avoid conflicts.
+                Good practice:
+                    Always set the base you want (dec, hex, oct)
+                    Always unset the others to avoid conflicts.
 */
 
 #include <iostream>
@@ -263,20 +252,18 @@ int main(){
 }
 
 
-This program displays the following output:
+/*  This program displays the following output:
 
-123.23 hello 100
-10 -10
-100
+    123.23 hello 100
+    10 -10
+    100
 
-1.232300e+02 hello 64
-a fffffff6
-+0x1.9p+6
+    1.232300e+02 hello 64
+    a fffffff6
+    +0x1.9p+6
+*/
 
 
-1.232300e+02 hello 64
-a fffffff6
-+100.000000
 
 
 Notice that the showpos flag affects only decimal output. It does not affect the value
