@@ -310,19 +310,42 @@ int main(){
 
 // ----  rev[18-Aug-2025]  ----
 
+/* Example 2: The following program illustrates the effect of the "uppercase flag". 
+                It first enable uppercase, showbase, and hex flags to output: "99" in hexadecimal
+                Then disables the uppercase.
+
+                In this case, the 'X' used in the hexadecimal notation is uppercase. 
+                Next, it clears the uppercase flag by using unsetf() 
+                and again outputs 99 in hexadecimal. This time, the 'x' is lowercase.
+*/
 
 
+/* 
 
-
-
-
-/* Example 2: The following program illustrates the effect of the uppercase flag. It first enable uppercase, showbase, and hex flags to output: 99 in hexadecimal. Then disables the uppercase.
 int main() { cout.unsetf(ios :: dec );
 	cout.setf(ios::uppercase | ios::showbase | ios::hex);
 	cout << 88 << '\n';	cout.unsetf(ios::uppercase );
 cout << 88 << '\n';
 return 0; }
- */
+
+
+*/
+
+
+
+#include <iostream>
+
+int main(){
+std::cout.unsetf( std::ios::dec );
+
+std::cout.setf( std::ios::uppercase | std::ios::showbase | std::ios::hex );
+std::cout << 99 << '\n';
+
+std::cout.unsetf( std::ios::uppercase );
+std::cout << 99 << '\n';
+
+return 0;
+}
 
 
 
@@ -389,22 +412,6 @@ cout << "\n"; }
 
 
 
-
-
-/* Example 2: The following program illustrates the effect of the uppercase flag. It first sets the uppercase, showbase, and hex flags. It then outputs 99 in hexadecimal. In this case, the
-X used in the hexadecimal notation is uppercase. Next, it clears the uppercase flag by
-using unsetf() and again outputs 88 in hexadecimal. This time, the x is lowercase. */
-# include <iostream >
-using namespace std ;
-int main ()
-{
-cout . unsetf ( ios :: dec );
-cout . setf ( ios :: uppercase | ios :: showbase | ios :: hex );
-cout << 88 << '\n';
-cout . unsetf ( ios :: uppercase );
-cout << 88 << '\n';
-return 0;
-}
 
 
 
