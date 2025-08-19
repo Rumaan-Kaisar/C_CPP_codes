@@ -319,32 +319,18 @@ int main(){
                 and again outputs 99 in hexadecimal. This time, the 'x' is lowercase.
 */
 
-
-/* 
-
-int main() { cout.unsetf(ios :: dec );
-	cout.setf(ios::uppercase | ios::showbase | ios::hex);
-	cout << 88 << '\n';	cout.unsetf(ios::uppercase );
-cout << 88 << '\n';
-return 0; }
-
-
-*/
-
-
-
 #include <iostream>
 
 int main(){
-std::cout.unsetf( std::ios::dec );
+    std::cout.unsetf( std::ios::dec );
 
-std::cout.setf( std::ios::uppercase | std::ios::showbase | std::ios::hex );
-std::cout << 99 << '\n';
+    std::cout.setf( std::ios::uppercase | std::ios::showbase | std::ios::hex );
+    std::cout << 99 << '\n';
 
-std::cout.unsetf( std::ios::uppercase );
-std::cout << 99 << '\n';
+    std::cout.unsetf( std::ios::uppercase );
+    std::cout << 99 << '\n';
 
-return 0;
+    return 0;
 }
 
 
