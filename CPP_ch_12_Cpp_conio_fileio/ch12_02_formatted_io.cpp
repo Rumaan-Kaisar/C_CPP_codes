@@ -339,7 +339,14 @@ int main(){
 
 // ----  rev[21-Aug-2025]  ----
 
-/* Example3 : The following illustrates the showflags() function. Displays which flag is on and which is off. */
+/*  Example 3: Following uses flags() to display the settings of the format flags relative to "cout". 
+                Pay special attention to the showflags() function. 
+                    It displays which flag is on and which is off.
+                    You might find it useful in programs you write.
+*/
+
+
+
 
 
 void showflags(); 								// Declaration of the function
@@ -405,9 +412,7 @@ cout << "\n"; }
 
 
 
-/* Example 3: The following program uses flags() to display the settings of the format flags relative to
-cout. Pay special attention to the showflags() function. You might find it useful in */
-programs you write.
+
 # include <iostream >
 using namespace std ;
 void showflags ();
