@@ -308,8 +308,6 @@ int main(){
 
 
 
-// ----  rev[18-Aug-2025]  ----
-
 /* Example 2: The following program illustrates the effect of the "uppercase flag". 
                 It first enable uppercase, showbase, and hex flags to output: "99" in hexadecimal
                 Then disables the uppercase.
@@ -317,6 +315,10 @@ int main(){
                 In this case, the 'X' used in the hexadecimal notation is uppercase. 
                 Next, it clears the uppercase flag by using unsetf() 
                 and again outputs 99 in hexadecimal. This time, the 'x' is lowercase.
+
+            output:
+                0X63
+                0x63
 */
 
 #include <iostream>
@@ -335,6 +337,7 @@ int main(){
 
 
 
+// ----  rev[21-Aug-2025]  ----
 
 /* Example3 : The following illustrates the showflags() function. Displays which flag is on and which is off. */
 
