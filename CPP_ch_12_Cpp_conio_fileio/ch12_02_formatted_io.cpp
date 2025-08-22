@@ -377,13 +377,11 @@ int main(){
                 boolalpha off 
 */
 
-
-
-
+#include <iostream>
 
 void showflags();   // Declaration of the function
 
-int main(){	
+int main(){ 
     showflags();    // first shows default flag settings
     // Changing flags
     std::cout.setf( std::ios::oct | std::ios::showbase | std::ios::fixed );
@@ -393,148 +391,69 @@ int main(){
 }
 
 
-void showflags(){
-ios::fmtflags f;
-f = cout.flags(); // get flag settings
-if(f & ios :: skipws ) cout <<"skipws on \n";
-else cout << " skipws off \n";
-
-if(f & ios :: left ) cout << " left on\n";
-else cout << " left off \n";
-
-if(f & ios :: right ) cout << " right on\n";
-else cout << " right off \n";
-
-if(f& ios :: internal) cout<<"internal on\n";
-else cout << " internal off \n";
-
-if(f & ios :: dec ) cout << "dec on\n";
-else cout << "dec off \n";	if(f & ios :: oct ) cout << "oct on\n";
-else cout << "oct off \n";
-
-if(f & ios :: hex ) cout << "hex on\n";
-else cout << "hex off \n";
-
-if(f&ios:: showbase ) cout<<"showbase on\n";
-else cout << " showbase off \n";
-
-if(f&ios::showpoint) cout<<"showpoint on\n";
-else cout << " showpoint off \n";
-
-if(f& ios :: showpos ) cout << " showpos on\n";
-else cout << " showpos off \n";
-
-if(f&ios::uppercase) cout<<"uppercase on\n";
-else cout << " uppercase off \n";	if(f&ios::scientific) cout << " scientific on\n";
-else cout << " scientific off \n";
-
-if(f & ios :: fixed ) cout << " fixed on\n";
-else cout << " fixed off \n";
-
-if(f & ios :: unitbuf ) cout << " unitbuf on\n";
-else cout << " unitbuf off \n";
-
-if(f & ios :: boolalpha ) cout << " boolalpha on\n";
-else cout << " boolalpha off \n";
-
-cout << "\n"; }
-
-
-// Inside showags(), the local variable f is declared to be of type fmtflags. If your compiler does not define fmtflags, declare this variable as long instead. 
-
-
-
-
-
-#include <iostream>
-using namespace std ;
-void showflags ();
-int main ()
-{
-// show default condition of format flags
-showflags ();
-cout . setf ( ios :: oct | ios :: showbase | ios :: fixed );
-showflags ();
-return 0;
-}
 // This function displays the status of the format flags .
-void showflags ()
-{
-ios :: fmtflags f;
-f = cout . flags (); // get flag settings
-if(f & ios :: skipws )
-cout << " skipws on\n";
-else
-cout << " skipws off \n";
-if(f & ios :: left )
-cout << " left on\n";
-else
-cout << " left off \n";
-if(f & ios :: right )
-cout << " right on\n";
-else
-cout << " right off \n";
-if(f & ios :: internal )
-cout << " internal on\n";
-else
-cout << " internal off \n";
-if(f & ios :: dec )
-cout << " dec on\n";
-else
-cout << " dec off \n";
-if(f & ios :: oct )
-cout << " oct on\n";
-else
-cout << " oct off \n";
-if(f & ios :: hex )
-cout << " hex on\n";
-else
-cout << " hex off \n";
-if(f & ios :: showbase )
-cout << " showbase on\n";
-else
-cout << " showbase off \n";
-if(f & ios :: showpoint )
-cout << " showpoint on\n";
-else
-cout << " showpoint off \n";
-if(f & ios :: showpos )
-cout << " showpos on\n";
-else
-cout << " showpos off \n";
-if(f & ios :: uppercase )
-cout << " uppercase on\n";
-else
-cout << " uppercase off \n";
-if(f & ios :: scientific )
-cout << " scientific on\n";
-else
-cout << " scientific off \n";
-if(f & ios :: fixed )
-cout << " fixed on\n";
-else
-cout << " fixed off \n";
-if(f & ios :: unitbuf )
-cout << " unitbuf on\n";
-else
-cout << " unitbuf off \n";
-if(f & ios :: boolalpha )
-cout << " boolalpha on\n";
-else
-cout << " boolalpha off \n";
-cout << "\n";
+void showflags(){
+    std::ios::fmtflags f;
+
+    f = std::cout.flags(); // get flag settings
+
+    if(f & std::ios::skipws )   std::cout <<"skipws on \n";
+    else    std::cout << " skipws off \n";
+
+    if(f & std::ios::left )     std::cout << " left on\n";
+    else    std::cout << " left off \n";
+
+    if(f & std::ios::right )    std::cout << " right on\n";
+    else    std::cout << " right off \n";
+
+    if(f& std::ios::internal)   std::cout<<"internal on\n";
+    else    std::cout << " internal off \n";
+
+    if(f & std::ios::dec )  std::cout << "dec on\n";
+    else    std::cout << "dec off \n";	
+
+    if(f & std::ios::oct )  std::cout << "oct on\n";
+    else    std::cout << "oct off \n";
+
+    if(f & std::ios::hex )  std::cout << "hex on\n";
+    else    std::cout << "hex off \n";
+
+    if(f&std::ios:: showbase )  std::cout<<"showbase on\n";
+    else    std::cout << " showbase off \n";
+
+    if(f&std::ios::showpoint)   std::cout<<"showpoint on\n";
+    else    std::cout << " showpoint off \n";
+
+    if(f& std::ios::showpos )   std::cout << " showpos on\n";
+    else    std::cout << " showpos off \n";
+
+    if(f&std::ios::uppercase)   std::cout<<"uppercase on\n";
+    else    std::cout << " uppercase off \n";	
+
+    if(f&std::ios::scientific)  std::cout << " scientific on\n";
+    else    std::cout << " scientific off \n";
+
+    if(f & std::ios::fixed )    std::cout << " fixed on\n";
+    else    std::cout << " fixed off \n";
+
+    if(f & std::ios::unitbuf )  std::cout << " unitbuf on\n";
+    else    std::cout << " unitbuf off \n";
+
+    if(f & std::ios::boolalpha )    std::cout << " boolalpha on\n";
+    else    std::cout << " boolalpha off \n";
+
+    std::cout << "\n"; 
 }
 
 
-
-
-Inside showflags(), the local variable f is declared to be of type fmtflags. If your
-compiler does not define fmtflags, declare this variable as long instead. 
-
-// ----  rev[21-Aug-2025]  ----
+// Inside showags(), the local variable f is declared to be of type "fmtflags". 
+// If your compiler does not define "fmtflags", declare this variable as "long" instead. 
 
 
 
+
+
+// ----  rev[22-Aug-2025]  ----
 
 
 /* Example 4: The next program illustrates the second version of flags(). It first constructs a flag mask
