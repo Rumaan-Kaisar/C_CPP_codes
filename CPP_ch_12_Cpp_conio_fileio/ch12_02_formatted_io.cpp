@@ -337,7 +337,6 @@ int main(){
 
 
 
-// ----  rev[21-Aug-2025]  ----
 
 /*  Example 3: Following uses flags() to display the settings of the format flags relative to "cout". 
                 Pay special attention to the showflags() function. 
@@ -382,11 +381,18 @@ int main(){
 
 
 
-void showflags(); 								// Declaration of the function
-int main(){	showflags(); 							// first shows default flag settings
-		cout.setf(ios::oct | ios::showbase | ios::fixed ); 	// Changing flags
-		showflags();		// shows changed flag settings
-        			return 0;}
+void showflags();   // Declaration of the function
+
+int main(){	
+    showflags();    // first shows default flag settings
+    // Changing flags
+    std::cout.setf( std::ios::oct | std::ios::showbase | std::ios::fixed );
+    showflags();    // shows changed flag settings
+
+    return 0;
+}
+
+
 void showflags(){
 ios::fmtflags f;
 f = cout.flags(); // get flag settings
@@ -525,39 +531,8 @@ cout << "\n";
 Inside showflags(), the local variable f is declared to be of type fmtflags. If your
 compiler does not define fmtflags, declare this variable as long instead. 
 
-The output from the program is shown here:
-skipws on
-left off
-right off
-internal off
-dec on
-oct off
-hex off
-showbase off
-showpoint off
-showpos off
-uppercase off
-scientific off
-214INTRODUCING THE C++ I/O SYSTEM
-8.2. FORMATTED I/O
-fixed off
-unitbuf off
-boolalpha off
-skipws on
-left off
-right off
-internal off
-dec on
-oct on
-hex off
-showbase on
-showpoint off
-showpos off
-uppercase off
-scientific off
-fixed on
-unitbuf off
-boolalpha off
+// ----  rev[21-Aug-2025]  ----
+
 
 
 
