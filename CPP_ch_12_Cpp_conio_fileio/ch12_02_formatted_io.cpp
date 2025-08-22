@@ -343,6 +343,39 @@ int main(){
                 Pay special attention to the showflags() function. 
                     It displays which flag is on and which is off.
                     You might find it useful in programs you write.
+            
+            output:
+                skipws on
+                left off 
+                right off 
+                internal off 
+                dec on
+                oct off 
+                hex off 
+                showbase off 
+                showpoint off 
+                showpos off 
+                uppercase off 
+                scientific off 
+                fixed off 
+                unitbuf off 
+                boolalpha off 
+
+                skipws on
+                left off 
+                right off 
+                internal off 
+                dec on
+                oct on
+                hex off 
+                showbase on
+                showpoint off 
+                showpos off 
+                uppercase off 
+                scientific off 
+                fixed on
+                unitbuf off 
+                boolalpha off 
 */
 
 
@@ -407,13 +440,7 @@ cout << "\n"; }
 
 
 
-
-
-
-
-
-
-# include <iostream >
+#include <iostream>
 using namespace std ;
 void showflags ();
 int main ()
@@ -426,8 +453,6 @@ return 0;
 }
 // This function displays the status of the format flags .
 void showflags ()
-212INTRODUCING THE C++ I/O SYSTEM
-8.2. FORMATTED I/O
 {
 ios :: fmtflags f;
 f = cout . flags (); // get flag settings
@@ -468,8 +493,6 @@ cout << " showpoint on\n";
 else
 cout << " showpoint off \n";
 if(f & ios :: showpos )
-213TEACH YOURSELF
-C++
 cout << " showpos on\n";
 else
 cout << " showpos off \n";
@@ -495,9 +518,14 @@ else
 cout << " boolalpha off \n";
 cout << "\n";
 }
+
+
+
+
 Inside showflags(), the local variable f is declared to be of type fmtflags. If your
-compiler does not define fmtflags, declare this variable as long instead. The output from
-the program is shown here:
+compiler does not define fmtflags, declare this variable as long instead. 
+
+The output from the program is shown here:
 skipws on
 left off
 right off
