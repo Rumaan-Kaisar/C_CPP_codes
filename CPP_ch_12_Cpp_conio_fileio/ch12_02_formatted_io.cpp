@@ -456,11 +456,13 @@ void showflags(){
 // ----  rev[22-Aug-2025]  ----
 
 
-/* Example 4: The next program illustrates the second version of flags(). It first constructs a flag mask
-that turns on showpos, showbase, oct, and right. It then uses flags() to set the flag
-variable associated with cout to these settings. The function showflags() verifies that
-the flags are set as indicated. (This is the same function used in the previous program.) */
-# include <iostream >
+/*  Example 4: Following illustrates the second version of flags(). 
+                It first constructs a "flag mask" that turns on showpos, showbase, oct, and right. 
+                It then uses flags() to set the flag variable associated with "cout" to these settings. 
+
+                The function showflags() verifies that the flags are set as indicated.
+*/
+#include <iostream>
 using namespace std ;
 void showflags ();
 int main ()
