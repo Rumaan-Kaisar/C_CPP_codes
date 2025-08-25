@@ -452,34 +452,66 @@ void showflags(){
 
 
 
-
-// ----  rev[22-Aug-2025]  ----
-
-
 /*  Example 4: Following illustrates the second version of flags(). 
                 It first constructs a "flag mask" that turns on showpos, showbase, oct, and right. 
                 It then uses flags() to set the flag variable associated with "cout" to these settings. 
 
                 The function showflags() verifies that the flags are set as indicated.
+                (its a modified form of showflags() from previous example)
 */
+
 #include <iostream>
-using namespace std ;
-void showflags ();
-int main ()
-{
-// show default condition of format flags
-showflags ();
-// showpos , showbase , oct , right are on , others off
-ios :: fmtflags f = ios :: showpos | ios :: showbase | ios :: oct
-| ios :: right ;
-cout . flags (f); // set flags
-showflags ();
-return 0;
+
+void showflags();
+
+int main(){
+    // show default condition of format flags
+    showflags();
+
+    // showpos , showbase , oct , right are on , others off
+    std::ios::fmtflags f    =    std::ios::showpos | std::ios::showbase | std::ios::oct | std::ios::right ;
+
+    std::cout.flags(f);     // set flags
+    showflags();
+
+    return 0;
+}
+
+
+// ----  showflags()  ----
+// helper function: prints status of a single flag
+void printFlag(std::ios::fmtflags f, std::ios::fmtflags flag, const char* name) {
+    if (f & flag) std::cout << name << " on\n";
+    else std::cout << name << " off\n";
+}
+
+// function to display the status of format flags
+void showflags() {
+    std::ios::fmtflags f = std::cout.flags(); // get flag settings
+
+    printFlag(f, std::ios::skipws,    "skipws");
+    printFlag(f, std::ios::left,      "left");
+    printFlag(f, std::ios::right,     "right");
+    printFlag(f, std::ios::internal,  "internal");
+    printFlag(f, std::ios::dec,       "dec");
+    printFlag(f, std::ios::oct,       "oct");
+    printFlag(f, std::ios::hex,       "hex");
+    printFlag(f, std::ios::showbase,  "showbase");
+    printFlag(f, std::ios::showpoint, "showpoint");
+    printFlag(f, std::ios::showpos,   "showpos");
+    printFlag(f, std::ios::uppercase, "uppercase");
+    printFlag(f, std::ios::scientific,"scientific");
+    printFlag(f, std::ios::fixed,     "fixed");
+    printFlag(f, std::ios::unitbuf,   "unitbuf");
+    printFlag(f, std::ios::boolalpha, "boolalpha");
+
+    std::cout << "\n";
 }
 
 
 
 
+// ----  rev[25-Aug-2025]  ----
 
 /* Example 5: Write a program that sets cout's flags so that integers display a + sign when positive
 values are displayed. Demonstrate that you have set the format flags correctly. */
