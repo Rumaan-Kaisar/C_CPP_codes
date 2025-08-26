@@ -518,17 +518,18 @@ void showflags() {
 #include <iostream>
 
 int main(){
-    std::cout.setf( ios :: showpos );
+    std::cout.setf( std::ios::showpos );
     std::cout << -10 << ' ' << 10 << '\n';
 
     return 0;
 }
 
 
-// ----  rev[25-Aug-2025]  ----
+
 
 /* Example 6: Write a program that sets cout's flags so that the decimal point is always shown when
-floating-point values are displayed. Also, display all floating-point values in scientific */
+floating-point values are displayed. Also, display all floating-point values in scientific 
+*/
 notation with an uppercase E.
 
 # include <iostream >
@@ -542,6 +543,9 @@ return 0;
 }
 
 
+
+
+// ----  rev[26-Aug-2025]  ----
 
 /* Example 7: Write a program that saves the current state of the format flags, sets showbase and hex,
 and displays the value 100. Then reset the flags to their previous values */
