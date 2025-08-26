@@ -511,22 +511,21 @@ void showflags() {
 
 
 
-// ----  rev[25-Aug-2025]  ----
+/* Example 5: Set cout's flags so that integers display a + sign when positive values are displayed. 
+                Demonstrate that you have set the format flags correctly. 
+*/
 
-/* Example 5: Write a program that sets cout's flags so that integers display a + sign when positive
-values are displayed. Demonstrate that you have set the format flags correctly. */
+#include <iostream>
 
-# include <iostream >
-using namespace std ;
-int main ()
-{
-cout . setf ( ios :: showpos );
-cout << -10 << ’ ’ << 10 << ’\n’;
-return 0;
+int main(){
+    std::cout.setf( ios :: showpos );
+    std::cout << -10 << ' ' << 10 << '\n';
+
+    return 0;
 }
 
 
-
+// ----  rev[25-Aug-2025]  ----
 
 /* Example 6: Write a program that sets cout's flags so that the decimal point is always shown when
 floating-point values are displayed. Also, display all floating-point values in scientific */
