@@ -527,19 +527,18 @@ int main(){
 
 
 
-/* Example 6: Write a program that sets cout's flags so that the decimal point is always shown when
-floating-point values are displayed. Also, display all floating-point values in scientific 
+/* Example 6: set cout's flags so that the decimal point is always shown 
+                when floating-point values are displayed.
+                Also, display all floating-point values in scientific notation with an uppercase E.
 */
-notation with an uppercase E.
 
-# include <iostream >
-using namespace std ;
-int main ()
-{
-cout . setf ( ios :: showpoint | ios :: uppercase |
-ios :: scientific );
-cout << 100.0;
-return 0;
+#include <iostream>
+
+int main(){
+    std::cout . setf ( std::ios::showpoint | std::ios::uppercase | std::ios::scientific );
+    std::cout << 100.0;
+
+    return 0;
 }
 
 
