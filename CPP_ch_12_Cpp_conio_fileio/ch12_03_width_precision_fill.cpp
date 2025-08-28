@@ -1,32 +1,58 @@
 
 /*  ------------------------    width, precision, fill    ------------------------
 
-    width():
-        field width (padding spaces or fill chars).
+    To set these format parameters: 
+        the field width, 
+        the precision, and 
+        the fill character, 
+        
+        thse are three member functions defined by "ios":
 
-    precision():
-        number of digits for floating-point output.
+        width():
+            specify a minimum field width (padding spaces or fill chars).
 
-    fill():
-        padding character when width is not filled.
+        precision():
+            number of digits for floating-point output.
+
+        fill():
+            padding character when width is not filled.
+
+    Together, these are part of the C++ stream formatting system, defined inside the
+    std::ios_base / std::ios hierarchy
 
 
 
-Together, these are part of the C++ stream formatting system, defined inside the std::ios_base / std::ios hierarchy.
+// ----  rev[28-Aug-2025]  ----
+
+    width(): 
+        Purpose: Sets the minimum field width for the next output/input operation.
+        
+        Prototype:
+                streamsize width(streamsize w);
+
+        What it does:
+    "w" becomes the new minimum "field width".
+    Returns the previous width.
+    "streamsize" is a type defined in <iostream> as a some kind of integer type.
+        Its prototype is:
+
+                streamsize width( streamsize w);
 
 
-12.3 width(), precision(), AND fill()
-To set these format parameters: the field width, the precision, and the fill character, there are three member functions defined by ios. These are 	width(), 	precision()       and 	fill(),     respectively.
-	width(): To specify a minimum field width we use the width() function. Its prototype is:
-streamsize width( streamsize w);
-	Here w becomes the field width, and the previous field width is returned. 
-	The streamsize type is defined by <iostream> as some form of integer. 
+
+	The "streamsize" type is defined by <iostream> as some form of integer. 
 	It might be necessary to set the minimum field width before each output statement.
 	When a value uses less than the specified width, the field is padded with the current fill character (the space, by default) so that the field width is reached.
 	If the size of the output value exceeds the minimum field width, the field will be overrun. No values are truncated.
+
+
+
 	precision(): By default, six digits of precision are used. You can set this number by using the precision() function. Its prototype:
 streamsize precision( streamsize p);
 	Here the precision is set to p and the old value is returned.
+
+
+
 	fill(): by default, when a field needs to be filled, it is filled with spaces. To specify the fill character use fill() function. Prototype:
 char fill( char ch);
 	After a call to fill(), ch becomes the new fill character, and the old one is returned.
@@ -122,18 +148,16 @@ Here is the simplified pointwise summary of the given content on width(), precis
 These are member functions of ios (used with streams like cout, cin) to control how data is formatted during input/output.
 
 ✅ 1. width()
-Purpose: Sets the minimum field width for the next output/input operation.
-Prototype:
-streamsize width(streamsize w);
-What it does:
-w becomes the new minimum width.
-Returns the previous width.
-streamsize is an integer type defined in <iostream>.
+
+
+
 Important points:
 Must be set before each output/input — it is reset after each operation.
 If output is shorter than width, it's padded with the fill character (space by default).
 If output is longer, the entire value is printed — no truncation.
 Default justification: right-aligned.
+
+
 ✅ 2. precision()
 Purpose: Sets the number of digits after the decimal point for floating-point numbers.
 Prototype:
