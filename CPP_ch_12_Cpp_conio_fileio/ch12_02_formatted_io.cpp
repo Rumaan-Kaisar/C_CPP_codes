@@ -546,19 +546,21 @@ int main(){
 
 // ----  rev[26-Aug-2025]  ----
 
-/* Example 7: Write a program that saves the current state of the format flags, sets showbase and hex,
-and displays the value 100. Then reset the flags to their previous values */
+/* Example 7: Write a program that saves the current state of the format flags, 
+                sets 'showbase' and 'hex', and displays the value 100. 
+                Then reset the flags to their previous values.
+*/
 
-# include <iostream >
-using namespace std ;
-int main ()
-{
-ios :: fmtflags f;
-f = cout . flags (); // store flags
-cout . unsetf ( ios :: dec );
-cout . setf ( ios :: showbase | ios :: hex );
-cout << 100 << ’\n’;
-cout . flags (f); // reset flags
+#include <iostream>
+
+int main(){
+    std::ios::fmtflags f;
+    f = cout.flags();   // store flags
+
+    std::cout.unsetf( std::ios::dec );
+    std::cout.setf( std::ios::showbase | std::ios::hex );
+    std::cout << 100 << '\n';
+    std::cout.flags (f); // reset flags
 return 0;
 }
 
