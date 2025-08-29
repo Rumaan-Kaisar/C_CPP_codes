@@ -33,10 +33,6 @@
             Returns the previous width.
             "streamsize" is a type defined in <iostream> as a some kind of integer type.
         
-        Its prototype is:
-
-                streamsize width( streamsize w);
-
         Important points:
             Must be set before each output/input — it is reset after each operation.
             If output is shorter than width, it's padded with the fill character (space by default).
@@ -44,19 +40,26 @@
                 No truncation, the entire value is printed 
         
 
-// ----  rev[28-Aug-2025]  ----
+
+    precision():
+        Purpose: Sets the number of digits after the decimal point for floating-point numbers.
+
+        Prototype:
+                streamsize precision(streamsize p);
+
+        What it does:
+            Sets precision to p (e.g., 4 means 4 digits after decimal).
+            Returns the previous precision.
+            Default: 6 digits.
+
+        Note:
+            Precision setting persists until changed again.
 
 
 
 
 
-
-
-	precision(): By default, six digits of precision are used. You can set this number by using the precision() function. Its prototype:
-streamsize precision( streamsize p);
-	Here the precision is set to p and the old value is returned.
-
-
+// ----  rev[29-Aug-2025]  ----
 
 	fill(): by default, when a field needs to be filled, it is filled with spaces. To specify the fill character use fill() function. Prototype:
 char fill( char ch);
@@ -145,15 +148,6 @@ These are member functions of ios (used with streams like cout, cin) to control 
 
 
 
-✅ 2. precision()
-Purpose: Sets the number of digits after the decimal point for floating-point numbers.
-Prototype:
-streamsize precision(streamsize p);
-What it does:
-Sets precision to p (e.g., 4 means 4 digits after decimal).
-Returns the previous precision.
-Default: 6 digits.
-Note: Precision setting persists until changed again.
 ✅ 3. fill()
 Purpose: Sets the character used to pad fields when width is larger than value.
 Prototype:
@@ -162,6 +156,9 @@ What it does:
 ch becomes the new fill character.
 Returns the previous fill character.
 Default: space ' '.
+
+
+
 🔹 Example 1: Basic Use
 cpp
 
