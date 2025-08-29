@@ -37,14 +37,18 @@
 
                 streamsize width( streamsize w);
 
+        Important points:
+            Must be set before each output/input — it is reset after each operation.
+            If output is shorter than width, it's padded with the fill character (space by default).
+            If the size of the output value exceeds the minimum field width, the field will be overrun.
+                No truncation, the entire value is printed 
+        
 
 // ----  rev[28-Aug-2025]  ----
 
 
-	The "streamsize" type is defined by <iostream> as some form of integer. 
-	It might be necessary to set the minimum field width before each output statement.
-	When a value uses less than the specified width, the field is padded with the current fill character (the space, by default) so that the field width is reached.
-	If the size of the output value exceeds the minimum field width, the field will be overrun. No values are truncated.
+
+
 
 
 
@@ -92,19 +96,7 @@ return 0; }
 
 Let’s carefully pin down what these functions really are in C++ I/O:
 
-1. width()
 
-What it is:
-A member function of std::ios (inherited by std::ostream like cout).
-
-What it does:
-Sets the minimum number of character spaces to use when printing the next item only.
-
-Important detail:
-After one output, the width resets back to 0 automatically.
-
-Type:
-Returns and accepts std::streamsize (a typedef for some signed integer type, usually long).
 
 2. precision()
 
@@ -151,12 +143,6 @@ These are member functions of ios (used with streams like cout, cin) to control 
 ✅ 1. width()
 
 
-
-Important points:
-Must be set before each output/input — it is reset after each operation.
-If output is shorter than width, it's padded with the fill character (space by default).
-If output is longer, the entire value is printed — no truncation.
-Default justification: right-aligned.
 
 
 ✅ 2. precision()
