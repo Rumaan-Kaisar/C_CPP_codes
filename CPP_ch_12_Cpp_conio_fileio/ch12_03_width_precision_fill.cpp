@@ -57,6 +57,18 @@
 
 
 
+    fill()
+        Purpose: Sets the "character" used to "pad fields" when width is larger than value.
+
+        Prototype:
+                char fill(char ch);
+
+        What it does:
+            "ch" becomes the new "fill character".
+            Returns the previous fill character.
+            Default: space ' '.
+
+
 
 
 // ----  rev[29-Aug-2025]  ----
@@ -145,17 +157,6 @@ These are member functions of ios (used with streams like cout, cin) to control 
 
 ✅ 1. width()
 
-
-
-
-✅ 3. fill()
-Purpose: Sets the character used to pad fields when width is larger than value.
-Prototype:
-char fill(char ch);
-What it does:
-ch becomes the new fill character.
-Returns the previous fill character.
-Default: space ' '.
 
 
 
