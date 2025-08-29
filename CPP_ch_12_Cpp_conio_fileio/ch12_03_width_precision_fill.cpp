@@ -22,8 +22,6 @@
 
 
 
-// ----  rev[28-Aug-2025]  ----
-
     width(): 
         Purpose: Sets the minimum field width for the next output/input operation.
         
@@ -31,13 +29,16 @@
                 streamsize width(streamsize w);
 
         What it does:
-    "w" becomes the new minimum "field width".
-    Returns the previous width.
-    "streamsize" is a type defined in <iostream> as a some kind of integer type.
+            "w" becomes the new minimum "field width".
+            Returns the previous width.
+            "streamsize" is a type defined in <iostream> as a some kind of integer type.
+        
         Its prototype is:
 
                 streamsize width( streamsize w);
 
+
+// ----  rev[28-Aug-2025]  ----
 
 
 	The "streamsize" type is defined by <iostream> as some form of integer. 
