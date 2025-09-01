@@ -188,12 +188,25 @@ Each number takes up at least 7 characters, padded with spaces.
 */  
 
 
-EXAMPLES
-1. Here is a program that illustrates the format functions:
+
+
+
+
+/* Example 1: Following is a program that illustrates the format functions.
+                
+                Output should be:
+                    hello
+                    %%%%%hello
+                    hello%%%%%
+                    123.234567
+                    123.235%%%
+
+                Notice that the field width is set before each output statement.
+*/
+
 # include <iostream >
-using namespace std ;
-int main ()
-{
+
+int main() {
 cout . width (10) ; // set minimum filed width
 cout << " hello " << ’\n’; // right - justify by default
 cout . fill (’%’); // set fill character
@@ -212,21 +225,17 @@ cout . precision (6) ; // set 6 digits of precision
 cout << 123.234567 << ’\n’;
 return 0;
 }
-This program displays the following output:
-hello
-%%%%%hello
-hello%%%%%
-123.234567
-123.235%%%
-Notice that the field width is set before each output statement.
-2. The following program shows how to use the C++ I/O format functions to create an
-aligned table of numbers:
+
+
+
+/* Example 2: The following program shows how to use the C++ I/O format functions to create an
+aligned table of numbers: */
+
 // Create a table of square roots and squares .
 # include <iostream >
 # include <cmath >
-using namespace std ;
-int main ()
-{
+
+int main() {
 double x;
 cout . precision (4) ;
 cout << " x sqrt (x) x^2\ n\n";
@@ -241,8 +250,9 @@ cout << x*x << ’\n’;
 }
 return 0;
 }
-217TEACH YOURSELF
-C++
+
+
+
 This program creates the following table:
 x sqrt(x) x^2
 2 1.414 4
@@ -265,20 +275,28 @@ x sqrt(x) x^2
 19 4.359 361
 20 4.472 400
 EXERCISES
-1. Create a program that prints the natural log and base 10 log of the numbers from 2 to
+
+
+
+/* Example 3: Create a program that prints the natural log and base 10 log of the numbers from 2 to
 100. Format the table so that the numbers are right justified within a field width of 10,
-using a precision of five decimal places.
-2. Create a function called center() that has this prototype:
+using a precision of five decimal places. */
+
+
+
+/* Example 4: Create a function called center() that has this prototype:
 void center ( char *s);
 Have this function center the specified string on the screen. To accomplish this, use the
 width() function. Assume that the screen is 80 characters wide. (For simplicity, you may
 assume that no string exceeds 80 characters.) Write a program that demonstrates that
-your function works.
-3. On your own, experiment with the format flags and the format functions. Once you
+your function works. */
+
+
+
+/* Example 5: On your own, experiment with the format flags and the format functions. Once you
 become familiar with the C++ I/O system, you will have no trouble using it to format
-output any way you like.
-218INTRODUCING THE C++ I/O SYSTEM
-8.4. USING I/O MANIPULATORS
+output any way you like. */
+
 
 
 
