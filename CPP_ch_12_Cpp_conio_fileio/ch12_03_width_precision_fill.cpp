@@ -1,6 +1,10 @@
 
 /*  ------------------------    width, precision, fill    ------------------------
 
+    width(), precision(), and fill() – Stream Formatting Functions
+        These are member functions of "std::ios" (used with streams like cout, cin) 
+        to control how data is formatted during input/output.
+
     To set these format parameters: 
         the field width, 
         the precision, and 
@@ -21,6 +25,8 @@
     std::ios_base / std::ios hierarchy
 
 
+
+    --------  Stream Formatting Functions  --------
 
     width(): 
         Purpose: Sets the minimum field width for the next output/input operation.
@@ -73,7 +79,12 @@
         These differ from manipulators (like std::setw, std::setprecision, std::setfill), 
         They do the same job but are used differently.
 
+        Use these functions to:
+            Align output (e.g., tables, reports)
+            Control decimal places
+            Customize padding and appearance
 
+        Always set width() just before the value you want to format! 
 
 
 // ----  rev[29-Aug-2025]  ----
@@ -116,36 +127,15 @@ return 0; }
 
 Here is the simplified pointwise summary of the given content on width(), precision(), and fill():
 
-🔹 width(), precision(), and fill() – Stream Formatting Functions
-These are member functions of ios (used with streams like cout, cin) to control how data is formatted during input/output.
 
-✅ 1. width()
+
+
 
 
 
 
 🔹 Example 1: Basic Use
-cpp
 
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
 cout.width(10);           // Min width = 10
 cout << "hello";          // Output: "     hello" (right-aligned, space-padded)
 
@@ -191,27 +181,104 @@ for(double x = 2.0; x <= 20.0; x++) {
 }
 Produces neatly aligned columns.
 Each number takes up at least 7 characters, padded with spaces.
-🔹 Summary Table
-width(w)
-Sets min field width
-❌ No
-✅ Yes
-precision(p)
-Sets decimal precision
-✅ Yes
-❌ No
-fill(ch)
-Sets padding character
-✅ Yes
-❌ No
 
-✅ Key Takeaway
-Use these functions to:
 
-Align output (e.g., tables, reports)
-Control decimal places
-Customize padding and appearance
-Always set width() just before the value you want to format! 
 
 
 */  
+
+
+EXAMPLES
+1. Here is a program that illustrates the format functions:
+# include <iostream >
+using namespace std ;
+int main ()
+{
+cout . width (10) ; // set minimum filed width
+cout << " hello " << ’\n’; // right - justify by default
+cout . fill (’%’); // set fill character
+216INTRODUCING THE C++ I/O SYSTEM
+8.3. USING width(), precision(), AND fill()
+cout . width (10) ; // set width
+cout << " hello " << ’\n’; // right - justify default
+cout . setf ( ios :: left ); // left - justify
+cout . width (10) ; // set width
+cout << " hello " << ’\n’; // output left justified
+cout . width (10) ; // set width
+cout . precision (10) ; // set 10 digits of precision
+cout << 123.234567 << ’\n’;
+cout . width (10) ; // set width
+cout . precision (6) ; // set 6 digits of precision
+cout << 123.234567 << ’\n’;
+return 0;
+}
+This program displays the following output:
+hello
+%%%%%hello
+hello%%%%%
+123.234567
+123.235%%%
+Notice that the field width is set before each output statement.
+2. The following program shows how to use the C++ I/O format functions to create an
+aligned table of numbers:
+// Create a table of square roots and squares .
+# include <iostream >
+# include <cmath >
+using namespace std ;
+int main ()
+{
+double x;
+cout . precision (4) ;
+cout << " x sqrt (x) x^2\ n\n";
+for (x = 2.0; x <= 20.0; x++)
+{
+cout . width (7) ;
+cout << x << " ";
+cout . width (7) ;
+cout << sqrt (x) << " ";
+cout . width (7) ;
+cout << x*x << ’\n’;
+}
+return 0;
+}
+217TEACH YOURSELF
+C++
+This program creates the following table:
+x sqrt(x) x^2
+2 1.414 4
+3 1.732 9
+4 2 16
+5 2.236 25
+6 2.449 36
+7 2.646 49
+8 2.828 64
+9 3 81
+10 3.162 100
+11 3.317 121
+12 3.464 144
+13 3.606 169
+14 3.742 196
+15 3.873 225
+16 4 256
+17 4.123 289
+18 4.243 324
+19 4.359 361
+20 4.472 400
+EXERCISES
+1. Create a program that prints the natural log and base 10 log of the numbers from 2 to
+100. Format the table so that the numbers are right justified within a field width of 10,
+using a precision of five decimal places.
+2. Create a function called center() that has this prototype:
+void center ( char *s);
+Have this function center the specified string on the screen. To accomplish this, use the
+width() function. Assume that the screen is 80 characters wide. (For simplicity, you may
+assume that no string exceeds 80 characters.) Write a program that demonstrates that
+your function works.
+3. On your own, experiment with the format flags and the format functions. Once you
+become familiar with the C++ I/O system, you will have no trouble using it to format
+output any way you like.
+218INTRODUCING THE C++ I/O SYSTEM
+8.4. USING I/O MANIPULATORS
+
+
+
