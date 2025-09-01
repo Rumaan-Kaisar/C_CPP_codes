@@ -6,7 +6,7 @@
         the precision, and 
         the fill character, 
         
-        thse are three member functions defined by "ios":
+        thse are three member functions defined by "std::ios":
 
         width():
             specify a minimum field width (padding spaces or fill chars).
@@ -17,7 +17,7 @@
         fill():
             padding character when width is not filled.
 
-    Together, these are part of the C++ stream formatting system, defined inside the
+    Together, these are part of the C++ stream formatting system, "defined" inside the
     std::ios_base / std::ios hierarchy
 
 
@@ -69,13 +69,16 @@
             Default: space ' '.
 
 
+    NOTE: 
+        These differ from manipulators (like std::setw, std::setprecision, std::setfill), 
+        They do the same job but are used differently.
+
+
 
 
 // ----  rev[29-Aug-2025]  ----
 
-	fill(): by default, when a field needs to be filled, it is filled with spaces. To specify the fill character use fill() function. Prototype:
-char fill( char ch);
-	After a call to fill(), ch becomes the new fill character, and the old one is returned.
+
 	Example 1: Following illustrates the basics of width, precision and fill.
 int main(){ cout.width(10) ; 	// set minimum filed width
 	cout<< "hello"<<'\n'; 	// right - justify by default
@@ -106,45 +109,6 @@ int main(){ double x;
 return 0; }
 
 
-
-----  GPT  ----
-
-Let’s carefully pin down what these functions really are in C++ I/O:
-
-
-
-2. precision()
-
-What it is:
-A member function of std::ios.
-
-What it does:
-Controls how many digits are printed for floating-point numbers.
-
-Default = 6 digits total.
-
-The effect depends on format flags (fixed, scientific, etc.).
-
-Type:
-Takes and returns std::streamsize.
-
-3. fill()
-
-What it is:
-A member function of std::ios.
-
-What it does:
-Sets the character used for padding when the field width (from width()) is larger than the actual data.
-
-Default = space ' '.
-
-Type:
-Takes and returns a char.
-
-So in short:
-
-
-Would you like me to also explain how these differ from manipulators (like std::setw, std::setprecision, std::setfill), since they do the same job but are used differently?
 
 
 
