@@ -228,8 +228,9 @@ return 0;
 
 
 
-/* Example 2: The following program shows how to use the C++ I/O format functions to create an
-aligned table of numbers: */
+/* Example 2: The following program shows how to use the C++ I/O format functions 
+                to create an aligned table of numbers.
+*/
 
 // Create a table of square roots and squares .
 # include <iostream >
@@ -278,24 +279,26 @@ EXERCISES
 
 
 
-/* Example 3: Create a program that prints the natural log and base 10 log of the numbers from 2 to
-100. Format the table so that the numbers are right justified within a field width of 10,
-using a precision of five decimal places. */
+/* Example 3: Create a program that prints the "natural log" and "base 10 log" of the numbers from 2 to 100.
+                Format the table so that:
+                    the numbers are "right justified" 
+                    within a field width of 10,
+                    using a precision of five decimal places. 
+*/
 
 
 
 /* Example 4: Create a function called center() that has this prototype:
-void center ( char *s);
-Have this function center the specified string on the screen. To accomplish this, use the
-width() function. Assume that the screen is 80 characters wide. (For simplicity, you may
-assume that no string exceeds 80 characters.) Write a program that demonstrates that
-your function works. */
+                    void center(char *s);
+                Have this function center the specified string on the screen. 
 
+                To accomplish this, use the width() function. 
+                Assume that the screen is 80 characters wide. 
+                (For simplicity, you may assume that no string exceeds 80 characters.) 
 
+                Write a program that demonstrates that your function works. 
+*/
 
-/* Example 5: On your own, experiment with the format flags and the format functions. Once you
-become familiar with the C++ I/O system, you will have no trouble using it to format
-output any way you like. */
 
 
 
