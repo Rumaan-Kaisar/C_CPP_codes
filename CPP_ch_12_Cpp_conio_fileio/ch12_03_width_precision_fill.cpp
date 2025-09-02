@@ -76,8 +76,9 @@
 
 
     NOTE: 
-        These differ from manipulators (like std::setw, std::setprecision, std::setfill), 
+        These differ from MANIPULATORS (like std::setw, std::setprecision, std::setfill), 
         They do the same job but are used differently.
+        We'll discuss manipulators in the next section
 
         Use these functions to:
             Align output (e.g., tables, reports)
@@ -286,6 +287,28 @@ EXERCISES
                     using a precision of five decimal places. 
 */
 
+// Create a table of log10 and log from 2 through 100.
+# include <iostream >
+# include <cmath >
+
+int main ()
+{
+double x;
+cout . precision (5) ;
+cout << " x log x ln e\n\n";
+for (x = 2.0; x <= 100.0; x++)
+{
+cout . width (10) ;
+cout << x << ’ ’;
+cout . width (10) ;
+cout << log10 (10) << ’ ’;
+cout . width (10) ;
+cout << log (x) << ’\n’;
+}
+return 0;
+}
+
+
 
 
 /* Example 4: Create a function called center() that has this prototype:
@@ -299,6 +322,23 @@ EXERCISES
                 Write a program that demonstrates that your function works. 
 */
 
+# include <iostream >
+# include <cstring >
+
+void center ( char *s);
+int main ()
+{
+center ("Hi there !");
+center ("I like C ++.");
+return 0;
+}
+void center ( char *s)
+{
+int len ;
+len = 40+( strlen (s)/2);
+cout . width ( len );
+cout << s << ’\n’;
+}
 
 
 
