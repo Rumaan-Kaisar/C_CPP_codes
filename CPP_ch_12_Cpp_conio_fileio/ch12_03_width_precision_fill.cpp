@@ -91,27 +91,6 @@
 // ----  rev[29-Aug-2025]  ----
 
 
-	Example 1: Following illustrates the basics of width, precision and fill.
-int main(){ cout.width(10) ; 	// set minimum filed width
-	cout<< "hello"<<'\n'; 	// right - justify by default
-
-	cout.fill ('%'); 		// set fill character
-	cout.width(10) ; 		// set width
-	cout<< "hello" << '\n'; 	// right - justify default
-
-	cout.setf(ios :: left ); 	// left - justify
-	cout.width (10) ; 		// set width
-	cout<< "hello" <<'\n'; 	// output left justified	
-cout.width(10) ; 		// set width
-cout.precision (10) ; 	// set 10 digits of precision
-cout<< 123.234567 << '\n';
-
-cout.width(10) ; 		// set width
-cout.precision(6) ; 		// set 6 digits of precision
-cout<< 123.234567 << '\n';
-
-return 0; }
-	Notice that the field width is set before each output statement.
 	Example 2: The following segment uses the C++ I/O format functions to create an aligned table of numbers:
 int main(){ double x;
    cout.precision(4) ;
@@ -129,33 +108,6 @@ return 0; }
 Here is the simplified pointwise summary of the given content on width(), precision(), and fill():
 
 
-
-
-
-
-
-
-🔹 Example 1: Basic Use
-
-cout.width(10);           // Min width = 10
-cout << "hello";          // Output: "     hello" (right-aligned, space-padded)
-
-cout.fill('%');           // Change fill char
-cout.width(10);
-cout << "hello";          // Output: "%%%%%hello"
-
-cout.setf(ios::left);     // Left-justify
-cout.width(10);
-cout << "hello";          // Output: "hello%%%%%"
-
-cout.width(10);
-cout.precision(10);
-cout << 123.234567;       // Shows 10 digits precision
-
-cout.precision(6);        // Reset precision
-cout.width(10);
-cout << 123.234567;       // Shows 6 digits after decimal
-⚠️ Key Note: width() must be set before each output, as it applies only to the next insertion. 
 
 🔹 Example 2: Creating a Neat Table
 cpp
@@ -183,12 +135,7 @@ for(double x = 2.0; x <= 20.0; x++) {
 Produces neatly aligned columns.
 Each number takes up at least 7 characters, padded with spaces.
 
-
-
-
 */  
-
-
 
 
 
@@ -205,26 +152,29 @@ Each number takes up at least 7 characters, padded with spaces.
                 Notice that the field width is set before each output statement.
 */
 
-# include <iostream >
+#include <iostream>
 
 int main() {
-cout . width (10) ; // set minimum filed width
-cout << " hello " << ’\n’; // right - justify by default
-cout . fill (’%’); // set fill character
-216INTRODUCING THE C++ I/O SYSTEM
-8.3. USING width(), precision(), AND fill()
-cout . width (10) ; // set width
-cout << " hello " << ’\n’; // right - justify default
-cout . setf ( ios :: left ); // left - justify
-cout . width (10) ; // set width
-cout << " hello " << ’\n’; // output left justified
-cout . width (10) ; // set width
-cout . precision (10) ; // set 10 digits of precision
-cout << 123.234567 << ’\n’;
-cout . width (10) ; // set width
-cout . precision (6) ; // set 6 digits of precision
-cout << 123.234567 << ’\n’;
-return 0;
+    std::cout.width(10) ;        // set minimum filed width
+    std::cout << "hello" << '\n';     // right - justify by default
+
+    std::cout.fill('%');    // set fill character
+    std::cout.width(10);    // set width
+    std::cout << "hello" << '\n';     // right - justify default
+
+    std::cout.setf( std::ios::left ); // left - justify
+    std::cout.width(10) ; // set width
+    std::cout << "hello" << '\n'; // output left justified
+
+    std::cout . width (10) ; // set width
+    std::cout . precision (10) ; // set 10 digits of precision
+    std::cout << 123.234567 << '\n';
+
+    std::cout . width (10) ; // set width
+    std::cout . precision (6) ; // set 6 digits of precision
+    std::cout << 123.234567 << '\n';
+
+    return 0;
 }
 
 
@@ -248,7 +198,7 @@ cout << x << " ";
 cout . width (7) ;
 cout << sqrt (x) << " ";
 cout . width (7) ;
-cout << x*x << ’\n’;
+cout << x*x << '\n';
 }
 return 0;
 }
@@ -299,11 +249,11 @@ cout << " x log x ln e\n\n";
 for (x = 2.0; x <= 100.0; x++)
 {
 cout . width (10) ;
-cout << x << ’ ’;
+cout << x << ' ';
 cout . width (10) ;
-cout << log10 (10) << ’ ’;
+cout << log10 (10) << ' ';
 cout . width (10) ;
-cout << log (x) << ’\n’;
+cout << log (x) << '\n';
 }
 return 0;
 }
@@ -337,7 +287,7 @@ void center ( char *s)
 int len ;
 len = 40+( strlen (s)/2);
 cout . width ( len );
-cout << s << ’\n’;
+cout << s << '\n';
 }
 
 
