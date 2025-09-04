@@ -87,54 +87,6 @@
 
         Always set width() just before the value you want to format! 
 
-
-// ----  rev[29-Aug-2025]  ----
-
-
-	Example 2: The following segment uses the C++ I/O format functions to create an aligned table of numbers:
-int main(){ double x;
-   cout.precision(4) ;
-   cout<< "x  sqrt(x)  x^2  \n\n";	for(x=2.0; x<=20.0; x++) {	cout.width(7); cout<<x<<" ";
-				cout.width(7); cout<<sqrt(x)<<" ";
-				cout.width(7); cout<<x*x<< \n';}
-return 0; }
-
-
-
-
-
-----  Qwen  ----
-
-Here is the simplified pointwise summary of the given content on width(), precision(), and fill():
-
-
-
-🔹 Example 2: Creating a Neat Table
-cpp
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-⌄
-cout.precision(4);  // Set floating-point precision to 4 digits
-
-cout << "x    sqrt(x)    x^2\n\n";
-
-for(double x = 2.0; x <= 20.0; x++) {
-    cout.width(7); cout << x << " ";
-    cout.width(7); cout << sqrt(x) << " ";
-    cout.width(7); cout << x*x << "\n";
-}
-Produces neatly aligned columns.
-Each number takes up at least 7 characters, padded with spaces.
-
 */  
 
 
@@ -179,29 +131,84 @@ int main() {
 
 
 
+
 /* Example 2: The following program shows how to use the C++ I/O format functions 
                 to create an aligned table of numbers.
 */
 
 // Create a table of square roots and squares .
-# include <iostream >
-# include <cmath >
+#include <iostream>
+#include <cmath>
 
 int main() {
-double x;
-cout . precision (4) ;
-cout << " x sqrt (x) x^2\ n\n";
-for (x = 2.0; x <= 20.0; x++)
-{
-cout . width (7) ;
-cout << x << " ";
-cout . width (7) ;
-cout << sqrt (x) << " ";
-cout . width (7) ;
-cout << x*x << '\n';
+    double x;
+
+    std::cout.precision(4);
+    std::cout << "      x  sqrt(x)    x^2\n\n";
+
+    for(x=2.0; x<=20.0; x++) {
+        std::cout.width(7);
+        std::cout << x << " ";
+
+        std::cout.width(7);
+        std::cout << sqrt (x) << " ";
+
+        std::cout.width(7);
+        std::cout << x*x << '\n';
+    }
+
+    return 0;
 }
-return 0;
+
+
+
+
+Example 2: The following segment uses the C++ I/O format functions to create an aligned table of numbers:
+
+
+int main(){ double x;
+   cout.precision(4) ;
+   cout<< ;	 {	cout.width(7); cout<<x<<" ";
+				cout.width(7); cout<<sqrt(x)<<" ";
+				cout.width(7); cout<<x*x<< '\n';}
+return 0; }
+
+
+
+
+
+----  Qwen  ----
+
+Here is the simplified pointwise summary of the given content on width(), precision(), and fill():
+
+
+
+🔹 Example 2: Creating a Neat Table
+cpp
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+⌄
+cout.precision(4);  // Set floating-point precision to 4 digits
+
+cout << "x    sqrt(x)    x^2\n\n";
+
+for(double x = 2.0; x <= 20.0; x++) {
+    cout.width(7); cout << x << " ";
+    cout.width(7); cout << sqrt(x) << " ";
+    cout.width(7); cout << x*x << "\n";
 }
+Produces neatly aligned columns.
+Each number takes up at least 7 characters, padded with spaces.
+
 
 
 
