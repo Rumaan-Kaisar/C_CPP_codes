@@ -170,25 +170,29 @@ int main() {
                     using a precision of five decimal places. 
 */
 
-// Create a table of log10 and log from 2 through 100.
-# include <iostream >
-# include <cmath >
+// Create a table of 'log10' and 'log' from 2 through 100.
+#include <iostream>
+#include <cmath>
 
-int main ()
-{
-double x;
-cout . precision (5) ;
-cout << " x log x ln e\n\n";
-for (x = 2.0; x <= 100.0; x++)
-{
-cout . width (10) ;
-cout << x << ' ';
-cout . width (10) ;
-cout << log10 (10) << ' ';
-cout . width (10) ;
-cout << log (x) << '\n';
-}
-return 0;
+
+int main(){
+    double x;
+
+    std::cout.precision(5);
+    std::cout << " x log x ln e\n\n";
+
+    for(x = 2.0; x <= 100.0; x++) {
+        std::cout.width(10);
+        std::cout << x << ' ';
+
+        std::cout.width(10);
+        std::cout << log10(x) << ' ';
+
+        std::cout.width(10);
+        std::cout << log(x) << '\n';
+    }
+
+    return 0;
 }
 
 
@@ -225,7 +229,5 @@ void center(char *s) {
     std::cout.width(len);
     std::cout << s << '\n';
 }
-
-
 
 
