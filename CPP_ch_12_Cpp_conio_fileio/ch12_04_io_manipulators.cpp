@@ -1,6 +1,7 @@
 
 /*  ------------------------    chapter    ------------------------
 
+// ----  rev[04-Aug-2025]  ----
 
 12.4 I/O MANIPULATORS
 I/O manipulators are special I/O format functions that can occur within an I/O statement. (Where ios member functions stay separate from I/O statement).  For example:	cout << oct << 100 << hex << 100;
