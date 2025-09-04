@@ -205,22 +205,25 @@ return 0;
                 Write a program that demonstrates that your function works. 
 */
 
-# include <iostream >
-# include <cstring >
+#include <iostream>
+#include <cstring>
 
-void center ( char *s);
-int main ()
-{
-center ("Hi there !");
-center ("I like C ++.");
-return 0;
+void center(char *s);
+
+int main() {
+    center("Hi there !");
+    center("I like C ++.");
+
+    return 0;
 }
-void center ( char *s)
-{
-int len ;
-len = 40+( strlen (s)/2);
-cout . width ( len );
-cout << s << '\n';
+
+
+void center(char *s) {
+    int len;
+
+    len = 40 + (strlen(s)/2);
+    std::cout.width(len);
+    std::cout << s << '\n';
 }
 
 
