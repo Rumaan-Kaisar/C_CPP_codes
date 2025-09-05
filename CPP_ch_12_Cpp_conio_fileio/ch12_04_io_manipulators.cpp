@@ -1,10 +1,65 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    I/O manipulators    ------------------------
 
-// ----  rev[04-Aug-2025]  ----
+    I/O manipulators:
+        Special functions that control I/O formatting directly inside an I/O statement.
 
-12.4 I/O MANIPULATORS
-I/O manipulators are special I/O format functions that can occur within an I/O statement. (Where ios member functions stay separate from I/O statement).  For example:	cout << oct << 100 << hex << 100;
+    ----  rev[05-Sep-2025]  ----
+
+Unlike ios member functions (setf(), precision(), etc.), manipulators make code shorter and more readable.
+
+
+
+
+
+🔹 12.4 – I/O manipulators (Simplified)
+✅ What are I/O manipulators?
+
+Can be used directly in I/O statements (e.g., <<, >>), unlike ios member functions which are called separately.
+Example:
+cpp
+
+
+1
+cout << hex << 100;  // 'hex' is a manipulator
+
+
+
+✅ Key Features
+Compact & readable: Allow formatting within stream expressions.
+Stream-specific: Only affect the stream they are used with (e.g., cout, cin).
+No global effect: Changing format in one stream doesn’t affect others.
+
+
+
+✅ Types of manipulators
+Examples
+setw(10)
+,
+setfill('*')
+,
+setprecision(3)
+hex
+,
+endl
+,
+boolalpha
+Header needed
+Must include
+<iomanip>
+Only need
+<iostream>
+
+📌 Tip: Use () only for manipulators that take arguments. 
+
+
+
+---------------------------
+
+I/O manipulators
+
+
+ (Where ios member functions stay separate from I/O statement).  For example:	cout << oct << 100 << hex << 100;
 cout << setw(10) << 100;
 	The first statement tells cout to display integers in octal and then outputs 100 in octal. It then tells the stream to display integers in hexadecimal and then outputs 100 in hexadecimal format. 
 	The second statement sets the field width to 10 and then displays 100 in hexadecimal format again (last base setting active). 
@@ -42,7 +97,7 @@ After boolalpha: 	true false
 
 	Set/Reset: 		To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
 	To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
-	Table of Slandered C++ I/O Manipulators:
+	Table of Slandered C++ I/O manipulators:
 Manipulator	Purpose	I/O	Manipulator	Purpose	I/O
 boolalpha	Turns on boolalpha flag	I/O	oct	Turns on oct ag	I/O
 dec 	Turns on dec flag	I/O	right	Turns on right flag	Output
@@ -66,13 +121,9 @@ nouppercase	Turns off uppercase flag	Output	ws	Skips leading white space	Input
 
 
 --------  GPT  --------
-Here’s a balanced (mid-ground) explanation of 12.4 I/O Manipulators, simplified pointwise:
+Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplified pointwise:
 
-🔹 What are I/O Manipulators?
 
-Manipulators are special functions that change stream formatting directly inside an I/O statement.
-
-Unlike ios member functions (setf(), precision(), etc.), manipulators make code shorter and more readable.
 
 🔹 Examples
 
@@ -104,7 +155,7 @@ Affect only the stream where used (e.g., cout, not cerr).
 
 Good for table formatting, base conversions, boolean display, etc.
 
-🔹 Special Manipulators
+🔹 Special manipulators
 
 boolalpha / noboolalpha
 
@@ -145,7 +196,7 @@ ws	Skip whitespace on input
 endl	Newline + flush
 🔹 Key Takeaways
 
-Manipulators = stream shortcuts.
+manipulators = stream shortcuts.
 
 They often parallel ios member functions, but are cleaner inside I/O expressions.
 
@@ -160,41 +211,12 @@ Would you like me to also show a side-by-side comparison of ios functions vs man
 
 --------  Qwen  --------
 
-Here is a simplified, pointwise summary of Section 12.4: I/O Manipulators, with concise yet clear explanations:
-
-🔹 12.4 – I/O Manipulators (Simplified)
-✅ What are I/O Manipulators?
-Special functions that control input/output formatting.
-Can be used directly in I/O statements (e.g., <<, >>), unlike ios member functions which are called separately.
-Example:
-cpp
+Here is a simplified, pointwise summary of Section 12.4: I/O manipulators, with concise yet clear explanations:
 
 
-1
-cout << hex << 100;  // 'hex' is a manipulator
-✅ Key Features
-Compact & readable: Allow formatting within stream expressions.
-Stream-specific: Only affect the stream they are used with (e.g., cout, cin).
-No global effect: Changing format in one stream doesn’t affect others.
-✅ Types of Manipulators
-Examples
-setw(10)
-,
-setfill('*')
-,
-setprecision(3)
-hex
-,
-endl
-,
-boolalpha
-Header needed
-Must include
-<iomanip>
-Only need
-<iostream>
 
-📌 Tip: Use () only for manipulators that take arguments. 
+
+
 
 ✅ Common Examples
 cpp
@@ -221,7 +243,7 @@ cpp
 2
 cout << boolalpha << true;  // prints: true
 cin >> boolalpha >> b;      // allows input: true/false
-✅ Flag Control Manipulators
+✅ Flag Control manipulators
 setiosflags(f) → same as setf(f) — turns on format flags.
 resetiosflags(f) → same as unsetf(f) — turns off flags.
 Used with <iomanip>.
@@ -232,7 +254,7 @@ cpp
 
 1
 cout << setiosflags(ios::left) << setw(10) << "Hello";
-✅ Important Manipulators (Summary Table)
+✅ Important manipulators (Summary Table)
 dec
 ,
 hex
@@ -330,7 +352,7 @@ int main() {
     return 0;
 }
 ✅ Key Takeaways
-Manipulators make formatting cleaner and inline.
+manipulators make formatting cleaner and inline.
 Use <iomanip> for parameterized manipulators (setw, setfill, etc.).
 Most manipulators affect only the next operation (e.g., setw).
 Format changes (like hex, boolalpha) persist until changed.
