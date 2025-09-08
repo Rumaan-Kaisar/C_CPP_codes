@@ -1,4 +1,4 @@
-// ----  rev[08-Sep-2025]  ----
+
 /*  ------------------------    I/O manipulators    ------------------------
 
     I/O manipulators:
@@ -16,24 +16,7 @@
             No global effect:   Changing format in one stream doesn't affect others.
 
 
-🔹 12.4 – I/O manipulators (Simplified)
-✅ What are I/O manipulators?
-
-Can be used directly in I/O statements (e.g., <<, >>), unlike ios member functions which are called separately.
-Example:
-cpp
-
-
-1
-cout << hex << 100;  // 'hex' is a manipulator
-
-
-
-✅ Key Features
-Compact & readable: Allow formatting within stream expressions.
-Stream-specific: Only affect the stream they are used with (e.g., cout, cin).
-No global effect: Changing format in one stream doesn’t affect others.
-
+// ----  rev[08-Sep-2025]  ----
 
 
 ✅ Types of manipulators
@@ -63,8 +46,9 @@ Only need
 I/O manipulators
 
 
- (Where ios member functions stay separate from I/O statement).  For example:	cout << oct << 100 << hex << 100;
-cout << setw(10) << 100;
+
+
+
 	The first statement tells cout to display integers in octal and then outputs 100 in octal. It then tells the stream to display integers in hexadecimal and then outputs 100 in hexadecimal format. 
 	The second statement sets the field width to 10 and then displays 100 in hexadecimal format again (last base setting active). 
 	Notice that when a manipulator does not take an argument, such as oct in the example, it is not followed by parentheses. This is because it is the address of the manipulator that is passed to the overloaded << operator.
@@ -366,4 +350,3 @@ Format changes (like hex, boolalpha) persist until changed.
 
 
 */  
-
