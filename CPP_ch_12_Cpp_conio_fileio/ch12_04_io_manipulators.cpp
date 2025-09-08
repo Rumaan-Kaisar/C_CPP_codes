@@ -1,15 +1,19 @@
-
+// ----  rev[08-Sep-2025]  ----
 /*  ------------------------    I/O manipulators    ------------------------
 
     I/O manipulators:
         Special functions that control I/O formatting directly inside an I/O statement.
+        Unlike "ios member functions" (setf(), precision(), etc.), manipulators make code shorter and more readable.
+        Can be used directly in I/O statements (e.g., <<, >>), unlike ios member functions which are called separately.
 
-    ----  rev[05-Sep-2025]  ----
+        Example:
+            cout << oct << 100 << hex << 100;   // 'hex' and 'oct' are manipulators
+            cout << setw(10) << 100;    // 'setw' is a manipulators
 
-Unlike ios member functions (setf(), precision(), etc.), manipulators make code shorter and more readable.
-
-
-
+        Key Features:
+            Compact & readable: Allow formatting within stream expressions.
+            Stream-specific:    Only affect the stream they are used with (e.g., cout, cin).
+            No global effect:   Changing format in one stream doesn't affect others.
 
 
 🔹 12.4 – I/O manipulators (Simplified)
@@ -362,3 +366,4 @@ Format changes (like hex, boolalpha) persist until changed.
 
 
 */  
+
