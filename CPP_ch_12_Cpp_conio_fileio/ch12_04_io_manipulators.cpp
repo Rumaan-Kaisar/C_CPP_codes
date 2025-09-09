@@ -7,73 +7,47 @@
         Can be used directly in I/O statements (e.g., <<, >>), unlike ios member functions which are called separately.
 
         Example:
-            cout << oct << 100 << hex << 100;   // 'hex' and 'oct' are manipulators
-            cout << setw(10) << 100;    // 'setw' is a manipulators
+                cout << oct << 100 << hex << 100;   // 'hex' and 'oct' are manipulators
+                cout << setw(10) << 100;    // 'setw' is a manipulators
+
+            First statement 
+                sets output "base" to octal, then prints 100 in octal.
+                Then switches to hexadecimal, and prints 100 in hex.
+                Format changes (like base) stay active until changed again.
+
+            The second statement:
+                Sets the "field width" to 10 for the next output.
+                Then prints 100 using the current base (last base setting still active, i.e. hex, from earlier).
 
         Key Features:
             Compact & readable: Allow formatting within stream expressions.
             Stream-specific:    Only affect the stream they are used with (e.g., cout, cin).
             No global effect:   Changing format in one stream doesn't affect others.
 
+            Easier and more intuitive to use.
+            Allow compact, readable code directly in stream statements.
+            Preferred over ios member functions for formatting.
 
-// ----  rev[08-Sep-2025]  ----
 
 
-✅ Types of manipulators
-Examples
-setw(10)
-,
-setfill('*')
-,
-setprecision(3)
-hex
-,
-endl
-,
-boolalpha
-Header needed
-Must include
-<iomanip>
-Only need
-<iostream>
+    Manipulator Arguments:
+        Some manipulators take arguments, like setw(10), setfill('*'), setprecision(3)
+            Must include <iomanip>
 
-📌 Tip: Use () only for manipulators that take arguments. 
+        Some have no arguments, like hex, oct, endl — these are used without parentheses.
+            This is because it is the "address of the manipulator" that is passed to the "overloaded << operator".
+            This allows the stream to call it internally.
+            Only need <iostream>
 
+Advantages of manipulators:
+
+
+
+
+// ----  rev[09-Sep-2025]  ----
 
 
 ---------------------------
-
-I/O manipulators
-
-The statement cout << oct << 100 << hex << 100;:
-First sets output base to octal, then prints 100 in octal.
-Then switches to hexadecimal, and prints 100 in hex.
-Format changes (like base) stay active until changed again.
-The statement cout << setw(10) << 100;:
-Sets the field width to 10 for the next output.
-Then prints 100 using the current base (hex, from earlier).
-Some manipulators take arguments, like setw(10), setfill('*').
-Some have no arguments, like hex, oct, endl — these are used without parentheses.
-No parentheses for argument-less manipulators because:
-The function's address is passed to the << operator.
-This allows the stream to call it internally.
-✅ Advantages of manipulators:
-Easier and more intuitive to use.
-Allow compact, readable code directly in stream statements.
-Preferred over ios member functions for formatting.
-
-
-
-
-	The first statement tells cout to display integers in octal and then outputs 100 in octal. It then tells the stream to display integers in hexadecimal and then outputs 100 in hexadecimal format. 
-	The second statement sets the field width to 10 and then displays 100 in hexadecimal format again (last base setting active). 
-
-some manipulators take arguments and some are not:
-
-	Notice that when a manipulator does not take an argument, such as oct in the example, it is not followed by parentheses.
-This is because it is the address of the manipulator that is passed to the overloaded << operator.
-	The main advantages of using manipulatior over the ios member functions is that they are easier to use and allow compact coding.
-
 
 
 	Many of the I/O manipulators parallel member functions of the ios class. 
@@ -108,6 +82,9 @@ After boolalpha: 	true false
 
 	Set/Reset: 		To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
 	To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
+
+
+
 
 
 	Table of Slandered C++ I/O manipulators:
