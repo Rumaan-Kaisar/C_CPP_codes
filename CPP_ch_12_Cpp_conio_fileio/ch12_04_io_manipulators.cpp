@@ -45,14 +45,37 @@ Only need
 
 I/O manipulators
 
+The statement cout << oct << 100 << hex << 100;:
+First sets output base to octal, then prints 100 in octal.
+Then switches to hexadecimal, and prints 100 in hex.
+Format changes (like base) stay active until changed again.
+The statement cout << setw(10) << 100;:
+Sets the field width to 10 for the next output.
+Then prints 100 using the current base (hex, from earlier).
+Some manipulators take arguments, like setw(10), setfill('*').
+Some have no arguments, like hex, oct, endl — these are used without parentheses.
+No parentheses for argument-less manipulators because:
+The function's address is passed to the << operator.
+This allows the stream to call it internally.
+✅ Advantages of manipulators:
+Easier and more intuitive to use.
+Allow compact, readable code directly in stream statements.
+Preferred over ios member functions for formatting.
 
 
 
 
 	The first statement tells cout to display integers in octal and then outputs 100 in octal. It then tells the stream to display integers in hexadecimal and then outputs 100 in hexadecimal format. 
 	The second statement sets the field width to 10 and then displays 100 in hexadecimal format again (last base setting active). 
-	Notice that when a manipulator does not take an argument, such as oct in the example, it is not followed by parentheses. This is because it is the address of the manipulator that is passed to the overloaded << operator.
+
+some manipulators take arguments and some are not:
+
+	Notice that when a manipulator does not take an argument, such as oct in the example, it is not followed by parentheses.
+This is because it is the address of the manipulator that is passed to the overloaded << operator.
 	The main advantages of using manipulatior over the ios member functions is that they are easier to use and allow compact coding.
+
+
+
 	Many of the I/O manipulators parallel member functions of the ios class. 
 	An I/O manipulator affects only the stream of which the I/O expression is a part and doesn't affect all currently opened streams.
 	To access manipulators that take parameters, such as setw(), you must include <iomanip> in you program. This is not necessary when you are using a manipulator that does not require an argument.
@@ -85,6 +108,8 @@ After boolalpha: 	true false
 
 	Set/Reset: 		To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
 	To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
+
+
 	Table of Slandered C++ I/O manipulators:
 Manipulator	Purpose	I/O	Manipulator	Purpose	I/O
 boolalpha	Turns on boolalpha flag	I/O	oct	Turns on oct ag	I/O
