@@ -39,7 +39,7 @@
             This allows the stream to call it internally.
             Only need <iostream>
 
-Advantages of manipulators:
+
 
 
 
@@ -49,10 +49,13 @@ Advantages of manipulators:
 
 ---------------------------
 
+Note:
+    Many of the "I/O manipulators" parallel "member functions" of the "ios" class. 
+    
 
-	Many of the I/O manipulators parallel member functions of the ios class. 
-	An I/O manipulator affects only the stream of which the I/O expression is a part and doesn't affect all currently opened streams.
-	To access manipulators that take parameters, such as setw(), you must include <iomanip> in you program. This is not necessary when you are using a manipulator that does not require an argument.
+
+
+
 	Example 1:  Following includes setfill() and setw() so we have to include <iomanip>
 #include <iostream>
 #include <iomanip>
@@ -61,9 +64,13 @@ int main() { 	cout << hex << 100 << endl ;
 cout << setfill('X') << setw(10) ;
 cout << 100 << " hi " << endl ;
 return 0;}
+
+
 	Boolalpha: boolalpha allows you to input and output Boolean values using the keywords true and false (normally you must enter 1 for true and 0 for false).
 	Must set the boolalpha flags for cin and cout separately. Eg: cin >> boolalpha >> b;  // enter true or false
-	As with all format flags, setting boolalpha for one stream does not imply that it is also set for another. For Example 2:
+	As with all format flags, setting boolalpha for one stream does not imply that it is also set for another. For 
+
+Example 2:
 
 	int main() { bool b;
 	cout << " Before boolalpha:";
