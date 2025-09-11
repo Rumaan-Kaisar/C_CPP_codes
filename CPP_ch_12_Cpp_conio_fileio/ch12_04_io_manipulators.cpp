@@ -40,6 +40,10 @@
             Only need <iostream>
 
 
+    Note:
+        Many of the "I/O manipulators" parallel "member functions" of the "ios" class. 
+    
+
 
 
 
@@ -48,22 +52,6 @@
 
 
 ---------------------------
-
-Note:
-    Many of the "I/O manipulators" parallel "member functions" of the "ios" class. 
-    
-
-
-
-
-	Example 1:  Following includes setfill() and setw() so we have to include <iomanip>
-#include <iostream>
-#include <iomanip>
-using namespace std;
-int main() { 	cout << hex << 100 << endl ;
-cout << setfill('X') << setw(10) ;
-cout << 100 << " hi " << endl ;
-return 0;}
 
 
 	Boolalpha: boolalpha allows you to input and output Boolean values using the keywords true and false (normally you must enter 1 for true and 0 for false).
@@ -359,3 +347,19 @@ Format changes (like hex, boolalpha) persist until changed.
 
 
 */  
+
+
+
+
+/* Example 1:  Following includes setfill() and setw() so we have to include <iomanip> */
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    std::cout << std::hex << 100 << std::endl ;
+    std::cout << std::setfill('X') << std::setw(10) ;
+    std::cout << 100 << " hi " << std::endl ;
+
+    return 0;
+}
+
