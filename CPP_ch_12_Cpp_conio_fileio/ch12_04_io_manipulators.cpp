@@ -27,6 +27,7 @@
             Easier and more intuitive to use.
             Allow compact, readable code directly in stream statements.
             Preferred over ios member functions for formatting.
+            Good for table formatting, base conversions, boolean display, etc.
 
 
 
@@ -114,17 +115,6 @@ Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplifie
 
 
 
-
-
-
-🔹 Advantages
-
-Easier and more compact than calling member functions.
-
-Affect only the stream where used (e.g., cout, not cerr).
-
-Good for table formatting, base conversions, boolean display, etc.
-
 🔹 Special manipulators
 
 boolalpha / noboolalpha
@@ -149,6 +139,9 @@ endl: newline + flush buffer.
 ends: insert '\0'.
 
 flush: flush buffer without newline.
+
+
+
 
 🔹 Standard Manipulator Table (common ones)
 Manipulator	Purpose
