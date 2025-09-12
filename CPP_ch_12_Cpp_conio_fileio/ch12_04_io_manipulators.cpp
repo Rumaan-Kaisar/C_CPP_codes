@@ -110,27 +110,12 @@ Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplifie
 
 
 
-🔹 Examples
-
-Base manipulators
-
-cout << oct << 100 << hex << 100;
 
 
-oct → prints 100 in octal.
-
-hex → prints 100 in hexadecimal.
-
-The stream "remembers" the last base (here: hex).
-
-Width manipulator
-
-cout << setw(10) << 100;
 
 
-Sets field width = 10, then prints 100 (padded with spaces or fill char).
 
-👉 Key point: manipulators without arguments (oct, hex, dec) are passed directly; manipulators with arguments (setw(10), setfill('X')) need <iomanip>.
+
 
 🔹 Advantages
 
