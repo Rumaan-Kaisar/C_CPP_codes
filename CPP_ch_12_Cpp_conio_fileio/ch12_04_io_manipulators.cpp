@@ -55,34 +55,28 @@
 ---------------------------
 
 ----  boolalpha  ----
+
 Boolalpha:
-boolalpha allows you to input and output Boolean values using the keywords true and false (normally you must enter 1 for true and 0 for false).
-	Must set the boolalpha flags for cin and cout separately. Eg: cin >> boolalpha >> b;  // enter true or false
-	As with all format flags, setting boolalpha for one stream does not imply that it is also set for another. For 
+    Allows to input and output "Boolean values" using the keywords "true" and "false"
+    (normally you must enter 1 for true and 0 for false).
 
-Example 2:
+    Must set the boolalpha flags for 'cin' and 'cout' separately. Eg: 
+        cin >> boolalpha >> b;  // enter true or false
+        cout << boolalpha << true << " " << false; // true false
 
-	int main() { bool b;
-	cout << " Before boolalpha:";
-	b = true ;
-	cout << b <<" ";
-	b = false ;
-	cout << b << endl;	cout << " After boolalpha:";
-b = true ;
-cout << boolalpha << b << " ";
-b = false ;
-cout << b << endl;
-return 0;}	OUTPUT:
-Before boolalpha: 1  0
-After boolalpha: 	true false
+    As with all format flags, setting boolalpha for one stream does not affect others.
+ 
 
 
+----  Set/Reset  ----
 
-----  boolalpha  ----
+    Set/Reset:
+        setiosflags() / resetiosflags() are high-level equivalents of setf() / unsetf().
 
-Set/Reset:
-To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
-	To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
+    To set specific format flags manually by manipulator, 
+        use setiosflags() which is equivalent to setf().
+
+    To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
 
 
 
@@ -120,20 +114,9 @@ Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplifie
 
 
 
-🔹 Special manipulators
-
-boolalpha / noboolalpha
-
-Makes true/false print as words instead of 1/0.
-
-cout << boolalpha << true << " " << false; // true false
 
 
-Must be set separately for cin and cout.
 
-setiosflags() / resetiosflags()
-
-High-level equivalents of setf() / unsetf().
 
 Example: cout << setiosflags(ios::showpos);
 
@@ -345,4 +328,23 @@ int main() {
 
     return 0;
 }
+
+   
+
+
+/* Example 2: */
+
+	int main() { bool b;
+	cout << " Before boolalpha:";
+	b = true ;
+	cout << b <<" ";
+	b = false ;
+	cout << b << endl;	cout << " After boolalpha:";
+b = true ;
+cout << boolalpha << b << " ";
+b = false ;
+cout << b << endl;
+return 0;}	OUTPUT:
+Before boolalpha: 1  0
+After boolalpha: 	true false
 
