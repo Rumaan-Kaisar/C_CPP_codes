@@ -54,8 +54,9 @@
 
 ---------------------------
 
-
-	Boolalpha: boolalpha allows you to input and output Boolean values using the keywords true and false (normally you must enter 1 for true and 0 for false).
+----  boolalpha  ----
+Boolalpha:
+boolalpha allows you to input and output Boolean values using the keywords true and false (normally you must enter 1 for true and 0 for false).
 	Must set the boolalpha flags for cin and cout separately. Eg: cin >> boolalpha >> b;  // enter true or false
 	As with all format flags, setting boolalpha for one stream does not imply that it is also set for another. For 
 
@@ -76,7 +77,11 @@ Before boolalpha: 1  0
 After boolalpha: 	true false
 
 
-	Set/Reset: 		To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
+
+----  boolalpha  ----
+
+Set/Reset:
+To set specific format flags manually by manipulator, use setiosflags() which is equivalent to setf().
 	To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
 
 
