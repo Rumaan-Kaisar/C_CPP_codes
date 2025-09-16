@@ -76,22 +76,44 @@
 
 	Table of Slandered C++ I/O manipulators:
 Manipulator	Purpose	I/O	Manipulator	Purpose	I/O
-boolalpha	Turns on boolalpha flag	I/O	oct	Turns on oct ag	I/O
-dec 	Turns on dec flag	I/O	right	Turns on right flag	Output
-endl	newline and flushes  stream	Output	resetiosflags(fmtflags f)	Turns off the flags specified in f	I/O 
-ends	Outputs a null 	Output	scientific	Turns on scientific flag	Output
-fixed	Turns on fixed flag	Output	setbase(int base)	Sets the number base to base	I/O 
-flush 	Flushes a stream	Output	setfill(int ch)	Sets the fill character to ch	I/O
-hex	Turns on hex flag	I/O	setiosflags(fmtflags f)	Turns on the flags specified in f	Output
-internal	Turns on internal flag	Output	setprecision(int p)	Sets the number of digits of precision	Output
-left	Turns on left	Output	setw(int w)	Sets the field width to w	Output
-noboolalpha	Turns off boolalpha flag	I/O	showbase	Turns on showbase flag	Output
-noshowbase	Turns off showbase flag	Output	showpoint	Turns on showpoint flag	Output
-noshowpoint	Turns off showpoint flag	Output	showpos	Turns on showpos flag	Output
-noshowpos	Turns off showpos flag	Output	skipws	Turns on skipws flag	Input
-noskipws	Turns off skipws flag	Input	unitbuf	Turns on unitbuf flag	Output
-nounitbuf	Turns off unitbuf flag	Output	uppercase	Turns on uppercase flag	Output
-nouppercase	Turns off uppercase flag	Output	ws	Skips leading white space	Input
+	 	I/O	  oct	Turns on oct ag	I/O
+ 		I/O	  right	Turns on right flag	Output
+		Output	resetiosflags(fmtflags f)	Turns off the flags specified in f	I/O 
+	 	Output	scientific	Turns on scientific flag	Output
+		Output	setbase(int base)	Sets the number base to base	I/O 
+ 		Output	setfill(int ch)	Sets the fill character to ch	I/O
+		I/O	  setiosflags(fmtflags f)	Turns on the flags specified in f	Output
+		Output	setprecision(int p)	Sets the number of digits of precision	Output
+		Output	setw(int w)	Sets the field width to w	Output
+		I/O	  showbase	Turns on showbase flag	Output
+		Output	showpoint	Turns on showpoint flag	Output
+		Output	showpos	Turns on showpos flag	Output
+		Output	skipws	Turns on skipws flag	Input
+		Input	unitbuf	Turns on unitbuf flag	Output
+		Output	uppercase	Turns on uppercase flag	Output
+		Output	ws	Skips leading white space	Input
+
+
+boolalpha       Turns on boolalpha flag
+dec             Turns on dec flag
+endl            newline and flushes  stream
+ends            Outputs a null
+fixed           Turns on fixed flag
+flush           Flushes a stream
+hex             Turns on hex flag
+internal        Turns on internal flag
+left            Turns on left
+noboolalpha     Turns off boolalpha flag
+noshowbase      Turns off showbase flag
+noshowpoint     Turns off showpoint flag
+noshowpos       Turns off showpos flag
+noskipws        Turns off skipws flag
+nounitbuf       Turns off unitbuf flag
+nouppercase     Turns off uppercase flag
+
+
+
+
 
 
 
@@ -123,20 +145,27 @@ flush: flush buffer without newline.
 
 
 
-🔹 Standard Manipulator Table (common ones)
-Manipulator	Purpose
-dec, oct, hex	Set number base
-setw(int)	Set field width (next output)
-setfill(ch)	Set fill character
-setprecision(p)	Set floating-point precision
-fixed	Fixed-point float formatting
-scientific	Scientific float formatting
-showpos	Show + for positive numbers
-showpoint	Always show decimal point
-boolalpha	Print true/false instead of 1/0
-uppercase	Uppercase hex + scientific E
-ws	Skip whitespace on input
-endl	Newline + flush
+Standard Manipulator Table (common ones)
+
+------------------------------------------------
+Manipulator         Purpose
+------------------------------------------------
+dec, oct, hex       Set number base
+setw(int)           Set field width (next output)
+setfill(ch)         Set fill character
+setprecision(p)     Set floating-point precision
+fixed               Fixed-point float formatting
+scientific          Scientific float formatting
+showpos             Show + for positive numbers
+showpoint           Always show decimal point
+boolalpha           Print true/false instead of 1/0
+uppercase           Uppercase hex + scientific E
+ws                  Skip whitespace on input
+endl                Newline + flush
+------------------------------------------------
+
+
+
 🔹 Key Takeaways
 
 manipulators = stream shortcuts.
