@@ -67,103 +67,93 @@
 
         To set specific format flags manually by manipulator, 
             use setiosflags() which is equivalent to setf().
-
+            Example:
+                        cout << setiosflags(ios::showpos);
+        
         To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
+
+
+
+    --------  endl / ends / flush  --------
+
+    endl:   newline + flush buffer.
+    ends:   insert '\0'.
+    flush:  flush buffer without newline.
+
+
+
+    ----  Table of Slandered C++ I/O manipulators  ----
+
+    -----------------------------------------------
+    Manipulator     I/O       Purpose
+    ------------------------------------------------
+    boolalpha       I/O	      Turns on boolalpha flag
+    dec             I/O	      Turns on dec flag
+    endl            Output    newline and flushes  stream
+    ends            Output    Outputs a null
+    fixed           Output    Turns on fixed flag
+    flush           Output    Flushes a stream
+    hex             I/O	      Turns on hex flag
+    internal        Output    Turns on internal flag
+    left            Output    Turns on left
+    noboolalpha     I/O	      Turns off boolalpha flag
+    noshowbase      Output    Turns off showbase flag
+    noshowpoint     Output    Turns off showpoint flag
+    noshowpos       Output    Turns off showpos flag
+    noskipws        Input     Turns off skipws flag
+    nounitbuf       Output    Turns off unitbuf flag
+    nouppercase     Output    Turns off uppercase flag
+
+    oct             I/O       Turns on oct ag
+    right           Output    Turns on right flag
+    scientific      Output    Turns on scientific flag
+    setw(int w)     Output    Sets the field width to w
+    showbase        Output    Turns on showbase flag
+    showpoint       Output    Turns on showpoint flag
+    showpos         Output    Turns on showpos flag
+    skipws          Input     Turns on skipws flag
+    unitbuf         Output    Turns on unitbuf flag
+    uppercase       Output    Turns on uppercase flag
+    ws              Input     Skips leading white space
+
+    resetiosflags(fmtflags f)   I/O       Turns off the flags specified in f
+    setbase(int base)           I/O       Sets the number base to base
+    setfill(int ch)             I/O       Sets the fill character to ch
+    setiosflags(fmtflags f)     Output    Turns on the flags specified in f
+    setprecision(int p)         Output    Sets the number of digits of precision
+
+
+
+    ----  Standard Manipulator Table (common ones)  ----
+
+    ------------------------------------------------
+    Manipulator         Purpose
+    ------------------------------------------------
+    dec, oct, hex       Set number base
+    setw(int)           Set field width (next output)
+    setfill(ch)         Set fill character
+    setprecision(p)     Set floating-point precision
+    fixed               Fixed-point float formatting
+    scientific          Scientific float formatting
+    showpos             Show + for positive numbers
+    showpoint           Always show decimal point
+    boolalpha           Print true/false instead of 1/0
+    uppercase           Uppercase hex + scientific E
+    ws                  Skip whitespace on input
+    endl                Newline + flush
+    ------------------------------------------------
+
+
+
 
 
 
 // ----  rev[16-Sep-2025]  ----
 
-	Table of Slandered C++ I/O manipulators:
-Manipulator	Purpose	I/O	Manipulator	Purpose	I/O
-	 	I/O	  oct	Turns on oct ag	I/O
- 		I/O	  right	Turns on right flag	Output
-		Output	resetiosflags(fmtflags f)	Turns off the flags specified in f	I/O 
-	 	Output	scientific	Turns on scientific flag	Output
-		Output	setbase(int base)	Sets the number base to base	I/O 
- 		Output	setfill(int ch)	Sets the fill character to ch	I/O
-		I/O	  setiosflags(fmtflags f)	Turns on the flags specified in f	Output
-		Output	setprecision(int p)	Sets the number of digits of precision	Output
-		Output	setw(int w)	Sets the field width to w	Output
-		I/O	  showbase	Turns on showbase flag	Output
-		Output	showpoint	Turns on showpoint flag	Output
-		Output	showpos	Turns on showpos flag	Output
-		Output	skipws	Turns on skipws flag	Input
-		Input	unitbuf	Turns on unitbuf flag	Output
-		Output	uppercase	Turns on uppercase flag	Output
-		Output	ws	Skips leading white space	Input
-
-
-boolalpha       Turns on boolalpha flag
-dec             Turns on dec flag
-endl            newline and flushes  stream
-ends            Outputs a null
-fixed           Turns on fixed flag
-flush           Flushes a stream
-hex             Turns on hex flag
-internal        Turns on internal flag
-left            Turns on left
-noboolalpha     Turns off boolalpha flag
-noshowbase      Turns off showbase flag
-noshowpoint     Turns off showpoint flag
-noshowpos       Turns off showpos flag
-noskipws        Turns off skipws flag
-nounitbuf       Turns off unitbuf flag
-nouppercase     Turns off uppercase flag
-
-
-
-
-
-
-
 
 
 --------  GPT  --------
 Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplified pointwise:
-
-
-
-
-
-
-
-
-
-
-
-Example: cout << setiosflags(ios::showpos);
-
-endl / ends / flush
-
-endl: newline + flush buffer.
-
-ends: insert '\0'.
-
-flush: flush buffer without newline.
-
-
-
-
-Standard Manipulator Table (common ones)
-
-------------------------------------------------
-Manipulator         Purpose
-------------------------------------------------
-dec, oct, hex       Set number base
-setw(int)           Set field width (next output)
-setfill(ch)         Set fill character
-setprecision(p)     Set floating-point precision
-fixed               Fixed-point float formatting
-scientific          Scientific float formatting
-showpos             Show + for positive numbers
-showpoint           Always show decimal point
-boolalpha           Print true/false instead of 1/0
-uppercase           Uppercase hex + scientific E
-ws                  Skip whitespace on input
-endl                Newline + flush
-------------------------------------------------
-
 
 
 🔹 Key Takeaways
