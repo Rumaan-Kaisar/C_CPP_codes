@@ -46,41 +46,33 @@
     
 
 
+    --------  boolalpha  --------
+
+    Boolalpha:
+        Allows to input and output "Boolean values" using the keywords "true" and "false"
+        (normally you must enter 1 for true and 0 for false).
+
+        Must set the boolalpha flags for 'cin' and 'cout' separately. Eg: 
+            cin >> boolalpha >> b;  // enter true or false
+            cout << boolalpha << true << " " << false; // true false
+
+        As with all format flags, setting boolalpha for one stream does not affect others.
+    
+
+
+    --------  Set/Reset  --------
+
+        Set/Reset:
+            setiosflags() / resetiosflags() are high-level equivalents of setf() / unsetf().
+
+        To set specific format flags manually by manipulator, 
+            use setiosflags() which is equivalent to setf().
+
+        To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
 
 
 
-// ----  rev[09-Sep-2025]  ----
-
-
----------------------------
-
-----  boolalpha  ----
-
-Boolalpha:
-    Allows to input and output "Boolean values" using the keywords "true" and "false"
-    (normally you must enter 1 for true and 0 for false).
-
-    Must set the boolalpha flags for 'cin' and 'cout' separately. Eg: 
-        cin >> boolalpha >> b;  // enter true or false
-        cout << boolalpha << true << " " << false; // true false
-
-    As with all format flags, setting boolalpha for one stream does not affect others.
- 
-
-
-----  Set/Reset  ----
-
-    Set/Reset:
-        setiosflags() / resetiosflags() are high-level equivalents of setf() / unsetf().
-
-    To set specific format flags manually by manipulator, 
-        use setiosflags() which is equivalent to setf().
-
-    To turn off flags use the resetiosflags() manipulator which is equivalent to unsetf().
-
-
-
-
+// ----  rev[16-Sep-2025]  ----
 
 	Table of Slandered C++ I/O manipulators:
 Manipulator	Purpose	I/O	Manipulator	Purpose	I/O
