@@ -46,11 +46,12 @@
     
 
 
-    --------  boolalpha  --------
+    --------  boolalpha : Flag Control manipulators  --------
 
     Boolalpha:
         Allows to input and output "Boolean values" using the keywords "true" and "false"
-        (normally you must enter 1 for true and 0 for false).
+        (normally you must enter 1 for true and 0 for false). 
+        Used with <iomanip>.
 
         Must set the boolalpha flags for 'cin' and 'cout' separately. Eg: 
             cin >> boolalpha >> b;  // enter true or false
@@ -147,167 +148,11 @@
     Key Takeaways:
         manipulators = stream shortcuts.
         They often parallel ios member functions, but are cleaner inside I/O expressions.
+            i.e. manipulators make formatting cleaner and inline.
         Use <iomanip> for manipulators with parameters.
         Formatting changes persist for that stream until reset.
-
-
-
-
-// ----  rev[16-Sep-2025]  ----
-
-
-
---------  Qwen  --------
-
-Here is a simplified, pointwise summary of Section 12.4: I/O manipulators, with concise yet clear explanations:
-
-
-
-
-
-
-✅ Common Examples
-cpp
-
-
-1
-2
-3
-cout << oct << 100;        // Output 100 in octal
-cout << hex << 100;        // Then in hexadecimal
-cout << setw(10) << 100;   // Set width to 10, then output
-setw(n) → sets field width (like width(n)), but resets after one use.
-setfill(c) → sets padding character (like fill(c)).
-setprecision(n) → sets floating-point precision.
-boolalpha → prints true/false instead of 1/0.
-✅ boolalpha – Boolean Formatting
-By default: true → 1, false → 0.
-With boolalpha: outputs as true/false.
-Must be set separately for cin and cout:
-cpp
-
-
-1
-2
-cout << boolalpha << true;  // prints: true
-cin >> boolalpha >> b;      // allows input: true/false
-✅ Flag Control manipulators
-setiosflags(f) → same as setf(f) — turns on format flags.
-resetiosflags(f) → same as unsetf(f) — turns off flags.
-Used with <iomanip>.
-Example:
-
-cpp
-
-
-1
-cout << setiosflags(ios::left) << setw(10) << "Hello";
-✅ Important manipulators (Summary Table)
-dec
-,
-hex
-,
-oct
-Number base
-I/O
-boolalpha
-/
-noboolalpha
-Show true/false
-I/O
-setw(n)
-Set field width
-Output
-setfill(c)
-Set padding char
-Output
-setprecision(n)
-Set decimal precision
-Output
-setbase(n)
-Set number base (limited support)
-Output
-left
-,
-right
-,
-internal
-Alignment
-Output
-fixed
-,
-scientific
-Floating-point format
-Output
-showpoint
-,
-showpos
-,
-showbase
-Show extra info
-Output
-uppercase
-Use A-F, E, etc.
-Output
-endl
-Newline + flush
-Output
-ends
-Insert null char
-Output
-flush
-Flush stream
-Output
-ws
-Skip whitespace (input)
-Input
-skipws
-/
-noskipws
-Enable/disable skip spaces
-Input
-unitbuf
-/
-nounitbuf
-Flush after each output
-Output
-
-✅ Example Code
-cpp
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-⌄
-#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-    cout << hex << 100 << endl;                     // 64
-    cout << setfill('X') << setw(10) << 100 
-         << " hi " << endl;                         // XXXXXXXX64 hi
-    cout << boolalpha << true << " " << false;     // true false
-    return 0;
-}
-✅ Key Takeaways
-manipulators make formatting cleaner and inline.
-Use <iomanip> for parameterized manipulators (setw, setfill, etc.).
-Most manipulators affect only the next operation (e.g., setw).
-Format changes (like hex, boolalpha) persist until changed.
-💡 Prefer manipulators for readable, concise I/O formatting! 
-
-
-
+            Most manipulators affect only the next operation (e.g., setw).
+            Format changes (like hex, boolalpha) persist until changed.
 
 */  
 
@@ -319,14 +164,19 @@ Format changes (like hex, boolalpha) persist until changed.
 #include <iomanip>
 
 int main() {
-    std::cout << std::hex << 100 << std::endl ;
+    std::cout << std::hex << 100 << std::endl ;         // 64
     std::cout << std::setfill('X') << std::setw(10) ;
-    std::cout << 100 << " hi " << std::endl ;
+    std::cout << 100 << " hi " << std::endl ;           // XXXXXXXX64 hi
+
+    std::cout << std::boolalpha << true << " " << false;     // true false
 
     return 0;
 }
 
-   
+
+
+
+// ----  rev[18-Sep-2025]  ----
 
 
 /* Example 2: */
