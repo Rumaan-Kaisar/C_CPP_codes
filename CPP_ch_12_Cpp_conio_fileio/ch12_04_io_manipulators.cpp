@@ -107,7 +107,6 @@
     oct             I/O       Turns on oct ag
     right           Output    Turns on right flag
     scientific      Output    Turns on scientific flag
-    setw(int w)     Output    Sets the field width to w
     showbase        Output    Turns on showbase flag
     showpoint       Output    Turns on showpoint flag
     showpos         Output    Turns on showpos flag
@@ -117,6 +116,7 @@
     ws              Input     Skips leading white space
 
     resetiosflags(fmtflags f)   I/O       Turns off the flags specified in f
+    setw(int w)                 Output    Sets the field width to w
     setbase(int base)           I/O       Sets the number base to base
     setfill(int ch)             I/O       Sets the fill character to ch
     setiosflags(fmtflags f)     Output    Turns on the flags specified in f
@@ -144,30 +144,16 @@
     ------------------------------------------------
 
 
+    Key Takeaways:
+        manipulators = stream shortcuts.
+        They often parallel ios member functions, but are cleaner inside I/O expressions.
+        Use <iomanip> for manipulators with parameters.
+        Formatting changes persist for that stream until reset.
 
 
 
 
 // ----  rev[16-Sep-2025]  ----
-
-
-
---------  GPT  --------
-Here’s a balanced (mid-ground) explanation of 12.4 I/O manipulators, simplified pointwise:
-
-
-🔹 Key Takeaways
-
-manipulators = stream shortcuts.
-
-They often parallel ios member functions, but are cleaner inside I/O expressions.
-
-Use <iomanip> for manipulators with parameters.
-
-Formatting changes persist for that stream until reset.
-
-Would you like me to also show a side-by-side comparison of ios functions vs manipulators (e.g., cout.setf(std::ios::hex) vs cout << hex) so it’s crystal clear how they map?
-
 
 
 
