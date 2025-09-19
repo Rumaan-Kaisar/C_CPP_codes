@@ -208,12 +208,12 @@ int main() {
 
 
 
-// ----  rev[18-Sep-2025]  ----
+// ----  rev[19-Sep-2025]  ----
 
 
-/* Example 3: Here is another version of the program that displays a table of the squares and square
-roots of the numbers 2 through 20. This version uses I/O manipulators instead of member
-functions and format flags. 
+/* Example 3: Following program displays a table of the squares and square roots of the numbers 2 through 20.
+                (recall Example 3 ch12_03_width_precision_fill.cpp)
+This version uses "I/O manipulators" instead of member functions and format flags. 
 */
 
 /*
