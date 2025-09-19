@@ -176,22 +176,33 @@ int main() {
 
 
 
+/* Example 2: Following demonstrates boolalpha. 
+
+            OUTPUT should be:
+                Before boolalpha:   1  0
+                After boolalpha:    true false
+*/
+
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    bool b;
+
+    std::cout << " Before boolalpha:\t";
+    b = true ;
+    std::cout << b <<" ";
+    b = false ;
+    std::cout << b << std::endl;
+
+    std::cout << " After boolalpha:\t";
+    b = true ;
+    std::cout << std::boolalpha << b << " ";
+    b = false ;
+    std::cout << b << std::endl;
+    
+    return 0;
+}
+
+
 // ----  rev[18-Sep-2025]  ----
-
-
-/* Example 2: */
-
-	int main() { bool b;
-	cout << " Before boolalpha:";
-	b = true ;
-	cout << b <<" ";
-	b = false ;
-	cout << b << endl;	cout << " After boolalpha:";
-b = true ;
-cout << boolalpha << b << " ";
-b = false ;
-cout << b << endl;
-return 0;}	OUTPUT:
-Before boolalpha: 1  0
-After boolalpha: 	true false
-
