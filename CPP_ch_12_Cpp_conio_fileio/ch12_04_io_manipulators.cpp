@@ -206,12 +206,16 @@ int main() {
 }
 
 
+
+
 // ----  rev[18-Sep-2025]  ----
 
 
-2. Here is another version of the program that displays a table of the squares and square
+/* Example 3: Here is another version of the program that displays a table of the squares and square
 roots of the numbers 2 through 20. This version uses I/O manipulators instead of member
-functions and format flags.
+functions and format flags. 
+*/
+
 /*
 This version uses I/O manipulators to display
 the table of squares and square roots .
@@ -219,8 +223,7 @@ the table of squares and square roots .
 # include <iostream >
 # include <iomanip >
 # include <cmath >
-220INTRODUCING THE C++ I/O SYSTEM
-8.4. USING I/O MANIPULATORS
+
 using namespace std ;
 int main ()
 {
@@ -234,11 +237,17 @@ cout << setw (7) << sqrt (x) << " ";
 cout << setw (7) << x*x << ’\n’;
 }
 }
-3. One of the most interesting format flags added by the new I/O library is boolalpha.
+
+
+
+
+/* Example 4: One of the most interesting format flags added by the new I/O library is boolalpha.
 This flag can be set either directly or by using the new manipulators boolalpha or
 noboolalpha. What makes boolalpha so interesting is that setting it allows you to
 input and output Boolean values using the keywords true and false. Normally you must
-enter 1 for true and 0 for false. For example, consider the following program:
+enter 1 for true and 0 for false. For example, consider the following program: 
+*/
+
 // Demonstrate boolalpha format flag .
 # include <iostream >
 using namespace std ;
@@ -260,20 +269,36 @@ cin >> boolalpha >> b; // you can enter true or false
 cout << " You entered " << b;
 return 0;
 }
-Here is a sample run:
-Before setting boolalpha flag: 1 0
-221TEACH YOURSELF
-C++
+
+
+// Here is a sample run:
+// Before setting boolalpha flag: 1 0
+
+
+
+/* 
 After setting boolalpha flag: true false
 Enter a Boolean value: true
 You entered true
 As you can see, once the boolalpha flag has been set, Boolean values are input and
 output using the words true or false. Notice that you must set the boolalpha flags for
 cin and cout separately. As with all format flags, setting boolalpha for one stream does
-not imply that it is also set for another.
-EXERCISES
-1. Redo Exercises 1 and 2 from Section 8.3, this time using I/O manipulators instead of
-member functions and format flags.
-2. Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
-(the 0x) shown. Use the setiosflags() manipulator to accomplish this.
-3. Explain the effect of setting the boolalpha flag.
+not imply that it is also set for another. 
+*/
+
+
+
+/* Example 5: Redo Exercises 1 and 2 from Section 8.3, this time using I/O manipulators instead of
+member functions and format flags. 
+*/
+
+
+/* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
+(the 0x) shown. Use the setiosflags() manipulator to accomplish this. 
+*/
+
+
+/* Example 7: Explain the effect of setting the boolalpha flag. */
+
+
+
