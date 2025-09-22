@@ -208,7 +208,7 @@ int main() {
 
 
 
-// ----  rev[19-Sep-2025]  ----
+// ----  rev[22-Sep-2025]  ----
 
 
 /* Example 3: Following program displays a table of the squares and square roots of the numbers 2 through 20.
@@ -216,23 +216,21 @@ int main() {
                 This version uses "I/O manipulators" instead of member functions and format flags. 
 */
 
+#include <iostream>
+#include <iomanip>
+#include <cmath>
 
-# include <iostream >
-# include <iomanip >
-# include <cmath >
+int main() {
+    double x;
 
-using namespace std ;
-int main ()
-{
-double x;
-cout << setprecision (4) ;
-cout << " x sqrt (x) x^2\ n\n";
-for (x = 2.0; x <= 20.0; x++)
-{
-cout << setw (7) << x << " ";
-cout << setw (7) << sqrt (x) << " ";
-cout << setw (7) << x*x << ’\n’;
-}
+    std::cout << setprecision (4) ;
+    std::cout << " x sqrt (x) x^2\ n\n";
+
+    for(x = 2.0; x <= 20.0; x++) {
+        std::cout << std::setw(7) << x << " ";
+        std::cout << std::setw(7) << sqrt(x) << " ";
+        std::cout << std::setw(7) << x*x << '\n';
+    }
 }
 
 
