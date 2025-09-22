@@ -213,13 +213,10 @@ int main() {
 
 /* Example 3: Following program displays a table of the squares and square roots of the numbers 2 through 20.
                 (recall Example 3 ch12_03_width_precision_fill.cpp)
-This version uses "I/O manipulators" instead of member functions and format flags. 
+                This version uses "I/O manipulators" instead of member functions and format flags. 
 */
 
-/*
-This version uses I/O manipulators to display
-the table of squares and square roots .
-*/
+
 # include <iostream >
 # include <iomanip >
 # include <cmath >
