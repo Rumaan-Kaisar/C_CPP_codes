@@ -298,4 +298,46 @@ member functions and format flags.
 /* Example 7: Explain the effect of setting the boolalpha flag. */
 
 
+1a. // Create a table of log10 and log from 2 through 100.
+# include <iostream >
+# include <iomanip >
+# include <cmath >
+using namespace std ;
+int main ()
+{
+double x;
+cout . precision (5) ;
+cout << " x log x ln e\n\n";
+for (x = 2.0; x <= 100.0; x++)
+{
+cout << setw (10) << x << ’ ’;
+cout << setw (10) << log10 (10) << ’ ’;
+cout << setw (10) << log (x) << ’\n’;
+}
+return 0;
+}
+1b. # include <iostream >
+# include <iomanip >
+# include <cstring >
+using namespace std ;
+512ANSWERS
+8.5 EXERCISES
+void center ( char *s);
+int main ()
+{
+center ("Hi there !");
+center ("I like C ++.");
+return 0;
+}
+void center ( char *s)
+{
+int len ;
+len = 40+( strlen (s)/2);
+cout << setw ( len ) << s << ’\n’;
+}
+2. cout << setiosflags ( ios :: showbase | ios :: hex ) << 100;
+3. Setting the boolalpha flag on an output stream causes Boolean values to be displayed
+using the words true and false. Setting boolalpha on an input stream allows you to enter
+Boolean values using the words true and false.
+
 
