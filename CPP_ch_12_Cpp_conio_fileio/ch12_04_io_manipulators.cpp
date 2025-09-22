@@ -51,7 +51,7 @@
     Boolalpha:
         Allows to input and output "Boolean values" using the keywords "true" and "false"
         (normally you must enter 1 for true and 0 for false). 
-        Used with <iomanip>.
+        Used with/without <iomanip>.
 
         Must set the boolalpha flags for 'cin' and 'cout' separately. Eg: 
             cin >> boolalpha >> b;  // enter true or false
@@ -177,15 +177,31 @@ int main() {
 
 
 
-/* Example 2: Following demonstrates boolalpha. 
+/* Example 2: One of the most "interesting format flags" added by the new I/O library is "boolalpha".
+                This flag can be set either directly or by using the new manipulators boolalpha or noboolalpha.
+                
+                What makes boolalpha so interesting is that setting it allows you to
+                    input and output "Boolean values" using the keywords "true" and "false".
 
-            OUTPUT should be:
-                Before boolalpha:   1  0
-                After boolalpha:    true false
+                Normally you must enter 1 for true and 0 for false.
+
+                Following program demonstrates boolalpha. 
+
+                OUTPUT should be:
+                    Before boolalpha:   1  0
+                    After boolalpha:    true false
+
+            Notice: 
+                <iomanip> is not necessary in this case
+                After setting boolalpha, Boolean values are shown and read as "true" or "false" instead of 1 or 0.
+
+            NOTE: 
+                The flag must be set separately for cin and cout.
+                Enabling boolalpha for one stream (e.g., cout) does not automatically enable it for another (e.g., cin).
 */
 
 #include <iostream>
-#include <iomanip>
+#include <iomanip>  // not necessary
 
 int main() {
     bool b;
@@ -208,9 +224,6 @@ int main() {
 
 
 
-// ----  rev[22-Sep-2025]  ----
-
-
 /* Example 3: Following program displays a table of the squares and square roots of the numbers 2 through 20.
                 (recall Example 3 ch12_03_width_precision_fill.cpp)
                 This version uses "I/O manipulators" instead of member functions and format flags. 
@@ -223,8 +236,8 @@ int main() {
 int main() {
     double x;
 
-    std::cout << setprecision (4) ;
-    std::cout << " x sqrt (x) x^2\ n\n";
+    std::cout << std::setprecision(4) ;
+    std::cout << "      x   sqrt(x)    x^2\n\n";
 
     for(x = 2.0; x <= 20.0; x++) {
         std::cout << std::setw(7) << x << " ";
@@ -236,54 +249,7 @@ int main() {
 
 
 
-/* Example 4: One of the most "interesting format flags" added by the new I/O library is "boolalpha".
-                This flag can be set either directly or by using the new manipulators boolalpha or noboolalpha.
-
-                What makes boolalpha so interesting is that setting it allows you to
-                    input and output "Boolean values" using the keywords "true" and "false".
-
-                Normally you must enter 1 for true and 0 for false.
-*/
-
-// Demonstrate boolalpha format flag .
-# include <iostream >
-using namespace std ;
-int main ()
-{
-bool b;
-cout << " Before setting boolalpha flag : ";
-b = true ;
-cout << b << " ";
-b = false ;
-cout << b << endl ;
-cout << " After setting boolalpha flag : ";
-b = true ;
-cout << boolalpha << b << " ";
-b = false ;
-cout << b << endl ;
-cout << " Enter a Boolean value : ";
-cin >> boolalpha >> b; // you can enter true or false
-cout << " You entered " << b;
-return 0;
-}
-
-
-// Here is a sample run:
-// Before setting boolalpha flag: 1 0
-
-
-
-/* 
-After setting boolalpha flag: true false
-Enter a Boolean value: true
-You entered true
-As you can see, once the boolalpha flag has been set, Boolean values are input and
-output using the words true or false. Notice that you must set the boolalpha flags for
-cin and cout separately. As with all format flags, setting boolalpha for one stream does
-not imply that it is also set for another. 
-*/
-
-
+// ----  rev[22-Sep-2025]  ----
 
 /* Example 5: Redo Exercises 1 and 2 from Section 8.3, this time using I/O manipulators instead of
 member functions and format flags. 
