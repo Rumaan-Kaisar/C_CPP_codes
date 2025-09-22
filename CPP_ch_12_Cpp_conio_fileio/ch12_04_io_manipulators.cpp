@@ -236,11 +236,13 @@ int main() {
 
 
 
-/* Example 4: One of the most interesting format flags added by the new I/O library is boolalpha.
-This flag can be set either directly or by using the new manipulators boolalpha or
-noboolalpha. What makes boolalpha so interesting is that setting it allows you to
-input and output Boolean values using the keywords true and false. Normally you must
-enter 1 for true and 0 for false. For example, consider the following program: 
+/* Example 4: One of the most "interesting format flags" added by the new I/O library is "boolalpha".
+                This flag can be set either directly or by using the new manipulators boolalpha or noboolalpha.
+
+                What makes boolalpha so interesting is that setting it allows you to
+                    input and output "Boolean values" using the keywords "true" and "false".
+
+                Normally you must enter 1 for true and 0 for false.
 */
 
 // Demonstrate boolalpha format flag .
