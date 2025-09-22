@@ -289,15 +289,6 @@ not imply that it is also set for another.
 member functions and format flags. 
 */
 
-
-/* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
-(the 0x) shown. Use the setiosflags() manipulator to accomplish this. 
-*/
-
-
-/* Example 7: Explain the effect of setting the boolalpha flag. */
-
-
 1a. // Create a table of log10 and log from 2 through 100.
 # include <iostream >
 # include <iomanip >
@@ -316,12 +307,12 @@ cout << setw (10) << log (x) << ’\n’;
 }
 return 0;
 }
+
+
 1b. # include <iostream >
 # include <iomanip >
 # include <cstring >
 using namespace std ;
-512ANSWERS
-8.5 EXERCISES
 void center ( char *s);
 int main ()
 {
@@ -335,7 +326,18 @@ int len ;
 len = 40+( strlen (s)/2);
 cout << setw ( len ) << s << ’\n’;
 }
+
+
+
+
+/* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
+(the 0x) shown. Use the setiosflags() manipulator to accomplish this. 
+*/
 2. cout << setiosflags ( ios :: showbase | ios :: hex ) << 100;
+
+
+/* Example 7: Explain the effect of setting the boolalpha flag. */
+
 3. Setting the boolalpha flag on an output stream causes Boolean values to be displayed
 using the words true and false. Setting boolalpha on an input stream allows you to enter
 Boolean values using the words true and false.
