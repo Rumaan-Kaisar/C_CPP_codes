@@ -251,11 +251,11 @@ int main() {
 
 // ----  rev[22-Sep-2025]  ----
 
-/* Example 5: Redo Exercises 1 and 2 from Section 8.3, this time using I/O manipulators instead of
-member functions and format flags. 
+/* Example 5: Following are the updated versions of Example 3 and 4 from "ch12_03_width_precision_fill.cpp"
+                this time we're using I/O manipulators instead of member functions and format flags.
 */
 
-1a. // Create a table of log10 and log from 2 through 100.
+// Ex 3: A table of log10 and log from 2 through 100.
 # include <iostream >
 # include <iomanip >
 # include <cmath >
@@ -275,6 +275,7 @@ return 0;
 }
 
 
+// Ex 4: center the specified string on the screen using a function called "center()"
 1b. # include <iostream >
 # include <iomanip >
 # include <cstring >
