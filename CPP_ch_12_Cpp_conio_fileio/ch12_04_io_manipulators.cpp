@@ -249,30 +249,32 @@ int main() {
 
 
 
-// ----  rev[22-Sep-2025]  ----
-
 /* Example 5: Following are the updated versions of Example 3 and 4 from "ch12_03_width_precision_fill.cpp"
                 this time we're using I/O manipulators instead of member functions and format flags.
 */
 
 // Ex 3: A table of log10 and log from 2 through 100.
-# include <iostream >
-# include <iomanip >
-# include <cmath >
-using namespace std ;
-int main ()
-{
-double x;
-cout . precision (5) ;
-cout << " x log x ln e\n\n";
-for (x = 2.0; x <= 100.0; x++)
-{
-cout << setw (10) << x << ’ ’;
-cout << setw (10) << log10 (10) << ’ ’;
-cout << setw (10) << log (x) << ’\n’;
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+int main(){
+    double x;
+
+    std::cout.precision(5) ;
+    std::cout << "        x       log x     ln e\n\n";
+
+    for(x = 2.0; x <= 100.0; x++) {
+    std::cout << std::setw(10) << x << ' ';
+    std::cout << std::setw(10) << log10(10) << ' ';
+    std::cout << std::setw(10) << log(x) << '\n';
+    }
+
+    return 0;
 }
-return 0;
-}
+
+
+// ----  rev[23-Sep-2025]  ----
 
 
 // Ex 4: center the specified string on the screen using a function called "center()"
