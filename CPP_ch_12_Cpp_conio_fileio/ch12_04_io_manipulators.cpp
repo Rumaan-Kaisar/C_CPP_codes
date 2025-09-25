@@ -309,10 +309,13 @@ void center(char *s){
 
 
 
-/* Example 7: Explain the effect of setting the boolalpha flag. */
+/* Example 7: Explain the effect of setting the boolalpha flag. 
 
-3. Setting the boolalpha flag on an output stream causes Boolean values to be displayed
-using the words true and false. Setting boolalpha on an input stream allows you to enter
-Boolean values using the words true and false.
+            output stream: 
+                causes Boolean values to be "displayed" using the words "true" and "false". 
+                
+            input stream: 
+                allows you to "enter" Boolean values using the words "true" and "false".
+*/
 
 
