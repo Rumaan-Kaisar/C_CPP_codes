@@ -297,12 +297,16 @@ void center(char *s){
 
 
 
-// ----  rev[23-Sep-2025]  ----
 
-/* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
-(the 0x) shown. Use the setiosflags() manipulator to accomplish this. 
+/* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal 
+                with the base indicator (the 0x) shown. 
+                Use the setiosflags() manipulator to accomplish this. 
+
+            ans:
+                cout << setiosflags ( ios :: showbase | ios :: hex ) << 100;
 */
-2. cout << setiosflags ( ios :: showbase | ios :: hex ) << 100;
+
+
 
 
 /* Example 7: Explain the effect of setting the boolalpha flag. */
