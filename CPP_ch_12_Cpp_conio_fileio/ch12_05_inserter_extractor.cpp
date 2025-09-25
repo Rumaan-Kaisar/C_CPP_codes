@@ -1,6 +1,9 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    inserter and extractor    ------------------------
 
+    ---- rev[25-sep-2025] ----
+
+(8.5 + 8.6)
 	Insertion and inserter: In C++, the output operation is called an insertion and the << is called the insertion operator. (The reason for this term: an output operator inserts information into a stream).
 	Overloading the << for output, creates an inserter function, or inserter for short.  All inserted functions have this general form:
 
@@ -58,3 +61,273 @@ return stream ;}
 
 
 */  
+
+/* 
+
+----  GPT  ----
+
+Here’s a simplified, pointwise version of your text:
+
+Insertion (Output)
+
+Output in C++ is called insertion, using the << operator.
+
+Overloading << creates an inserter function.
+
+General form:
+
+ostream &operator<<(ostream &stream, class_name obj) {
+    // body of inserter
+    return stream;
+}
+
+
+Returns a reference to ostream so we can chain: cout << ob1 << ob2 << ob3;.
+
+First parameter: reference to an ostream (output stream).
+
+Second parameter: object to output (usually by reference).
+
+Extraction (Input)
+
+Input in C++ is called extraction, using the >> operator.
+
+Overloading >> creates an extractor function.
+
+General form:
+
+istream &operator>>(istream &stream, class_name &ob) {
+    // body of extractor
+    return stream;
+}
+
+
+Returns a reference to istream so chaining works: cin >> ob1 >> ob2;.
+
+First parameter: reference to an istream (input stream).
+
+Second parameter: reference to the object that receives input.
+
+Why Not Class Members?
+
+If << or >> were class member functions, the left operand would have to be a class object.
+
+But in I/O, the left operand is a stream (cout, cin).
+
+So inserters/extractors cannot be class members.
+
+Using Friend Functions
+
+To access private members, inserters/extractors are usually declared as friends of the class.
+
+Example:
+
+class coord {
+    int x, y;
+public:
+    coord(int i=0, int j=0): x(i), y(j) {}
+    friend ostream &operator<<(ostream &, coord);
+    friend istream &operator>>(istream &, coord &);
+};
+
+
+This allows direct access to private members x and y.
+
+General vs. Non-General Inserters
+
+Good practice: use the passed stream (cout, file, etc.) so the code works for any stream.
+
+ostream &operator<<(ostream &stream, coord ob) {
+    stream << ob.x << ", " << ob.y;
+    return stream;
+}
+
+
+Bad practice: hard-coding with cout ties the inserter only to console output.
+
+Non-Friend Inserters/Extractors
+
+If not declared as friends, they cannot access private members.
+
+They can only use public members of the class.
+
+Would you like me to also re-explain with an example table (showing inserter vs extractor side by side for clarity), or keep it in this pointwise style?
+
+
+
+
+----  Qwen  ----
+
+Here is the simplified pointwise version of the content from (8.5 + 8.6) on Insertion/Extraction Operators and Inserters/Extractors:
+
+🔹 Insertion Operator (<<) – Output
+The << operator is called the insertion operator.
+It "inserts" data into an output stream (like cout).
+Overloading << creates a function known as an inserter.
+✅ General Form of Inserter:
+cpp
+
+
+1
+2
+3
+4
+⌄
+ostream& operator<<(ostream& stream, class_name obj) {
+    // output obj data using 'stream'
+    return stream;
+}
+Key Points:
+Returns a reference to ostream → allows chaining:
+cout << a << b << c;
+First parameter: ostream& → must be an output stream (e.g., cout, file streams).
+Second parameter: object to be printed (can be passed by value or const reference for efficiency).
+Cannot be a member function because the left operand (cout) is not of the class type.
+🔹 Extraction Operator (>>) – Input
+The >> operator is called the extraction operator.
+It "extracts" data from an input stream (like cin).
+Overloading >> creates a function known as an extractor.
+✅ General Form of Extractor:
+cpp
+
+
+1
+2
+3
+4
+⌄
+istream& operator>>(istream& stream, class_name& obj) {
+    // input data into obj using 'stream'
+    return stream;
+}
+Key Points:
+Returns a reference to istream → allows chaining:
+cin >> a >> b;
+First parameter: istream& → must be an input stream (e.g., cin).
+Second parameter: reference to the object receiving input (must be modifiable).
+Like inserter, cannot be a member function — left operand is a stream, not a class object.
+🔹 Why Inserters/Extractors Can’t Be Member Functions
+For member operator overloading, the left operand must be an object of the class.
+But in cout << obj, the left operand is cout (a stream), not obj.
+Hence, these operators must be non-member functions.
+🔹 Use of friend Keyword
+Inserters/extractors are often made friends of the class.
+This gives them access to private members (like x, y in coord).
+Without friend, they can only access public members.
+✅ Most common practice: Declare inserter/extractor as friend functions. 
+
+🔹 Example: coord Class with Inserter & Extractor
+cpp
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+⌄
+⌄
+⌄
+⌄
+class coord {
+    int x, y;
+public:
+    coord(int i = 0, int j = 0) : x(i), y(j) {}
+    friend ostream& operator<<(ostream&, coord);
+    friend istream& operator>>(istream&, coord&);
+};
+
+// Inserter
+ostream& operator<<(ostream& stream, coord ob) {
+    stream << ob.x << ", " << ob.y << '\n';
+    return stream;
+}
+
+// Extractor
+istream& operator>>(istream& stream, coord& ob) {
+    cout << "Enter coordinates: ";
+    stream >> ob.x >> ob.y;
+    return stream;
+}
+
+int main() {
+    coord a(1,1), b;
+    cout << a;        // Output
+    cin >> b;         // Input
+    cout << b;
+    return 0;
+}
+🔹 Make Inserters/Extractors General
+Always use the passed stream parameter (e.g., stream << ...), not hard-coded cout or cin.
+This ensures the same function works with:
+cout, cerr → output
+File streams (ofstream, ifstream)
+String streams (stringstream)
+🚫 Avoid this mistake:
+
+cpp
+
+
+1
+cout << ob.x << ob.y;  // Bad: tied only to console
+✅ Do this instead:
+
+cpp
+
+
+1
+stream << ob.x << ob.y; // Good: works with any output stream
+🔹 Non-Friend Inserters/Extractors
+If not declared as friends, the function:
+Cannot access private members of the class.
+Can only use public methods or getters to read/write data.
+Less common, but possible if class provides public access.
+✅ Summary
+Purpose
+Output objects
+Input objects
+Return Type
+ostream&
+istream&
+1st Param
+ostream& stream
+istream& stream
+2nd Param
+Object (by value/ref)
+Object
+by reference
+Must be
+friend
+?
+Recommended (for private access)
+Recommended
+Can be member?
+❌ No
+❌ No
+
+💡 Inserters and extractors enable natural syntax for I/O and support any stream type when written correctly.
+
+*/
