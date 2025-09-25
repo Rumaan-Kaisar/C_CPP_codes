@@ -274,30 +274,30 @@ int main(){
 }
 
 
-// ----  rev[23-Sep-2025]  ----
-
-
 // Ex 4: center the specified string on the screen using a function called "center()"
-1b. # include <iostream >
-# include <iomanip >
-# include <cstring >
-using namespace std ;
-void center ( char *s);
-int main ()
-{
-center ("Hi there !");
-center ("I like C ++.");
-return 0;
-}
-void center ( char *s)
-{
-int len ;
-len = 40+( strlen (s)/2);
-cout << setw ( len ) << s << ’\n’;
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
+void center(char *s);
+
+int main() {
+    center("Hi there !");
+    center("I like C ++.");
+    return 0;
 }
 
+void center(char *s){
+    int len;
+    len = 40+( strlen (s)/2);
+    // using I/O manipulators
+    std::cout << std::setw(len) << s << '\n';
+}
 
 
+
+// ----  rev[23-Sep-2025]  ----
 
 /* Example 6: Show the I/O statement that outputs the value 100 in hexadecimal with the base indicator
 (the 0x) shown. Use the setiosflags() manipulator to accomplish this. 
