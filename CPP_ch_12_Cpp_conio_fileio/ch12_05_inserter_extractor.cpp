@@ -1,69 +1,37 @@
 
 /*  ------------------------    inserter and extractor    ------------------------
 
-    ---- rev[25-sep-2025] ----
+    ----------------    inserter    ----------------
 
-----------------    inserter    ----------------
+    Insertion Operator '<<' (Output):
+        Output in C++ is called insertion, using the '<<' operator.
+        Eg: It "inserts" data into an output stream (like cout).
 
+        OVERLOADING '<<' creates an inserter function (or inserter for short).
 
+            General form:
 
-(8.5 + 8.6)
-	Insertion and inserter: In C++, the output operation is called an insertion and the << is called the insertion operator. (The reason for this term: an output operator inserts information into a stream).
-	Overloading the << for output, creates an inserter function, or inserter for short.  All inserted functions have this general form:
+                    ostream &operator<<(ostream &stream, class_name obj) {
+                        // body of inserter
+                        return stream;
+                    }
 
-ostream &operator<<(ostream &stream, class_name obj) {  // body of inserter 
-    return stream;	}
-	The inserted function "ostream &operator<<" returns a reference to stream, which is of type ostream. This is required if the overloaded << is going to be used in a series of I/O expressions, such as cout<< ob1 << ob2 << ob3 ;
-	The first parameter is a reference to an object of type ostream. This means that stream must be an output stream. (ostream is derived form the ios class.) 
-	The second parameter receives the object that will be output. (This can also be a reference parameter). 
-
-
---------
-
-🔹 Insertion Operator (<<) – Output
-The << operator is called the insertion operator.
-It "inserts" data into an output stream (like cout).
-Overloading << creates a function known as an inserter.
-✅ General Form of Inserter:
-
-ostream& operator<<(ostream& stream, class_name obj) {
-    // output obj data using 'stream'
-    return stream;
-}
-Key Points:
-Returns a reference to ostream → allows chaining:
-cout << a << b << c;
-First parameter: ostream& → must be an output stream (e.g., cout, file streams).
-Second parameter: object to be printed (can be passed by value or const reference for efficiency).
-Cannot be a member function because the left operand (cout) is not of the class type.
+                Returns a reference to 'stream', which is of type 'ostream'. so we can chain: 
+                    cout << ob1 << ob2 << ob3;.
 
 
---------
+                First parameter: 
+                    'ostream&' reference to an object of type ostream (output stream).
+                    So 'stream' must be an output stream (e.g., cout, file streams).
+                    ('ostream' is derived form the ios class.) 
 
-
-Insertion (Output):
-
-    Output in C++ is called insertion, using the << operator.
-
-    Overloading << creates an inserter function.
-
-    General form:
-
-    ostream &operator<<(ostream &stream, class_name obj) {
-        // body of inserter
-        return stream;
-    }
-
-
-    Returns a reference to ostream so we can chain: cout << ob1 << ob2 << ob3;.
-
-    First parameter: reference to an ostream (output stream).
-
-    Second parameter: object to output (usually by reference).
+                Second parameter: 
+                    receives the object that will be output or printed
+                    (This can also be a reference parameter, i.e. can be passed by value or const reference for efficiency).
 
 
 
-
+---- rev[26-sep-2025] ----
 
 
 
