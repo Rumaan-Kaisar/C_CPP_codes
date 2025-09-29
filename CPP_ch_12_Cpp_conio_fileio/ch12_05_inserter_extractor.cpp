@@ -20,7 +20,6 @@
                 Returns a reference to 'stream', which is of type 'ostream'. so we can chain: 
                     cout << ob1 << ob2 << ob3;.
 
-
                 First parameter: 
                     'ostream&' reference to an object of type ostream (output stream).
                     So 'stream' must be an output stream (e.g., cout, file streams).
@@ -30,6 +29,8 @@
                     receives the object that will be output or printed
                     (This can also be a reference parameter, i.e. can be passed by value or const reference for efficiency).
 
+            Inserter Cannot be a member function because 
+                the left operand (cout) is not of the class type.
 
 
 ---- rev[26-sep-2025] ----
@@ -53,42 +54,19 @@
                         return stream;
                     }
 
-
                 Return a reference to 'stream' , which is of type 'istream' an input stream. So chaining works: 
                     cin >> ob1 >> ob2;.
 
-    First parameter: 
-        reference to an 'istream' (input stream).
+                First parameter: 
+                    reference to an 'istream' (input stream).
+                    So "istream&" must be an input stream (e.g., cin).
 
-    Second parameter: 
-        reference to the object that receives input.
-
-
-
-
-🔹 Extraction Operator (>>) – Input
-The >> operator is called the extraction operator.
-
-Overloading >> creates a function known as an extractor.
-✅ General Form of Extractor:
-cpp
+                Second parameter: 
+                    reference to the object that receives input.
 
 
-1
-2
-3
-4
-⌄
-istream& operator>>(istream& stream, class_name& obj) {
-    // input data into obj using 'stream'
-    return stream;
-}
-Key Points:
-Returns a reference to istream → allows chaining:
-cin >> a >> b;
-First parameter: istream& → must be an input stream (e.g., cin).
-Second parameter: reference to the object receiving input (must be modifiable).
-Like inserter, cannot be a member function — left operand is a stream, not a class object.
+            Like inserter, an extractor cannot be a member function because
+                left operand is a stream, not a class object.
 
 
 
@@ -99,9 +77,10 @@ Like inserter, cannot be a member function — left operand is a stream, not a c
 
 
 
-	The first parameter must be a reference to an input stream. 
-	The second parameter is a reference to the object that is receiving input.
-	Inserter and extractor cannot be a member of a class:  If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
+
+Inserter and extractor cannot be a member of a class:
+If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
+
 	When you create an inserter/extractor, the left operand is a stream and the right operand is the object that you want to output/input.  Therefore, an inserter/extractor cannot be a member function.
 	Inserter and extractor as friend of a class:  Inserters/extractors can be friends of the class. In fact, in most programming situations you will encounter, an overloaded inserter will be a friend of the class for which it was created.
 
