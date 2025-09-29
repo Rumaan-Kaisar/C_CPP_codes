@@ -33,12 +33,31 @@
 
 ---- rev[26-sep-2025] ----
 
+    ----------------    extractor    ----------------
 
-Extraction (Input):
+    Extraction operator '>>' (Input):
+        Input in C++ is called "extraction", and the >> is referred to as the extraction operator. 
 
-    Input in C++ is called extraction, using the >> operator.
+        OVERLOADING >> creates an extractor function.
 
-    Overloading >> creates an extractor function.
+
+The reason for this term is that the act of inputting information from a stream removes (that is, extracts) data from it.
+
+
+	A function that overloads >> is called an extractor.  The general form of an extractor function is:
+
+istream &operator>>(istream &stream, class_name &ob) { // body of extractor
+    return stream; 	}
+
+
+
+
+    
+    
+    
+    
+
+    
 
     General form:
 
@@ -86,13 +105,7 @@ Like inserter, cannot be a member function — left operand is a stream, not a c
 
 
 
-----------------    extractor    ----------------
 
-	Extraction and extractor:  In C++, the >> is referred to as the extraction operator. The reason for this term is that the act of inputting information from a stream removes (that is, extracts) data from it.
-	A function that overloads >> is called an extractor.  The general form of an extractor function is:
-
-istream &operator>>(istream &stream, class_name &ob) { // body of extractor
-    return stream; 	}
 	Extractors return a reference to stream " istream &operator>>", which is of type istream an input stream. 
 	The first parameter must be a reference to an input stream. 
 	The second parameter is a reference to the object that is receiving input.
