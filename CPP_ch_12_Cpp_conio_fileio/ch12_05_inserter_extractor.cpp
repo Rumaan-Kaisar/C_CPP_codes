@@ -33,7 +33,6 @@
                 the left operand (cout) is not of the class type.
 
 
----- rev[26-sep-2025] ----
 
     ----------------    extractor    ----------------
 
@@ -70,13 +69,7 @@
 
 
 
-
-
-
-
-
-
-
+---- rev[29-sep-2025] ----
 
 Inserter and extractor cannot be a member of a class:
 If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
@@ -84,6 +77,28 @@ If an overloaded operator function is a member of a class, the left operand (whi
 	When you create an inserter/extractor, the left operand is a stream and the right operand is the object that you want to output/input.  Therefore, an inserter/extractor cannot be a member function.
 	Inserter and extractor as friend of a class:  Inserters/extractors can be friends of the class. In fact, in most programming situations you will encounter, an overloaded inserter will be a friend of the class for which it was created.
 
+----  GPT ----
+
+Why Not Class Members?:
+
+    If << or >> were class member functions, the left operand would have to be a class object.
+
+    But in I/O, the left operand is a stream (cout, cin).
+
+    So inserters/extractors cannot be class members.
+
+
+
+---- Qwen ----
+
+
+🔹 Why Inserters/Extractors Can’t Be Member Functions
+For member operator overloading, the left operand must be an object of the class.
+But in cout << obj, the left operand is cout (a stream), not obj.
+Hence, these operators must be non-member functions.
+
+
+--------------
 
 
 	Example 1: This program contains an inserter and an extractor for the coord class.
@@ -126,22 +141,6 @@ return stream ;}
 ----  GPT  ----
 
 Here’s a simplified, pointwise version of your text:
-
-
-
-
-
-
-
-
-Why Not Class Members?:
-
-    If << or >> were class member functions, the left operand would have to be a class object.
-
-    But in I/O, the left operand is a stream (cout, cin).
-
-    So inserters/extractors cannot be class members.
-
 
 
 Using Friend Functions:
@@ -196,11 +195,6 @@ Here is the simplified pointwise version of the content from (8.5 + 8.6) on Inse
 
 
 
-
-🔹 Why Inserters/Extractors Can’t Be Member Functions
-For member operator overloading, the left operand must be an object of the class.
-But in cout << obj, the left operand is cout (a stream), not obj.
-Hence, these operators must be non-member functions.
 
 
 🔹 Use of friend Keyword
