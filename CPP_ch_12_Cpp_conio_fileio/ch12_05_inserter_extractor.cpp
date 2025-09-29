@@ -34,6 +34,57 @@
 ---- rev[26-sep-2025] ----
 
 
+Extraction (Input):
+
+    Input in C++ is called extraction, using the >> operator.
+
+    Overloading >> creates an extractor function.
+
+    General form:
+
+    istream &operator>>(istream &stream, class_name &ob) {
+        // body of extractor
+        return stream;
+    }
+
+
+    Returns a reference to istream so chaining works: cin >> ob1 >> ob2;.
+
+    First parameter: reference to an istream (input stream).
+
+    Second parameter: reference to the object that receives input.
+
+
+
+
+🔹 Extraction Operator (>>) – Input
+The >> operator is called the extraction operator.
+It "extracts" data from an input stream (like cin).
+Overloading >> creates a function known as an extractor.
+✅ General Form of Extractor:
+cpp
+
+
+1
+2
+3
+4
+⌄
+istream& operator>>(istream& stream, class_name& obj) {
+    // input data into obj using 'stream'
+    return stream;
+}
+Key Points:
+Returns a reference to istream → allows chaining:
+cin >> a >> b;
+First parameter: istream& → must be an input stream (e.g., cin).
+Second parameter: reference to the object receiving input (must be modifiable).
+Like inserter, cannot be a member function — left operand is a stream, not a class object.
+
+
+
+
+
 
 ----------------    extractor    ----------------
 
@@ -48,6 +99,9 @@ istream &operator>>(istream &stream, class_name &ob) { // body of extractor
 	Inserter and extractor cannot be a member of a class:  If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
 	When you create an inserter/extractor, the left operand is a stream and the right operand is the object that you want to output/input.  Therefore, an inserter/extractor cannot be a member function.
 	Inserter and extractor as friend of a class:  Inserters/extractors can be friends of the class. In fact, in most programming situations you will encounter, an overloaded inserter will be a friend of the class for which it was created.
+
+
+
 	Example 1: This program contains an inserter and an extractor for the coord class.
 class coord {	int x, y;
 	public:
@@ -92,25 +146,7 @@ Here’s a simplified, pointwise version of your text:
 
 
 
-Extraction (Input):
 
-    Input in C++ is called extraction, using the >> operator.
-
-    Overloading >> creates an extractor function.
-
-    General form:
-
-    istream &operator>>(istream &stream, class_name &ob) {
-        // body of extractor
-        return stream;
-    }
-
-
-    Returns a reference to istream so chaining works: cin >> ob1 >> ob2;.
-
-    First parameter: reference to an istream (input stream).
-
-    Second parameter: reference to the object that receives input.
 
 
 
@@ -176,31 +212,6 @@ Here is the simplified pointwise version of the content from (8.5 + 8.6) on Inse
 
 
 
-🔹 Extraction Operator (>>) – Input
-The >> operator is called the extraction operator.
-It "extracts" data from an input stream (like cin).
-Overloading >> creates a function known as an extractor.
-✅ General Form of Extractor:
-cpp
-
-
-1
-2
-3
-4
-⌄
-istream& operator>>(istream& stream, class_name& obj) {
-    // input data into obj using 'stream'
-    return stream;
-}
-Key Points:
-Returns a reference to istream → allows chaining:
-cin >> a >> b;
-First parameter: istream& → must be an input stream (e.g., cin).
-Second parameter: reference to the object receiving input (must be modifiable).
-Like inserter, cannot be a member function — left operand is a stream, not a class object.
-
-
 
 🔹 Why Inserters/Extractors Can’t Be Member Functions
 For member operator overloading, the left operand must be an object of the class.
@@ -212,6 +223,11 @@ Hence, these operators must be non-member functions.
 Inserters/extractors are often made friends of the class.
 This gives them access to private members (like x, y in coord).
 Without friend, they can only access public members.
+
+
+
+
+
 ✅ Most common practice: Declare inserter/extractor as friend functions. 
 
 🔹 Example: coord Class with Inserter & Extractor
