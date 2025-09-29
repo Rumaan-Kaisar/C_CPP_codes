@@ -7,7 +7,8 @@
         Output in C++ is called insertion, using the '<<' operator.
         Eg: It "inserts" data into an output stream (like cout).
 
-        OVERLOADING '<<' creates an inserter function (or inserter for short).
+
+        OVERLOADING '<<' creates an INSERTER function (or inserter for short).
 
             General form:
 
@@ -37,48 +38,37 @@
 
     Extraction operator '>>' (Input):
         Input in C++ is called "extraction", and the >> is referred to as the extraction operator. 
+        Eg: It "extracts" data from an input stream (like cin).
 
-        OVERLOADING >> creates an extractor function.
-
-
-The reason for this term is that the act of inputting information from a stream removes (that is, extracts) data from it.
-
-
-	A function that overloads >> is called an extractor.  The general form of an extractor function is:
-
-istream &operator>>(istream &stream, class_name &ob) { // body of extractor
-    return stream; 	}
+        The reason for this term is that the act of "inputting information from a stream" 
+            removes (i.e. extracts) data from it.
 
 
+        OVERLOADING '>>' creates an EXTRACTOR function.
+
+            General form:
+
+                    istream &operator>>(istream &stream, class_name &ob) {
+                        // body of extractor
+                        return stream;
+                    }
 
 
-    
-    
-    
-    
+                Return a reference to 'stream' , which is of type 'istream' an input stream. So chaining works: 
+                    cin >> ob1 >> ob2;.
 
-    
+    First parameter: 
+        reference to an 'istream' (input stream).
 
-    General form:
-
-    istream &operator>>(istream &stream, class_name &ob) {
-        // body of extractor
-        return stream;
-    }
-
-
-    Returns a reference to istream so chaining works: cin >> ob1 >> ob2;.
-
-    First parameter: reference to an istream (input stream).
-
-    Second parameter: reference to the object that receives input.
+    Second parameter: 
+        reference to the object that receives input.
 
 
 
 
 🔹 Extraction Operator (>>) – Input
 The >> operator is called the extraction operator.
-It "extracts" data from an input stream (like cin).
+
 Overloading >> creates a function known as an extractor.
 ✅ General Form of Extractor:
 cpp
@@ -106,7 +96,9 @@ Like inserter, cannot be a member function — left operand is a stream, not a c
 
 
 
-	Extractors return a reference to stream " istream &operator>>", which is of type istream an input stream. 
+
+
+
 	The first parameter must be a reference to an input stream. 
 	The second parameter is a reference to the object that is receiving input.
 	Inserter and extractor cannot be a member of a class:  If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
