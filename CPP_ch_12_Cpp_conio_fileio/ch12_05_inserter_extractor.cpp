@@ -69,33 +69,95 @@
 
 
 
----- rev[29-sep-2025] ----
+    ---- '<<' and '>>' as Class Members ----
+    Inserter and extractor cannot be a member of a class:
+        If << or >> were class member functions, the left operand would have to be a class object.
+        But in I/O, When you create an inserter/extractor, the left operand is a stream (cout, cin).
+            and the right operand is the object that you want to output/input.
+        So inserters/extractors cannot be a member function of a class.
 
-Inserter and extractor cannot be a member of a class:
-If an overloaded operator function is a member of a class, the left operand (which implicitly passed through this and also generates the call to the operator) must be an object of that class. 
+    Recall: 
+        If an overloaded operator function is a member of a class, 
+        the left operand (which implicitly passed through 'this' and also generates the call to the operator) must be an object of that class. 
 
-	When you create an inserter/extractor, the left operand is a stream and the right operand is the object that you want to output/input.  Therefore, an inserter/extractor cannot be a member function.
+        But in "cout << obj", the left operand is "cout" (a stream), not obj.
+        Hence, these operators must be non-member functions.
+
+
+
+
+---- rev[30-sep-2025] ----
+
+    ---- '<<' and '>>' as friend ----
+
+
 	Inserter and extractor as friend of a class:  Inserters/extractors can be friends of the class. In fact, in most programming situations you will encounter, an overloaded inserter will be a friend of the class for which it was created.
-
-----  GPT ----
-
-Why Not Class Members?:
-
-    If << or >> were class member functions, the left operand would have to be a class object.
-
-    But in I/O, the left operand is a stream (cout, cin).
-
-    So inserters/extractors cannot be class members.
 
 
 
 ---- Qwen ----
 
+🔹 Use of friend Keyword
+Inserters/extractors are often made friends of the class.
+This gives them access to private members (like x, y in coord).
+Without friend, they can only access public members.
 
-🔹 Why Inserters/Extractors Can’t Be Member Functions
-For member operator overloading, the left operand must be an object of the class.
-But in cout << obj, the left operand is cout (a stream), not obj.
-Hence, these operators must be non-member functions.
+
+✅ Most common practice: Declare inserter/extractor as friend functions. 
+
+🔹 Example: coord Class with Inserter & Extractor
+cpp
+
+class coord {
+    int x, y;
+public:
+    coord(int i = 0, int j = 0) : x(i), y(j) {}
+    friend ostream& operator<<(ostream&, coord);
+    friend istream& operator>>(istream&, coord&);
+};
+
+// Inserter
+ostream& operator<<(ostream& stream, coord ob) {
+    stream << ob.x << ", " << ob.y << '\n';
+    return stream;
+}
+
+// Extractor
+istream& operator>>(istream& stream, coord& ob) {
+    cout << "Enter coordinates: ";
+    stream >> ob.x >> ob.y;
+    return stream;
+}
+
+int main() {
+    coord a(1,1), b;
+    cout << a;        // Output
+    cin >> b;         // Input
+    cout << b;
+    return 0;
+}
+
+
+
+
+----  GPT ----
+
+Using Friend Functions:
+
+    To access private members, inserters/extractors are usually declared as friends of the class.
+
+    Example:
+
+    class coord {
+        int x, y;
+    public:
+        coord(int i=0, int j=0): x(i), y(j) {}
+        friend ostream &operator<<(ostream &, coord);
+        friend istream &operator>>(istream &, coord &);
+    };
+
+
+    This allows direct access to private members x and y.
 
 
 --------------
@@ -143,23 +205,6 @@ return stream ;}
 Here’s a simplified, pointwise version of your text:
 
 
-Using Friend Functions:
-
-    To access private members, inserters/extractors are usually declared as friends of the class.
-
-    Example:
-
-    class coord {
-        int x, y;
-    public:
-        coord(int i=0, int j=0): x(i), y(j) {}
-        friend ostream &operator<<(ostream &, coord);
-        friend istream &operator>>(istream &, coord &);
-    };
-
-
-    This allows direct access to private members x and y.
-
 
 
 General vs. Non-General Inserters:
@@ -195,50 +240,6 @@ Here is the simplified pointwise version of the content from (8.5 + 8.6) on Inse
 
 
 
-
-
-🔹 Use of friend Keyword
-Inserters/extractors are often made friends of the class.
-This gives them access to private members (like x, y in coord).
-Without friend, they can only access public members.
-
-
-
-
-
-✅ Most common practice: Declare inserter/extractor as friend functions. 
-
-🔹 Example: coord Class with Inserter & Extractor
-cpp
-
-class coord {
-    int x, y;
-public:
-    coord(int i = 0, int j = 0) : x(i), y(j) {}
-    friend ostream& operator<<(ostream&, coord);
-    friend istream& operator>>(istream&, coord&);
-};
-
-// Inserter
-ostream& operator<<(ostream& stream, coord ob) {
-    stream << ob.x << ", " << ob.y << '\n';
-    return stream;
-}
-
-// Extractor
-istream& operator>>(istream& stream, coord& ob) {
-    cout << "Enter coordinates: ";
-    stream >> ob.x >> ob.y;
-    return stream;
-}
-
-int main() {
-    coord a(1,1), b;
-    cout << a;        // Output
-    cin >> b;         // Input
-    cout << b;
-    return 0;
-}
 
 
 
