@@ -89,21 +89,81 @@
 ---- rev[30-sep-2025] ----
 
     ---- '<<' and '>>' as friend ----
-
-
-	Inserter and extractor as friend of a class:  Inserters/extractors can be friends of the class. In fact, in most programming situations you will encounter, an overloaded inserter will be a friend of the class for which it was created.
-
+    Inserter and extractor as friend of a class:  
+        Inserters/extractors are often made friends of the class.
+        An overloaded inserter will be a friend of the class for which it was created.
+        This gives them access to private members (like x, y in coord).
 
 
 ---- Qwen ----
 
 🔹 Use of friend Keyword
-Inserters/extractors are often made friends of the class.
-This gives them access to private members (like x, y in coord).
-Without friend, they can only access public members.
 
 
-✅ Most common practice: Declare inserter/extractor as friend functions. 
+
+
+
+
+----  GPT ----
+
+Using Friend Functions:
+
+    To access private members, inserters/extractors are usually declared as friends of the class.
+
+    Example:
+
+    class coord {
+        int x, y;
+    public:
+        coord(int i=0, int j=0): x(i), y(j) {}
+        friend ostream &operator<<(ostream &, coord);
+        friend istream &operator>>(istream &, coord &);
+    };
+
+
+    This allows direct access to private members x and y.
+
+
+--------------
+
+      
+	Make inserter/extractor as general as possible: In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
+	However the following is not for general streaming. In this case, the output statement is hard-coded to display information on the standard output device linked to cout. This prevents the inserter from being used by other streams. 
+
+ostream &operator<<(ostream &stream, coord ob){
+cout << ob.x << ", " << ob.y << '\n'; 	// using "cout" instead of  "stream"
+return stream ;}
+	Non-Friend inserter/extractor: If inserter/extractor are not friends to any class, they cannot use the private members of any class. However all public members are accessible.
+
+
+
+
+*/  
+
+
+
+	Example 1: This program contains an inserter and an extractor for the coord class.
+class coord {	int x, y;
+	public:
+		coord() { x = 0; y = 0; }
+		coord(int i, int j) { x = i; y = j; }
+		friend ostream & operator <<( ostream &stream , coord ob); 		// inserter 
+		friend istream & operator >>( istream &stream , coord &ob); 		// extractor
+		};
+ostream &operator<<(ostream &stream, coord ob){
+		stream << ob.x << ", " << ob.y << '\n';
+		return stream ; }
+istream &operator>>(istream &stream, coord &ob){
+		cout << " Enter coordinates : ";
+		stream >> ob.x >> ob.y;
+		return stream ; }	int main() { coord a(1, 1) , b(10 , 23);
+		cout << a << b;
+		cin >> a;
+		cout << a;
+		return 0; }
+
+  
+
 
 🔹 Example: coord Class with Inserter & Extractor
 cpp
@@ -136,66 +196,6 @@ int main() {
     cout << b;
     return 0;
 }
-
-
-
-
-----  GPT ----
-
-Using Friend Functions:
-
-    To access private members, inserters/extractors are usually declared as friends of the class.
-
-    Example:
-
-    class coord {
-        int x, y;
-    public:
-        coord(int i=0, int j=0): x(i), y(j) {}
-        friend ostream &operator<<(ostream &, coord);
-        friend istream &operator>>(istream &, coord &);
-    };
-
-
-    This allows direct access to private members x and y.
-
-
---------------
-
-
-	Example 1: This program contains an inserter and an extractor for the coord class.
-class coord {	int x, y;
-	public:
-		coord() { x = 0; y = 0; }
-		coord(int i, int j) { x = i; y = j; }
-		friend ostream & operator <<( ostream &stream , coord ob); 		// inserter 
-		friend istream & operator >>( istream &stream , coord &ob); 		// extractor
-		};
-ostream &operator<<(ostream &stream, coord ob){
-		stream << ob.x << ", " << ob.y << '\n';
-		return stream ; }
-istream &operator>>(istream &stream, coord &ob){
-		cout << " Enter coordinates : ";
-		stream >> ob.x >> ob.y;
-		return stream ; }	int main() { coord a(1, 1) , b(10 , 23);
-		cout << a << b;
-		cin >> a;
-		cout << a;
-		return 0; }
-	Make inserter/extractor as general as possible: In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
-	However the following is not for general streaming. In this case, the output statement is hard-coded to display information on the standard output device linked to cout. This prevents the inserter from being used by other streams. 
-
-ostream &operator<<(ostream &stream, coord ob){
-cout << ob.x << ", " << ob.y << '\n'; 	// using "cout" instead of  "stream"
-return stream ;}
-	Non-Friend inserter/extractor: If inserter/extractor are not friends to any class, they cannot use the private members of any class. However all public members are accessible.
-
-
-
-
-*/  
-
-
 
 
 /* 
