@@ -70,6 +70,7 @@
 
 
     ---- '<<' and '>>' as Class Members ----
+
     Inserter and extractor cannot be a member of a class:
         If << or >> were class member functions, the left operand would have to be a class object.
         But in I/O, When you create an inserter/extractor, the left operand is a stream (cout, cin).
@@ -85,47 +86,28 @@
 
 
 
-
----- rev[30-sep-2025] ----
-
     ---- '<<' and '>>' as friend ----
+
     Inserter and extractor as friend of a class:  
         Inserters/extractors are often made friends of the class.
         An overloaded inserter will be a friend of the class for which it was created.
         This gives them access to private members (like x, y in coord).
 
-
----- Qwen ----
-
-🔹 Use of friend Keyword
-
-
-
-
-
-
-----  GPT ----
-
-Using Friend Functions:
-
-    To access private members, inserters/extractors are usually declared as friends of the class.
-
-    Example:
-
-    class coord {
-        int x, y;
-    public:
-        coord(int i=0, int j=0): x(i), y(j) {}
-        friend ostream &operator<<(ostream &, coord);
-        friend istream &operator>>(istream &, coord &);
-    };
+        Example:
+                class coord {
+                        int x, y;
+                    public:
+                        coord(int i=0, int j=0): x(i), y(j) {}
+                        friend ostream &operator<<(ostream &, coord);
+                        friend istream &operator>>(istream &, coord &);
+                };
 
 
-    This allows direct access to private members x and y.
+    
 
 
 --------------
-
+---- rev[02-oct-2025] ----
       
 	Make inserter/extractor as general as possible: In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
 	However the following is not for general streaming. In this case, the output statement is hard-coded to display information on the standard output device linked to cout. This prevents the inserter from being used by other streams. 
@@ -142,7 +124,8 @@ return stream ;}
 
 
 
-	Example 1: This program contains an inserter and an extractor for the coord class.
+/* Example 1: This program contains an inserter and an extractor for the coord class. */
+
 class coord {	int x, y;
 	public:
 		coord() { x = 0; y = 0; }
