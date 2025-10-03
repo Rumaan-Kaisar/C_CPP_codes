@@ -109,20 +109,58 @@
 --------------
 
     ---- Making Inserters/Extractors General ----
+
     Make inserter/extractor as general as possible:
+        Always use the passed 'stream' parameter (e.g., stream << ...), not hard-coded 'cout' or 'cin' 
+            (so that the code works for any stream.)
+
+        In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", 
+            which is whatever stream is passed to the function 
+            ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). 
+
+        In the following chapter we'll see, when written correctly 
+            the same inserter that outputs to the 'screen' can be used to output to 'any stream'. 
+
+        This ensures the same function works with:
+            cout, cerr as output
+            File streams (ofstream, ifstream)
+            String streams (stringstream)
+
+        Avoid this mistake:
+                cout << ob.x << ob.y;    // Bad: tied only to console
+
+        Do this instead:
+                stream << ob.x << ob.y;  // Good: works with any output stream
 
 
-Always use the passed 'stream' parameter (e.g., stream << ...), not hard-coded 'cout' or 'cin'.
-This ensures the same function works with:
-cout, cerr as output
-File streams (ofstream, ifstream)
-String streams (stringstream)
+    However the following is not for general streaming:
+        In this case, the output statement is "hard-coded" to display information on the standard output device linked to "cout". 
+        This prevents the inserter from being used by 'other streams'. 
 
-Avoid this mistake:
-        cout << ob.x << ob.y;  // Bad: tied only to console
+        Bad practice: 
+                
+                // hard-coding with 'cout' ties the inserter only to 'console output'.
 
-Do this instead:
-        stream << ob.x << ob.y; // Good: works with any output stream
+                ostream &operator<<(ostream &stream, coord ob){
+                    cout << ob.x << ", " << ob.y << '\n'; 	// using "cout" instead of  "stream"
+                    return stream;
+                }
+
+        Good practice: 
+
+                // use the passed stream (cout, file, etc.) 
+
+                ostream &operator<<(ostream &stream, coord ob) {
+                    stream << ob.x << ", " << ob.y;
+                    return stream;
+                }
+
+
+    
+
+
+
+
 
 
 
@@ -135,15 +173,6 @@ Less common, but possible if class provides public access.
 
 
 
-In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", 
-which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). 
-As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
-
-	However the following is not for general streaming. In this case, the output statement is hard-coded to display information on the standard output device linked to cout. This prevents the inserter from being used by other streams. 
-
-ostream &operator<<(ostream &stream, coord ob){
-cout << ob.x << ", " << ob.y << '\n'; 	// using "cout" instead of  "stream"
-return stream ;}
 
 
 
@@ -220,22 +249,6 @@ int main() {
 ----  GPT  ----
 
 Here’s a simplified, pointwise version of your text:
-
-
-
-
-General vs. Non-General Inserters:
-
-    Good practice: use the passed stream (cout, file, etc.) so the code works for any stream.
-
-    ostream &operator<<(ostream &stream, coord ob) {
-        stream << ob.x << ", " << ob.y;
-        return stream;
-    }
-
-
-    Bad practice: hard-coding with cout ties the inserter only to console output.
-
 
 
 Non-Friend Inserters/Extractors:
