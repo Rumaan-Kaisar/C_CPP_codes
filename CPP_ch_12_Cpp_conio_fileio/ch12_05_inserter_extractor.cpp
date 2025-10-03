@@ -103,10 +103,6 @@
                 };
 
 
-    
-
-
---------------
 
     ---- Making Inserters/Extractors General ----
 
@@ -156,36 +152,17 @@
                 }
 
 
-    
 
+    ----  Non-Friend Inserters/Extractors  ----
 
-
-
-
-
-
-🔹 Non-Friend Inserters/Extractors
-If not declared as friends, the function:
-Cannot access private members of the class.
-Can only use public methods or getters to read/write data.
-Less common, but possible if class provides public access.
-
-
-
-
-
-
-
-
-
-	Non-Friend inserter/extractor: If inserter/extractor are not friends to any class, they cannot use the private members of any class. However all public members are accessible.
-
-
-
+    If inserter/extractor are not friends to any class, they cannot use the "private members" of any class. 
+    However all public members are accessible.
 
 */  
 
 
+
+// ---- rev[03-Oct-2025]  ----
 
 /* Example 1: This program contains an inserter and an extractor for the coord class. */
 
@@ -243,63 +220,3 @@ int main() {
     return 0;
 }
 
-
-/* 
-
-----  GPT  ----
-
-Here’s a simplified, pointwise version of your text:
-
-
-Non-Friend Inserters/Extractors:
-
-    If not declared as friends, they cannot access private members.
-
-    They can only use public members of the class.
-
-
-
-
-
-
-
-----  Qwen  ----
-
-Here is the simplified pointwise version of the content from (8.5 + 8.6) on Insertion/Extraction Operators and Inserters/Extractors:
-
-
-
-
-
-
-
-
-
-
-
-✅ Summary
-Purpose
-Output objects
-Input objects
-Return Type
-ostream&
-istream&
-1st Param
-ostream& stream
-istream& stream
-2nd Param
-Object (by value/ref)
-Object
-by reference
-Must be
-friend
-?
-Recommended (for private access)
-Recommended
-Can be member?
-❌ No
-❌ No
-
-💡 Inserters and extractors enable natural syntax for I/O and support any stream type when written correctly.
-
-*/
