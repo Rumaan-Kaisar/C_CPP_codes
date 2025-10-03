@@ -107,14 +107,48 @@
 
 
 --------------
----- rev[02-oct-2025] ----
-      
-	Make inserter/extractor as general as possible: In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
+
+    ---- Making Inserters/Extractors General ----
+    Make inserter/extractor as general as possible:
+
+
+Always use the passed 'stream' parameter (e.g., stream << ...), not hard-coded 'cout' or 'cin'.
+This ensures the same function works with:
+cout, cerr as output
+File streams (ofstream, ifstream)
+String streams (stringstream)
+
+Avoid this mistake:
+        cout << ob.x << ob.y;  // Bad: tied only to console
+
+Do this instead:
+        stream << ob.x << ob.y; // Good: works with any output stream
+
+
+
+🔹 Non-Friend Inserters/Extractors
+If not declared as friends, the function:
+Cannot access private members of the class.
+Can only use public methods or getters to read/write data.
+Less common, but possible if class provides public access.
+
+
+
+
+In this case, the I/O statement inside the inserter/extractor outputs/inputs the values of x and y to "stream", 
+which is whatever stream is passed to the function ( "stream" is general for cin, cout and both "<<" & ">>" can be used with it). 
+As you will see in the following chapter, when written correctly the same inserter that outputs to the screen can be used to output to any stream. 
+
 	However the following is not for general streaming. In this case, the output statement is hard-coded to display information on the standard output device linked to cout. This prevents the inserter from being used by other streams. 
 
 ostream &operator<<(ostream &stream, coord ob){
 cout << ob.x << ", " << ob.y << '\n'; 	// using "cout" instead of  "stream"
 return stream ;}
+
+
+
+
+
 	Non-Friend inserter/extractor: If inserter/extractor are not friends to any class, they cannot use the private members of any class. However all public members are accessible.
 
 
@@ -226,35 +260,6 @@ Here is the simplified pointwise version of the content from (8.5 + 8.6) on Inse
 
 
 
-
-🔹 Make Inserters/Extractors General
-Always use the passed stream parameter (e.g., stream << ...), not hard-coded cout or cin.
-This ensures the same function works with:
-cout, cerr → output
-File streams (ofstream, ifstream)
-String streams (stringstream)
-🚫 Avoid this mistake:
-
-cpp
-
-
-1
-cout << ob.x << ob.y;  // Bad: tied only to console
-✅ Do this instead:
-
-cpp
-
-
-1
-stream << ob.x << ob.y; // Good: works with any output stream
-
-
-
-🔹 Non-Friend Inserters/Extractors
-If not declared as friends, the function:
-Cannot access private members of the class.
-Can only use public methods or getters to read/write data.
-Less common, but possible if class provides public access.
 
 
 
