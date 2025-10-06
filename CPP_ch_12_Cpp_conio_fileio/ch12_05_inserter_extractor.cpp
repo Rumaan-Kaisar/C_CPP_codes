@@ -253,3 +253,214 @@ int main() {
     return 0; 
 }
 
+
+
+// ----  rev[06-Oct-2025]  ----
+
+For the sake of illustration, here is the preceding program revised so that the inserter is
+not a friend of the coord class. Because the inserter does not have access to the private
+parts of coord, the variables x and y have to be made public.
+/*
+Create an inserter for objects of type coord , using
+a non - friend inserter
+*/
+# include <iostream >
+using namespace std ;
+class coord
+{
+public :
+int x, y; // must be public
+coord () { x = 0; y = 0; }
+coord ( int i, int j) { x = i; y = j; }
+};
+// An inserter for the coord class .
+ostream & operator <<( ostream &stream , coord ob)
+{
+stream << ob.x << ", " << ob.y << ’\n’;
+return stream ;
+}
+int main ()
+{
+coord a(1, 1) , b(10 , 23);
+cout << a << b;
+return 0;
+}
+
+
+
+
+3. An inserter is not limited to displaying only textual information. An inserter can perform any operation or conversion necessary to output information in a form needed by a
+particular device or situation. For example, it is perfectly valid to create an inserter that
+sends information to a plotter. In this case, the inserted will need to send appropriate
+224INTRODUCING THE C++ I/O SYSTEM
+8.5. CREATING YOUR OWN INSERTERS
+plotter codes in addition to the information. To allow you to taste the flavor of this type of
+inserter, the following program creates a class called triangle, which stores the width and
+height of a right triangle. The inserter for this class displays the triangle on the screen.
+// This program draws right triangles
+# include <iostream >
+using namespace std ;
+class triangle
+{
+int height , base ;
+public :
+triangle ( int h, int b) { height = h; base = b; }
+friend ostream & operator <<( ostream &stream , triangle ob);
+};
+// Draw a triangle
+ostream & operator <<( ostream &stream , triangle ob)
+{
+int i, j, h, k;
+i = j = ob.base -1;
+for (h=ob. height -1; h; h --)
+{
+for (k=i; k; k --)
+stream << ’ ’;
+stream << ’*’;
+if(j!=i)
+{
+for (k=j-i -1; k; k --)
+stream << ’ ’;
+stream << ’*’;
+} i
+--;
+stream << ’\n’;
+}
+for (k =0; k<ob. base ; k++)
+stream << ’*’;
+stream << ’\n’;
+return stream ;
+}
+int main ()
+{
+triangle t1 (5, 5) , t2 (10 , 10) , t3 (12 , 12);
+cout << t1;
+cout << endl << t2 << endl << t3;
+225TEACH YOURSELF
+C++
+return 0;
+}
+Notice that this program illustrates how a properly designed inserter can be fully integrated into a "normal" I/O expression. This program displays the following:
+*
+**
+* *
+* *
+*****
+a
+*
+**
+* *
+* *
+* *
+* *
+* *
+* *
+* *
+**********
+a
+*
+**
+* *
+* *
+* *
+* *
+* *
+* *
+* *
+* *
+* *
+************
+
+
+
+EXERCISES
+
+
+
+1. Given the following strtype class and partial program, create an inserter that displays a
+string:
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char * ptr );
+~ strtype () { delete [] p; }
+friend ostream & operator <<( ostream &stream , strtype &ob);
+};
+strtype :: strtype ( char *ptr )
+{
+226INTRODUCING THE C++ I/O SYSTEM
+8.5. CREATING YOUR OWN INSERTERS
+len = strlen ( ptr ) +1;
+p = new char ( len );
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, ptr );
+}
+// Create operator << inserter function here .
+int main ()
+{
+strtype s1(" This is a test ."), s2("I like C++. ");
+cout << s1 << ’\n’ << s2;
+return 0;
+}
+
+
+
+2. Replace the show() function in the following program with an inserter function:
+# include <iostream >
+using namespace std ;
+class planet
+{
+protected :
+double distance ; // miles from the sun
+int revolve ; // in days
+public :
+planet ( double d, int r)
+{
+distance = d;
+revolve = r;
+}
+};
+class earth : public planet
+{
+double circumference ; // circumference of orbit
+public :
+earth ( double d, int r) : planet (d, r)
+{
+circumference = 2* distance *3.1416;
+}
+/*
+Rewrite this so that it displays the information using
+an inserter function .
+*/
+void show ()
+227TEACH YOURSELF
+C++
+{
+cout << " Distance from sum : " << distance << ’\n’;
+cout << " Days in orbit : " << revolve << ’\n’;
+cout << " Circumference of orbit : " << circumference
+<< ’\n’;
+}
+};
+int main ()
+{
+earth ob (93000000 , 365) ;
+cout << ob;
+return 0;
+}
+
+
+
+3. Explain why an inserter cannot be a member function
+
+
