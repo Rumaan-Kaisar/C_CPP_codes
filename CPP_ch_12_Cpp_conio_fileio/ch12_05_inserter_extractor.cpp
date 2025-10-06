@@ -162,72 +162,38 @@
 
 
 
-// ---- rev[03-Oct-2025]  ----
-
 /* Example 1: This program contains an inserter and an extractor for the coord class. */
-
+#include <iostream>
+using namespace std;
 
 class coord {
         int x, y;
     public:
-        coord(int i = 0, int j = 0) : x(i), y(j) {}
-        friend ostream& operator<<(ostream&, coord);
-        friend istream& operator>>(istream&, coord&);
+        coord() { x = 0; y = 0; }
+        coord(int i, int j) { x = i; y = j; }
+        friend ostream &operator<<( ostream &stream, coord ob);      // inserter 
+        friend istream &operator>>( istream &stream, coord &ob);     // extractor
 };
 
 // Inserter
-ostream& operator<<(ostream& stream, coord ob) {
+ostream &operator<<(ostream &stream, coord ob) {
     stream << ob.x << ", " << ob.y << '\n';
-    return stream;
+    return stream ; 
 }
 
 // Extractor
-istream& operator>>(istream& stream, coord& ob) {
-    cout << "Enter coordinates: ";
+istream &operator>>(istream &stream, coord &ob) {
+    std::cout << " Enter coordinates : ";
     stream >> ob.x >> ob.y;
     return stream;
 }
 
-int main() {
-    coord a(1,1), b;
-    cout << a;        // Output
-    cin >> b;         // Input
-    cout << b;
-    return 0;
+int main() { 
+    coord a(1, 1), b(10, 23);
+
+    std::cout << a << b;
+    std::cin >> a;
+    std::cout << a;
+    
+    return 0; 
 }
-
-
-
-
-
-class coord {int x, y;
-public:
-coord() { x = 0; y = 0; }
-coord(int i, int j) { x = i; y = j; }
-friend ostream & operator <<( ostream &stream , coord ob);      // inserter 
-friend istream & operator >>( istream &stream , coord &ob);     // extractor
-};
-
-
-ostream &operator<<(ostream &stream, coord ob){
-stream << ob.x << ", " << ob.y << '\n';
-return stream ; }
-istream &operator>>(istream &stream, coord &ob){
-cout << " Enter coordinates : ";
-stream >> ob.x >> ob.y;
-return stream ; }
-
-int main() { coord a(1, 1) , b(10 , 23);
-cout << a << b;
-cin >> a;
-cout << a;
-return 0; }
-
-
-
-
-🔹 Example: coord Class with Inserter & Extractor
-cpp
-
-
-
