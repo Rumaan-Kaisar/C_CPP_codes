@@ -162,7 +162,26 @@
 
 
 
-/* Example 1: This program contains an inserter and an extractor for the coord class. */
+/* Example 1: This program contains an inserter and an extractor for the coord class. 
+                
+                Defines a class coord representing a 2D coordinate with x and y.
+                
+                Uses "operator overloading" to make input/output intuitive:
+                    "operator<<" allows printing coordinates like "cout << a;"
+                    "operator>>" allows reading coordinates like "cin >> a;"
+                
+                Demonstrates both reading and writing "object data" using normal I/O syntax.
+
+                What’s Special About It:
+                    Makes user-defined objects behave like built-in data types in I/O.
+                    The stream (cout, cin, file) is passed as an argument, so the same function works universally.
+                    Enables polymorphic stream behavior — you can output to: 
+                            console, 
+                            file, or even a 
+                            network stream 
+                        without changing the function.
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -197,3 +216,40 @@ int main() {
     
     return 0; 
 }
+
+
+// VERSION 2: ostream and istream from std, notice following version
+#include <iostream>
+
+class coord {
+        int x, y;
+    public:
+        coord() { x = 0; y = 0; }
+        coord(int i, int j) { x = i; y = j; }
+        friend std::ostream &operator<<( std::ostream &stream, coord ob);      // inserter 
+        friend std::istream &operator>>( std::istream &stream, coord &ob);     // extractor
+};
+
+// Inserter
+std::ostream &operator<<(std::ostream &stream, coord ob) {
+    stream << ob.x << ", " << ob.y << '\n';
+    return stream ; 
+}
+
+// Extractor
+std::istream &operator>>(std::istream &stream, coord &ob) {
+    std::cout << " Enter coordinates : ";
+    stream >> ob.x >> ob.y;
+    return stream;
+}
+
+int main() { 
+    coord a(1, 1), b(10, 23);
+
+    std::cout << a << b;
+    std::cin >> a;
+    std::cout << a;
+    
+    return 0; 
+}
+
