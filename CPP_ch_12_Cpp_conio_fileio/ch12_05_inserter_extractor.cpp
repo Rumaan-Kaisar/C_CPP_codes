@@ -257,13 +257,14 @@ int main() {
 
 // ----  rev[06-Oct-2025]  ----
 
-For the sake of illustration, here is the preceding program revised so that the inserter is
-not a friend of the coord class. Because the inserter does not have access to the private
-parts of coord, the variables x and y have to be made public.
-/*
-Create an inserter for objects of type coord , using
-a non - friend inserter
+/* Example 2: Following is the preceding program reworked with using a non-friend inserter.
+                Since the "inserter" is not a "friend" of the coord class, 
+                it does not have access to the private parts of coord, 
+                so the variables x and y have to be made "public". 
 */
+
+
+
 # include <iostream >
 using namespace std ;
 class coord
@@ -289,15 +290,16 @@ return 0;
 
 
 
-3. An inserter is not limited to displaying only textual information. An inserter can perform any operation or conversion necessary to output information in a form needed by a
+/* Example 3: An inserter is not limited to displaying only textual information. An inserter can perform any operation or conversion necessary to output information in a form needed by a
 particular device or situation. For example, it is perfectly valid to create an inserter that
 sends information to a plotter. In this case, the inserted will need to send appropriate
-224INTRODUCING THE C++ I/O SYSTEM
-8.5. CREATING YOUR OWN INSERTERS
+
 plotter codes in addition to the information. To allow you to taste the flavor of this type of
 inserter, the following program creates a class called triangle, which stores the width and
 height of a right triangle. The inserter for this class displays the triangle on the screen.
-// This program draws right triangles
+// This program draws right triangles */
+
+
 # include <iostream >
 using namespace std ;
 class triangle
@@ -377,8 +379,7 @@ EXERCISES
 
 
 
-1. Given the following strtype class and partial program, create an inserter that displays a
-string:
+/* Example 4: Given the following strtype class and partial program, create an inserter that displays a string: */
 # include <iostream >
 # include <cstring >
 # include <cstdlib >
@@ -415,7 +416,7 @@ return 0;
 
 
 
-2. Replace the show() function in the following program with an inserter function:
+/* Example 5: Replace the show() function in the following program with an inserter function. */
 # include <iostream >
 using namespace std ;
 class planet
@@ -461,6 +462,6 @@ return 0;
 
 
 
-3. Explain why an inserter cannot be a member function
+/* Example 6: Explain why an inserter cannot be a member function. */
 
 
