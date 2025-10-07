@@ -246,6 +246,7 @@ std::istream &operator>>(std::istream &stream, coord &ob) {
 int main() { 
     coord a(1, 1), b(10, 23);
 
+    // notice "object" is used just like "built-in data types"
     std::cout << a << b;
     std::cin >> a;
     std::cout << a;
@@ -255,7 +256,6 @@ int main() {
 
 
 
-// ----  rev[06-Oct-2025]  ----
 
 /* Example 2: Following is the preceding program reworked with using a non-friend inserter.
                 Since the "inserter" is not a "friend" of the coord class, 
@@ -280,22 +280,28 @@ std::ostream &operator<<(std::ostream &stream , coord ob) {
 
 int main() {
     coord a(1, 1), b(10, 23);
-    std::cout << a << b;
+    std::cout << a << b;    // notice object is used
     return 0;
 }
 
 
 
 
-/* Example 3: An inserter is not limited to displaying only textual information. An inserter can perform any operation or conversion necessary to output information in a form needed by a
-particular device or situation. For example, it is perfectly valid to create an inserter that
-sends information to a plotter. In this case, the inserted will need to send appropriate
+/* Example 3: An inserter is not limited to showing text output.
+                It can perform any operation or conversion needed to output data 
+                    in a form suitable for a particular device or situation.
 
-plotter codes in addition to the information. To allow you to taste the flavor of this type of
-inserter, the following program creates a class called triangle, which stores the width and
-height of a right triangle. The inserter for this class displays the triangle on the screen.
-// This program draws right triangles */
+                For example, an inserter can be written to send plotting commands to a plotter 
+                    instead of displaying plain text.
 
+                To illustrate this, following is a program that defines a "triangle" class
+                    which stores the "width" and "height" of a right triangle.
+
+                The inserter for this class "displays the triangle "on the screen.
+*/
+
+
+// ----  rev[07-Oct-2025]  ----
 
 # include <iostream >
 using namespace std ;
