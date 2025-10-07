@@ -263,28 +263,25 @@ int main() {
                 so the variables x and y have to be made "public". 
 */
 
+# include <iostream>
 
-
-# include <iostream >
-using namespace std ;
-class coord
-{
-public :
-int x, y; // must be public
-coord () { x = 0; y = 0; }
-coord ( int i, int j) { x = i; y = j; }
+class coord {
+    public:
+        int x, y;   // must be public. Inserter needs access
+        coord() { x = 0; y = 0; }
+        coord(int i, int j) { x = i; y = j; }
 };
+
 // An inserter for the coord class .
-ostream & operator <<( ostream &stream , coord ob)
-{
-stream << ob.x << ", " << ob.y << ’\n’;
-return stream ;
+std::ostream &operator<<(std::ostream &stream , coord ob) {
+    stream << ob.x << ", " << ob.y << '\n';
+    return stream;
 }
-int main ()
-{
-coord a(1, 1) , b(10 , 23);
-cout << a << b;
-return 0;
+
+int main() {
+    coord a(1, 1), b(10, 23);
+    std::cout << a << b;
+    return 0;
 }
 
 
@@ -338,10 +335,11 @@ int main ()
 triangle t1 (5, 5) , t2 (10 , 10) , t3 (12 , 12);
 cout << t1;
 cout << endl << t2 << endl << t3;
-225TEACH YOURSELF
-C++
+
 return 0;
 }
+
+
 Notice that this program illustrates how a properly designed inserter can be fully integrated into a "normal" I/O expression. This program displays the following:
 *
 **
@@ -375,7 +373,7 @@ a
 
 
 
-EXERCISES
+
 
 
 
@@ -395,8 +393,7 @@ friend ostream & operator <<( ostream &stream , strtype &ob);
 };
 strtype :: strtype ( char *ptr )
 {
-226INTRODUCING THE C++ I/O SYSTEM
-8.5. CREATING YOUR OWN INSERTERS
+
 len = strlen ( ptr ) +1;
 p = new char ( len );
 if (!p)
