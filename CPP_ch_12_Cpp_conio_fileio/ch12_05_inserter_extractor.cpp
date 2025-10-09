@@ -298,87 +298,58 @@ int main() {
                     which stores the "width" and "height" of a right triangle.
 
                 The inserter for this class "displays the triangle "on the screen.
+
+                This program illustrates how a properly designed inserter
+                    can be fully integrated into a "normal" I/O expression. 
 */
 
+#include <iostream>
 
-// ----  rev[07-Oct-2025]  ----
-
-# include <iostream >
-using namespace std ;
-class triangle
-{
-int height , base ;
-public :
-triangle ( int h, int b) { height = h; base = b; }
-friend ostream & operator <<( ostream &stream , triangle ob);
+class triangle {
+        int height, base;
+    public:
+        triangle(int h, int b) { height = h; base = b; }
+        friend std::ostream &operator<<(std::ostream &stream , triangle ob);
 };
+
+
 // Draw a triangle
-ostream & operator <<( ostream &stream , triangle ob)
-{
-int i, j, h, k;
-i = j = ob.base -1;
-for (h=ob. height -1; h; h --)
-{
-for (k=i; k; k --)
-stream << ’ ’;
-stream << ’*’;
-if(j!=i)
-{
-for (k=j-i -1; k; k --)
-stream << ’ ’;
-stream << ’*’;
-} i
---;
-stream << ’\n’;
-}
-for (k =0; k<ob. base ; k++)
-stream << ’*’;
-stream << ’\n’;
-return stream ;
-}
-int main ()
-{
-triangle t1 (5, 5) , t2 (10 , 10) , t3 (12 , 12);
-cout << t1;
-cout << endl << t2 << endl << t3;
+std::ostream &operator<<(std::ostream &stream , triangle ob) {
+    int i, j, h, k;
 
-return 0;
+    i = j = ob.base -1;
+
+    for(h=ob. height -1; h; h--) {
+        for(k=i; k; k--) stream << ' ';
+        stream << '*';
+        if(j!=i) {
+            for(k=j-i -1; k; k--) stream << ' ';
+            stream << '*';
+        } 
+        i--;
+        stream << '\n';
+    }
+
+    for(k =0; k<ob. base ; k++) stream << '*';
+    stream << '\n';
+
+    return stream;
 }
 
 
-Notice that this program illustrates how a properly designed inserter can be fully integrated into a "normal" I/O expression. This program displays the following:
-*
-**
-* *
-* *
-*****
-a
-*
-**
-* *
-* *
-* *
-* *
-* *
-* *
-* *
-**********
-a
-*
-**
-* *
-* *
-* *
-* *
-* *
-* *
-* *
-* *
-* *
-************
+int main() {
+    triangle t1(5, 5), t2(10, 10), t3(12, 12);
+
+    std::cout << t1;
+    std::cout << std::endl << t2 << std::endl << t3;
+
+    return 0;
+}
 
 
 
+
+// ----  rev[09-Oct-2025]  ----
 
 
 
