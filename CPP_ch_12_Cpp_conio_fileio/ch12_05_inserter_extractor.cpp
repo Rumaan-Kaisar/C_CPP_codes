@@ -418,6 +418,49 @@ return 0;
 }
 
 
+# include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char * ptr );
+~ strtype () { delete [] p; }
+friend ostream & operator <<( ostream &stream , strtype &ob)
+;
+};
+strtype :: strtype ( char *ptr )
+{
+len = strlen ( ptr ) +1;
+p = new char ( len );
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+513TEACH YOURSELF
+C++
+}
+strcpy (p, ptr );
+}
+ostream & operator <<( ostream &stream , strtype &ob)
+{
+stream << ob.p;
+return stream ;
+}
+int main ()
+{
+strtype s1(" This is a test ."), s2("I like C++. ");
+cout << s1 << ’\n’ << s2 << ’\n’;
+return 0;
+}
+
+
+
+
+
 
 /* Example 5: Replace the show() function in the following program with an inserter function. */
 # include <iostream >
@@ -463,8 +506,49 @@ cout << ob;
 return 0;
 }
 
+# include <iostream >
+using namespace std ;
+class planet
+{
+protected :
+double distance ; // miles from the sun
+int revolve ; // in days
+public :
+planet ( double d, int r) { distance = d; revolve = r; }
+};
+class earth : public planet
+{
+double circumference ; // circumference of orbit
+public :
+earth ( double d, int r) : planet (d, r)
+{
+circumference = 2* distance *3.1416;
+}
+friend ostream & operator <<( ostream &stream , earth ob);
+};
+ostream & operator <<( ostream &stream , earth ob)
+{
+stream << " Distance from sun : " << ob. distance << ’\n’;
+stream << " Days in orbit : " << ob. revolve << ’\n’;
+stream << " Circumference of orbit : ";
+stream << ob. circumference << ’\n’;
+}
+int main ()
+514ANSWERS
+8.6 EXERCISES
+{
+earth ob (93000000 , 365) ;
+cout << ob;
+return 0;
+}
 
 
-/* Example 6: Explain why an inserter cannot be a member function. */
+
+/* Example 6: Explain why an inserter cannot be a member function. 
+
+An inserter cannot be a member function because the object that generates a call to the
+inserter is not an object of a user-defined class.
+
+*/
 
 
