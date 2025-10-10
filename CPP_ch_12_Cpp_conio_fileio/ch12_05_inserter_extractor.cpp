@@ -349,44 +349,41 @@ int main() {
 
 
 
-// ----  rev[09-Oct-2025]  ----
+// ----  rev[10-Oct-2025]  ----
 
+/* Example 4: Given the following "strtype class" and partial program, create an inserter that displays a string. 
 
+                #include <iostream>
+                #include <cstring>
+                #include <cstdlib>
 
+                class strtype {
+                        char *p;
+                        int len ;
+                    public:
+                        strtype( char *ptr );
+                        ~strtype() { delete [] p; }
+                        friend std::ostream &operator<<( std::ostream &stream, strtype &ob);
+                };
 
-/* Example 4: Given the following strtype class and partial program, create an inserter that displays a string: */
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype () { delete [] p; }
-friend ostream & operator <<( ostream &stream , strtype &ob);
-};
-strtype :: strtype ( char *ptr )
-{
+                strtype :: strtype( char *ptr ) {
+                    len = strlen(ptr) +1;
+                    p = new char(len);
+                    if(!p) {
+                        std::cout << " Allocation error \n";
+                        exit(1);
+                    }
+                    strcpy(p, ptr);
+                }
 
-len = strlen ( ptr ) +1;
-p = new char ( len );
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-strcpy (p, ptr );
-}
-// Create operator << inserter function here .
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++. ");
-cout << s1 << ’\n’ << s2;
-return 0;
-}
+                // Create operator << inserter function here .
+                int main() {
+                    strtype s1(" This is a test ."), s2("I like C++. ");
+                    std::cout << s1 << '\n' << s2;
+                    return 0;
+                }
+*/
+
 
 
 # include <iostream >
