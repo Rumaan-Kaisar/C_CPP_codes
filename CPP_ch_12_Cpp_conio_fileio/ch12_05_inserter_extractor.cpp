@@ -349,8 +349,6 @@ int main() {
 
 
 
-// ----  rev[10-Oct-2025]  ----
-
 /* Example 4: Given the following "strtype class" and partial program, create an inserter that displays a string. 
 
                 #include <iostream>
@@ -411,7 +409,10 @@ strtype :: strtype( char *ptr ) {
 }
 
 // operator << inserter function here.
-
+std::ostream &operator<<( std::ostream &stream , strtype &ob) {
+    stream << ob.p;
+    return stream;
+}
 
 int main() {
     strtype s1(" This is a test ."), s2("I like C++. ");
@@ -421,66 +422,94 @@ int main() {
 
 
 
+// ----  rev[10-Oct-2025]  ----
 
+/* Example 5: Replace the show() function in the following program with an "inserter function". 
 
+                #include <iostream>
 
+                class planet {
+                    protected :
+                        double distance ;   // miles from the sun
+                        int revolve ;       // in days
+                    public :
+                        planet(double d, int r) {
+                            distance = d;
+                            revolve = r;
+                        }
+                };
 
+                class earth : public planet {
+                        double circumference ; // circumference of orbit
+                    public :
+                        earth(double d, int r) : planet(d, r) {
+                            circumference = 2* distance *3.1416;
+                        }
+                        
+                        // Rewrite this so that it displays the information using an inserter
+                        void show() {
+                            std::cout << " Distance from sum : " << distance << '\n';
+                            std::cout << " Days in orbit : " << revolve << '\n';
+                            std::cout << " Circumference of orbit : " << circumference
+                            << '\n';
+                        }
+                };
 
-std::ostream &operator<<( std::ostream &stream , strtype &ob)
-{
-stream << ob.p;
-return stream ;
-}
+                int main() {
+                    earth ob(93000000, 365);
+                    
+                    ob.show();
 
+                    // rewrite the show() so that following line works
+                    std::cout << ob;
 
-
-
-
-
-
-/* Example 5: Replace the show() function in the following program with an inserter function. */
-# include <iostream >
-using namespace std ;
-class planet
-{
-protected :
-double distance ; // miles from the sun
-int revolve ; // in days
-public :
-planet ( double d, int r)
-{
-distance = d;
-revolve = r;
-}
-};
-class earth : public planet
-{
-double circumference ; // circumference of orbit
-public :
-earth ( double d, int r) : planet (d, r)
-{
-circumference = 2* distance *3.1416;
-}
-/*
-Rewrite this so that it displays the information using
-an inserter function .
+                    return 0;
+                }
 */
-void show ()
-227TEACH YOURSELF
-C++
-{
-cout << " Distance from sum : " << distance << ’\n’;
-cout << " Days in orbit : " << revolve << ’\n’;
-cout << " Circumference of orbit : " << circumference
-<< ’\n’;
-}
+
+#include <iostream>
+
+class planet {
+    protected :
+        double distance ;   // miles from the sun
+        int revolve ;       // in days
+    public :
+        planet(double d, int r) {
+            distance = d;
+            revolve = r;
+        }
 };
-int main ()
-{
-earth ob (93000000 , 365) ;
-cout << ob;
-return 0;
+
+class earth : public planet {
+        double circumference ; // circumference of orbit
+    public :
+        earth(double d, int r) : planet(d, r) {
+            circumference = 2* distance *3.1416;
+        }
+        
+        // Rewrite this so that it displays the information using an inserter
+        void show() {
+            std::cout << " Distance from sum : " << distance << '\n';
+            std::cout << " Days in orbit : " << revolve << '\n';
+            std::cout << " Circumference of orbit : " << circumference
+            << '\n';
+        }
+};
+
+int main() {
+    earth ob(93000000, 365);
+    
+    // ob.show();
+
+    // rewrite the show() so that following line works
+    std::cout << ob;
+
+    return 0;
 }
+
+
+
+
 
 # include <iostream >
 using namespace std ;
