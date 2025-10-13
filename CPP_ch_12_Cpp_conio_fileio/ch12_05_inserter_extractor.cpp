@@ -518,13 +518,15 @@ int main() {
 
 
 
-// ----  rev[10-Oct-2025]  ----
 
 /* Example 6: Explain why an inserter cannot be a member function. 
 
-An inserter cannot be a member function because the object that generates a call to the
-inserter is not an object of a user-defined class.
-
+            ans:
+                An inserter cannot be a" member function" because the OBJECT that generates a call 
+                to the inserter is not an object of a USER-defined class.
 */
 
+
+// ----  rev[10-Oct-2025]  ----
+// next ch examples
 
