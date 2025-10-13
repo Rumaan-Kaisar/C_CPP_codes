@@ -422,7 +422,6 @@ int main() {
 
 
 
-// ----  rev[10-Oct-2025]  ----
 
 /* Example 5: Replace the show() function in the following program with an "inserter function". 
 
@@ -495,10 +494,16 @@ class earth : public planet {
         //     << '\n';
         // }
 
-        friend ostream &operator<<(ostream &stream , earth ob);
-
-
+        friend std::ostream &operator<<(std::ostream &stream , earth ob);
 };
+
+
+std::ostream &operator<<(std::ostream &stream, earth ob) {
+    stream << " Distance from sun : " << ob.distance << '\n';
+    stream << " Days in orbit : " << ob.revolve << '\n';
+    stream << " Circumference of orbit : " << ob.circumference << '\n';
+    return stream;
+}
 
 int main() {
     earth ob(93000000, 365);
@@ -513,25 +518,7 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
-
-ostream &operator<<(ostream &stream , earth ob) {
-    stream << " Distance from sun : " << ob. distance << '\n';
-    stream << " Days in orbit : " << ob. revolve << '\n';
-    stream << " Circumference of orbit : ";
-    stream << ob. circumference << '\n';
-}
-
-
-
-
+// ----  rev[10-Oct-2025]  ----
 
 /* Example 6: Explain why an inserter cannot be a member function. 
 
