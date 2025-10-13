@@ -484,16 +484,20 @@ class earth : public planet {
         double circumference ; // circumference of orbit
     public :
         earth(double d, int r) : planet(d, r) {
-            circumference = 2* distance *3.1416;
+            circumference = 2*distance*3.1416;
         }
         
         // Rewrite this so that it displays the information using an inserter
-        void show() {
-            std::cout << " Distance from sum : " << distance << '\n';
-            std::cout << " Days in orbit : " << revolve << '\n';
-            std::cout << " Circumference of orbit : " << circumference
-            << '\n';
-        }
+        // void show() {
+        //     std::cout << " Distance from sum : " << distance << '\n';
+        //     std::cout << " Days in orbit : " << revolve << '\n';
+        //     std::cout << " Circumference of orbit : " << circumference
+        //     << '\n';
+        // }
+
+        friend ostream &operator<<(ostream &stream , earth ob);
+
+
 };
 
 int main() {
@@ -511,41 +515,21 @@ int main() {
 
 
 
-# include <iostream >
-using namespace std ;
-class planet
-{
-protected :
-double distance ; // miles from the sun
-int revolve ; // in days
-public :
-planet ( double d, int r) { distance = d; revolve = r; }
-};
-class earth : public planet
-{
-double circumference ; // circumference of orbit
-public :
-earth ( double d, int r) : planet (d, r)
-{
-circumference = 2* distance *3.1416;
+
+
+
+
+
+
+
+ostream &operator<<(ostream &stream , earth ob) {
+    stream << " Distance from sun : " << ob. distance << '\n';
+    stream << " Days in orbit : " << ob. revolve << '\n';
+    stream << " Circumference of orbit : ";
+    stream << ob. circumference << '\n';
 }
-friend ostream & operator <<( ostream &stream , earth ob);
-};
-ostream & operator <<( ostream &stream , earth ob)
-{
-stream << " Distance from sun : " << ob. distance << ’\n’;
-stream << " Days in orbit : " << ob. revolve << ’\n’;
-stream << " Circumference of orbit : ";
-stream << ob. circumference << ’\n’;
-}
-int main ()
-514ANSWERS
-8.6 EXERCISES
-{
-earth ob (93000000 , 365) ;
-cout << ob;
-return 0;
-}
+
+
 
 
 
