@@ -527,22 +527,20 @@ int main() {
 */
 
 
-// ----  rev[10-Oct-2025]  ----
-// next ch examples
+// ----  rev[14-Oct-2025]  ----
 
+/* Example 7: This program adds an extractor to the coord class.
+                It uses a friend extractor for objects of type coord 
+*/
 
-1. This program adds an extractor to the coord class:
-// Use a friend extractor for objects of type coord .
-# include <iostream >
-using namespace std ;
-class coord
-{
+#include <iostream>
+
+class coord {
 int x, y;
 public :
 coord () { x = 0; y = 0; }
 coord ( int i, int j) { x = i; y = j; }
-228INTRODUCING THE C++ I/O SYSTEM
-8.6. CREATING EXTRACTORS
+
 friend ostream & operator <<( ostream &stream , coord ob);
 friend istream & operator >>( istream &stream , coord &ob);
 };
@@ -571,8 +569,13 @@ extractor can simplify coding when a prompting message is needed.
 
 
 
-2. Here an inventory class is created that stores the name of an item, the number on hand,
-and its cost. The program includes both an inserter and an extractor for this class.
+/* Example 8: Following is an inventory class is created that stores 
+                    the name of an item, 
+                    the number on hand and 
+                    its cost. 
+                The program includes both an "inserter" and an "extractor" for this class.
+*/
+
 # include <iostream >
 # include <cstring >
 using namespace std ;
@@ -621,10 +624,14 @@ return 0;
 
 
 
-EXERCISES
-1. Add an extractor to the strtype class from Exercise 1 in the preceding section.
-2. Create a class that stores an integer value and its lowest factor. Create both an inserter
-and an extractor for this class
+
+/* Example 9: Add an extractor to the strtype class from "Example 4" above */
+
+
+
+/* Example 10: Create a class that stores an "integer" value and its "lowest factor". 
+                Create both an inserter and an extractor for this class 
+*/
 
 
 
