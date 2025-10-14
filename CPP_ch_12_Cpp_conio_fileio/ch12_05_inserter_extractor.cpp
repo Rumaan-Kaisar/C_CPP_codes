@@ -626,6 +626,68 @@ return 0;
 
 
 /* Example 9: Add an extractor to the strtype class from "Example 4" above */
+1. # include <iostream >
+# include <cstring >
+# include <cstdlib >
+using namespace std ;
+class strtype
+{
+char *p;
+int len ;
+public :
+strtype ( char * ptr );
+~ strtype () { delete [] p; }
+friend ostream & operator <<( ostream &stream , strtype &ob)
+;
+friend istream & operator >>( istream &stream , strtype &ob)
+;
+};
+strtype :: strtype ( char *ptr )
+{
+len = strlen ( ptr ) +1;
+p = new char ( len );
+if (!p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+strcpy (p, ptr );
+}
+ostream & operator <<( ostream &stream , strtype &ob)
+{
+stream << ob.p;
+return stream ;
+}
+istream & operator >>( istream &stream , strtype &ob)
+515TEACH YOURSELF
+C++
+{
+char temp [255];
+stream >> temp ;
+if( strlen ( temp ) >= ob.len )
+{
+delete [] ob.p;
+ob. len = strlen ( temp )+1;
+ob.p = new char (ob.len );
+if (! ob.p)
+{
+cout << " Allocation error \n";
+exit (1) ;
+}
+}
+strcpy (ob.p, temp );
+return stream ;
+}
+int main ()
+{
+strtype s1(" This is a test ."), s2("I like C++. ");
+cout << s1 << ’\n’ << s2 << ’\n’;
+cout << "\ nEnter a string : ";
+cin >> s1;
+cout << s1;
+return 0;
+}
+
 
 
 
@@ -633,5 +695,57 @@ return 0;
                 Create both an inserter and an extractor for this class 
 */
 
+# include <iostream >
+using namespace std ;
+class factor
+{
+int num ; // number
+int lfact ; // lowest factor
+public :
+factor ( int i);
+friend ostream & operator <<( ostream &stream , factor ob);
+friend istream & operator >>( istream &stream , factor &ob);
+};
+factor :: factor ( int i)
+{
+int n;
+num = i;
+516ANSWERS
+MASTERY SKILLS CHECK: Chapter 8
+for (n =2; n <(i /2) ; n ++)
+if (!( i%n))
+break ;
+if(n <(i /2) )
+lfact = n;
+else
+lfact = 1;
+}
+istream & operator >>( istream &stream , factor &ob)
+{
+stream >> ob. num ;
+int n;
+for (n =2; n <( ob. num /2); n++)
+if (!( ob. num %n))
+break ;
+if(n <( ob. num /2) )
+ob. lfact = n;
+else
+ob. lfact = 1;
+return stream ;
+}
+ostream & operator <<( ostream &stream , factor ob)
+{
+stream << ob. lfact << " is lowest factor of ";
+stream << ob. num << ’\n’;
+return stream ;
+}
+int main ()
+{
+factor o (32) ;
+cout << o;
+cin >> o;
+cout << o;
+return 0;
+}
 
 
