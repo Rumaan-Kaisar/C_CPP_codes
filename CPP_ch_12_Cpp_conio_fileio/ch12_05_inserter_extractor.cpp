@@ -530,3 +530,101 @@ int main() {
 // ----  rev[10-Oct-2025]  ----
 // next ch examples
 
+
+1. This program adds an extractor to the coord class:
+// Use a friend extractor for objects of type coord .
+# include <iostream >
+using namespace std ;
+class coord
+{
+int x, y;
+public :
+coord () { x = 0; y = 0; }
+coord ( int i, int j) { x = i; y = j; }
+228INTRODUCING THE C++ I/O SYSTEM
+8.6. CREATING EXTRACTORS
+friend ostream & operator <<( ostream &stream , coord ob);
+friend istream & operator >>( istream &stream , coord &ob);
+};
+ostream & operator <<( ostream &stream , coord ob)
+{
+stream << ob.x << ", " << ob.y << ’\n’;
+return stream ;
+}
+istream & operator >>( istream &stream , coord &ob)
+{
+cout << " Enter coordinates : ";
+stream >> ob.x >> ob.y;
+return stream ;
+}
+int main ()
+{
+coord a(1, 1) , b(10 , 23);
+cout << a << b;
+cin >> a;
+cout << a;
+return 0;
+}
+Notice how the extractor also prompts the user for input. Although such prompting is
+not required (or even desired) for most situations, this function shows how a customized
+extractor can simplify coding when a prompting message is needed.
+
+
+
+2. Here an inventory class is created that stores the name of an item, the number on hand,
+and its cost. The program includes both an inserter and an extractor for this class.
+# include <iostream >
+# include <cstring >
+using namespace std ;
+class inventory
+{
+char item [40]; // name of item
+int onhand ; // number on hand
+double cost ; // cost of item
+public :
+inventory ( char *i, int o, double c)
+{
+strcpy (item , i);
+onhand = o;
+cost = c;
+}
+229TEACH YOURSELF
+C++
+friend ostream & operator <<( ostream &stream , inventory ob)
+;
+friend istream & operator >>( istream &stream , inventory &ob
+);
+};
+ostream & operator <<( ostream &stream , inventory ob)
+{
+stream << ob. item << ": " << ob. onhand ;
+stream << " on hand at $" << ob. cost << ’\n’;
+}
+istream & operator >>( istream &stream , inventory &ob)
+{
+cout << " Enter item name : ";
+stream >> ob. item ;
+cout << " Enter number on hand : ";
+stream >> ob. onhand ;
+cout << " Enter cost : ";
+stream >> ob. cost ;
+return stream ;
+}
+int main ()
+{
+inventory ob(" hammer ", 4, 12.55) ;
+cout << ob;
+cin >> ob;
+cout << ob;
+return 0;
+}
+
+
+
+EXERCISES
+1. Add an extractor to the strtype class from Exercise 1 in the preceding section.
+2. Create a class that stores an integer value and its lowest factor. Create both an inserter
+and an extractor for this class
+
+
+
