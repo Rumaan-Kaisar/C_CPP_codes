@@ -527,7 +527,7 @@ int main() {
 */
 
 
-// ----  rev[14-Oct-2025]  ----
+// ----  rev[14-Oct-2025] = update first  ----
 
 /* Example 7: This program adds an extractor to the coord class.
                 It uses a friend extractor for objects of type coord 
@@ -536,33 +536,39 @@ int main() {
 #include <iostream>
 
 class coord {
-int x, y;
-public :
-coord () { x = 0; y = 0; }
-coord ( int i, int j) { x = i; y = j; }
+        int x, y;
+    public :
+        coord() { x = 0; y = 0; }
+        coord(int i, int j) { x = i; y = j; }
 
-friend ostream & operator <<( ostream &stream , coord ob);
-friend istream & operator >>( istream &stream , coord &ob);
+        friend std::ostream &operator<<( std::ostream &stream , coord ob);    // inserter
+        friend std::istream &operator>>( std::istream &stream , coord &ob);   // extractor
 };
-ostream & operator <<( ostream &stream , coord ob)
-{
-stream << ob.x << ", " << ob.y << ’\n’;
-return stream ;
+
+// inserter
+std::ostream & operator <<( std::ostream &stream , coord ob) {
+    stream << ob.x << ", " << ob.y << '\n';
+    return stream;
 }
-istream & operator >>( istream &stream , coord &ob)
-{
-cout << " Enter coordinates : ";
-stream >> ob.x >> ob.y;
-return stream ;
+
+// extractor
+std::istream & operator >>( std::istream &stream , coord &ob) {
+    std::cout << " Enter coordinates : ";
+    stream >> ob.x >> ob.y;
+    return stream;
 }
-int main ()
-{
-coord a(1, 1) , b(10 , 23);
-cout << a << b;
-cin >> a;
-cout << a;
-return 0;
+
+int main() {
+    coord a(1, 1), b(10 , 23);
+
+    std::cout << a << b;
+    std::cin >> a;
+    std::cout << a;
+
+    return 0;
 }
+
+
 Notice how the extractor also prompts the user for input. Although such prompting is
 not required (or even desired) for most situations, this function shows how a customized
 extractor can simplify coding when a prompting message is needed.
@@ -591,8 +597,7 @@ strcpy (item , i);
 onhand = o;
 cost = c;
 }
-229TEACH YOURSELF
-C++
+
 friend ostream & operator <<( ostream &stream , inventory ob)
 ;
 friend istream & operator >>( istream &stream , inventory &ob
@@ -626,7 +631,7 @@ return 0;
 
 
 /* Example 9: Add an extractor to the strtype class from "Example 4" above */
-1. # include <iostream >
+# include <iostream >
 # include <cstring >
 # include <cstdlib >
 using namespace std ;
@@ -659,8 +664,6 @@ stream << ob.p;
 return stream ;
 }
 istream & operator >>( istream &stream , strtype &ob)
-515TEACH YOURSELF
-C++
 {
 char temp [255];
 stream >> temp ;
@@ -695,23 +698,21 @@ return 0;
                 Create both an inserter and an extractor for this class 
 */
 
-# include <iostream >
-using namespace std ;
-class factor
-{
-int num ; // number
-int lfact ; // lowest factor
-public :
-factor ( int i);
-friend ostream & operator <<( ostream &stream , factor ob);
-friend istream & operator >>( istream &stream , factor &ob);
+#include <iostream>
+
+class factor {
+        int num; // number
+        int lfact; // lowest factor
+    public :
+        factor( int i);
+        friend ostream &operator<<( ostream &stream , factor ob);
+        friend istream &operator>>( istream &stream , factor &ob);
 };
-factor :: factor ( int i)
-{
-int n;
+
+factor :: factor(int i){
+    int n;
+
 num = i;
-516ANSWERS
-MASTERY SKILLS CHECK: Chapter 8
 for (n =2; n <(i /2) ; n ++)
 if (!( i%n))
 break ;
@@ -720,6 +721,7 @@ lfact = n;
 else
 lfact = 1;
 }
+
 istream & operator >>( istream &stream , factor &ob)
 {
 stream >> ob. num ;
