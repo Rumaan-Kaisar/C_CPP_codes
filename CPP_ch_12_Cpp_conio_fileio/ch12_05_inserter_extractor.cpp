@@ -527,10 +527,14 @@ int main() {
 */
 
 
-// ----  rev[14-Oct-2025] = update first  ----
+
 
 /* Example 7: This program adds an extractor to the coord class.
-                It uses a friend extractor for objects of type coord 
+                It uses a friend extractor for objects of type coord.
+
+                Notice how the extractor also prompts the user for input. 
+                Although such prompting is not required (or even desired) for most situations, 
+                This function shows how a customized extractor can simplify coding when a prompting message is needed.
 */
 
 #include <iostream>
@@ -569,11 +573,8 @@ int main() {
 }
 
 
-Notice how the extractor also prompts the user for input. Although such prompting is
-not required (or even desired) for most situations, this function shows how a customized
-extractor can simplify coding when a prompting message is needed.
 
-
+// ---- rev[16-Oct-2025] ----
 
 /* Example 8: Following is an inventory class is created that stores 
                     the name of an item, 
