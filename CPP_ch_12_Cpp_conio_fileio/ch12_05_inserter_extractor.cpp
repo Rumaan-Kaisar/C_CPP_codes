@@ -574,7 +574,6 @@ int main() {
 
 
 
-// ---- rev[16-Oct-2025] ----
 
 /* Example 8: Following is an inventory class is created that stores 
                     the name of an item, 
@@ -591,6 +590,7 @@ class inventory {
         char item[40];  // name of item
         int onhand;     // number on hand
         double cost;    // cost of item
+
     public:
         inventory(char *i, int o, double c) {
             strcpy(item , i);
@@ -598,37 +598,46 @@ class inventory {
             cost = c;
         }
 
-friend ostream & operator <<( ostream &stream , inventory ob)
-;
-friend istream & operator >>( istream &stream , inventory &ob
-);
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);
+        friend std::istream &operator>>(std::istream &stream , inventory &ob);
 };
-ostream & operator <<( ostream &stream , inventory ob)
-{
-stream << ob. item << ": " << ob. onhand ;
-stream << " on hand at $" << ob. cost << ’\n’;
+
+// inserter
+std::ostream &operator<<(std::ostream &stream , inventory ob) {
+    stream << ob.item << ": " << ob.onhand;
+    stream << " on hand at $" << ob.cost << '\n';
+    return stream;
 }
-istream & operator >>( istream &stream , inventory &ob)
-{
-cout << " Enter item name : ";
-stream >> ob. item ;
-cout << " Enter number on hand : ";
-stream >> ob. onhand ;
-cout << " Enter cost : ";
-stream >> ob. cost ;
-return stream ;
+
+// extractor
+std::istream & operator >>( std::istream &stream , inventory &ob) {
+    std::cout << " Enter item name : ";
+    stream >> ob. item;
+
+    std::cout << " Enter number on hand : ";
+    stream >> ob. onhand;
+    
+    std::cout << " Enter cost : ";
+    stream >> ob. cost;
+    
+    return stream;
 }
-int main ()
-{
-inventory ob(" hammer ", 4, 12.55) ;
-cout << ob;
-cin >> ob;
-cout << ob;
-return 0;
+
+
+int main() {
+    inventory ob(" hammer ", 4, 12.55);
+
+    std::cout << ob;
+    std::cin >> ob;
+    std::cout << ob;
+
+    return 0;
 }
 
 
 
+
+// ---- rev[17-Oct-2025] ----
 
 /* Example 9: Add an extractor to the strtype class from "Example 4" above */
 # include <iostream >
