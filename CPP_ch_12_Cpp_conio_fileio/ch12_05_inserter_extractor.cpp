@@ -550,13 +550,13 @@ class coord {
 };
 
 // inserter
-std::ostream & operator <<( std::ostream &stream , coord ob) {
+std::ostream &operator<<( std::ostream &stream , coord ob) {
     stream << ob.x << ", " << ob.y << '\n';
     return stream;
 }
 
 // extractor
-std::istream & operator >>( std::istream &stream , coord &ob) {
+std::istream &operator>>( std::istream &stream , coord &ob) {
     std::cout << " Enter coordinates : ";
     stream >> ob.x >> ob.y;
     return stream;
@@ -599,7 +599,7 @@ class inventory {
         }
 
         friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
-        friend std::istream &operator>>(std::istream &stream , inventory &ob);  // extractor
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
 };
 
 // inserter
@@ -639,6 +639,8 @@ int main() {
 
 // ----  rev[17-Oct-2025]  ----
 // debug the "extractor", not showing or working
+// this actually works if you input from codechefs "custom Input" box
+
 
 /* Example 9: Add an extractor to the strtype class from "Example 4" above "strtype class" */
 
