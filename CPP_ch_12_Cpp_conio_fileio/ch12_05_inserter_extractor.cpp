@@ -583,21 +583,20 @@ int main() {
                 The program includes both an "inserter" and an "extractor" for this class.
 */
 
-# include <iostream >
-# include <cstring >
-using namespace std ;
-class inventory
-{
-char item [40]; // name of item
-int onhand ; // number on hand
-double cost ; // cost of item
-public :
-inventory ( char *i, int o, double c)
-{
-strcpy (item , i);
-onhand = o;
-cost = c;
-}
+#include <iostream>
+#include <cstring>
+
+// inventory class
+class inventory {
+        char item[40];  // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item , i);
+            onhand = o;
+            cost = c;
+        }
 
 friend ostream & operator <<( ostream &stream , inventory ob)
 ;
