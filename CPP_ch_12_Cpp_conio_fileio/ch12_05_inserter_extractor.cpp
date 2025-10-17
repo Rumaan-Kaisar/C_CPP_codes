@@ -598,8 +598,8 @@ class inventory {
             cost = c;
         }
 
-        friend std::ostream &operator<<(std::ostream &stream, inventory ob);
-        friend std::istream &operator>>(std::istream &stream , inventory &ob);
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream , inventory &ob);  // extractor
 };
 
 // inserter
@@ -610,15 +610,15 @@ std::ostream &operator<<(std::ostream &stream , inventory ob) {
 }
 
 // extractor
-std::istream & operator >>( std::istream &stream , inventory &ob) {
+std::istream &operator>>( std::istream &stream , inventory &ob) {
     std::cout << " Enter item name : ";
-    stream >> ob. item;
+    stream >> ob.item;
 
     std::cout << " Enter number on hand : ";
-    stream >> ob. onhand;
+    stream >> ob.onhand;
     
     std::cout << " Enter cost : ";
-    stream >> ob. cost;
+    stream >> ob.cost;
     
     return stream;
 }
@@ -637,67 +637,71 @@ int main() {
 
 
 
-// ---- rev[17-Oct-2025] ----
+// ----  rev[17-Oct-2025]  ----
+// debug the "extractor", not showing or working
 
-/* Example 9: Add an extractor to the strtype class from "Example 4" above */
-# include <iostream >
-# include <cstring >
-# include <cstdlib >
-using namespace std ;
-class strtype
-{
-char *p;
-int len ;
-public :
-strtype ( char * ptr );
-~ strtype () { delete [] p; }
-friend ostream & operator <<( ostream &stream , strtype &ob)
-;
-friend istream & operator >>( istream &stream , strtype &ob)
-;
+/* Example 9: Add an extractor to the strtype class from "Example 4" above "strtype class" */
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+class strtype {
+        char *p;
+        int len ;
+    public:
+        strtype( char *ptr );
+        ~strtype() { delete [] p; }
+        friend std::ostream &operator<<( std::ostream &stream, strtype &ob );   // inserter
+        friend std::istream &operator>>( std::istream &stream, strtype &ob );   // extractor
 };
-strtype :: strtype ( char *ptr )
-{
-len = strlen ( ptr ) +1;
-p = new char ( len );
-if (!p)
-{
-cout << " Allocation error \n";
-exit (1) ;
+
+strtype :: strtype( char *ptr ) {
+    len = strlen(ptr) +1;
+    p = new char(len);
+    if(!p) {
+        std::cout << " Allocation error \n";
+        exit(1);
+    }
+    strcpy(p, ptr);
 }
-strcpy (p, ptr );
+
+// inserter
+std::ostream &operator<<( std::ostream &stream , strtype &ob) {
+    stream << ob.p;
+    return stream;
 }
-ostream & operator <<( ostream &stream , strtype &ob)
-{
-stream << ob.p;
-return stream ;
+
+// extractor
+std::istream &operator>>( std::istream &stream , strtype &ob ) {
+    char temp[255];
+
+    stream >> temp;
+
+    if( strlen(temp) >= ob.len ) {
+        delete [] ob.p;
+        ob.len = strlen(temp)+1;
+        ob.p = new char(ob.len);
+        if(!ob.p){
+            std::cout << " Allocation error \n";
+            exit(1);
+        }
+    }
+
+    strcpy(ob.p, temp);
+    return stream;
 }
-istream & operator >>( istream &stream , strtype &ob)
-{
-char temp [255];
-stream >> temp ;
-if( strlen ( temp ) >= ob.len )
-{
-delete [] ob.p;
-ob. len = strlen ( temp )+1;
-ob.p = new char (ob.len );
-if (! ob.p)
-{
-cout << " Allocation error \n";
-exit (1) ;
-}
-}
-strcpy (ob.p, temp );
-return stream ;
-}
-int main ()
-{
-strtype s1(" This is a test ."), s2("I like C++. ");
-cout << s1 << ’\n’ << s2 << ’\n’;
-cout << "\ nEnter a string : ";
-cin >> s1;
-cout << s1;
-return 0;
+
+
+int main() {
+    strtype s1(" This is a test ."), s2("I like C++. ");
+
+    std::cout << s1 << '\n' << s2 << '\n' << std::endl;
+    std::cout << "\nEnter a string : ";
+    std::cin >> s1;
+    std::cout << s1;
+
+    return 0;
 }
 
 
