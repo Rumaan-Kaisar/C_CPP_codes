@@ -637,12 +637,11 @@ int main() {
 
 
 
-// ----  rev[17-Oct-2025]  ----
-// debug the "extractor", not showing or working
-// this actually works if you input from codechefs "custom Input" box
+/* Example 9: Add an extractor to the strtype class from "Example 4" above "strtype class" 
 
-
-/* Example 9: Add an extractor to the strtype class from "Example 4" above "strtype class" */
+                debug the "extractor", not showing or working
+                this actually works if you input from codechefs "custom Input" box
+*/
 
 #include <iostream>
 #include <cstring>
@@ -707,6 +706,8 @@ int main() {
 }
 
 
+
+// ----  rev[20-Oct-2025]  ----
 
 
 /* Example 10: Create a class that stores an "integer" value and its "lowest factor". 
