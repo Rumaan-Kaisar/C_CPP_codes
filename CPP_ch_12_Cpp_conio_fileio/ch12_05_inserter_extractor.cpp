@@ -707,8 +707,6 @@ int main() {
 
 
 
-// ----  rev[20-Oct-2025]  ----
-
 
 /* Example 10: Create a class that stores an "integer" value and its "lowest factor". 
                 Create both an inserter and an extractor for this class 
