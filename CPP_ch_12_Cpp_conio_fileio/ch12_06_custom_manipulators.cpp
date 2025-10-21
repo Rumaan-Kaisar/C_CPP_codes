@@ -1,18 +1,23 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Custom manipulators    ------------------------
+    
+    Custom manipulators are important for two main reasons. 
 
-12.6 User Defined Manipulators
+    Combine repeated I/O steps:
+        A custom manipulator can group several separate I/O operations that occur often in a program, 
+        so we can perform them with a single command.
 
-Custom manipulators are important for two main reasons. 
+    Handle special devices:
+        A custom manipulator allows us to perform I/O with "nonstandard devices" -
+        for example, sending control codes to special hardware like printers or optical recognition systems.
 
-First, a manipulator can consolidate a sequence of several separate I/O operations: in which the same sequence of I/O operations occurs frequently within a program.
 
-Second, a custom manipulator can be important when you need to perform I/O operations on a nonstandard device. For example, you could use a manipulator to send control codes to a special type of printer or an optic recognition system.
+// rev[21-Oct-2025]
 
 
 Types of Manipulators: there are two basic types of manipulators: those that operate on input streams and those that operate on output streams.  There is a secondary division: those manipulators that take an argument and those that don't:
-	parameterized manipulator and 
-	parameterless manipulator
+    parameterized manipulator and 
+    parameterless manipulator
 
 
 parameterized manipulator: The procedures necessary to create a parameterized manipulator vary widely from compiler to compiler, and even between two different versions of the same compiler. For this reason, you must consult the documentation to your compiler for instructions on creating parameterized manipulators. Parameterized manipulator is out of scope of this note. 
