@@ -12,20 +12,30 @@
         for example, sending control codes to special hardware like printers or optical recognition systems.
 
 
-// rev[21-Oct-2025]
-
-
     --------  Types of Manipulators  --------
+    There are two basic types of manipulators: 
+        Input stream manipulators (work with cin)
+        Output stream manipulators (work with cout)
+
+    There is a secondary division: 
+        Parameterized manipulators
+            Example: setw(10)
+            
+            Creating Parameterized manipulators is different across compilers, and 
+            the steps are not consistent.
+            So, for now, we will not cover how to create parameterized manipulators.
+
+        Parameterless manipulators:
+            Example: endl, flush
+            (Easy and consistent across compilers.)
 
 
-there are two basic types of manipulators: those that operate on input streams and those that operate on output streams.  There is a secondary division: those manipulators that take an argument and those that don't:
-    parameterized manipulator and 
-    parameterless manipulator
+// rev[23-Oct-2025]
+    
 
+parameterless manipulators:
 
-parameterized manipulator: The procedures necessary to create a parameterized manipulator vary widely from compiler to compiler, and even between two different versions of the same compiler. For this reason, you must consult the documentation to your compiler for instructions on creating parameterized manipulators. Parameterized manipulator is out of scope of this note. 
-
-parameterless manipulators: However, the creation of parameterless manipulators is straightforward and the same for all compilers. 
+the creation of parameterless manipulators is straightforward and the same for all compilers. 
 
 Output functions: All parameterless manipulator output functions have this skeleton:
 
@@ -64,19 +74,13 @@ They help format data or perform repeated stream operations easily.
 
 Two main categories:
 
-Input stream manipulators (work with cin)
 
-Output stream manipulators (work with cout)
 
 Another classification:
 
-Parameterized manipulators – take arguments
-Example: setw(10)
-(These vary by compiler and are not covered here.)
 
-Parameterless manipulators – take no arguments
-Example: endl, flush
-(Easy and consistent across compilers.)
+
+
 
 Parameterless Manipulators
 
