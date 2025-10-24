@@ -34,93 +34,50 @@
             (Easy and consistent across compilers.)
 
 
-// rev[23-Oct-2025]
-    
 
     --------  parameterless manipulators  --------
     
     The creation of parameterless manipulators is straightforward and the same for all compilers. 
+    These follow a standard function format and always:
+        Take a reference to the stream they operate on
+        Return that same stream reference, allows chaining like:
 
-    Output functions: 
-        All parameterless manipulator output functions have this skeleton:
-
-
-
-ostream &manip_name( ostream &stream ){   // your code here
-return stream ; }
-
-Here manip_name is the name of the manipulator and 
-
-stream " &stream " is a reference to the invoking stream which must be returned by the manipulator " return stream; ".  This is necessary if a manipulator is used as part of a larger I/O expression. 
-
-Here the manipulator has a single argument "a reference to the stream upon which it is operating", but no argument will be used when the manipulator is called in an output operation.
-
-Input functions: All parameterless input manipulator functions have this skeleton:
+                cout << manip1 << manip2;
 
 
+    OUTPUT Manipulator Skeleton:
+        All parameterless Output Manipulator Functions (used with 'cout') have this skeleton:
+
+                ostream &manip_name( ostream &stream ) {
+                    // your code here
+                    return stream;
+                }
+
+            Here manip_name is the name of the manipulator and stream "&stream" is a reference to 
+                the "invoking stream" which must be returned by the manipulator "return stream;".  
+                This is necessary if a manipulator is used as part of a larger I/O expression. 
+
+            Here the manipulator has a single argument "a reference to the stream upon which it is operating", 
+                but no argument will be used when the manipulator is called in an output operation.
 
 
-istream &manip_name( istream &stream ){   
-// your code here 
-return stream ; }
+    INPUT Manipulator Skeleton:
+        All parameterless Input Manipulator Functions (used with 'cin') have this skeleton:
 
-An input manipulator receives a reference to the stream on which it was invoked. This stream must be returned by the manipulator.
+                istream &manip_name( istream &stream ) {
+                    // your code here
+                    return stream;
+                }
 
-
----------------------------
-
-
-Here is a clear and simplified version of your text:
-
-Manipulators: Clarified and Simplified ✅
+            An input manipulator receives a reference to the stream on which it was invoked. 
+            This stream must be returned by the manipulator.
 
 
-
-Two main categories:
-
-
-
-Another classification:
+    The key point:
+        The stream must be returned so it can continue to be used in a longer input/output expression.
 
 
-
-
-
-Parameterless Manipulators
-
-These follow a standard function format and always:
-
-Take a reference to the stream they operate on
-
-Return that same stream reference
-→ This allows chaining like:
-
-cout << manip1 << manip2;
-
-Output Manipulator Skeleton
-
-For manipulators used with cout:
-
-ostream& manip_name(ostream& stream) {
-    // your code here
-    return stream;
-}
-
-Input Manipulator Skeleton
-
-For manipulators used with cin:
-
-istream& manip_name(istream& stream) {
-    // your code here
-    return stream;
-}
-
-
-✅ The key point:
-The stream must be returned so it can continue to be used in a longer input/output expression.
-
-If you'd like, I can show you a working example of a custom manipulator—like one that prints a line break with stars or skips input whitespace.
-
+// ----  rev[24-Oct-2025]  ----
 
 ---------------------------
 
