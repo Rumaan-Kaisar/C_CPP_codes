@@ -1,6 +1,10 @@
 
 /*  ------------------------    Custom manipulators    ------------------------
     
+    Manipulators are special functions used with input/output streams (cin, cout).
+    They help format data or perform repeated stream operations easily.
+
+
     Custom manipulators are important for two main reasons. 
 
     Combine repeated I/O steps:
@@ -33,11 +37,12 @@
 // rev[23-Oct-2025]
     
 
-parameterless manipulators:
+    --------  parameterless manipulators  --------
+    
+    The creation of parameterless manipulators is straightforward and the same for all compilers. 
 
-the creation of parameterless manipulators is straightforward and the same for all compilers. 
-
-Output functions: All parameterless manipulator output functions have this skeleton:
+    Output functions: 
+        All parameterless manipulator output functions have this skeleton:
 
 
 
@@ -69,8 +74,7 @@ Here is a clear and simplified version of your text:
 
 Manipulators: Clarified and Simplified ✅
 
-Manipulators are special functions used with input/output streams (cin, cout).
-They help format data or perform repeated stream operations easily.
+
 
 Two main categories:
 
