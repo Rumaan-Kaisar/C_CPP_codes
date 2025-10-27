@@ -75,36 +75,13 @@
 
     The key point:
         The stream must be returned so it can continue to be used in a longer input/output expression.
+*/  
 
 
-// ----  rev[24-Oct-2025]  ----
+
+// ----  rev[27-Oct-2025]  ----
 
 ---------------------------
-
-
-
-
-
-
-
-Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password:
-
-#include<cstring >
-// A simple input manipulator
-istream &getpass(istream &stream){
-        cout << '\a';   // sound bell
-        cout << " Enter password : ";
-        return stream ; }
-        int main(){
-        char pw[80];
-// comparing password
-        do{ cin >> getpass >> pw; }
-        while(strcmp(pw, "password")); 
-        cout << " Logon complete \n";
-        return 0; }
-
-
-*/  
 
 
 /* Example 1: Following creates a manipulator called setup() that sets 
@@ -121,3 +98,23 @@ return stream ;}
 int main(){
 cout <<setup<< 123.123456;
 return 0;}
+
+
+
+
+/* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. */
+
+#include<cstring >
+// A simple input manipulator
+istream &getpass(istream &stream){
+        cout << '\a';   // sound bell
+        cout << " Enter password : ";
+        return stream ; }
+        int main(){
+        char pw[80];
+// comparing password
+        do{ cin >> getpass >> pw; }
+        while(strcmp(pw, "password")); 
+        cout << " Logon complete \n";
+        return 0; }
+
