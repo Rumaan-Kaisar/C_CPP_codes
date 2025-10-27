@@ -100,6 +100,27 @@ cout <<setup<< 123.123456;
 return 0;}
 
 
+1. As a simple first example, the following program creates a manipulator called setup()
+that sets the filed width to 10, the precision to 4, and the fill character to *.
+# include <iostream >
+using namespace std ;
+ostream & setup ( ostream & stream )
+{
+stream . width (10) ;
+stream . precision (4);
+stream . fill (’*’);
+return stream ;
+}
+int main ()
+{
+cout << setup << 123.123456;
+235TEACH YOURSELF
+C++
+return 0;
+
+
+
+
 
 
 /* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. */
@@ -118,3 +139,55 @@ istream &getpass(istream &stream){
         cout << " Logon complete \n";
         return 0; }
 
+2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
+words or phrases.
+# include <iostream >
+using namespace std ;
+// Attention :
+ostream & atn ( ostream & stream )
+{
+stream << " Attention : ";
+return stream ;
+}
+// Please note :
+ostream & note ( ostream & stream )
+{
+stream << " Please Note : ";
+return stream ;
+}
+int main ()
+{
+cout << atn << " High voltage circuit \n";
+cout << note << " Turn off all lights \n";
+return 0;
+}
+Even though they are simple, if used frequently, these manipulators save you from some
+tedious typing
+
+
+
+This program creates the getpass() input manipulator, which rings the bell and then
+prompts for a password:
+# include <iostream >
+# include <cstring >
+using namespace std ;
+// A simple input manipulator
+istream & getpass ( istream & stream )
+{
+cout << ’\a’; // sound bell
+cout << " Enter password : ";
+return stream ;
+}
+int main ()
+{
+char pw [80];
+236ADVANCED C++ I/O
+9.2. FILE I/O BASICS
+do
+{
+cin >> getpass >> pw;
+}
+while ( strcmp (pw , " password "));
+cout << " Logon complete \n";
+return 0;
+}
