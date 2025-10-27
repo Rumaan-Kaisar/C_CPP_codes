@@ -82,16 +82,7 @@
 ---------------------------
 
 
-Example 1: Following creates a manipulator called setup() that sets field width to 10, precision to 4, and fill character to *.
 
-ostream &setup(ostream &stream){
-stream.width(10);
-stream.precision(4);
-stream.fill('*');
-return stream ;}
-int main(){
-cout <<setup<< 123.123456;
-return 0;}
 
 
 
@@ -116,3 +107,17 @@ istream &getpass(istream &stream){
 */  
 
 
+/* Example 1: Following creates a manipulator called setup() that sets 
+                    field width to 10, 
+                    precision to 4, and 
+                    fill character to *. 
+*/
+
+ostream &setup(ostream &stream){
+stream.width(10);
+stream.precision(4);
+stream.fill('*');
+return stream ;}
+int main(){
+cout <<setup<< 123.123456;
+return 0;}
