@@ -94,36 +94,19 @@ that sets the filed width to 10, the precision to 4, and the fill character to *
 
 */
 
-ostream &setup(ostream &stream){
-stream.width(10);
-stream.precision(4);
-stream.fill('*');
-return stream ;}
-int main(){
-cout <<setup<< 123.123456;
-return 0;}
+#include <iostream>
 
-
-1. 
-
-
-# include <iostream >
-using namespace std ;
-ostream & setup ( ostream & stream )
-{
-stream . width (10) ;
-stream . precision (4);
-stream . fill (’*’);
-return stream ;
+ostream &setup(std::ostream & stream) {
+    stream.width(10);
+    stream.precision(4);
+    stream.fill('*');
+    return stream;
 }
-int main ()
-{
-cout << setup << 123.123456;
-235TEACH YOURSELF
-C++
-return 0;
 
-
+int main() {
+    std::cout << setup << 123.123456;
+    return 0;
+}
 
 
 
@@ -152,8 +135,8 @@ istream &getpass(istream &stream){
 
 
 
-# include <iostream >
-using namespace std ;
+#include <iostream>
+
 // Attention :
 ostream & atn ( ostream & stream )
 {
