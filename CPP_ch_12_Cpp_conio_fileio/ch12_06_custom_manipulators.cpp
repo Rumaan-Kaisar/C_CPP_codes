@@ -88,6 +88,10 @@
                     field width to 10, 
                     precision to 4, and 
                     fill character to *. 
+
+As a simple first example, the following program creates a manipulator called setup()
+that sets the filed width to 10, the precision to 4, and the fill character to *.
+
 */
 
 ostream &setup(ostream &stream){
@@ -100,8 +104,9 @@ cout <<setup<< 123.123456;
 return 0;}
 
 
-1. As a simple first example, the following program creates a manipulator called setup()
-that sets the filed width to 10, the precision to 4, and the fill character to *.
+1. 
+
+
 # include <iostream >
 using namespace std ;
 ostream & setup ( ostream & stream )
@@ -123,7 +128,11 @@ return 0;
 
 
 
-/* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. */
+/* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. 
+
+2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
+words or phrases.
+*/
 
 #include<cstring >
 // A simple input manipulator
@@ -139,8 +148,10 @@ istream &getpass(istream &stream){
         cout << " Logon complete \n";
         return 0; }
 
-2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
-words or phrases.
+
+
+
+
 # include <iostream >
 using namespace std ;
 // Attention :
