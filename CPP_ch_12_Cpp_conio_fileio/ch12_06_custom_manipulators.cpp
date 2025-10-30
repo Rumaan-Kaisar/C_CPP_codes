@@ -99,31 +99,53 @@ int main() {
 
 
 
+
+
+
 // ----  rev[30-Oct-2025]  ----
 
-/* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. 
 
-2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
-words or phrases.
+/*  
+
+iinstall: GCC
+https://winlibs.com/ 
+downloads: 
+    UCRT runtime, 
+    GCC 15.2.0 (with POSIX threads) + MinGW-w64 13.0.0 (UCRT) – release 2
 */
 
-#include<cstring >
+/* Example 2: Following creates the getpass() input manipulator, 
+                which rings the 'bell' and then prompts for a 'password'. 
+*/
+
+#include <iostream>
+#include <cstring>
+
 // A simple input manipulator
-istream &getpass(istream &stream){
-        cout << '\a';   // sound bell
-        cout << " Enter password : ";
-        return stream ; }
-        int main(){
-        char pw[80];
-// comparing password
-        do{ cin >> getpass >> pw; }
-        while(strcmp(pw, "password")); 
-        cout << " Logon complete \n";
-        return 0; }
+std::istream &getpass(std::istream & stream) {
+    std::cout << '\a'; // sound bell
+    std::cout << " Enter password : ";
+    return stream;
+}
+
+
+int main() {
+    char pw[80];
+
+    do {
+        std::cin >> getpass >> pw;
+    } while(strcmp (pw , " password "));
+
+    std::cout << " Logon complete \n";
+
+    return 0;
+}
 
 
 
 
+/* 2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
+words or phrases. */
 
 #include <iostream>
 
@@ -149,29 +171,3 @@ Even though they are simple, if used frequently, these manipulators save you fro
 tedious typing
 
 
-
-This program creates the getpass() input manipulator, which rings the bell and then
-prompts for a password:
-# include <iostream >
-# include <cstring >
-using namespace std ;
-// A simple input manipulator
-istream & getpass ( istream & stream )
-{
-cout << ’\a’; // sound bell
-cout << " Enter password : ";
-return stream ;
-}
-int main ()
-{
-char pw [80];
-236ADVANCED C++ I/O
-9.2. FILE I/O BASICS
-do
-{
-cin >> getpass >> pw;
-}
-while ( strcmp (pw , " password "));
-cout << " Logon complete \n";
-return 0;
-}
