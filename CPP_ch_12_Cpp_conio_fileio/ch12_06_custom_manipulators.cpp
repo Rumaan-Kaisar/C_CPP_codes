@@ -77,26 +77,15 @@
         The stream must be returned so it can continue to be used in a longer input/output expression.
 */  
 
-
-
-// ----  rev[27-Oct-2025]  ----
-
----------------------------
-
-
 /* Example 1: Following creates a manipulator called setup() that sets 
                     field width to 10, 
                     precision to 4, and 
                     fill character to *. 
-
-As a simple first example, the following program creates a manipulator called setup()
-that sets the filed width to 10, the precision to 4, and the fill character to *.
-
 */
 
 #include <iostream>
 
-ostream &setup(std::ostream & stream) {
+std::ostream &setup(std::ostream & stream) {
     stream.width(10);
     stream.precision(4);
     stream.fill('*');
@@ -110,6 +99,7 @@ int main() {
 
 
 
+// ----  rev[30-Oct-2025]  ----
 
 /* Example 2: Following creates the getpass() input manipulator, which rings the bell and then prompts for a password. 
 
