@@ -151,25 +151,20 @@ int main() {
 #include <iostream>
 
 // Attention :
-ostream & atn ( ostream & stream )
-{
-stream << " Attention : ";
-return stream ;
+std::ostream &atn(std::ostream & stream) {
+    stream << " Attention : ";
+    return stream ;
 }
 
 // Please note :
-ostream & note ( ostream & stream )
-{
-stream << " Please Note : ";
-return stream ;
+std::ostream &note(std::ostream & stream) {
+    stream << " Please Note : ";
+    return stream ;
 }
 
-int main ()
-{
-cout << atn << " High voltage circuit \n";
-cout << note << " Turn off all lights \n";
-return 0;
+int main() {
+    std::cout << atn << " High voltage circuit \n";
+    std::cout << note << " Turn off all lights \n";
+    return 0;
 }
-Even though they are simple, if used frequently, these manipulators .
-
 
