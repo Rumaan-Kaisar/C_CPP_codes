@@ -170,13 +170,90 @@ int main() {
 
 
 // ----  rev[31-Oct-2025]  ----
-/* Example 1: Create an output manipulator that displays the current system time and date. Call this
-manipulator td(). */
 
-/* Example 2: Create an output manipulator called sethex() that sets output to hexadecimal and turns
-on the uppercase and showbase flags. Also, create an output manipulator called reset()
-that undoes the changes made by sethex(). */
+/* Example 1: Create an output manipulator that displays the current system time and date. 
+                Call this manipulator td(). 
+*/
+
+1. // Show time and date .
+525TEACH YOURSELF
+C++
+# include <iostream >
+# include <ctime >
+using namespace std ;
+// A time and date output manipulator .
+ostream &td( ostream & stream )
+{
+struct tm * localt ;
+time_t t;
+t = time ( NULL );
+localt = localtime (&t);
+stream << asctime ( localt ) << endl ;
+return stream ;
+}
+int main ()
+{
+cout << td << ’\n’;
+return 0;
+}
+
+
+
+/* Example 2: Create an output manipulator called sethex() that sets output to hexadecimal 
+                and turns on the "uppercase" and "showbase" flags. 
+                
+                Also, create an output manipulator called reset() that UNDOES the changes made by sethex(). 
+*/
+
+2. # include <iostream >
+using namespace std ;
+// Turn on hex output with uppercase X.
+ostream & sethex ( ostream & stream )
+{
+stream . unsetf ( ios :: dec | ios :: oct );
+stream . setf ( ios :: hex | ios :: uppercase |
+ios :: showbase );
+return stream ;
+}
+// Reset flags .
+ostream & reset ( ostream & stream )
+{
+stream . unsetf ( ios :: hex | ios :: uppercase |
+ios :: showbase );
+stream . setf ( ios :: dec);
+return stream ;
+}
+int main ()
+{
+cout << sethex << 100 << ’\n’;
+cout << reset << 100 << ’\n’;
+526ANSWERS
+9.2 EXERCISES
+return 0;
+}
+
+
 
 /* Example 3: Create an input manipulator called skipchar() that reads and ignores the next ten characters from the input stream. */
+
+3. # include <iostream >
+using namespace std ;
+// Skip 10 characters .
+istream & skipchar ( istream & stream )
+{
+int i;
+char c;
+for (i =0; i <10; i ++)
+stream >> c;
+return stream ;
+}
+int main ()
+{
+char str [80];
+cout << " Enter some characters : ";
+cin >> skipchar >> str;
+cout << str << ’\n’;
+return 0;
+}
 
 
