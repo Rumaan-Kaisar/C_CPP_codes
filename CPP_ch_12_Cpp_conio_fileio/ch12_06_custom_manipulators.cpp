@@ -100,22 +100,17 @@ int main() {
 
 
 
-
-
-// ----  rev[30-Oct-2025]  ----
-
-
-/*  
-
-iinstall: GCC
-https://winlibs.com/ 
-downloads: 
-    UCRT runtime, 
-    GCC 15.2.0 (with POSIX threads) + MinGW-w64 13.0.0 (UCRT) – release 2
-*/
-
 /* Example 2: Following creates the getpass() input manipulator, 
                 which rings the 'bell' and then prompts for a 'password'. 
+
+                It Won't run on online compilers like: codechef, GeeksforGeeks, HackerRank
+                install: GCC
+                    https://winlibs.com/ 
+                    downloads: 
+                        UCRT runtime, 
+                        GCC 15.2.0 (with POSIX threads) + MinGW-w64 13.0.0 (UCRT) – release 2
+
+                Or, install "Code::Blocks" with integrated GCC compiler
 */
 
 #include <iostream>
@@ -134,7 +129,7 @@ int main() {
 
     do {
         std::cin >> getpass >> pw;
-    } while(strcmp (pw , " password "));
+    } while(strcmp (pw , "password"));
 
     std::cout << " Logon complete \n";
 
