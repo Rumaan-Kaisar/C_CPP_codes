@@ -168,3 +168,15 @@ int main() {
     return 0;
 }
 
+
+// ----  rev[31-Oct-2025]  ----
+/* Example 1: Create an output manipulator that displays the current system time and date. Call this
+manipulator td(). */
+
+/* Example 2: Create an output manipulator called sethex() that sets output to hexadecimal and turns
+on the uppercase and showbase flags. Also, create an output manipulator called reset()
+that undoes the changes made by sethex(). */
+
+/* Example 3: Create an input manipulator called skipchar() that reads and ignores the next ten characters from the input stream. */
+
+
