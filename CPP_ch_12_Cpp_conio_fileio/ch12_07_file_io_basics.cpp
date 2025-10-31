@@ -1,5 +1,7 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    File I/O in C++    ------------------------
+
+----  rev[31-Oct-2025]  ----
 
 
 12.7 File I/O 
@@ -11,9 +13,9 @@
 [3]	input/output: Streams that will be performing both input and output operations must be declared as objects of type fstream. 
 
 For example, this fragment creates an input stream, an output stream, and one stream capable of both input and output:
-ifstream in; 		/* input */ 
-ofstream out; 	/* output */ 
-fstream io; 		/* input and output */ 
+ifstream in; 		// input
+ofstream out; 	// output
+fstream io; 		// input and output
 	Associate stream with a file: Use the function open() to associate a stream with a file. This function is a member of each ifstream, ofstream, and fstream. The prototype for each:
 
 void ifstream :: open(const char *filename, openmode mode = ios::in);
@@ -38,14 +40,14 @@ mystream.open(" test ");
 	Since the mode parameter to open() defaults to a value appropriate to the type of stream being opened, there is no need to specify its value in the preceding example.
 	Confirmation test: If open() fails, the stream will evaluate to false when used in a Boolean expression. Which can be used in a confirmation test (consider Example 1) :
 if(!mystream) { 	cout << "Cannot open file. \n"; 
-/* handle error */  	}
+// handle error  	}
 	Always check the result of a call to open() before attempting to access the file.
 	Use the is_open() function to see if a file successfully opened. is_open() is a member of fstream, ifstream, and ofstream. It has this prototype:	 bool is_open();
 	It returns true if the stream is linked to an open file and false otherwise. For example, the following checks if mystream is currently open:
 if( !mystream.is_open() ){	cout << " File is not open .\n";
 . . . . . }
 	Bypass the open() function: Most of the times we don’t need to use the function open() because the ifstream, ofstream, and fstream classes have constructor functions that automatically open the file. And those constructor functions have the same parameters and defaults as the open().  Therefore, the most common way to open a file is:
-ifstream mystream("myfile");  		/* open file for input */ 
+ifstream mystream("myfile");  		// open file for input
 	If the file cannot be opened, the stream variable will evaluate as false when used in a conditional/Boolean statement. 
 	Therefore, in this case we also need the confirmation test as stated above.
 	Closing a file: To close a file, use the member function close(). For example, to close the file linked to a stream called mystream:
