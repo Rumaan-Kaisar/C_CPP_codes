@@ -67,8 +67,7 @@ return 0;
 3b. # include <iostream >
 # include <iomanip >
 using namespace std ;
-518ANSWERS
-MASTERY SKILLS CHECK: Chapter 8
+
 int main ()
 {
 cout << setiosflags (ios :: left );
@@ -140,8 +139,7 @@ stream << " is " << ob. result << ’\n’;
 }
 istream & operator >>( istream &stream , pwr &ob)
 {
-519TEACH YOURSELF
-C++
+
 int b, e;
 cout << " Enter base and exponent : ";
 stream >> b >> e;
@@ -186,8 +184,7 @@ stream << ’*’;
 for (j =0; j<ob.len -2;j++)
 stream << ’ ’;
 stream << "*\n";
-520ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 8
+
 }
 for (i =0; i<ob. len ; i++)
 stream << ’*’;
@@ -251,11 +248,102 @@ return stck [ tos ];
 } */
 
 
+1. # include <iostream >
+using namespace std ;
+# define SIZE 10
+// Declare a stack class for characters
+class stack
+{
+char stck [ SIZE ]; // holds the stack
+int tos ; // index of top of stack
+public :
+stack ();
+void push ( char ch); // push character on stack
+char pop (); // pop character from stack
+friend ostream & operator <<( ostream &stream , stack ob);
+};
+// Initialize the stack
+stack :: stack ()
+{
+tos = 0;
+}
+// Push a character .
+void stack :: push ( char ch)
+{
+if( tos == SIZE )
+{
+cout << " Stack is full \n";
+return ;
+}
+stck [ tos ] = ch;
+
+tos ++;
+}
+// Pop a character .
+char stack :: pop ()
+{
+if( tos ==0)
+{
+cout << " Stack is empty \n";
+return 0; // return null on empty stack
+}
+tos --;
+return stck [ tos ];
+}
+ostream & operator <<( ostream &stream , stack ob)
+{
+char ch;
+while (ch=ob. pop ())
+stream << ch;
+stream << endl ;
+return stream ;
+}
+int main ()
+{
+stack s;
+s. push (’a’);
+s. push (’b’);
+s. push (’c’);
+cout << s;
+cout << s;
+return 0;
+}
+
+
+
+
 
 
 /* Example 2: Write a program that contains a class called watch. Using the standard time functions,
 have this class’s constructor read the system time and store it. Create an inserter that
 displays the time. */
+
+
+2. # include <iostream >
+# include <ctime >
+using namespace std ;
+class watch
+{
+time_t t;
+public :
+watch () { t = time ( NULL ); }
+friend ostream & operator <<( ostream &stream , watch ob);
+};
+
+ostream & operator <<( ostream &stream , watch ob)
+{
+struct tm * localt ;
+localt = localtime (& ob.t);
+stream << asctime ( localt ) << endl ;
+return stream ;
+}
+int main ()
+{
+watch w;
+cout << w;
+return 0;
+}
+
 
 
 
@@ -272,7 +360,50 @@ void set ( double f)
 feet = f;
 inches = f * 12;
 }
-}; */
+}; 
+
+*/
+
+
+3. # include <iostream >
+using namespace std ;
+class ft_to_inches
+{
+double feet ;
+double inches ;
+public :
+void set ( double f)
+{
+feet = f;
+inches = f * 12;
+}
+friend istream & operator >>( istream &stream ,
+ft_to_inches &ob);
+friend ostream & operator <<( ostream &stream ,
+ft_to_inches ob);
+};
+istream & operator >>( istream &stream , ft_to_inches &ob)
+{
+double f;
+cout << " Enter feet : ";
+stream >> f;
+ob. set (f);
+return stream ;
+}
+ostream & operator <<( ostream &stream , ft_to_inches ob)
+
+{
+stream << ob. feet << " feet is " << ob. inches ;
+stream << " inches \n";
+return stream ;
+}
+int main ()
+{
+ft_to_inches x;
+cin >> x;
+cout << x;
+return 0;
+}
 
 
 
@@ -286,15 +417,52 @@ exercises.
 /* Example 1: Write a program that displays the sentence "C++ is fun" in a 40-character-wide filed
 using a colon (:) as the fill character. */
 
+1. # include <iostream >
+using namespace std ;
+int main ()
+{
+cout . width (40) ;
+cout . fill (’:’);
+cout << "C++ is fun " << ’\n’;
+return 0;
+}
+
+
 
 /* Example 2: Write a program that displays the outcome of 10/3 to three decimal places. Use ios
 member functions to do this. */
 
+2. # include <iostream >
+using namespace std ;
+int main ()
+{
+cout . precision (4) ;
+cout << 10.0/3.0 << ’\n’;
+return 0;
+}
+
+
+
 
 /* Example 3: Redo the preceding program using I/O manipulators. */
 
+3. # include <iostream >
+# include <iomanip >
+using namespace std ;
+int main ()
+{
+cout << setprecision (4) << 10.0/3.0 << ’\n’;
+
+return 0;
+}
+
 
 /* Example 4: What is an inserter? What is an extractor? */
+
+4. An inserter is an overloaded operator<<() function that outputs a class’s data to an
+output stream. An extractor is an overloaded operator>>() function that inputs a
+class’s data from an input stream
+
 
 
 /* Example 5: Given the following class, create an inserter and an extractor for it.
@@ -307,14 +475,47 @@ public :
 
  */
 
+5. # include <iostream >
+using namespace std ;
+class date
+{
+char d [9]; // store date as string : mm/dd/yy
+public :
+friend ostream & operator <<( ostream &stream , date ob);
+friend istream & operator >>( istream &stream , date &ob);
+};
+ostream & operator <<( ostream &stream , date ob)
+{
+stream << ob.d << ’\n’;
+return stream ;
+}
+istream & operator >>( istream &stream , date &ob)
+{
+cout << " Enter date (mm/dd/yy): ";
+stream >> ob.d;
+return stream ;
+}
+int main ()
+{
+date ob;
+cin >> ob;
+cout << ob;
+return 0;
+}
+
+
+
 
 /* Example 6: What header must be included if your program is to use I/O manipulators that take
 parameters? */
 
+6. To use a parameterized manipulator, you must include <iomanip> in your program.
+
+
 
 /* Example 7: What predefined streams are created when a C++ program begins execution? */
 
-
+7. The predefined streams are cin, cout, cerr, and clog.
 
 
 
