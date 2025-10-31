@@ -77,6 +77,9 @@
         The stream must be returned so it can continue to be used in a longer input/output expression.
 */  
 
+
+
+
 /* Example 1: Following creates a manipulator called setup() that sets 
                     field width to 10, 
                     precision to 4, and 
@@ -123,7 +126,6 @@ std::istream &getpass(std::istream & stream) {
     return stream;
 }
 
-
 int main() {
     char pw[80];
 
@@ -139,8 +141,12 @@ int main() {
 
 
 
-/* 2. Custom manipulators need not be complex to be useful. For example, the simple manipulators atn() and note() show here, provide a shorter way to output frequently used
-words or phrases. */
+/* Example 3: Custom manipulators don’t have to be complicated to be useful. 
+                For instance, the simple manipulators atn() and note() shown here 
+                give a quick way to print commonly used words or phrases.
+
+                These simple manipulators can save you from some tedious typing, if those words are frequently used!!
+*/
 
 #include <iostream>
 
@@ -150,19 +156,20 @@ ostream & atn ( ostream & stream )
 stream << " Attention : ";
 return stream ;
 }
+
 // Please note :
 ostream & note ( ostream & stream )
 {
 stream << " Please Note : ";
 return stream ;
 }
+
 int main ()
 {
 cout << atn << " High voltage circuit \n";
 cout << note << " Turn off all lights \n";
 return 0;
 }
-Even though they are simple, if used frequently, these manipulators save you from some
-tedious typing
+Even though they are simple, if used frequently, these manipulators .
 
 
