@@ -53,10 +53,44 @@ return 0;
 
 /* Example 3: Rewrite your answer to Exercises 1 and 2 so that they use I/O manipulators. */
 
+3a. # include <iostream >
+using namespace std ;
+int main ()
+{
+cout << 100 << ’ ’;
+cout << hex << 100 << ’ ’;
+cout << oct << 100 << ’\n’;
+return 0;
+}
+
+
+3b. # include <iostream >
+# include <iomanip >
+using namespace std ;
+518ANSWERS
+MASTERY SKILLS CHECK: Chapter 8
+int main ()
+{
+cout << setiosflags (ios :: left );
+cout << setprecision (2) ;
+cout << setfill (’*’);
+cout << setw (20) ;
+cout << 1000.5364 << ’\n’;
+return 0;
+}
+
+
 
 
 /* Example 4: Show how to save the format flags for cout and how to restore them. Use either member
 functions or manipulators. */
+
+4. ios :: fmtflags f;
+f = cout . flag (); // save
+// ...
+cout . flags (f); // restore
+
+
 
 
 /* Example 5: Create an inserter and an extractor for this class:
@@ -79,9 +113,93 @@ result = result * base ;
 */
 
 
+5. # include <iostream >
+using namespace std ;
+class pwr
+{
+int base ;
+int exponent ;
+double result ; // base to the exponent power
+public :
+pwr ( int b, int e);
+friend ostream & operator <<( ostream &stream , pwr ob);
+friend istream & operator >>( istream &stream , pwr &ob);
+};
+pwr :: pwr ( int b, int e)
+{
+base = b;
+exponent = e;
+result = 1;
+for ( ; e; e --)
+result = result * base ;
+}
+ostream & operator <<( ostream &stream , pwr ob)
+{
+stream << ob. base << "^" << ob. exponent ;
+stream << " is " << ob. result << ’\n’;
+}
+istream & operator >>( istream &stream , pwr &ob)
+{
+519TEACH YOURSELF
+C++
+int b, e;
+cout << " Enter base and exponent : ";
+stream >> b >> e;
+pwr temp (b, e); // create temporary
+ob = temp ;
+return stream ;
+}
+int main ()
+{
+pwr ob (10 , 2);
+cout << ob;
+cin >> ob;
+cout << ob;
+return 0;
+}
+
+
 
 /* Example 6: Create a class called box that stores the dimensions of a square. Create an inserter that
 displays a square box on the screen. (Use any method you like to display the box. */
+
+6. // This program draws boxes .
+# include <iostream >
+using namespace std ;
+class box
+{
+int len ;
+public :
+box ( int l) { len = l; }
+friend ostream & operator <<( ostream &stream , box ob);
+};
+// Draw a box .
+ostream & operator <<( ostream &stream , box ob)
+{
+int i, j;
+for (i =0; i<ob. len ; i++)
+stream << ’*’;
+stream << ’\n’;
+for (i =0; i<ob.len -2;i++)
+{
+stream << ’*’;
+for (j =0; j<ob.len -2;j++)
+stream << ’ ’;
+stream << "*\n";
+520ANSWERS
+CUMULATIVE SKILLS CHECK: Chapter 8
+}
+for (i =0; i<ob. len ; i++)
+stream << ’*’;
+stream << ’\n’;
+return stream ;
+}
+int main ()
+{
+box b1 (4) , b2 (7) ;
+cout << b1 << endl << b2;
+return 0;
+}
 
 
 
