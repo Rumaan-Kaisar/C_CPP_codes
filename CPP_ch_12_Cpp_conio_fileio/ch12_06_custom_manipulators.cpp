@@ -198,8 +198,6 @@ int main() {
 
 
 
-// ----  rev[31-Oct-2025]  ----
-
 /* Example 5: Create an output manipulator called sethex() that sets output to hexadecimal 
                 and turns on the "uppercase" and "showbase" flags. 
                 
@@ -258,5 +256,6 @@ cin >> skipchar >> str;
 cout << str << ’\n’;
 return 0;
 }
+
 
 
