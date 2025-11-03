@@ -198,10 +198,12 @@ int main() {
 
 
 
-/* Example 5: Create an output manipulator called sethex() that sets output to hexadecimal 
+// ----  rev[31-Oct-2025]  ----
+
+/* Example 5: Create an "OUTPUT manipulator" called sethex() that sets output to "hexadecimal" 
                 and turns on the "uppercase" and "showbase" flags. 
                 
-                Also, create an output manipulator called reset() that UNDOES the changes made by sethex(). 
+                Also, create an "OUTPUT manipulator" called reset() that UNDOES the changes made by sethex(). 
 */
 
 #include <iostream>
@@ -256,6 +258,5 @@ cin >> skipchar >> str;
 cout << str << ’\n’;
 return 0;
 }
-
 
 
