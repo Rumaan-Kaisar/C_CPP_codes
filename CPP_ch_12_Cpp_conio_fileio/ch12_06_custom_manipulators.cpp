@@ -169,34 +169,36 @@ int main() {
 }
 
 
-// ----  rev[31-Oct-2025]  ----
 
-/* Example 4: Create an output manipulator that displays the current system time and date. 
+
+/* Example 4: Create an "OUTPUT manipulator" that displays the current "system time and date". 
                 Call this manipulator td(). 
 */
 
-// Show time and date .
+#include <iostream>
+#include <ctime>
 
-# include <iostream >
-# include <ctime >
-using namespace std ;
-// A time and date output manipulator .
-ostream &td( ostream & stream )
-{
-struct tm * localt ;
-time_t t;
-t = time ( NULL );
-localt = localtime (&t);
-stream << asctime ( localt ) << endl ;
-return stream ;
-}
-int main ()
-{
-cout << td << ’\n’;
-return 0;
+// A time and date output manipulator
+std::ostream &td(std::ostream & stream) {
+    struct tm *localt;
+    time_t t;
+
+    t = time(NULL);
+    localt = localtime(&t);
+
+    stream << asctime(localt) << std::endl;
+    return stream;
 }
 
 
+int main() {
+    std::cout << td << '\n';
+    return 0;
+}
+
+
+
+// ----  rev[31-Oct-2025]  ----
 
 /* Example 5: Create an output manipulator called sethex() that sets output to hexadecimal 
                 and turns on the "uppercase" and "showbase" flags. 
