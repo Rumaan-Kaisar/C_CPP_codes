@@ -111,7 +111,7 @@ int main() {
                     https://winlibs.com/ 
                     downloads: 
                         UCRT runtime, 
-                        GCC 15.2.0 (with POSIX threads) + MinGW-w64 13.0.0 (UCRT) – release 2
+                        GCC 15.2.0 (with POSIX threads) + MinGW-w64 13.0.0 (UCRT) - release 2
 
                 Or, install "Code::Blocks" with integrated GCC compiler
 */
@@ -141,7 +141,7 @@ int main() {
 
 
 
-/* Example 3: Custom manipulators don’t have to be complicated to be useful. 
+/* Example 3: Custom manipulators don't have to be complicated to be useful. 
                 For instance, the simple manipulators atn() and note() shown here 
                 give a quick way to print commonly used words or phrases.
 
@@ -198,7 +198,6 @@ int main() {
 
 
 
-// ----  rev[31-Oct-2025]  ----
 
 /* Example 5: Create an "OUTPUT manipulator" called sethex() that sets output to "hexadecimal" 
                 and turns on the "uppercase" and "showbase" flags. 
@@ -208,33 +207,31 @@ int main() {
 
 #include <iostream>
 
-// Turn on hex output with uppercase X.
-ostream & sethex ( ostream & stream )
-{
-stream . unsetf ( ios :: dec | ios :: oct );
-stream . setf ( ios :: hex | ios :: uppercase |
-ios :: showbase );
-return stream ;
+// Turn on hex output with uppercase 'X'
+std::ostream &sethex(std::ostream & stream) {
+    stream.unsetf(std::ios::dec | std::ios::oct);
+    stream.setf(std::ios::hex | std::ios::uppercase | std::ios::showbase);
+    return stream;
 }
 
-// Reset flags .
-ostream & reset ( ostream & stream )
-{
-stream . unsetf ( ios :: hex | ios :: uppercase |
-ios :: showbase );
-stream . setf ( ios :: dec);
-return stream ;
-}
-
-int main ()
-{
-cout << sethex << 100 << ’\n’;
-cout << reset << 100 << ’\n’;
-
-return 0;
+// Reset flags
+std::ostream &reset(std::ostream & stream) {
+    stream.unsetf(std::ios::hex | std::ios::uppercase | std::ios::showbase);
+    stream.setf(std::ios::dec);
+    return stream;
 }
 
 
+int main() {
+    std::cout << sethex << 100 << '\n';
+    std::cout << reset << 100 << '\n';
+
+    return 0;
+}
+
+
+
+// ----  rev[03-Nov-2025]  ----
 
 /* Example 6: Create an input manipulator called skipchar() that reads and ignores the next ten characters from the input stream. */
 
