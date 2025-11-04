@@ -231,29 +231,31 @@ int main() {
 
 
 
-// ----  rev[03-Nov-2025]  ----
 
-/* Example 6: Create an input manipulator called skipchar() that reads and ignores the next ten characters from the input stream. */
+/* Example 6: Create an input manipulator called skipchar() that 
+                reads and ignores the next ten characters from the input stream. 
+*/
 
 #include <iostream>
 
 // Skip 10 characters .
-istream & skipchar ( istream & stream )
-{
-int i;
-char c;
-for (i =0; i <10; i ++)
-stream >> c;
-return stream ;
+std::istream &skipchar(std::istream & stream) {
+    int i;
+    char c;
+
+    for(i =0; i <10; i ++) stream >> c;
+    return stream;
 }
 
-int main ()
-{
-char str [80];
-cout << " Enter some characters : ";
-cin >> skipchar >> str;
-cout << str << ’\n’;
-return 0;
+
+int main() {
+    char str [80];
+
+    std::cout << " Enter some characters : ";
+    std::cin >> skipchar >> str;
+    std::cout << str << '\n';
+
+    return 0;
 }
 
 
