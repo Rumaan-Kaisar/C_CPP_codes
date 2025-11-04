@@ -14,25 +14,37 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 At this point you should be able to perform the following exercises and answer the questions.
-/* Example 1: Write a program that displays the number 100 in decimal, hexadecimal, and octal. (Use
-the ios format flags.) */
 
-1. # include <iostream >
-using namespace std ;
-int main ()
-{
-cout << 100 << ’ ’;
-cout . unsetf ( ios :: dec ); // clear dec flag
-cout . setf ( ios :: hex );
-cout << 100 << ’ ’;
-cout . unsetf ( ios :: hex ); // clear hex flag
-cout . setf ( ios :: oct );
-cout << 100 << ’\n’;
-return 0;
+// tested
+/* Example 1: Write a program that displays the number 100 in 
+                decimal, 
+                hexadecimal, and 
+                octal. 
+
+                (Use the ios format flags.) 
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout << 100 << ' ';
+
+    std::cout.unsetf ( std::ios::dec ); // clear dec flag
+    std::cout.setf ( std::ios::hex );
+    
+    std::cout << 100 << ' ';
+    
+    std::cout.unsetf ( std::ios::hex ); // clear hex flag
+    std::cout.setf ( std::ios::oct );
+    
+    std::cout << 100 << '\n';
+
+    return 0;
 }
 
 
 
+// rev[04-Nov-2025]
 
 /* Example 2: Write a program that displays the value 1000.5364 in a 20-character field, left justified,
 with two decimal places, using * as a fill character. (Use the ios format flags.) */
