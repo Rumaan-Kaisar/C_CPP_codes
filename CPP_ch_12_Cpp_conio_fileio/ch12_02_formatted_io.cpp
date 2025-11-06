@@ -564,3 +564,32 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 8: Write a program that displays the number 100 in 
+                decimal, 
+                hexadecimal, and 
+                octal. 
+
+                (Use the ios format flags.) 
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout << 100 << ' ';
+
+    std::cout.unsetf( std::ios::dec ); // clear dec flag
+    std::cout.setf( std::ios::hex );
+    
+    std::cout << 100 << ' ';
+    
+    std::cout.unsetf( std::ios::hex ); // clear hex flag
+    std::cout.setf( std::ios::oct );
+    
+    std::cout << 100 << '\n';
+
+    return 0;
+}
+
