@@ -16,51 +16,11 @@
 At this point you should be able to perform the following exercises and answer the questions.
 
 // tested
-/* Example 1: Write a program that displays the number 100 in 
-                decimal, 
-                hexadecimal, and 
-                octal. 
-
-                (Use the ios format flags.) 
-*/
-
-#include <iostream>
-
-int main() {
-    std::cout << 100 << ' ';
-
-    std::cout.unsetf ( std::ios::dec ); // clear dec flag
-    std::cout.setf ( std::ios::hex );
-    
-    std::cout << 100 << ' ';
-    
-    std::cout.unsetf ( std::ios::hex ); // clear hex flag
-    std::cout.setf ( std::ios::oct );
-    
-    std::cout << 100 << '\n';
-
-    return 0;
-}
 
 
 
-// rev[04-Nov-2025]
 
-/* Example 2: Write a program that displays the value 1000.5364 in a 20-character field, left justified,
-with two decimal places, using * as a fill character. (Use the ios format flags.) */
-
-2. # include <iostream >
-using namespace std ;
-int main ()
-{
-cout . setf ( ios :: left );
-cout . precision (2) ;
-cout . fill (’*’);
-cout . width (20) ;
-cout << 1000.5364 << ’\n’;
-return 0;
-}
-
+// rev[06-Nov-2025]
 
 
 /* Example 3: Rewrite your answer to Exercises 1 and 2 so that they use I/O manipulators. */
