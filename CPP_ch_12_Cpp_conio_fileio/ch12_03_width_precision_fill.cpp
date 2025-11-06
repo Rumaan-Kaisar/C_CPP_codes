@@ -231,3 +231,24 @@ void center(char *s) {
 }
 
 
+
+
+/* Example 5: Write a program that displays the value 1000.5364 in a 
+                    20-character field, 
+                    left justified,
+                    with two decimal places, 
+                using * as a fill character. (Use the ios format flags.) 
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout.setf( std::ios::left);
+    std::cout.precision(2);
+    std::cout.fill('*');
+    std::cout.width(20);
+    std::cout << 1000.5364 << '\n';
+
+    return 0;
+}
+
