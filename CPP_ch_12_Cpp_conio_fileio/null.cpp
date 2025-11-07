@@ -13,12 +13,6 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-At this point you should be able to perform the following exercises and answer the questions.
-
-// tested
-
-
-
 
 // rev[07-Nov-2025]
 
@@ -26,61 +20,14 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 8: re-write "Example 8" of ch12_02_formatted_io.cpp that displays the number 100 in 
-                decimal, 
-                hexadecimal, and 
-                octal. 
-
-                But this time use I/O manipulators.
+/* Example 4: Show how to save the format flags for "cout" and how to restore them. 
+                Use either member functions or manipulators. 
 */
 
-#include <iostream>
-
-int main() {
-    std::cout << 100 << ' ';
-    std::cout << std::hex << 100 << ' ';
-    std::cout << std::oct << 100 << '\n';
-
-    return 0;
-}
-
-
-
-/* Example 5: re-write "Example 5" of ch12_03_width_precision_fill.cpp
-
-                That displays the value 1000.5364 in a 
-                    20-character field, 
-                    left justified,
-                    with two decimal places, 
-
-                using * as a fill character. 
-                
-                But this time use I/O manipulators.
-*/
-
-#include <iostream>
-#include <iomanip>
-
-int main() {
-    std::cout << std::setiosflags(std::ios::left);
-    std::cout << std::setprecision(6);
-    std::cout << std::setfill('*');
-    std::cout << std::setw(20);
-    std::cout << 1000.5364 << '\n';
-    
-    return 0;
-}
-
-
-
-
-/* Example 4: Show how to save the format flags for cout and how to restore them. Use either member
-functions or manipulators. */
-
-4. ios :: fmtflags f;
-f = cout . flag (); // save
+std::ios::fmtflags f;
+f = std::cout.flag(); // save
 // ...
-cout . flags (f); // restore
+std::cout.flags(f); // restore
 
 
 
