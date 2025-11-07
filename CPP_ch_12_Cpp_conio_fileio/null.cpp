@@ -23,25 +23,45 @@ At this point you should be able to perform the following exercises and answer t
 // rev[06-Nov-2025]
 
 
-/* Example 3: Rewrite your answer to Exercises 1 and 2 so that they use I/O manipulators. */
+/* Example 3: Rewrite your answer to Exercises 1 and 2 so that they use  */
 
-3a. # include <iostream >
-using namespace std ;
-int main ()
-{
+
+/* Example 8: re-write "Example 8" of ch12_02_formatted_io.cpp that displays the number 100 in 
+                decimal, 
+                hexadecimal, and 
+                octal. 
+
+                But this time use I/O manipulators.
+*/
+
+#include <iostream >
+
+int main() {
 cout << 100 << ’ ’;
 cout << hex << 100 << ’ ’;
 cout << oct << 100 << ’\n’;
+
 return 0;
 }
 
 
-3b. # include <iostream >
-# include <iomanip >
-using namespace std ;
 
-int main ()
-{
+/* Example 5: re-write "Example 5" of ch12_03_width_precision_fill.cpp
+
+                That displays the value 1000.5364 in a 
+                    20-character field, 
+                    left justified,
+                    with two decimal places, 
+
+                using * as a fill character. 
+                
+                But this time use I/O manipulators.
+*/
+
+#include <iostream>
+#include <iomanip>
+
+int main() {
 cout << setiosflags (ios :: left );
 cout << setprecision (2) ;
 cout << setfill (’*’);
