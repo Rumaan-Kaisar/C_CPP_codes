@@ -319,3 +319,52 @@ void center(char *s){
 */
 
 
+
+
+/* Example 8: re-write "Example 8" of ch12_02_formatted_io.cpp that displays the number 100 in 
+                decimal, 
+                hexadecimal, and 
+                octal. 
+
+                But this time use I/O manipulators.
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout << 100 << ' ';
+    std::cout << std::hex << 100 << ' ';
+    std::cout << std::oct << 100 << '\n';
+
+    return 0;
+}
+
+
+
+
+/* Example 9: re-write "Example 5" of ch12_03_width_precision_fill.cpp
+
+                That displays the value 1000.5364 in a 
+                    20-character field, 
+                    left justified,
+                    with two decimal places, 
+
+                using * as a fill character. 
+                
+                But this time use I/O manipulators.
+*/
+
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    std::cout << std::setiosflags(std::ios::left);
+    std::cout << std::setprecision(6);
+    std::cout << std::setfill('*');
+    std::cout << std::setw(20);
+    std::cout << 1000.5364 << '\n';
+    
+    return 0;
+}
+
+
