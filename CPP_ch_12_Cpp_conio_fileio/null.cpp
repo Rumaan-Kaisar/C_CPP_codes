@@ -22,12 +22,48 @@
 
 /* Example 4: Show how to save the format flags for "cout" and how to restore them. 
                 Use either member functions or manipulators. 
+
+                std::ios::fmtflags f;
+                f = std::cout.flag(); // save
+                // ...
+                std::cout.flags(f); // restore
 */
 
-std::ios::fmtflags f;
-f = std::cout.flag(); // save
-// ...
-std::cout.flags(f); // restore
+#include <iostream>
+#include <iomanip>  // for manipulators like hex, dec, etc.
+
+int main() {
+    // Save the current format flags (i.e. number base, float formatting, etc.) of cout
+    std::ios::fmtflags f = std::cout.flags();
+
+    // Change output format to hexadecimal, shows 0x prefix, and uses uppercase letters.
+    std::cout << std::hex << std::showbase << std::uppercase;
+    
+    // Change float output to fixed-point with 3 digits after the decimal point.
+    std::cout << std::fixed << std::setprecision(3);
+
+    std::cout << "Hexadecimal format: " << 255 << std::endl;
+    std::cout << "Fixed-point format: " << 3.1415926 << std::endl;
+
+    // Restores all formatting flags to their original (default) state.
+    std::cout.flags(f);
+    std::cout << "After restoring flags:" << std::endl;
+
+    // Output now appears in default (decimal) formatting
+    std::cout << 255 << std::endl;
+    std::cout << 3.1415926 << std::endl;
+
+    return 0;
+}
+
+/*  Out:
+        Hexadecimal format: 0XFF
+        Fixed-point format: 3.142
+        After restoring flags:
+        255
+        3.14
+*/
+
 
 
 
