@@ -20,10 +20,10 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-// rev[06-Nov-2025]
+// rev[07-Nov-2025]
 
 
-/* Example 3: Rewrite your answer to Exercises 1 and 2 so that they use  */
+
 
 
 /* Example 8: re-write "Example 8" of ch12_02_formatted_io.cpp that displays the number 100 in 
@@ -34,14 +34,14 @@ At this point you should be able to perform the following exercises and answer t
                 But this time use I/O manipulators.
 */
 
-#include <iostream >
+#include <iostream>
 
 int main() {
-cout << 100 << ’ ’;
-cout << hex << 100 << ’ ’;
-cout << oct << 100 << ’\n’;
+    std::cout << 100 << ' ';
+    std::cout << std::hex << 100 << ' ';
+    std::cout << std::oct << 100 << '\n';
 
-return 0;
+    return 0;
 }
 
 
@@ -62,12 +62,13 @@ return 0;
 #include <iomanip>
 
 int main() {
-cout << setiosflags (ios :: left );
-cout << setprecision (2) ;
-cout << setfill (’*’);
-cout << setw (20) ;
-cout << 1000.5364 << ’\n’;
-return 0;
+    std::cout << std::setiosflags(std::ios::left);
+    std::cout << std::setprecision(6);
+    std::cout << std::setfill('*');
+    std::cout << std::setw(20);
+    std::cout << 1000.5364 << '\n';
+    
+    return 0;
 }
 
 
