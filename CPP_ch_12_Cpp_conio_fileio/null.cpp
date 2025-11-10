@@ -35,6 +35,7 @@
                 } 
 */
 
+#include <iostream>
 
 class pwr {
         int base;
@@ -42,6 +43,8 @@ class pwr {
         double result;  // base to the exponent power
     public:
         pwr(int b, int e);
+        friend ostream &operator<<(ostream &stream, pwr ob);    // inserter
+        friend istream &operator>>(istream &stream, pwr &ob);   // extractor
 };
 
 pwr::pwr(int b, int e) {
@@ -51,51 +54,32 @@ pwr::pwr(int b, int e) {
     for( ; e; e--) result = result*base;
 } 
 
-
-
-
-5. # include <iostream >
-using namespace std ;
-class pwr
-{
-int base ;
-int exponent ;
-double result ; // base to the exponent power
-public :
-pwr ( int b, int e);
-friend ostream & operator <<( ostream &stream , pwr ob);
-friend istream & operator >>( istream &stream , pwr &ob);
-};
-pwr :: pwr ( int b, int e)
-{
-base = b;
-exponent = e;
-result = 1;
-for ( ; e; e --)
-result = result * base ;
+// inserter
+std::ostream &operator<<(std::ostream &stream , pwr ob) {
+    stream << ob.base << "^" << ob.exponent;
+    stream << " is " << ob.result << '\n';
+    return stream;
 }
-ostream & operator <<( ostream &stream , pwr ob)
-{
-stream << ob. base << "^" << ob. exponent ;
-stream << " is " << ob. result << ’\n’;
-}
-istream & operator >>( istream &stream , pwr &ob)
-{
 
-int b, e;
-cout << " Enter base and exponent : ";
-stream >> b >> e;
-pwr temp (b, e); // create temporary
-ob = temp ;
-return stream ;
+// extractor
+istream &operator>>(istream &stream , pwr &ob) {
+    int b, e;
+    std::cout << " Enter base and exponent : ";
+    stream >> b >> e;
+    pwr temp(b, e); // create temporary
+    ob = temp;
+    return stream;
 }
-int main ()
-{
-pwr ob (10 , 2);
-cout << ob;
-cin >> ob;
-cout << ob;
-return 0;
+
+
+int main(){
+    pwr ob(10, 2);
+
+    std::cout << ob;
+    std::cin >> ob;
+    std::cout << ob;
+    
+    return 0;
 }
 
 
