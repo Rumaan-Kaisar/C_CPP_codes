@@ -19,23 +19,39 @@
 
 
 /* Example 5: Create an inserter and an extractor for this class:
-class pwr
-{
-int base ;
-int exponent ;
-double result ; // base to the exponent power
-public :
-pwr ( int b, int e);
-};
-pwr :: pwr ( int b, int e)
-{
-base = b;
-exponent = e;
-result = 1;
-for ( ; e; e --)
-result = result * base ;
-} 
+                class pwr {
+                        int base;
+                        int exponent;
+                        double result;  // base to the exponent power
+                    public:
+                        pwr(int b, int e);
+                };
+
+                pwr::pwr(int b, int e) {
+                    base = b;
+                    exponent = e;
+                    result = 1;
+                    for( ; e; e--) result = result*base;
+                } 
 */
+
+
+class pwr {
+        int base;
+        int exponent;
+        double result;  // base to the exponent power
+    public:
+        pwr(int b, int e);
+};
+
+pwr::pwr(int b, int e) {
+    base = b;
+    exponent = e;
+    result = 1;
+    for( ; e; e--) result = result*base;
+} 
+
+
 
 
 5. # include <iostream >
