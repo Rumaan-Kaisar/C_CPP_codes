@@ -760,3 +760,69 @@ int main() {
 }
 
 
+
+
+/* Example 11: Create an inserter and an extractor for this class:
+                class pwr {
+                        int base;
+                        int exponent;
+                        double result;  // base to the exponent power
+                    public:
+                        pwr(int b, int e);
+                };
+
+                pwr::pwr(int b, int e) {
+                    base = b;
+                    exponent = e;
+                    result = 1;
+                    for( ; e; e--) result = result*base;
+                } 
+*/
+
+#include <iostream>
+
+class pwr {
+        int base;
+        int exponent;
+        double result;  // base to the exponent power
+    public:
+        pwr(int b, int e);
+        friend std::ostream &operator<<(std::ostream &stream, pwr ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, pwr &ob);   // extractor
+};
+
+pwr::pwr(int b, int e) {
+    base = b;
+    exponent = e;
+    result = 1;
+    for( ; e; e--) result = result*base;
+} 
+
+// inserter
+std::ostream &operator<<(std::ostream &stream , pwr ob) {
+    stream << ob.base << "^" << ob.exponent;
+    stream << " is " << ob.result << '\n';
+    return stream;
+}
+
+// extractor
+std::istream &operator>>(std::istream &stream , pwr &ob) {
+    int b, e;
+    std::cout << " Enter base and exponent : ";
+    stream >> b >> e;
+    pwr temp(b, e); // create temporary
+    ob = temp;
+    return stream;
+}
+
+
+int main(){
+    pwr ob(10, 2);
+
+    std::cout << ob;
+    std::cin >> ob;
+    std::cout << ob;
+    
+    return 0;
+}
+
