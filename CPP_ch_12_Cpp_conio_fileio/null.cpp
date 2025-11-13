@@ -14,121 +14,15 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-// rev[07-Nov-2025]
-
-
-
-/* Example 5: Create an inserter and an extractor for this class:
-                class pwr {
-                        int base;
-                        int exponent;
-                        double result;  // base to the exponent power
-                    public:
-                        pwr(int b, int e);
-                };
-
-                pwr::pwr(int b, int e) {
-                    base = b;
-                    exponent = e;
-                    result = 1;
-                    for( ; e; e--) result = result*base;
-                } 
-*/
-
-#include <iostream>
-
-class pwr {
-        int base;
-        int exponent;
-        double result;  // base to the exponent power
-    public:
-        pwr(int b, int e);
-        friend ostream &operator<<(ostream &stream, pwr ob);    // inserter
-        friend istream &operator>>(istream &stream, pwr &ob);   // extractor
-};
-
-pwr::pwr(int b, int e) {
-    base = b;
-    exponent = e;
-    result = 1;
-    for( ; e; e--) result = result*base;
-} 
-
-// inserter
-std::ostream &operator<<(std::ostream &stream , pwr ob) {
-    stream << ob.base << "^" << ob.exponent;
-    stream << " is " << ob.result << '\n';
-    return stream;
-}
-
-// extractor
-istream &operator>>(istream &stream , pwr &ob) {
-    int b, e;
-    std::cout << " Enter base and exponent : ";
-    stream >> b >> e;
-    pwr temp(b, e); // create temporary
-    ob = temp;
-    return stream;
-}
-
-
-int main(){
-    pwr ob(10, 2);
-
-    std::cout << ob;
-    std::cin >> ob;
-    std::cout << ob;
-    
-    return 0;
-}
-
-
-
-/* Example 6: Create a class called "box" that stores the dimensions of a square. 
-                Create an inserter that displays a square box on the screen. 
-                (Use any method you like to display the box). 
-*/
-
-#include <iostream>
-
-class box {
-        int len;
-    public:
-        box(int l) { len = l; }
-        friend std::ostream &operator<<( std::ostream &stream, box ob );
-};
-
-// Draw a box .
-std::ostream &operator<<( std::ostream &stream, box ob ) {
-    int i, j;
-
-    for(i =0; i<ob.len; i++) stream << '*';
-    stream << '\n';
-
-    for(i =0; i<ob.len -2;i++) {
-        stream << '*';
-        for(j =0; j<ob.len -2;j++) stream << ' ';
-        stream << "*\n";
-    }
-
-    for(i =0; i<ob.len; i++) stream << '*';
-    stream << '\n';
-    return stream;
-}
-
-int main() {
-    box b1(4) , b2(7);
-    std::cout << b1 << std::endl << b2;
-    return 0;
-}
-
+// rev[13-Nov-2025]
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
 /* Example 1: Using the stack class shown here, create an inserter that displays the contents of the
 stack. Demonstrate that your inserter works.
-# include <iostream >
+
+#include <iostream>
 using namespace std ;
 # define SIZE 10
 // Declare a stack class for characters
