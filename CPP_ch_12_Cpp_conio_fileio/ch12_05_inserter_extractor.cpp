@@ -826,3 +826,44 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 12: Create a class called "box" that stores the dimensions of a square. 
+                Create an inserter that displays a square box on the screen. 
+                (Use any method you like to display the box). 
+*/
+
+#include <iostream>
+
+class box {
+        int len;
+    public:
+        box(int l) { len = l; }
+        friend std::ostream &operator<<( std::ostream &stream, box ob );
+};
+
+// Draw a box .
+std::ostream &operator<<( std::ostream &stream, box ob ) {
+    int i, j;
+
+    for(i =0; i<ob.len; i++) stream << '*';
+    stream << '\n';
+
+    for(i =0; i<ob.len -2;i++) {
+        stream << '*';
+        for(j =0; j<ob.len -2;j++) stream << ' ';
+        stream << "*\n";
+    }
+
+    for(i =0; i<ob.len; i++) stream << '*';
+    stream << '\n';
+    return stream;
+}
+
+int main() {
+    box b1(4) , b2(7);
+    std::cout << b1 << std::endl << b2;
+    return 0;
+}
+
