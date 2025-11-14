@@ -22,7 +22,48 @@
 /* Example 1: Using the "stack" class shown here, create an inserter 
                 that displays the contents of the stack. 
                 Demonstrate that your inserter works.
- */
+
+
+#include <iostream>
+
+#define SIZE 10
+
+// Declare a stack class for characters
+class stack {
+        char stck [SIZE]; // holds the stack
+        int tos ; // index of top -of - stack
+    public:
+        stack();
+        void push(char ch);     // push character on stack
+        char pop();     // pop character from stack
+};
+
+
+// Initialize the stack
+stack::stack() {
+    tos = 0;
+}
+
+// Push a character
+void stack::push(char ch) {
+    if(tos == SIZE) {
+        std::cout << " Stack is full \n";
+        return 0;
+    }
+    stck[tos] = ch;
+    tos++;
+}
+
+// Pop a character .
+char stack::pop() {
+    if(tos == 0) {
+        std::cout << " Stack is empty \n";
+        return 0;   // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
+}
+*/
 
 
 
@@ -40,32 +81,30 @@ class stack {
         char pop();     // pop character from stack
 };
 
+
 // Initialize the stack
-stack :: stack ()
-{
-tos = 0;
+stack::stack() {
+    tos = 0;
 }
+
 // Push a character
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return 0;
+void stack::push(char ch) {
+    if(tos == SIZE) {
+        std::cout << " Stack is full \n";
+        return 0;
+    }
+    stck[tos] = ch;
+    tos++;
 }
-stck [ tos ] = ch;
-tos ++;
-}
+
 // Pop a character .
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
+char stack::pop() {
+    if(tos == 0) {
+        std::cout << " Stack is empty \n";
+        return 0;   // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
 }
 
 
