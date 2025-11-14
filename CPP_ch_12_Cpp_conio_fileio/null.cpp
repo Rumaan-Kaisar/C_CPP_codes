@@ -19,24 +19,27 @@
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-/* Example 1: Using the stack class shown here, create an inserter that displays the contents of the
-stack. Demonstrate that your inserter works.
+/* Example 1: Using the "stack" class shown here, create an inserter 
+                that displays the contents of the stack. 
+                Demonstrate that your inserter works.
+ */
+
+
 
 #include <iostream>
-using namespace std ;
-# define SIZE 10
+
+#define SIZE 10
+
 // Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top -of - stack
-public :
-stack ();
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
-
-
+class stack {
+        char stck [SIZE]; // holds the stack
+        int tos ; // index of top -of - stack
+    public:
+        stack();
+        void push(char ch);     // push character on stack
+        char pop();     // pop character from stack
 };
+
 // Initialize the stack
 stack :: stack ()
 {
@@ -63,7 +66,11 @@ return 0; // return null on empty stack
 }
 tos --;
 return stck [ tos ];
-} */
+}
+
+
+
+// -------------------------------------
 
 
 1. # include <iostream >
