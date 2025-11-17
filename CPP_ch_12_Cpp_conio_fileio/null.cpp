@@ -14,11 +14,10 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 
-// rev[13-Nov-2025]
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-
+// checked
 /* Example 1: Using the "stack" class shown here (recall ch10_01_1_class_intro.cpp Example 9), 
                 create an inserter that displays the contents of the stack. 
                 Demonstrate that your inserter works.
@@ -92,7 +91,7 @@ stack::stack() {
 void stack::push(char ch) {
     if(tos == SIZE) {
         std::cout << " Stack is full \n";
-        return 0;
+        return;   // return nothing. 
     }
     stck[tos] = ch;
     tos++;
@@ -138,6 +137,7 @@ int main() {
 
 
 
+// rev[17-Nov-2025]
 
 
 
