@@ -19,8 +19,8 @@
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-/* Example 1: Using the "stack" class shown here, create an inserter 
-                that displays the contents of the stack. 
+/* Example 1: Using the "stack" class shown here (recall ch10_01_1_class_intro.cpp Example 9), 
+                create an inserter that displays the contents of the stack. 
                 Demonstrate that your inserter works.
 
 
@@ -48,7 +48,7 @@ stack::stack() {
 void stack::push(char ch) {
     if(tos == SIZE) {
         std::cout << " Stack is full \n";
-        return 0;
+        return;
     }
     stck[tos] = ch;
     tos++;
@@ -65,8 +65,6 @@ char stack::pop() {
 }
 */
 
-
-
 #include <iostream>
 
 #define SIZE 10
@@ -79,6 +77,9 @@ class stack {
         stack();
         void push(char ch);     // push character on stack
         char pop();     // pop character from stack
+
+        // inserter
+        friend std::ostream &operator<<(std::ostream &stream , stack ob);
 };
 
 
@@ -108,70 +109,33 @@ char stack::pop() {
 }
 
 
+// inserter
+std::ostream & operator<<(std::ostream &stream , stack ob) {
+    char ch;
+    while(ch=ob. pop()) stream << ch;
+    stream << std::endl;
+    return stream;
+}
+
+
+int main() {
+    stack s;
+
+    s.push('a');
+    s.push('b');
+    s.push('c');
+
+    std::cout << s;
+    std::cout << s;
+
+    return 0;
+}
+
+
 
 // -------------------------------------
 
 
-1. # include <iostream >
-using namespace std ;
-# define SIZE 10
-// Declare a stack class for characters
-class stack
-{
-char stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-stack ();
-void push ( char ch); // push character on stack
-char pop (); // pop character from stack
-friend ostream & operator <<( ostream &stream , stack ob);
-};
-// Initialize the stack
-stack :: stack ()
-{
-tos = 0;
-}
-// Push a character .
-void stack :: push ( char ch)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full \n";
-return ;
-}
-stck [ tos ] = ch;
-
-tos ++;
-}
-// Pop a character .
-char stack :: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty \n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
-}
-ostream & operator <<( ostream &stream , stack ob)
-{
-char ch;
-while (ch=ob. pop ())
-stream << ch;
-stream << endl ;
-return stream ;
-}
-int main ()
-{
-stack s;
-s. push (’a’);
-s. push (’b’);
-s. push (’c’);
-cout << s;
-cout << s;
-return 0;
-}
 
 
 
