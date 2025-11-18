@@ -147,11 +147,10 @@ have this class’s constructor read the system time and store it. Create an ins
 displays the time. */
 
 
-2. # include <iostream >
-# include <ctime >
-using namespace std ;
-class watch
-{
+#include <iostream>
+#include <ctime>
+
+class watch {
 time_t t;
 public :
 watch () { t = time ( NULL ); }
