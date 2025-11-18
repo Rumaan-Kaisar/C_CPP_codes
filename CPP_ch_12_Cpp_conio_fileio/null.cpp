@@ -151,24 +151,23 @@ displays the time. */
 #include <ctime>
 
 class watch {
-time_t t;
-public :
-watch () { t = time ( NULL ); }
-friend ostream & operator <<( ostream &stream , watch ob);
+        time_t t;
+    public:
+        watch() { t = time ( NULL ); }
+        friend std::ostream &operator<<( std::ostream &stream , watch ob );
 };
 
-ostream & operator <<( ostream &stream , watch ob)
-{
-struct tm * localt ;
-localt = localtime (& ob.t);
-stream << asctime ( localt ) << endl ;
-return stream ;
+std::ostream &operator<<( std::ostream &stream , watch ob ) {
+    struct tm *localt ;
+    localt = localtime(&ob.t);
+    stream << asctime( localt ) << endl ;
+    return stream ;
 }
-int main ()
-{
-watch w;
-cout << w;
-return 0;
+
+int main(){
+    watch w;
+    cout << w;
+    return 0;
 }
 
 
