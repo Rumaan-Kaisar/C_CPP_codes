@@ -983,3 +983,36 @@ int main() {
 }
 
 
+
+
+/* Example 14: Write a program that contains a class called watch. 
+                Using the "standard time" functions,
+                    have this class’s constructor read the "system time" and store it. 
+                Create an inserter that displays the time. 
+*/
+
+#include <iostream>
+#include <ctime>
+
+class watch {
+        time_t t;
+    public:
+        watch() { t = time ( NULL ); }
+        // inserter
+        friend std::ostream &operator<<( std::ostream &stream , watch ob );
+};
+
+// inserter
+std::ostream &operator<<( std::ostream &stream , watch ob ) {
+    struct tm *localt ;
+    localt = localtime(&ob.t);
+    stream << asctime( localt ) << std::endl ;
+    return stream ;
+}
+
+int main(){
+    watch w;
+    std::cout << w;
+    return 0;
+}
+
