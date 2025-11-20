@@ -33,21 +33,23 @@
 
 
 
-/* Example 3: Using the following class, which converts feet to inches, create an extractor that prompts
-the user for feet. Also, create an inserter that displays the number of feet and inches.
-Include a program that demonstrates that your inserter and extractor work.
-class ft_to_inches
-{
-double feet ;
-double inches ;
-public :
-void set ( double f)
-{
-feet = f;
-inches = f * 12;
-}
-}; 
+/* Example 3: Using the following class, which "converts feet to inches".
 
+                Create an "extractor" that prompts the user for feet. 
+                Also, create an "inserter" that displays the number of feet and inches.
+
+                Include a program that demonstrates that your inserter and extractor work.
+
+
+                        class ft_to_inches {
+                                double feet;
+                                double inches;
+                            public :
+                                void set(double f) {
+                                    feet = f;
+                                    inches = f * 12;
+                                }
+                        }; 
 */
 
 
