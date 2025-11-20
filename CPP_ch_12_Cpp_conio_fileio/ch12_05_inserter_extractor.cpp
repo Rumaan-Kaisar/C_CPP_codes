@@ -1016,3 +1016,66 @@ int main(){
     return 0;
 }
 
+
+
+
+/* Example 15: Using the following class, which "converts feet to inches".
+
+                Create an "extractor" that prompts the user for feet. 
+                Also, create an "inserter" that displays the number of feet and inches.
+
+                Include a program that demonstrates that your inserter and extractor work.
+
+
+                        class ft_to_inches {
+                                double feet;
+                                double inches;
+                            public :
+                                void set(double f) {
+                                    feet = f;
+                                    inches = f * 12;
+                                }
+                        }; 
+*/
+
+#include <iostream>
+
+class ft_to_inches {
+        double feet;
+        double inches;
+    public :
+        void set(double f) {
+            feet = f;
+            inches = f * 12;
+        }
+        friend std::istream &operator>>(std::istream &stream, ft_to_inches &ob);  // extractor
+        friend std::ostream &operator<<(std::ostream &stream, ft_to_inches ob);   // inserter
+};
+
+// extractor
+std::istream &operator>>(std::istream &stream, ft_to_inches &ob) {
+    double f;
+    std::cout << " Enter feet : ";
+    stream >> f;
+    ob.set(f);
+    return stream;
+}
+
+// inserter
+std::ostream &operator<<(std::ostream &stream, ft_to_inches ob) {
+    stream << ob.feet << " feet is " << ob.inches ;
+    stream << " inches \n";
+    return stream;
+}
+
+
+int main() {
+    ft_to_inches x;
+
+    // x.set(12);   // set manually
+    std::cin >> x;
+    std::cout << x;
+
+    return 0;
+}
+
