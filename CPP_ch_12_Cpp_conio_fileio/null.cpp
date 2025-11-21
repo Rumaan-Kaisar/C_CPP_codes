@@ -27,18 +27,21 @@ Before proceeding, you should be able to correctly answer the following question
 exercises.
 
 
-/* Example 1: Write a program that displays the sentence "C++ is fun" in a 40-character-wide filed
-using a colon (:) as the fill character. */
+/* Example 1: Write a program that displays the sentence "C++ is fun" 
+                in a 40-character-wide filed
+                using a colon (:) as the "fill character". 
+*/
 
-1. # include <iostream >
-using namespace std ;
-int main ()
-{
-cout . width (40) ;
-cout . fill (’:’);
-cout << "C++ is fun " << ’\n’;
-return 0;
+#include <iostream>
+
+int main() {
+    std::cout.width (40) ;
+    std::cout.fill (':');
+    std::cout << "C++ is fun " << '\n';
+    
+    return 0;
 }
+
 
 
 
