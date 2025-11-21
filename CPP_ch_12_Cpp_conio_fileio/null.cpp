@@ -45,16 +45,16 @@ int main() {
 
 
 
-/* Example 2: Write a program that displays the outcome of 10/3 to three decimal places. Use ios
-member functions to do this. */
+/* Example 2: Write a program that displays the outcome of 10/3 to "three decimal places". 
+                Use "ios member functions" to do this. 
+*/
 
-2. # include <iostream >
-using namespace std ;
-int main ()
-{
-cout . precision (4) ;
-cout << 10.0/3.0 << ’\n’;
-return 0;
+#include <iostream>
+
+int main() {
+    std::cout . precision (4) ;
+    std::cout << 10.0/3.0 << '\n';
+    return 0;
 }
 
 
@@ -62,22 +62,30 @@ return 0;
 
 /* Example 3: Redo the preceding program using I/O manipulators. */
 
-3. # include <iostream >
-# include <iomanip >
-using namespace std ;
-int main ()
-{
-cout << setprecision (4) << 10.0/3.0 << ’\n’;
+#include <iostream>
+#include <iomanip>
 
-return 0;
+int main() {
+    std::cout << setprecision(4) << 10.0/3.0 << '\n';
+    return 0;
 }
 
 
-/* Example 4: What is an inserter? What is an extractor? */
 
-4. An inserter is an overloaded operator<<() function that outputs a class’s data to an
-output stream. An extractor is an overloaded operator>>() function that inputs a
-class’s data from an input stream
+
+/* Example 4: What are INSERTER and EXTRACTOR ? 
+                
+            inserter:
+                an overloaded operator<<() function that OUTPUTS a class's data to an output stream. 
+            
+            extractor:
+                an overloaded operator>>() function that INPUTS a class's data from an input stream
+*/
+
+
+
+// rev[21-Nov-2025]
+
 
 
 
