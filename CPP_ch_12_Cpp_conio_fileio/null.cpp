@@ -89,15 +89,13 @@ int main() {
 
 
 
-/* Example 5: Given the following class, create an inserter and an extractor for it.
-class date
-{
-char d [9]; // store date as string : mm/dd/yy
-public :
-// add inserter and extractor
-};
-
- */
+/* Example 5: Given the following class, create an INSERTER and an EXTRACTOR for it.
+                class date {
+                        char d[9]; // store date as string : mm/dd/yy
+                    public :
+                        // add inserter and extractor
+                };
+*/
 
 5. # include <iostream >
 using namespace std ;
