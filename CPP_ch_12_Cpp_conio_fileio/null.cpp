@@ -97,32 +97,33 @@ int main() {
                 };
 */
 
-5. # include <iostream >
-using namespace std ;
-class date
-{
-char d [9]; // store date as string : mm/dd/yy
-public :
-friend ostream & operator <<( ostream &stream , date ob);
-friend istream & operator >>( istream &stream , date &ob);
+#include <iostream>
+
+class date {
+        char d[9]; // store date as string : mm/dd/yy
+    public :
+        friend std::ostream &operator<<( std::ostream &stream , date ob);   // inserter
+        friend std::istream &operator>>( std::istream &stream , date &ob);  // extractor
 };
-ostream & operator <<( ostream &stream , date ob)
-{
-stream << ob.d << ’\n’;
-return stream ;
+
+// inserter
+std::ostream &operator<<(std::ostream &stream, date ob) {
+    stream << ob.d << '\n';
+    return stream;
 }
-istream & operator >>( istream &stream , date &ob)
-{
-cout << " Enter date (mm/dd/yy): ";
-stream >> ob.d;
-return stream ;
+
+// extractor
+std::istream &operator>>(std::istream &stream, date &ob) {
+    std::cout << " Enter date (mm/dd/yy): ";
+    stream >> ob.d;
+    return stream;
 }
-int main ()
-{
-date ob;
-cin >> ob;
-cout << ob;
-return 0;
+
+int main() {
+    date ob;
+    std::cin >> ob;
+    std::cout << ob;
+    return 0;
 }
 
 
