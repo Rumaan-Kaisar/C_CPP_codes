@@ -252,3 +252,21 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 6: Write a program that displays the sentence "C++ is fun" 
+                in a 40-character-wide filed
+                using a colon (:) as the "fill character". 
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout.width (40) ;
+    std::cout.fill (':');
+    std::cout << "C++ is fun " << '\n';
+    
+    return 0;
+}
+
