@@ -129,16 +129,22 @@ int main() {
 
 
 
-/* Example 6: What header must be included if your program is to use I/O manipulators that take
-parameters? */
+/* Example 6: What header must be included if your program is to use "I/O manipulators" that take parameters? 
 
-6. To use a parameterized manipulator, you must include <iomanip> in your program.
+            ans:
+                To use a parameterized manipulator, we must include <iomanip> in our program.
+*/
 
 
 
-/* Example 7: What predefined streams are created when a C++ program begins execution? */
 
-7. The predefined streams are cin, cout, cerr, and clog.
+
+/* Example 7: What predefined streams are created when a C++ program begins execution? 
+
+            ans:
+                The predefined streams are cin, cout, cerr, and clog.
+*/
+
 
 
 
