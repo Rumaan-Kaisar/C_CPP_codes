@@ -27,35 +27,9 @@ Before proceeding, you should be able to correctly answer the following question
 exercises.
 
 
-/* Example 1: Write a program that displays the sentence "C++ is fun" 
-                in a 40-character-wide filed
-                using a colon (:) as the "fill character". 
-*/
-
-#include <iostream>
-
-int main() {
-    std::cout.width (40) ;
-    std::cout.fill (':');
-    std::cout << "C++ is fun " << '\n';
-    
-    return 0;
-}
 
 
 
-
-/* Example 2: Write a program that displays the outcome of 10/3 to "three decimal places". 
-                Use "ios member functions" to do this. 
-*/
-
-#include <iostream>
-
-int main() {
-    std::cout . precision (4) ;
-    std::cout << 10.0/3.0 << '\n';
-    return 0;
-}
 
 
 
