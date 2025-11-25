@@ -270,3 +270,18 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 7: Write a program that displays the outcome of 10/3 to "three decimal places". 
+                Use "ios member functions" to do this. 
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout.precision(4);
+    std::cout << 10.0/3.0 << '\n';
+    return 0;
+}
+
