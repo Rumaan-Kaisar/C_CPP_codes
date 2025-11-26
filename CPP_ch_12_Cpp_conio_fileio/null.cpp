@@ -34,27 +34,9 @@ exercises.
 
 
 
-/* Example 3: Redo the preceding program using I/O manipulators. */
-
-#include <iostream>
-#include <iomanip>
-
-int main() {
-    std::cout << setprecision(4) << 10.0/3.0 << '\n';
-    return 0;
-}
 
 
 
-
-/* Example 4: What are INSERTER and EXTRACTOR ? 
-                
-            inserter:
-                an overloaded operator<<() function that OUTPUTS a class's data to an output stream. 
-            
-            extractor:
-                an overloaded operator>>() function that INPUTS a class's data from an input stream
-*/
 
 
 
