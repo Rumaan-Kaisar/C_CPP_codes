@@ -368,3 +368,15 @@ int main() {
 }
 
 
+
+
+/* Example 10: What are INSERTER and EXTRACTOR (discussed next section)? 
+                
+            inserter:
+                an overloaded operator<<() function that OUTPUTS a class's data to an output stream. 
+            
+            extractor:
+                an overloaded operator>>() function that INPUTS a class's data from an input stream
+*/
+
+
