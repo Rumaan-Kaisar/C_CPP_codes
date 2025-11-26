@@ -285,3 +285,16 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 8: Redo the preceding program using I/O manipulators (discussed next section). */
+
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    std::cout << std::setprecision(4) << 10.0/3.0 << '\n';
+    return 0;
+}
+
