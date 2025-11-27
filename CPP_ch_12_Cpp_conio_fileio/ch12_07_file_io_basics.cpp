@@ -271,3 +271,181 @@ Hello! 100
 Would you like me to include a short diagram showing the hierarchy (ios → istream/ostream → ifstream/ofstream/fstream)? It’ll make this even clearer visually.
 
 */  
+
+
+
+Example 1: Here is a program that creates an output file, write information to it, closes the file and
+opens it again as an input file, and reads in the information:
+
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ()
+{
+ofstream fout (" test "); // create output file
+if (! fout )
+{
+239TEACH YOURSELF
+C++
+cout << " Cannot open output file .\n";
+return 1;
+}
+fout << " Hello !\n";
+fout << 100 << ’ ’ << hex << 100 << endl ;
+fout . close ();
+ifstream fin (" test "); // open input file
+if (! fin )
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char str [80];
+int i;
+fin >> str >> i;
+cout << str << ’ ’ << i << endl ;
+fin . close ();
+return 0;
+}
+After you run this program, examine the contents of test. It will contain the following:
+Hello!
+100 64
+As stated earlier, when the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
+
+
+
+
+Example 2: Following is another example of disk I/O. This program reads strings entered at the
+keyboard and writes them to disk. The program stops when the user enters a $ as the
+first character in a string. To use the program, specify the name of the output file on the
+command line.
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : WRITE <filename >\n";
+return 1;
+}
+ofstream out ( argv [1]) ; // output file
+240ADVANCED C++ I/O
+9.2. FILE I/O BASICS
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+char str [80];
+cout << " Write strings to disk , ’$’ to stop \n";
+do
+{
+cout << ": ";
+cin >> str ;
+out << str << endl ;
+}
+while (* str != ’$’);
+out . close ();
+return 0;
+}
+
+
+
+
+Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
+j symbols. Notice how eof() is used to check for the end of input file. Notice also how the
+input stream fin has its skipws flag turned off. This prevents leading spaces from being
+skipped.
+// Convert spaces to |s.
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=3)
+{
+cout << " Usage : CONVERT <input > <output >\n";
+return 1;
+}
+ifstream fin ( argv [1]) ; // open input file
+ofstream fout ( argv [2]) ; // create output file
+if (! fout )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+if (! fin )
+{
+cout << " Cannot open input file .\n";
+return 1;
+241TEACH YOURSELF
+C++
+}
+char ch;
+fin . unsetf ( ios :: skipws ); // do not skip spaces
+while (! fin . eof ())
+{
+fin >> ch;
+if(ch == ’ ’)
+ch = ’|’;
+if (! fin . eof ())
+fout << ch;
+}
+fin . close ();
+fout . close ();
+return 0;
+}
+
+
+
+
+Example 4: There are a few differences between C++’s original I/O library and the modern Standard
+C++ library that you should be aware of, especially if you are converting older code.
+First, in the original I/O library, open() allowed a third parameter, which specified the
+file’s protection mode. This parameter defaulted to a normal file. The modern I/O library
+does not support this parameter.
+Second, when you are using the old library to open a stream for input and output using
+fstream, you must explicitly specify both the ios::in and the ios::out mode values. No
+default value for mode is supplied. This applies to both the fstream constructor and to
+its open() function. For example, using the old I/O library you must use a call to open()
+as shown here to open a file for input and output:
+fstream mystream ;
+mystream . open (" test ", ios :: in | ios :: out);
+In the modern I/O library, an object of type fstream automatically opens files for input
+and output when the mode parameter is not supplied.
+Finally, in the old I/O system, the mode parameter could also include either ios::nocreate(),
+which causes the open() function to fail if the file does not already exist, or ios::noreplace,
+which causes the open() function to fail if the file does not already exist. These values
+are not supported by Standard C++
+
+
+
+
+
+
+
+
+
+
+Example 1: Write a program that will copy a text file. Have this program count the number of
+characters copied and display this result. Why does the number displayed differ from that
+shown when you list the output file in the directory?
+
+
+
+
+Example 2: Write a program that writes the following table of information to a file called phone:
+Isaac Newton, 415 555-3423
+Robert Goddard, 213 555-2312
+Enrico Fermi, 202 555-1111
+
+
+
+
+Example 3: Write a program that counts the number of words in a file. For simplicity, assume that
+anything surrounded by whitespace is a word.
+
+
+
+
+Example 4: What does is open() do?
