@@ -370,7 +370,16 @@ int main() {
 
 
 
-/* Example 10: What are INSERTER and EXTRACTOR (discussed next section)? 
+/* Example 10: What header must be included if your program is to use "I/O manipulators" that take parameters? 
+
+            ans:
+                To use a parameterized manipulator, we must include <iomanip> in our program.
+*/
+
+
+
+
+/* Example 11: What are INSERTER and EXTRACTOR (discussed next section)? 
                 
             inserter:
                 an overloaded operator<<() function that OUTPUTS a class's data to an output stream. 
@@ -378,5 +387,4 @@ int main() {
             extractor:
                 an overloaded operator>>() function that INPUTS a class's data from an input stream
 */
-
 
