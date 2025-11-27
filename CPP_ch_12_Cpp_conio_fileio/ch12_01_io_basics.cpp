@@ -168,3 +168,10 @@ int main() {
 
 
 
+
+/* Example 2: What predefined streams are created when a C++ program begins execution? 
+
+            ans:
+                The predefined streams are cin, cout, cerr, and clog.
+*/
+
