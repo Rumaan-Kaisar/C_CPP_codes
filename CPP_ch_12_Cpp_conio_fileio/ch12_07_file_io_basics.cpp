@@ -284,16 +284,13 @@ Hello!
 As stated earlier, when the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
 */
 
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ()
-{
+#include <iostream>
+#include <fstream>
+
+int main() {
 ofstream fout (" test "); // create output file
 if (! fout )
 {
-239TEACH YOURSELF
-C++
 cout << " Cannot open output file .\n";
 return 1;
 }
@@ -320,13 +317,13 @@ return 0;
 
 
 
-Example 2: Following is another example of disk I/O. This program reads strings entered at the
+/* Example 2: Following is another example of disk I/O. This program reads strings entered at the
 keyboard and writes them to disk. The program stops when the user enters a $ as the
 first character in a string. To use the program, specify the name of the output file on the
-command line.
-# include <iostream >
-# include <fstream >
-using namespace std ;
+command line. */
+#include <iostream>
+#include <fstream>
+
 int main ( int argc , char * argv [])
 {
 if( argc !=2)
@@ -358,10 +355,11 @@ return 0;
 
 
 
-Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
+/* Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
 j symbols. Notice how eof() is used to check for the end of input file. Notice also how the
 input stream fin has its skipws flag turned off. This prevents leading spaces from being
-skipped.
+skipped. */
+
 // Convert spaces to |s.
 # include <iostream >
 # include <fstream >
@@ -384,8 +382,6 @@ if (! fin )
 {
 cout << " Cannot open input file .\n";
 return 1;
-241TEACH YOURSELF
-C++
 }
 char ch;
 fin . unsetf ( ios :: skipws ); // do not skip spaces
@@ -404,7 +400,7 @@ return 0;
 
 
 
-
+/* 
 Example 4: There are a few differences between C++’s original I/O library and the modern Standard
 C++ library that you should be aware of, especially if you are converting older code.
 First, in the original I/O library, open() allowed a third parameter, which specified the
@@ -423,6 +419,7 @@ Finally, in the old I/O system, the mode parameter could also include either ios
 which causes the open() function to fail if the file does not already exist, or ios::noreplace,
 which causes the open() function to fail if the file does not already exist. These values
 are not supported by Standard C++
+*/
 
 
 
@@ -431,27 +428,131 @@ are not supported by Standard C++
 
 
 
-
-
-Example 1: Write a program that will copy a text file. Have this program count the number of
+/* Example 1: Write a program that will copy a text file. Have this program count the number of
 characters copied and display this result. Why does the number displayed differ from that
-shown when you list the output file in the directory?
+shown when you list the output file in the directory? */
+
+// Copy a text file and display number of chars copied .
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=3)
+{
+cout << " Usage : CPY <input > <output >\n";
+return 1;
+}
+ifstream fin ( argv [1]) ; // open input file .
+ofstream fout ( argv [2]) ; // create output file
+if (! fin )
+
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+if (! fout )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+char ch;
+unsigned count = 0;
+fin . unsetf ( ios :: skipws ); // do not skip spaces
+while (! fin . eof ())
+{
+fin >> ch;
+if (! fin . eof ())
+{
+fout << ch;
+count ++;
+}
+}
+cout << " Number of bytes copied : " << count << ’\n’;
+fin . close ();
+fout . close ();
+return 0;
+}
+The reason this program might display a result different from that shown when you list
+the directory is that some character translations might be taking place. Specifically, when
+a carriage-return/linefeed sequence is read, it is converted into a newline. When output,
+newlines are counted as one character but converted back into a carriage-return/linefeed
+sequence again.
 
 
 
 
-Example 2: Write a program that writes the following table of information to a file called phone:
+/* Example 2: Write a program that writes the following table of information to a file called phone:
 Isaac Newton, 415 555-3423
 Robert Goddard, 213 555-2312
-Enrico Fermi, 202 555-1111
+Enrico Fermi, 202 555-1111 */
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ()
+{
+ofstream pout (" phone ");
+if (! pout )
+{
+cout << " Cannot open PHONE file .\n";
+return 1;
+}
 
+pout << " Isaac Newton 415 555 -3423\ n";
+pout << " Robert Goddard 213 555 -2312\ n";
+pout << " Enrico Fermi 202 555 -1111\ n";
+pout . close ();
+return 0;
+}
 
 
 
 /* Example 3: Write a program that counts the number of words in a file. For simplicity, assume that
 anything surrounded by whitespace is a word. */
 
+// Word count
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : COUNT <input >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+int count = 0;
+char ch;
+in >> ch; // find first non - space char
+// after first non - space found , do not skip spaces
+in. unsetf ( ios :: skipws ); // do not skip spaces
+while (! in. eof ())
+{
+in >> ch;
+if( isspace (ch))
+{
+count ++;
+while ( isspace (ch) && !in.eof ())
+in >> ch;
+}
+}
+
+cout << " Word count : " << count << ’\n’;
+in. close ();
+return 0;
+}
 
 
 
-Example 4: What does is open() do?
+
+/* Example 4: What does is open() do? */
+
+The is open() function returns true if the invoking stream is linked to an open file.
+
