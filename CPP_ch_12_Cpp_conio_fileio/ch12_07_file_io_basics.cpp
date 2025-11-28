@@ -8,18 +8,17 @@
 
                 #include <fstream>
 
+        It defines several classes, including:
 
-The main classes are:
+            ifstream    -   for input (reading from file)
+            ofstream    -   for output (writing to file)
+            fstream     -   for both input and output
 
-ifstream → for input (reading from file)
+            These are derived from "istream" and "ostream", 
+            And "istream", "ostream" are derived fron "ios".
+            So, they inherit all the features of standard I/O streams.
 
-ofstream → for output (writing to file)
-
-fstream → for both input and output
-
-These are derived from istream and ostream, which are derived from ios.
-So, they inherit all the features of standard I/O streams.
-
+    So ifstream, ofstream, and fstream also have access to all operations defined by ios.
 
 ----  rev[31-Oct-2025]  ----
 
@@ -27,11 +26,6 @@ So, they inherit all the features of standard I/O streams.
 12.7 File I/O 
 
 
-
-
-It defines several classes, including ifstream, ofstream, and fstream which are derived from istream & ostream. And istream, ostream are derived fron ios. 
-
-	So ifstream, ofstream, and fstream also have access to all operations defined by ios.
 	In C++, a file is opened by linking it to a stream. Before you can open a file, you must first obtain a stream.  There are three types of streams: 
 [1]	input: To create an input stream, declare an object of type ifstream.
 [2]	output: To create an output stream, declare an object of type ofstream. 
