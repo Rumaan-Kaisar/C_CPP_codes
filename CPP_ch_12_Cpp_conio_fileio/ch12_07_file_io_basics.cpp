@@ -1,11 +1,36 @@
 
 /*  ------------------------    File I/O in C++    ------------------------
 
+    The same class hierarchy that supports "CONSOLE I/O" also supports "FILE I/O".  
+
+    --------  File I/O Basics  --------
+    To use file I/O, include:
+
+                #include <fstream>
+
+
+The main classes are:
+
+ifstream → for input (reading from file)
+
+ofstream → for output (writing to file)
+
+fstream → for both input and output
+
+These are derived from istream and ostream, which are derived from ios.
+So, they inherit all the features of standard I/O streams.
+
+
 ----  rev[31-Oct-2025]  ----
 
 
 12.7 File I/O 
-	The same class hierarchy that supports console I/O also supports file I/O.  To perform file I/O, you must include the header <fstream> in your program. It defines several classes, including ifstream, ofstream, and fstream which are derived from istream & ostream. And istream, ostream are derived fron ios. 
+
+
+
+
+It defines several classes, including ifstream, ofstream, and fstream which are derived from istream & ostream. And istream, ostream are derived fron ios. 
+
 	So ifstream, ofstream, and fstream also have access to all operations defined by ios.
 	In C++, a file is opened by linking it to a stream. Before you can open a file, you must first obtain a stream.  There are three types of streams: 
 [1]	input: To create an input stream, declare an object of type ifstream.
@@ -86,25 +111,7 @@ return 0; }
 
 Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
 
-1. File I/O Basics
 
-File I/O in C++ uses the same stream classes as console I/O.
-
-To use file I/O, include:
-
-#include <fstream>
-
-
-The main classes are:
-
-ifstream → for input (reading from file)
-
-ofstream → for output (writing to file)
-
-fstream → for both input and output
-
-These are derived from istream and ostream, which are derived from ios.
-So, they inherit all the features of standard I/O streams.
 
 
 
