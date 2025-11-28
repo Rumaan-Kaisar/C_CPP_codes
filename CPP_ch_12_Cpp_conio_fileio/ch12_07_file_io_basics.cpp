@@ -275,8 +275,14 @@ Would you like me to include a short diagram showing the hierarchy (ios → istr
 
 
 
-Example 1: Here is a program that creates an output file, write information to it, closes the file and
-opens it again as an input file, and reads in the information:
+/* Example 1: Here is a program that creates an output file, write information to it, closes the file and
+opens it again as an input file, and reads in the information: 
+
+After you run this program, examine the contents of test. It will contain the following:
+Hello!
+100 64
+As stated earlier, when the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
+*/
 
 # include <iostream >
 # include <fstream >
@@ -307,10 +313,9 @@ cout << str << ’ ’ << i << endl ;
 fin . close ();
 return 0;
 }
-After you run this program, examine the contents of test. It will contain the following:
-Hello!
-100 64
-As stated earlier, when the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
+
+
+
 
 
 
@@ -443,8 +448,8 @@ Enrico Fermi, 202 555-1111
 
 
 
-Example 3: Write a program that counts the number of words in a file. For simplicity, assume that
-anything surrounded by whitespace is a word.
+/* Example 3: Write a program that counts the number of words in a file. For simplicity, assume that
+anything surrounded by whitespace is a word. */
 
 
 
