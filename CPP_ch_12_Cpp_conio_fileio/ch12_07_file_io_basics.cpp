@@ -4,6 +4,7 @@
     The same class hierarchy that supports "CONSOLE I/O" also supports "FILE I/O".  
 
     --------  File I/O Basics  --------
+
     To use file I/O, include:
 
                 #include <fstream>
@@ -20,21 +21,35 @@
 
     So ifstream, ofstream, and fstream also have access to all operations defined by ios.
 
+
+    --------  Opening Files  --------
+
+    In C++, a file is opened by "linking it to a STREAM". 
+    Before you can open a file, you must first obtain a STREAM.  
+
+
+    There are three types of streams: 
+
+        input:
+            To create an input stream, declare an object of type "ifstream".
+
+        output:
+            To create an output stream, declare an object of type "ofstream". 
+
+        input/output:
+            Streams that will be performing "both input and output operations" 
+            must be declared as objects of type "fstream". 
+
+
 ----  rev[31-Oct-2025]  ----
 
-
-12.7 File I/O 
-
-
-	In C++, a file is opened by linking it to a stream. Before you can open a file, you must first obtain a stream.  There are three types of streams: 
-[1]	input: To create an input stream, declare an object of type ifstream.
-[2]	output: To create an output stream, declare an object of type ofstream. 
-[3]	input/output: Streams that will be performing both input and output operations must be declared as objects of type fstream. 
 
 For example, this fragment creates an input stream, an output stream, and one stream capable of both input and output:
 ifstream in; 		// input
 ofstream out; 	// output
 fstream io; 		// input and output
+
+
 	Associate stream with a file: Use the function open() to associate a stream with a file. This function is a member of each ifstream, ofstream, and fstream. The prototype for each:
 
 void ifstream :: open(const char *filename, openmode mode = ios::in);
@@ -109,17 +124,7 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 
 
-2. Creating Streams
-
-There are three stream types:
-
-ifstream in;   // input (read)
-ofstream out;  // output (write)
-fstream io;    // both input and output
-
-
-
-3. Opening Files
+3. 
 
 Use the open() function:
 
