@@ -3,6 +3,7 @@
 
     The same class hierarchy that supports "CONSOLE I/O" also supports "FILE I/O".  
 
+
     --------  File I/O Basics  --------
 
     To use file I/O, include:
@@ -22,11 +23,11 @@
     So ifstream, ofstream, and fstream also have access to all operations defined by ios.
 
 
+
     --------  Opening Files  --------
 
     In C++, a file is opened by "linking it to a STREAM". 
     Before you can open a file, you must first obtain a STREAM.  
-
 
     There are three types of streams: 
 
@@ -40,15 +41,17 @@
             Streams that will be performing "both input and output operations" 
             must be declared as objects of type "fstream". 
 
+    Example:
+        Following fragment creates an input stream, an output stream, and 
+        one stream capable of both input and output:
 
-----  rev[31-Oct-2025]  ----
+                ifstream in;        // input
+                ofstream out;       // output
+                fstream io;         // input and output
 
 
-For example, this fragment creates an input stream, an output stream, and one stream capable of both input and output:
-ifstream in; 		// input
-ofstream out; 	// output
-fstream io; 		// input and output
 
+----  rev[01-Nov-2025]  ----
 
 	Associate stream with a file: Use the function open() to associate a stream with a file. This function is a member of each ifstream, ofstream, and fstream. The prototype for each:
 
