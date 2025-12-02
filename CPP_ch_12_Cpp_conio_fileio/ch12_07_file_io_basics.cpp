@@ -51,15 +51,19 @@
 
 
 
-----  rev[01-Nov-2025]  ----
+    --------  Associate STREAM with a file  --------
 
-	Associate stream with a file: Use the function open() to associate a stream with a file. This function is a member of each ifstream, ofstream, and fstream. The prototype for each:
+    Use the open() function to associate a STREAM with a file.
+    open() is a member of each ifstream, ofstream, and fstream. 
+    
+    The prototype for each:
 
-void ifstream :: open(const char *filename, openmode mode = ios::in);
+        void ifstream :: open(const char *filename, openmode mode = ios::in);
+        void ofstream :: open(const char *filename, openmode mode = ios::out | ios::trunc );
+        void fstream :: open(const char *filename, openmode mode = ios::in | ios::out);
 
-void ofstream :: open(const char *filename, openmode mode = ios::out | ios::trunc );
 
-void fstream :: open(const char *filename, openmode mode = ios::in | ios::out);
+----  rev[02-Dec-2025]  ----
 
 	Here filename is the name of the file, which can include a path specifier. 
 	The value of mode determines how the file is opened. It must be a value of type openmode, which is an enumeration defined by ios that contains the following values:
@@ -129,7 +133,7 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 3. 
 
-Use the open() function:
+:
 
 ifstream::open(const char *filename, openmode mode = ios::in);
 ofstream::open(const char *filename, openmode mode = ios::out | ios::trunc);
