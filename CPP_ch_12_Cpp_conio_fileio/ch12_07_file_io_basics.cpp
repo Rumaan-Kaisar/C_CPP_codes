@@ -65,8 +65,12 @@
 
 ----  rev[02-Dec-2025]  ----
 
-	Here filename is the name of the file, which can include a path specifier. 
-	The value of mode determines how the file is opened. It must be a value of type openmode, which is an enumeration defined by ios that contains the following values:
+
+It must be a value of type "openmode", which is an enumeration defined by "ios" 
+that contains the following values:
+
+
+
 1.	ios::app causes all output to that file to be appended to the end. This value can be used only with files capable of output. 
 2.	ios::ate causes a seek to the end-of-file to occur when the file is opened (I/O can still occur anywhere within the file).
 3.	ios::binary value causes a file to be opened in binary mode (text is default mode). In binary mode no character translations (carriage return/linefeed sequences) will occur.
@@ -135,16 +139,14 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 :
 
-ifstream::open(const char *filename, openmode mode = ios::in);
-ofstream::open(const char *filename, openmode mode = ios::out | ios::trunc);
-fstream::open(const char *filename, openmode mode = ios::in | ios::out);
+
 
 
 Parameters:
 
-filename → name or path of the file.
+filename: name or path of the file.
 
-mode → defines how the file is opened (using flags from ios).
+mode: defines how the file is opened (using flags from ios).
 
 
 
