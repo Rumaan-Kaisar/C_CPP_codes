@@ -62,13 +62,30 @@
         void ofstream :: open(const char *filename, openmode mode = ios::out | ios::trunc );
         void fstream :: open(const char *filename, openmode mode = ios::in | ios::out);
 
+        Parameters:
+            filename: name or path of the file.
+            mode: defines how the file is opened (using flags from ios).
 
-----  rev[02-Dec-2025]  ----
+            It must be a value of type "openmode", which is an enumeration defined by "ios" 
+                that contains the following "File Opening Modes".
 
 
-It must be a value of type "openmode", which is an enumeration defined by "ios" 
-that contains the following values:
+    --------  File Opening Modes  --------
 
+    ----------------------------------------------------------------
+    Mode            Meaning
+
+    ios::app        Append new data at end of file.
+    ios::ate        Move pointer to end of file on open (I/O anywhere still allowed).
+    ios::binary     Open file in binary mode (no text translation).
+    ios::in         Open file for input (reading).
+    ios::out        Open file for output (writing).
+    ios::trunc      Delete old contents if file already exists.
+    ----------------------------------------------------------------
+
+    These modes can be combined using the bitwise OR operator (|).
+
+----  rev[04-Dec-2025]  ----
 
 
 1.	ios::app causes all output to that file to be appended to the end. This value can be used only with files capable of output. 
@@ -77,6 +94,10 @@ that contains the following values:
 4.	ios::in value specifies that the file is capable of input. 
 5.	ios::out value specifies that the file is capable of output.
 6.	ios::trunc value causes the contents of a preexisting file by the same name to be destroyed and the file to be truncated to zero length. 
+
+
+
+
 	When output stream using ofstream created, any preexisting file with the same name is automatically truncated.
 	These six values can be combined using OR.
 	Example 1: The following fragment opens an output file called test:
@@ -142,24 +163,9 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 
 
-Parameters:
-
-filename: name or path of the file.
-
-mode: defines how the file is opened (using flags from ios).
 
 
 
-4. Common File Opening Modes
-Mode	Meaning
-ios::app	Append new data at end of file.
-ios::ate	Move pointer to end of file on open (I/O anywhere still allowed).
-ios::binary	Open file in binary mode (no text translation).
-ios::in	Open file for input (reading).
-ios::out	Open file for output (writing).
-ios::trunc	Delete old contents if file already exists.
-
-These modes can be combined using the bitwise OR operator (|).
 
 Example:
 
