@@ -86,13 +86,11 @@
                     (text is default IO mode)
     
     ios::in         Open file for input (reading).
-
     
     ios::out        Open file for output (writing).
-
     
     ios::trunc      Delete old contents if file already exists.
-
+                    the file to be truncated to zero length.
     
     ----------------------------------------------------------------
 
@@ -100,14 +98,7 @@
 
 
 
-----  rev[04-Dec-2025]  ----
-
-
-
-
-6.	ios::trunc value causes the contents of a preexisting file by the same name to be destroyed and the file to be truncated to zero length. 
-
-
+----  rev[05-Dec-2025]  ----
 
 
 	When output stream using ofstream created, any preexisting file with the same name is automatically truncated.
