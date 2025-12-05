@@ -76,20 +76,35 @@
     Mode            Meaning
 
     ios::app        Append new data at end of file.
-    ios::ate        Move pointer to end of file on open (I/O anywhere still allowed).
+                    This value can be used only with files capable of output.
+    
+    ios::ate        Move pointer to end-of-file on open (I/O anywhere still allowed).
+
+    
     ios::binary     Open file in binary mode (no text translation).
+
+    
     ios::in         Open file for input (reading).
+
+    
     ios::out        Open file for output (writing).
+
+    
     ios::trunc      Delete old contents if file already exists.
+
+    
     ----------------------------------------------------------------
 
     These modes can be combined using the bitwise OR operator (|).
 
+
+
 ----  rev[04-Dec-2025]  ----
 
 
-1.	ios::app causes all output to that file to be appended to the end. This value can be used only with files capable of output. 
-2.	ios::ate causes a seek to the end-of-file to occur when the file is opened (I/O can still occur anywhere within the file).
+
+
+2.	ios::ate causes a seek to the  to occur when the file is opened (I/O can still occur anywhere within the file).
 3.	ios::binary value causes a file to be opened in binary mode (text is default mode). In binary mode no character translations (carriage return/linefeed sequences) will occur.
 4.	ios::in value specifies that the file is capable of input. 
 5.	ios::out value specifies that the file is capable of output.
