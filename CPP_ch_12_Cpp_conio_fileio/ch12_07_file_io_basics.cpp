@@ -97,15 +97,28 @@
     These modes can be combined using the bitwise OR operator (|).
 
 
+    NOTE:
+        Above six values can be combined using OR.
+
+        default truncation:
+            When output stream using "ofstream" created, 
+            any preexisting file with the same name is automatically truncated.
+
+    Example: 
+        The following fragment opens an output file called "test":
+
+                    ofstream mystream;
+                    mystream.open("test");
+
+            we can also sepecify the file extension:
+
+                    ofstream mystream;
+                    mystream.open("test.txt");
+
+
 
 ----  rev[05-Dec-2025]  ----
 
-
-	When output stream using ofstream created, any preexisting file with the same name is automatically truncated.
-	These six values can be combined using OR.
-	Example 1: The following fragment opens an output file called test:
-ofstream mystream;
-mystream.open(" test ");
 	Since the mode parameter to open() defaults to a value appropriate to the type of stream being opened, there is no need to specify its value in the preceding example.
 	Confirmation test: If open() fails, the stream will evaluate to false when used in a Boolean expression. Which can be used in a confirmation test (consider Example 1) :
 if(!mystream) { 	cout << "Cannot open file. \n"; 
@@ -172,8 +185,7 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 Example:
 
-ofstream mystream;
-mystream.open("test.txt");
+
 
 
 (Since the default mode for ofstream is ios::out | ios::trunc, no need to specify it.)
