@@ -115,12 +115,21 @@
                     ofstream mystream;
                     mystream.open("test.txt");
 
+    Since the mode parameter to open() defaults to a value appropriate to the type of stream being opened, 
+        there is no need to specify its value in the preceding example.
 
+
+    --------  Confirmation test  --------
+    If open() fails, the stream will evaluate to "false" when used in a Boolean expression. 
+    Which can be used in a confirmation test (consider previous Example):    
 
 ----  rev[05-Dec-2025]  ----
 
-	Since the mode parameter to open() defaults to a value appropriate to the type of stream being opened, there is no need to specify its value in the preceding example.
-	Confirmation test: If open() fails, the stream will evaluate to false when used in a Boolean expression. Which can be used in a confirmation test (consider Example 1) :
+
+
+
+
+
 if(!mystream) { 	cout << "Cannot open file. \n"; 
 // handle error  	}
 	Always check the result of a call to open() before attempting to access the file.
@@ -188,11 +197,11 @@ Example:
 
 
 
-(Since the default mode for ofstream is ios::out | ios::trunc, no need to specify it.)
 
 
 
-5. Checking if File Opened Successfully
+
+
 
 You can check using:
 
