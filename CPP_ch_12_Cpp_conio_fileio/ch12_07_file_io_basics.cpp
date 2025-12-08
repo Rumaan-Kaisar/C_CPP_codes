@@ -123,20 +123,32 @@
     If open() fails, the stream will evaluate to "false" when used in a Boolean expression. 
     Which can be used in a confirmation test (consider previous Example):    
 
-----  rev[05-Dec-2025]  ----
+    You can check using:
+
+            if(!mystream) {
+                cout << "Cannot open file.\n";
+                // handle error
+            }
+    or
+            if(!mystream.is_open()) {
+                cout << "File is not open.\n";
+                . . .
+            }
+
+        is_open() returns "true" if stream is linked to an open file and "false" otherwise.
+
+
+    Note:
+        Always check the result of a call to open() before attempting to access the file.
+        Use the is_open() function to see if a file successfully opened.
+        is_open() is a member of fstream, ifstream, and ofstream. 
+        It has this prototype:	 
+                    bool is_open();
+
+----  rev[07-Dec-2025]  ----
 
 
 
-
-
-
-if(!mystream) { 	cout << "Cannot open file. \n"; 
-// handle error  	}
-	Always check the result of a call to open() before attempting to access the file.
-	Use the is_open() function to see if a file successfully opened. is_open() is a member of fstream, ifstream, and ofstream. It has this prototype:	 bool is_open();
-	It returns true if the stream is linked to an open file and false otherwise. For example, the following checks if mystream is currently open:
-if( !mystream.is_open() ){	cout << " File is not open .\n";
-. . . . . }
 	Bypass the open() function: Most of the times we don’t need to use the function open() because the ifstream, ofstream, and fstream classes have constructor functions that automatically open the file. And those constructor functions have the same parameters and defaults as the open().  Therefore, the most common way to open a file is:
 ifstream mystream("myfile");  		// open file for input
 	If the file cannot be opened, the stream variable will evaluate as false when used in a conditional/Boolean statement. 
@@ -202,22 +214,6 @@ Example:
 
 
 
-
-You can check using:
-
-if (!mystream) {
-    cout << "Cannot open file.\n";
-}
-
-
-or
-
-if (!mystream.is_open()) {
-    cout << "File is not open.\n";
-}
-
-
-is_open() returns true if the file is successfully opened.
 
 
 
