@@ -145,14 +145,29 @@
         It has this prototype:	 
                     bool is_open();
 
+
+    --------  Bypass the open() function  --------
+
+    Because the ifstream, ofstream, and fstream classes have constructors 
+        that automatically open the file. 
+        And those constructors have the same parameters and defaults as the open().
+
+        Therefore, Instead of using open(), you can open files directly when declaring:
+
+                ifstream mystream("myfile.txt");    // open file for reading
+
+    
+    Still use confirmation test:
+        If file opening failed, the "stream" variable will evaluate as false 
+        when used in a conditional/Boolean statement. 
+
+                if(!mystream) cout << "Cannot open file.\n";
+
+
 ----  rev[07-Dec-2025]  ----
 
 
 
-	Bypass the open() function: Most of the times we don’t need to use the function open() because the ifstream, ofstream, and fstream classes have constructor functions that automatically open the file. And those constructor functions have the same parameters and defaults as the open().  Therefore, the most common way to open a file is:
-ifstream mystream("myfile");  		// open file for input
-	If the file cannot be opened, the stream variable will evaluate as false when used in a conditional/Boolean statement. 
-	Therefore, in this case we also need the confirmation test as stated above.
 	Closing a file: To close a file, use the member function close(). For example, to close the file linked to a stream called mystream:
 mystream.close();
 	The close() function takes no parameters and returns no value.
@@ -219,14 +234,12 @@ Example:
 
 6. Alternative: Open File Using Constructor
 
-Instead of using open(), you can open files directly when declaring:
-
-ifstream mystream("myfile.txt");  // open file for reading
 
 
-Still, check if it opened successfully:
 
-if (!mystream) cout << "Cannot open file.\n";
+
+
+
 
 
 
