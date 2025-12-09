@@ -24,7 +24,7 @@
 
 
 
-    --------  Opening Files  --------
+    ----------------    Opening Files    ----------------
 
     In C++, a file is opened by "linking it to a STREAM". 
     Before you can open a file, you must first obtain a STREAM.  
@@ -166,14 +166,29 @@
 
 ----  rev[07-Dec-2025]  ----
 
+    ----------------    closing a file    ----------------
+
+    To close a file, use the member function close(). 
+    For example, to close the file linked to a stream called "mystream":
+
+                mystream.close();
+
+        The close() function takes no parameters and returns no value.
 
 
-	Closing a file: To close a file, use the member function close(). For example, to close the file linked to a stream called mystream:
-mystream.close();
-	The close() function takes no parameters and returns no value.
-	The eof() function: Use the eof() member function of ios to detect when the end-of-input-file has been reach. It has this prototype:
-bool eof();
-	It returns true when the end-of-file has been encountered and false otherwise.
+    ----  eof  ----
+
+    Use the eof() member function of "ios" to detect when the "end-of-input-file" has been reach. 
+        It has this prototype:
+
+                bool eof();
+
+        It returns "true" when the end-of-file has been "encountered" and "false" otherwise.
+
+
+    ----  text I/O  ----
+
+
 	Read/Write textual data: to read/write textual data from/to an opened file we simply use << and >> operators (more like C's fprintf() and fscanf()).
 	A file produced by using << is a formatted text file. A file read by >> must be a formatted text file. 
 	Typically, formatted text files are operated through the >> and << operators. They are not for binary mode.  Binary mode is best used on unformatted files.
@@ -203,42 +218,6 @@ return 0; }
 ----  GPT  ----
 
 Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
-
-
-
-
-
-3. 
-
-:
-
-
-
-
-
-
-
-
-Example:
-
-
-
-
-
-
-
-
-
-
-
-
-6. Alternative: Open File Using Constructor
-
-
-
-
-
-
 
 
 
