@@ -205,24 +205,9 @@
 */  
 
 
-/* Example 2: Following creates an output file, write information to it, closes the file and opens it again as an input file, and reads in the information:
-#include<iostream>
-#include<fstream>
-using namespace std;
-int main(){ ofstream f_out("test"); 	// create output file
-if(!f_out){	cout << "Cannot open output file .\n";
-return 1;} 		//notice !f_out Boolean!!!
-f_out << "Hello !\n";
-f_out << 100 << ' ' << hex << 100 << endl ;
-f_out.close(); 			//closing the created file 	ifstream f_in("test"); 	//open input file
-if(!f_in ){ 	cout << "Cannot open input file .\n";
-		return 1; }
-char str[80];
-int i;
-f_in >> str >> i;
-cout << str << ' ' << i << endl ;
-f_in.close(); 		//closing the opened file
-return 0; }
+/* Example 2: Following creates an output file, write information to it, closes the file 
+                and opens it again as an input file, and reads in the information.
+
 	When the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
 
 
@@ -233,6 +218,31 @@ return 0; }
 Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
 
  */
+
+#include <iostream>
+#include <fstream>
+
+int main(){
+    ofstream f_out("test");     // create output file
+
+    // confirmation test
+    if(!f_out){
+        std::cout << "Cannot open output file .\n";
+        return 1;   //notice !f_out Boolean!!!
+    }
+
+    f_out << "Hello !\n";
+    f_out << 100 << ' ' << std::hex << 100 << std::endl ;
+f_out.close(); 			//closing the created file 	ifstream f_in("test"); 	//open input file
+if(!f_in ){ 	cout << "Cannot open input file .\n";
+		return 1; }
+char str[80];
+int i;
+f_in >> str >> i;
+cout << str << ' ' << i << endl ;
+f_in.close(); 		//closing the opened file
+return 0; }
+
 
 
 10. Example Program
