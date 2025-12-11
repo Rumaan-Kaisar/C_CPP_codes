@@ -187,11 +187,26 @@
 
 
     ----  text I/O  ----
+    To read/write textual data from/to an opened file use "<<" and ">>" operators 
+    (more like C's fprintf() and fscanf()).
+
+    just like console I/O:
+
+                f_out << "Hello\n";
+                f_in >> str;
+
+        A file produced by using << is a "formatted text file". 
+        A file read by >> must be a "formatted text file." 
+
+        Typically, formatted text files are operated through the >> and << operators. 
+        They are not for binary mode.  
+
+        Binary mode is best used on UNFORMATTED files.
 
 
-	Read/Write textual data: to read/write textual data from/to an opened file we simply use << and >> operators (more like C's fprintf() and fscanf()).
-	A file produced by using << is a formatted text file. A file read by >> must be a formatted text file. 
-	Typically, formatted text files are operated through the >> and << operators. They are not for binary mode.  Binary mode is best used on unformatted files.
+
+
+
 	Example 2: Following creates an output file, write information to it, closes the file and opens it again as an input file, and reads in the information:
 #include<iostream>
 #include<fstream>
@@ -229,10 +244,9 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 9. Reading and Writing Text
 
-Use << and >> just like console I/O:
+Use << and >> 
 
-f_out << "Hello\n";
-f_in >> str;
+
 
 
 These work with formatted text files.
