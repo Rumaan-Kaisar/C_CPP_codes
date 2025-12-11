@@ -202,12 +202,10 @@
         They are not for binary mode.  
 
         Binary mode is best used on UNFORMATTED files.
+*/  
 
 
-
-
-
-	Example 2: Following creates an output file, write information to it, closes the file and opens it again as an input file, and reads in the information:
+/* Example 2: Following creates an output file, write information to it, closes the file and opens it again as an input file, and reads in the information:
 #include<iostream>
 #include<fstream>
 using namespace std;
@@ -234,25 +232,7 @@ return 0; }
 
 Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
 
-
-
-
-
-
-
-
-
-9. Reading and Writing Text
-
-Use << and >> 
-
-
-
-
-These work with formatted text files.
-
-For binary files, use binary mode (ios::binary).
-
+ */
 
 
 10. Example Program
@@ -286,7 +266,7 @@ int main() {
     return 0;
 }
 
-
+/* 
 Explanation:
 
 Writes "Hello!" and two integers (100 and 100 in hex).
@@ -300,7 +280,11 @@ Hello! 100
 
 Would you like me to include a short diagram showing the hierarchy (ios → istream/ostream → ifstream/ofstream/fstream)? It’ll make this even clearer visually.
 
-*/  
+
+ */
+
+
+
 
 
 
