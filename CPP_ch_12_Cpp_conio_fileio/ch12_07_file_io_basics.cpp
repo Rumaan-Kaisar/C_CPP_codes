@@ -222,25 +222,8 @@ Here’s a clear and simplified explanation of your note on C++ File I/O (Input/
 
 
 
-7. Closing Files
-
-Use:
-
-mystream.close();
 
 
-It takes no arguments and returns nothing.
-
-
-
-8. Detecting End of File
-
-Use the function:
-
-bool eof();
-
-
-It returns true if the end of file has been reached.
 
 
 
