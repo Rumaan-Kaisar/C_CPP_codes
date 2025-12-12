@@ -205,6 +205,8 @@
 */  
 
 
+
+
 /* Example 2: Following creates an output file, write information to it, closes the file 
                 and opens it again as an input file, and reads in the information.
 
@@ -241,10 +243,12 @@ int main(){
     }
 
     char str[80];
-    int i;
+    int i, j;   // to print the hex value, use another variable 'j'
 
     f_in >> str >> i;
     std::cout << str << ' ' << i << std::endl ;
+    // f_in >> str >> i >> j;
+    // std::cout << str << ' ' << i << ' ' << j << std::endl ;
     f_in.close();   //closing the opened file
 
     return 0; 
@@ -253,7 +257,7 @@ int main(){
 
 
 
-
+// ----  rev[12-Dec-2025]  ----
 
 /* 
 Explanation:
@@ -271,47 +275,6 @@ Would you like me to include a short diagram showing the hierarchy (ios → istr
 
 
  */
-
-
-
-
-
-
-/* Example 1: Here is a program that creates an output file, write information to it, closes the file and
-opens it again as an input file, and reads in the information: 
-
-After you run this program, examine the contents of test. It will contain the following:
-Hello!
-100 64
-As stated earlier, when the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
-*/
-
-#include <iostream>
-#include <fstream>
-
-int main() {
-ofstream fout (" test "); // create output file
-if (! fout )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-fout << " Hello !\n";
-fout << 100 << ’ ’ << hex << 100 << endl ;
-fout . close ();
-ifstream fin (" test "); // open input file
-if (! fin )
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-char str [80];
-int i;
-fin >> str >> i;
-cout << str << ’ ’ << i << endl ;
-fin . close ();
-return 0;
-}
 
 
 
