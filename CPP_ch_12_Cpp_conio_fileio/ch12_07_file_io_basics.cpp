@@ -208,22 +208,18 @@
 /* Example 2: Following creates an output file, write information to it, closes the file 
                 and opens it again as an input file, and reads in the information.
 
-	When the << and >> operators are used to perform file I/O, information is formatted exactly as it would appear on the screen.
+                When the << and >> operators are used to perform file I/O, 
+                    information is formatted exactly as it would appear on the screen.
 
-
-
-
-----  GPT  ----
-
-Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
-
- */
+                Here’s a clear and simplified explanation of your note on C++ File I/O (Input/Output):
+*/
 
 #include <iostream>
 #include <fstream>
 
 int main(){
-    ofstream f_out("test");     // create output file
+    // ----  create  ----
+    std::ofstream f_out("test");     // create output file
 
     // confirmation test
     if(!f_out){
@@ -231,50 +227,33 @@ int main(){
         return 1;   //notice !f_out Boolean!!!
     }
 
-    f_out << "Hello !\n";
+    f_out << "Hello!\n";   // using space in between will create a issue: "Hello !\n"
+    // if we use a space ' ' like in "Hello !\n", then '!' is treated as a number
     f_out << 100 << ' ' << std::hex << 100 << std::endl ;
-f_out.close(); 			//closing the created file 	ifstream f_in("test"); 	//open input file
-if(!f_in ){ 	cout << "Cannot open input file .\n";
-		return 1; }
-char str[80];
-int i;
-f_in >> str >> i;
-cout << str << ' ' << i << endl ;
-f_in.close(); 		//closing the opened file
-return 0; }
+    f_out.close();  //closing the created file 	
 
+    // ----  open  ----
+    std::ifstream f_in("test"); //open input file
 
-
-10. Example Program
-#include <iostream>
-#include <fstream>
-using namespace std;
-
-int main() {
-    ofstream f_out("test");  // create and open output file
-    if (!f_out) {
-        cout << "Cannot open output file.\n";
-        return 1;
-    }
-
-    f_out << "Hello!\n";
-    f_out << 100 << ' ' << hex << 100 << endl;
-    f_out.close();
-
-    ifstream f_in("test");  // open for reading
-    if (!f_in) {
-        cout << "Cannot open input file.\n";
-        return 1;
+    if(!f_in ){ 
+        std::cout << "Cannot open input file .\n";
+        return 1; 
     }
 
     char str[80];
     int i;
-    f_in >> str >> i;
-    cout << str << ' ' << i << endl;
-    f_in.close();
 
-    return 0;
+    f_in >> str >> i;
+    std::cout << str << ' ' << i << std::endl ;
+    f_in.close();   //closing the opened file
+
+    return 0; 
 }
+
+
+
+
+
 
 /* 
 Explanation:
