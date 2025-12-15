@@ -260,15 +260,18 @@ int main(){
 // ----  rev[12-Dec-2025]  ----
 
 /* 
-Explanation:
-
-Writes "Hello!" and two integers (100 and 100 in hex).
-
-Then reopens the same file and reads the first two items.
+Explanation: 
+    it Writes "Hello!" and two integers (100 and 100 in hex).
+    Then reopens the same file and reads the first two items.
 
 Output on console:
 
-Hello! 100
+Hello! 100 64
+
+
+why "Hello !" breaks it?
+There is a "space" between Hello and !
+
 
 
 Would you like me to include a short diagram showing the hierarchy (ios → istream/ostream → ifstream/ofstream/fstream)? It’ll make this even clearer visually.
