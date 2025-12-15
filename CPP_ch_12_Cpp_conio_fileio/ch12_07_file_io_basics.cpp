@@ -255,33 +255,63 @@ int main(){
 }
 
 
+/*  ----------------    Explanation    ----------------
+
+    It Writes "Hello!" and two integers (100 and 100 in hex).
+        Then reopens the same file and reads the first two items.
+
+    Output on console:
+
+                Hello! 100 64
 
 
-// ----  rev[12-Dec-2025]  ----
+    --------  why "Hello !" breaks it?  --------
+    There is a "space" between Hello and !
 
-/* 
-Explanation: 
-    it Writes "Hello!" and two integers (100 and 100 in hex).
-    Then reopens the same file and reads the first two items.
+    So operator '>>' tokenizes like this:
 
-Output on console:
-
-Hello! 100 64
-
-
-why "Hello !" breaks it?
-There is a "space" between Hello and !
+        "Hello"      ← token 1
+        "!"          ← token 2
+        "100"        ← token 3
+        "64"         ← no token
 
 
+    Now look at our read statement:
 
-Would you like me to include a short diagram showing the hierarchy (ios → istream/ostream → ifstream/ofstream/fstream)? It’ll make this even clearer visually.
-
-
- */
+        f_in >> str >> i >> j;
 
 
+    This becomes:
+
+        Variable    What it tries to read       Token it sees       Result
+        --------------------------------------------------------------------------------
+        str         string token                "Hello"             OK
+        i           integer token               "!"                 ❌ FAIL (not a number)
+        j           integer token               "100"               NOT read because stream is in failed state
+        -           no token                    "64"                NOT read
 
 
+    So, following fragment will fail if "Hello !" is used:
+
+                char str[80];
+                int i, j;   // to print the hex value, use another variable 'j'
+
+                f_in >> str >> i >> j;
+                std::cout << str << ' ' << i << ' ' << j << std::endl ;
+
+    following will solve the problem:
+
+                char str[80], c;    // new char variable for '!'
+                int i, j;   // to print the hex value, use another variable 'j'
+
+                f_in >> str >> c >> i >> j;
+                std::cout << str << ' ' << c << ' ' << i << ' ' << j << std::endl ;
+
+*/
+
+
+
+// ----  rev[15-Dec-2025]  ----
 
 
 
