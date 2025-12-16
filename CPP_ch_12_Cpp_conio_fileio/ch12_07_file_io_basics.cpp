@@ -311,27 +311,25 @@ int main(){
 
 
 
-// ----  rev[15-Dec-2025]  ----
 
+/* Example 2: Following program reads strings entered at the keyboard and writes them to disk (disk I/O). 
+                The program stops when the user enters a '$' as the first character in a string.
 
+                To use the program, specify the name of the output file on the command line.
+                [Recall "C_Ch5_3_2_main_param.c" for Command-line argument] 
+*/
 
-/* Example 2: Following is another example of disk I/O. This program reads strings entered at the
-keyboard and writes them to disk. The program stops when the user enters a $ as the
-first character in a string. To use the program, specify the name of the output file on the
-command line. */
 #include <iostream>
 #include <fstream>
 
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : WRITE <filename >\n";
-return 1;
-}
-ofstream out ( argv [1]) ; // output file
-240ADVANCED C++ I/O
-9.2. FILE I/O BASICS
+int main(int argc, char *argv[]) {
+    if(argc != 2){
+        std::cout << " Usage : WRITE <filename >\n";
+        return 1;
+    }
+
+    ofstream out(argv[1]) ; // output file
+
 if (! out )
 {
 cout << " Cannot open output file .\n";
@@ -351,6 +349,8 @@ return 0;
 }
 
 
+
+// ----  rev[16-Dec-2025]  ----
 
 
 /* Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
