@@ -310,6 +310,7 @@ int main(){
 */
 
 
+// ----  rev[16-Dec-2025]  ----
 
 
 /* Example 2: Following program reads strings entered at the keyboard and writes them to disk (disk I/O). 
@@ -330,27 +331,50 @@ int main(int argc, char *argv[]) {
 
     ofstream out(argv[1]) ; // output file
 
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-char str [80];
-cout << " Write strings to disk , ’$’ to stop \n";
-do
-{
-cout << ": ";
-cin >> str ;
-out << str << endl ;
-}
-while (* str != ’$’);
-out . close ();
-return 0;
+    if(!out){
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    char str[80];
+
+    std::cout << " Write strings to disk , '$' to stop \n";
+    // writing to disk
+    do{
+        std::cout << ": ";
+        std::cin >> str;
+        out << str << std::endl;
+    } while (*str != '$');
+    
+    out.close();
+
+    return 0;
 }
 
 
+/*  
 
-// ----  rev[16-Dec-2025]  ----
+    // ----  open  ----
+    std::ifstream f_in("test"); //open input file
+
+    if(!f_in ){ 
+        std::cout << "Cannot open input file .\n";
+        return 1; 
+    }
+
+    char str[80];
+    int i, j;   // to print the hex value, use another variable 'j'
+
+    f_in >> str >> i;
+    std::cout << str << ' ' << i << std::endl ;
+    // f_in >> str >> i >> j;
+    // std::cout << str << ' ' << i << ' ' << j << std::endl ;
+    f_in.close();   //closing the opened file
+
+
+*/
+
+
 
 
 /* Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
