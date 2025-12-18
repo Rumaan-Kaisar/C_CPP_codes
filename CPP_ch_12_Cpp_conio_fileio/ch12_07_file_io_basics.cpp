@@ -329,7 +329,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    ofstream out(argv[1]) ; // output file
+    std::ofstream out(argv[1]) ; // output file
 
     if(!out){
         std::cout << " Cannot open output file .\n";
@@ -351,6 +351,9 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
+// save the program as "ch12_07_file_io_basics_1.cpp" after compile, in CLI execute following
+// ch12_07_file_io_basics_1 Hoolo meaw
+
 
 /*  
 
@@ -367,8 +370,6 @@ int main(int argc, char *argv[]) {
 
     f_in >> str >> i;
     std::cout << str << ' ' << i << std::endl ;
-    // f_in >> str >> i >> j;
-    // std::cout << str << ' ' << i << ' ' << j << std::endl ;
     f_in.close();   //closing the opened file
 
 
