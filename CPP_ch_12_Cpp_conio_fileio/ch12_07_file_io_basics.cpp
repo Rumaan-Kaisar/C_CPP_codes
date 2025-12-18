@@ -306,11 +306,9 @@ int main(){
 
                 f_in >> str >> c >> i >> j;
                 std::cout << str << ' ' << c << ' ' << i << ' ' << j << std::endl ;
-
 */
 
 
-// ----  rev[16-Dec-2025]  ----
 
 
 /* Example 2: Following program reads strings entered at the keyboard and writes them to disk (disk I/O). 
@@ -318,6 +316,14 @@ int main(){
 
                 To use the program, specify the name of the output file on the command line.
                 [Recall "C_Ch5_3_2_main_param.c" for Command-line argument] 
+
+
+                save the program as "ch12_07_file_io_basics_1.cpp" after compile, 
+                    in CLI execute following (in the directory where program compiled)
+
+                        ch12_07_file_io_basics_1 output.txt
+
+                then it ask for input and '$' to stop
 */
 
 #include <iostream>
@@ -351,31 +357,8 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// save the program as "ch12_07_file_io_basics_1.cpp" after compile, in CLI execute following
-// ch12_07_file_io_basics_1 Hoolo meaw
 
-
-/*  
-
-    // ----  open  ----
-    std::ifstream f_in("test"); //open input file
-
-    if(!f_in ){ 
-        std::cout << "Cannot open input file .\n";
-        return 1; 
-    }
-
-    char str[80];
-    int i, j;   // to print the hex value, use another variable 'j'
-
-    f_in >> str >> i;
-    std::cout << str << ' ' << i << std::endl ;
-    f_in.close();   //closing the opened file
-
-
-*/
-
-
+// ----  rev[16-Dec-2025]  ----
 
 
 /* Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
