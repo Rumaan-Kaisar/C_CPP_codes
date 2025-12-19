@@ -361,15 +361,16 @@ int main(int argc, char *argv[]) {
 // ----  rev[16-Dec-2025]  ----
 
 
-/* Example 3: Following is a program that copies a text file and, in the process, converts all spaces into
-j symbols. Notice how eof() is used to check for the end of input file. Notice also how the
-input stream fin has its skipws flag turned off. This prevents leading spaces from being
-skipped. */
+/* Example 3: Following is a program that "copies a text file" and, in the process, converts all spaces into '|' symbols.
+                Notice how eof() is used to check for the "end of input file". 
+                Notice also how the input stream "f_in" has its "skipws" flag turned off. 
+                    This prevents leading spaces from being skipped.
+*/
 
 // Convert spaces to |s.
-# include <iostream >
-# include <fstream >
-using namespace std ;
+#include <iostream>
+#include <fstream>
+
 int main ( int argc , char * argv [])
 {
 if( argc !=3)
