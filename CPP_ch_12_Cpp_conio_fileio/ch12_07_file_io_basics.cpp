@@ -361,8 +361,11 @@ int main(int argc, char *argv[]) {
 // ----  rev[16-Dec-2025]  ----
 
 
-/* Example 3: Following is a program that "copies a text file" and, in the process, converts all spaces into '|' symbols.
+/* Example 3: Following is a program that "copies a text file" and, in the process, 
+                converts all spaces into '|' symbols.
+
                 Notice how eof() is used to check for the "end of input file". 
+
                 Notice also how the input stream "f_in" has its "skipws" flag turned off. 
                     This prevents leading spaces from being skipped.
 */
@@ -371,37 +374,39 @@ int main(int argc, char *argv[]) {
 #include <iostream>
 #include <fstream>
 
-int main ( int argc , char * argv [])
-{
-if( argc !=3)
-{
-cout << " Usage : CONVERT <input > <output >\n";
-return 1;
-}
-ifstream fin ( argv [1]) ; // open input file
-ofstream fout ( argv [2]) ; // create output file
-if (! fout )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-if (! fin )
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
+int main(int argc, char *argv[]) {
+    if(argc != 3) {
+        std::cout << " Usage : CONVERT <input> <output>\n";
+        return 1;
+    }
+
+    ifstream f_in(argv[1]);     // open input file
+    ofstream f_out(argv[2]);    // create output file
+
+    if(!f_out) {
+        std::cout << " Cannot open output file.\n";
+        return 1;
+    }
+
+    if(!f_in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
 char ch;
-fin . unsetf ( ios :: skipws ); // do not skip spaces
-while (! fin . eof ())
+
+f_in.unsetf(std::ios::skipws ); // do not skip spaces
+
+while (! f_in . eof ())
 {
-fin >> ch;
+f_in >> ch;
 if(ch == ’ ’)
 ch = ’|’;
-if (! fin . eof ())
-fout << ch;
+if (! f_in . eof ())
+f_out << ch;
 }
-fin . close ();
-fout . close ();
+f_in . close ();
+f_out . close ();
 return 0;
 }
 
