@@ -380,8 +380,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    ifstream f_in(argv[1]);     // open input file
-    ofstream f_out(argv[2]);    // create output file
+    std::ifstream f_in(argv[1]);     // open input file
+    std::ofstream f_out(argv[2]);    // create output file
 
     if(!f_out) {
         std::cout << " Cannot open output file.\n";
@@ -393,13 +393,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-char ch;
-
-f_in.unsetf(std::ios::skipws ); // do not skip spaces
-
-while (! f_in . eof ())
-{
-f_in >> ch;
+    char ch;
+    
+    f_in.unsetf(std::ios::skipws ); // do not skip spaces
+    while(!f_in.eof()) {
+        f_in >> ch;
 if(ch == ’ ’)
 ch = ’|’;
 if (! f_in . eof ())
