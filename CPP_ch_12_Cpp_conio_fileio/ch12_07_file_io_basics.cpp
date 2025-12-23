@@ -402,25 +402,29 @@ int main(int argc, char *argv[]) {
         if(!f_in.eof()) f_out << ch;
     }
 
-f_in.close();
-f_out.close();
+    f_in.close();
+    f_out.close();
 
-return 0;
+    return 0;
 }
 
 
 
-/* 
-Example 4: There are a few differences between C++’s original I/O library and the modern Standard
-C++ library that you should be aware of, especially if you are converting older code.
+/* Example 4: There are some differences between C++’s "old I/O library" and the modern "Standard C++ library", 
+                especially important when you updating or converting older code.
+
+
 First, in the original I/O library, open() allowed a third parameter, which specified the
 file’s protection mode. This parameter defaulted to a normal file. The modern I/O library
 does not support this parameter.
+
 Second, when you are using the old library to open a stream for input and output using
 fstream, you must explicitly specify both the ios::in and the ios::out mode values. No
 default value for mode is supplied. This applies to both the fstream constructor and to
 its open() function. For example, using the old I/O library you must use a call to open()
 as shown here to open a file for input and output:
+
+
 fstream mystream ;
 mystream . open (" test ", ios :: in | ios :: out);
 In the modern I/O library, an object of type fstream automatically opens files for input
