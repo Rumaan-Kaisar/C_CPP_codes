@@ -413,10 +413,15 @@ int main(int argc, char *argv[]) {
 /* Example 4: There are some differences between C++’s "old I/O library" and the modern "Standard C++ library", 
                 especially important when you updating or converting older code.
 
+                Old I/O library:
+                    open() allowed a third parameter (defaulted to a normal file) 
+                        to specify the file’s protection mode.
+                    This parameter does not exist in the modern Standard C++ I/O library.
 
-First, in the original I/O library, open() allowed a third parameter, which specified the
-file’s protection mode. This parameter defaulted to a normal file. The modern I/O library
-does not support this parameter.
+
+
+
+----------------
 
 Second, when you are using the old library to open a stream for input and output using
 fstream, you must explicitly specify both the ios::in and the ios::out mode values. No
@@ -434,14 +439,11 @@ which causes the open() function to fail if the file does not already exist, or 
 which causes the open() function to fail if the file does not already exist. These values
 are not supported by Standard C++
 
+----------------
 
 
 
-Here is a simplified, pointwise version that keeps the full meaning:
 
-Old I/O library:
-open() allowed a third parameter to specify the file’s protection mode.
-This parameter does not exist in the modern Standard C++ I/O library.
 
 Using fstream (input + output):
 
