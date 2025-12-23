@@ -433,6 +433,47 @@ Finally, in the old I/O system, the mode parameter could also include either ios
 which causes the open() function to fail if the file does not already exist, or ios::noreplace,
 which causes the open() function to fail if the file does not already exist. These values
 are not supported by Standard C++
+
+
+
+
+Here is a simplified, pointwise version that keeps the full meaning:
+
+Old I/O library:
+open() allowed a third parameter to specify the file’s protection mode.
+This parameter does not exist in the modern Standard C++ I/O library.
+
+Using fstream (input + output):
+
+In the old library, both ios::in and ios::out must be explicitly specified.
+
+There was no default mode for fstream.
+
+This applied to both the constructor and open().
+
+
+
+Example (old library):
+
+fstream mystream;
+mystream.open("test", ios::in | ios::out);
+
+
+Modern Standard C++:
+
+fstream automatically opens a file for both input and output
+when no mode is specified.
+
+Unsupported old modes:
+
+ios::nocreate (fail if file does not exist)
+
+ios::noreplace (fail if file already exists)
+These modes are not supported in Standard C++.
+
+This highlights the key differences between the old and modern C++ I/O systems.
+
+
 */
 
 
