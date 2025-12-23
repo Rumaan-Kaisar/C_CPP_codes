@@ -398,14 +398,13 @@ int main(int argc, char *argv[]) {
     f_in.unsetf(std::ios::skipws ); // do not skip spaces
     while(!f_in.eof()) {
         f_in >> ch;
+        if(ch == ' ') ch = '|';
+        if(!f_in.eof()) f_out << ch;
+    }
 
-if(ch == ’ ’)
-ch = ’|’;
-if (! f_in . eof ())
-f_out << ch;
-}
-f_in . close ();
-f_out . close ();
+f_in.close();
+f_out.close();
+
 return 0;
 }
 
