@@ -419,6 +419,12 @@ int main(int argc, char *argv[]) {
                     This parameter does not exist in the modern Standard C++ I/O library.
 
 
+                Using fstream (input + output):
+                    In the old library, both ios::in and ios::out must be explicitly specified.
+                    There was no default mode for "fstream".
+
+                    This applied to both the Constructor and open().
+
 
 
 ----------------
@@ -435,6 +441,7 @@ as shown here to open a file for input and output:
 
 fstream mystream ;
 mystream . open (" test ", ios :: in | ios :: out);
+
 In the modern I/O library, an object of type fstream automatically opens files for input
 and output when the mode parameter is not supplied.
 Finally, in the old I/O system, the mode parameter could also include either ios::nocreate(),
@@ -446,13 +453,6 @@ are not supported by Standard C++
 
 
 
-
-
-Using fstream (input + output):
-    In the old library, both ios::in and ios::out must be explicitly specified.
-    There was no default mode for "fstream".
-
-    This applied to both the Constructor and open().
 
 
 
