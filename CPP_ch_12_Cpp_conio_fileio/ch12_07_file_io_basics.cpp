@@ -420,7 +420,7 @@ int main(int argc, char *argv[]) {
 
 
                 Using fstream (input + output):
-                    In the old library, both ios::in and ios::out must be explicitly specified.
+                    In the old library, both ios::in and ios::out must be "explicitly specified".
                     There was no default mode for "fstream".
 
                     This applied to both the Constructor and open().
@@ -429,18 +429,16 @@ int main(int argc, char *argv[]) {
 
 ----------------
 
-Second, when you are using the old library to open a stream for input and output using
-fstream, you must explicitly specify both the ios::in and the ios::out mode values. No
-default value for mode is supplied. This applies to both the fstream constructor and to
-its open() function. 
 
 
-For example, using the old I/O library you must use a call to open()
-as shown here to open a file for input and output:
+
+Example:
+    to use the old I/O library we must use a call to open() to open a file for I/O
+
+fstream mystream;
+mystream.open("test", ios::in | ios::out);
 
 
-fstream mystream ;
-mystream . open (" test ", ios :: in | ios :: out);
 
 In the modern I/O library, an object of type fstream automatically opens files for input
 and output when the mode parameter is not supplied.
@@ -458,8 +456,7 @@ are not supported by Standard C++
 
 Example (old library):
 
-fstream mystream;
-mystream.open("test", ios::in | ios::out);
+
 
 
 Modern Standard C++:
