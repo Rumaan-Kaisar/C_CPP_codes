@@ -164,7 +164,7 @@
                 if(!mystream) cout << "Cannot open file.\n";
 
 
-----  rev[07-Dec-2025]  ----
+
 
     ----------------    closing a file    ----------------
 
@@ -202,12 +202,55 @@
         They are not for binary mode.  
 
         Binary mode is best used on UNFORMATTED files.
+
+
+
+
+    ----------------    Old I/O library vs Standard C++ library    ----------------
+
+    There are some differences between C++’s "old I/O library" and the modern "Standard C++ library", 
+    especially important when you updating or converting older code.
+
+
+    ----  Old I/O library  ----
+
+    open() allowed a third parameter (defaulted to a normal file) 
+        to specify the file’s protection mode.
+    This parameter does not exist in the modern Standard C++ I/O library.
+
+
+    Using fstream (input + output):
+        In the old library, both ios::in and ios::out must be "explicitly specified".
+        There was no default mode for "fstream".
+
+        This applied to both the Constructor and open().
+
+    Example:
+        to use the old I/O library we must use a call to open() to open a file for I/O
+
+            fstream mystream;
+            mystream.open("test", ios::in | ios::out);
+
+
+
+    ----  Modern Standard C++ library  ----
+
+    "fstream" automatically opens a file for both "input" and "output" when no MODE is specified.
+
+    Unsupported old modes:
+        In the old I/O system, the mode parameter could also include either 
+
+                ios::nocreate   // fail if file does not exist
+            or 
+                ios::nocreate   // fail if file already exists
+
+        These values are not supported by Standard C++
 */  
 
 
 
 
-/* Example 2: Following creates an output file, write information to it, closes the file 
+/* Example 1: Following creates an output file, write information to it, closes the file 
                 and opens it again as an input file, and reads in the information.
 
                 When the << and >> operators are used to perform file I/O, 
@@ -415,49 +458,9 @@ int main(int argc, char *argv[]) {
 }
 
 
-// ----------------    Old I/O library vs Standard C++ library    ----------------
-/* Example 4: There are some differences between C++’s "old I/O library" and the modern "Standard C++ library", 
-                especially important when you updating or converting older code.
 
 
-                ----  Old I/O library  ----
-
-                open() allowed a third parameter (defaulted to a normal file) 
-                    to specify the file’s protection mode.
-                This parameter does not exist in the modern Standard C++ I/O library.
-
-
-                Using fstream (input + output):
-                    In the old library, both ios::in and ios::out must be "explicitly specified".
-                    There was no default mode for "fstream".
-
-                    This applied to both the Constructor and open().
-
-                Example:
-                    to use the old I/O library we must use a call to open() to open a file for I/O
-
-                        fstream mystream;
-                        mystream.open("test", ios::in | ios::out);
-
-
-
-                ----  Modern Standard C++ library  ----
-
-                "fstream" automatically opens a file for both "input" and "output" when no MODE is specified.
-
-                Unsupported old modes:
-                    In the old I/O system, the mode parameter could also include either 
-
-                            ios::nocreate   // fail if file does not exist
-                        or 
-                            ios::nocreate   // fail if file already exists
-
-                    These values are not supported by Standard C++
-*/
-
-
-
-// ----  rev[16-Dec-2025]  ----
+// ----  rev[26-Dec-2025]  ----
 
 
 
