@@ -465,9 +465,10 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 1: Write a program that will copy a text file. Have this program count the number of
-characters copied and display this result. Why does the number displayed differ from that
-shown when you list the output file in the directory? */
+/* Example 4: Write a program that copies a text file and counts how many characters are copied.
+                After displaying the count, explain why this number is different 
+                from the file size shown in the directory.
+*/
 
 // Copy a text file and display number of chars copied .
 # include <iostream >
