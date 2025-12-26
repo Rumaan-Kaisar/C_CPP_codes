@@ -471,27 +471,25 @@ int main(int argc, char *argv[]) {
 */
 
 // Copy a text file and display number of chars copied .
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=3)
-{
-cout << " Usage : CPY <input > <output >\n";
-return 1;
-}
-ifstream fin ( argv [1]) ; // open input file .
-ofstream fout ( argv [2]) ; // create output file
-if (! fin )
+#include <iostream>
+#include <fstream>
 
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-if (! fout )
-{
-cout << " Cannot open output file .\n";
+int main(int argc, char *argv[]) {
+    if(argc != 3) {
+        std::cout << " Usage : CPY <input > <output >\n";
+        return 1;
+    }
+
+    std::ifstream fin(argv[1]);     // open input file .
+    std::ofstream fout(argv[2]);    // create output file
+
+    if(!fin) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+if(!fout) {
+std::cout << " Cannot open output file .\n";
 return 1;
 }
 char ch;
