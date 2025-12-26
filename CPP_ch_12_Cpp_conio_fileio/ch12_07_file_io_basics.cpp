@@ -358,7 +358,6 @@ int main(int argc, char *argv[]) {
 }
 
 
-// ----  rev[16-Dec-2025]  ----
 
 
 /* Example 3: Following is a program that "copies a text file" and, in the process, 
@@ -368,6 +367,13 @@ int main(int argc, char *argv[]) {
 
                 Notice also how the input stream "f_in" has its "skipws" flag turned off. 
                     This prevents leading spaces from being skipped.
+
+
+            Usage:
+                save the program as "ch12_07_file_io_basics_2.cpp" after compile, 
+                    in CLI execute
+
+                        ch12_07_file_io_basics_2 input.txt out2.txt
 */
 
 // Convert spaces to |s.
@@ -409,7 +415,7 @@ int main(int argc, char *argv[]) {
 }
 
 
-
+// ----------------    Old I/O library vs Standard C++ library    ----------------
 /* Example 4: There are some differences between C++’s "old I/O library" and the modern "Standard C++ library", 
                 especially important when you updating or converting older code.
 
@@ -447,12 +453,11 @@ int main(int argc, char *argv[]) {
                             ios::nocreate   // fail if file already exists
 
                     These values are not supported by Standard C++
-
 */
 
 
 
-
+// ----  rev[16-Dec-2025]  ----
 
 
 
