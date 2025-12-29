@@ -488,13 +488,16 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-if(!fout) {
-std::cout << " Cannot open output file .\n";
-return 1;
-}
-char ch;
-unsigned count = 0;
-fin . unsetf ( ios :: skipws ); // do not skip spaces
+    if(!fout) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    char ch;
+    unsigned count = 0;
+
+    fin.unsetf(ios :: skipws); // do not skip spaces
+
 while (! fin . eof ())
 {
 fin >> ch;
