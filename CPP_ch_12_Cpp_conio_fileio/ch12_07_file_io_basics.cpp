@@ -498,11 +498,9 @@ int main(int argc, char *argv[]) {
 
     fin.unsetf(ios :: skipws); // do not skip spaces
 
-while (! fin . eof ())
-{
-fin >> ch;
-if (! fin . eof ())
-{
+while(!fin.eof()) {
+    fin >> ch;
+    if(!fin.eof()) {
 fout << ch;
 count ++;
 }
