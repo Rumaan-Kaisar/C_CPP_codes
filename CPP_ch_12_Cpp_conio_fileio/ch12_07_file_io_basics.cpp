@@ -498,48 +498,55 @@ int main(int argc, char *argv[]) {
 
     fin.unsetf(ios :: skipws); // do not skip spaces
 
-while(!fin.eof()) {
-    fin >> ch;
-    if(!fin.eof()) {
-fout << ch;
-count ++;
+    while(!fin.eof()) {
+        fin >> ch;
+        if(!fin.eof()) {
+            fout << ch;
+            count++;
+        }
+    }
+
+    std::cout << " Number of bytes copied : " << count << '\n';
+
+    fin.close();
+    fout.close();
+
+    return 0;
 }
-}
-cout << " Number of bytes copied : " << count << ’\n’;
-fin . close ();
-fout . close ();
-return 0;
-}
-The reason this program might display a result different from that shown when you list
+
+
+/* The reason this program might display a result different from that shown when you list
 the directory is that some character translations might be taking place. Specifically, when
 a carriage-return/linefeed sequence is read, it is converted into a newline. When output,
 newlines are counted as one character but converted back into a carriage-return/linefeed
-sequence again.
+sequence again. */
 
 
 
 
-/* Example 2: Write a program that writes the following table of information to a file called phone:
-Isaac Newton, 415 555-3423
-Robert Goddard, 213 555-2312
-Enrico Fermi, 202 555-1111 */
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ()
-{
-ofstream pout (" phone ");
-if (! pout )
-{
-cout << " Cannot open PHONE file .\n";
-return 1;
-}
+/* Example 2: This program writes the following table of information to a file called "phone":
+                Isaac Newton, 415 555-3423
+                Robert Goddard, 213 555-2312
+                Enrico Fermi, 202 555-1111 
+*/
 
-pout << " Isaac Newton 415 555 -3423\ n";
-pout << " Robert Goddard 213 555 -2312\ n";
-pout << " Enrico Fermi 202 555 -1111\ n";
-pout . close ();
-return 0;
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ofstream pout(" phone ");
+    if(!pout) {
+        std::cout << " Cannot open PHONE file .\n";
+        return 1;
+    }
+
+    pout << " Isaac Newton 415 555 -3423\ n";
+    pout << " Robert Goddard 213 555 -2312\ n";
+    pout << " Enrico Fermi 202 555 -1111\ n";
+
+    pout.close();
+
+    return 0;
 }
 
 
