@@ -551,19 +551,18 @@ int main() {
 
 
 
-/* Example 3: Write a program that counts the number of words in a file. For simplicity, assume that
-anything surrounded by whitespace is a word. */
+/* Example 3: Write a program that "counts the number of words" in a file. 
+                For simplicity, assume that anything surrounded by whitespace is a word. 
+*/
 
 // Word count
-# include <iostream >
-# include <fstream >
-# include <cctype >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : COUNT <input >\n";
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+if(argc !=2) {
+std::cout << " Usage : COUNT <input >\n";
 return 1;
 }
 ifstream in( argv [1]) ;
