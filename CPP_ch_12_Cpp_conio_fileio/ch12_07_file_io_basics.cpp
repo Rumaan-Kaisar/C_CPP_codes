@@ -523,20 +523,9 @@ int main(int argc, char *argv[]) {
 }
 
 
-/* 
 
 
-is that some character translations might be taking place.
-
-When a carriage-return/linefeed sequence is read, it is converted into a newline. 
-When output,
-newlines are counted as one character but converted back into a carriage-return/linefeed
-sequence again. */
-
-
-
-
-/* Example 2: This program writes the following table of information to a file called "phone":
+/* Example 5: This program writes the following table of information to a file called "phone":
                 Isaac Newton, 415 555-3423
                 Robert Goddard, 213 555-2312
                 Enrico Fermi, 202 555-1111 
