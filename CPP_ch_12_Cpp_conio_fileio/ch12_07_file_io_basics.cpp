@@ -515,9 +515,12 @@ int main(int argc, char *argv[]) {
 }
 
 
-/* The reason this program might display a result different from that shown when you list
-the directory is that some character translations might be taking place. Specifically, when
-a carriage-return/linefeed sequence is read, it is converted into a newline. When output,
+/* The reason this program might display a result different from the "file size" shown in the directory.
+
+is that some character translations might be taking place.
+
+When a carriage-return/linefeed sequence is read, it is converted into a newline. 
+When output,
 newlines are counted as one character but converted back into a carriage-return/linefeed
 sequence again. */
 
