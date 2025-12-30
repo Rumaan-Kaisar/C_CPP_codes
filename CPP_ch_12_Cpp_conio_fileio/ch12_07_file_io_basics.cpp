@@ -468,6 +468,14 @@ int main(int argc, char *argv[]) {
 /* Example 4: Write a program that copies a text file and counts how many characters are copied.
                 After displaying the count, explain why this number is different 
                 from the file size shown in the directory.
+
+            ans:
+                The program may show a different character count than the file size 
+                    because "character translation" occurs.
+                
+                When a "carriage return and line feed" are read, they are treated as a "single newline character".
+                However, when written back to the file, this "newline" is converted again 
+                    into a "carriage return and line feed", increasing the file size.
 */
 
 // Copy a text file and display number of chars copied .
@@ -515,7 +523,8 @@ int main(int argc, char *argv[]) {
 }
 
 
-/* The reason this program might display a result different from the "file size" shown in the directory.
+/* 
+
 
 is that some character translations might be taking place.
 
