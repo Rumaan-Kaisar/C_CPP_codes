@@ -504,7 +504,7 @@ int main(int argc, char *argv[]) {
     char ch;
     unsigned count = 0;
 
-    fin.unsetf(ios :: skipws); // do not skip spaces
+    fin.unsetf(ios::skipws);    // do not skip spaces
 
     while(!fin.eof()) {
         fin >> ch;
@@ -574,19 +574,18 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-int count = 0;
-char ch;
+    int count = 0;
+    char ch;
 
-in >> ch; // find first non - space char
-// after first non - space found , do not skip spaces
-in. unsetf ( ios :: skipws ); // do not skip spaces
-while (! in. eof ())
-{
-in >> ch;
-if( isspace (ch))
-{
-count ++;
-while ( isspace (ch) && !in.eof ())
+    in >> ch; // find first non-space char
+    // after first non-space found, do not skip spaces
+    in.unsetf(ios::skipws); // do not skip spaces
+
+while(!in.eof()) {
+    in >> ch;
+if(isspace(ch)) {
+    count++;
+while(isspace(ch) && !in.eof())
 in >> ch;
 }
 }
