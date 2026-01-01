@@ -552,6 +552,7 @@ int main() {
 
 
 
+
 /* Example 3: Write a program that "counts the number of words" in a file. 
                 For simplicity, assume that anything surrounded by whitespace is a word. 
 */
@@ -581,24 +582,26 @@ int main(int argc, char *argv[]) {
     // after first non-space found, do not skip spaces
     in.unsetf(ios::skipws); // do not skip spaces
 
-while(!in.eof()) {
-    in >> ch;
-if(isspace(ch)) {
-    count++;
-while(isspace(ch) && !in.eof())
-in >> ch;
+    while(!in.eof()) {
+        in >> ch;
+        if(isspace(ch)) {
+            count++;
+            while(isspace(ch) && !in.eof()) in >> ch;
+        }
+    }
+
+    std::cout << " Word count : " << count << '\n';
+    in.close();
+
+    return 0;
 }
-}
-
-cout << " Word count : " << count << ’\n’;
-in. close ();
-return 0;
-}
 
 
 
 
-/* Example 4: What does is open() do? */
+/* Example 4: What does is open() do? 
+                The is open() function returns true if the invoking stream is "linked" to an open file.
+*/
 
-The is open() function returns true if the invoking stream is linked to an open file.
+
 
