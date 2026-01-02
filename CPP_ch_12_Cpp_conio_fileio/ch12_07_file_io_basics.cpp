@@ -542,21 +542,28 @@ int main() {
         return 1;
     }
 
-    pout << "Isaac Newton 415 555 -3423 \n";
-    pout << "Robert Goddard 213 555 -2312 \n";
-    pout << "Enrico Fermi 202 555 -1111 \n";
+    pout << " Isaac Newton 415 555 -3423 \n";
+    pout << " Robert Goddard 213 555 -2312 \n";
+    pout << " Enrico Fermi 202 555 -1111 \n";
 
     pout.close();
 
     return 0;
 }
 
+// notice ' ' sapce is used at the beginning, it will be helpful for our next program
 
 
-// ----  rev[02-Jan-2026]  ----
+
 
 /* Example 6: Write a program that "counts the number of words" in a file. 
                 For simplicity, assume that anything surrounded by whitespace is a word. 
+
+                Save the program as "COUNT.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                COUNT phone.txt
 */
 
 // Word count
@@ -566,7 +573,7 @@ int main() {
 
 int main(int argc, char *argv[]) {
     if(argc !=2) {
-        std::cout << " Usage : COUNT <input >\n";
+        std::cout << "Usage : COUNT <input>\n";
         return 1;
     }
 
@@ -582,7 +589,7 @@ int main(int argc, char *argv[]) {
 
     in >> ch; // find first non-space char
     // after first non-space found, do not skip spaces
-    in.unsetf(ios::skipws); // do not skip spaces
+    in.unsetf(std::ios::skipws); // do not skip spaces
 
     while(!in.eof()) {
         in >> ch;
@@ -601,7 +608,7 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 4: What does is open() do? 
+/* Example 7: What does is open() do? 
                 The is open() function returns true if the invoking stream is "linked" to an open file.
 */
 
