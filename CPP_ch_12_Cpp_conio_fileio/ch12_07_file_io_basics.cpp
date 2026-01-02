@@ -484,7 +484,7 @@ int main(int argc, char *argv[]) {
 
 int main(int argc, char *argv[]) {
     if(argc != 3) {
-        std::cout << " Usage : CPY <input > <output >\n";
+        std::cout << " Usage : CPY <input> <output>\n";
         return 1;
     }
 
@@ -504,7 +504,7 @@ int main(int argc, char *argv[]) {
     char ch;
     unsigned count = 0;
 
-    fin.unsetf(ios::skipws);    // do not skip spaces
+    fin.unsetf(std::ios::skipws);    // do not skip spaces
 
     while(!fin.eof()) {
         fin >> ch;
@@ -553,7 +553,7 @@ int main() {
 
 
 
-/* Example 3: Write a program that "counts the number of words" in a file. 
+/* Example 6: Write a program that "counts the number of words" in a file. 
                 For simplicity, assume that anything surrounded by whitespace is a word. 
 */
 
