@@ -460,11 +460,6 @@ int main(int argc, char *argv[]) {
 
 
 
-// ----  rev[26-Dec-2025]  ----
-
-
-
-
 /* Example 4: Write a program that copies a text file and counts how many characters are copied.
                 After displaying the count, explain why this number is different 
                 from the file size shown in the directory.
@@ -476,6 +471,12 @@ int main(int argc, char *argv[]) {
                 When a "carriage return and line feed" are read, they are treated as a "single newline character".
                 However, when written back to the file, this "newline" is converted again 
                     into a "carriage return and line feed", increasing the file size.
+
+                Save the program as "ch12_07_file_io_basics_3.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                ch12_07_file_io_basics_3 input.txt out3.txt
 */
 
 // Copy a text file and display number of chars copied .
@@ -541,9 +542,9 @@ int main() {
         return 1;
     }
 
-    pout << " Isaac Newton 415 555 -3423\ n";
-    pout << " Robert Goddard 213 555 -2312\ n";
-    pout << " Enrico Fermi 202 555 -1111\ n";
+    pout << " Isaac Newton 415 555 -3423 \n";
+    pout << " Robert Goddard 213 555 -2312 \n";
+    pout << " Enrico Fermi 202 555 -1111 \n";
 
     pout.close();
 
@@ -552,6 +553,7 @@ int main() {
 
 
 
+// ----  rev[02-Jan-2026]  ----
 
 /* Example 6: Write a program that "counts the number of words" in a file. 
                 For simplicity, assume that anything surrounded by whitespace is a word. 
