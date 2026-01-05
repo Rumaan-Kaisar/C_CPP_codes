@@ -1,6 +1,9 @@
 
 /*  ------------------------    chapter    ------------------------
 
+// ----  rev[02-Jan-2026]  ----
+
+(9.3 + 9.4)
 
 12.8 UNFORMATTED I/O & BINARY I/O
 Unformatted files contain the same binary representation of the data as that used internally by your program (rather than text data which is translated into by the << and >>). Thus, unformatted functions give you detailed control over how files are written and read.
@@ -81,7 +84,7 @@ int main() {	 ifstream in(" test ", ios :: in | ios :: binary );
 			double num;    char str[80];
 in.read(( char *) &num , sizeof (double)) ;
 in.read(str , 14) ;
-str[14] = '\0 '; 		              /* null terminate str */ 
+str[14] = '\0 '; 		              // null terminate str
 cout << num << ' ' << str ;
 in. close(); 	return 0;}
 	As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
@@ -106,30 +109,30 @@ in. close(); 	return 0;}
 int main(){char ch;
 	ofstream out("test", ios::out | ios::binary );
 	if(!out ){ cout << "Cannot open output file .\n";
-		return 1; } 	       /* confirmation */
+		return 1; } 	       // confirmation
 
 	char str[80], *p;
 	out << 123 << "this is a test" << 23;
 	out << "Hello there !" << 99 << "sdf" << endl;
-	out.close(); 		   /* closing 1st time */
+	out.close(); 		   // closing 1st time
 	ifstream in("test", ios::in | ios::binary);
 if(!in) { 	cout << "Cannot open input file .\n";
-	return 1; } /* confirmation */
+	return 1; } // confirmation
 
 do{ p = str;
-       ch = in.peek(); 			/* see what type of char is next */ 
-       if(isdigit(ch)){ while(isdigit( *p=in.get() ))   p++;	        /* read integer */ 
-		in.putback(*p); 		           /* return char to stream */ 
-		*p = '\0 '; 		    /* null - terminate the string */ 
+       ch = in.peek(); 			// see what type of char is next
+       if(isdigit(ch)){ while(isdigit( *p=in.get() ))   p++;	        // read integer
+		in.putback(*p); 		           // return char to stream
+		*p = '\0 '; 		    // null - terminate the string
 		cout << " Integer : " << atoi(str ); }
 
-       else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    /* read a string */ 
+       else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    // read a string
 		            in.putback (*p);
 		            *p = '\0 ';
 		            cout << " String : " << str ; }
-       else	in.get(); 						/* ignore */ 
+       else	in.get(); 						// ignore 
        cout << '\n'; }  while (! in.eof());
-in.close(); 					   /* final file closing */
+in.close(); 					   // final file closing 
 return 0; }
 	The atoi() is one of C's standard library function, it returns the integer equivalent of the number represented by its string argument.
 	The isalpba() function returns nonzero if ch is a letter of the alphabet; otherwise 0 is returned.
