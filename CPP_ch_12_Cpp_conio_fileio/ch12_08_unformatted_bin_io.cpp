@@ -1,18 +1,28 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Unformatted I/O & Binary I/O    ------------------------
 
 // ----  rev[02-Jan-2026]  ----
 
 (9.3 + 9.4)
 
-12.8 UNFORMATTED I/O & BINARY I/O
-Unformatted files contain the same binary representation of the data as that used internally by your program (rather than text data which is translated into by the << and >>). Thus, unformatted functions give you detailed control over how files are written and read.
-	Lowest-level unformatted I/O: The lowest-level unformatted I/O functions are get() and put(). get() is used to read a byte and put()is used to write a byte. These are members of all I & O stream classes respectively.  Common version of get() & put() :
+
+Unformatted files contain the same binary representation of the data as that used internally by your program (rather than text data which is translated into by the << and >>). 
+
+Thus, unformatted functions give you detailed control over how files are written and read.
+
+
+Lowest-level unformatted I/O: The lowest-level unformatted I/O functions are get() and put(). get() is used to read a byte and put()is used to write a byte. These are members of all I & O stream classes respectively.  Common version of get() & put() :
 istream &get(char &ch);
 ostream &put(char &ch);
-	get() reads a single character from the associated stream and puts that value in ch. 
-	It returns a reference to the stream. 
-	If a read is attempted at end-of-file, on return the invoking stream will evaluate to false in Boolean expression. 
+
+get() reads a single character from the associated stream and puts that value in ch. 
+
+It returns a reference to the stream. 
+
+If a read is attempted at end-of-file, on return the invoking stream will evaluate to false in Boolean expression. 
+
+
+
 	put()  writes ch to the stream and returns a reference to the stream.
 	Overloading get(): There are several different ways in which the get() function is overloaded. The prototypes for the three most commonly used overloaded forms are:
 istream &get(char *buf, streamsize num);
@@ -151,9 +161,15 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binary I/O, keeping explanations clear and concise:
 
 🔹 12.8 – Unformatted & Binary I/O (Simplified)
-✅ What is Unformatted I/O?
-Deals with raw bytes, not formatted text.
-Data is read/written in its internal binary form (same as in memory).
+
+
+What is Unformatted I/O?
+    Deals with raw bytes, not formatted text.
+    Data is read/written in its internal binary form (same as in memory).
+
+    Unformatted files store data in the same binary format used by the program, unlike text data that is converted by << and >>.
+
+
 Used for:
 Fast file operations
 Storing complex data (objects, structs)
