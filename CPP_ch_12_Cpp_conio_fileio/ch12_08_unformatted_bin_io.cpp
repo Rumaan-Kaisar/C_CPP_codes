@@ -1,12 +1,15 @@
 
 /*  ------------------------    Unformatted I/O & Binary I/O    ------------------------
 
-    What is Unformatted I/O?
-        Deals with raw bytes, not formatted text.
-        Data is read/written in its internal binary form (same as in memory).
+    ====  combine cpp chapters (9.3 + 9.4)  ====
 
-        Unformatted files store data in the same binary format used by the program, 
-            unlike text data that is converted by << and >>.
+
+    What is Unformatted I/O?
+        Deals with raw bytes (raw binary data), not formatted text.
+        Data is read/written exactly in its internal binary form (as it exists in memory).
+
+        Unformatted files store data in the same binary format used by the program,
+            Unlike << and >>, no text conversion occurs.
 
         Thus, unformatted functions give you detailed control over files I/O.
 
@@ -19,9 +22,35 @@
     It uses read(), write(), get(), put() — not << or >>.
 
 
+
+
+--------  Basic Character I/O  --------
+
+put()
+
+ – Write one character
+cpp
+1
+ostream& put(char ch);
+Writes ch to the output stream.
+Returns reference to stream (for chaining).
+
+
+get()
+
+ – Read one character
+cpp
+1
+Reads one character into ch.
+Does not skip whitespace.
+Returns stream; if at EOF, stream evaluates to false.
+🆚 Unlike cin >> ch, get() reads spaces and newlines too.
+
+
+
 // ----  rev[02-Jan-2026]  ----
 
-(9.3 + 9.4)
+
 
 
 
@@ -185,20 +214,9 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 
-🔹 Basic Character I/O
-1. put() – Write one character
-cpp
-1
-ostream& put(char ch);
-Writes ch to the output stream.
-Returns reference to stream (for chaining).
-2. get() – Read one character
-cpp
-1
-Reads one character into ch.
-Does not skip whitespace.
-Returns stream; if at EOF, stream evaluates to false.
-🆚 Unlike cin >> ch, get() reads spaces and newlines too.
+
+
+
 
 🔹 Overloaded Versions of get()
 Version
@@ -336,6 +354,8 @@ Let me know if you'd like a cheat sheet version!
 
 
 
+
+
 ----  GPT  ----
 
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
@@ -343,15 +363,11 @@ Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/
 12.8 Unformatted I/O & Binary I/O (Simplified Explanation)
 🔹 What is Unformatted I/O?
 
-Unformatted I/O works with raw binary data, not formatted text.
 
-Data is stored exactly as it exists in memory.
-
-Unlike << and >>, no text conversion occurs.
-
-Gives fine control over how data is read and written.
 
 Commonly used for binary files, speed, and exact data storage.
+
+
 
 🔹 Lowest-Level Unformatted I/O: get() and put()
 
@@ -368,6 +384,10 @@ get() does not skip whitespace
 At end-of-file, the stream evaluates to false
 
 put() writes exactly one character
+
+
+
+
 
 🔹 Overloaded Forms of get()
 
