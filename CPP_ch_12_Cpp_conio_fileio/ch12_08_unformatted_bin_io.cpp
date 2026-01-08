@@ -23,20 +23,24 @@
 
 
 
+    --------  Lowest-level unformatted I/O  --------
+    The lowest-level unformatted I/O functions are get() and put().
+        get() is used to read a byte and put() is used to write a byte.
+        These are members of all I/O stream classes respectively.
+        Following are Common version of get() & put()
 
---------  Basic Character I/O  --------
+    put()
+        writes one byte (character).
 
-put()
+// ----  rev[08-Jan-2026]  ----
 
- – Write one character
-cpp
-1
-ostream& put(char ch);
+
+ostream &put(char ch);
 Writes ch to the output stream.
 Returns reference to stream (for chaining).
 
 
-get()
+    get()
 
  – Read one character
 cpp
@@ -48,17 +52,11 @@ Returns stream; if at EOF, stream evaluates to false.
 
 
 
-// ----  rev[02-Jan-2026]  ----
 
 
 
+==== codex ====
 
-
-
-
-
-
-Lowest-level unformatted I/O: The lowest-level unformatted I/O functions are get() and put(). get() is used to read a byte and put()is used to write a byte. These are members of all I & O stream classes respectively.  Common version of get() & put() :
 istream &get(char &ch);
 ostream &put(char &ch);
 
@@ -373,7 +371,7 @@ Commonly used for binary files, speed, and exact data storage.
 
 get() reads one byte (character).
 
-put() writes one byte (character).
+put() 
 
 Both return the stream, so chaining is possible.
 
