@@ -32,13 +32,14 @@
     put()
         writes one byte (character).
 
-// ----  rev[08-Jan-2026]  ----
+            ostream &put(char &ch);
+
+        Writes ch to the output stream.
+        Returns reference to stream (for chaining).
 
 
-ostream &put(char ch);
-Writes ch to the output stream.
-Returns reference to stream (for chaining).
 
+    // ----  rev[08-Jan-2026]  ----
 
     get()
 
@@ -48,8 +49,8 @@ cpp
 Reads one character into ch.
 Does not skip whitespace.
 Returns stream; if at EOF, stream evaluates to false.
-🆚 Unlike cin >> ch, get() reads spaces and newlines too.
 
+🆚 Unlike cin >> ch, get() reads spaces and newlines too.
 
 
 
@@ -58,7 +59,8 @@ Returns stream; if at EOF, stream evaluates to false.
 ==== codex ====
 
 istream &get(char &ch);
-ostream &put(char &ch);
+
+
 
 get() reads a single character from the associated stream and puts that value in ch. 
 
@@ -68,7 +70,11 @@ If a read is attempted at end-of-file, on return the invoking stream will evalua
 
 
 
-	put()  writes ch to the stream and returns a reference to the stream.
+
+
+
+
+
 	Overloading get(): There are several different ways in which the get() function is overloaded. The prototypes for the three most commonly used overloaded forms are:
 istream &get(char *buf, streamsize num);
 istream &get(char *buf, streamsize num, char delim);
