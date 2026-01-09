@@ -38,39 +38,22 @@
         Returns reference to stream (for chaining).
 
 
-
-    // ----  rev[08-Jan-2026]  ----
-
     get()
+        Reads one character from the associated stream and puts that in ch.
+        Does not skip "whitespace".
+        Returns a reference to the stream; if at EOF, stream evaluates to false.
 
- – Read one character
-cpp
-1
-Reads one character into ch.
-Does not skip whitespace.
-Returns stream; if at EOF, stream evaluates to false.
+            istream &get(char &ch);
 
-🆚 Unlike cin >> ch, get() reads spaces and newlines too.
-
+        Note:
+            Unlike cin >> ch, get() reads spaces and newlines too.
 
 
+
+// ----  rev[09-Jan-2026]  ----
 
 
 ==== codex ====
-
-istream &get(char &ch);
-
-
-
-get() reads a single character from the associated stream and puts that value in ch. 
-
-It returns a reference to the stream. 
-
-If a read is attempted at end-of-file, on return the invoking stream will evaluate to false in Boolean expression. 
-
-
-
-
 
 
 
