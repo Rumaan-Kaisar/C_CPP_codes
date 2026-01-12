@@ -53,15 +53,36 @@
 // ----  rev[09-Jan-2026]  ----
 
 
+Overloaded get():
+get()can be overloaded several different ways
+The prototypes for commonly used overloaded forms are:
+
+
+
+get(buf, num)
+Reads up to num-1 chars into buf. Stops at newline. Newline stays in stream.
+get(buf, num, delim)
+Same, but stops at delimiter (delim). Delim stays in stream.
+int get()
+Returns next char (or EOF on end). Like C’s getc().
+
+
+All versions null-terminate the buffer automatically.
+
 ==== codex ====
 
 
 
 
-	Overloading get(): There are several different ways in which the get() function is overloaded. The prototypes for the three most commonly used overloaded forms are:
+	Overloading get(): 
+
+
+
 istream &get(char *buf, streamsize num);
 istream &get(char *buf, streamsize num, char delim);
 int get();
+
+
 	The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
 	They array pointed to by buf will be null terminated by get(). 
 	If the newline character is encountered in the input stream, it is not extracted (inputted). Instead, it remains in the stream until the next input operation.
@@ -203,18 +224,6 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 
-
-
-🔹 Overloaded Versions of get()
-Version
-Purpose
-get(buf, num)
-Reads up to num-1 chars into buf. Stops at newline. Newline stays in stream.
-get(buf, num, delim)
-Same, but stops at delimiter (delim). Delim stays in stream.
-int get()
-Returns next char (or EOF on end). Like C’s getc().
-📌 All versions null-terminate the buffer automatically.
 
 🔹 getline() – Safer String Input
 cpp
