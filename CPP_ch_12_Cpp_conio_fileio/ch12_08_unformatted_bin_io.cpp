@@ -54,27 +54,9 @@
 
 
 Overloaded get():
-get()can be overloaded several different ways
-The prototypes for commonly used overloaded forms are:
+    get() can be overloaded several different ways
+    The prototypes for commonly used overloaded forms are:
 
-
-
-get(buf, num)
-Reads up to num-1 chars into buf. Stops at newline. Newline stays in stream.
-get(buf, num, delim)
-Same, but stops at delimiter (delim). Delim stays in stream.
-int get()
-Returns next char (or EOF on end). Like C’s getc().
-
-
-All versions null-terminate the buffer automatically.
-
-==== codex ====
-
-
-
-
-	Overloading get(): 
 
 
 
@@ -86,11 +68,47 @@ int get();
 	The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
 	They array pointed to by buf will be null terminated by get(). 
 	If the newline character is encountered in the input stream, it is not extracted (inputted). Instead, it remains in the stream until the next input operation.
+
+
 	The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
 	The array pointed to by buf will be null terminated by get(). 
 	If the delimiter character is encountered in the input stream, it is not extracted (inputted). Instead, it remains in the stream until the next input operation.
 	Note (Delimiter character): A delimiter is one or more characters that separate text strings. Common delimiters are commas(,), semicolon(;), quotes(",'), braces({}), pipes(|), or slashes(/ \). Newline character is also a delimiter. 
+
+
 	The third form of get() returns the next character from the stream. It returns EOF if the end-of-file is encountered. This form of get() is similar to C's getc() function.
+
+
+
+
+-------
+get(buf, num)
+Reads up to num-1 chars into buf. Stops at newline. Newline stays in stream.
+
+get(buf, num, delim)
+Same, but stops at delimiter (delim). Delim stays in stream.
+
+int get()
+Returns next char (or EOF on end). Like C’s getc().
+
+
+All versions null-terminate the buffer automatically.
+
+
+
+
+==== codex ====
+
+
+
+
+	Overloading get(): 
+
+
+
+
+
+
 	getline() with overloaded form: getline() is another input function. It is a member of each input stream class. Its prototypes:
 istream &getline(char *buf, streamsize num);
 istream &getline(char *buf, streamsize num, char delim);
