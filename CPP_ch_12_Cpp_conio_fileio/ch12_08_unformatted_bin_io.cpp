@@ -69,8 +69,14 @@
             if NEWLINE encountered, it is not extracted (inputted). 
                 Instead stays in stream until the next input operation
 
-get(buf, num, delim)
-Same, but stops at delimiter (delim). Delim stays in stream.
+
+        get(buf, num, delim):
+            This form reads characters into the array pointed to by "buf" until one of these happens:
+                num-1 characters are read,
+                delimiter delim is found,
+                or end-of-file (EOF) is reached.
+
+
 
 int get()
 Returns next char (or EOF on end). Like C’s getc().
@@ -78,15 +84,12 @@ Returns next char (or EOF on end). Like C’s getc().
 
 All versions null-terminate the buffer automatically.
 
-
-
-
-	The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
+            either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
 	The array pointed to by buf will be null terminated by get(). 
 	If the delimiter character is encountered in the input stream, it is not extracted (inputted). Instead, it remains in the stream until the next input operation.
 	Note (Delimiter character): A delimiter is one or more characters that separate text strings. Common delimiters are commas(,), semicolon(;), quotes(",'), braces({}), pipes(|), or slashes(/ \). Newline character is also a delimiter. 
 
-
+int get()
 	The third form of get() returns the next character from the stream. It returns EOF if the end-of-file is encountered. This form of get() is similar to C's getc() function.
 
 
