@@ -53,21 +53,32 @@
 // ----  rev[09-Jan-2026]  ----
 
 
-Overloaded get():
-    get() can be overloaded several different ways
-    The prototypes for commonly used overloaded forms are:
+    Overloaded get():
+        get() can be overloaded several different ways
+        The prototypes for commonly used overloaded forms are:
+
+                istream &get(char *buf, streamsize num);
+                istream &get(char *buf, streamsize num, char delim);
+                int get();
 
 
+        get(buf, num):
+            This form reads up to num-1 characters into "buf". 
+            Stops at either newline found, or the EOF has been encountered.
+            
+            if NEWLINE encountered, it is not extracted (inputted). 
+                Instead stays in stream until the next input operation
+
+get(buf, num, delim)
+Same, but stops at delimiter (delim). Delim stays in stream.
+
+int get()
+Returns next char (or EOF on end). Like C’s getc().
 
 
-istream &get(char *buf, streamsize num);
-istream &get(char *buf, streamsize num, char delim);
-int get();
+All versions null-terminate the buffer automatically.
 
 
-	The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
-	They array pointed to by buf will be null terminated by get(). 
-	If the newline character is encountered in the input stream, it is not extracted (inputted). Instead, it remains in the stream until the next input operation.
 
 
 	The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
@@ -82,17 +93,7 @@ int get();
 
 
 -------
-get(buf, num)
-Reads up to num-1 chars into buf. Stops at newline. Newline stays in stream.
 
-get(buf, num, delim)
-Same, but stops at delimiter (delim). Delim stays in stream.
-
-int get()
-Returns next char (or EOF on end). Like C’s getc().
-
-
-All versions null-terminate the buffer automatically.
 
 
 
