@@ -28,6 +28,8 @@
         get() is used to read a byte and put() is used to write a byte.
         These are members of all I/O stream classes respectively.
         Following are Common version of get() & put()
+        Both return the stream, so chaining is possible.
+
 
     put()
         writes one byte (character).
@@ -61,9 +63,11 @@
 
         get(buf, num):
             This form reads up to num-1 characters into "buf". 
-            Stops at either newline found, or the EOF has been encountered.
-            
-            if NEWLINE encountered, it is not extracted (inputted). 
+            Stops at "newline" or "EOF"
+            Buffer "buf" is null-terminated
+
+            Newline remains in the stream
+                if NEWLINE encountered, it is not extracted (inputted). 
                 Instead stays in stream until the next input operation
 
 
@@ -74,15 +78,11 @@
                 or end-of-file (EOF) is reached.
 
             The array pointed to by "buf" will be null terminated by get(). 
-
-
-        int get():
-            This form of get() returns next character (or EOF on end) from the stream.
-            It is similar to C's getc() function.
+            Buffer "buf" is null-terminated
 
             If delimiter encountered in the stream, it is not extracted (inputted). 
-            Instead, it remains in the stream until the next input operation.
-            Automatically adds a null (\0) at the end of the string.
+                Instead, it remains in the stream until the next input operation.
+                Automatically adds a null (\0) at the end of the string.
 
             Note (Delimiter character): 
                 A delimiter is one or more characters that separate text strings. 
@@ -94,11 +94,23 @@
                     pipes       ( | ),      or slashes      ( / \ ). 
                     Newline character is also a delimiter. 
 
+
+        int get():
+            This form of get() returns next character (or EOF on end) from the stream.
+            It is similar to C's getc() function.
+
         All versions null-terminate the buffer automatically.
 
 
 
     getline():
+        getline() is another input function. 
+        It is a member of each "input stream class". 
+
+        Its prototypes:
+                istream &getline(char *buf, streamsize num);
+                istream &getline(char *buf, streamsize num, char delim);
+
 
 -------
 
@@ -108,15 +120,27 @@
 
 ==== codex ====
 
-	getline() with overloaded form: getline() is another input function. It is a member of each input stream class. Its prototypes:
-istream &getline(char *buf, streamsize num);
-istream &getline(char *buf, streamsize num, char delim);
-	The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
-	They array pointed to by buf will be null terminated by getline(). 
-	If the newline character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
-	The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
-	The array pointed to by buf will be null terminated by getline(). 
-	If the delimiter character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
+	getline() with overloaded form: 
+
+
+
+
+The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
+
+
+They array pointed to by buf will be null terminated by getline(). 
+
+
+If the newline character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
+
+
+The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
+
+
+The array pointed to by buf will be null terminated by getline(). 
+
+
+If the delimiter character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
 
 
 
@@ -258,6 +282,7 @@ cpp
 Feature
 get()
 getline()
+
 Delimiter handling
 Leaves it in stream
 Removes it from stream
@@ -392,58 +417,6 @@ Commonly used for binary files, speed, and exact data storage.
 
 
 
-🔹 Lowest-Level Unformatted I/O: get() and put()
-
-get() reads one byte (character).
-
-put() 
-
-Both return the stream, so chaining is possible.
-
-Behavior
-
-get() does not skip whitespace
-
-At end-of-file, the stream evaluates to false
-
-put() writes exactly one character
-
-
-
-
-
-🔹 Overloaded Forms of get()
-
-There are three common versions:
-
-get(buf, num)
-
-Reads up to num-1 characters
-
-Stops at newline or EOF
-
-Newline remains in the stream
-
-Buffer is null-terminated
-
-get(buf, num, delim)
-
-Stops at a specified delimiter
-
-Delimiter remains in the stream
-
-Buffer is null-terminated
-
-int get()
-
-Returns the next character
-
-Returns EOF at end-of-file
-
-Similar to C’s getc()
-
-📌 Delimiter: A character that separates data
-Examples: space, comma, newline, semicolon, quotes, braces
 
 🔹 getline() Function
 
