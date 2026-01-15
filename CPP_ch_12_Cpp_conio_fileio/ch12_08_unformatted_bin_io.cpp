@@ -49,11 +49,8 @@
             Unlike cin >> ch, get() reads spaces and newlines too.
 
 
+        --------  Overloaded get()  --------
 
-// ----  rev[09-Jan-2026]  ----
-
-
-    Overloaded get():
         get() can be overloaded several different ways
         The prototypes for commonly used overloaded forms are:
 
@@ -97,13 +94,16 @@
                     pipes       ( | ),      or slashes      ( / \ ). 
                     Newline character is also a delimiter. 
 
-
-
-
         All versions null-terminate the buffer automatically.
 
 
+
+    getline():
+
 -------
+
+
+// ----  rev[09-Jan-2026]  ----
 
 
 ==== codex ====
@@ -117,8 +117,18 @@ istream &getline(char *buf, streamsize num, char delim);
 	The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
 	The array pointed to by buf will be null terminated by getline(). 
 	If the delimiter character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
+
+
+
+
+
+
 	Comparison between get() and getline(): The two versions of getline() are virtually identical to the get(buf, num) and get(buf, num, delim) versions of get(). 
 	The difference between get() and getline() is that getline() reads and removes the delimiter from the input stream; get() does not.
+
+
+
+
 	Data blocks I/O: To read and write blocks of data, use the read() and write() functions, which are also members of the I & O stream classes, respectively. Their prototypes are:
 istream &read (char *buf, streamsize num);
 ostream &write (const char *buf, streamsize num);
