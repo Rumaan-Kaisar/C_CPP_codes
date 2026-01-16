@@ -124,16 +124,19 @@
 
 
 
+getline(buf, num):
+    The first form reads characters into the array pointed to by "buf" until either:
+        num-1 characters have been read, 
+        a newline is found, or 
+        the end-of-file (EOF) has been encountered. 
 
-The first form reads characters into the array pointed to by buf until either num-1 characters have been read, a newline is found, or the end-of-file has been encountered. 
+    They array pointed to by "buf" will be null terminated by getline(). 
+
+    If the newline encountered in the input stream, 
+        it is extracted (inputted), but it is not put into "buf".
 
 
-They array pointed to by buf will be null terminated by getline(). 
-
-
-If the newline character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
-
-
+getline(buf, num, delim):
 The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
 
 
