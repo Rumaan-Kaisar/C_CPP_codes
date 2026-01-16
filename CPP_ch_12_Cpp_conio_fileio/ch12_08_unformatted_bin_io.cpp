@@ -112,53 +112,41 @@
                 istream &getline(char *buf, streamsize num, char delim);
 
 
--------
+        getline(buf, num):
+            The first form reads characters into the array pointed to by "buf" until either:
+                num-1 characters have been read, 
+                a newline is found, or 
+                the end-of-file (EOF) has been encountered. 
+
+            If the newline encountered in the input stream, 
+                it is extracted (inputted), but it is not put into "buf".
 
 
-// ----  rev[09-Jan-2026]  ----
+        getline(buf, num, delim):
+            this form reads characters into the array pointed to by "buf" until either:
+                num-1 characters are read,
+                delimiter delim is found,
+                or end-of-file (EOF) is reached.
+
+            If the delimiter encountered in the input stream, 
+                it is extracted (inputted), but it is not put into buf.
+
+        In both case the array pointed to by "buf" will be null terminated by getline().
+
+
+--------  get() vs getline()  --------
+getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
+get(buf, num) and get(buf, num, delim)
+
+The difference between get() and getline() is that:
+    getline() reads and removes the "delimiter" from the input stream; get() does not.
+
+
+
+// ----  rev[16-Jan-2026]  ----
 
 
 ==== codex ====
-
-	getline() with overloaded form: 
-
-
-
-getline(buf, num):
-    The first form reads characters into the array pointed to by "buf" until either:
-        num-1 characters have been read, 
-        a newline is found, or 
-        the end-of-file (EOF) has been encountered. 
-
-    
-
-    If the newline encountered in the input stream, 
-        it is extracted (inputted), but it is not put into "buf".
-
-
-getline(buf, num, delim):
-    this form reads characters into the array pointed to by "buf" until either:
-        num-1 characters are read,
-        delimiter delim is found,
-        or end-of-file (EOF) is reached.
-
-in both case the array pointed to by "buf" will be null terminated by getline().
-
-
-
-
-If the delimiter encountered in the input stream, 
-    it is extracted (inputted), but it is not put into buf.
-
-
-
-
-
-
-	Comparison between get() and getline(): The two versions of getline() are virtually identical to the get(buf, num) and get(buf, num, delim) versions of get(). 
-	The difference between get() and getline() is that getline() reads and removes the delimiter from the input stream; get() does not.
-
-
 
 
 	Data blocks I/O: To read and write blocks of data, use the read() and write() functions, which are also members of the I & O stream classes, respectively. Their prototypes are:
@@ -298,6 +286,9 @@ Use case
 Manual control
 Preferred for line input
 ✅ Always use getline() over get() unless you need to keep the delimiter.
+
+
+
 
 🔹 Block I/O: read() and write()
 Used to read/write blocks of raw data (e.g., objects, arrays).
