@@ -130,20 +130,25 @@ getline(buf, num):
         a newline is found, or 
         the end-of-file (EOF) has been encountered. 
 
-    They array pointed to by "buf" will be null terminated by getline(). 
+    
 
     If the newline encountered in the input stream, 
         it is extracted (inputted), but it is not put into "buf".
 
 
 getline(buf, num, delim):
-The second form reads characters into the array pointed to by buf until either num-1 characters have been read, the character specified by delim has been found, or the end-of-file has been encountered.
+    this form reads characters into the array pointed to by "buf" until either:
+        num-1 characters are read,
+        delimiter delim is found,
+        or end-of-file (EOF) is reached.
+
+in both case the array pointed to by "buf" will be null terminated by getline().
 
 
-The array pointed to by buf will be null terminated by getline(). 
 
 
-If the delimiter character is encountered in the input stream, it is extracted (inputted), but it is not put into buf.
+If the delimiter encountered in the input stream, 
+    it is extracted (inputted), but it is not put into buf.
 
 
 
