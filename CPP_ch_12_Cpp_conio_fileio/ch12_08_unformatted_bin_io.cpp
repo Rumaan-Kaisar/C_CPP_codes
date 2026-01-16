@@ -12,6 +12,7 @@
             Unlike << and >>, no text conversion occurs.
 
         Thus, unformatted functions give you detailed control over files I/O.
+        Commonly used for binary files, speed, and exact data storage.
 
 
     Used for:
@@ -134,13 +135,26 @@
         In both case the array pointed to by "buf" will be null terminated by getline().
 
 
---------  get() vs getline()  --------
-getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
-get(buf, num) and get(buf, num, delim)
 
-The difference between get() and getline() is that:
-    getline() reads and removes the "delimiter" from the input stream; get() does not.
+    --------  get() vs getline()  --------
+    getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
+    get(buf, num) and get(buf, num, delim)
 
+    The difference between get() and getline() is that:
+        getline() reads and removes the "delimiter" from the input stream; get() does not.
+
+    get():
+        Delimiter stays in stream
+        Use for Manual control
+
+    getline():
+        Removes Delimiter from stream
+        Preferred for full line input
+
+    Always use getline() over get() unless you need to keep the delimiter.
+    For reading lines or strings with spaces, getline() is preferred.
+
+    --------  Block I/O: read() and write()  --------
 
 
 // ----  rev[16-Jan-2026]  ----
@@ -262,33 +276,6 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 
 Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binary I/O, keeping explanations clear and concise:
 
-🔹 12.8 – Unformatted & Binary I/O (Simplified)
-
-
-
-
-
-
-
-
-
-🔹 getline() – Safer String Input
-cpp
-1
-Feature
-get()
-getline()
-
-Delimiter handling
-Leaves it in stream
-Removes it from stream
-Use case
-Manual control
-Preferred for line input
-✅ Always use getline() over get() unless you need to keep the delimiter.
-
-
-
 
 🔹 Block I/O: read() and write()
 Used to read/write blocks of raw data (e.g., objects, arrays).
@@ -407,31 +394,6 @@ Let me know if you'd like a cheat sheet version!
 
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
 
-12.8 Unformatted I/O & Binary I/O (Simplified Explanation)
-🔹 What is Unformatted I/O?
-
-
-
-Commonly used for binary files, speed, and exact data storage.
-
-
-
-
-🔹 getline() Function
-
-Similar to get() but removes the delimiter
-
-Commonly used to read full lines
-
-Newline (or delimiter) is discarded, not stored
-
-Key Difference
-
-get() → delimiter stays in stream
-
-getline() → delimiter is removed
-
-📌 For reading lines or strings with spaces, getline() is preferred.
 
 🔹 Block Data I/O: read() and write()
 
