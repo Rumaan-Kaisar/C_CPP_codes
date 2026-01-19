@@ -137,6 +137,7 @@
 
 
     --------  get() vs getline()  --------
+    
     getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
     get(buf, num) and get(buf, num, delim)
 
@@ -154,7 +155,11 @@
     Always use getline() over get() unless you need to keep the delimiter.
     For reading lines or strings with spaces, getline() is preferred.
 
+
+
     --------  Block I/O: read() and write()  --------
+
+    To read and write blocks of data, use read() and write()
 
 
 // ----  rev[16-Jan-2026]  ----
@@ -163,7 +168,9 @@
 ==== codex ====
 
 
-	Data blocks I/O: To read and write blocks of data, use the read() and write() functions, which are also members of the I & O stream classes, respectively. Their prototypes are:
+
+
+which are also members of the I & O stream classes, respectively. Their prototypes are:
 istream &read (char *buf, streamsize num);
 ostream &write (const char *buf, streamsize num);
 	read() reads num bytes from the invoking stream and puts them in the buffer pointed to by buf. 
