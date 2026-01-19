@@ -137,7 +137,7 @@
 
 
     --------  get() vs getline()  --------
-    
+
     getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
     get(buf, num) and get(buf, num, delim)
 
@@ -159,20 +159,33 @@
 
     --------  Block I/O: read() and write()  --------
 
-    To read and write blocks of data, use read() and write()
+    To read and write blocks of data (blocks of bytes), use read() and write()
+    These are members of the I & O stream classes, respectively. 
+
+    Their PROTOTYPES are:
+
+            istream &read(char *buf, streamsize num);
+            ostream &write(const char *buf, streamsize num);
+
+    read(buf, num):
+        Reads num bytes into memory
+
+    write(buf, num):
+        Writes num bytes from memory
+
+    Note:
+        Blocks of raw data e.g., objects, arrays, structs
 
 
-// ----  rev[16-Jan-2026]  ----
+
+
+
+// ----  rev[19-Jan-2026]  ----
 
 
 ==== codex ====
 
 
-
-
-which are also members of the I & O stream classes, respectively. Their prototypes are:
-istream &read (char *buf, streamsize num);
-ostream &write (const char *buf, streamsize num);
 	read() reads num bytes from the invoking stream and puts them in the buffer pointed to by buf. 
 	write() writes num bytes to the associated stream from the buffer pointed to by buf. 
 	streamsize type is some form of integer. An object of type streamsize is capable of holding the largest number of bytes that will be transferred in any one I/O operation.
@@ -285,7 +298,7 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 🔹 Block I/O: read() and write()
-Used to read/write blocks of raw data (e.g., objects, arrays).
+
 
 cpp
 12
@@ -404,27 +417,27 @@ Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/
 
 🔹 Block Data I/O: read() and write()
 
-Used for reading/writing blocks of bytes.
 
-read(buf, num)
-Reads num bytes into memory
 
-write(buf, num)
-Writes num bytes from memory
+
 
 Important Notes
 
 If EOF occurs early, only available bytes are read
 
-Used for structs, objects, arrays
+
 
 Faster and more precise than formatted I/O
+
+
 
 🔹 gcount()
 
 Returns the number of bytes read by the last unformatted input
 
 Useful when read() stops early
+
+
 
 🔹 peek()
 
