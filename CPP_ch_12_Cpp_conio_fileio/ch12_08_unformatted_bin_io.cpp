@@ -167,9 +167,14 @@
             istream &read(char *buf, streamsize num);
             ostream &write(const char *buf, streamsize num);
 
+
     read(buf, num):
         Reads num bytes into memory from the invoking stream and 
         puts them in the buffer pointed to by buf. 
+
+        If the end-of-file is reached before num characters have been read, 
+        read() simply stops, and the buffer contains as many characters as were available. 
+
 
     write(buf, num):
         Writes num bytes from memory to the associated stream from the buffer pointed to by buf. 
@@ -177,7 +182,10 @@
     Note:
         Blocks of raw data e.g., objects, arrays, structs
 
-
+        streamsize:
+            streamsize type is some form of integer. 
+            An object of type streamsize is capable of holding the largest number of bytes 
+            that will be transferred in any one I/O operation.
 
 
 
@@ -189,12 +197,6 @@
 
 
 
-
-
-	streamsize type is some form of integer. An object of type streamsize is capable of holding the largest number of bytes that will be transferred in any one I/O operation.
-
-
-	If the end-of-file is reached before num characters have been read, read() simply stops, and the buffer contains as many characters as were available. 
 
 
 
