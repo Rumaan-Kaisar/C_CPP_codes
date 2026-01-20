@@ -172,7 +172,7 @@
         puts them in the buffer pointed to by buf. 
 
     write(buf, num):
-        Writes num bytes from memory
+        Writes num bytes from memory to the associated stream from the buffer pointed to by buf. 
 
     Note:
         Blocks of raw data e.g., objects, arrays, structs
@@ -190,9 +190,14 @@
 
 
 
-	write() writes num bytes to the associated stream from the buffer pointed to by buf. 
+
 	streamsize type is some form of integer. An object of type streamsize is capable of holding the largest number of bytes that will be transferred in any one I/O operation.
+
+
 	If the end-of-file is reached before num characters have been read, read() simply stops, and the buffer contains as many characters as were available. 
+
+
+
 	gcount(): You can find out how many characters have been read by using the member function gcount(). The prototype is:
 streamsize gcount();
 	It returns the number of characters read by the last unformatted input operations.
