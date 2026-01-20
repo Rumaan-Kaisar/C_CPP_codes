@@ -168,7 +168,8 @@
             ostream &write(const char *buf, streamsize num);
 
     read(buf, num):
-        Reads num bytes into memory
+        Reads num bytes into memory from the invoking stream and 
+        puts them in the buffer pointed to by buf. 
 
     write(buf, num):
         Writes num bytes from memory
@@ -186,7 +187,9 @@
 ==== codex ====
 
 
-	read() reads num bytes from the invoking stream and puts them in the buffer pointed to by buf. 
+
+
+
 	write() writes num bytes to the associated stream from the buffer pointed to by buf. 
 	streamsize type is some form of integer. An object of type streamsize is capable of holding the largest number of bytes that will be transferred in any one I/O operation.
 	If the end-of-file is reached before num characters have been read, read() simply stops, and the buffer contains as many characters as were available. 
