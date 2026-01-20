@@ -161,6 +161,10 @@
 
     To read and write blocks of data (blocks of bytes), use read() and write()
     These are members of the I & O stream classes, respectively. 
+    
+    Example: 
+        Save/load entire structs or classes directly.
+
 
     Their PROTOTYPES are:
 
@@ -203,19 +207,76 @@
 	gcount(): You can find out how many characters have been read by using the member function gcount(). The prototype is:
 streamsize gcount();
 	It returns the number of characters read by the last unformatted input operations.
+
+
+🔹 gcount() – Check How Many Bytes Were Read
+cpp
+1
+Returns number of characters read by last unformatted input (read(), getline(), etc.).
+Useful after partial reads to know actual data size.
+
+🔹 gcount()
+
+Returns the number of bytes read by the last unformatted input
+
+Useful when read() stops early
+
+
+
+
+
+
 	peek(): Use peek() to obtain the next character in the input stream without removing it from that stream . It is a member of the input stream classes and has this prototype:
 int peek();
 	It returns the next character in the stream.		It returns EOF if the end-of-file is encountered.
+
+🔹 peek()
+Looks at the next character
+Does not remove it from the stream
+Returns EOF at end-of-file
+Useful when input type is unknown
+
+🔹 peek() – Look Ahead Without Reading
+Returns next character in input stream.
+Does NOT remove it from the stream.
+Returns EOF if end-of-file.
+Useful when deciding what type of data comes next.
+
+
+
+
+
+
 	putback():Use putback() to return the last character read from a stream to that stream. It is a member of the input stream classes. Its prototype is:
 istream &putback(char c);
 	Where c is the last character read.
+
+🔹 putback() – Push Back Last Character
+Puts character c back into input stream.
+Next get() or peek() will see it again.
+Helps when you read too far and want to "undo".
+
+🔹 putback()
+Puts the last read character back into the stream
+Allows rereading that character
+Useful when reading too far
+
+
+
+
 	flush(): When output is performed, data is not immediately written to the physical device linked to the stream. Instead, information is stored in an internal buffer until the buffer is full. Only then are the contents of that buffer written to disk. 
 	By calling flush() you can force the information to be physically written to disk before the buffer is full.  flush() is a member of the output stream classes and has this prototype:
 ostream &flush();
 	Calls to flush() might be warranted when a program is going to be used in adverse environments (in situations where power outages occur frequently, for example).
+
+
+
 	ios :: binary: For unformatted file I/O we always use binary operation (rather than text operations >> <<).
 	specifying ios::binary prevents any character translations from occurring. This is important when the binary representations of data such as integers, float, and pointers are stored in the file. 
 	However, it is perfectly acceptable to use the unformatted functions on a file opened in text mode, but remember, some character translations may occur.
+
+
+
 	Example 1: Following uses write() to write a double and a string to a file called test:
 
 	#include<iostream>
@@ -230,6 +291,10 @@ out.write(str , strlen(str));
 out.close();
 return 0; }
 	The type cast to (char *) inside the call to write() is necessary when outputting a buffer that is not defined as a character array. Because of C++'s strong type checking, a pointer of one type will not automatically be converted into a pointer of another type.
+
+
+
+
 	Example 2: This program uses read() to read the file created by the program in Example 1:
 
 	#include <iostream>
@@ -244,6 +309,10 @@ str[14] = '\0 '; 		              // null terminate str
 cout << num << ' ' << str ;
 in. close(); 	return 0;}
 	As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
+
+
+
+
 	Example 3: When you use >> to read a string, it stops reading when the first whitespace character is encountered. This makes it useless for reading a string containing spaces. getline() can resolve this problem:
 
 	#include<iostream>
@@ -254,6 +323,9 @@ in. close(); 	return 0;}
 		cout << str << '\n';
 		return 0; }
 	Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function.
+
+
+
 	Example 4: In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
 
 	#include <iostream >
@@ -290,6 +362,8 @@ do{ p = str;
        cout << '\n'; }  while (! in.eof());
 in.close(); 					   // final file closing 
 return 0; }
+
+
 	The atoi() is one of C's standard library function, it returns the integer equivalent of the number represented by its string argument.
 	The isalpba() function returns nonzero if ch is a letter of the alphabet; otherwise 0 is returned.
 	The isdigit() function returns nonzero if ch is a digit (0 through 9); otherwise 0 is returned.
@@ -307,36 +381,13 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binary I/O, keeping explanations clear and concise:
 
 
-🔹 Block I/O: read() and write()
 
 
-cpp
-12
-read() → reads exactly num bytes (or until EOF).
-write() → writes num bytes from memory to file.
-Ideal for binary files.
-💡 Example: Save/load entire structs or classes directly.
 
-🔹 gcount() – Check How Many Bytes Were Read
-cpp
-1
-Returns number of characters read by last unformatted input (read(), getline(), etc.).
-Useful after partial reads to know actual data size.
 
-🔹 peek() – Look Ahead Without Reading
-cpp
-1
-Returns next character in input stream.
-Does NOT remove it from the stream.
-Returns EOF if end-of-file.
-Useful when deciding what type of data comes next.
 
-🔹 putback() – Push Back Last Character
-cpp
-1
-Puts character c back into input stream.
-Next get() or peek() will see it again.
-Helps when you read too far and want to "undo".
+
+
 
 🔹 flush() – Force Output Now
 cpp
@@ -425,47 +476,6 @@ Let me know if you'd like a cheat sheet version!
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
 
 
-🔹 Block Data I/O: read() and write()
-
-
-
-
-
-Important Notes
-
-If EOF occurs early, only available bytes are read
-
-
-
-Faster and more precise than formatted I/O
-
-
-
-🔹 gcount()
-
-Returns the number of bytes read by the last unformatted input
-
-Useful when read() stops early
-
-
-
-🔹 peek()
-
-Looks at the next character
-
-Does not remove it from the stream
-
-Returns EOF at end-of-file
-
-Useful when input type is unknown
-
-🔹 putback()
-
-Puts the last read character back into the stream
-
-Allows rereading that character
-
-Useful when reading too far
 
 🔹 flush()
 
@@ -478,6 +488,9 @@ Useful in:
 Logging
 
 Power-failure-prone systems
+
+
+
 
 🔹 Binary Mode: ios::binary
 
@@ -497,6 +510,9 @@ Binary objects
 
 📌 Unformatted functions can work in text mode, but binary mode is safer.
 
+
+
+
 🔹 Type Casting in read() / write()
 
 Buffers must be cast to (char*)
@@ -505,6 +521,9 @@ Required due to C++ strong type checking
 
 Prevents unsafe pointer conversions
 
+
+
+
 🔹 Why getline() Solves Space Issues
 
 >> stops at whitespace
@@ -512,6 +531,9 @@ Prevents unsafe pointer conversions
 getline() reads full lines including spaces
 
 Acts like the old C gets() but safely
+
+
+
 
 🔹 Smart Parsing with peek() and putback()
 
@@ -522,6 +544,9 @@ peek() checks what comes next
 putback() restores unwanted characters
 
 Enables flexible input handling
+
+
+
 
 🔹 Helper Functions (<cctype>, <cstdlib>)
 
