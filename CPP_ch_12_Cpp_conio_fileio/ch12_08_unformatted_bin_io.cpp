@@ -193,42 +193,35 @@
 
 
 
-// ----  rev[19-Jan-2026]  ----
+    gcount():
+        this member function checks how many bytes (characters) were read
+
+        The prototype is:
+                streamsize gcount();
+
+            Returns number of characters (bytes) read by last unformatted input (read(), getline(), etc.).
+            Useful after partial reads (when read() stops early) to know actual data size.
+
+
+
+    peek():
+        Looks at the next character in the input stream without removing it from that stream
+        It is a member of the input stream classes.
+        
+        prototype:
+                int peek();
+
+            It returns the next character in the stream.
+            Does not remove it from the stream
+            Returns EOF at end-of-file
+            Useful when input type is unknown
+
+
+
+// ----  rev[22-Jan-2026]  ----
 
 
 ==== codex ====
-
-gcount():
-    this member function checks how many bytes (characters) were read
-
-    The prototype is:
-            streamsize gcount();
-
-        Returns number of characters (bytes) read by last unformatted input (read(), getline(), etc.).
-        Useful after partial reads (when read() stops early) to know actual data size.
-
-
-
-
-	peek(): Use peek() to obtain the next character in the input stream without removing it from that stream . It is a member of the input stream classes and has this prototype:
-int peek();
-	It returns the next character in the stream.		It returns EOF if the end-of-file is encountered.
-
-🔹 peek()
-Looks at the next character
-Does not remove it from the stream
-Returns EOF at end-of-file
-Useful when input type is unknown
-
-🔹 peek() – Look Ahead Without Reading
-Returns next character in input stream.
-Does NOT remove it from the stream.
-Returns EOF if end-of-file.
-Useful when deciding what type of data comes next.
-
-
-
-
 
 
 	putback():Use putback() to return the last character read from a stream to that stream. It is a member of the input stream classes. Its prototype is:
