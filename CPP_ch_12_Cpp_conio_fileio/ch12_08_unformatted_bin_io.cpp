@@ -198,30 +198,14 @@
 
 ==== codex ====
 
+gcount():
+    this member function checks how many bytes (characters) were read
 
+    The prototype is:
+            streamsize gcount();
 
-
-
-
-
-	gcount(): You can find out how many characters have been read by using the member function gcount(). The prototype is:
-streamsize gcount();
-	It returns the number of characters read by the last unformatted input operations.
-
-
-🔹 gcount() – Check How Many Bytes Were Read
-cpp
-1
-Returns number of characters read by last unformatted input (read(), getline(), etc.).
-Useful after partial reads to know actual data size.
-
-🔹 gcount()
-
-Returns the number of bytes read by the last unformatted input
-
-Useful when read() stops early
-
-
+        Returns number of characters (bytes) read by last unformatted input (read(), getline(), etc.).
+        Useful after partial reads (when read() stops early) to know actual data size.
 
 
 
