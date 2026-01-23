@@ -224,17 +224,26 @@
 ==== codex ====
 
 
-	putback():Use putback() to return the last character read from a stream to that stream. It is a member of the input stream classes. Its prototype is:
-istream &putback(char c);
-	Where c is the last character read.
+    putback():
+        Used to put the last read character back into the stream.
+        i.e. return the last character read from a stream to that stream.
 
-🔹 putback() – Push Back Last Character
+        It is a member of the input stream classes. 
+
+        Prototype:
+                istream &putback(char c);
+
+            Where c is the last character read.
+
+🔹 putback() – 
+
+Used to push Back Last Character.
 Puts character c back into input stream.
 Next get() or peek() will see it again.
 Helps when you read too far and want to "undo".
 
 🔹 putback()
-Puts the last read character back into the stream
+
 Allows rereading that character
 Useful when reading too far
 
