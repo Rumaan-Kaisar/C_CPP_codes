@@ -234,10 +234,6 @@
 
 
 
-
-
-
-
 // ----  rev[23-Jan-2026]  ----
 
 
@@ -246,16 +242,43 @@
 
 
 
-	flush(): When output is performed, data is not immediately written to the physical device linked to the stream. Instead, information is stored in an internal buffer until the buffer is full. Only then are the contents of that buffer written to disk. 
+flush():
+
+ When output is performed, data is not immediately written to the physical device linked to the stream. Instead, information is stored in an internal buffer until the buffer is full. Only then are the contents of that buffer written to disk. 
 	By calling flush() you can force the information to be physically written to disk before the buffer is full.  flush() is a member of the output stream classes and has this prototype:
 ostream &flush();
 	Calls to flush() might be warranted when a program is going to be used in adverse environments (in situations where power outages occur frequently, for example).
+
+
+🔹 flush() – Force Output Now
+cpp
+1
+Forces buffered output to be written to device immediately.
+Normally, data waits in buffer until full.
+Important in critical apps (e.g., logs, power-sensitive systems).
+
 
 
 
 	ios :: binary: For unformatted file I/O we always use binary operation (rather than text operations >> <<).
 	specifying ios::binary prevents any character translations from occurring. This is important when the binary representations of data such as integers, float, and pointers are stored in the file. 
 	However, it is perfectly acceptable to use the unformatted functions on a file opened in text mode, but remember, some character translations may occur.
+
+
+🔹 Binary Mode: ios::binary
+Always open binary files with:
+
+cpp
+1
+Why?
+
+Prevents automatic translations:
+No \n → \r\n conversion (on Windows).
+Ensures exact byte matching.
+Essential for saving integers, floats, pointers, etc.
+❗ Even unformatted functions should use ios::binary for reliable results.
+
+
 
 
 
@@ -371,25 +394,7 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 
-🔹 flush() – Force Output Now
-cpp
-1
-Forces buffered output to be written to device immediately.
-Normally, data waits in buffer until full.
-Important in critical apps (e.g., logs, power-sensitive systems).
 
-🔹 Binary Mode: ios::binary
-Always open binary files with:
-
-cpp
-1
-Why?
-
-Prevents automatic translations:
-No \n → \r\n conversion (on Windows).
-Ensures exact byte matching.
-Essential for saving integers, floats, pointers, etc.
-❗ Even unformatted functions should use ios::binary for reliable results.
 
 🔹 Type Casting in read() / write()
 You must cast object addresses to char*:
@@ -397,6 +402,9 @@ You must cast object addresses to char*:
 cpp
 12
 C++ doesn’t allow direct pointer conversion between types.
+
+
+
 
 🔹 Examples Summary
 ✅ Example 1 & 2: Save & Load Binary Data
@@ -416,6 +424,8 @@ Uses peek() to check type, then reads accordingly.
 Uses putback() to return unwanted character.
 
 Very useful for parsing mixed data.
+
+
 
 🔹 Helper Functions
 Function
