@@ -234,36 +234,28 @@
 
 
 
-// ----  rev[23-Jan-2026]  ----
+// ----  rev[26-Jan-2026]  ----
 
 
 ==== codex ====
 
-flush():
-When output is performed, data is not immediately written to the physical device linked to the stream.
- 
- 
-  Instead, information is stored in an internal buffer until the buffer is full.
-   Only then are the contents of that buffer written to disk. 
+    flush():
+        When output is performed, data is not written immediately to the device linked to the stream.
+        Instead, information is stored in a internal buffer in memory (RAM).
+        The data is only written to disk when the buffer becomes full. 
+
+        flush() force output immediately
+        It force the information to be physically written to disk before the buffer is full.
+
+        flush() is a member of the output stream classes and has this prototype:
+
+                ostream &flush();
+
+        Useful in critical situations (e.g., power failure risks) to ensure important data is not lost.
+        Example: Logging systems or real-time applications where immediate output is essential.
 
 
-	By calling flush() you can force the information to be physically written to disk before the buffer is full.  flush() is a member of the output stream classes and has this prototype:
-ostream &flush();
-	Calls to flush() might be warranted when a program is going to be used in adverse environments (in situations where power outages occur frequently, for example).
 
-
-
-
-When output is performed, data is not written directly to the device. Instead, it is stored in a temporary buffer in memory. The data is only written to disk when the buffer becomes full.
-
-By calling flush(), you can force the buffered data to be written to the device immediately, even if the buffer is not full.
-
-Prototype: ostream &flush();
-Useful in critical situations (e.g., power failure risks) to ensure important data is not lost.
-Example: Logging systems or real-time applications where immediate output is essential.
-
-
-🔹 flush() – Force Output Now
 cpp
 1
 Forces buffered output to be written to device immediately.
