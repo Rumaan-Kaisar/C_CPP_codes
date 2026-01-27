@@ -252,6 +252,7 @@
                 ostream &flush();
 
         Useful in critical situations (e.g., power failure risks) to ensure important data is not lost.
+        
         Example: 
             Logging systems or real-time applications where immediate output is essential.
 
@@ -262,19 +263,23 @@
 
 
 
-	ios :: binary: For unformatted file I/O we always use binary operation (rather than text operations >> <<).
-	specifying ios::binary prevents any character translations from occurring. This is important when the binary representations of data such as integers, float, and pointers are stored in the file. 
+	ios :: binary:  .
+This is important when the binary representations of data such as integers, float, and pointers are stored in the file. 
 	However, it is perfectly acceptable to use the unformatted functions on a file opened in text mode, but remember, some character translations may occur.
 
 
-🔹 Binary Mode: ios::binary
-Always open binary files with:
+    --------  Binary Mode  --------
+    For unformatted file I/O we always use binary operation (rather than text operations >> <<)
+
+    ios::binary
+        Always open binary files with it to prevents automatic character translations
+        
 
 cpp
 1
 Why?
 
-Prevents automatic translations:
+:
 No \n → \r\n conversion (on Windows).
 Ensures exact byte matching.
 Essential for saving integers, floats, pointers, etc.
