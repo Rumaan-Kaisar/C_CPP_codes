@@ -252,15 +252,12 @@
                 ostream &flush();
 
         Useful in critical situations (e.g., power failure risks) to ensure important data is not lost.
-        Example: Logging systems or real-time applications where immediate output is essential.
+        Example: 
+            Logging systems or real-time applications where immediate output is essential.
 
 
 
-cpp
-1
-Forces buffered output to be written to device immediately.
-Normally, data waits in buffer until full.
-Important in critical apps (e.g., logs, power-sensitive systems).
+
 
 
 
