@@ -192,7 +192,6 @@
             that will be transferred in any one I/O operation.
 
 
-
     gcount():
         this member function checks how many bytes (characters) were read
 
@@ -201,7 +200,6 @@
 
             Returns number of characters (bytes) read by last unformatted input (read(), getline(), etc.).
             Useful after partial reads (when read() stops early) to know actual data size.
-
 
 
     peek():
@@ -233,12 +231,6 @@
         Helps when you read too far and want to "undo".
 
 
-
-// ----  rev[26-Jan-2026]  ----
-
-
-==== codex ====
-
     flush():
         When output is performed, data is not written immediately to the device linked to the stream.
         Instead, information is stored in a internal buffer in memory (RAM).
@@ -258,35 +250,26 @@
 
 
 
-
-
-
-
-
-	ios :: binary:  .
-This is important when the binary representations of data such as integers, float, and pointers are stored in the file. 
-	However, it is perfectly acceptable to use the unformatted functions on a file opened in text mode, but remember, some character translations may occur.
-
-
     --------  Binary Mode  --------
     For unformatted file I/O we always use binary operation (rather than text operations >> <<)
 
     ios::binary
         Always open binary files with it to prevents automatic character translations
         
+            No \n → \r\n conversion (on Windows).
+            Ensures exact byte matching.
+            Essential for saving integers, floats, pointers, etc.
 
-cpp
-1
-Why?
-
-:
-No \n → \r\n conversion (on Windows).
-Ensures exact byte matching.
-Essential for saving integers, floats, pointers, etc.
-❗ Even unformatted functions should use ios::binary for reliable results.
+        However, it is perfectly acceptable to use the unformatted functions on a file 
+            opened in text mode, but remember, some character translations may occur.
 
 
 
+
+// ----  rev[27-Jan-2026]  ----
+
+
+==== codex ====
 
 
 	Example 1: Following uses write() to write a double and a string to a file called test:
