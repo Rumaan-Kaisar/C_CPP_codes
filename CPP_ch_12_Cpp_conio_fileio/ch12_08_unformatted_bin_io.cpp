@@ -384,18 +384,6 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 
-
-
-🔹 Type Casting in read() / write()
-You must cast object addresses to char*:
-
-cpp
-12
-C++ doesn’t allow direct pointer conversion between types.
-
-
-
-
 🔹 Examples Summary
 ✅ Example 1 & 2: Save & Load Binary Data
 cpp
@@ -456,20 +444,6 @@ Let me know if you'd like a cheat sheet version!
 ----  GPT  ----
 
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
-
-
-
-🔹 flush()
-
-Output is normally buffered
-
-flush() forces data to be written immediately
-
-Useful in:
-
-Logging
-
-Power-failure-prone systems
 
 
 
