@@ -272,12 +272,17 @@
 ==== codex ====
 
 
-	Example 1: Following uses write() to write a double and a string to a file called test:
 
-	#include<iostream>
-	#include<fstream>
-	#include<cstring>
-	using namespace std;
+Example 1 (Save & Load Binary Data):
+Following uses write() to write a double and a string to a file called test:
+
+
+#include<iostream>
+#include<fstream>
+#include<cstring>
+
+using namespace std;
+
 int main(){ 	ofstream out(" test ", ios :: out | ios :: binary );
 		if(!out ) { cout << " Cannot open output file .\n"; return 1; }	double num = 100.45;
 char str[] = "This is a test";
@@ -290,7 +295,9 @@ return 0; }
 
 
 
-	Example 2: This program uses read() to read the file created by the program in Example 1:
+Example 2 (Saving and restoring exact binary value):
+
+This program uses read() to read the file created by the program in Example 1:
 
 	#include <iostream>
 	#include <fstream>
@@ -308,7 +315,11 @@ in. close(); 	return 0;}
 
 
 
-	Example 3: When you use >> to read a string, it stops reading when the first whitespace character is encountered. This makes it useless for reading a string containing spaces. getline() can resolve this problem:
+
+Example 3: Safe String Input with Spaces
+Unlike >>, this doesn’t stop at space.
+
+When you use >> to read a string, it stops reading when the first whitespace character is encountered. This makes it useless for reading a string containing spaces. getline() can resolve this problem:
 
 	#include<iostream>
 	#includ <fstream>
@@ -373,7 +384,6 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 
 ----  QWEN  ----
 
-Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binary I/O, keeping explanations clear and concise:
 
 
 
@@ -383,17 +393,13 @@ Here is a simplified, pointwise summary of Section 12.8: Unformatted I/O & Binar
 
 
 
-
-🔹 Examples Summary
-✅ Example 1 & 2: Save & Load Binary Data
-cpp
-12345678
-Saves and restores exact binary value.
-
-✅ Example 3: Safe String Input with Spaces
+✅ Example 3: 
 cpp
 1
-Unlike >>, this doesn’t stop at space.
+
+
+
+
 
 ✅ Example 4: Smart Input Using peek() and putback()
 cpp
