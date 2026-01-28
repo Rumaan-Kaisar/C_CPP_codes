@@ -328,11 +328,21 @@ When you use >> to read a string, it stops reading when the first whitespace cha
 		cin.getline(str , 79);
 		cout << str << '\n';
 		return 0; }
-	Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function.
+
+Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function.
 
 
 
-	Example 4: In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
+
+Example 4: Smart Input Using peek() and putback()
+
+                Uses peek() to check type, then reads accordingly.
+                Uses putback() to return unwanted character.
+
+                Very useful for parsing mixed data.
+
+
+In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
 
 	#include <iostream >
 	#include <fstream >
@@ -391,23 +401,10 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 
 
 
+✅ Example 4: 
 
-
-✅ Example 3: 
-cpp
-1
-
-
-
-
-
-✅ Example 4: Smart Input Using peek() and putback()
 cpp
 12345
-Uses peek() to check type, then reads accordingly.
-Uses putback() to return unwanted character.
-
-Very useful for parsing mixed data.
 
 
 
