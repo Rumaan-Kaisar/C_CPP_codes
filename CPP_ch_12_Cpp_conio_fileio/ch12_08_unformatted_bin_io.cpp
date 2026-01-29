@@ -472,7 +472,7 @@ Here, the delimited used by getline() is the newline. This makes getline() act l
 
 
 
-Example 4: Smart Input Using peek() and putback()
+Ex/* ample 4: Smart Input Using peek() and putback()
 
                 Uses peek() to check type, then reads accordingly.
                 Uses putback() to return unwanted character.
@@ -481,7 +481,7 @@ Example 4: Smart Input Using peek() and putback()
 
 
 In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
-
+ */
 	#include <iostream >
 	#include <fstream >
 	#include <cctype >
@@ -516,7 +516,7 @@ do{ p = str;
        cout << '\n'; }  while (! in.eof());
 in.close(); 					   // final file closing 
 return 0; }
-
+/* 
 
 	The atoi() is one of C's standard library function, it returns the integer equivalent of the number represented by its string argument.
 	The isalpba() function returns nonzero if ch is a letter of the alphabet; otherwise 0 is returned.
@@ -527,6 +527,6 @@ int isalpha(int ch);
 Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 		if(isdigit(ch)) printf("%c is a digit\n", ch);
 
-
+ */
 
 
