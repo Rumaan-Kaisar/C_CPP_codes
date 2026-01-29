@@ -291,40 +291,6 @@
 
 
 
-🔹 Helper Functions
-Function
-Header
-Purpose
-isdigit(ch)
-<cctype>
-Returns true if ch is digit '0'-'9'
-isalpha(ch)
-<cctype>
-Returns true if ch is letter
-atoi(str)
-<cstdlib>
-Converts string to integer
-
-
-✅ Key Takeaways
-Concept
-Why It Matters
-Use ios::binary
-For accurate, no-translation file I/O
-Prefer getline()
-Over get() — cleaner delimiter handling
-Cast to (char*)
-Required in read()/write() due to type safety
-peek() & putback()
-Enable smart, flexible input logic
-gcount()
-Know how much was actually read
-flush()
-Force immediate write when needed
-💡 Use unformatted I/O when speed, precision, or binary data matters!
-
-Let me know if you'd like a cheat sheet version!
-
 
 
 
@@ -526,6 +492,42 @@ int isdigit(int ch);
 int isalpha(int ch);
 Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 		if(isdigit(ch)) printf("%c is a digit\n", ch);
+
+
+🔹 Helper Functions
+Function
+Header
+Purpose
+isdigit(ch)
+<cctype>
+Returns true if ch is digit '0'-'9'
+isalpha(ch)
+<cctype>
+Returns true if ch is letter
+atoi(str)
+<cstdlib>
+Converts string to integer
+
+
+✅ Key Takeaways
+Concept
+Why It Matters
+Use ios::binary
+For accurate, no-translation file I/O
+Prefer getline()
+Over get() — cleaner delimiter handling
+Cast to (char*)
+Required in read()/write() due to type safety
+peek() & putback()
+Enable smart, flexible input logic
+gcount()
+Know how much was actually read
+flush()
+Force immediate write when needed
+💡 Use unformatted I/O when speed, precision, or binary data matters!
+
+Let me know if you'd like a cheat sheet version!
+
 
  */
 
