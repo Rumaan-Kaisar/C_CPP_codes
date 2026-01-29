@@ -254,7 +254,7 @@
     For unformatted file I/O we always use binary operation (rather than text operations >> <<)
 
     ios::binary
-        Always open binary files with it to prevents automatic character translations
+        Always open binary files with it to prevents "automatic character translations"
         
             No \n → \r\n conversion (on Windows).
             Ensures exact byte matching.
@@ -263,7 +263,15 @@
         However, it is perfectly acceptable to use the unformatted functions on a file 
             opened in text mode, but remember, some character translations may occur.
 
+        Note:
+            Prevents character translation
+            Ensures exact byte-for-byte storage
 
+            Required for:
+                Integers
+                Floating-point values
+                Pointers
+                Binary objects
 
 
 // ----  rev[27-Jan-2026]  ----
@@ -400,14 +408,6 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 
 
 
-
-✅ Example 4: 
-
-cpp
-12345
-
-
-
 🔹 Helper Functions
 Function
 Header
@@ -421,6 +421,8 @@ Returns true if ch is letter
 atoi(str)
 <cstdlib>
 Converts string to integer
+
+
 ✅ Key Takeaways
 Concept
 Why It Matters
@@ -453,21 +455,10 @@ Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/
 
 🔹 Binary Mode: ios::binary
 
-Prevents character translation
 
-Ensures exact byte-for-byte storage
 
-Required for:
 
-Integers
 
-Floating-point values
-
-Pointers
-
-Binary objects
-
-📌 Unformatted functions can work in text mode, but binary mode is safer.
 
 
 
