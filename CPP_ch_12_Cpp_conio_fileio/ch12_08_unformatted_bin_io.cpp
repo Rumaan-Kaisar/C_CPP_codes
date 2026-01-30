@@ -292,11 +292,18 @@
 
 
 
+    ----------------    Key Takeaways    ----------------
+
+    Use unformatted I/O for speed and accuracy
+    Use ios::binary for reliable binary storage
+    Prefer getline() for text with SPACES
+    Use peek() + putback() for intelligent parsing
+    Use gcount() to verify read size
+    Use flush() when immediate output matters
 
 
 
-
-// ----  rev[27-Jan-2026]  ----
+// ----  rev[30-Jan-2026]  ----
 
 
 ==== codex ====
@@ -325,21 +332,9 @@ atoi(str) → converts string to integer
 
 
 
-✅ Key Takeaways
 
-Use unformatted I/O for speed and accuracy
 
-Use ios::binary for reliable binary storage
 
-Prefer getline() for text with spaces
-
-Use peek() + putback() for intelligent parsing
-
-Use gcount() to verify read size
-
-Use flush() when immediate output matters
-
-This keeps the conceptual clarity while preserving the technical correctness expected at this level.
 
 
 */  
