@@ -191,6 +191,11 @@
             An object of type streamsize is capable of holding the largest number of bytes 
             that will be transferred in any one I/O operation.
 
+        Type Casting in read() / write():
+            Buffers must be cast to (char*)
+            Required due to C++ strong type checking
+            Prevents unsafe pointer conversions
+
 
     gcount():
         this member function checks how many bytes (characters) were read
@@ -274,6 +279,12 @@
                 Binary objects
 
 
+
+
+
+
+
+
 // ----  rev[27-Jan-2026]  ----
 
 
@@ -286,15 +297,6 @@
 ----  QWEN  ----
 
 
-
-
-
-
-
-
-
-
-
 ----  GPT  ----
 
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
@@ -303,23 +305,6 @@ Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/
 
 
 🔹 Binary Mode: ios::binary
-
-
-
-
-
-
-
-
-
-🔹 Type Casting in read() / write()
-
-Buffers must be cast to (char*)
-
-Required due to C++ strong type checking
-
-Prevents unsafe pointer conversions
-
 
 
 
