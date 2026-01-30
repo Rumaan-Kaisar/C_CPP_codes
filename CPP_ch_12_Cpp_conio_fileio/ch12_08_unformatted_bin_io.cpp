@@ -134,6 +134,11 @@
 
         In both case the array pointed to by "buf" will be null terminated by getline().
 
+        Why getline() Solves Space Issues:
+            ">>" stops at whitespace
+            getline() reads full lines including spaces
+            Acts like the old C gets() but safely
+
 
 
     --------  get() vs getline()  --------
@@ -236,6 +241,13 @@
         Helps when you read too far and want to "undo".
 
 
+    Smart Parsing with peek() and putback():
+        Useful when integers and strings are mixed
+        peek() checks what comes next
+        putback() restores unwanted characters
+        Enables flexible input handling
+
+
     flush():
         When output is performed, data is not written immediately to the device linked to the stream.
         Instead, information is stored in a internal buffer in memory (RAM).
@@ -284,7 +296,6 @@
 
 
 
-
 // ----  rev[27-Jan-2026]  ----
 
 
@@ -302,43 +313,17 @@
 Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
 
 
-
-
-🔹 Binary Mode: ios::binary
-
-
-
-🔹 Why getline() Solves Space Issues
-
-">>" stops at whitespace
-
-getline() reads full lines including spaces
-
-Acts like the old C gets() but safely
-
-
-
-
-🔹 Smart Parsing with peek() and putback()
-
-Useful when integers and strings are mixed
-
-peek() checks what comes next
-
-putback() restores unwanted characters
-
-Enables flexible input handling
-
-
-
-
-🔹 Helper Functions (<cctype>, <cstdlib>)
+Binary Mode: ios::binary
+Helper Functions (<cctype>, <cstdlib>)
 
 isdigit(ch) → checks digit
 
 isalpha(ch) → checks letter
 
 atoi(str) → converts string to integer
+
+
+
 
 ✅ Key Takeaways
 
