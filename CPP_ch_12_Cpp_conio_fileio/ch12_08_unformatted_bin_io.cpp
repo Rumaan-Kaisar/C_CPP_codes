@@ -301,32 +301,16 @@
     Use gcount() to verify read size
     Use flush() when immediate output matters
 
+*/  
 
 
 // ----  rev[30-Jan-2026]  ----
 
 
-==== codex ====
-
-
-
-
-
-----  QWEN  ----
-
-
-----  GPT  ----
-
-
-
-*/  
-
-
-
 
 /* Example 1 (Save & Load Binary Data):
 Following uses write() to write a double and a string to a file called test:
- */
+*/
 
 #include<iostream>
 #include<fstream>
@@ -342,6 +326,7 @@ out.write(( char *) &num, sizeof(double)) ;
 out.write(str , strlen(str));
 out.close();
 return 0; }
+
 // The type cast to (char *) inside the call to write() is necessary when outputting a buffer that is not defined as a character array. Because of C++'s strong type checking, a pointer of one type will not automatically be converted into a pointer of another type.
 
 
@@ -350,17 +335,21 @@ return 0; }
 /* Example 2 (Saving and restoring exact binary value):
 This program uses read() to read the file created by the program in Example 1: */
 
-	#include <iostream>
-	#include <fstream>
-	using namespace std;
-int main() {	 ifstream in(" test ", ios :: in | ios :: binary );
-		if (!in) { cout << " Cannot open input file .\n"; return 1; }
-			double num;    char str[80];
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {    ifstream in(" test ", ios :: in | ios :: binary );
+if (!in) { cout << " Cannot open input file .\n"; return 1; }
+double num;    char str[80];
 in.read(( char *) &num , sizeof (double)) ;
 in.read(str , 14) ;
-str[14] = '\0 '; 		              // null terminate str
+str[14] = '\0 ';        // null terminate str
 cout << num << ' ' << str ;
-in. close(); 	return 0;}
+in.close();    
+return 0;}
+
 // As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
 
 
@@ -372,20 +361,22 @@ Unlike >>, this doesn’t stop at space.
 
 When you use >> to read a string, it stops reading when the first whitespace character is encountered. This makes it useless for reading a string containing spaces. getline() can resolve this problem: */
 
-	#include<iostream>
-	#includ <fstream>
-	using namespace std;	int main(){ 	char str[80];
-		cout << " Enter your name : ";
-		cin.getline(str , 79);
-		cout << str << '\n';
-		return 0; }
+#include<iostream>
+#includ <fstream>
+using namespace std;
+int main(){
+    char str[80];
+cout << " Enter your name : ";
+cin.getline(str , 79);
+cout << str << '\n';
+return 0; }
 
-Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function.
+/* Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function. */
 
 
 
 
-Ex/* ample 4: Smart Input Using peek() and putback()
+/* Example 4: Smart Input Using peek() and putback()
 
                 Uses peek() to check type, then reads accordingly.
                 Uses putback() to return unwanted character.
@@ -394,41 +385,47 @@ Ex/* ample 4: Smart Input Using peek() and putback()
 
 
 In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
- */
-	#include <iostream >
-	#include <fstream >
-	#include <cctype >
-	#include <cstdlib >
-	using namespace std;
+*/
+
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+#include <cstdlib>
+
+using namespace std;
 
 int main(){char ch;
-	ofstream out("test", ios::out | ios::binary );
-	if(!out ){ cout << "Cannot open output file .\n";
-		return 1; } 	       // confirmation
+ofstream out("test", ios::out | ios::binary );
+if(!out ){ cout << "Cannot open output file .\n";
+return 1; }     // confirmation
 
-	char str[80], *p;
-	out << 123 << "this is a test" << 23;
-	out << "Hello there !" << 99 << "sdf" << endl;
-	out.close(); 		   // closing 1st time
-	ifstream in("test", ios::in | ios::binary);
-if(!in) { 	cout << "Cannot open input file .\n";
-	return 1; } // confirmation
+char str[80], *p;
+out << 123 << "this is a test" << 23;
+out << "Hello there !" << 99 << "sdf" << endl;
+out.close();    // closing 1st time
+ifstream in("test", ios::in | ios::binary);
+if(!in) {       cout << "Cannot open input file .\n";
+return 1; } // confirmation
 
 do{ p = str;
-       ch = in.peek(); 			// see what type of char is next
-       if(isdigit(ch)){ while(isdigit( *p=in.get() ))   p++;	        // read integer
-		in.putback(*p); 		           // return char to stream
-		*p = '\0 '; 		    // null - terminate the string
-		cout << " Integer : " << atoi(str ); }
+ch = in.peek();             // see what type of char is next
+if(isdigit(ch)){ while(isdigit( *p=in.get() ))   p++;           // read integer
+in.putback(*p);         // return char to stream
+*p = '\0 ';             // null - terminate the string
+cout << " Integer : " << atoi(str ); }
 
-       else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    // read a string
-		            in.putback (*p);
-		            *p = '\0 ';
-		            cout << " String : " << str ; }
-       else	in.get(); 						// ignore 
-       cout << '\n'; }  while (! in.eof());
-in.close(); 					   // final file closing 
+else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    // read a string
+in.putback (*p);
+*p = '\0 ';
+cout << " String : " << str ; }
+else    in.get();           // ignore 
+cout << '\n'; }  while (! in.eof());
+in.close();                 // final file closing 
 return 0; }
+
+
+
 /* 
 
 	The atoi() is one of C's standard library function, it returns the integer equivalent of the number represented by its string argument.
