@@ -317,24 +317,6 @@
 
 ----  GPT  ----
 
-Below is a simplified, middle-ground explanation of Section 12.8: Unformatted I/O & Binary I/O, keeping the important details without overloading.
-
-
-Binary Mode: ios::binary
-Helper Functions (<cctype>, <cstdlib>)
-
-isdigit(ch) → checks digit
-
-isalpha(ch) → checks letter
-
-atoi(str) → converts string to integer
-
-
-
-
-
-
-
 
 
 */  
@@ -460,15 +442,26 @@ Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
 
 
 🔹 Helper Functions
+
+Binary Mode: ios::binary
+
 Function
 Header
 Purpose
+
+Helper Functions (<cctype>, <cstdlib>)
+
+isdigit(ch) → checks digit
 isdigit(ch)
 <cctype>
 Returns true if ch is digit '0'-'9'
+
+isalpha(ch) → checks letter
 isalpha(ch)
 <cctype>
 Returns true if ch is letter
+
+atoi(str) → converts string to integer
 atoi(str)
 <cstdlib>
 Converts string to integer
