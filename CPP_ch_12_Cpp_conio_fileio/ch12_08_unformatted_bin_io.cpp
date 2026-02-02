@@ -633,10 +633,133 @@ cout << in. gcount () << " characters read \n";
 in. close ();
 return 0;
 }
-EXERCISES
-1. Rewrite your answers to Exercises 1 and 3 in the preceding section (Section 9.2) so that
+
+
+
+// ----  EXERCISES  ----
+1. Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
 they use get(), put(), read(), and/or write(). (Use whichever of these functions you
 deem most appropriate.)
+
+
+/* Example 4: Write a program that copies a text file and counts how many characters are copied.
+                After displaying the count, explain why this number is different 
+                from the file size shown in the directory.
+
+            ans:
+                The program may show a different character count than the file size 
+                    because "character translation" occurs.
+                
+                When a "carriage return and line feed" are read, they are treated as a "single newline character".
+                However, when written back to the file, this "newline" is converted again 
+                    into a "carriage return and line feed", increasing the file size.
+
+                Save the program as "ch12_07_file_io_basics_3.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                ch12_07_file_io_basics_3 input.txt out3.txt
+*/
+
+// Copy a text file and display number of chars copied .
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char *argv[]) {
+    if(argc != 3) {
+        std::cout << " Usage : CPY <input> <output>\n";
+        return 1;
+    }
+
+    std::ifstream fin(argv[1]);     // open input file .
+    std::ofstream fout(argv[2]);    // create output file
+
+    if(!fin) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    if(!fout) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    char ch;
+    unsigned count = 0;
+
+    fin.unsetf(std::ios::skipws);    // do not skip spaces
+
+    while(!fin.eof()) {
+        fin >> ch;
+        if(!fin.eof()) {
+            fout << ch;
+            count++;
+        }
+    }
+
+    std::cout << " Number of bytes copied : " << count << '\n';
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 6: Write a program that "counts the number of words" in a file. 
+                For simplicity, assume that anything surrounded by whitespace is a word. 
+
+                Save the program as "COUNT.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                COUNT phone.txt
+*/
+
+// Word count
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+    if(argc !=2) {
+        std::cout << "Usage : COUNT <input>\n";
+        return 1;
+    }
+
+    std::ifstream in(argv [1]);
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    int count = 0;
+    char ch;
+
+    in >> ch; // find first non-space char
+    // after first non-space found, do not skip spaces
+    in.unsetf(std::ios::skipws); // do not skip spaces
+
+    while(!in.eof()) {
+        in >> ch;
+        if(isspace(ch)) {
+            count++;
+            while(isspace(ch) && !in.eof()) in >> ch;
+        }
+    }
+
+    std::cout << " Word count : " << count << '\n';
+    in.close();
+
+    return 0;
+}
+
+
+
+
 2. Given the following class, write a program that outputs the contents of the class to a file.
 Create an inserter function for this purpose.
 class account
@@ -654,4 +777,132 @@ balance = b;
 // create inserter here
 };
 
+
+
+1a. // Copy a file and display number of chars copied .
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=3)
+{
+cout << " Usage : CPY <input > <output >\n";
+return 1;
+}
+ifstream fin ( argv [1] , ios :: in | ios :: binary ); // open
+input file
+ofstream fout ( argv [2] , ios :: out | ios :: binary ); // create
+output file
+if (! fin )
+{
+cout << " Cannot open input file \n";
+return 1;
+}
+if (! fout )
+{
+cout << " Cannot open output file \n";
+return 1;
+}
+char ch;
+unsigned count =0;
+while (! fin . eof ())
+{
+fin . get (ch);
+if (! fin . eof ())
+{
+fout . put (ch);
+count ++;
+530ANSWERS
+9.3 EXERCISES
+}
+}
+cout << " Number of bytes copied : " << count << ’\n’;
+fin . close ();
+fout . close ();
+return 0;
+}
+1b. // Word count .
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : COUNT <input >\n";
+return 1;
+}
+ifstream in( argv [1] , ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+int count = 0;
+char ch;
+// find first non - space char
+do
+{
+in. get (ch);
+}
+while ( isspace (ch));
+while (! in. eof ())
+{
+in. get (ch);
+if( isspace (ch))
+{
+count ++;
+while ( isspace (ch) && !in.eof ())
+in. get (ch); // find next word
+531TEACH YOURSELF
+C++
+}
+}
+cout << " Word count : " << count << ’\n’;
+in. close ();
+return 0;
+}
+2. // Output account info to a file using an inserter .
+# include <iostream >
+# include <fstream >
+# include <cstring >
+using namespace std ;
+class account
+{
+int custnum ;
+char name [80];
+double balance ;
+public :
+account ( int c, char *n, double b)
+{
+custnum = c;
+strcpy (name , n);
+balance = b;
+}
+friend ostream & operator <<( ostream &stream , account ob);
+};
+ostream & operator <<( ostream &stream , account ob)
+{
+stream << ob. custnum << ’ ’;
+stream << ob. name << ’ ’ << ob. balance ;
+stream << ’\n’;
+return stream ;
+}
+int main ()
+{
+account Rex (1011 , " Ralph Rex ", 12323.34) ;
+ofstream out (" accounts ", ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+532ANSWERS
+9.4 EXERCISES
+out << Rex ;
+out . close ();
+return 0;
+}
 
