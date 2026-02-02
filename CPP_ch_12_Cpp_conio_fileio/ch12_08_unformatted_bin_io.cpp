@@ -487,3 +487,171 @@ Let me know if you'd like a cheat sheet version!
  */
 
 
+
+
+1. The next program will display the contents of any file on the screen. It uses the get()
+function.
+243TEACH YOURSELF
+C++
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=2)
+{
+cout << " Usage : PR <filename >\n";
+return 1;
+}
+ifstream in( argv [1] , ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open file .\n";
+return 1;
+}
+while (! in. eof ())
+{
+in. get (ch);
+cout << ch;
+}
+in. close ();
+return 0;
+}
+2. This program uses put() to write characters to a file until the user enters a dollar sign:
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=2)
+{
+cout << " Usage : WRITE <filename >\n";
+return 1;
+}
+ofstream out ( argv [1] , ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open file .\n";
+244ADVANCED C++ I/O
+9.3. UNFORMATTED, BINARY I/O
+return 1;
+}
+cout << " Enter a $ to stop \n";
+do
+{
+cout << ": ";
+cin . get (ch);
+out . put (ch);
+}
+while (ch != ’$’);
+out . close ();
+return 0;
+}
+Notice that the program uses get() to read characters from cin. This prevents leading
+spaces from being discarded.
+3. Here is a program that uses write() to write a double and a string to a file called test:
+# include <iostream >
+# include <fstream >
+# include <cstring >
+using namespace std ;
+int main ()
+{
+ofstream out (" test ", ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+double num = 100.45;
+char str [] = " This is a test ";
+out . write (( char *) &num , sizeof ( double )) ;
+out . write (str , strlen (str));
+out . close ();
+return 0;
+}
+Note: The type cast to (char *) inside the call to write() is necessary when outputting
+a buffer that is not defined as a character array. Because of C++’s strong type checking,
+a pointer of one type will not automatically be converted into a pointer of another type.
+4. This program uses read() to read the file created by the program in Example 3:
+245TEACH YOURSELF
+C++
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ()
+{
+ifstream in(" test ", ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+double num ;
+char str [80];
+in. read (( char *) &num , sizeof ( double )) ;
+in. read (str , 14) ;
+str [14] = ’\0 ’; // null terminate str
+cout << num << ’ ’ << str ;
+in. close ();
+return 0;
+}
+As is the case with the program in the preceding example, the type cast inside read() is
+necessary because C++ will not automatically convert a pointer of one type to another.
+5. The following program first writes an array of double values to a file and then reads them
+back. It also reports the number of characters read.
+// Demonstrate gcount ()
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ()
+{
+ofstream out (" test ", ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+double nums [4] = {1.1 , 2.2 , 3.3 , 4.4};
+out . write (( char *) nums , sizeof ( nums ));
+out . close ();
+246ADVANCED C++ I/O
+9.4. MORE UNFORMATTED I/O FUNCTIONS
+ifstream in(" test ", ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+in. read (( char *) &nums , sizeof ( nums )) ;
+int i;
+for (i =0; i <4; i ++)
+cout << nums [i] << ’ ’;
+cout << ’\n’;
+cout << in. gcount () << " characters read \n";
+in. close ();
+return 0;
+}
+EXERCISES
+1. Rewrite your answers to Exercises 1 and 3 in the preceding section (Section 9.2) so that
+they use get(), put(), read(), and/or write(). (Use whichever of these functions you
+deem most appropriate.)
+2. Given the following class, write a program that outputs the contents of the class to a file.
+Create an inserter function for this purpose.
+class account
+{
+int custnum ;
+char name [80];
+double balance ;
+public :
+account ( int c, char *n, double b)
+{
+custom = c;
+strcpy (name , n);
+balance = b;
+}
+// create inserter here
+};
+
+
