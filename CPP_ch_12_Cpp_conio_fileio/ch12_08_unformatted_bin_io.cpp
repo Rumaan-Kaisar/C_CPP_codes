@@ -325,7 +325,9 @@
 #include <cstring>
 
 int main(){
-    ofstream out(" test ", std::ios::out | std::ios::binary );
+    // following combines two file I/O modes 'out' and 'binary'
+    // recall "ch12_07_file_io_basics.cpp"
+    ofstream out(" test ", std::ios::out | std::ios::binary );  
 
     if(!out){
         std::cout << " Cannot open output file .\n";
@@ -367,6 +369,9 @@ in.close();
 return 0;}
 
 // As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
+// ios::out        Open file for output (writing).
+// ios::in         Open file for input (reading).
+// ios::binary     Open file in binary mode.
 
 
 This program uses read() to read the file created by the program in Example 3:
@@ -374,7 +379,7 @@ This program uses read() to read the file created by the program in Example 3:
 
 # include <iostream >
 # include <fstream >
-using namespace std ;
+
 int main ()
 {
 ifstream in(" test ", ios :: in | ios :: binary );
@@ -536,7 +541,8 @@ Let me know if you'd like a cheat sheet version!
 
 
 
-1. The next program will display the contents of any file on the screen. It uses the get()
+1. The next program will display the contents of any file on the screen. 
+It uses the get()
 function.
 243TEACH YOURSELF
 C++
