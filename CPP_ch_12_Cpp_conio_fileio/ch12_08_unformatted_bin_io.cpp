@@ -304,32 +304,21 @@
 */  
 
 
-// ----  rev[30-Jan-2026]  ----
+// ----  rev[30-Jan-2026] GPT simplify  ----
 
 
 
 /* Example 1 (Save & Load Binary Data):
                 Following uses write() to write a double and a string to a file called "test".
+
+                The type cast to (char *) inside the call to write() is necessary when
+                    outputting a buffer that is not defined as a character array. 
+
+                Because of C++'s strong type checking, a pointer of one type 
+                    will not automatically be converted into a pointer of another type.
+
+                Note: (char *) and (char*) both acceptable
 */
-
-#include<iostream>
-#include<fstream>
-#include<cstring>
-
-using namespace std;
-
-int main(){
-    ofstream out(" test ", ios :: out | ios :: binary );
-        if(!out ) { cout << " Cannot open output file .\n"; return 1; }	double num = 100.45;
-char str[] = "This is a test";
-out.write(( char *) &num, sizeof(double)) ;
-out.write(str , strlen(str));
-out.close();
-return 0; }
-
-// The type cast to (char *) inside the call to write() is necessary when outputting a buffer that is not defined as a character array. Because of C++'s strong type checking, a pointer of one type will not automatically be converted into a pointer of another type.
-
-
 
 #include <iostream>
 #include <fstream>
@@ -346,23 +335,21 @@ int main(){
     double num = 100.45;
     char str[] = " This is a test ";
 
-    out.write(( char *) &num , sizeof ( double ));
-    out.write(str , strlen (str));
+    out.write( (char*) &num, sizeof(double));
+    out.write(str, strlen(str));
     out.close();
 
-return 0;
+    return 0;
 }
 
-Note: The type cast to (char *) inside the call to write() is necessary when outputting
-a buffer that is not defined as a character array. Because of C++’s strong type checking,
-a pointer of one type will not automatically be converted into a pointer of another type.
 
 
-
+// cp1
 
 
 /* Example 2 (Saving and restoring exact binary value):
-This program uses read() to read the file created by the program in Example 1: */
+                This program uses read() to read the file created by the program in Example 1.
+*/
 
 #include <iostream>
 #include <fstream>
