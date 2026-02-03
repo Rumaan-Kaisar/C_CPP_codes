@@ -330,6 +330,32 @@ return 0; }
 // The type cast to (char *) inside the call to write() is necessary when outputting a buffer that is not defined as a character array. Because of C++'s strong type checking, a pointer of one type will not automatically be converted into a pointer of another type.
 
 
+Here is a program that uses write() to write a double and a string to a file called test:
+# include <iostream >
+# include <fstream >
+# include <cstring >
+using namespace std ;
+int main ()
+{
+ofstream out (" test ", ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+double num = 100.45;
+char str [] = " This is a test ";
+out . write (( char *) &num , sizeof ( double )) ;
+out . write (str , strlen (str));
+out . close ();
+return 0;
+}
+Note: The type cast to (char *) inside the call to write() is necessary when outputting
+a buffer that is not defined as a character array. Because of C++’s strong type checking,
+a pointer of one type will not automatically be converted into a pointer of another type.
+
+
+
 
 
 /* Example 2 (Saving and restoring exact binary value):
@@ -351,6 +377,37 @@ in.close();
 return 0;}
 
 // As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
+
+
+This program uses read() to read the file created by the program in Example 3:
+
+
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ()
+{
+ifstream in(" test ", ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+double num ;
+char str [80];
+in. read (( char *) &num , sizeof ( double )) ;
+in. read (str , 14) ;
+str [14] = ’\0 ’; // null terminate str
+cout << num << ’ ’ << str ;
+in. close ();
+return 0;
+}
+As is the case with the program in the preceding example, the type cast inside read() is
+necessary because C++ will not automatically convert a pointer of one type to another.
+
+
+
+
 
 
 
@@ -518,6 +575,9 @@ cout << ch;
 in. close ();
 return 0;
 }
+
+
+
 2. This program uses put() to write characters to a file until the user enters a dollar sign:
 # include <iostream >
 # include <fstream >
@@ -551,54 +611,13 @@ return 0;
 }
 Notice that the program uses get() to read characters from cin. This prevents leading
 spaces from being discarded.
-3. Here is a program that uses write() to write a double and a string to a file called test:
-# include <iostream >
-# include <fstream >
-# include <cstring >
-using namespace std ;
-int main ()
-{
-ofstream out (" test ", ios :: out | ios :: binary );
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-double num = 100.45;
-char str [] = " This is a test ";
-out . write (( char *) &num , sizeof ( double )) ;
-out . write (str , strlen (str));
-out . close ();
-return 0;
-}
-Note: The type cast to (char *) inside the call to write() is necessary when outputting
-a buffer that is not defined as a character array. Because of C++’s strong type checking,
-a pointer of one type will not automatically be converted into a pointer of another type.
-4. This program uses read() to read the file created by the program in Example 3:
-245TEACH YOURSELF
-C++
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ()
-{
-ifstream in(" test ", ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-double num ;
-char str [80];
-in. read (( char *) &num , sizeof ( double )) ;
-in. read (str , 14) ;
-str [14] = ’\0 ’; // null terminate str
-cout << num << ’ ’ << str ;
-in. close ();
-return 0;
-}
-As is the case with the program in the preceding example, the type cast inside read() is
-necessary because C++ will not automatically convert a pointer of one type to another.
+
+
+
+
+
+
+
 5. The following program first writes an array of double values to a file and then reads them
 back. It also reports the number of characters read.
 // Demonstrate gcount ()
@@ -822,6 +841,8 @@ fin . close ();
 fout . close ();
 return 0;
 }
+
+
 1b. // Word count .
 # include <iostream >
 # include <fstream >
