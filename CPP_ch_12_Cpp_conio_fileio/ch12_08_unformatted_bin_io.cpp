@@ -356,11 +356,17 @@ int main(){
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+int main() {
+    ifstream in(" test ", std::ios::in | std::ios::binary );
 
-int main() {    ifstream in(" test ", ios :: in | ios :: binary );
-if (!in) { cout << " Cannot open input file .\n"; return 1; }
-double num;    char str[80];
+    if(!in) {
+        std::cout << " Cannot open input file .\n"; 
+        return 1;
+    }
+
+double num;
+char str[80];
+
 in.read(( char *) &num , sizeof (double)) ;
 in.read(str , 14) ;
 str[14] = '\0 ';        // null terminate str
@@ -374,22 +380,25 @@ return 0;}
 // ios::binary     Open file in binary mode.
 
 
-This program uses read() to read the file created by the program in Example 3:
 
 
-# include <iostream >
-# include <fstream >
+// This program uses read() to read the file created by the program in Example 3:
 
-int main ()
-{
-ifstream in(" test ", ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-double num ;
-char str [80];
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    ifstream in(" test ", std::ios::in | std::ios::binary );
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n"; 
+        return 1;
+    }
+
+    double num;
+    char str[80];
+
 in. read (( char *) &num , sizeof ( double )) ;
 in. read (str , 14) ;
 str [14] = ’\0 ’; // null terminate str
@@ -397,6 +406,9 @@ cout << num << ’ ’ << str ;
 in. close ();
 return 0;
 }
+
+
+
 As is the case with the program in the preceding example, the type cast inside read() is
 necessary because C++ will not automatically convert a pointer of one type to another.
 
