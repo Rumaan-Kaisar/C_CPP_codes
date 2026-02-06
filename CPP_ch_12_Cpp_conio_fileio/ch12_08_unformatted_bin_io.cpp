@@ -390,30 +390,42 @@ int main() {
 
 
 
+/* Example 3: Safe String Input with Spaces Unlike >>, this doesn’t stop at space.
 
+                When you use >> to read a string,
+                    it stops reading when the first whitespace character is encountered.
 
+                This makes it useless for reading a string containing spaces. 
+                getline() can resolve this problem.
+*/
 
+#include <iostream>
+#include <fstream>
 
-
-
-
-
-/* Example 3: Safe String Input with Spaces
-Unlike >>, this doesn’t stop at space.
-
-When you use >> to read a string, it stops reading when the first whitespace character is encountered. This makes it useless for reading a string containing spaces. getline() can resolve this problem: */
-
-#include<iostream>
-#includ <fstream>
-using namespace std;
-int main(){
+int main() {
     char str[80];
-cout << " Enter your name : ";
-cin.getline(str , 79);
-cout << str << '\n';
-return 0; }
 
-/* Here, the delimited used by getline() is the newline. This makes getline() act like the standard gets() function. */
+    std::cout << " Enter your name : ";
+    std::cin.getline(str , 79);
+    std::cout << str << '\n';
+
+    return 0;
+}
+
+/*  Here, the delimiter used by getline() is the newline '\n'.
+    This makes getline() act like the standard gets() function. 
+
+        std::cin.getline(str, 79);
+
+    This means:
+        Reads characters into 'str'
+        
+        Stops when:
+            78 characters are read or
+            a newline ('\n') is found
+        
+        Automatically adds '\0' at the end
+*/
 
 
 
@@ -426,7 +438,10 @@ return 0; }
                 Very useful for parsing mixed data.
 
 
-In real programming situations, the functions peek() and putback() are especially useful because they let you more easily handle situations in which you do not know what type of information is being input at any point in time. The following program gives the flavor of this. It reads either strings or integers from a file. The strings and integers can occur in any order.
+In real programming situations, the functions peek() and putback() are especially useful because they 
+let you more easily handle situations in which you do not know what type of information is being input at any point in time. 
+The following program gives the flavor of this. It reads either strings or integers from a file. 
+The strings and integers can occur in any order.
 */
 
 
