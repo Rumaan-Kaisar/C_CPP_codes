@@ -346,8 +346,6 @@ int main(){
 
 
 
-// cp1
-
 
 /* Example 2 (Saving and restoring exact binary value):
                 This program uses read() to read the file created by the program in Example 1.
@@ -379,15 +377,18 @@ int main() {
 
 
 /*  As is the case with the program in the preceding example, 
-        the type cast inside read() is necessary because C++ will not 
+        the type cast (char*) inside read() is necessary because C++ will not 
         automatically convert a pointer of one type to another. 
+
+        Above programs use following file I/O modes
+
+        ios::out        Open file for output (writing).
+        ios::in         Open file for input (reading).
+        ios::binary     Open file in binary mode.
 */
 
 
-// As is the case with the program in the preceding example, the type cast (char *) inside read() is necessary because C++ will not automatically convert a pointer of one type to another.
-// ios::out        Open file for output (writing).
-// ios::in         Open file for input (reading).
-// ios::binary     Open file in binary mode.
+
 
 
 
