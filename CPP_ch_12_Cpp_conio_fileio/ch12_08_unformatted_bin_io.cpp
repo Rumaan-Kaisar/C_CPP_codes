@@ -444,23 +444,27 @@ int main() {
                     where both can appear in any order.
 */
 
-
 #include <iostream>
 #include <fstream>
 #include <cctype>
 #include <cstdlib>
 
-using namespace std;
+int main(){
+    char ch;
 
-int main(){char ch;
-ofstream out("test", ios::out | ios::binary );
-if(!out ){ cout << "Cannot open output file .\n";
-return 1; }     // confirmation
+    ofstream out("test", std::ios::out | std::ios::binary);
 
-char str[80], *p;
-out << 123 << "this is a test" << 23;
-out << "Hello there !" << 99 << "sdf" << endl;
-out.close();    // closing 1st time
+    if(!out){ 
+        std::cout << "Cannot open output file.\n";
+        return 1;
+    }   // confirmation
+
+    char str[80], *p;
+
+    out << 123 << "this is a test" << 23;
+    out << "Hello there !" << 99 << "sdf" << std::endl;
+    out.close();    // closing 1st time
+
 ifstream in("test", ios::in | ios::binary);
 if(!in) {       cout << "Cannot open input file .\n";
 return 1; } // confirmation
