@@ -472,26 +472,39 @@ int main(){
         return 1;
     }   // confirmation
 
-do{
-    p = str;
-    ch = in.peek();     // see what type of char is next
+    do{
+        p = str;
+        ch = in.peek();     // see what type of char is next
 
-if(isdigit(ch)){
-    while(isdigit( *p=in.get() ))
-        p++;    // read integer
-in.putback(*p);         // return char to stream
-*p = '\0 ';             // null - terminate the string
-cout << " Integer : " << atoi(str ); 
+        if(isdigit(ch)){
+            while(isdigit( *p=in.get() ))
+                p++;    // read integer
+            
+            in.putback(*p); // return char to stream
+            *p = '\0';     // null - terminate the string
+
+            std::cout << " Integer : " << atoi(str);
+        }
+
+        else if(isalpha(ch)){
+                while(isalpha*p=in.get() ))
+                    p++;    // read a string
+                
+                in.putback(*p);
+                *p = '\0';
+                std::cout << " String : " << str;
+        }
+
+        else
+            in.get();   // ignore 
+
+        std::cout << '\n'; 
+    }  while(!in.eof());
+
+    in.close();                 // final file closing 
+
+    return 0;
 }
-
-else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    // read a string
-in.putback (*p);
-*p = '\0 ';
-cout << " String : " << str ; }
-else    in.get();           // ignore 
-cout << '\n'; }  while (! in.eof());
-in.close();                 // final file closing 
-return 0; }
 
 
 
