@@ -432,24 +432,16 @@ int main() {
 
 /*  Example 4: Smart Input Using peek() and putback()
 
-                Uses peek() to check type, then reads accordingly.
-                Uses putback() to return unwanted character.
+                peek() is used to check the next input type before reading it, and 
+                putback() is used to return a character that should not be processed yet.
 
                 Very useful for parsing mixed data.
 
+                These functions are especially useful when working with mixed input, 
+                    where the type of data is not known in advance.
 
-In real programming situations, the functions peek() and putback() are especially useful because they 
-let you more easily handle situations in which you do not know what type of information is being input at any point in time. 
-The following program gives the flavor of this. It reads either strings or integers from a file. 
-The strings and integers can occur in any order.
-
-
-Example 4: Smart input using peek() and putback().
-
-peek() is used to check the next input type before reading it, and putback() is used to return a character that should not be processed yet. These functions are especially useful when working with mixed input, where the type of data is not known in advance.
-
-The example program demonstrates this idea by reading strings and integers from a file, where both can appear in any order.
-
+                Following program demonstrates this idea by reading strings and integers from a file, 
+                    where both can appear in any order.
 */
 
 
