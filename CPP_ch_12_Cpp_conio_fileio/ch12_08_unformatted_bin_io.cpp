@@ -465,16 +465,24 @@ int main(){
     out << "Hello there !" << 99 << "sdf" << std::endl;
     out.close();    // closing 1st time
 
-ifstream in("test", ios::in | ios::binary);
-if(!in) {       cout << "Cannot open input file .\n";
-return 1; } // confirmation
+    ifstream in("test", ios::in | ios::binary);
 
-do{ p = str;
-ch = in.peek();             // see what type of char is next
-if(isdigit(ch)){ while(isdigit( *p=in.get() ))   p++;           // read integer
+    if(!in) {
+        cout << "Cannot open input file .\n";
+        return 1;
+    }   // confirmation
+
+do{
+    p = str;
+    ch = in.peek();     // see what type of char is next
+
+if(isdigit(ch)){
+    while(isdigit( *p=in.get() ))
+        p++;    // read integer
 in.putback(*p);         // return char to stream
 *p = '\0 ';             // null - terminate the string
-cout << " Integer : " << atoi(str ); }
+cout << " Integer : " << atoi(str ); 
+}
 
 else if(isalpha(ch)){while(isalpha*p=in.get() ))  p++;    // read a string
 in.putback (*p);
