@@ -508,51 +508,35 @@ int main(){
 
 
 
-/*  
+/*  ----  Helper Functions  ----
+
+    isdigit(ch)
+        checks digit
+
+    isalpha(ch)
+        checks letter
+
+    atoi(str)
+        converts string to integer
+        atoi() is one of C's standard library function
 
 
-The atoi() is one of C's standard library function, it returns the integer equivalent of the number represented by its string argument.
-	The isalpba() function returns nonzero if ch is a letter of the alphabet; otherwise 0 is returned.
-	The isdigit() function returns nonzero if ch is a digit (0 through 9); otherwise 0 is returned.
-#include <ctype.h>
-int isdigit(int ch);
-int isalpha(int ch);
-Eg: 	if(isalpha(ch)) printf("%c is a letter\n", ch);
-		if(isdigit(ch)) printf("%c is a digit\n", ch);
+    Use ios::binary to apply binary Mode.
 
 
-    ----  Helper Functions  ----
-
-    Binary Mode: ios::binary
-
+    ----------------------------------------------------------------
+    Helper Functions from <cctype>, <cstdlib>
     ----------------------------------------------------------------
     Function        Header      Purpose
     ----------------------------------------------------------------
-    isdigit(ch)     <cctype>    Returns true if ch is digit '0'-'9'
-    isalpha(ch)     <cctype>    Returns true if ch is letter
-    atoi(str)       <cstdlib>   Converts string to integer
-
-
-Helper Functions (<cctype>, <cstdlib>)
+    isdigit(ch)     <cctype>    Returns nonzero (i.e. true) if ch is digit '0'-'9' otherwise 0 is returned.
+    isalpha(ch)     <cctype>    Returns nonzero (i.e. true) if ch is letter otherwise 0 is returned.
+    atoi(str)       <cstdlib>   Returns the integer equivalent of the number represented by its string argument.
 
 
 
 
-isdigit(ch) → checks digit
-
-
-
-
-isalpha(ch) → checks letter
-
-
-
-atoi(str)
-    converts string to integer
-
-
-
-
+----  rev[10-Feb-2026]  ----
 
 ✅ Key Takeaways
 Concept
