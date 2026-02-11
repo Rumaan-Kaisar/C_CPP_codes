@@ -522,7 +522,7 @@ int main(){
 
 
     Use ios::binary to apply binary Mode.
-
+        For accurate, no-translation file I/O
 
     ----------------------------------------------------------------
     Helper Functions from <cctype>, <cstdlib>
@@ -532,42 +532,14 @@ int main(){
     isdigit(ch)     <cctype>    Returns nonzero (i.e. true) if ch is digit '0'-'9' otherwise 0 is returned.
     isalpha(ch)     <cctype>    Returns nonzero (i.e. true) if ch is letter otherwise 0 is returned.
     atoi(str)       <cstdlib>   Returns the integer equivalent of the number represented by its string argument.
+*/
 
 
 
-
-----  rev[10-Feb-2026]  ----
-
-✅ Key Takeaways
-Concept
-Why It Matters
-Use ios::binary
-For accurate, no-translation file I/O
-Prefer getline()
-Over get() — cleaner delimiter handling
-Cast to (char*)
-Required in read()/write() due to type safety
-peek() & putback()
-Enable smart, flexible input logic
-gcount()
-Know how much was actually read
-flush()
-Force immediate write when needed
-💡 Use unformatted I/O when speed, precision, or binary data matters!
-
-Let me know if you'd like a cheat sheet version!
-
-
- */
-
-
-
-
+// ----  rev[10-Feb-2026]  ----
 1. The next program will display the contents of any file on the screen. 
 It uses the get()
-function.
-243TEACH YOURSELF
-C++
+
 # include <iostream >
 # include <fstream >
 using namespace std ;
