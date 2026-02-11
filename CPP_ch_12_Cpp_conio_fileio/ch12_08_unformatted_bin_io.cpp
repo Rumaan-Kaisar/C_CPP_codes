@@ -537,41 +537,46 @@ int main(){
 
 
 // ----  rev[10-Feb-2026]  ----
-1. The next program will display the contents of any file on the screen. 
-It uses the get()
 
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-char ch;
-if( argc !=2)
-{
-cout << " Usage : PR <filename >\n";
-return 1;
-}
-ifstream in( argv [1] , ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open file .\n";
-return 1;
-}
-while (! in. eof ())
-{
-in. get (ch);
-cout << ch;
-}
-in. close ();
-return 0;
+/*  Example 5: Following program will display the contents of any file on the screen. 
+                It uses the get(). 
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char* argv[]) {
+    char ch;
+
+    if(argc!=2) {
+        std::cout << " Usage : PR <filename >\n";
+        return 1;
+    }
+
+    ifstream in( argv[1], std::ios::in | std::ios::binary );
+
+    if(!in) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    while(!in.eof()) {
+        in.get(ch);
+        std::cout << ch;
+    }
+
+    in.close();
+
+    return 0;
 }
 
 
 
-2. This program uses put() to write characters to a file until the user enters a dollar sign:
-# include <iostream >
-# include <fstream >
-using namespace std ;
+/* Example 6: This program uses put() to write characters to a file until the user enters a dollar sign. */
+
+#include <iostream>
+#include <fstream>
+
 int main ( int argc , char * argv [])
 {
 char ch;
