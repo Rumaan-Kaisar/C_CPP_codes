@@ -553,7 +553,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    ifstream in( argv[1], std::ios::in | std::ios::binary );
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
 
     if(!in) {
         std::cout << " Cannot open file .\n";
@@ -572,7 +572,12 @@ int main(int argc, char* argv[]) {
 
 
 
-/* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. */
+/* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. 
+
+                Note: 
+                    get() reads characters from "cin" including spaces, 
+                    so it does not skip leading whitespace like other input methods do.
+*/
 
 #include <iostream>
 #include <fstream>
@@ -580,31 +585,32 @@ int main(int argc, char* argv[]) {
 int main(int argc, char* argv[]) {
     char ch;
 
-if(argc!=2) {
-    std::cout << " Usage : WRITE <filename >\n";
-    return 1;
+    if(argc!=2) {
+        std::cout << " Usage : WRITE <filename >\n";
+        return 1;
+    }
+
+    ofstream out ( argv [1] , ios :: out | ios :: binary );
+
+    if(!out) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    std::cout << " Enter a $ to stop \n";
+
+    do{
+        std::cout << ": ";
+        cin.get (ch);
+        out.put (ch);
+    } while(ch != '$');
+
+    out.close();
+
+    return 0;
 }
 
-ofstream out ( argv [1] , ios :: out | ios :: binary );
-if (! out )
-{
-cout << " Cannot open file .\n";
 
-return 1;
-}
-cout << " Enter a $ to stop \n";
-do
-{
-cout << ": ";
-cin . get (ch);
-out . put (ch);
-}
-while (ch != ’$’);
-out . close ();
-return 0;
-}
-Notice that the program uses get() to read characters from cin. This prevents leading
-spaces from being discarded.
 
 
 
