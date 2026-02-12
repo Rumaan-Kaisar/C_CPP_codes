@@ -572,25 +572,24 @@ int main(int argc, char* argv[]) {
 
 
 
-/* Example 6: This program uses put() to write characters to a file until the user enters a dollar sign. */
+/* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. */
 
 #include <iostream>
 #include <fstream>
 
-int main ( int argc , char * argv [])
-{
-char ch;
-if( argc !=2)
-{
-cout << " Usage : WRITE <filename >\n";
-return 1;
+int main(int argc, char* argv[]) {
+    char ch;
+
+if(argc!=2) {
+    std::cout << " Usage : WRITE <filename >\n";
+    return 1;
 }
+
 ofstream out ( argv [1] , ios :: out | ios :: binary );
 if (! out )
 {
 cout << " Cannot open file .\n";
-244ADVANCED C++ I/O
-9.3. UNFORMATTED, BINARY I/O
+
 return 1;
 }
 cout << " Enter a $ to stop \n";
