@@ -618,12 +618,13 @@ int main(int argc, char* argv[]) {
 
 
 
-5. The following program first writes an array of double values to a file and then reads them
-back. It also reports the number of characters read.
+/* Example 7: The following program first writes an array of double values to a file and then reads them
+back. It also reports the number of characters read. */
+
 // Demonstrate gcount ()
-# include <iostream >
-# include <fstream >
-using namespace std ;
+#include <iostream>
+#include <fstream>
+
 int main ()
 {
 ofstream out (" test ", ios :: out | ios :: binary );
@@ -632,11 +633,12 @@ if (! out )
 cout << " Cannot open output file .\n";
 return 1;
 }
+
 double nums [4] = {1.1 , 2.2 , 3.3 , 4.4};
+
 out . write (( char *) nums , sizeof ( nums ));
 out . close ();
-246ADVANCED C++ I/O
-9.4. MORE UNFORMATTED I/O FUNCTIONS
+
 ifstream in(" test ", ios :: in | ios :: binary );
 if (! in)
 {
