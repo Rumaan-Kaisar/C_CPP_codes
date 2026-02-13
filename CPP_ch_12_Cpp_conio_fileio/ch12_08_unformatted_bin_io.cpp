@@ -618,8 +618,11 @@ int main(int argc, char* argv[]) {
 
 
 
-/* Example 7: The following program first writes an array of double values to a file and then reads them
-back. It also reports the number of characters read. */
+/* Example 7: Following program first writes an "array of double values" 
+                to a file and then reads them back. 
+                
+                It also reports the number of characters read. 
+*/
 
 // Demonstrate gcount ()
 #include <iostream>
