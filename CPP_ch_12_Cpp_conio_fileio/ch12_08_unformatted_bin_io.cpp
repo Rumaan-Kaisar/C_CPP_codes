@@ -619,23 +619,21 @@ int main(int argc, char* argv[]) {
 
 
 /* Example 7: Following program first writes an "array of double values" 
-                to a file and then reads them back. 
+                to a file and then reads them back using gcount(). 
                 
                 It also reports the number of characters read. 
 */
 
-// Demonstrate gcount ()
 #include <iostream>
 #include <fstream>
 
-int main ()
-{
-ofstream out (" test ", ios :: out | ios :: binary );
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
+int main() {
+    std::ofstream out(" test ", std::ios::out | std::ios::binary);
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
 
 double nums [4] = {1.1 , 2.2 , 3.3 , 4.4};
 
@@ -652,7 +650,9 @@ in. read (( char *) &nums , sizeof ( nums )) ;
 int i;
 for (i =0; i <4; i ++)
 cout << nums [i] << ’ ’;
-cout << ’\n’;
+cout << '\n';
+
+// using gcount()
 cout << in. gcount () << " characters read \n";
 in. close ();
 return 0;
