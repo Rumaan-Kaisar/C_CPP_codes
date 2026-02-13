@@ -635,17 +635,18 @@ int main() {
         return 1;
     }
 
-double nums [4] = {1.1 , 2.2 , 3.3 , 4.4};
+    double nums [4] = {1.1, 2.2, 3.3, 4.4};
 
-out . write (( char *) nums , sizeof ( nums ));
-out . close ();
+    out.write( (char*)nums, sizeof(nums) );
+    out.close();
 
-ifstream in(" test ", ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
+    std::ifstream in(" test ", std::ios::in | std::ios::binary);
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
 in. read (( char *) &nums , sizeof ( nums )) ;
 int i;
 for (i =0; i <4; i ++)
