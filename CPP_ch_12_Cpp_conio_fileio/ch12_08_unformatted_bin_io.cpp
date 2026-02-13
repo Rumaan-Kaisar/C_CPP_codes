@@ -647,16 +647,17 @@ int main() {
         return 1;
     }
 
-in. read (( char *) &nums , sizeof ( nums )) ;
-int i;
-for (i =0; i <4; i ++)
-cout << nums [i] << ’ ’;
-cout << '\n';
+    in.read( (char*)&nums, sizeof(nums) );
 
-// using gcount()
-cout << in. gcount () << " characters read \n";
-in. close ();
-return 0;
+    int i;
+    for(i=0; i<4; i++) std::cout << nums[i] << ' ';
+    std::cout << '\n';
+
+    // using gcount()
+    std::cout << in.gcount() << " characters read \n";
+    in.close();
+
+    return 0;
 }
 
 
