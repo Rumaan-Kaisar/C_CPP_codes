@@ -838,14 +838,13 @@ fin . get (ch);
 if (! fin . eof ())
 {
 fout . put (ch);
-count ++;
-530ANSWERS
-9.3 EXERCISES
+count++;
 }
 }
 cout << " Number of bytes copied : " << count << ’\n’;
-fin . close ();
-fout . close ();
+fin.close();
+fout.close();
+
 return 0;
 }
 
