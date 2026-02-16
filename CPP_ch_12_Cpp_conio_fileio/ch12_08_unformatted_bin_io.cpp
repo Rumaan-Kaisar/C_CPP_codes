@@ -786,23 +786,6 @@ int main(int argc, char *argv[]) {
 
 
 
-2. Given the following class, write a program that outputs the contents of the class to a file.
-Create an inserter function for this purpose.
-class account
-{
-int custnum ;
-char name [80];
-double balance ;
-public :
-account ( int c, char *n, double b)
-{
-custom = c;
-strcpy (name , n);
-balance = b;
-}
-// create inserter here
-};
-
 
 
 1a. // Copy a file and display number of chars copied .
@@ -892,6 +875,29 @@ cout << " Word count : " << count << ’\n’;
 in. close ();
 return 0;
 }
+
+
+
+
+
+2. Given the following class, write a program that outputs the contents of the class to a file.
+Create an inserter function for this purpose.
+class account
+{
+int custnum ;
+char name [80];
+double balance ;
+public :
+account ( int c, char *n, double b)
+{
+custom = c;
+strcpy (name , n);
+balance = b;
+}
+// create inserter here
+};
+
+
 2. // Output account info to a file using an inserter .
 # include <iostream >
 # include <fstream >
