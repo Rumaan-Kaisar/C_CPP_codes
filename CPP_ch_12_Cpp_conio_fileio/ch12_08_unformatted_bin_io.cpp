@@ -663,28 +663,23 @@ int main() {
 
 
 // ----  EXERCISES  ----
-1. Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
+
+/* Example 8: Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
 they use get(), put(), read(), and/or write(). (Use whichever of these functions you
-deem most appropriate.)
+deem most appropriate. */
 
 
-/* Example 4: Write a program that copies a text file and counts how many characters are copied.
-                After displaying the count, explain why this number is different 
-                from the file size shown in the directory.
-
-            ans:
-                The program may show a different character count than the file size 
-                    because "character translation" occurs.
+/*  Write a program that copies a text file and counts how many characters are copied.
                 
-                When a "carriage return and line feed" are read, they are treated as a "single newline character".
-                However, when written back to the file, this "newline" is converted again 
-                    into a "carriage return and line feed", increasing the file size.
+                The count may differ from the "actual file size" due to "newline translation":
+                    On Windows, \r\n (2 bytes) is read as one \n (1 byte), but written back as 2 bytes.
+                    i.e. File grows even if content seems unchanged.
 
-                Save the program as "ch12_07_file_io_basics_3.cpp" then compile, 
+                Save the program as "ch12_07_file_io_basics_4.cpp" then compile, 
                     and finally execute following command
 
             CLI:
-                ch12_07_file_io_basics_3 input.txt out3.txt
+                ch12_07_file_io_basics_4 input.txt out3.txt
 */
 
 // Copy a text file and display number of chars copied .
@@ -867,8 +862,7 @@ if( isspace (ch))
 count ++;
 while ( isspace (ch) && !in.eof ())
 in. get (ch); // find next word
-531TEACH YOURSELF
-C++
+
 }
 }
 cout << " Word count : " << count << ’\n’;
@@ -880,8 +874,8 @@ return 0;
 
 
 
-2. Given the following class, write a program that outputs the contents of the class to a file.
-Create an inserter function for this purpose.
+/* Example 9: Given the following class, write a program that outputs the contents of the class to a file.
+Create an inserter function for this purpose. */
 class account
 {
 int custnum ;
