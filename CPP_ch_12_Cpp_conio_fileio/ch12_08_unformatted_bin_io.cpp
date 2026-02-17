@@ -304,8 +304,6 @@
 */  
 
 
-// ----  rev[30-Jan-2026] GPT simplify  ----
-
 
 
 /* Example 1 (Save & Load Binary Data):
@@ -318,6 +316,12 @@
                     will not automatically be converted into a pointer of another type.
 
                 Note: (char *) and (char*) both acceptable
+
+
+                If we try to open the saved filr "test", we'll see "ÍÌÌÌÌY@ This is a test "
+                Which is totally ok, 
+                    This does not write text like 100.45.
+                    It writes the raw memory bytes of the double.
 */
 
 #include <iostream>
@@ -327,7 +331,7 @@
 int main(){
     // following combines two file I/O modes 'out' and 'binary'
     // recall "ch12_07_file_io_basics.cpp"
-    ofstream out(" test ", std::ios::out | std::ios::binary );  
+    std::ofstream out("test", std::ios::out | std::ios::binary );  
 
     if(!out){
         std::cout << " Cannot open output file .\n";
@@ -349,13 +353,29 @@ int main(){
 
 /* Example 2 (Saving and restoring exact binary value):
                 This program uses read() to read the file created by the program in Example 1.
+            
+            Note:
+                        in.read(str, 14);
+
+                Read exactly 14 bytes from the file
+                Store them in the character array str
+
+                In C-style strings, the end of the string must be marked by null terminator '\0'
+
+                        str[14] = '\0';
+
+                So in our case, the full text might not appear.
+
+                Easy fix:
+                        in.read(str , 16);
+                        str [16] = '\0';    // null terminate str
 */
 
 #include <iostream>
 #include <fstream>
 
 int main() {
-    ifstream in(" test ", std::ios::in | std::ios::binary );
+    std::ifstream in("test", std::ios::in | std::ios::binary );
 
     if(!in) {
         std::cout << " Cannot open input file .\n"; 
@@ -368,7 +388,7 @@ int main() {
     in.read( (char*)&num, sizeof(double) );
     in.read(str , 14);
 
-    str [14] = '\0';    // null terminate str
+    str[14] = '\0';    // null terminate str
     std::cout << num << ' ' << str;
     in.close();
 
@@ -388,7 +408,7 @@ int main() {
 */
 
 
-
+// ----  rev[17-Feb-2026] GPT simplify  ----
 
 /* Example 3: Safe String Input with Spaces Unlike >>, this doesn’t stop at space.
 
