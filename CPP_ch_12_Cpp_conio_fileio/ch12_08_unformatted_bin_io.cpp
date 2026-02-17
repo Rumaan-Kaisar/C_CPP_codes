@@ -875,8 +875,7 @@ return 0;
 
 
 /* Example 9: Given the following class, write a program that outputs the contents of the class to a file.
-                Create an inserter function for this purpose. 
-
+                Create an inserter function to output account info to a file.
 
                 class account {
                         int custnum;
@@ -892,25 +891,25 @@ return 0;
                 };
 */
 
-2. // Output account info to a file using an inserter .
-# include <iostream >
-# include <fstream >
-# include <cstring >
-using namespace std ;
-class account
-{
-int custnum ;
-char name [80];
-double balance ;
-public :
-account ( int c, char *n, double b)
-{
-custnum = c;
-strcpy (name , n);
-balance = b;
-}
-friend ostream & operator <<( ostream &stream , account ob);
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+class account {
+        int custnum;
+        char name[80];
+        double balance;
+    public:
+        account( int c, char* n, double b ) {
+            custom = c;
+            strcpy(name, n);
+            balance = b;
+        }
+
+        // inserter here (output to a file)
+        friend ostream &operator<<( ostream &stream, account ob );
 };
+
 ostream & operator <<( ostream &stream , account ob)
 {
 stream << ob. custnum << ’ ’;
