@@ -875,22 +875,22 @@ return 0;
 
 
 /* Example 9: Given the following class, write a program that outputs the contents of the class to a file.
-Create an inserter function for this purpose. */
-class account
-{
-int custnum ;
-char name [80];
-double balance ;
-public :
-account ( int c, char *n, double b)
-{
-custom = c;
-strcpy (name , n);
-balance = b;
-}
-// create inserter here
-};
+                Create an inserter function for this purpose. 
 
+
+                class account {
+                        int custnum;
+                        char name[80];
+                        double balance;
+                    public:
+                        account( int c, char* n, double b ) {
+                            custom = c;
+                            strcpy(name, n);
+                            balance = b;
+                        }
+                        // create inserter here
+                };
+*/
 
 2. // Output account info to a file using an inserter .
 # include <iostream >
