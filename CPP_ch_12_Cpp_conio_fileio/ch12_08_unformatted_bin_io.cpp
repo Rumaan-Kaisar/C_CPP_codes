@@ -927,15 +927,14 @@ class account {
         }
 
         // inserter here (output to a file)
-        friend ostream &operator<<( ostream &stream, account ob );
+        friend std::ostream &operator<<( ostream &stream, account ob );
 };
 
-ostream & operator <<( ostream &stream , account ob)
-{
-stream << ob. custnum << ’ ’;
-stream << ob. name << ’ ’ << ob. balance ;
-stream << ’\n’;
-return stream ;
+std::ostream &operator <<( ostream &stream , account ob) {
+    stream << ob. custnum << ’ ’;
+    stream << ob. name << ’ ’ << ob. balance ;
+    stream << '\n';
+    return stream;
 }
 int main ()
 {
