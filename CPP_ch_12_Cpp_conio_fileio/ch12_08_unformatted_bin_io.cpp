@@ -931,22 +931,21 @@ class account {
 };
 
 std::ostream &operator <<( ostream &stream , account ob) {
-    stream << ob. custnum << ’ ’;
-    stream << ob. name << ’ ’ << ob. balance ;
+    stream << ob. custnum << ' ';
+    stream << ob. name << ' ' << ob. balance ;
     stream << '\n';
     return stream;
 }
-int main ()
-{
-account Rex (1011 , " Ralph Rex ", 12323.34) ;
-ofstream out (" accounts ", ios :: out | ios :: binary );
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-532ANSWERS
-9.4 EXERCISES
+
+int main() {
+    account Rex(1011 , " Ralph Rex ", 12323.34);
+    ofstream out( "accounts", std::ios::out | std::ios::binary );
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
 out << Rex ;
 out . close ();
 return 0;
