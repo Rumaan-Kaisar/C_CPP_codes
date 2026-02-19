@@ -725,8 +725,12 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    std::ifstream fin(argv[1]);     // open input file .
-    std::ofstream fout(argv[2]);    // create output file
+    // OLD CODE: we dont use
+    // std::ifstream fin(argv[1]);     // open input file .
+    // std::ofstream fout(argv[2]);    // create output file
+
+    std::ifstream fin( argv[1] , std::ios::in | std::ios::binary );     // open input file
+    std::ofstream fout( argv[2] , std::ios::out | std::ios::binary );   // create output file
 
     if(!fin) {
         std::cout << " Cannot open input file .\n";
@@ -809,19 +813,9 @@ int main(int argc, char *argv[]) {
 
 
 1a. // Copy a file and display number of chars copied .
-# include <iostream >
-# include <fstream >
 
-int main(int argc , char * argv []) {
-if(argc!=3) {
-std::cout << " Usage : CPY <input > <output >\n";
-return 1;
-}
-
-ifstream fin ( argv [1] , ios :: in | ios :: binary ); // open
-input file
-ofstream fout ( argv [2] , ios :: out | ios :: binary ); // create
-output file
+// ----  rev[19-Feb-2026]  ----
+// start 735 line
 
 if(!fin) {
     std::cout << " Cannot open input file \n";
