@@ -685,11 +685,12 @@ int main() {
 // ----  EXERCISES  ----
 
 /* Example 8: Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
-they use get(), put(), read(), and/or write(). (Use whichever of these functions you
-deem most appropriate. */
+                they use get(), put(), read(), and/or write(). 
+                (Use whichever of these functions you deem most appropriate.)
 
 
-/*  Write a program that copies a text file and counts how many characters are copied.
+            Program 8.1 (Example 4):
+                Write a program that copies a text file and counts how many characters are copied.
                 
                 The count may differ from the "actual file size" due to "newline translation":
                     On Windows, \r\n (2 bytes) is read as one \n (1 byte), but written back as 2 bytes.
@@ -700,9 +701,21 @@ deem most appropriate. */
 
             CLI:
                 ch12_07_file_io_basics_4 input.txt out3.txt
+
+
+
+            Program8.2 (Example 6): 
+                Write a program that "counts the number of words" in a file. 
+                For simplicity, assume that anything surrounded by whitespace is a word. 
+
+                Save the program as "COUNT.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                COUNT phone.txt
 */
 
-// Copy a text file and display number of chars copied .
+// Program 8.1: Copy a text file and display number of chars copied .
 #include <iostream>
 #include <fstream>
 
@@ -749,17 +762,9 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 6: Write a program that "counts the number of words" in a file. 
-                For simplicity, assume that anything surrounded by whitespace is a word. 
 
-                Save the program as "COUNT.cpp" then compile, 
-                    and finally execute following command
 
-            CLI:
-                COUNT phone.txt
-*/
-
-// Word count
+// Program 8.1: Word count
 #include <iostream>
 #include <fstream>
 #include <cctype>
