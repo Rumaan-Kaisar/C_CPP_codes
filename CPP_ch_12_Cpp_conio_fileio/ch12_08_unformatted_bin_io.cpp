@@ -729,6 +729,7 @@ int main(int argc, char *argv[]) {
     // std::ifstream fin(argv[1]);     // open input file .
     // std::ofstream fout(argv[2]);    // create output file
 
+    // NEW code: using file I/O in BIN mode
     std::ifstream fin( argv[1] , std::ios::in | std::ios::binary );     // open input file
     std::ofstream fout( argv[2] , std::ios::out | std::ios::binary );   // create output file
 
@@ -745,15 +746,16 @@ int main(int argc, char *argv[]) {
     char ch;
     unsigned count = 0;
 
-    fin.unsetf(std::ios::skipws);    // do not skip spaces
+    // OLD CODE:
+    // fin.unsetf(std::ios::skipws);    // do not skip spaces
 
-    while(!fin.eof()) {
-        fin >> ch;
-        if(!fin.eof()) {
-            fout << ch;
-            count++;
-        }
-    }
+    // while(!fin.eof()) {
+    //     fin >> ch;
+    //     if(!fin.eof()) {
+    //         fout << ch;
+    //         count++;
+    //     }
+    // }
 
     std::cout << " Number of bytes copied : " << count << '\n';
 
@@ -822,21 +824,16 @@ int main(int argc, char *argv[]) {
 
 
 
-
-while (! fin . eof ())
-{
-fin . get (ch);
-if (! fin . eof ())
-{
-fout . put (ch);
-count++;
+// using get(), put() in BIN mode
+while(!fin.eof()) {
+    fin.get(ch);
+    if(!fin.eof()) {
+        fout.put(ch);
+        count++;
+    }
 }
-}
-cout << " Number of bytes copied : " << count << ’\n’;
-fin.close();
-fout.close();
 
-return 0;
+
 }
 
 
