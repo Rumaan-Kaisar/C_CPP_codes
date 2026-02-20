@@ -817,18 +817,11 @@ int main(int argc, char *argv[]) {
 // ----  rev[19-Feb-2026]  ----
 // start 735 line
 
-if(!fin) {
-    std::cout << " Cannot open input file \n";
-    return 1;
-}
 
-if(!fout) {
-    std::cout << " Cannot open output file \n";
-    return 1;
-}
 
-char ch;
-unsigned count =0;
+
+
+
 
 while (! fin . eof ())
 {
