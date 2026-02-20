@@ -689,7 +689,7 @@ int main() {
                 (Use whichever of these functions you deem most appropriate.)
 
 
-            Program 8.1 (Example 4):
+            PROGRAM 8.1 (Example 4):
                 Write a program that copies a text file and counts how many characters are copied.
                 
                 The count may differ from the "actual file size" due to "newline translation":
@@ -704,7 +704,7 @@ int main() {
 
 
 
-            Program8.2 (Example 6): 
+            PROGRAM8.2 (Example 6): 
                 Write a program that "counts the number of words" in a file. 
                 For simplicity, assume that anything surrounded by whitespace is a word. 
 
@@ -715,7 +715,7 @@ int main() {
                 COUNT phone.txt
 */
 
-// Program 8.1: Copy a text file and display number of chars copied .
+// PROGRAM 8.1: Copy a text file and display number of chars copied.
 #include <iostream>
 #include <fstream>
 
@@ -778,10 +778,7 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-
-// Program 8.1: Word count
+// PROGRAM 8.2: Word count
 #include <iostream>
 #include <fstream>
 #include <cctype>
@@ -823,21 +820,8 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-1a. // Copy a file and display number of chars copied .
-
-// ----  rev[19-Feb-2026]  ----
-// start 735 line
-
-
-
-
-
-
-
-}
-
+// ----  rev[20-Feb-2026]  ----
+// start 781 line
 
 1b. // Word count .
 # include <iostream >
