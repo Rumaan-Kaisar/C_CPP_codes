@@ -757,6 +757,17 @@ int main(int argc, char *argv[]) {
     //     }
     // }
 
+
+    // using get(), put() in BIN mode
+    while(!fin.eof()) {
+        fin.get(ch);
+        if(!fin.eof()) {
+            fout.put(ch);
+            count++;
+        }
+    }
+
+
     std::cout << " Number of bytes copied : " << count << '\n';
 
     fin.close();
@@ -823,15 +834,6 @@ int main(int argc, char *argv[]) {
 
 
 
-
-// using get(), put() in BIN mode
-while(!fin.eof()) {
-    fin.get(ch);
-    if(!fin.eof()) {
-        fout.put(ch);
-        count++;
-    }
-}
 
 
 }
