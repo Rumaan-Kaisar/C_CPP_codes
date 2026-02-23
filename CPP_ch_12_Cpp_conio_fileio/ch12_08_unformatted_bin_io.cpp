@@ -789,7 +789,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    std::ifstream in(argv [1]);
+    // OLD CODE: we dont use
+    // std::ifstream in(argv [1]);
+
+    // NEW code: using file I/O in BIN mode
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
 
     if(!in) {
         std::cout << " Cannot open input file .\n";
@@ -824,21 +828,10 @@ int main(int argc, char *argv[]) {
 // start 781 line
 
 
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : COUNT <input >\n";
-return 1;
-}
-ifstream in( argv [1] , ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-int count = 0;
-char ch;
+int main ( int argc , char * argv []) {
+
+
+
 // find first non - space char
 do
 {
