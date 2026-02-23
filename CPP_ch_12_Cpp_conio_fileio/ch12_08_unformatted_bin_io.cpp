@@ -367,7 +367,7 @@ int main(){
                 So in our case, the full text might not appear.
 
                 Easy fix:
-                        in.read(str , 16);
+                        in.read(str, 16);
                         str [16] = '\0';    // null terminate str
 */
 
@@ -408,7 +408,9 @@ int main() {
 */
 
 
-// ----  rev[17-Feb-2026] GPT simplify  ----
+
+
+// ----  rev[17-Feb-2026] above progs executed  ----
 
 /* Example 3: Safe String Input with Spaces Unlike >>, this doesn’t stop at space.
 
@@ -803,17 +805,35 @@ int main(int argc, char *argv[]) {
     int count = 0;
     char ch;
 
-    in >> ch; // find first non-space char
-    // after first non-space found, do not skip spaces
-    in.unsetf(std::ios::skipws); // do not skip spaces
 
-    while(!in.eof()) {
-        in >> ch;
+    // OLD CODE:
+    // in >> ch; // find first non-space char
+    // // after first non-space found, do not skip spaces
+    // in.unsetf(std::ios::skipws); // do not skip spaces
+
+    // while(!in.eof()) {
+    //     in >> ch;
+    //     if(isspace(ch)) {
+    //         count++;
+    //         while(isspace(ch) && !in.eof()) in >> ch;
+    //     }
+    // }
+
+
+    // find first non - space char
+    do {
+        in.get(ch);   // using get() in BIN mode
+    } while(isspace(ch));
+
+    // using get() in BIN mode
+    while (!in.eof()) {
+        in.get(ch);
         if(isspace(ch)) {
             count++;
-            while(isspace(ch) && !in.eof()) in >> ch;
+            while( isspace(ch) && !in.eof() ) in.get(ch); // find next word
         }
     }
+
 
     std::cout << " Word count : " << count << '\n';
     in.close();
@@ -824,34 +844,15 @@ int main(int argc, char *argv[]) {
 
 
 
-// ----  rev[20-Feb-2026]  ----
-// start 781 line
+// ----  rev[23-Feb-2026]  ----
+// rev all by executing
 
 
 int main ( int argc , char * argv []) {
 
 
 
-// find first non - space char
-do
-{
-in. get (ch);
-}
-while ( isspace (ch));
-while (! in. eof ())
-{
-in. get (ch);
-if( isspace (ch))
-{
-count ++;
-while ( isspace (ch) && !in.eof ())
-in. get (ch); // find next word
 
-}
-}
-cout << " Word count : " << count << ’\n’;
-in. close ();
-return 0;
 }
 
 
