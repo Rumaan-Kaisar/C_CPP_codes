@@ -823,10 +823,6 @@ int main(int argc, char *argv[]) {
 // ----  rev[20-Feb-2026]  ----
 // start 781 line
 
-1b. // Word count .
-# include <iostream >
-# include <fstream >
-# include <cctype >
 
 int main ( int argc , char * argv [])
 {
