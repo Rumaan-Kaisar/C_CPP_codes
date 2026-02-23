@@ -748,6 +748,7 @@ int main(int argc, char *argv[]) {
     char ch;
     unsigned count = 0;
 
+
     // OLD CODE:
     // fin.unsetf(std::ios::skipws);    // do not skip spaces
 
@@ -768,7 +769,6 @@ int main(int argc, char *argv[]) {
             count++;
         }
     }
-
 
     std::cout << " Number of bytes copied : " << count << '\n';
 
@@ -845,7 +845,7 @@ int main(int argc, char *argv[]) {
 
 
 // ----  rev[23-Feb-2026]  ----
-// rev all by executing
+// rev all by executing in codebloks
 
 
 int main ( int argc , char * argv []) {
@@ -903,7 +903,7 @@ std::ostream &operator <<( ostream &stream , account ob) {
 }
 
 int main() {
-    account Rex(1011 , " Ralph Rex ", 12323.34);
+    account Rex( 1011, " Ralph Rex ", 12323.34 );
     ofstream out( "accounts", std::ios::out | std::ios::binary );
 
     if(!out) {
@@ -911,8 +911,9 @@ int main() {
         return 1;
     }
 
-out << Rex ;
-out . close ();
-return 0;
+    out << Rex;
+    out.close();
+
+    return 0;
 }
 
