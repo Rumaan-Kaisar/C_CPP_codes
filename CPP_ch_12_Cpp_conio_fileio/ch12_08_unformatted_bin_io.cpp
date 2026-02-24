@@ -410,8 +410,6 @@ int main() {
 
 
 
-// ----  rev[17-Feb-2026] above progs executed  ----
-
 /* Example 3: Safe String Input with Spaces Unlike >>, this doesn’t stop at space.
 
                 When you use >> to read a string,
@@ -474,7 +472,7 @@ int main() {
 int main(){
     char ch;
 
-    ofstream out("test", std::ios::out | std::ios::binary);
+    std::ofstream out("test", std::ios::out | std::ios::binary);
 
     if(!out){ 
         std::cout << "Cannot open output file.\n";
@@ -487,10 +485,10 @@ int main(){
     out << "Hello there !" << 99 << "sdf" << std::endl;
     out.close();    // closing 1st time
 
-    ifstream in("test", ios::in | ios::binary);
+    std::ifstream in("test", std::ios::in | std::ios::binary);
 
     if(!in) {
-        cout << "Cannot open input file .\n";
+        std::cout << "Cannot open input file .\n";
         return 1;
     }   // confirmation
 
@@ -499,28 +497,26 @@ int main(){
         ch = in.peek();     // see what type of char is next
 
         if(isdigit(ch)){
-            while(isdigit( *p=in.get() ))
-                p++;    // read integer
+            while(isdigit( *p = in.get() )) p++;    // read integer
             
             in.putback(*p); // return char to stream
             *p = '\0';     // null - terminate the string
 
             std::cout << " Integer : " << atoi(str);
         }
-
         else if(isalpha(ch)){
-                while(isalpha*p=in.get() ))
-                    p++;    // read a string
-                
-                in.putback(*p);
-                *p = '\0';
-                std::cout << " String : " << str;
+            while(isalpha( *p = in.get() )) p++;    // read a string
+            
+            in.putback(*p);
+            *p = '\0';
+            std::cout << " String : " << str;
         }
 
         else
             in.get();   // ignore 
 
         std::cout << '\n'; 
+
     }  while(!in.eof());
 
     in.close();                 // final file closing 
@@ -557,8 +553,8 @@ int main(){
 */
 
 
+// ----  rev[17-Feb-2026] above progs executed  ----
 
-// ----  rev[10-Feb-2026]  ----
 
 /*  Example 5: Following program will display the contents of any file on the screen. 
                 It uses the get(). 
@@ -591,6 +587,7 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
 
 
 
@@ -631,11 +628,6 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-
-
-
-
 
 
 
