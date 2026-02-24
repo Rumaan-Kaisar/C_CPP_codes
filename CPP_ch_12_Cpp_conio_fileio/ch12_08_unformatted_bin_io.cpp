@@ -844,21 +844,6 @@ int main(int argc, char *argv[]) {
 
 
 
-// ----  rev[23-Feb-2026]  ----
-// rev all by executing in codebloks
-
-
-int main ( int argc , char * argv []) {
-
-
-
-
-}
-
-
-
-
-
 /* Example 9: Given the following class, write a program that outputs the contents of the class to a file.
                 Create an inserter function to output account info to a file.
 
