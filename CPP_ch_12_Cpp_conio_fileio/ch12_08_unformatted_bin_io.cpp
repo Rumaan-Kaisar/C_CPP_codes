@@ -553,11 +553,13 @@ int main(){
 */
 
 
-// ----  rev[17-Feb-2026] above progs executed  ----
 
 
 /*  Example 5: Following program will display the contents of any file on the screen. 
                 It uses the get(). 
+
+            CLI:
+                ch12_07_file_io_basics_5 file_name
 */
 
 #include <iostream>
@@ -567,7 +569,7 @@ int main(int argc, char* argv[]) {
     char ch;
 
     if(argc!=2) {
-        std::cout << " Usage : PR <filename >\n";
+        std::cout << " Usage : Prog_name <filename>\n";
         return 1;
     }
 
@@ -589,6 +591,8 @@ int main(int argc, char* argv[]) {
 }
 
 
+
+// ----  rev[24-Feb-2026] above progs executed  ----
 
 
 /* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. 
