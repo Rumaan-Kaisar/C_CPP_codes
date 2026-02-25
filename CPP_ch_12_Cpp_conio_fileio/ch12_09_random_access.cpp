@@ -1,9 +1,24 @@
 
 /*  ------------------------    Random Access    ------------------------
 
-    Use the seekg() and seekp()  to perform random access, these are members of the I & O stream classes, respectively. Common forms:
+    Random Access:
+        Normally, files are read or written "sequentially" (from start to end).
+        But sometimes we want to "jump directly to a specific position" in the file.
+        This is called RANDOM ACCESS.
+    
+        C++ provides two functions for this:
+            seekg()     move input (read) position
+            seekp()     move output (write) position
+
+
+    ----  rev[25-Feb-2026]  ----
+
+    Use the seekg() and seekp()  to perform random access,
+    these are members of the I & O stream classes, respectively. Common forms:
 istream &seekg(off_type offset, seekdir origin);
 ostream &seekp(off_type offset, seekdir origin);
+
+
 	off_type is an integer type defined by ios that is capable of containing the largest valid value that offset can have. 
 	seekdir is an enumeration defined by ios that has these values:
 [1]	ios::beg (Means-Seek from beginning)	[2]	ios::cur (Means-Seek from current location)	[3]	ios::end (Means-Seek from end)
@@ -42,16 +57,15 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 ----  GPT  ----
-🔹 Random Access in Files (Simplified — with clear details)
 
-Normally, files are read or written sequentially (from start to end).
-But sometimes we want to jump directly to a specific position in the file.
-This is called random access.
 
-C++ provides two functions for this:
 
-seekg()  → move input (read) position
-seekp()  → move output (write) position
+
+
+
+
+
+
 🔹 Basic function forms
 istream& seekg(offset, origin);
 ostream& seekp(offset, origin);
