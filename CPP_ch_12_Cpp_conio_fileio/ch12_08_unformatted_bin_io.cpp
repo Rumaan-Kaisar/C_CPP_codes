@@ -600,6 +600,9 @@ int main(int argc, char* argv[]) {
                 Note: 
                     get() reads characters from "cin" including spaces, 
                     so it does not skip leading whitespace like other input methods do.
+
+                CLI:
+                                ch12_07_file_io_basics_6 file_name
 */
 
 #include <iostream>
@@ -609,11 +612,11 @@ int main(int argc, char* argv[]) {
     char ch;
 
     if(argc!=2) {
-        std::cout << " Usage : WRITE <filename >\n";
+        std::cout << " Usage : Prog_name <filename>\n";
         return 1;
     }
 
-    ofstream out ( argv [1] , ios :: out | ios :: binary );
+    std::ofstream out( argv[1], std::ios::out | std::ios::binary );
 
     if(!out) {
         std::cout << " Cannot open file .\n";
@@ -624,8 +627,8 @@ int main(int argc, char* argv[]) {
 
     do{
         std::cout << ": ";
-        cin.get (ch);
-        out.put (ch);
+        std::cin.get(ch);
+        out.put(ch);
     } while(ch != '$');
 
     out.close();
