@@ -681,7 +681,6 @@ int main() {
 
 
 
-// ----  rev[25-Feb-2026] above progs executed  ----
 
 /* Example 8: Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
                 they use get(), put(), read(), and/or write(). 
@@ -870,16 +869,16 @@ class account {
         double balance;
     public:
         account( int c, char* n, double b ) {
-            custom = c;
+            custnum = c;
             strcpy(name, n);
             balance = b;
         }
 
         // inserter here (output to a file)
-        friend std::ostream &operator<<( ostream &stream, account ob );
+        friend std::ostream &operator<<( std::ostream &stream, account ob );
 };
 
-std::ostream &operator <<( ostream &stream , account ob) {
+std::ostream &operator <<( std::ostream &stream , account ob) {
     stream << ob. custnum << ' ';
     stream << ob. name << ' ' << ob. balance ;
     stream << '\n';
@@ -888,7 +887,7 @@ std::ostream &operator <<( ostream &stream , account ob) {
 
 int main() {
     account Rex( 1011, " Ralph Rex ", 12323.34 );
-    ofstream out( "accounts", std::ios::out | std::ios::binary );
+    std::ofstream out( "accounts", std::ios::out | std::ios::binary );
 
     if(!out) {
         std::cout << " Cannot open output file .\n";
