@@ -778,13 +778,15 @@ int main(int argc, char *argv[]) {
 
 
 // PROGRAM 8.2: Word count
+// CLI:     ch12_07_file_io_basics_8 file_name
+
 #include <iostream>
 #include <fstream>
 #include <cctype>
 
 int main(int argc, char *argv[]) {
     if(argc !=2) {
-        std::cout << "Usage : COUNT <input>\n";
+        std::cout << "Usage : prog_name <input>\n";
         return 1;
     }
 
