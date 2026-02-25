@@ -711,7 +711,7 @@ int main() {
                     and finally execute following command
 
             CLI:
-                COUNT phone.txt
+                ch12_07_file_io_basics_7 test_1 test_2
 */
 
 // PROGRAM 8.1: Copy a text file and display number of chars copied.
@@ -720,7 +720,7 @@ int main() {
 
 int main(int argc, char *argv[]) {
     if(argc != 3) {
-        std::cout << " Usage : CPY <input> <output>\n";
+        std::cout << " Usage : prog_name <input> <output>\n";
         return 1;
     }
 
