@@ -592,8 +592,6 @@ int main(int argc, char* argv[]) {
 
 
 
-// ----  rev[24-Feb-2026] above progs executed  ----
-
 
 /* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. 
 
@@ -649,19 +647,19 @@ int main(int argc, char* argv[]) {
 #include <fstream>
 
 int main() {
-    std::ofstream out(" test ", std::ios::out | std::ios::binary);
+    std::ofstream out("test", std::ios::out | std::ios::binary);
 
     if(!out) {
         std::cout << " Cannot open output file .\n";
         return 1;
     }
 
-    double nums [4] = {1.1, 2.2, 3.3, 4.4};
+    double nums[4] = { 1.1, 2.2, 3.3, 4.4 };
 
     out.write( (char*)nums, sizeof(nums) );
     out.close();
 
-    std::ifstream in(" test ", std::ios::in | std::ios::binary);
+    std::ifstream in("test", std::ios::in | std::ios::binary);
 
     if(!in) {
         std::cout << " Cannot open input file .\n";
@@ -683,7 +681,7 @@ int main() {
 
 
 
-// ----  EXERCISES  ----
+// ----  rev[25-Feb-2026] above progs executed  ----
 
 /* Example 8: Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
                 they use get(), put(), read(), and/or write(). 
