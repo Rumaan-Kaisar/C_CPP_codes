@@ -10,18 +10,33 @@
             seekg()     move input (read) position
             seekp()     move output (write) position
 
-
-    ----  rev[25-Feb-2026]  ----
-
-    Use the seekg() and seekp()  to perform random access,
-    these are members of the I & O stream classes, respectively. Common forms:
-istream &seekg(off_type offset, seekdir origin);
-ostream &seekp(off_type offset, seekdir origin);
+                istream& seekg(offset, origin);
+                ostream& seekp(offset, origin);
 
 
-	off_type is an integer type defined by ios that is capable of containing the largest valid value that offset can have. 
-	seekdir is an enumeration defined by ios that has these values:
-[1]	ios::beg (Means-Seek from beginning)	[2]	ios::cur (Means-Seek from current location)	[3]	ios::end (Means-Seek from end)
+
+    ----------------    seekg() and seekp()    ----------------
+
+    Use the seekg() and seekp()  to perform RANDOM ACCESS,
+    these are members of the I & O stream classes, respectively.
+    
+    Common forms:
+                istream &seekg(off_type offset, seekdir origin);
+                ostream &seekp(off_type offset, seekdir origin);
+
+        off_type:
+            is an "integer type" defined by "ios" that is capable of 
+            containing the largest valid value that "offset" can have. 
+
+        seekdir:
+            is an enumeration defined by ios that has these values:
+                ios::beg (Means-Seek from beginning)	
+                ios::cur (Means-Seek from current location)	
+                ios::end (Means-Seek from end)
+
+
+----  rev[25-Feb-2026]  ----
+
 	C++ I/O system manages two pointers associated with a file. The appropriate pointer is automatically applied for each I/O operation. 
 	get pointer, which specifies where in the file the next input operation will occur. 
 	put pointer, which specifies where in the file the next output operation will occur. 
@@ -36,6 +51,8 @@ pos_type tellg(); 		pos_type tellp();
 istream &seekg( pos_type position );
 ostream &seekp( pos_type position );
 	Example 1: The following program demonstrates the seekp() function. It allows you to change a specific character in a file. Specify a file name on the command line, followed by the number of the byte in the file you want to change, followed by the new character. Notice that the file is opened for read/write operations.
+
+
 
 #include <iostream>
 #include <fstream>
@@ -66,9 +83,8 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-🔹 Basic function forms
-istream& seekg(offset, origin);
-ostream& seekp(offset, origin);
+
+
 
 offset → how many bytes to move
 
