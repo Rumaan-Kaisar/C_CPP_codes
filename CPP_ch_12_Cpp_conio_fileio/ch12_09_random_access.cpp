@@ -52,6 +52,23 @@
             where the next write will happen
 
         These two acts as separate position markers in a file.
+        
+        seekg() and seekp() can be used in nonsequential fashion.
+
+        
+    Functions:
+        seekg() moves the "get" pointer "offset" number of bytes from the specified "origin".
+        seekp() moves the "put" pointer "offset" number of bytes from the specified "origin".
+
+    usage:
+        jump to any byte
+        modify a specific part of a file
+        read data from the middle
+        skip unwanted parts
+
+        No need to read everything before it.
+
+
 
 
 
@@ -61,11 +78,8 @@
  
 
 
-	seekg() and seekp() can be used in nonsequential fashion.
+	
 
-
-	seekg() moves the associated file's current get pointer offset number of bytes from the specified origin. 
-	seekp() moves the associated file's current put pointer offset number of bytes from the specified origin.
 
 
 	Files that will be accessed via seekg() and seekp() should be opened for binary file operations. 
@@ -81,6 +95,37 @@ pos_type tellg(); 		pos_type tellp();
 	Overloaded versions of seekg() and seekp(): There are overloaded versions of seekg() and seekp() that move the file pointers to the location specified by the return values of tellg() and tellp(). Their prototypes are:
 istream &seekg( pos_type position );
 ostream &seekp( pos_type position );
+
+
+
+----  qwen  ----
+
+Here is a simplified and organized version of the notes:
+File Pointer Manipulation (seek and tell)
+1. Random Access
+Functions: seekg() and seekp() allow nonsequential (random) access to files.
+Requirement: Files using these functions should be opened in binary mode.
+2. Moving Pointers (seek)
+seekg(): Moves the input/get (read) pointer.
+seekp(): Moves the output/put (write) pointer.
+How it works: Moves the pointer by a specific offset from an origin, OR to an absolute position.
+3. Getting Position (tell)
+tellg(): Returns the current position of the input pointer.
+tellp(): Returns the current position of the output pointer.
+Return Type: Both return pos_type (an integer type defined by ios large enough to hold any file position).
+4. Absolute Positioning
+You can use the overloaded versions of seekg() and seekp() to jump directly to a position returned by tellg() or tellp().
+Prototypes:
+cpp
+12
+istream &seekg( pos_type position );
+ostream &seekp( pos_type position );
+Quick Summary:
+g = Get (Read) | p = Put (Write)
+seek = Move pointer | tell = Report pointer location
+Always use binary mode for reliable seeking.
+
+
 
 
 
@@ -124,26 +169,6 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-Functions:
-
-seekg() moves the get pointer
-
-seekp() moves the put pointer
-
-🔹 Why this is useful
-
-You can:
-
-✔ jump to any byte
-✔ modify a specific part of a file
-✔ read data from the middle
-✔ skip unwanted parts
-
-No need to read everything before it.
-
-
-
-
 
 🔹 Important recommendation
 
@@ -152,6 +177,8 @@ Files used with seekg() and seekp() should usually be opened in:
 std::ios::binary
 
 Because binary mode avoids character translation and ensures exact byte positions.
+
+
 
 🔹 Checking current position
 
