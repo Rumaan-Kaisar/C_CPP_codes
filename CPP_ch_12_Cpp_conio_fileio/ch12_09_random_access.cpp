@@ -30,14 +30,22 @@
 
         seekdir:
             is an enumeration defined by ios that has these values:
-                ios::beg (Means-Seek from beginning)	
+                ios::beg (Means-Seek from beginning of file)	
                 ios::cur (Means-Seek from current location)	
-                ios::end (Means-Seek from end)
+                ios::end (Means-Seek from end of file)
+
+        offset:
+            how many bytes to move
+
+        origin:
+            where to start counting from
 
 
 ----  rev[25-Feb-2026]  ----
 
-	C++ I/O system manages two pointers associated with a file. The appropriate pointer is automatically applied for each I/O operation. 
+C++ I/O system manages two pointers associated with a file. The appropriate pointer is automatically applied for each I/O operation. 
+
+
 	get pointer, which specifies where in the file the next input operation will occur. 
 	put pointer, which specifies where in the file the next output operation will occur. 
 	seekg() and seekp() can be used in nonsequential fashion.
@@ -80,17 +88,13 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-offset → how many bytes to move
 
-origin → where to start counting from
 
-Possible origins:
 
-ios::beg → from beginning of file
 
-ios::cur → from current position
 
-ios::end → from end of file
+
+
 
 🔹 Two file position pointers
 
