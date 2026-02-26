@@ -80,12 +80,6 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-
-
-
-
-
-
 offset → how many bytes to move
 
 origin → where to start counting from
