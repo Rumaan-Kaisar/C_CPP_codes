@@ -41,26 +41,51 @@
             where to start counting from
 
 
+    File position pointers:
+        C++ I/O system manages two pointers associated with a file. 
+        The appropriate pointer is automatically applied for each I/O operation. 
+
+        get pointer:
+            where the next read will happen
+
+        put pointer:
+            where the next write will happen
+
+        These two acts as separate position markers in a file.
+
+
+
 ----  rev[25-Feb-2026]  ----
 
-C++ I/O system manages two pointers associated with a file. The appropriate pointer is automatically applied for each I/O operation. 
+
+ 
 
 
-	get pointer, which specifies where in the file the next input operation will occur. 
-	put pointer, which specifies where in the file the next output operation will occur. 
 	seekg() and seekp() can be used in nonsequential fashion.
+
+
 	seekg() moves the associated file's current get pointer offset number of bytes from the specified origin. 
 	seekp() moves the associated file's current put pointer offset number of bytes from the specified origin.
+
+
 	Files that will be accessed via seekg() and seekp() should be opened for binary file operations. 
+
+
 	Use following member functions to determine the current position of each file pointer.
 pos_type tellg(); 		pos_type tellp();
+
+
 	pos_type is an integer type defined by ios that is capable of holding the largest value that defines a file position.
+
+
 	Overloaded versions of seekg() and seekp(): There are overloaded versions of seekg() and seekp() that move the file pointers to the location specified by the return values of tellg() and tellp(). Their prototypes are:
 istream &seekg( pos_type position );
 ostream &seekp( pos_type position );
+
+
+
+
 	Example 1: The following program demonstrates the seekp() function. It allows you to change a specific character in a file. Specify a file name on the command line, followed by the number of the byte in the file you want to change, followed by the new character. Notice that the file is opened for read/write operations.
-
-
 
 #include <iostream>
 #include <fstream>
@@ -96,13 +121,8 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-🔹 Two file position pointers
 
-C++ keeps two separate position markers in a file:
 
-get pointer → where the next read will happen
-
-put pointer → where the next write will happen
 
 Functions:
 
@@ -120,6 +140,10 @@ You can:
 ✔ skip unwanted parts
 
 No need to read everything before it.
+
+
+
+
 
 🔹 Important recommendation
 
