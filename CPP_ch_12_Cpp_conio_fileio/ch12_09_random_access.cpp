@@ -77,12 +77,8 @@
 ----  rev[25-Feb-2026]  ----
 
 
- 
 
-
-
-
-	Use following member functions to determine the current position of each file pointer.
+Use following member functions to determine the current position of each file pointer.
 pos_type tellg(); 		pos_type tellp();
 
 
@@ -97,14 +93,7 @@ ostream &seekp( pos_type position );
 
 ----  qwen  ----
 
-Here is a simplified and organized version of the notes:
-File Pointer Manipulation (seek and tell)
-1. Random Access
-Functions: seekg() and seekp() allow  to files.
-Requirement: Files using these functions should be opened in binary mode.
-2. Moving Pointers (seek)
-seekg(): Moves the  pointer.
-seekp(): Moves the  pointer.
+
 
 
 3. Getting Position (tell)
