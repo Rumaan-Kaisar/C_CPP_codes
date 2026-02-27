@@ -17,9 +17,11 @@
 
     ----------------    seekg() and seekp()    ----------------
 
-    Use the seekg() and seekp()  to perform RANDOM ACCESS,
+    Use the seekg() and seekp()  to perform RANDOM ACCESS (i.e. nonsequential access),
     these are members of the I & O stream classes, respectively.
     
+    Files that will be accessed via seekg() and seekp() should be opened for BINARY
+
     Common forms:
                 istream &seekg(off_type offset, seekdir origin);
                 ostream &seekp(off_type offset, seekdir origin);
@@ -57,8 +59,8 @@
 
         
     Functions:
-        seekg() moves the "get" pointer "offset" number of bytes from the specified "origin".
-        seekp() moves the "put" pointer "offset" number of bytes from the specified "origin".
+        seekg() moves the "input/get (read)" pointer "offset" number of bytes from the specified "origin".
+        seekp() moves the "output/put (write)" pointer "offset" number of bytes from the specified "origin".
 
     usage:
         jump to any byte
@@ -78,11 +80,6 @@
  
 
 
-	
-
-
-
-	Files that will be accessed via seekg() and seekp() should be opened for binary file operations. 
 
 
 	Use following member functions to determine the current position of each file pointer.
@@ -103,12 +100,13 @@ ostream &seekp( pos_type position );
 Here is a simplified and organized version of the notes:
 File Pointer Manipulation (seek and tell)
 1. Random Access
-Functions: seekg() and seekp() allow nonsequential (random) access to files.
+Functions: seekg() and seekp() allow  to files.
 Requirement: Files using these functions should be opened in binary mode.
 2. Moving Pointers (seek)
-seekg(): Moves the input/get (read) pointer.
-seekp(): Moves the output/put (write) pointer.
-How it works: Moves the pointer by a specific offset from an origin, OR to an absolute position.
+seekg(): Moves the  pointer.
+seekp(): Moves the  pointer.
+
+
 3. Getting Position (tell)
 tellg(): Returns the current position of the input pointer.
 tellp(): Returns the current position of the output pointer.
@@ -152,21 +150,6 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 ----  GPT  ----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
