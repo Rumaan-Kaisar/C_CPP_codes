@@ -20,7 +20,8 @@
     Use the seekg() and seekp()  to perform RANDOM ACCESS (i.e. nonsequential access),
     these are members of the I & O stream classes, respectively.
     
-    Files that will be accessed via seekg() and seekp() should be opened for BINARY
+    Important Note:
+        Files used with seekg() and seekp() should usually be opened in BINARY "std::ios::binary"
 
     Common forms:
                 istream &seekg(off_type offset, seekdir origin);
@@ -74,7 +75,7 @@
 
 
 
-----  rev[25-Feb-2026]  ----
+----  rev[27-Feb-2026]  ----
 
 
 
@@ -142,11 +143,7 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-🔹 Important recommendation
 
-Files used with seekg() and seekp() should usually be opened in:
-
-std::ios::binary
 
 Because binary mode avoids character translation and ensures exact byte positions.
 
