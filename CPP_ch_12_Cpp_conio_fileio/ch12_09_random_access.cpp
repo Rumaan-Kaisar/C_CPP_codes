@@ -22,6 +22,7 @@
     
     Important Note:
         Files used with seekg() and seekp() should usually be opened in BINARY "std::ios::binary"
+        Because binary mode avoids character translation and ensures exact byte positions.
 
     Common forms:
                 istream &seekg(off_type offset, seekdir origin);
@@ -73,17 +74,32 @@
 
 
 
+    --------  current position  --------
+
+    To determine the current position of each file pointer use:
+
+            pos_type tellg();
+            pos_type tellp();
+
+        tellg()     current read position
+        tellp()     current write position
+
+        They return the current byte location in the file.
+
+        "pos_type" is an integer type defined by "ios" that is capable of 
+            holding the "largest value" that defines a file position.
+
 
 
 ----  rev[27-Feb-2026]  ----
 
 
 
-Use following member functions to determine the current position of each file pointer.
-pos_type tellg(); 		pos_type tellp();
 
 
-	pos_type is an integer type defined by ios that is capable of holding the largest value that defines a file position.
+
+
+
 
 
 	Overloaded versions of seekg() and seekp(): There are overloaded versions of seekg() and seekp() that move the file pointers to the location specified by the return values of tellg() and tellp(). Their prototypes are:
@@ -144,19 +160,6 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 
 
-
-Because binary mode avoids character translation and ensures exact byte positions.
-
-
-
-🔹 Checking current position
-
-To know where the pointers currently are:
-
-tellg() → current read position
-tellp() → current write position
-
-They return the current byte location in the file.
 
 🔹 Another way to move pointers
 
