@@ -84,7 +84,7 @@
         tellg()     current read position
         tellp()     current write position
 
-        They return the current byte location in the file.
+        They return the current byte location in the file (return pos_type).
 
         "pos_type" is an integer type defined by "ios" that is capable of 
             holding the "largest value" that defines a file position.
@@ -102,7 +102,12 @@
 
 
 
-	Overloaded versions of seekg() and seekp(): There are overloaded versions of seekg() and seekp() that move the file pointers to the location specified by the return values of tellg() and tellp(). Their prototypes are:
+Overloaded versions of seekg() and seekp():
+    Following overloaded versions of seekg() and seekp() move the file pointers 
+    to the location specified by the return values of tellg() and tellp().
+ 
+ 
+  Their prototypes are:
 istream &seekg( pos_type position );
 ostream &seekp( pos_type position );
 
@@ -113,10 +118,8 @@ ostream &seekp( pos_type position );
 
 
 
-3. Getting Position (tell)
-tellg(): Returns the current position of the input pointer.
-tellp(): Returns the current position of the output pointer.
-Return Type: Both return pos_type (an integer type defined by ios large enough to hold any file position).
+
+
 4. Absolute Positioning
 You can use the overloaded versions of seekg() and seekp() to jump directly to a position returned by tellg() or tellp().
 Prototypes:
@@ -163,12 +166,14 @@ Note : *argv[] and argc are used in main()'s arguments. They are called the comm
 
 🔹 Another way to move pointers
 
-You can also move directly to a known position:
+You can move directly to a known position using these two:
 
 seekg(position);
 seekp(position);
 
 Often used with values returned by tellg() or tellp().
+
+
 
 🔹 Example idea (concept)
 
@@ -185,6 +190,8 @@ For example:
 CHANGE filename 10 X
 
 This changes the character at byte 10 to X.
+
+
 
 🔹 Command-line arguments reminder
 
