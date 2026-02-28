@@ -1,174 +1,903 @@
 
-/*  ------------------------    Random Access    ------------------------
+/*  ------------------------    Unformatted I/O & Binary I/O    ------------------------
 
-    Random Access:
-        Normally, files are read or written "sequentially" (from start to end).
-        But sometimes we want to "jump directly to a specific position" in the file.
-        This is called RANDOM ACCESS.
+    ====  combine cpp chapters (9.3 + 9.4)  ====
+
+
+    What is Unformatted I/O?
+        Deals with raw bytes (raw binary data), not formatted text.
+        Data is read/written exactly in its internal binary form (as it exists in memory).
+
+        Unformatted files store data in the same binary format used by the program,
+            Unlike << and >>, no text conversion occurs.
+
+        Thus, unformatted functions give you detailed control over files I/O.
+        Commonly used for binary files, speed, and exact data storage.
+
+
+    Used for:
+        Fast file operations
+        Storing complex data (objects, structs)
+        Avoiding text conversion (e.g., newline translation)
+
+    It uses read(), write(), get(), put() — not << or >>.
+
+
+
+    --------  Lowest-level unformatted I/O  --------
+    The lowest-level unformatted I/O functions are get() and put().
+        get() is used to read a byte and put() is used to write a byte.
+        These are members of all I/O stream classes respectively.
+        Following are Common version of get() & put()
+        Both return the stream, so chaining is possible.
+
+
+    put()
+        writes one byte (character).
+
+            ostream &put(char &ch);
+
+        Writes ch to the output stream.
+        Returns reference to stream (for chaining).
+
+
+    get()
+        Reads one character from the associated stream and puts that in ch.
+        Does not skip "whitespace".
+        Returns a reference to the stream; if at EOF, stream evaluates to false.
+
+            istream &get(char &ch);
+
+        Note:
+            Unlike cin >> ch, get() reads spaces and newlines too.
+
+
+        --------  Overloaded get()  --------
+
+        get() can be overloaded several different ways
+        The prototypes for commonly used overloaded forms are:
+
+                istream &get(char *buf, streamsize num);
+                istream &get(char *buf, streamsize num, char delim);
+                int get();
+
+
+        get(buf, num):
+            This form reads up to num-1 characters into "buf". 
+            Stops at "newline" or "EOF"
+            Buffer "buf" is null-terminated
+
+            Newline remains in the stream
+                if NEWLINE encountered, it is not extracted (inputted). 
+                Instead stays in stream until the next input operation
+
+
+        get(buf, num, delim):
+            This form reads characters into the array pointed to by "buf" until one of these happens:
+                num-1 characters are read,
+                delimiter delim is found,
+                or end-of-file (EOF) is reached.
+
+            The array pointed to by "buf" will be null terminated by get(). 
+            Buffer "buf" is null-terminated
+
+            If delimiter encountered in the stream, it is not extracted (inputted). 
+                Instead, it remains in the stream until the next input operation.
+                Automatically adds a null (\0) at the end of the string.
+
+            Note (Delimiter character): 
+                A delimiter is one or more characters that separate text strings. 
+                Common delimiters are: 
+                    commas      ( , ), 
+                    semicolon   ( ; ), 
+                    quotes      ( ", ' ), 
+                    braces      ( {} ), 
+                    pipes       ( | ),      or slashes      ( / \ ). 
+                    Newline character is also a delimiter. 
+
+
+        int get():
+            This form of get() returns next character (or EOF on end) from the stream.
+            It is similar to C's getc() function.
+
+        All versions null-terminate the buffer automatically.
+
+
+
+    getline():
+        getline() is another input function. 
+        It is a member of each "input stream class". 
+
+        Its prototypes:
+                istream &getline(char *buf, streamsize num);
+                istream &getline(char *buf, streamsize num, char delim);
+
+
+        getline(buf, num):
+            The first form reads characters into the array pointed to by "buf" until either:
+                num-1 characters have been read, 
+                a newline is found, or 
+                the end-of-file (EOF) has been encountered. 
+
+            If the newline encountered in the input stream, 
+                it is extracted (inputted), but it is not put into "buf".
+
+
+        getline(buf, num, delim):
+            this form reads characters into the array pointed to by "buf" until either:
+                num-1 characters are read,
+                delimiter delim is found,
+                or end-of-file (EOF) is reached.
+
+            If the delimiter encountered in the input stream, 
+                it is extracted (inputted), but it is not put into buf.
+
+        In both case the array pointed to by "buf" will be null terminated by getline().
+
+        Why getline() Solves Space Issues:
+            ">>" stops at whitespace
+            getline() reads full lines including spaces
+            Acts like the old C gets() but safely
+
+
+
+    --------  get() vs getline()  --------
+
+    getline(buf, num) and getline(buf, num, delim) are virtually identical to the 
+    get(buf, num) and get(buf, num, delim)
+
+    The difference between get() and getline() is that:
+        getline() reads and removes the "delimiter" from the input stream; get() does not.
+
+    get():
+        Delimiter stays in stream
+        Use for Manual control
+
+    getline():
+        Removes Delimiter from stream
+        Preferred for full line input
+
+    Always use getline() over get() unless you need to keep the delimiter.
+    For reading lines or strings with spaces, getline() is preferred.
+
+
+
+    --------  Block I/O: read() and write()  --------
+
+    To read and write blocks of data (blocks of bytes), use read() and write()
+    These are members of the I & O stream classes, respectively. 
     
-        C++ provides two functions for this:
-            seekg()     move input (read) position
-            seekp()     move output (write) position
-
-                istream& seekg(offset, origin);
-                ostream& seekp(offset, origin);
+    Example: 
+        Save/load entire structs or classes directly.
 
 
+    Their PROTOTYPES are:
 
-    ----------------    seekg() and seekp()    ----------------
-
-    Use the seekg() and seekp()  to perform RANDOM ACCESS (i.e. nonsequential access),
-    these are members of the I & O stream classes, respectively.
-    
-    Important Note:
-        Files used with seekg() and seekp() should usually be opened in BINARY "std::ios::binary"
-        Because binary mode avoids character translation and ensures exact byte positions.
-
-    Common forms:
-                istream &seekg(off_type offset, seekdir origin);
-                ostream &seekp(off_type offset, seekdir origin);
-
-        off_type:
-            is an "integer type" defined by "ios" that is capable of 
-            containing the largest valid value that "offset" can have. 
-
-        seekdir:
-            is an enumeration defined by ios that has these values:
-                ios::beg (Means-Seek from beginning of file)	
-                ios::cur (Means-Seek from current location)	
-                ios::end (Means-Seek from end of file)
-
-        offset:
-            how many bytes to move
-
-        origin:
-            where to start counting from
+            istream &read(char *buf, streamsize num);
+            ostream &write(const char *buf, streamsize num);
 
 
-    File position pointers:
-        C++ I/O system manages two pointers associated with a file. 
-        The appropriate pointer is automatically applied for each I/O operation. 
+    read(buf, num):
+        Reads num bytes into memory from the invoking stream and 
+        puts them in the buffer pointed to by buf. 
 
-        get pointer:
-            where the next read will happen
+        If the end-of-file is reached before num characters have been read, 
+        read() simply stops, and the buffer contains as many characters as were available. 
 
-        put pointer:
-            where the next write will happen
 
-        These two acts as separate position markers in a file.
+    write(buf, num):
+        Writes num bytes from memory to the associated stream from the buffer pointed to by buf. 
+
+    Note:
+        Blocks of raw data e.g., objects, arrays, structs
+
+        streamsize:
+            streamsize type is some form of integer. 
+            An object of type streamsize is capable of holding the largest number of bytes 
+            that will be transferred in any one I/O operation.
+
+        Type Casting in read() / write():
+            Buffers must be cast to (char*)
+            Required due to C++ strong type checking
+            Prevents unsafe pointer conversions
+
+
+    gcount():
+        this member function checks how many bytes (characters) were read
+
+        The prototype is:
+                streamsize gcount();
+
+            Returns number of characters (bytes) read by last unformatted input (read(), getline(), etc.).
+            Useful after partial reads (when read() stops early) to know actual data size.
+
+
+    peek():
+        Looks at the next character in the input stream without removing it from that stream
+        It is a member of the input stream classes.
         
-        seekg() and seekp() can be used in nonsequential fashion.
+        prototype:
+                int peek();
 
+            It returns the next character in the stream.
+            Does not remove it from the stream
+            Returns EOF at end-of-file
+            Useful when input type is unknown
+
+
+    putback():
+        Used to put the last read character back into the stream.
+        i.e. return the last character read from a stream to that stream.
+
+        It is a member of the input stream classes. 
+
+        Prototype:
+                istream &putback(char c);
+
+            Puts character c back into input stream.
+            Where c is the last character read.
+
+        Allows rereading: Next get() or peek() will see it again.
+        Helps when you read too far and want to "undo".
+
+
+    Smart Parsing with peek() and putback():
+        Useful when integers and strings are mixed
+        peek() checks what comes next
+        putback() restores unwanted characters
+        Enables flexible input handling
+
+
+    flush():
+        When output is performed, data is not written immediately to the device linked to the stream.
+        Instead, information is stored in a internal buffer in memory (RAM).
+        The data is only written to disk when the buffer becomes full. 
+
+        flush() force output immediately
+        It force the information to be physically written to disk before the buffer is full.
+
+        flush() is a member of the output stream classes and has this prototype:
+
+                ostream &flush();
+
+        Useful in critical situations (e.g., power failure risks) to ensure important data is not lost.
         
-    Functions:
-        seekg() moves the "input/get (read)" pointer "offset" number of bytes from the specified "origin".
-        seekp() moves the "output/put (write)" pointer "offset" number of bytes from the specified "origin".
-
-    usage:
-        jump to any byte
-        modify a specific part of a file
-        read data from the middle
-        skip unwanted parts
-
-        No need to read everything before it.
+        Example: 
+            Logging systems or real-time applications where immediate output is essential.
 
 
 
-    --------  current position  --------
+    --------  Binary Mode  --------
+    For unformatted file I/O we always use binary operation (rather than text operations >> <<)
 
-    To determine the current position of each file pointer use:
-
-            pos_type tellg();
-            pos_type tellp();
-
-        tellg()     current read position
-        tellp()     current write position
-
-        They return the current byte location in the file (return pos_type).
-
-        "pos_type" is an integer type defined by "ios" that is capable of 
-            holding the "largest value" that defines a file position.
-
-
-
-    --------  Overloaded versions of seekg() and seekp()  --------
-
-    Following overloaded versions of seekg() and seekp() used to
-    jump directly to a position returned by tellg() or tellp().
-    
-    Their prototypes are:
-        istream &seekg( pos_type position );
-        ostream &seekp( pos_type position );
-
-    You can move directly to a known position using those.
-
-
-    Example:
-        A program can open a file for 
+    ios::binary
+        Always open binary files with it to prevents "automatic character translations"
         
-            # reading and writing
-            # Jump to a specific byte
-            # Replace one character there
+            No \n → \r\n conversion (on Windows).
+            Ensures exact byte matching.
+            Essential for saving integers, floats, pointers, etc.
 
-                CLI: changer_prog file_name 10 X
+        However, it is perfectly acceptable to use the unformatted functions on a file 
+            opened in text mode, but remember, some character translations may occur.
 
-            This changes the character at byte 10 to X.
+        Note:
+            Prevents character translation
+            Ensures exact byte-for-byte storage
 
-
-    NOTE on CLI:
-        Some programs take input like:
-
-            "program filename position character"
-
-        These values are received using:
-
-            int main(int argc, char* argv[])
-*/
+            Required for:
+                Integers
+                Floating-point values
+                Pointers
+                Binary objects
 
 
 
+    ----------------    Key Takeaways    ----------------
 
-/* Example 1: The following program demonstrates the use of the seekp() function..
+    Use unformatted I/O for speed and accuracy
+    Use ios::binary for reliable binary storage
+    Prefer getline() for text with SPACES
+    Use peek() + putback() for intelligent parsing
+    Use gcount() to verify read size
+    Use flush() when immediate output matters
 
-                It allows us to modify a specific character in a file.
-
- 
-                How to use: Provide command-line arguments in this order:
-
-                    CLI:    changer_prog file_name 10 X
-
-                    File name:
-                        the file to modify.
-                        
-                    Byte number:
-                        position in the file (number of the byte in the file you want to change).
-
-                    New character:
-                        the character to write at that position.
-
-                    Notice that the file is opened for read/write operations.
+*/  
 
 
-                seekp() is used to move the "put" pointer (output position) to the specified byte location.
-                After seeking, the new character is written at that position.
+
+
+/* Example 1 (Save & Load Binary Data):
+                Following uses write() to write a double and a string to a file called "test".
+
+                The type cast to (char *) inside the call to write() is necessary when
+                    outputting a buffer that is not defined as a character array. 
+
+                Because of C++'s strong type checking, a pointer of one type 
+                    will not automatically be converted into a pointer of another type.
+
+                Note: (char *) and (char*) both acceptable
+
+
+                If we try to open the saved filr "test", we'll see "ÍÌÌÌÌY@ This is a test "
+                Which is totally ok, 
+                    This does not write text like 100.45.
+                    It writes the raw memory bytes of the double.
 */
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
+
+int main(){
+    // following combines two file I/O modes 'out' and 'binary'
+    // recall "ch12_07_file_io_basics.cpp"
+    std::ofstream out("test", std::ios::out | std::ios::binary );  
+
+    if(!out){
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    double num = 100.45;
+    char str[] = " This is a test ";
+
+    out.write( (char*)&num, sizeof(double));
+    out.write(str, strlen(str));
+    out.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 2 (Saving and restoring exact binary value):
+                This program uses read() to read the file created by the program in Example 1.
+            
+            Note:
+                        in.read(str, 14);
+
+                Read exactly 14 bytes from the file
+                Store them in the character array str
+
+                In C-style strings, the end of the string must be marked by null terminator '\0'
+
+                        str[14] = '\0';
+
+                So in our case, the full text might not appear.
+
+                Easy fix:
+                        in.read(str, 16);
+                        str [16] = '\0';    // null terminate str
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ifstream in("test", std::ios::in | std::ios::binary );
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n"; 
+        return 1;
+    }
+
+    double num;
+    char str[80];
+
+    in.read( (char*)&num, sizeof(double) );
+    in.read(str , 14);
+
+    str[14] = '\0';    // null terminate str
+    std::cout << num << ' ' << str;
+    in.close();
+
+    return 0;
+}
+
+
+/*  As is the case with the program in the preceding example, 
+        the type cast (char*) inside read() is necessary because C++ will not 
+        automatically convert a pointer of one type to another. 
+
+        Above programs use following file I/O modes
+
+        ios::out        Open file for output (writing).
+        ios::in         Open file for input (reading).
+        ios::binary     Open file in binary mode.
+*/
+
+
+
+
+/* Example 3: Safe String Input with Spaces Unlike >>, this doesn’t stop at space.
+
+                When you use >> to read a string,
+                    it stops reading when the first whitespace character is encountered.
+
+                This makes it useless for reading a string containing spaces. 
+                getline() can resolve this problem.
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    char str[80];
+
+    std::cout << " Enter your name : ";
+    std::cin.getline(str , 79);
+    std::cout << str << '\n';
+
+    return 0;
+}
+
+/*  Here, the delimiter used by getline() is the newline '\n'.
+    This makes getline() act like the standard gets() function. 
+
+        std::cin.getline(str, 79);
+
+    This means:
+        Reads characters into 'str'
+        
+        Stops when:
+            78 characters are read or
+            a newline ('\n') is found
+        
+        Automatically adds '\0' at the end
+*/
+
+
+
+
+/*  Example 4: Smart Input Using peek() and putback()
+
+                peek() is used to check the next input type before reading it, and 
+                putback() is used to return a character that should not be processed yet.
+
+                Very useful for parsing mixed data.
+
+                These functions are especially useful when working with mixed input, 
+                    where the type of data is not known in advance.
+
+                Following program demonstrates this idea by reading strings and integers from a file, 
+                    where both can appear in any order.
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
 #include <cstdlib>
-using namespace std;
-int main (int argc, char *argv[]) {
- if(argc !=4) { cout << " Usage : CHANGE <filename > <byte > <char >\n"; return 1;}	fstream out( argv[1] , ios::in | ios::out | ios::binary );
-if (!out){cout << " Cannot open file .\n"; return 1; }
-out.seekp( atoi(argv [2]), ios::beg);
-out.put(*argv[3]) ;
-out.close();
-return 0;}
+
+int main(){
+    char ch;
+
+    std::ofstream out("test", std::ios::out | std::ios::binary);
+
+    if(!out){ 
+        std::cout << "Cannot open output file.\n";
+        return 1;
+    }   // confirmation
+
+    char str[80], *p;
+
+    out << 123 << "this is a test" << 23;
+    out << "Hello there !" << 99 << "sdf" << std::endl;
+    out.close();    // closing 1st time
+
+    std::ifstream in("test", std::ios::in | std::ios::binary);
+
+    if(!in) {
+        std::cout << "Cannot open input file .\n";
+        return 1;
+    }   // confirmation
+
+    do{
+        p = str;
+        ch = in.peek();     // see what type of char is next
+
+        if(isdigit(ch)){
+            while(isdigit( *p = in.get() )) p++;    // read integer
+            
+            in.putback(*p); // return char to stream
+            *p = '\0';     // null - terminate the string
+
+            std::cout << " Integer : " << atoi(str);
+        }
+        else if(isalpha(ch)){
+            while(isalpha( *p = in.get() )) p++;    // read a string
+            
+            in.putback(*p);
+            *p = '\0';
+            std::cout << " String : " << str;
+        }
+
+        else
+            in.get();   // ignore 
+
+        std::cout << '\n'; 
+
+    }  while(!in.eof());
+
+    in.close();                 // final file closing 
+
+    return 0;
+}
 
 
 
-/* Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. The name of the file and the location to begin reading from are specified on the command line.
-in.seekg( atoi(argv[2]), ios::beg );
+/*  ----  Helper Functions  ----
 
-Note : *argv[] and argc are used in main()'s arguments. They are called the command line arguments. (Recall: 5.4) */
+    isdigit(ch)
+        checks digit
+
+    isalpha(ch)
+        checks letter
+
+    atoi(str)
+        converts string to integer
+        atoi() is one of C's standard library function
+
+
+    Use ios::binary to apply binary Mode.
+        For accurate, no-translation file I/O
+
+    ----------------------------------------------------------------
+    Helper Functions from <cctype>, <cstdlib>
+    ----------------------------------------------------------------
+    Function        Header      Purpose
+    ----------------------------------------------------------------
+    isdigit(ch)     <cctype>    Returns nonzero (i.e. true) if ch is digit '0'-'9' otherwise 0 is returned.
+    isalpha(ch)     <cctype>    Returns nonzero (i.e. true) if ch is letter otherwise 0 is returned.
+    atoi(str)       <cstdlib>   Returns the integer equivalent of the number represented by its string argument.
+*/
+
+
+
+
+/*  Example 5: Following program will display the contents of any file on the screen. 
+                It uses the get(). 
+
+            CLI:
+                ch12_07_file_io_basics_5 file_name
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char* argv[]) {
+    char ch;
+
+    if(argc!=2) {
+        std::cout << " Usage : Prog_name <filename>\n";
+        return 1;
+    }
+
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
+
+    if(!in) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    while(!in.eof()) {
+        in.get(ch);
+        std::cout << ch;
+    }
+
+    in.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 6: This program uses put() to write characters to a file until the user enters a dollar "$" sign. 
+
+                Note: 
+                    get() reads characters from "cin" including spaces, 
+                    so it does not skip leading whitespace like other input methods do.
+
+                CLI:
+                                ch12_07_file_io_basics_6 file_name
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char* argv[]) {
+    char ch;
+
+    if(argc!=2) {
+        std::cout << " Usage : Prog_name <filename>\n";
+        return 1;
+    }
+
+    std::ofstream out( argv[1], std::ios::out | std::ios::binary );
+
+    if(!out) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    std::cout << " Enter a $ to stop \n";
+
+    do{
+        std::cout << ": ";
+        std::cin.get(ch);
+        out.put(ch);
+    } while(ch != '$');
+
+    out.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 7: Following program first writes an "array of double values" 
+                to a file and then reads them back using gcount(). 
+                
+                It also reports the number of characters read. 
+*/
+
+#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ofstream out("test", std::ios::out | std::ios::binary);
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    double nums[4] = { 1.1, 2.2, 3.3, 4.4 };
+
+    out.write( (char*)nums, sizeof(nums) );
+    out.close();
+
+    std::ifstream in("test", std::ios::in | std::ios::binary);
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    in.read( (char*)&nums, sizeof(nums) );
+
+    int i;
+    for(i=0; i<4; i++) std::cout << nums[i] << ' ';
+    std::cout << '\n';
+
+    // using gcount()
+    std::cout << in.gcount() << " characters read \n";
+    in.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 8: Rewrite  Example 4 and 6 in ch12_07_file_io_basics.cpp so that
+                they use get(), put(), read(), and/or write(). 
+                (Use whichever of these functions you deem most appropriate.)
+
+
+            PROGRAM 8.1 (Example 4):
+                Write a program that copies a text file and counts how many characters are copied.
+                
+                The count may differ from the "actual file size" due to "newline translation":
+                    On Windows, \r\n (2 bytes) is read as one \n (1 byte), but written back as 2 bytes.
+                    i.e. File grows even if content seems unchanged.
+
+                Save the program as "ch12_07_file_io_basics_4.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                ch12_07_file_io_basics_4 input.txt out3.txt
+
+
+
+            PROGRAM8.2 (Example 6): 
+                Write a program that "counts the number of words" in a file. 
+                For simplicity, assume that anything surrounded by whitespace is a word. 
+
+                Save the program as "COUNT.cpp" then compile, 
+                    and finally execute following command
+
+            CLI:
+                ch12_07_file_io_basics_7 test_1 test_2
+*/
+
+// PROGRAM 8.1: Copy a text file and display number of chars copied.
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char *argv[]) {
+    if(argc != 3) {
+        std::cout << " Usage : prog_name <input> <output>\n";
+        return 1;
+    }
+
+    // OLD CODE: we dont use
+    // std::ifstream fin(argv[1]);     // open input file .
+    // std::ofstream fout(argv[2]);    // create output file
+
+    // NEW code: using file I/O in BIN mode
+    std::ifstream fin( argv[1] , std::ios::in | std::ios::binary );     // open input file
+    std::ofstream fout( argv[2] , std::ios::out | std::ios::binary );   // create output file
+
+    if(!fin) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    if(!fout) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    char ch;
+    unsigned count = 0;
+
+
+    // OLD CODE:
+    // fin.unsetf(std::ios::skipws);    // do not skip spaces
+
+    // while(!fin.eof()) {
+    //     fin >> ch;
+    //     if(!fin.eof()) {
+    //         fout << ch;
+    //         count++;
+    //     }
+    // }
+
+
+    // using get(), put() in BIN mode
+    while(!fin.eof()) {
+        fin.get(ch);
+        if(!fin.eof()) {
+            fout.put(ch);
+            count++;
+        }
+    }
+
+    std::cout << " Number of bytes copied : " << count << '\n';
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
+
+
+// PROGRAM 8.2: Word count
+// CLI:     ch12_07_file_io_basics_8 file_name
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+    if(argc !=2) {
+        std::cout << "Usage : prog_name <input>\n";
+        return 1;
+    }
+
+    // OLD CODE: we dont use
+    // std::ifstream in(argv [1]);
+
+    // NEW code: using file I/O in BIN mode
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    int count = 0;
+    char ch;
+
+
+    // OLD CODE:
+    // in >> ch; // find first non-space char
+    // // after first non-space found, do not skip spaces
+    // in.unsetf(std::ios::skipws); // do not skip spaces
+
+    // while(!in.eof()) {
+    //     in >> ch;
+    //     if(isspace(ch)) {
+    //         count++;
+    //         while(isspace(ch) && !in.eof()) in >> ch;
+    //     }
+    // }
+
+
+    // find first non - space char
+    do {
+        in.get(ch);   // using get() in BIN mode
+    } while(isspace(ch));
+
+    // using get() in BIN mode
+    while (!in.eof()) {
+        in.get(ch);
+        if(isspace(ch)) {
+            count++;
+            while( isspace(ch) && !in.eof() ) in.get(ch); // find next word
+        }
+    }
+
+
+    std::cout << " Word count : " << count << '\n';
+    in.close();
+
+    return 0;
+}
+
+
+
+
+/* Example 9: Given the following class, write a program that outputs the contents of the class to a file.
+                Create an inserter function to output account info to a file.
+
+                class account {
+                        int custnum;
+                        char name[80];
+                        double balance;
+                    public:
+                        account( int c, char* n, double b ) {
+                            custom = c;
+                            strcpy(name, n);
+                            balance = b;
+                        }
+                        // create inserter here
+                };
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+class account {
+        int custnum;
+        char name[80];
+        double balance;
+    public:
+        account( int c, char* n, double b ) {
+            custnum = c;
+            strcpy(name, n);
+            balance = b;
+        }
+
+        // inserter here (output to a file)
+        friend std::ostream &operator<<( std::ostream &stream, account ob );
+};
+
+std::ostream &operator <<( std::ostream &stream , account ob) {
+    stream << ob. custnum << ' ';
+    stream << ob. name << ' ' << ob. balance ;
+    stream << '\n';
+    return stream;
+}
+
+int main() {
+    account Rex( 1011, " Ralph Rex ", 12323.34 );
+    std::ofstream out( "accounts", std::ios::out | std::ios::binary );
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    out << Rex;
+    out.close();
+
+    return 0;
+}
+
 
