@@ -91,46 +91,46 @@
 
 
 
-----  rev[27-Feb-2026]  ----
+    --------  Overloaded versions of seekg() and seekp()  --------
+
+    Following overloaded versions of seekg() and seekp() used to
+    jump directly to a position returned by tellg() or tellp().
+    
+    Their prototypes are:
+        istream &seekg( pos_type position );
+        ostream &seekp( pos_type position );
+
+    You can move directly to a known position using those.
 
 
+    Example:
+        A program can open a file for 
+        
+            # reading and writing
+            # Jump to a specific byte
+            # Replace one character there
+
+                CLI: changer_prog file_name 10 X
+
+            This changes the character at byte 10 to X.
 
 
+    NOTE on CLI:
+        Some programs take input like:
+
+            "program filename position character"
+
+        These values are received using:
+
+            int main(int argc, char* argv[])
 
 
-
-
-
-
-Overloaded versions of seekg() and seekp():
-    Following overloaded versions of seekg() and seekp() move the file pointers 
-    to the location specified by the return values of tellg() and tellp().
- 
- 
-  Their prototypes are:
-istream &seekg( pos_type position );
-ostream &seekp( pos_type position );
-
-
+----  rev[28-Feb-2026]  ----
 
 ----  qwen  ----
 
 
 
-
-
-
-4. Absolute Positioning
-You can use the overloaded versions of seekg() and seekp() to jump directly to a position returned by tellg() or tellp().
-Prototypes:
-cpp
-12
-istream &seekg( pos_type position );
-ostream &seekp( pos_type position );
-Quick Summary:
-g = Get (Read) | p = Put (Write)
-seek = Move pointer | tell = Report pointer location
-Always use binary mode for reliable seeking.
 
 
 
@@ -155,67 +155,4 @@ in.seekg( atoi(argv[2]), ios::beg );
 
 Note : *argv[] and argc are used in main()'s arguments. They are called the command line arguments. (Recall: 5.4)
 
-
-
-
-----  GPT  ----
-
-
-
-
-
-🔹 Another way to move pointers
-
-You can move directly to a known position using these two:
-
-seekg(position);
-seekp(position);
-
-Often used with values returned by tellg() or tellp().
-
-
-
-🔹 Example idea (concept)
-
-A program can:
-
-Open a file for reading and writing
-
-Jump to a specific byte
-
-Replace one character there
-
-For example:
-
-CHANGE filename 10 X
-
-This changes the character at byte 10 to X.
-
-
-
-🔹 Command-line arguments reminder
-
-Some programs take input like:
-
-program filename position character
-
-These values are received using:
-
-int main(int argc, char* argv[])
-
-This is called command-line arguments.
-
-✅ Key summary
-
-seekg() → move read position
-
-seekp() → move write position
-
-tellg() / tellp() → check current position
-
-File has separate read and write pointers
-
-Binary mode is best for precise positioning
-
-If desired, a visual diagram showing pointer movement inside a file can be provided.
 */  
