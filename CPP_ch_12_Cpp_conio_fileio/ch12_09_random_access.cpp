@@ -124,20 +124,25 @@
 
             int main(int argc, char* argv[])
 
-
-----  rev[28-Feb-2026]  ----
-
-----  qwen  ----
+*/ 
 
 
 
 
+/* Example 1: The following program demonstrates the seekp() function. It allows you to change a specific character in a file. Specify a file name on the command line, followed by the number of the byte in the file you want to change, followed by the new character. Notice that the file is opened for read/write operations. 
 
+Example 1: Demonstrates the use of the seekp() function.
+Purpose: Allows modifying a specific character in a file.
+How to use:
+Provide command-line arguments in this order:
+File name – the file to modify.
+Byte number – position in the file (0-based or 1-based, depending on implementation).
+New character – the character to write at that position.
+The file is opened in read/write mode (so it can be both read and modified).
+seekp() is used to move the put pointer (output position) to the specified byte location.
+After seeking, the new character is written at that position.
 
-
-
-
-	Example 1: The following program demonstrates the seekp() function. It allows you to change a specific character in a file. Specify a file name on the command line, followed by the number of the byte in the file you want to change, followed by the new character. Notice that the file is opened for read/write operations.
+*/
 
 #include <iostream>
 #include <fstream>
@@ -150,9 +155,11 @@ out.seekp( atoi(argv [2]), ios::beg);
 out.put(*argv[3]) ;
 out.close();
 return 0;}
+
+
+
 	Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. The name of the file and the location to begin reading from are specified on the command line.
 in.seekg( atoi(argv[2]), ios::beg );
 
 Note : *argv[] and argc are used in main()'s arguments. They are called the command line arguments. (Recall: 5.4)
 
-*/  
