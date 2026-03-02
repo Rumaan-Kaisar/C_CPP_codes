@@ -128,6 +128,7 @@
 */
 
 
+// ----  rev[03-Mar-2026]  ----
 
 
 /* Example 1: The following program demonstrates the use of the seekp() function..
@@ -197,44 +198,41 @@ int main(int argc, char *argv[]) {
                 Specify the filename and starting point on the command line.
 */
 
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
 
-// ----  rev[02-Mar-2026]  ----
+int main( int argc, char *argv[]) {
+    char ch;
 
+    if(argc!=3){
+        std::cout << " Usage : LOCATE <filename> <loc>\n";
+        return 1;
+    }
 
-// Demonstrate seekg()
-# include <iostream >
-# include <fstream >
-# include <cstdlib >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-char ch;
-if( argc !=3)
-{
-cout << " Usage : LOCATE <filename > <loc >\n";
-return 1;
-}
-ifstream in( argv [1] , ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-in. seekg ( atoi ( argv [2]) , ios :: beg );
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
 
-while (! in. eof ())
-{
-in. get (ch);
-cout << ch;
-}
-in. close ();
-return 0;
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+    
+    in.seekg( atoi( argv[2]), std::ios::beg );
+
+    while(!in.eof()) {
+        in.get(ch);
+        std::cout << ch;
+    }
+
+    in.close();
+
+    return 0;
 }
 
 
 
 
-/* Example 1: Write a program that displays a text file backwards. Hint: Think about this before
+/* Example 3: Write a program that displays a text file backwards. Hint: Think about this before
 creating your program. The solution is easier than you might imagine. */
 
 // Display a file backwards on the screen .
@@ -275,7 +273,7 @@ return 0;
 
 
 
-/* Example 2: Write a program that swaps each character pair in a text file. For example, if the file
+/* Example 4: Write a program that swaps each character pair in a text file. For example, if the file
 contains "1234", then after the program is run, the file will contain "2143". (For simplicity,
 you may assume that the file contains an even number of characters.)
 */
