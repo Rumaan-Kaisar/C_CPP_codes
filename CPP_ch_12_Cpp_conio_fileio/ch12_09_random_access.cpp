@@ -172,27 +172,30 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // ----  rev[02-Mar-2026]  ----
-
     std::fstream out( argv[1], std::ios::in | std::ios::out | std::ios::binary );   // file I/O in Binary node
-if (!out){cout << " Cannot open file .\n"; return 1; }
-out.seekp( atoi(argv [2]), ios::beg);
-out.put(*argv[3]) ;
-out.close();
-return 0;}
+
+    if !out){
+        std::cout << " Cannot open file.\n"; 
+        return 1;
+    }
+
+    out.seekp( atoi(argv[2]), std::ios::beg );
+    out.put(*argv[3]);
+
+    out.close();
+
+    return 0;
+}
 
 
 
 /* Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. 
 
 
-
-Note : 
-
- */
+*/
 
 
-
+// ----  rev[02-Mar-2026]  ----
 
 
 
@@ -200,13 +203,8 @@ Note :
 
 int main ( int argc , char * argv [])
 
-{
-if( argc !=4)
-{
-cout << " Usage : CHANGE <filename > <byte > <char >\n";
-return 1;
-}
-fstream out ( argv [1] , ios :: in | ios :: out | ios :: binary );
+
+
 if (! out )
 {
 cout << " Cannot open file .\n";
