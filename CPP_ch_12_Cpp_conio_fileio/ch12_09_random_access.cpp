@@ -241,3 +241,74 @@ creating your program. The solution is easier than you might imagine.
 contains "1234", then after the program is run, the file will contain "2143". (For simplicity,
 you may assume that the file contains an even number of characters.)
 
+
+1. // Display a file backwards on the screen .
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : REVERSE <filename >\n";
+return 1;
+}
+ifstream in( argv [1] , ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char ch;
+long i;
+// go to end of file ( less eof char )
+in. seekg (0, ios :: end );
+i = ( long ) in. tellg (); // see how many bytes in file
+i -= 2; // backup before eof
+for ( ; i >=0; i --)
+{
+in. seekg (i, ios :: beg );
+in. get (ch);
+cout << ch;
+}
+in. close ();
+534ANSWERS
+9.6 EXERCISES
+return 0;
+}
+2. // Swap characters in a file .
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : SWAP <filename >\n";
+return 1;
+}
+// opne file for input / output
+fstream io( argv [1] , ios :: in | ios :: out | ios :: binary );
+if (! io)
+{
+cout << " Cannot open file .\n";
+return 1;
+}
+char ch1 , ch2 ;
+long i;
+for (i =0; !io. eof (); i +=2)
+{
+io. seekg (i, ios :: beg );
+io. get ( ch1 );
+if(io. eof ())
+continue ;
+io. get ( ch2 );
+if (! io. eof ())
+continue ;
+io. seekg (i, ios :: beg );
+io. put ( ch2 );
+io. put ( ch1 );
+}
+io. close ();
+return 0;
+}
