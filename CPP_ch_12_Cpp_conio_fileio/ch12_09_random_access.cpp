@@ -172,3 +172,72 @@ in.seekg( atoi(argv[2]), ios::beg );
 
 Note : *argv[] and argc are used in main()'s arguments. They are called the command line arguments. (Recall: 5.4) */
 
+
+1. The following program demonstrates the seekp() function. It allows you to change a
+specific character in a file. Specify a file name on the command line, followed by the
+number of the byte in the file you want to change, followed by the new character. Notice
+that the file is opened for read/write operations.
+# include <iostream >
+# include <fstream >
+# include <cstdlib >
+using namespace std ;
+int main ( int argc , char * argv [])
+251TEACH YOURSELF
+C++
+{
+if( argc !=4)
+{
+cout << " Usage : CHANGE <filename > <byte > <char >\n";
+return 1;
+}
+fstream out ( argv [1] , ios :: in | ios :: out | ios :: binary );
+if (! out )
+{
+cout << " Cannot open file .\n";
+return 1;
+}
+out . seekp ( atoi ( argv [2]) , ios :: beg);
+out . put (* argv [3]) ;
+out . close ();
+return 0;
+}
+2. The next program uses seekg() to position the get pointer into the middle of a file and
+then displays the contents of that file from that point. The name of the file and the
+location to begin reading from are specified on the command line.
+// Demonstrate seekg ()
+# include <iostream >
+# include <fstream >
+# include <cstdlib >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=3)
+{
+cout << " Usage : LOCATE <filename > <loc >\n";
+return 1;
+}
+ifstream in( argv [1] , ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+in. seekg ( atoi ( argv [2]) , ios :: beg );
+252ADVANCED C++ I/O
+9.6. CHECKING THE I/O STATUS
+while (! in. eof ())
+{
+in. get (ch);
+cout << ch;
+}
+in. close ();
+return 0;
+}
+EXERCISES
+1. Write a program that displays a text file backwards. Hint: Think about this before
+creating your program. The solution is easier than you might imagine.
+2. Write a program that swaps each character pair in a text file. For example, if the file
+contains "1234", then after the program is run, the file will contain "2143". (For simplicity,
+you may assume that the file contains an even number of characters.)
+
