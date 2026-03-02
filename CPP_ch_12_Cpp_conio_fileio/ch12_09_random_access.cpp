@@ -122,7 +122,9 @@
 
         These values are received using:
 
-            int main(int argc, char* argv[])
+            int main(int argc, char *argv[])
+
+        *argv[] and argc are called the command line arguments. (Recall: C_Ch5_3_2_main_param.c)
 */
 
 
@@ -133,11 +135,15 @@
                 It allows us to modify a specific character in a file.
 
  
-                How to use: Provide command-line arguments in this order:
+                How to use: 
+                    Specify a file name on the command line, followed by the number of the byte 
+                    in the file you want to change, followed by the new character.
+                
+                    Provide command-line arguments in this order:
 
                     CLI:    changer_prog file_name 10 X
 
-                    File name:
+                    file_name:
                         the file to modify.
                         
                     Byte number:
@@ -151,6 +157,9 @@
 
                 seekp() is used to move the "put" pointer (output position) to the specified byte location.
                 After seeking, the new character is written at that position.
+
+                The name of the file and the location to begin reading from are specified on the CLI.
+                    in.seekg( atoi(argv[2]), ios::beg );
 */
 
 #include <iostream>
@@ -158,7 +167,14 @@
 #include <cstdlib>
 
 int main(int argc, char *argv[]) {
-if(argc !=4) { cout << " Usage : CHANGE <filename > <byte > <char >\n"; return 1;}	fstream out( argv[1] , ios::in | ios::out | ios::binary );
+    if(argc !=4) { 
+        std::cout << " Usage : CHANGE <filename > <byte > <char >\n"; 
+        return 1;
+    }
+
+    // ----  rev[02-Mar-2026]  ----
+
+    std::fstream out( argv[1], std::ios::in | std::ios::out | std::ios::binary );   // file I/O in Binary node
 if (!out){cout << " Cannot open file .\n"; return 1; }
 out.seekp( atoi(argv [2]), ios::beg);
 out.put(*argv[3]) ;
@@ -167,20 +183,21 @@ return 0;}
 
 
 
-/* Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. The name of the file and the location to begin reading from are specified on the command line.
-in.seekg( atoi(argv[2]), ios::beg );
-
-Note : *argv[] and argc are used in main()'s arguments. They are called the command line arguments. (Recall: 5.4) */
+/* Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. 
 
 
-/* Example 1: The following program demonstrates the seekp() function. It allows you to change a
-specific character in a file. Specify a file name on the command line, followed by the
-number of the byte in the file you want to change, followed by the new character. Notice
-that the file is opened for read/write operations. */
-# include <iostream >
-# include <fstream >
-# include <cstdlib >
-using namespace std ;
+
+Note : 
+
+ */
+
+
+
+
+
+
+
+
 int main ( int argc , char * argv [])
 
 {
