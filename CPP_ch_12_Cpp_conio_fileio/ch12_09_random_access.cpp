@@ -189,7 +189,9 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 2:  In the above program uses seekg() to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. 
+/* Example 2:  In the above program we've used seekp() to move the "put" pointer 
+now following program uses seekg() 
+                to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. 
 
 
 */
@@ -200,21 +202,6 @@ int main(int argc, char *argv[]) {
 
 
 
-
-int main ( int argc , char * argv [])
-
-
-
-if (! out )
-{
-cout << " Cannot open file .\n";
-return 1;
-}
-out . seekp ( atoi ( argv [2]) , ios :: beg);
-out . put (* argv [3]) ;
-out . close ();
-return 0;
-}
 
 
 
