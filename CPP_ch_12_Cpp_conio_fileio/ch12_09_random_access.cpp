@@ -189,30 +189,19 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 2:  In the above program we've used seekp() to move the "put" pointer 
-now following program uses seekg() 
-                to position the get pointer into the middle of a file named "in" and then displays the contents of that file from that point. 
+/* Example 2:  In the above program we've used seekp() to move the "put" pointer.
+                Now following program uses seekg() to position the get pointer 
+                    into the middle of a file named "in" 
+                    and then displays the contents of that file from that point. 
 
-
+                Specify the filename and starting point on the command line.
 */
 
 
 // ----  rev[02-Mar-2026]  ----
 
 
-
-
-
-
-
-
-/* Example 2: The next program uses seekg() to position the get pointer into the middle of a file and
-then displays the contents of that file from that point. 
-
-The name of the file and the
-location to begin reading from are specified on the command line. */
-
-// Demonstrate seekg ()
+// Demonstrate seekg()
 # include <iostream >
 # include <fstream >
 # include <cstdlib >
