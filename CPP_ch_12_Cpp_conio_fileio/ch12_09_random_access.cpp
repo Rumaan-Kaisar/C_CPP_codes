@@ -236,17 +236,17 @@ int main( int argc, char *argv[]) {
 
 // Display a file backwards on the screen .
 
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : REVERSE <filename >\n";
-return 1;
-}
-ifstream in( argv [1] , ios :: in | ios :: binary );
+#include <iostream>
+#include <fstream>
+
+
+int main( int argc, char *argv[]) {
+    if(argc != 2) {
+        std::cout << " Usage : REVERSE <filename >\n";
+        return 1;
+    }
+
+    ifstream in( argv [1] , ios :: in | ios :: binary );
 if (! in)
 {
 cout << " Cannot open input file .\n";
