@@ -232,8 +232,7 @@ int main( int argc, char *argv[]) {
 
 
 
-/* Example 3: Write a program that displays a text file backwards. Hint: Think about this before
-creating your program. The solution is easier than you might imagine. */
+/* Example 3: Following program displays a text file backwards. */
 
 // Display a file backwards on the screen .
 
