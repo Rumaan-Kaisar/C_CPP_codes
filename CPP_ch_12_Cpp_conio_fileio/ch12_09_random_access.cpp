@@ -234,11 +234,8 @@ int main( int argc, char *argv[]) {
 
 /* Example 3: Following program displays a text file backwards. */
 
-// Display a file backwards on the screen .
-
 #include <iostream>
 #include <fstream>
-
 
 int main( int argc, char *argv[]) {
     if(argc != 2) {
@@ -276,44 +273,49 @@ int main( int argc, char *argv[]) {
 
 
 
-/* Example 4: Write a program that swaps each character pair in a text file. For example, if the file
-contains "1234", then after the program is run, the file will contain "2143". (For simplicity,
-you may assume that the file contains an even number of characters.)
+/* Example 4: Following program swaps "each character pair" in a text file. 
+                For example, if the file contains "1234", then after execution, the file will contain "2143".
+                (For simplicity, you may assume that the file contains an even number of characters.)
 */
 
-2. // Swap characters in a file .
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : SWAP <filename >\n";
-return 1;
+
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char *argv[]) {
+    if(argc!=2) {
+        std::cout << " Usage : SWAP <filename >\n";
+        return 1;
+    }
+
+    // opne file for input / output
+    std::fstream io( argv[1] , std::ios::in | std::ios::out | std::ios::binary );
+
+    if(!io) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    char ch1, ch2;
+    long i;
+
+    for(i =0; !io.eof(); i += 2) {
+        io.seekg(i, std::ios::beg);
+        io.get(ch1);
+        
+        if(io.eof()) continue;
+        io.get(ch2);
+
+        if(!io.eof()) continue;
+        io.seekg(i, std::ios::beg);
+
+        io.put(ch2);
+        io.put(ch1);
+    }
+
+    io.close();
+
+    return 0;
 }
-// opne file for input / output
-fstream io( argv [1] , ios :: in | ios :: out | ios :: binary );
-if (! io)
-{
-cout << " Cannot open file .\n";
-return 1;
-}
-char ch1 , ch2 ;
-long i;
-for (i =0; !io. eof (); i +=2)
-{
-io. seekg (i, ios :: beg );
-io. get ( ch1 );
-if(io. eof ())
-continue ;
-io. get ( ch2 );
-if (! io. eof ())
-continue ;
-io. seekg (i, ios :: beg );
-io. put ( ch2 );
-io. put ( ch1 );
-}
-io. close ();
-return 0;
-}
+
+
