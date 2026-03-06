@@ -278,7 +278,6 @@ int main( int argc, char *argv[]) {
                 (For simplicity, you may assume that the file contains an even number of characters.)
 */
 
-
 #include <iostream>
 #include <fstream>
 
@@ -317,5 +316,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
 
