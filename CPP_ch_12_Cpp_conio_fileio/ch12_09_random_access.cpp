@@ -278,12 +278,13 @@ int main( int argc, char *argv[]) {
 }
 
 
-// ----  rev[13-Mar-2026]  ----
 
 
 /* Example 4: Following program swaps "each character pair" in a text file. 
                 For example, if the file contains "1234", then after execution, the file will contain "2143".
                 (For simplicity, you may assume that the file contains an even number of characters.)
+                
+                CLI:    ch12_07_file_io_basics_13 test
 */
 
 #include <iostream>
@@ -291,14 +292,14 @@ int main( int argc, char *argv[]) {
 
 int main(int argc, char *argv[]) {
     if(argc!=2) {
-        std::cout << " Usage : SWAP <filename >\n";
+        std::cout << " Usage : SWAP <filename>\n";
         return 1;
     }
 
     // opne file for input / output
-    std::fstream io( argv[1] , std::ios::in | std::ios::out | std::ios::binary );
+    std::fstream io_test( argv[1] , std::ios::in | std::ios::out | std::ios::binary );
 
-    if(!io) {
+    if(!io_test) {
         std::cout << " Cannot open file .\n";
         return 1;
     }
@@ -306,21 +307,39 @@ int main(int argc, char *argv[]) {
     char ch1, ch2;
     long i;
 
-    for(i =0; !io.eof(); i += 2) {
-        io.seekg(i, std::ios::beg);
-        io.get(ch1);
+    // for(i=0; !io_test.eof(); i += 2) {
+    //     io_test.seekg(i, std::ios::beg);
+    //     io_test.get(ch1);
         
-        if(io.eof()) continue;
-        io.get(ch2);
+    //     if(io_test.eof()) continue;
+    //     io_test.get(ch2);
 
-        if(!io.eof()) continue;
-        io.seekg(i, std::ios::beg);
+    //     if(!io_test.eof()) continue;
+    //     io_test.seekp(i, std::ios::beg);
 
-        io.put(ch2);
-        io.put(ch1);
+    //     io_test.put(ch2);
+    //     io_test.put(ch1);
+    // }
+
+    while(true) {
+
+        io_test.seekg(i, std::ios::beg);
+
+        if(!io_test.get(ch1))
+            break;
+
+        if(!io_test.get(ch2))
+            break;
+
+        io_test.seekp(i, std::ios::beg);
+
+        io_test.put(ch2);
+        io_test.put(ch1);
+
+        i += 2;
     }
 
-    io.close();
+    io_test.close();
 
     return 0;
 }
