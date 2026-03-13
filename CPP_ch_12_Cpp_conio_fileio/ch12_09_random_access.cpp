@@ -191,7 +191,6 @@ int main(int argc, char *argv[]) {
 }
 
 
-// ----  rev[13-Mar-2026]  ----
 
 
 /* Example 2:  In the above program we've used seekp() to move the "put" pointer.
@@ -200,6 +199,8 @@ int main(int argc, char *argv[]) {
                     and then displays the contents of that file from that point. 
 
                 Specify the filename and starting point on the command line.
+
+                CLI:    ch12_07_file_io_basics_11 accounts 4
 */
 
 #include <iostream>
@@ -234,6 +235,7 @@ int main( int argc, char *argv[]) {
 }
 
 
+// ----  rev[13-Mar-2026]  ----
 
 
 /* Example 3: Following program displays a text file backwards. */
