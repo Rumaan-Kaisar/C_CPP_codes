@@ -235,17 +235,18 @@ int main( int argc, char *argv[]) {
 }
 
 
-// ----  rev[13-Mar-2026]  ----
 
 
-/* Example 3: Following program displays a text file backwards. */
+/* Example 3: Following program displays a text file backwards. 
+                CLI:    ch12_07_file_io_basics_12 accounts
+*/
 
 #include <iostream>
 #include <fstream>
 
 int main( int argc, char *argv[]) {
     if(argc != 2) {
-        std::cout << " Usage : REVERSE <filename >\n";
+        std::cout << " Usage : REVERSE <filename>\n";
         return 1;
     }
 
@@ -277,6 +278,7 @@ int main( int argc, char *argv[]) {
 }
 
 
+// ----  rev[13-Mar-2026]  ----
 
 
 /* Example 4: Following program swaps "each character pair" in a text file. 
