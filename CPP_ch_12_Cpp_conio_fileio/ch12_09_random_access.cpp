@@ -128,7 +128,6 @@
 */
 
 
-// ----  rev[03-Mar-2026]  ----
 
 
 /* Example 1: The following program demonstrates the use of the seekp() function..
@@ -161,6 +160,9 @@
 
                 The name of the file and the location to begin reading from are specified on the CLI.
                     in.seekg( atoi(argv[2]), ios::beg );
+
+
+                CLI:    ch12_07_file_io_basics_10 test_file 4 @
 */
 
 #include <iostream>
@@ -169,13 +171,13 @@
 
 int main(int argc, char *argv[]) {
     if(argc !=4) { 
-        std::cout << " Usage : CHANGE <filename > <byte > <char >\n"; 
+        std::cout << " Usage : CHANGE <filename> <byte> <char>\n"; 
         return 1;
     }
 
     std::fstream out( argv[1], std::ios::in | std::ios::out | std::ios::binary );   // file I/O in Binary node
 
-    if !out){
+    if(!out){
         std::cout << " Cannot open file.\n"; 
         return 1;
     }
@@ -188,6 +190,8 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
+
+// ----  rev[13-Mar-2026]  ----
 
 
 /* Example 2:  In the above program we've used seekp() to move the "put" pointer.
