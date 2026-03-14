@@ -22,6 +22,8 @@ The good() returns true if there are no errors.
 
 void clear(iostate flags = ios::goodbit);
 	If flags is goodbit (as it is by default), all error flags are cleared. Otherwise, set flags to the settings you desire.
+
+
 	Example 1: Following uses rdstate() to detect a file error for a file named "in":
 
 void checkstatus(ifstream &in) { 	ios :: iostate i;
@@ -29,6 +31,8 @@ i = in.rdstate();
 if(i & ios::eofbit ) 	cout << "EOF encountered \n";
 else if(i & ios::failbit ) cout << "Non - Fatal I/O error \n";
 else if(i & ios::badbit ) 	cout << "Fatal I/O error \n"; }
+
+
 	Example 2: Following uses good() to detect a file error for a file named "in":
 if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; }
 
@@ -122,3 +126,87 @@ if (!in.good() && !in.eof()) {
 > Always check stream status after critical I/O operations to handle errors gracefully.
 
 */  
+
+/* Example 1: The following program illustrates rdstate(). It displays the contents of a text file. If an
+error occurs, the function reports it by using checkstatus(). */
+# include <iostream >
+# include <fstream >
+using namespace std ;
+void checkstatus ( ifstream &in);
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : DISPLAY <filename >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char c;
+while (in. get (c))
+{
+cout << c;
+checkstatus (in);
+}
+checkstatus (in); // check final status
+in. close ();
+return 0;
+}
+void checkstatus ( ifstream &in)
+{
+ios :: iostate i;
+i = in. rdstate ();
+if(i & ios :: eofbit )
+cout << " EOF encountered \n";
+
+else if(i & ios :: failbit )
+cout << "Non - Fatal I/O error \n";
+else if(i & ios :: badbit )
+cout << " Fatal I/O error \n";
+}
+The preceding program will always report at least one "error." After the while loop ends,
+the final call to checkstatus() reports, as expected, that an EOF has been encountered.
+
+
+
+/* Example 2: This program displays a text file. It uses good() to detect a file error: */
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=2)
+{
+cout << " Usage : PR <filename >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+while (! in. eof ())
+{
+in. get (ch);
+// check for error
+if (! in. good () && !in.eof ())
+{
+cout << "I/O Error ... terminating \n";
+return 1;
+}
+cout << ch;
+}
+in. close ();
+return 0;
+}
+
+
+
+/* Example 1: Add error checking to your answers to the exercise from the preceding section */
+
