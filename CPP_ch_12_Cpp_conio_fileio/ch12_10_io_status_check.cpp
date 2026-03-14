@@ -128,7 +128,13 @@ if (!in.good() && !in.eof()) {
 */  
 
 /* Example 1: The following program illustrates rdstate(). It displays the contents of a text file. If an
-error occurs, the function reports it by using checkstatus(). */
+error occurs, the function reports it by using checkstatus(). 
+
+This program will always report at least one "error." After the while loop ends,
+the final call to checkstatus() reports, as expected, that an EOF has been encountered.
+
+*/
+
 # include <iostream >
 # include <fstream >
 using namespace std ;
@@ -168,8 +174,8 @@ cout << "Non - Fatal I/O error \n";
 else if(i & ios :: badbit )
 cout << " Fatal I/O error \n";
 }
-The preceding program will always report at least one "error." After the while loop ends,
-the final call to checkstatus() reports, as expected, that an EOF has been encountered.
+
+
 
 
 
