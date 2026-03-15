@@ -5,12 +5,10 @@
         The status of a stream is stored in an "iostate" object 
         It is an enumeration defined in "ios".
 
-
-
-goodbit (Means-No errors occurred)
-eofbit (Means-End-of-file has been encountered)
-failbit (Means-A nonfatal I/O error has occurred)
-badbit (Means-A fatal I/O error has occurred)
+            goodbit     No errors occurred
+            eofbit      End-of-file has been encountered
+            failbit     A nonfatal I/O error has occurred
+            badbit      A fatal I/O error has occurred
 
 
 
@@ -49,20 +47,6 @@ if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; 
 ---- QWEN  ----
 
 Here is the **pointwise organized** version of **Section 12.9: Checking I/O Status**:
-
----
-
-### 🔹 12.9 – Checking I/O Status
-
-#### ✅ I/O Status (``)
-
-- Key status flags:
-  1. **`goodbit`** → No errors.
-  2. **`eofbit`** → End-of-file reached.
-  3. **`failbit`** → Non-fatal I/O error (e.g., invalid input format).
-  4. **`badbit`** → Fatal I/O error (e.g., hardware failure).
-
-> These flags are set automatically when operations fail.
 
 ---
 
