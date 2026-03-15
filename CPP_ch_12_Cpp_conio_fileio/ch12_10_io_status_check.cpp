@@ -1,11 +1,19 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Checking I/O Status    ------------------------
+
+    iostate:
+        The status of a stream is stored in an "iostate" object 
+        It is an enumeration defined in "ios".
 
 
-12.9 Checking I/O Status
-The current status of an I/O stream is described in an object of type iostate, it is an enumeration defined by ios that includes members:
 
-[1]	goodbit (Means-No errors occurred)	[2]	eofbit (Means-End-of-file has been encountered)	[3]	failbit (Means-A nonfatal I/O error has occurred)	[4]	badbit (Means-A fatal I/O error has occurred)
+goodbit (Means-No errors occurred)
+eofbit (Means-End-of-file has been encountered)
+failbit (Means-A nonfatal I/O error has occurred)
+badbit (Means-A fatal I/O error has occurred)
+
+
+
 	There are two ways in which you can obtain I/O status information. 
 	First, you can call the rdstate() function, which is a member of ios. It has this prototype: 	iostate rdstate();
 	It returns the current status of the error flags. 
@@ -46,8 +54,8 @@ Here is the **pointwise organized** version of **Section 12.9: Checking I/O Stat
 
 ### 🔹 12.9 – Checking I/O Status
 
-#### ✅ I/O Status (`iostate`)
-- The status of a stream is stored in an `iostate` object (an enumeration defined in `ios`).
+#### ✅ I/O Status (``)
+
 - Key status flags:
   1. **`goodbit`** → No errors.
   2. **`eofbit`** → End-of-file reached.
