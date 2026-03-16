@@ -11,11 +11,21 @@
             badbit      A fatal I/O error has occurred
 
 
+    Ways to Check I/O Status:
+        There are two ways in which you can obtain I/O status information. 
 
-	There are two ways in which you can obtain I/O status information. 
-	First, you can call the rdstate() function, which is a member of ios. It has this prototype: 	iostate rdstate();
-	It returns the current status of the error flags. 
+            Using "rdstate()"
+            Using "Status Check Functions"
+
+        rdstate():
+            It is a member of ios. It has this prototype: 	
+
+            iostate rdstate();
+
+It returns the current status of the error state flags. 
 	rdstate() returns goodbit when no error has occurred. Otherwise, an error flag is returned.
+
+
 	Second way to determine whether an error has occurred is by using one or more of these ios member functions:
 
 [1]	bool eof();
@@ -50,15 +60,14 @@ Here is the **pointwise organized** version of **Section 12.9: Checking I/O Stat
 
 ---
 
-#### ✅ Ways to Check I/O Status
 
-##### 1. **`rdstate()`**
+
 - Prototype: `iostate rdstate();`
-- Returns the current value of the error state flags.
+- Returns the current value of the .
 - If no error: returns `goodbit`.
 - Can be used with bitwise operators to check specific flags.
 
-##### 2. **Status Check Functions**
+2. Using "Status Check Functions"
 These return `true` if the condition is set, `false` otherwise:
 - `bool eof()` → true if end-of-file (`eofbit`) is set.
 - `bool bad()` → true if fatal error (`badbit`) occurred.
@@ -207,4 +216,3 @@ return 0;
 
 
 /* Example 1: Add error checking to your answers to the exercise from the preceding section */
-
