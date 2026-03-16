@@ -20,17 +20,29 @@
         rdstate():
             It is a member of ios. It has this prototype: 	
 
-            iostate rdstate();
+                iostate rdstate();
 
-It returns the current status of the error state flags. 
-	rdstate() returns goodbit when no error has occurred. Otherwise, an error flag is returned.
+            It returns the current status of the error state flags. 
+            If no error: returns "goodbit" otherwise, an "error flag" is returned.
 
 
-	Second way to determine whether an error has occurred is by using one or more of these ios member functions:
+        Status Check Functions:
+            These are ios member functions.
+            These return `true` if the condition is set, `false` otherwise:
+
+                bool eof()          true if end-of-file "eofbit" is set.
+                bool bad()          true if fatal error "badbit" occurred.
+                bool fail()         true if non-fatal error "failbit" or "badbit" is set.
+                bool good()         true only if **no errors** (i.e., "goodbit" is set).
+
+            Note: "fail()" returns true for both `failbit` and `badbit`.
+
+---- rev[16-Mar-2026] ----
+
 
 [1]	bool eof();
-The eof() was discussed earlier.	[2]	bool bad();
-The bad() returns true if badbit is set.	[3]	bool fail();
+[2]	bool bad();
+[3]	bool fail();
 The fail() returns true if failbit is set.	[4]	bool good(); 
 The good() returns true if there are no errors. 
 	Otherwise they return false.
@@ -62,19 +74,10 @@ Here is the **pointwise organized** version of **Section 12.9: Checking I/O Stat
 
 
 
-- Prototype: `iostate rdstate();`
-- Returns the current value of the .
-- If no error: returns `goodbit`.
-- Can be used with bitwise operators to check specific flags.
 
-2. Using "Status Check Functions"
-These return `true` if the condition is set, `false` otherwise:
-- `bool eof()` → true if end-of-file (`eofbit`) is set.
-- `bool bad()` → true if fatal error (`badbit`) occurred.
-- `bool fail()` → true if non-fatal error (`failbit`) or `badbit` is set.
-- `bool good()` → true only if **no errors** (i.e., `goodbit` is set).
 
-> ⚠️ `fail()` returns true for both `failbit` and `badbit`.
+
+
 
 ---
 
