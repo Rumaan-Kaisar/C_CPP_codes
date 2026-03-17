@@ -37,13 +37,24 @@
 
             Note: "fail()" returns true for both "failbit" and "badbit".
 
----- rev[16-Mar-2026] ----
 
 
-	clear(): To clear an error before your program continues use the ios member function clear() whose prototype is:
+    ----------------    clear(): Clearing Error States    ----------------
 
-void clear(iostate flags = ios::goodbit);
-	If flags is goodbit (as it is by default), all error flags are cleared. Otherwise, set flags to the settings you desire.
+    Use the clear() to clear an error before your program continues 
+    It is a "ios" member function clear() whose prototype is:
+
+                void clear(iostate flags = ios::goodbit);
+
+        It resets the error flags.
+        If "flags" is goodbit (as it is by default), all error flags are cleared. 
+        Otherwise, pass a specific flag to set the new state. (optional)
+
+    Note: Use after handling an error to resume normal stream operations.
+
+
+
+    ---- rev[17-Mar-2026] ----
 
 
 	Example 1: Following uses rdstate() to detect a file error for a file named "in":
@@ -75,13 +86,15 @@ Here is the **pointwise organized** version of **Section 12.9: Checking I/O Stat
 
 ---
 
-#### ✅ Clearing Error States: `clear()`
-- Prototype: `void clear(iostate flags = ios::goodbit);`
-- Resets the error flags.
-- Default: clears all flags (`goodbit`).
-- Optional: pass a specific flag to set the new state.
 
-> Use after handling an error to resume normal stream operations.
+
+
+
+
+Default: clears all flags ("goodbit").
+Optional: 
+
+
 
 ---
 
