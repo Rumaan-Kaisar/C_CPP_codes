@@ -28,24 +28,18 @@
 
         Status Check Functions:
             These are ios member functions.
-            These return `true` if the condition is set, `false` otherwise:
+            These return "true" if the condition is set, "false" otherwise:
 
                 bool eof()          true if end-of-file "eofbit" is set.
                 bool bad()          true if fatal error "badbit" occurred.
                 bool fail()         true if non-fatal error "failbit" or "badbit" is set.
-                bool good()         true only if **no errors** (i.e., "goodbit" is set).
+                bool good()         true only if "no errors" (i.e., "goodbit" is set).
 
-            Note: "fail()" returns true for both `failbit` and `badbit`.
+            Note: "fail()" returns true for both "failbit" and "badbit".
 
 ---- rev[16-Mar-2026] ----
 
 
-[1]	bool eof();
-[2]	bool bad();
-[3]	bool fail();
-The fail() returns true if failbit is set.	[4]	bool good(); 
-The good() returns true if there are no errors. 
-	Otherwise they return false.
 	clear(): To clear an error before your program continues use the ios member function clear() whose prototype is:
 
 void clear(iostate flags = ios::goodbit);
@@ -219,3 +213,6 @@ return 0;
 
 
 /* Example 1: Add error checking to your answers to the exercise from the preceding section */
+
+
+
