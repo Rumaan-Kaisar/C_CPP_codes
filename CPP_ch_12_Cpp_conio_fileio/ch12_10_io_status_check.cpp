@@ -55,7 +55,7 @@
 */
 
 
-// ---- rev[17-Mar-2026] ----
+// ---- rev[18-Mar-2026] ----
 
 
 /* Example 1: Following uses rdstate() to detect a file error for a  input file stream named "in". 
@@ -65,44 +65,33 @@
                 which is expected behavior when the file ends (the final call to checkstatus() happens).
 */
 
-
-
-
-
-
-
-
-
-
-
-
 #include <iostream>
 #include <fstream>
 
 void checkstatus (std::ifstream &in);
 
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : DISPLAY <filename >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-char c;
-while (in. get (c))
-{
-cout << c;
-checkstatus (in);
-}
-checkstatus (in); // check final status
-in. close ();
-return 0;
+int main(int argc, char *argv[]) {
+    if(argc !=2) {
+        std::cout << " Usage : DISPLAY <filename >\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+    
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    char c;
+    while(in.get(c)) {
+        std::cout << c;
+        checkstatus(in);
+    }
+
+    checkstatus(in);    // check final status
+    in.close();
+    return 0;
 }
 
 
