@@ -52,12 +52,18 @@
 
     Note: Use after handling an error to resume normal stream operations.
 
+*/
 
 
-    ---- rev[17-Mar-2026] ----
+// ---- rev[17-Mar-2026] ----
 
 
-	Example 1: Following uses rdstate() to detect a file error for a file named "in":
+/* Example 1: Following uses rdstate() to detect a file error for a  input file stream named "in". 
+                This program displays a text file's contents and uses checkstatus() to report errors. 
+
+                Note that it will always report an 'EOF encountered' message after the loop finishes, 
+                which is expected behavior when the file ends and the final call to checkstatus() happens.
+*/
 
 void checkstatus(ifstream &in) { 	ios :: iostate i;
 i = in.rdstate();
@@ -66,8 +72,10 @@ else if(i & ios::failbit ) cout << "Non - Fatal I/O error \n";
 else if(i & ios::badbit ) 	cout << "Fatal I/O error \n"; }
 
 
-	Example 2: Following uses good() to detect a file error for a file named "in":
-if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; }
+
+
+/* Example 2: Following uses good() to detect a file error for a file named "in":
+if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; } */
 
 
 
@@ -136,15 +144,8 @@ if (!in.good() && !in.eof()) {
 
 > Always check stream status after critical I/O operations to handle errors gracefully.
 
-*/  
 
-/* Example 1: The following program illustrates rdstate(). It displays the contents of a text file. If an
-error occurs, the function reports it by using checkstatus(). 
 
-This program will always report at least one "error." After the while loop ends,
-the final call to checkstatus() reports, as expected, that an EOF has been encountered.
-
-*/
 
 # include <iostream >
 # include <fstream >
