@@ -62,14 +62,59 @@
                 This program displays a text file's contents and uses checkstatus() to report errors. 
 
                 Note that it will always report an 'EOF encountered' message after the loop finishes, 
-                which is expected behavior when the file ends and the final call to checkstatus() happens.
+                which is expected behavior when the file ends (the final call to checkstatus() happens).
 */
 
-void checkstatus(ifstream &in) { 	ios :: iostate i;
-i = in.rdstate();
-if(i & ios::eofbit ) 	cout << "EOF encountered \n";
-else if(i & ios::failbit ) cout << "Non - Fatal I/O error \n";
-else if(i & ios::badbit ) 	cout << "Fatal I/O error \n"; }
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <fstream>
+
+void checkstatus (std::ifstream &in);
+
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : DISPLAY <filename >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char c;
+while (in. get (c))
+{
+cout << c;
+checkstatus (in);
+}
+checkstatus (in); // check final status
+in. close ();
+return 0;
+}
+
+
+void checkstatus(std::ifstream &in) {
+    std::ios::iostate i;
+    
+    i = in.rdstate();
+    if(i & std::ios::eofbit)    std::cout << "EOF encountered\n";
+    else if(i & std::ios::failbit)  std::cout << "Non-fatal I/O error\n";
+    else if(i & std::ios::badbit)   std::cout << "Fatal I/O error\n";
+}
+
 
 
 
@@ -108,12 +153,7 @@ Optional:
 
 #### ✅ Example 1: Using `rdstate()` to Detect Errors
 ```cpp
-void checkstatus(ifstream &in) {
-    ios::iostate i = in.rdstate();
-    if (i & ios::eofbit)      cout << "EOF encountered\n";
-    else if (i & ios::failbit) cout << "Non-fatal I/O error\n";
-    else if (i & ios::badbit)  cout << "Fatal I/O error\n";
-}
+
 ```
 - Uses bitwise AND (`&`) to check which flag(s) are set.
 
@@ -145,47 +185,6 @@ if (!in.good() && !in.eof()) {
 > Always check stream status after critical I/O operations to handle errors gracefully.
 
 
-
-
-# include <iostream >
-# include <fstream >
-using namespace std ;
-void checkstatus ( ifstream &in);
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : DISPLAY <filename >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-char c;
-while (in. get (c))
-{
-cout << c;
-checkstatus (in);
-}
-checkstatus (in); // check final status
-in. close ();
-return 0;
-}
-void checkstatus ( ifstream &in)
-{
-ios :: iostate i;
-i = in. rdstate ();
-if(i & ios :: eofbit )
-cout << " EOF encountered \n";
-
-else if(i & ios :: failbit )
-cout << "Non - Fatal I/O error \n";
-else if(i & ios :: badbit )
-cout << " Fatal I/O error \n";
-}
 
 
 
