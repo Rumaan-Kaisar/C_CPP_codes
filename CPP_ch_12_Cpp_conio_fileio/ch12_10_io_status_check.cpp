@@ -95,6 +95,7 @@ int main(int argc, char *argv[]) {
 }
 
 
+// Using rdstate() to Detect Errors
 void checkstatus(std::ifstream &in) {
     std::ios::iostate i;
     
@@ -108,9 +109,12 @@ void checkstatus(std::ifstream &in) {
 
 
 
-/* Example 2: Following uses good() to detect a file error for a file named "in":
-if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; } */
+/* Example 2: Following program displays a text file,
+                it uses good() to detect a file error for a input file stream named "in".
+*/
 
+// Using good() for Error Handling
+if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; } 
 
 
 ---- QWEN  ----
@@ -118,29 +122,7 @@ if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; 
 Here is the **pointwise organized** version of **Section 12.9: Checking I/O Status**:
 
 ---
-
-
-
-
-
-
-
-
----
-
-
-
-
-
-
-Default: clears all flags ("goodbit").
-Optional: 
-
-
-
----
-
-#### ✅ Example 1: Using `rdstate()` to Detect Errors
+ 
 ```cpp
 
 ```
@@ -148,7 +130,7 @@ Optional:
 
 ---
 
-#### ✅ Example 2: Using `good()` for Error Handling
+#### ✅ Example 2: 
 ```cpp
 if (!in.good() && !in.eof()) {
     cout << "I/O Error... terminating\n";
@@ -179,7 +161,7 @@ if (!in.good() && !in.eof()) {
 
 
 
-/* Example 2: This program displays a text file. It uses good() to detect a file error: */
+/* Example 2: This . It uses good() to detect a file error: */
 # include <iostream >
 # include <fstream >
 using namespace std ;
@@ -215,6 +197,5 @@ return 0;
 
 
 /* Example 1: Add error checking to your answers to the exercise from the preceding section */
-
 
 
