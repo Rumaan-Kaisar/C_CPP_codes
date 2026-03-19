@@ -52,6 +52,18 @@
 
     Note: Use after handling an error to resume normal stream operations.
 
+
+
+    Always check "stream status" after "critical I/O operations" to handle errors gracefully.
+
+    Function            Purpose
+    ----------------------------------------------------------------
+    rdstate()           Get full status (use with `iostate`)
+    eof()               Check for end-of-file
+    bad()               Check for fatal error
+    fail()              Check for non-fatal or fatal error
+    good()              True only if no errors
+    clear()             Reset error flags
 */
 
 
@@ -111,91 +123,47 @@ void checkstatus(std::ifstream &in) {
 
 /* Example 2: Following program displays a text file,
                 it uses good() to detect a file error for a input file stream named "in".
+
+                Checks if stream is not in good state and not just at EOF.
+                Helps distinguish between normal end-of-file and actual errors.
 */
 
-// Using good() for Error Handling
-if(!in.good() && !in.eof()) { cout << "I/O Error ... terminating \n"; return 1; } 
+#include <iostream>
+#include <fstream>
 
+int main(int argc, char *argv[]) {
+    char ch;
+    
+    if(argc != 2) {
+        std::cout << " Usage : PR <filename >\n";
+        return 1;
+    }
 
----- QWEN  ----
+    std::ifstream in(argv[1]);
 
-Here is the **pointwise organized** version of **Section 12.9: Checking I/O Status**:
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
 
----
- 
-```cpp
+    while(!in.eof()) {
+        in.get(ch);
 
-```
-- Uses bitwise AND (`&`) to check which flag(s) are set.
+        // Using good() for Error Handling
+        if(!in.good() && !in.eof()) {
+            std::cout << "I/O Error ... terminating \n";
+            return 1;
+        }
+        std::cout << ch;
+    }
 
----
+    in.close();
 
-#### ✅ Example 2: 
-```cpp
-if (!in.good() && !in.eof()) {
-    cout << "I/O Error... terminating\n";
-    return 1;
-}
-```
-- Checks if stream is not in good state and not just at EOF.
-- Helps distinguish between normal end-of-file and actual errors.
-
----
-
-### ✅ Summary Table
-
-| Function | Purpose |
-|--------|--------|
-| `rdstate()` | Get full status (use with `iostate`) |
-| `eof()` | Check for end-of-file |
-| `bad()` | Check for fatal error |
-| `fail()` | Check for non-fatal or fatal error |
-| `good()` | True only if no errors |
-| `clear()` | Reset error flags |
-
-> Always check stream status after critical I/O operations to handle errors gracefully.
-
-
-
-
-
-
-
-/* Example 2: This . It uses good() to detect a file error: */
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-char ch;
-if( argc !=2)
-{
-cout << " Usage : PR <filename >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-while (! in. eof ())
-{
-in. get (ch);
-// check for error
-if (! in. good () && !in.eof ())
-{
-cout << "I/O Error ... terminating \n";
-return 1;
-}
-cout << ch;
-}
-in. close ();
-return 0;
+    return 0;
 }
 
 
 
-/* Example 1: Add error checking to your answers to the exercise from the preceding section */
+/* Example 3: Add error checking to your answers to the exercise from the preceding section */
 
 
