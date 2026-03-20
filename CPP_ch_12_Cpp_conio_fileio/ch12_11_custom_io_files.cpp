@@ -1,14 +1,22 @@
 
 /*  ------------------------    Customized I/O And Files    ------------------------
-Customized I/O And Files
-Overloaded inserters and extractors, as well as I/O manipulators, can be used with any stream 
 
- Because all C++ streams are the same, for example, 
- 
- 
+    General Principle of Stream Operations:
+        Overloaded inserters "<<", extractors ">>", and I/O manipulators can be used 
+        with "any stream" as long as they are written in a general manner.
+
+        Because all C++ streams share the same underlying structure,
+            the same overloaded inserter function can be used to output 
+            to the screen "cout" or to a file "ofstream" without requiring any changes.
 
 
-   If you "hard-code" a specific stream into an I/O function, its use is, of course, limited to only that stream. This is why you were urged to generalize your I/O functions whenever possible. (Recall 12.5 : Make inserter/extractor as general as possible)
+---- rev[20-Mar-2026] ----
+
+   If you "hard-code" a specific stream into an I/O function, its use is, of course, limited to only that stream. 
+
+This is why you were urged to generalize your I/O functions whenever possible. (Recall 12.5 : Make inserter/extractor as general as possible)
+
+
    Example 1: In the following program, the coord class overloads the << and >> operators. Notice that you can use the operator functions to write both to the screen and to a file.
 
 #include <iostream >
@@ -49,16 +57,6 @@ return 0; }
 
 # Customized I/O And Files
 
-General Principle of Stream Operations:
-    Overloaded inserters "<<", extractors ">>", and I/O manipulators can be used 
-    with "any stream" as long as they are written in a general manner.
-
-    Because all C++ streams share the same underlying structure,
-        the same overloaded inserter function can be used to output 
-        to the screen or to a file with no changes whatsoever.
-
-
-*   **Benefit:** The same overloaded inserter function can output to the screen (`cout`) or to a file (`ofstream`) without requiring any changes.
 
 **2. Best Practices and Warnings**
 *   **Avoid Hard-Coding:** Do not "hard-code" a specific stream (e.g., `cout`) into an I/O function.
@@ -66,9 +64,14 @@ General Principle of Stream Operations:
 *   **Recommendation:** Always generalize I/O functions whenever possible (e.g., use `ostream&` or `istream&` as parameters).
     *   *(Reference: Recall section 12.5 – Make inserter/extractor as general as possible)*
 
+
+
 **3. Illustrative Example**
 *   **Scenario:** A `coord` class overloads the `<<` and `>>` operators.
 *   **Demonstration:** The program uses these operator functions to write data to both the screen and a file.
+
+
+
 
 **4. Source Code**
 ```cpp
