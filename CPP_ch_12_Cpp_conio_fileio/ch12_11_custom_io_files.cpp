@@ -12,7 +12,9 @@
 
 ---- rev[20-Mar-2026] ----
 
-   If you "hard-code" a specific stream into an I/O function, its use is, of course, limited to only that stream. 
+If you "hard-code" a specific stream into an I/O function, its use is, of course, 
+
+
 
 This is why you were urged to generalize your I/O functions whenever possible. (Recall 12.5 : Make inserter/extractor as general as possible)
 
@@ -58,8 +60,11 @@ return 0; }
 # Customized I/O And Files
 
 
-**2. Best Practices and Warnings**
-*   **Avoid Hard-Coding:** Do not "hard-code" a specific stream (e.g., `cout`) into an I/O function.
+Best Practices:
+Avoid Hard-Coding:
+    Do not "hard-code" a specific stream (e.g., "cout") into an I/O function.
+    because it will be limited to only that stream. 
+    
 *   **Consequence:** Hard-coding limits the function's use to only that specific stream.
 *   **Recommendation:** Always generalize I/O functions whenever possible (e.g., use `ostream&` or `istream&` as parameters).
     *   *(Reference: Recall section 12.5 – Make inserter/extractor as general as possible)*
