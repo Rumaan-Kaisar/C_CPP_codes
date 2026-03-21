@@ -164,6 +164,107 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 3: Add error checking to your answers to the exercise from the preceding section */
+/* Example 3: Add error checking to your answers to the exercise from the preceding section "ch12_09_random_access.cpp" */
+
+1a. /*
+Display a file backwards on the screen ,
+535TEACH YOURSELF
+C++
+plus error checking .
+*/
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : REVERSE <filename >\n";
+return 1;
+}
+ifstream in( argv [1] , ios :: in | ios :: binary );
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char ch;
+long i;
+// go to end of file ( less eof char )
+in. seekg (0, ios :: end );
+if (! in. good ())
+return 1;
+i = ( long ) in. tellg (); // see how many bytes in file
+if (! in. good ())
+return 1;
+i -= 2; // backup before eof
+for ( ; i >=0; i --)
+{
+in. seekg (i, ios :: beg );
+if (! in. good ())
+return 1;
+in. get (ch);
+if (! in. good ())
+return 1;
+cout << ch;
+}
+in. close ();
+if (! io. good ())
+return 1;
+return 0;
+}
+536ANSWERS
+9.6 EXERCISES
 
 
+
+1b. // Swap characters in a file with error checking .
+# include <iostream >
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=2)
+{
+cout << " Usage : SWAP <filename >\n";
+return 1;
+}
+// opne file for input / output
+fstream io( argv [1] , ios :: in | ios :: out | ios :: binary );
+if (! io)
+{
+cout << " Cannot open file .\n";
+return 1;
+}
+char ch1 , ch2 ;
+long i;
+for (i =0; !io. eof (); i +=2)
+{
+io. seekg (i, ios :: beg );
+if (! io. good ())
+return 1;
+io. get ( ch1 );
+if(io. eof ())
+continue ;
+io. get ( ch2 );
+if (! io. good ())
+return 1;
+if (! io. eof ())
+continue ;
+io. seekg (i, ios :: beg );
+if (! io. good ())
+return 1;
+io. put ( ch2 );
+if (! io. good ())
+return 1;
+io. put ( ch1 );
+if (! io. good ())
+return 1;
+}
+io. close ();
+if (! io. good ())
+return 1;
+537TEACH YOURSELF
+C++
+return 0;
+}
