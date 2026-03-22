@@ -168,14 +168,13 @@ int main(int argc, char *argv[]) {
 
 // ---- rev[22-Mar-2026] ----
 
-/* Example 3: Add error checking to your answers to the exercise from the preceding section "ch12_09_random_access.cpp" */
-
-1a. /*
-Display a file backwards on the screen ,
-535TEACH YOURSELF
-C++
-plus error checking .
+/* Example 3: Add error checking to "Example 3" and "Example 4" from 
+                the preceding section ch12_09_random_access.cpp.
 */
+
+// Following program displays a text file backwards. 
+
+
 # include <iostream >
 # include <fstream >
 using namespace std ;
@@ -217,12 +216,11 @@ if (! io. good ())
 return 1;
 return 0;
 }
-536ANSWERS
-9.6 EXERCISES
 
 
 
-1b. // Swap characters in a file with error checking .
+
+// Following program swaps "each character pair" in a text file. 
 # include <iostream >
 # include <fstream >
 using namespace std ;
@@ -268,7 +266,7 @@ return 1;
 io. close ();
 if (! io. good ())
 return 1;
-537TEACH YOURSELF
-C++
+
 return 0;
 }
+
