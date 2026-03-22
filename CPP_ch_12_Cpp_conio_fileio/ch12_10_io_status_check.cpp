@@ -217,6 +217,45 @@ return 1;
 return 0;
 }
 
+// CLI:    ch12_07_file_io_basics_12 accounts
+
+
+#include <iostream>
+#include <fstream>
+
+int main( int argc, char *argv[]) {
+    if(argc != 2) {
+        std::cout << " Usage : REVERSE <filename>\n";
+        return 1;
+    }
+
+    std::ifstream in( argv[1], std::ios::in | std::ios::binary );
+
+    if (!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    char ch;
+    long i;
+
+    // go to end of file ( less eof char )
+    in.seekg(0, std::ios::end );
+
+    i = (long)in.tellg();   // see how many bytes in file
+    i -= 2;     // backup before eof
+
+    for( ; i>=0; i--) {
+        in.seekg(i, std::ios::beg);
+        in.get(ch);
+        std::cout << ch;
+    }
+
+    in.close();
+
+    return 0;
+}
+
 
 
 
@@ -268,5 +307,65 @@ if (! io. good ())
 return 1;
 
 return 0;
+}
+
+
+// CLI:    ch12_07_file_io_basics_13 test
+
+#include <iostream>
+#include <fstream>
+
+int main(int argc, char *argv[]) {
+    if(argc!=2) {
+        std::cout << " Usage : SWAP <filename>\n";
+        return 1;
+    }
+
+    // opne file for input / output
+    std::fstream io_test( argv[1] , std::ios::in | std::ios::out | std::ios::binary );
+
+    if(!io_test) {
+        std::cout << " Cannot open file .\n";
+        return 1;
+    }
+
+    char ch1, ch2;
+    long i;
+
+    // for(i=0; !io_test.eof(); i += 2) {
+    //     io_test.seekg(i, std::ios::beg);
+    //     io_test.get(ch1);
+        
+    //     if(io_test.eof()) continue;
+    //     io_test.get(ch2);
+
+    //     if(!io_test.eof()) continue;
+    //     io_test.seekp(i, std::ios::beg);
+
+    //     io_test.put(ch2);
+    //     io_test.put(ch1);
+    // }
+
+    while(true) {
+
+        io_test.seekg(i, std::ios::beg);
+
+        if(!io_test.get(ch1))
+            break;
+
+        if(!io_test.get(ch2))
+            break;
+
+        io_test.seekp(i, std::ios::beg);
+
+        io_test.put(ch2);
+        io_test.put(ch1);
+
+        i += 2;
+    }
+
+    io_test.close();
+
+    return 0;
 }
 
