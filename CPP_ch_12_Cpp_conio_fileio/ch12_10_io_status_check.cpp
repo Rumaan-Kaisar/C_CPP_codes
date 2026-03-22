@@ -67,7 +67,6 @@
 */
 
 
-// ---- rev[18-Mar-2026] ----
 
 
 /* Example 1: Following uses rdstate() to detect a file error for a  input file stream named "in". 
@@ -75,6 +74,8 @@
 
                 Note that it will always report an 'EOF encountered' message after the loop finishes, 
                 which is expected behavior when the file ends (the final call to checkstatus() happens).
+
+                CLI:    ch12_07_file_io_basics_14 test
 */
 
 #include <iostream>
@@ -84,7 +85,7 @@ void checkstatus (std::ifstream &in);
 
 int main(int argc, char *argv[]) {
     if(argc !=2) {
-        std::cout << " Usage : DISPLAY <filename >\n";
+        std::cout << " Usage : DISPLAY <filename>\n";
         return 1;
     }
 
@@ -119,7 +120,7 @@ void checkstatus(std::ifstream &in) {
 
 
 
-
+// ---- rev[22-Mar-2026] ----
 
 /* Example 2: Following program displays a text file,
                 it uses good() to detect a file error for a input file stream named "in".
