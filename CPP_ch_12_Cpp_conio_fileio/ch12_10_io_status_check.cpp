@@ -120,13 +120,14 @@ void checkstatus(std::ifstream &in) {
 
 
 
-// ---- rev[22-Mar-2026] ----
 
 /* Example 2: Following program displays a text file,
                 it uses good() to detect a file error for a input file stream named "in".
 
                 Checks if stream is not in good state and not just at EOF.
                 Helps distinguish between normal end-of-file and actual errors.
+
+                CLI:    ch12_07_file_io_basics_15 test
 */
 
 #include <iostream>
@@ -136,7 +137,7 @@ int main(int argc, char *argv[]) {
     char ch;
     
     if(argc != 2) {
-        std::cout << " Usage : PR <filename >\n";
+        std::cout << " Usage : PR <filename>\n";
         return 1;
     }
 
@@ -164,6 +165,8 @@ int main(int argc, char *argv[]) {
 }
 
 
+
+// ---- rev[22-Mar-2026] ----
 
 /* Example 3: Add error checking to your answers to the exercise from the preceding section "ch12_09_random_access.cpp" */
 
