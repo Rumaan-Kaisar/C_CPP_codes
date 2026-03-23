@@ -10,14 +10,16 @@
             to the screen "cout" or to a file "ofstream" without requiring any changes.
 
 
----- rev[20-Mar-2026] ----
+    Avoid Hard-Coding:
+        Do not "hard-code" a specific stream (e.g., "cout") into an I/O function.
+        because it will be limited to only that stream. 
+        
+        "Hard-coding" limits the function's use to only that specific stream.
+        Thats why we generalize the I/O functions whenever possible. 
+        (Recall "ch12_05_inserter_extractor.cpp" : Make inserter/extractor as general as possible)
 
-If you "hard-code" a specific stream into an I/O function, its use is, of course, 
 
-
-
-This is why you were urged to generalize your I/O functions whenever possible. (Recall 12.5 : Make inserter/extractor as general as possible)
-
+---- rev[23-Mar-2026] ----
 
    Example 1: In the following program, the coord class overloads the << and >> operators. Notice that you can use the operator functions to write both to the screen and to a file.
 
@@ -61,14 +63,8 @@ return 0; }
 
 
 Best Practices:
-Avoid Hard-Coding:
-    Do not "hard-code" a specific stream (e.g., "cout") into an I/O function.
-    because it will be limited to only that stream. 
-    
-*   **Consequence:** Hard-coding limits the function's use to only that specific stream.
-*   **Recommendation:** Always generalize I/O functions whenever possible (e.g., use `ostream&` or `istream&` as parameters).
-    *   *(Reference: Recall section 12.5 – Make inserter/extractor as general as possible)*
 
+    
 
 
 **3. Illustrative Example**
@@ -312,4 +308,3 @@ out << note << " Turn off all lights \n";
 out . close ();
 return 0;
 }
-
