@@ -48,7 +48,7 @@
 int main() {
     coord o1(1, 2), o2(3, 4);
     
-    // Writing to File
+
     ofstream out("test");
     if (!out) {
         cout << "Cannot open output file.\n";
@@ -160,10 +160,6 @@ Screen Output: The standard cout stream uses the same overloaded << operator to 
                 Notice, we can use the operator functions to write both to the "screen" and to a "file". 
 */
 
-
-
-
-
 #include <iostream>
 #include <fstream>
 
@@ -179,23 +175,32 @@ class coord {
 
 
 // Overload << operator
-std::ostream &operator <<(std::ostream &stream, coord ob);{
+std::ostream &operator <<(std::ostream &stream, coord ob) {
             stream << ob.x << ' ' << ob.y << '\n';
             return stream;
 }
 
 // Overload >> operator
-std::istream &operator >>(std::istream &stream, coord &ob);{
+std::istream &operator >>(std::istream &stream, coord &ob) {
             stream >> ob.x >> ob.y;
-            return stream 
+            return stream;
 ;}
-            
-                int main() {coord o1(1, 2) , o2(3, 4);
-    ofstream out(" test ");
+
+
+
+// ---- rev[23-Mar-2026] ----
+
+int main() {
+    coord o1(1, 2), o2(3, 4);
+
+    // Writing to File
+    std::ofstream out(" test ");
     if (!out ) { cout << " Cannot open output file .\n";
         return 1; }
     out << o1 << o2;
     out . close ();
+
+    // Reading from File
     ifstream in(" test ");
     if (!in) {   cout << " Cannot open input file .\n";
         return 1; }
