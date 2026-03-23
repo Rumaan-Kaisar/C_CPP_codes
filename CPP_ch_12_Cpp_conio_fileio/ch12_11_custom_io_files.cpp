@@ -21,50 +21,9 @@
 
 ---- rev[23-Mar-2026] ----
 
-   Example 1: In the following program, the coord class overloads the << and >> operators. Notice that you can use the operator functions to write both to the screen and to a file.
-
-#include <iostream >
-#include <fstream >
-using namespace std;
-class coord { int x, y;
-public :
-coord (int i, int j) { x = i; y = j; }
-friend ostream &operator <<( ostream &stream , coord ob);
-friend istream &operator >>( istream &stream , coord &ob);
-};
-
-
-
-ostream &operator <<( ostream &stream , coord ob){
-            stream << ob.x << ' ' << ob.y << '\n';
-            return stream ;}
-istream & operator >>( istream &stream , coord &ob){
-            stream >> ob.x >> ob.y;
-            return stream ;}    int main() {coord o1(1, 2) , o2(3, 4);
-    ofstream out(" test ");
-    if (!out ) { cout << " Cannot open output file .\n";
-        return 1; }
-    out << o1 << o2;
-    out . close ();
-    ifstream in(" test ");
-    if (!in) {   cout << " Cannot open input file .\n";
-        return 1; }
-    coord o3(0, 0) , o4(0, 0);
-    in >> o3 >> o4;
-    cout << o3 << o4;
-    in.close ();
-return 0; }
-
 
 
 ----  Qwen  ----
-
-# Customized I/O And Files
-
-
-Best Practices:
-
-    
 
 
 **3. Illustrative Example**
@@ -76,31 +35,15 @@ Best Practices:
 
 **4. Source Code**
 ```cpp
-#include <iostream>
-#include <fstream>
-using namespace std;
 
-class coord {
-    int x, y;
-public:
-    coord(int i, int j) { x = i; y = j; }
-    
-    // Friend functions for overloading operators
-    friend ostream &operator <<(ostream &stream, coord ob);
-    friend istream &operator >>(istream &stream, coord &ob);
-};
 
-// Overload << operator
-ostream &operator <<(ostream &stream, coord ob) {
-    stream << ob.x << ' ' << ob.y << '\n';
-    return stream;
-}
 
-// Overload >> operator
-istream &operator >>(istream &stream, coord &ob) {
-    stream >> ob.x >> ob.y;
-    return stream;
-}
+
+
+
+
+
+
 
 int main() {
     coord o1(1, 2), o2(3, 4);
@@ -140,16 +83,8 @@ int main() {
 
 
 Customized I/O And Files
-1. General Principle of Stream Operations
-Versatility: Overloaded inserters (<<), extractors (>>), and I/O manipulators can be used with any stream.
-Condition: This works provided they are written in a general manner.
-Reasoning: All C++ streams share the same underlying structure.
-Benefit: The same overloaded inserter function can output to the screen (cout) or to a file (ofstream) without requiring any changes.
-2. Best Practices and Warnings
-Avoid Hard-Coding: Do not "hard-code" a specific stream (e.g., cout) into an I/O function.
-Consequence: Hard-coding limits the function's use to only that specific stream.
-Recommendation: Always generalize I/O functions whenever possible (e.g., use ostream& or istream& as parameters).
-(Reference: Recall section 12.5 – Make inserter/extractor as general as possible)
+
+
 3. Illustrative Example
 Scenario: A coord class overloads the << and >> operators.
 Demonstration: The program uses these operator functions to write data to both the screen and a file.
@@ -218,6 +153,57 @@ File Input: The ifstream object in uses the overloaded >> operator to load data 
 Screen Output: The standard cout stream uses the same overloaded << operator to display o3 and o4, proving the function's generality.
 
 */  
+
+
+
+/* Example 1: In the following program, the "coord" class overloads the << and >> operators. 
+                Notice, we can use the operator functions to write both to the "screen" and to a "file". 
+*/
+
+
+
+
+
+#include <iostream>
+#include <fstream>
+
+class coord {
+        int x, y;
+    public:
+        coord(int i, int j) { x = i; y = j; }
+        
+        // Friend functions for overloading operators
+        friend std::ostream &operator <<(std::ostream &stream, coord ob);
+        friend std::istream &operator >>(std::istream &stream, coord &ob);
+};
+
+
+// Overload << operator
+std::ostream &operator <<(std::ostream &stream, coord ob);{
+            stream << ob.x << ' ' << ob.y << '\n';
+            return stream;
+}
+
+// Overload >> operator
+std::istream &operator >>(std::istream &stream, coord &ob);{
+            stream >> ob.x >> ob.y;
+            return stream 
+;}
+            
+                int main() {coord o1(1, 2) , o2(3, 4);
+    ofstream out(" test ");
+    if (!out ) { cout << " Cannot open output file .\n";
+        return 1; }
+    out << o1 << o2;
+    out . close ();
+    ifstream in(" test ");
+    if (!in) {   cout << " Cannot open input file .\n";
+        return 1; }
+    coord o3(0, 0) , o4(0, 0);
+    in >> o3 >> o4;
+    cout << o3 << o4;
+    in.close ();
+return 0; }
 
 
 1. In the following program, the coord class overloads the << and >> operators. Notice
