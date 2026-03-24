@@ -166,64 +166,19 @@ int main(int argc, char *argv[]) {
 
 
 
-// ---- rev[22-Mar-2026] ----
 
 /* Example 3: Add error checking to "Example 3" and "Example 4" from 
-                the preceding section ch12_09_random_access.cpp.
+                the preceding section "ch12_09_random_access.cpp".
 */
 
+
 // Following program displays a text file backwards. 
-
-
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : REVERSE <filename >\n";
-return 1;
-}
-ifstream in( argv [1] , ios :: in | ios :: binary );
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-char ch;
-long i;
-// go to end of file ( less eof char )
-in. seekg (0, ios :: end );
-if (! in. good ())
-return 1;
-i = ( long ) in. tellg (); // see how many bytes in file
-if (! in. good ())
-return 1;
-i -= 2; // backup before eof
-for ( ; i >=0; i --)
-{
-in. seekg (i, ios :: beg );
-if (! in. good ())
-return 1;
-in. get (ch);
-if (! in. good ())
-return 1;
-cout << ch;
-}
-in. close ();
-if (! io. good ())
-return 1;
-return 0;
-}
-
-// CLI:    ch12_07_file_io_basics_12 accounts
-
+// CLI:    ch12_07_file_io_basics_16 accounts
 
 #include <iostream>
 #include <fstream>
 
-int main( int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     if(argc != 2) {
         std::cout << " Usage : REVERSE <filename>\n";
         return 1;
@@ -241,22 +196,31 @@ int main( int argc, char *argv[]) {
 
     // go to end of file ( less eof char )
     in.seekg(0, std::ios::end );
+    if(!in.good()) return 1;    // Error Handling
 
     i = (long)in.tellg();   // see how many bytes in file
+    if(!in.good()) return 1;    // Error Handling
+
     i -= 2;     // backup before eof
 
     for( ; i>=0; i--) {
         in.seekg(i, std::ios::beg);
+        if(!in.good()) return 1;    // Error Handling
+
         in.get(ch);
+        if(!in.good()) return 1;    // Error Handling
+
         std::cout << ch;
     }
 
     in.close();
+    if(!in.good()) return 1;    // Error Handling
 
     return 0;
 }
 
 
+// ---- rev[22-Mar-2026] ----
 
 
 // Following program swaps "each character pair" in a text file. 
