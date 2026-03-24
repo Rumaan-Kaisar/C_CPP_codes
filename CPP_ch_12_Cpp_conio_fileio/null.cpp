@@ -15,8 +15,6 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-
-Mastery Skills Check
 At this point you should be able to perform the following exercises and answer the questions.
 1. Create an output manipulator that outputs three tabs and then sets the field width to 20.
 Demonstrate that your manipulator works.
@@ -31,7 +29,230 @@ in the alphabet occurs in the file.
 6. What function positions the get pointer? What function positions the put pointer?
 
 
+1. # include <iostream >
+using namespace std ;
+ostream & tabs ( ostream & stream )
+{
+stream << ’\t’ << ’\t’ << ’\t’;
+stream . width (20) ;
+return stream ;
+}
+int main ()
+{
+cout << tabs << " Testing \n";
+return 0;
+}
+2. # include <iostream >
+# include <cctype >
+using namespace std ;
+istream & findalpha ( istream & stream )
+{
+char ch;
+do
+{
+stream . get (ch);
+}
+while (! isalpha (ch));
+return stream ;
+}
+int main ()
+{
+char str [80];
+cin >> findalpha >> str;
+cout << str << ’\n’;
+return 0;
+}
+538ANSWERS
+MASTERY SKILLS CHECK: Chapter 9
+3. // Copy a file and reverse case of letters .
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=3)
+{
+cout << " Usage : COPYREV <source > <target >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+ofstream out ( argv [2]) ;
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+while (! in. eof ())
+{
+ch = in. get ();
+if (! in. eof ())
+{
+if( islower (ch))
+ch = toupper (ch);
+else
+ch = tolower (ch);
+out . put (ch);
+}
+}
+in. close ();
+out . close ();
+return 0;
+}
+539TEACH YOURSELF
+C++
+4. // Count letters .
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int alpha [26];
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=2)
+{
+cout << " Usage : COUNT <source >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+// init alpha []
+int i;
+for (i =0; i <26; i ++)
+alpha [i] = 0;
+while (! in. eof ())
+{
+ch = in. get ();
+if( isalpha (ch)) // if letter found , count it
+{
+ch = toupper (ch); // normalize
+alpha [ch -’A’]++; // ’A ’-’A’ == 0, ’B ’-’A’ == 1,
+etc .
+}
+}
+// display count
+for (i =0; i <26; i ++)
+cout << ( char ) (’A’+i) << ": " << alpha [i] << ’\n’;
+in. close ();
+return 0;
+}
+540ANSWERS
+MASTERY SKILLS CHECK: Chapter 9
+5a. /*
+Copy a file and reverse case of letters
+with error checking .
+*/
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=3)
+{
+cout << " Usage : COPYREV <source > <target >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+ofstream out ( argv [2]) ;
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+while (! in. eof ())
+{
+ch = in. get ();
+if (! in. good () && !in.eof ())
+return 1;
+if (! in. eof ())
+{
+if( islower (ch))
+ch = toupper (ch);
+else
+ch = tolower (ch);
+out . put (ch);
+if (! out . good ())
+return 1;
+}
+}
+541TEACH YOURSELF
+C++
+in. close ();
+out . close ();
+if (! in. good () && ! out . good ())
+return 1;
+return 0;
+}
+5b. // Count letters with error checking .
+# include <iostream >
+# include <fstream >
+# include <cctype >
+using namespace std ;
+int alpha [26];
+int main ( int argc , char * argv [])
+{
+char ch;
+if( argc !=2)
+{
+cout << " Usage : COUNT <source >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+// init alpha []
+int i;
+for (i =0; i <26; i ++)
+alpha [i] = 0;
+while (! in. eof ())
+{
+ch = in. get ();
+if (! in. good () && !in.eof ())
+return 1;
+if( isalpha (ch)) // if letter found , count it
+{
+ch = toupper (ch); // normalize
+alpha [ch -’A’]++; // ’A ’-’A’ == 0, ’B ’-’A’ == 1,
+etc .
+}
+542ANSWERS
+CUMULATIVE SKILLS CHECK: Chapter 9
+}
+// display count
+for (i =0; i <26; i ++)
+cout << ( char ) (’A’+i) << ": " << alpha [i] << ’\n’;
+in. close ();
+if (! in. good ())
+return 1;
+return 0;
+}
+6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
+
+
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
+
+
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
@@ -87,11 +308,107 @@ return stream ;
 }
 
 
-2. As a special challenge, on your own, create a stack class for characters that stores them
-in a disk file rather than in an array in memory.
+1. # include <iostream >
+# include <fstream >
+# include <cstring >
+using namespace std ;
+# define SIZE 40
+class inventory
+{
+char item [ SIZE ]; // name of item
+int onhand ; // number on hand
+double cost ; // cost of item
+public :
+inventory ( char *i, int o, double c)
+{
+strcpy (item , i);
+onhand = o;
+cost = c;
+}
+void store ( fstream & stream );
+void retrieve ( fstream & stream );
+friend ostream & operator <<( ostream &stream , inventory ob)
+;
+friend istream & operator >>( istream &stream , inventory &ob
+);
+};
+ostream & operator <<( ostream &stream , inventory ob)
+{
+stream << ob. item << ": " << ob. onhand ;
+stream << " on hand at $" << ob. cost << ’\n’;
+return stream ;
+}
+543TEACH YOURSELF
+C++
+
+istream & operator >>( istream &stream , inventory &ob)
+{
+cout << " Enter item name : ";
+stream >> ob. item ;
+cout << " Enter number on hand : ";
+stream >> ob. onhand ;
+cout << " Enter cost : ";
+stream >> ob. cost ;
+return stream ;
+}
+void inventory :: store ( fstream & stream )
+{
+stream . write (item , SIZE );
+stream . write (( char *) & onhand , sizeof (int ));
+stream . write (( char *) &cost , sizeof ( double ));
+}
+void inventory :: retrieve ( fstream & stream )
+{
+stream . read (item , SIZE );
+stream . read (( char *) &onhand , sizeof (int ));
+stream . read (( char *) &cost , sizeof ( double ));
+}
+int main ()
+{
+fstream inv (" inv ", ios :: out | ios :: binary );
+int i;
+inventory pliers (" pliers ", 12, 4.95) ;
+inventory hammers (" hammers ", 5, 9.45) ;
+inventory wrenches (" wrenches ", 22, 13.90) ;
+inventory temp ("", 0, 0.0) ;
+if (! inv )
+{
+cout << " Cannot open file for output .\n";
+return 1;
+}
+// write to file
+pliers . store ( inv );
+hammers . store ( inv );
+wrenches . store ( inv );
+inv . close ();
+// open for input
+544ANSWERS
+REVIEW SKILLS CHECK: Chapter 10
+inv . open (" inv ", ios :: in | ios :: binary );
+if (! inv )
+{
+cout << " Cannot open file for input .\n";
+return 1;
+}
+do
+{
+cout << " Record # (-1 to quit ): ";
+cin >> i;
+if(i == -1)
+break ;
+inv . seekg (i*( SIZE + sizeof (int)+ sizeof ( double )), ios ::
+beg );
+temp . retrieve ( inv );
+cout << temp ;
+}
+while ( inv . good ());
+inv . close ();
+return 0;
+}
 
 
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
+
 
 
 
@@ -111,5 +428,103 @@ that anything surrounded by whitespace is a word.
 called out.
 5. What functions report status information about the C++ I/O system?
 6. Give one advantage of using the C++ I/O functions instead of the C-like I/O system.
+
+
+1. # include <iostream >
+using namespace std ;
+ostream & setsci ( ostream & stream )
+{
+stream . setf ( ios :: scientific | ios :: uppercase );
+return stream ;
+}
+int main ()
+{
+double f = 123.23;
+cout << setsci << f;
+cout << ’\n’;
+return 0;
+}
+2. // Copy and convert tabs to spaces .
+# include <iostream >
+545TEACH YOURSELF
+C++
+# include <fstream >
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=3)
+{
+cout << " Usage : CPY <int > <out >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+ofstream out ( argv [2]) ;
+if (! out )
+{
+cout << " Cannot open output file .\n";
+return 1;
+}
+char ch;
+int i = 8;
+while (! in. eof ())
+{
+in. get (ch);
+if(ch == ’\t’)
+for ( ; i >0; i --)
+out . put (’ ’);
+else
+out . put (ch);
+if(i == -1 || ch == ’\n’)
+i = 8;
+i --;
+}
+in. close ();
+out . close ();
+return 0;
+}
+
+
+3. // Search file .
+# include <iostream >
+# include <fstream >
+# include <cstring >
+546ANSWERS
+10.2 EXERCISES
+using namespace std ;
+int main ( int argc , char * argv [])
+{
+if( argc !=3)
+{
+cout << " Usage : SEARCH <file > <word >\n";
+return 1;
+}
+ifstream in( argv [1]) ;
+if (! in)
+{
+cout << " Cannot open input file .\n";
+return 1;
+}
+char str [255];
+int count =0;
+while (! in. eof ())
+{
+in >> str ;
+if (! strcmp (str , argv [2]) )
+count ++;
+}
+cout << argv [2] << " found " << count ;
+cout << " number of times .\n";
+in. close ();
+return 0;
+}
+4. The statement is
+out . seekp (234 , ios :: beg );
+5. The functions are rdstate(), good(), eof(), fail(), and bad().
+6. The C++ I/O system can be customized to operate on classes that you create.
 
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
