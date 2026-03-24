@@ -220,61 +220,9 @@ int main(int argc, char *argv[]) {
 }
 
 
-// ---- rev[22-Mar-2026] ----
-
 
 // Following program swaps "each character pair" in a text file. 
-# include <iostream >
-# include <fstream >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=2)
-{
-cout << " Usage : SWAP <filename >\n";
-return 1;
-}
-// opne file for input / output
-fstream io( argv [1] , ios :: in | ios :: out | ios :: binary );
-if (! io)
-{
-cout << " Cannot open file .\n";
-return 1;
-}
-char ch1 , ch2 ;
-long i;
-for (i =0; !io. eof (); i +=2)
-{
-io. seekg (i, ios :: beg );
-if (! io. good ())
-return 1;
-io. get ( ch1 );
-if(io. eof ())
-continue ;
-io. get ( ch2 );
-if (! io. good ())
-return 1;
-if (! io. eof ())
-continue ;
-io. seekg (i, ios :: beg );
-if (! io. good ())
-return 1;
-io. put ( ch2 );
-if (! io. good ())
-return 1;
-io. put ( ch1 );
-if (! io. good ())
-return 1;
-}
-io. close ();
-if (! io. good ())
-return 1;
-
-return 0;
-}
-
-
-// CLI:    ch12_07_file_io_basics_13 test
+// CLI:    ch12_07_file_io_basics_17 test
 
 #include <iostream>
 #include <fstream>
@@ -296,23 +244,11 @@ int main(int argc, char *argv[]) {
     char ch1, ch2;
     long i;
 
-    // for(i=0; !io_test.eof(); i += 2) {
-    //     io_test.seekg(i, std::ios::beg);
-    //     io_test.get(ch1);
-        
-    //     if(io_test.eof()) continue;
-    //     io_test.get(ch2);
-
-    //     if(!io_test.eof()) continue;
-    //     io_test.seekp(i, std::ios::beg);
-
-    //     io_test.put(ch2);
-    //     io_test.put(ch1);
-    // }
 
     while(true) {
 
         io_test.seekg(i, std::ios::beg);
+        if(!io_test.good()) return 1;   // Error check
 
         if(!io_test.get(ch1))
             break;
@@ -320,15 +256,23 @@ int main(int argc, char *argv[]) {
         if(!io_test.get(ch2))
             break;
 
+        if(!io_test.good()) return 1;   // Error check
+
+
         io_test.seekp(i, std::ios::beg);
+        if(!io_test.good()) return 1;   // Error check
 
         io_test.put(ch2);
+        if(!io_test.good()) return 1;   // Error check
+
         io_test.put(ch1);
+        if(!io_test.good()) return 1;   // Error check
 
         i += 2;
     }
 
     io_test.close();
+    if(!io_test.good()) return 1;   // Error check
 
     return 0;
 }
