@@ -17,118 +17,22 @@
         "Hard-coding" limits the function's use to only that specific stream.
         Thats why we generalize the I/O functions whenever possible. 
         (Recall "ch12_05_inserter_extractor.cpp" : Make inserter/extractor as general as possible)
-
-
----- rev[23-Mar-2026] ----
-
-
-
-----  Qwen  ----
-
-int main() {
-
-    
-    // Reading from File
-    ifstream in("test");
-    if (!in) {
-        cout << "Cannot open input file.\n";
-        return 1;
-    }
-    
-    coord o3(0, 0), o4(0, 0);
-    in >> o3 >> o4; // Uses overloaded >>
-    
-    // Output to Screen
-    cout << o3 << o4; // Uses overloaded <<
-    
-    in.close();
-    return 0;
-}
-```
-
-**5. Key Observations from the Code**
-*   **Class Definition:** The `coord` class defines friend functions to handle I/O operations.
-*   **File Output:** The `ofstream` object `out` uses the overloaded `<<` operator to save objects `o1` and `o2`.
-*   **File Input:** The `ifstream` object `in` uses the overloaded `>>` operator to load data into objects `o3` and `o4`.
-*   **Screen Output:** The standard `cout` stream uses the same overloaded `<<` operator to display `o3` and `o4`, proving the function's generality.
-
-
-Customized I/O And Files
-
-
-3. Illustrative Example
-Scenario: A coord class overloads the << and >> operators.
-Demonstration: The program uses these operator functions to write data to both the screen and a file.
-4. Source Code
-
-#include <iostream>
-#include <fstream>
-using namespace std;
-
-class coord {
-    int x, y;
-public:
-    coord(int i, int j) { x = i; y = j; }
-    
-    // Friend functions for overloading operators
-    friend ostream &operator <<(ostream &stream, coord ob);
-    friend istream &operator >>(istream &stream, coord &ob);
-};
-
-// Overload << operator
-ostream &operator <<(ostream &stream, coord ob) {
-    stream << ob.x << ' ' << ob.y << '\n';
-    return stream;
-}
-
-// Overload >> operator
-istream &operator >>(istream &stream, coord &ob) {
-    stream >> ob.x >> ob.y;
-    return stream;
-}
-
-int main() {
-    coord o1(1, 2), o2(3, 4);
-    
-    // Writing to File
-    ofstream out("test");
-    if (!out) {
-        cout << "Cannot open output file.\n";
-        return 1;
-    }
-    out << o1 << o2; // Uses overloaded <<
-    out.close();
-    
-    // Reading from File
-    ifstream in("test");
-    if (!in) {
-        cout << "Cannot open input file.\n";
-        return 1;
-    }
-    
-    coord o3(0, 0), o4(0, 0);
-    in >> o3 >> o4; // Uses overloaded >>
-    
-    // Output to Screen
-    cout << o3 << o4; // Uses overloaded <<
-    
-    in.close();
-    return 0;
-}
-
-
-5. Key Observations from the Code
-Class Definition: The coord class defines friend functions to handle I/O operations.
-File Output: The ofstream object out uses the overloaded << operator to save objects o1 and o2.
-File Input: The ifstream object in uses the overloaded >> operator to load data into objects o3 and o4.
-Screen Output: The standard cout stream uses the same overloaded << operator to display o3 and o4, proving the function's generality.
-
 */  
+
 
 
 
 /* Example 1: In the following program, the "coord" class overloads the << and >> operators. 
                 The program uses these operator functions to write data to both the "screen" and a "file". 
+
+                Class Setup: The coord class uses friend functions for input and output.
+
+                Saving: An ofstream object (out) uses << to save coordinates to a file.
+                Loading: An ifstream object (in) uses >> to read that data into new objects.
+
+                Displaying: 
+                    The same << operator works with "cout", 
+                    showing the code is reusable for both files and the screen.
 */
 
 #include <iostream>
@@ -188,7 +92,7 @@ int main() {
 
 
 
-// ---- rev[23-Mar-2026] ----
+// ---- rev[25-Mar-2026] ----
 
 1. In the following program, the coord class overloads the << and >> operators. Notice
 that you can use the operator functions to write both to the screen and to a file.
