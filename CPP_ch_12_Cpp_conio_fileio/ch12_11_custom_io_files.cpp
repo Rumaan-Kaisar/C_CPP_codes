@@ -26,16 +26,7 @@
 ----  Qwen  ----
 
 int main() {
-    coord o1(1, 2), o2(3, 4);
-    
 
-    ofstream out("test");
-    if (!out) {
-        cout << "Cannot open output file.\n";
-        return 1;
-    }
-    out << o1 << o2; 
-    out.close();
     
     // Reading from File
     ifstream in("test");
@@ -167,31 +158,37 @@ std::istream &operator >>(std::istream &stream, coord &ob) {
 ;}
 
 
-
-// ---- rev[23-Mar-2026] ----
-
 int main() {
     coord o1(1, 2), o2(3, 4);
 
     // Writing to File
-    std::ofstream out(" test ");
+    std::ofstream out("test");
     if(!out) {
-        std::cout << " Cannot open output file .\n";
+        std::cout << "Cannot open output file.\n";
         return 1; 
     }
-    out << o1 << o2;    // Uses overloaded <<
+    out << o1 << o2;    // Uses overloaded << to store values in a file
     out.close();
 
     // Reading from File
-    ifstream in(" test ");
-    if (!in) {   cout << " Cannot open input file .\n";
-        return 1; }
-    coord o3(0, 0) , o4(0, 0);
-    in >> o3 >> o4;
-    cout << o3 << o4;
-    in.close ();
-return 0; }
+    std::ifstream in("test");
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+    coord o3(0, 0) , o4(0, 0);  // Initialize objects where values will be stored.
+    in >> o3 >> o4;     // Uses overloaded >> to read from "in"
 
+    // Output the values to Screen
+    std::cout << o3 << o4;      // Uses overloaded << to print the values to screen
+    in.close ();
+
+    return 0;
+}
+
+
+
+// ---- rev[23-Mar-2026] ----
 
 1. In the following program, the coord class overloads the << and >> operators. Notice
 that you can use the operator functions to write both to the screen and to a file.
