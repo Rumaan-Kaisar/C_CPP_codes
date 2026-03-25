@@ -25,26 +25,6 @@
 
 ----  Qwen  ----
 
-
-**3. Illustrative Example**
-*   **Scenario:** A `coord` class overloads the `<<` and `>>` operators.
-*   **Demonstration:** The program uses these operator functions to write data to both the screen and a file.
-
-
-
-
-**4. Source Code**
-```cpp
-
-
-
-
-
-
-
-
-
-
 int main() {
     coord o1(1, 2), o2(3, 4);
     
@@ -54,7 +34,7 @@ int main() {
         cout << "Cannot open output file.\n";
         return 1;
     }
-    out << o1 << o2; // Uses overloaded <<
+    out << o1 << o2; 
     out.close();
     
     // Reading from File
@@ -157,7 +137,7 @@ Screen Output: The standard cout stream uses the same overloaded << operator to 
 
 
 /* Example 1: In the following program, the "coord" class overloads the << and >> operators. 
-                Notice, we can use the operator functions to write both to the "screen" and to a "file". 
+                The program uses these operator functions to write data to both the "screen" and a "file". 
 */
 
 #include <iostream>
@@ -195,10 +175,12 @@ int main() {
 
     // Writing to File
     std::ofstream out(" test ");
-    if (!out ) { cout << " Cannot open output file .\n";
-        return 1; }
-    out << o1 << o2;
-    out . close ();
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1; 
+    }
+    out << o1 << o2;    // Uses overloaded <<
+    out.close();
 
     // Reading from File
     ifstream in(" test ");
