@@ -92,61 +92,15 @@ int main() {
 
 
 
+
+/* Example 2: All of the I/O manipulators can be used with files. 
+                Following progranm is a reworked version of "Example 3" from "ch12_06_custom_manipulators.cpp".
+                In this case the same manipulator that writes to the screen will also write to a file. 
+*/
+
 // ---- rev[25-Mar-2026] ----
 
-1. In the following program, the coord class overloads the << and >> operators. Notice
-that you can use the operator functions to write both to the screen and to a file.
-# include <iostream >
-# include <fstream >
-using namespace std ;
-class coord
-{
-int x, y;
-public :
-coord ( int i, int j) { x = i; y = j; }
-friend ostream & operator <<( ostream &stream , coord ob);
-friend istream & operator >>( istream &stream , coord &ob);
-};
-ostream & operator <<( ostream &stream , coord ob)
-{
-stream << ob.x << ’ ’ << ob.y << ’\n’;
-return stream ;
-}
-istream & operator >>( istream &stream , coord &ob)
-{
-stream >> ob.x >> ob.y;
-return stream ;
-}
-int main ()
-{
-coord o1 (1, 2) , o2 (3, 4);
-ofstream out (" test ");
-if (! out )
-{
-cout << " Cannot open output file .\n";
-256ADVANCED C++ I/O
-9.7. CUSTOMIZED I/O AND FILES
-return 1;
-}
-out << o1 << o2;
-out . close ();
-ifstream in(" test ");
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-coord o3 (0, 0) , o4 (0, 0);
-in >> o3 >> o4;
-cout << o3 << o4;
-in. close ();
-return 0;
-}
 
-
-2. All of the I/O manipulators can be used with files. For example, in this reworked version
-of a program presented earlier in this chapter, the same manipulator that writes to the
-screen will also write to a file:
 # include <iostream >
 # include <fstream >
 # include <iomanip >
@@ -166,8 +120,7 @@ return stream ;
 int main ()
 {
 ofstream out (" test ");
-257TEACH YOURSELF
-C++
+
 if (! out )
 {
 cout << " Cannot open output file .\n";
