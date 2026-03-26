@@ -105,33 +105,35 @@ int main() {
 #include <fstream>
 #include <iomanip>
 
-// Attention :
+// Attention : "atn" as a custom manipulator
 std::ostream &atn(ostream &stream){
     stream << " Attention : ";
     return stream ;
 }
 
-// Please note :
+// Please note : "note" as a custom manipulator
 std::ostream &note(ostream &stream){
     stream << " Please Note : ";
     return stream ;
 }
 
-int main ()
-{
-ofstream out (" test ");
 
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-// write to screen
-cout << atn << " High voltage circuit \n";
-cout << note << " Turn off all lights \n";
+int main() {
+    std::ofstream out("test");
+
+    if(!out){
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    // write to screen
+    std::cout << atn << " High voltage circuit \n";
+    std::cout << note << " Turn off all lights \n";
+
 // write to file
 out << atn << " High voltage circuit \n";
 out << note << " Turn off all lights \n";
-out . close ();
+out.close();
+
 return 0;
 }
