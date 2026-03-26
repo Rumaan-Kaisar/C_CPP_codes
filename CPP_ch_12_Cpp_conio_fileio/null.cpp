@@ -442,29 +442,6 @@ return 0;
 correct number of spaces. */
 
 
-
-
-/* Example 3: Write a program that searches a text file for a word specified on the command line. Have
-the program display how many times the specified word is found. For simplicity, assume
-that anything surrounded by whitespace is a word. */
-
-
-
-
-/* Example 4: Show the statement that sets the put pointer to the 234th byte in a file linked to a stream
-called out. */
-
-
-
-
-/* Example 5: What functions report status information about the C++ I/O system? */
-
-
-
-
-/* Example 6: Give one advantage of using the C++ I/O functions instead of the C-like I/O system. */
-
-
 2. // Copy and convert tabs to spaces .
 # include <iostream >
 # include <fstream >
@@ -508,6 +485,13 @@ return 0;
 }
 
 
+
+
+/* Example 3: Write a program that searches a text file for a word specified on the command line. Have
+the program display how many times the specified word is found. For simplicity, assume
+that anything surrounded by whitespace is a word. */
+
+
 3. // Search file .
 # include <iostream >
 # include <fstream >
@@ -541,9 +525,28 @@ cout << " number of times .\n";
 in. close ();
 return 0;
 }
+
+
+
+
+/* Example 4: Show the statement that sets the put pointer to the 234th byte in a file linked to a stream
+called out. */
+
 4. The statement is
 out . seekp (234 , ios :: beg );
+
+
+
+
+/* Example 5: What functions report status information about the C++ I/O system? */
+
 5. The functions are rdstate(), good(), eof(), fail(), and bad().
+
+
+
+
+/* Example 6: Give one advantage of using the C++ I/O functions instead of the C-like I/O system. */
+
 6. The C++ I/O system can be customized to operate on classes that you create.
 
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
