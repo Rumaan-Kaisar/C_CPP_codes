@@ -80,7 +80,7 @@ int main() {
         std::cout << " Cannot open input file .\n";
         return 1;
     }
-    coord o3(0, 0) , o4(0, 0);  // Initialize objects where values will be stored.
+    coord o3(0, 0), o4(0, 0);  // Initialize objects where values will be stored.
     in >> o3 >> o4;     // Uses overloaded >> to read from "in"
 
     // Output the values to Screen
@@ -98,21 +98,18 @@ int main() {
                 In this case the same manipulator that writes to the "screen" will also write to a "file". 
 */
 
-// ---- rev[25-Mar-2026] ----
-
-
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 
 // Attention : "atn" as a custom manipulator
-std::ostream &atn(ostream &stream){
+std::ostream &atn(std::ostream &stream){
     stream << " Attention : ";
     return stream ;
 }
 
 // Please note : "note" as a custom manipulator
-std::ostream &note(ostream &stream){
+std::ostream &note(std::ostream &stream){
     stream << " Please Note : ";
     return stream ;
 }
@@ -130,10 +127,34 @@ int main() {
     std::cout << atn << " High voltage circuit \n";
     std::cout << note << " Turn off all lights \n";
 
-// write to file
-out << atn << " High voltage circuit \n";
-out << note << " Turn off all lights \n";
-out.close();
+    // write to file
+    out << atn << " High voltage circuit \n";
+    out << note << " Turn off all lights \n";
+    out.close();
 
-return 0;
+
+    // Open file for reading (similar way, but with ifstream)
+    std::ifstream in("test");
+
+    if(!in){
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    std::string line;   // "line" to store lines from the file
+    
+    // Read from file line by line and output to screen
+    std::cout << atn << " ---- Reading from file 'test' ---- \n";
+    
+    while(std::getline(in, line)){
+        std::cout << line << "\n";
+    }
+    
+    std::cout << note << " End of file reached \n";
+    
+    in.close();
+
+    return 0;
 }
+
+
