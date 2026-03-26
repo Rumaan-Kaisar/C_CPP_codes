@@ -95,28 +95,28 @@ int main() {
 
 /* Example 2: All of the I/O manipulators can be used with files. 
                 Following progranm is a reworked version of "Example 3" from "ch12_06_custom_manipulators.cpp".
-                In this case the same manipulator that writes to the screen will also write to a file. 
+                In this case the same manipulator that writes to the "screen" will also write to a "file". 
 */
 
 // ---- rev[25-Mar-2026] ----
 
 
-# include <iostream >
-# include <fstream >
-# include <iomanip >
-using namespace std ;
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
 // Attention :
-ostream & atn ( ostream & stream )
-{
-stream << " Attention : ";
-return stream ;
+std::ostream &atn(ostream &stream){
+    stream << " Attention : ";
+    return stream ;
 }
+
 // Please note :
-ostream & note ( ostream & stream )
-{
-stream << " Please Note : ";
-return stream ;
+std::ostream &note(ostream &stream){
+    stream << " Please Note : ";
+    return stream ;
 }
+
 int main ()
 {
 ofstream out (" test ");
