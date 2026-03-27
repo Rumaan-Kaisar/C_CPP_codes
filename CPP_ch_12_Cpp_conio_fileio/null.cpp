@@ -20,7 +20,7 @@ At this point you should be able to perform the following exercises and answer t
 
 // custom manipulator (rev done)
 
-/* Example 1: Following program creates an "output manipulator" that outputs "three tabs" 
+/* Example 1: Following program uses an "output manipulator" that outputs "three tabs" 
                 and then sets the field width to 20. 
                 
                 Demonstrate that the manipulator works.
@@ -43,29 +43,39 @@ int main(){
 
 // ----  rev[27-Mar-2026] ----
 
-/* Example 2: Create an input manipulator that reads and discards all non-alphabetical characters.
-When the first alphabetical character is read, have the manipulator return it to the input
-stream and return. Call this manipulator findalpha. */
 
-2. # include <iostream >
-# include <cctype >
-using namespace std ;
-istream & findalpha ( istream & stream )
-{
-char ch;
-do
-{
-stream . get (ch);
+// custom manipulator (rev done)
+
+/* Example 2: Following program uses an "input manipulator" 
+                that reads and discards all non-alphabetical characters.
+
+                When the first alphabetical character is read, 
+                    have the manipulator return it to the "input stream" and return. 
+                    
+                Call this manipulator findalpha. 
+*/
+
+#include <iostream>
+#include <cctype>
+
+std::istream &findalpha( std::istream &stream ) {
+    char ch;
+
+    do {
+        stream.get(ch);
+    } while( !isalpha(ch) );
+
+    return stream ;
 }
-while (! isalpha (ch));
-return stream ;
-}
-int main ()
-{
-char str [80];
-cin >> findalpha >> str;
-cout << str << ’\n’;
-return 0;
+
+
+int main() {
+    char str[80];
+
+    std::cin >> findalpha >> str;
+    std::cout << str << '\n';
+
+    return 0;
 }
 
 
