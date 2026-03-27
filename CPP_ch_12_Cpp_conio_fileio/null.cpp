@@ -21,35 +21,7 @@ At this point you should be able to perform the following exercises and answer t
 
 /* Example 1: Create an output manipulator that outputs three tabs and then sets the field width to 20.
 Demonstrate that your manipulator works.
- */
-
-
-/* Example 2: Create an input manipulator that reads and discards all non-alphabetical characters.
-When the first alphabetical character is read, have the manipulator return it to the input
-stream and return. Call this manipulator findalpha. */
-
-
-
-/* Example 3: Write a program that copies a text file. In the process, reverse the case of all letters.
-
- */
-
-/* Example 4: Write a program that reads a text file and then reports the number of times each letter
-in the alphabet occurs in the file.
- */
-
-
-/* Example 5: If you have not done so, add complete error checking to your solutions to Exercises 3 and
-4 above.
- */
-
-
-/* Example 6: What function positions the get pointer? What function positions the put pointer?
-
- */
-
-6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
-
+*/
 
 1. # include <iostream >
 using namespace std ;
@@ -64,6 +36,14 @@ int main ()
 cout << tabs << " Testing \n";
 return 0;
 }
+
+
+
+
+/* Example 2: Create an input manipulator that reads and discards all non-alphabetical characters.
+When the first alphabetical character is read, have the manipulator return it to the input
+stream and return. Call this manipulator findalpha. */
+
 2. # include <iostream >
 # include <cctype >
 using namespace std ;
@@ -84,8 +64,13 @@ cin >> findalpha >> str;
 cout << str << ’\n’;
 return 0;
 }
-538ANSWERS
-MASTERY SKILLS CHECK: Chapter 9
+
+
+
+
+/* Example 3: Write a program that copies a text file. In the process, reverse the case of all letters.
+*/
+
 3. // Copy a file and reverse case of letters .
 # include <iostream >
 # include <fstream >
@@ -127,8 +112,16 @@ in. close ();
 out . close ();
 return 0;
 }
-539TEACH YOURSELF
-C++
+
+
+
+
+/* Example 4: Write a program that reads a text file and then reports the number of times each letter
+in the alphabet occurs in the file.
+ */
+
+
+
 4. // Count letters .
 # include <iostream >
 # include <fstream >
@@ -169,9 +162,15 @@ cout << ( char ) (’A’+i) << ": " << alpha [i] << ’\n’;
 in. close ();
 return 0;
 }
-540ANSWERS
-MASTERY SKILLS CHECK: Chapter 9
-5a. /*
+
+
+
+
+/* Example 5: If you have not done so, add complete error checking to your solutions to Exercises 3 and
+4 above.
+ */
+
+/* 5a. 
 Copy a file and reverse case of letters
 with error checking .
 */
@@ -215,14 +214,15 @@ if (! out . good ())
 return 1;
 }
 }
-541TEACH YOURSELF
-C++
+
 in. close ();
 out . close ();
 if (! in. good () && ! out . good ())
 return 1;
 return 0;
 }
+
+
 5b. // Count letters with error checking .
 # include <iostream >
 # include <fstream >
@@ -258,8 +258,7 @@ ch = toupper (ch); // normalize
 alpha [ch -’A’]++; // ’A ’-’A’ == 0, ’B ’-’A’ == 1,
 etc .
 }
-542ANSWERS
-CUMULATIVE SKILLS CHECK: Chapter 9
+
 }
 // display count
 for (i =0; i <26; i ++)
@@ -269,6 +268,19 @@ if (! in. good ())
 return 1;
 return 0;
 }
+
+
+
+
+/* Example 6: What function positions the get pointer? What function positions the put pointer?
+
+ */
+
+6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
+
+
+
+
 
 
 
