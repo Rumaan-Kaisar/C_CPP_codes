@@ -16,17 +16,39 @@
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
 At this point you should be able to perform the following exercises and answer the questions.
-1. Create an output manipulator that outputs three tabs and then sets the field width to 20.
+
+
+
+/* Example 1: Create an output manipulator that outputs three tabs and then sets the field width to 20.
 Demonstrate that your manipulator works.
-2. Create an input manipulator that reads and discards all non-alphabetical characters.
+ */
+
+
+/* Example 2: Create an input manipulator that reads and discards all non-alphabetical characters.
 When the first alphabetical character is read, have the manipulator return it to the input
-stream and return. Call this manipulator findalpha.
-3. Write a program that copies a text file. In the process, reverse the case of all letters.
-4. Write a program that reads a text file and then reports the number of times each letter
+stream and return. Call this manipulator findalpha. */
+
+
+
+/* Example 3: Write a program that copies a text file. In the process, reverse the case of all letters.
+
+ */
+
+/* Example 4: Write a program that reads a text file and then reports the number of times each letter
 in the alphabet occurs in the file.
-5. If you have not done so, add complete error checking to your solutions to Exercises 3 and
+ */
+
+
+/* Example 5: If you have not done so, add complete error checking to your solutions to Exercises 3 and
 4 above.
-6. What function positions the get pointer? What function positions the put pointer?
+ */
+
+
+/* Example 6: What function positions the get pointer? What function positions the put pointer?
+
+ */
+
+6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
 
 
 1. # include <iostream >
@@ -247,7 +269,8 @@ if (! in. good ())
 return 1;
 return 0;
 }
-6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
+
+
 
 
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
