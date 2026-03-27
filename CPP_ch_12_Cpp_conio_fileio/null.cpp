@@ -18,27 +18,30 @@
 At this point you should be able to perform the following exercises and answer the questions.
 
 
+// custom manipulator (rev done)
 
-/* Example 1: Create an output manipulator that outputs three tabs and then sets the field width to 20.
-Demonstrate that your manipulator works.
+/* Example 1: Following program creates an "output manipulator" that outputs "three tabs" 
+                and then sets the field width to 20. 
+                
+                Demonstrate that the manipulator works.
 */
 
-1. # include <iostream >
-using namespace std ;
-ostream & tabs ( ostream & stream )
-{
-stream << ’\t’ << ’\t’ << ’\t’;
-stream . width (20) ;
-return stream ;
-}
-int main ()
-{
-cout << tabs << " Testing \n";
-return 0;
+#include <iostream>
+
+std::ostream & tabs( std::ostream &stream ) {
+    stream << '\t' << '\t' << '\t';
+    stream.width(20);
+    return stream;
 }
 
+int main(){
+    std::cout << tabs << " Testing \n";
+    return 0;
+}
 
 
+
+// ----  rev[27-Mar-2026] ----
 
 /* Example 2: Create an input manipulator that reads and discards all non-alphabetical characters.
 When the first alphabetical character is read, have the manipulator return it to the input
