@@ -185,6 +185,48 @@ int main(int argc, char *argv[]) {
 4 above.
 */
 
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+    char ch;
+
+    if(argc!=3) {
+        std::cout << " Usage : COPYREV <source > <target >\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in){
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    std::ofstream out(argv[2]);
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    while(!in.eof()) {
+        ch = in.get();
+
+        if(!in.eof()) {
+            if(islower(ch)) ch = toupper(ch);
+            else ch = tolower(ch);
+            out.put(ch);
+        }
+    }
+
+    in.close();
+    out.close();
+
+    return 0;
+}
+
 /* 5a. 
 Copy a file and reverse case of letters
 with error checking .
@@ -282,6 +324,51 @@ in. close ();
 if (! in. good ())
 return 1;
 return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int alpha[26];
+
+int main(int argc, char *argv[]) {
+    char ch;
+
+    if(argc!=2) {
+        std::cout << " Usage : COUNT <source>\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in) {
+        std::cout << " Cannot open input file.\n";
+        return 1;
+    }
+
+    // init alpha []
+    int i;
+
+    for(i=0; i<26; i++) alpha[i] = 0;
+
+    while(!in.eof()) {
+        ch = in.get();
+
+        // if letter found , count it
+        if(isalpha(ch)) {
+            ch = toupper (ch); // normalize
+            alpha [ch -'A']++; // 'A'-'A' == 0, 'B'-'A' == 1, etc.
+        }
+    }
+
+    // display count
+    for (i =0; i <26; i ++) std::cout << (char)('A'+i) << ": " << alpha[i] << '\n';
+    
+    in.close();
+
+    return 0;
 }
 
 
