@@ -95,33 +95,34 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-std::ifstream in(argv[1]);
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-ofstream out ( argv [2]) ;
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-while (! in. eof ())
-{
-ch = in. get ();
-if (! in. eof ())
-{
-if( islower (ch))
-ch = toupper (ch);
-else
-ch = tolower (ch);
-out . put (ch);
-}
-}
-in. close ();
-out . close ();
-return 0;
+    std::ifstream in(argv[1]);
+
+    if(!in){
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    std::ofstream out(argv[2]);
+
+    if(!out) {
+        std::cout << " Cannot open output file .\n";
+        return 1;
+    }
+
+    while(!in.eof()) {
+        ch = in.get();
+
+        if(!in.eof()) {
+            if(islower(ch)) ch = toupper(ch);
+            else ch = tolower(ch);
+            out.put(ch);
+        }
+    }
+
+    in.close();
+    out.close();
+
+    return 0;
 }
 
 
