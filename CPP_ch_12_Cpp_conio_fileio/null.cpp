@@ -81,23 +81,21 @@ int main() {
 
 
 
-/* Example 3: Write a program that copies a text file. In the process, reverse the case of all letters.
-*/
+/* Example 3: Following program copies a text file and reverse case of letters. */
 
-3. // Copy a file and reverse case of letters .
-# include <iostream >
-# include <fstream >
-# include <cctype >
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-char ch;
-if( argc !=3)
-{
-cout << " Usage : COPYREV <source > <target >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+    char ch;
+
+    if(argc!=3) {
+        std::cout << " Usage : COPYREV <source > <target >\n";
+        return 1;
+    }
+
+std::ifstream in(argv[1]);
 if (! in)
 {
 cout << " Cannot open input file .\n";
