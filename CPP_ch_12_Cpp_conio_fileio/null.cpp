@@ -213,59 +213,24 @@ int main(int argc, char *argv[]) {
 
     while(!in.eof()) {
         ch = in.get();
+        if(!in.good() && !in.eof()) return 1;   // Error checking
 
         if(!in.eof()) {
             if(islower(ch)) ch = toupper(ch);
             else ch = tolower(ch);
             out.put(ch);
+            if(!out.good()) return 1;   // Error checking
         }
     }
 
     in.close();
     out.close();
+    if (!in.good() && !out.good()) return 1;    // Error checking
 
     return 0;
 }
 
-/* 5a. 
-Copy a file and reverse case of letters
-with error checking .
-*/
 
-int main ( int argc , char * argv [])
-{
-
-
-
-
-if (! out )
-{
-cout << " Cannot open output file .\n";
-return 1;
-}
-while (! in. eof ())
-{
-ch = in. get ();
-if (! in. good () && !in.eof ())
-return 1;
-if (! in. eof ())
-{
-if( islower (ch))
-ch = toupper (ch);
-else
-ch = tolower (ch);
-out . put (ch);
-if (! out . good ())
-return 1;
-}
-}
-
-in. close ();
-out . close ();
-if (! in. good () && ! out . good ())
-return 1;
-return 0;
-}
 
 
 5b. // Count letters with error checking .
