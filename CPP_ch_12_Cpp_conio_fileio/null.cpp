@@ -185,6 +185,8 @@ int main(int argc, char *argv[]) {
                 That does a complete error checking. 
 */
 
+// Rewarked 1: Copy a file and reverse case of letters
+
 #include <iostream>
 #include <fstream>
 #include <cctype>
@@ -232,45 +234,7 @@ int main(int argc, char *argv[]) {
 
 
 
-
-5b. // Count letters with error checking .
-
-
-
-int main ( int argc , char * argv [])
-{
-
-
-
-
-
-
-while (! in. eof ())
-{
-ch = in. get ();
-if (! in. good () && !in.eof ())
-return 1;
-if( isalpha (ch)) // if letter found , count it
-{
-ch = toupper (ch); // normalize
-alpha [ch -’A’]++; // ’A ’-’A’ == 0, ’B ’-’A’ == 1,
-etc .
-}
-
-}
-// display count
-for (i =0; i <26; i ++)
-cout << ( char ) (’A’+i) << ": " << alpha [i] << ’\n’;
-in. close ();
-if (! in. good ())
-return 1;
-return 0;
-}
-
-
-
-
-
+// Rewarked 2: Count letters with error checking .
 
 #include <iostream>
 #include <fstream>
@@ -300,6 +264,7 @@ int main(int argc, char *argv[]) {
 
     while(!in.eof()) {
         ch = in.get();
+        if(!in.good() && !in.eof()) return 1;   // Error checking
 
         // if letter found , count it
         if(isalpha(ch)) {
@@ -309,12 +274,14 @@ int main(int argc, char *argv[]) {
     }
 
     // display count
-    for (i =0; i <26; i ++) std::cout << (char)('A'+i) << ": " << alpha[i] << '\n';
+    for(i =0; i <26; i ++) std::cout << (char)('A'+i) << ": " << alpha[i] << '\n';
     
     in.close();
+    if (!in.good()) return 1;    // Error checking
 
     return 0;
 }
+
 
 
 
