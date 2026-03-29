@@ -286,11 +286,16 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 6: What function positions the get pointer? What function positions the put pointer?
+/* Example 6: What function positions the get pointer? 
+              What function positions the put pointer?
 
- */
+            ans:
+                To set the get pointer, use seekg(). 
+                To set the put pointer, use seekp().
+*/
 
-6. To set the get pointer, use seekg(). To set the put pointer, use seekp().
+
+
 
 
 
