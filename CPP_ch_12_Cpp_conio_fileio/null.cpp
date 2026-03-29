@@ -234,29 +234,17 @@ int main(int argc, char *argv[]) {
 
 
 5b. // Count letters with error checking .
-# include <iostream >
-# include <fstream >
-# include <cctype >
-using namespace std ;
-int alpha [26];
+
+
+
 int main ( int argc , char * argv [])
 {
-char ch;
-if( argc !=2)
-{
-cout << " Usage : COUNT <source >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-// init alpha []
-int i;
-for (i =0; i <26; i ++)
-alpha [i] = 0;
+
+
+
+
+
+
 while (! in. eof ())
 {
 ch = in. get ();
@@ -278,6 +266,10 @@ if (! in. good ())
 return 1;
 return 0;
 }
+
+
+
+
 
 
 #include <iostream>
