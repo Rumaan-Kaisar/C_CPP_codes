@@ -181,8 +181,8 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 5: If you have not done so, add complete error checking to your solutions to Exercises 3 and
-4 above.
+/* Example 5: Following are rewarked versions of 'Example 3' and 'Example 4' above.
+                That does a complete error checking. 
 */
 
 #include <iostream>
@@ -193,21 +193,21 @@ int main(int argc, char *argv[]) {
     char ch;
 
     if(argc!=3) {
-        std::cout << " Usage : COPYREV <source > <target >\n";
+        std::cout << " Usage : COPYREV <source> <target>\n";
         return 1;
     }
 
     std::ifstream in(argv[1]);
 
     if(!in){
-        std::cout << " Cannot open input file .\n";
+        std::cout << " Cannot open input file.\n";
         return 1;
     }
 
     std::ofstream out(argv[2]);
 
     if(!out) {
-        std::cout << " Cannot open output file .\n";
+        std::cout << " Cannot open output file.\n";
         return 1;
     }
 
@@ -231,25 +231,13 @@ int main(int argc, char *argv[]) {
 Copy a file and reverse case of letters
 with error checking .
 */
-# include <iostream >
-# include <fstream >
-# include <cctype >
-using namespace std ;
+
 int main ( int argc , char * argv [])
 {
-char ch;
-if( argc !=3)
-{
-cout << " Usage : COPYREV <source > <target >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-ofstream out ( argv [2]) ;
+
+
+
+
 if (! out )
 {
 cout << " Cannot open output file .\n";
