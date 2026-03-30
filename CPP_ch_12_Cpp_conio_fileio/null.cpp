@@ -318,33 +318,43 @@ preceding chapters.
 /* Example 1: Following is a reworked version of the inventory class 
                 (Example 8 of "ch12_05_inserter_extractor.cpp").
 
-                Write a program that fills in the functions store() and retrieve(). Next, create a small
-inventory file on disk containing a few entries. Then, using random I/O, allow the user
-to display the information about any item by specifying its record number.
-# include <iostream >
-# include <fstream >
-# include <cstring >
-using namespace std ;
-# define SIZE 40
-class inventory
-{
-char item [ SIZE ]; // name of item
-int onhand ; // number on hand
-double cost ; // cost of item
-public :
-inventory ( char *i, int o, double c)
-{
-strcpy (item , i);
-onhand = o;
-cost = c;
-}
-void store ( fstream & stream );
-void retrieve ( fstream & stream );
-friend ostream & operator <<( ostream &stream , inventory ob)
-;
-friend istream & operator >>( istream &stream , inventory &ob
-);
+                Write a program that fills in the functions store() and retrieve().                
+                Next, create a small inventory file on disk containing a few entries. 
+                
+                Then, using random I/O, allow the user to display the information about any item 
+                    by specifying its record number.
+
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+#define SIZE 40
+
+// inventory class
+class inventory {
+        char item[SIZE];    // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item, i);
+            onhand = o;
+            cost = c;
+        }
+
+        // fill these functions
+        void store( fstream & stream );
+        void retrieve( fstream & stream );
+
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
 };
+
+
+
+
 ostream & operator <<( ostream &stream , inventory ob)
 {
 stream << ob. item << ": " << ob. onhand ;
@@ -363,33 +373,18 @@ stream >> ob. cost ;
 return stream ;
 }
  */
-
+/* 
 Following is an inventory class is created that stores 
                     the name of an item, 
                     the number on hand and 
                     its cost. 
                 The program includes both an "inserter" and an "extractor" for this class.
-*/
 
+ */
 #include <iostream>
 #include <cstring>
 
-// inventory class
-class inventory {
-        char item[40];  // name of item
-        int onhand;     // number on hand
-        double cost;    // cost of item
 
-    public:
-        inventory(char *i, int o, double c) {
-            strcpy(item , i);
-            onhand = o;
-            cost = c;
-        }
-
-        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
-        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
-};
 
 // inserter
 std::ostream &operator<<(std::ostream &stream , inventory ob) {
