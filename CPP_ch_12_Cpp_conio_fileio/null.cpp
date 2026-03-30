@@ -391,11 +391,68 @@ preceding chapters.
 
                     return 0;
                 }
-
-
 */
 
 
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+#define SIZE 40
+
+// inventory class
+class inventory {
+        char item[SIZE];    // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item, i);
+            onhand = o;
+            cost = c;
+        }
+
+        // fill these functions
+        void store( fstream & stream );
+        void retrieve( fstream & stream );
+
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
+};
+
+
+// inserter
+std::ostream &operator<<( std::ostream &stream, inventory ob ) {
+    stream << ob.item << ": " << ob.onhand;
+    stream << " on hand at $" << ob.cost << '\n';
+    return stream;
+}
+
+// extractor
+std::istream &operator>>( std::istream &stream, inventory &ob ) {
+    std::cout << " Enter item name : ";
+    stream >> ob.item;
+
+    std::cout << " Enter number on hand : ";
+    stream >> ob.onhand;
+    
+    std::cout << " Enter cost : ";
+    stream >> ob.cost;
+    
+    return stream;
+}
+
+
+int main() {
+    inventory ob(" hammer ", 4, 12.55);
+
+    std::cout << ob;
+    std::cin >> ob;
+    std::cout << ob;
+
+    return 0;
+}
 
 
 
