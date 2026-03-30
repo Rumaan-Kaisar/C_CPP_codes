@@ -315,8 +315,10 @@ Cumulative Skills Check
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapters.
 
-/* 1. Following is a reworked version of the inventory class presented in the preceding chapter.
-Write a program that fills in the functions store() and retrieve(). Next, create a small
+/* Example 1: Following is a reworked version of the inventory class 
+                (Example 8 of "ch12_05_inserter_extractor.cpp").
+
+                Write a program that fills in the functions store() and retrieve(). Next, create a small
 inventory file on disk containing a few entries. Then, using random I/O, allow the user
 to display the information about any item by specifying its record number.
 # include <iostream >
@@ -361,6 +363,68 @@ stream >> ob. cost ;
 return stream ;
 }
  */
+
+Following is an inventory class is created that stores 
+                    the name of an item, 
+                    the number on hand and 
+                    its cost. 
+                The program includes both an "inserter" and an "extractor" for this class.
+*/
+
+#include <iostream>
+#include <cstring>
+
+// inventory class
+class inventory {
+        char item[40];  // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item , i);
+            onhand = o;
+            cost = c;
+        }
+
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
+};
+
+// inserter
+std::ostream &operator<<(std::ostream &stream , inventory ob) {
+    stream << ob.item << ": " << ob.onhand;
+    stream << " on hand at $" << ob.cost << '\n';
+    return stream;
+}
+
+// extractor
+std::istream &operator>>( std::istream &stream , inventory &ob) {
+    std::cout << " Enter item name : ";
+    stream >> ob.item;
+
+    std::cout << " Enter number on hand : ";
+    stream >> ob.onhand;
+    
+    std::cout << " Enter cost : ";
+    stream >> ob.cost;
+    
+    return stream;
+}
+
+
+int main() {
+    inventory ob(" hammer ", 4, 12.55);
+
+    std::cout << ob;
+    std::cin >> ob;
+    std::cout << ob;
+
+    return 0;
+}
+
+
+
 
 1. # include <iostream >
 # include <fstream >
