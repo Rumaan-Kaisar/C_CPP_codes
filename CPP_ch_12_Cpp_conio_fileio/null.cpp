@@ -311,9 +311,7 @@ int main(int argc, char *argv[]) {
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
 
-Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
+
 
 /* Example 1: Following is a reworked version of the inventory class 
                 (Example 8 of "ch12_05_inserter_extractor.cpp").
@@ -457,30 +455,9 @@ int main() {
 
 
 
-1. # include <iostream >
-# include <fstream >
-# include <cstring >
-using namespace std ;
-# define SIZE 40
-class inventory
-{
-char item [ SIZE ]; // name of item
-int onhand ; // number on hand
-double cost ; // cost of item
-public :
-inventory ( char *i, int o, double c)
-{
-strcpy (item , i);
-onhand = o;
-cost = c;
-}
-void store ( fstream & stream );
-void retrieve ( fstream & stream );
-friend ostream & operator <<( ostream &stream , inventory ob)
-;
-friend istream & operator >>( istream &stream , inventory &ob
-);
-};
+
+
+
 ostream & operator <<( ostream &stream , inventory ob)
 {
 stream << ob. item << ": " << ob. onhand ;
