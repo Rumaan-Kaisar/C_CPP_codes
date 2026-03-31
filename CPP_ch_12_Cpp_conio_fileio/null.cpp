@@ -441,6 +441,18 @@ std::istream &operator>>( std::istream &stream, inventory &ob ) {
     return stream;
 }
 
+void inventory::store( fstream &stream ) {
+    stream.write(item, SIZE);
+    stream.write((char*) &onhand, sizeof(int));
+    stream.write((char*) &cost, sizeof(double));
+}
+
+void inventory::retrieve( fstream & stream ) {
+    stream.read(item, SIZE);
+    stream.read((char*) &onhand, sizeof(int));
+    stream.read((char*) &cost, sizeof(double));
+}
+
 
 int main() {
     inventory ob(" hammer ", 4, 12.55);
@@ -461,21 +473,7 @@ int main() {
 
 
 
-void inventory :: store ( fstream & stream )
-{
-stream . write (item , SIZE );
-stream . write (( char *) & onhand , sizeof (int ));
-stream . write (( char *) &cost , sizeof ( double ));
-}
 
-
-
-void inventory :: retrieve ( fstream & stream )
-{
-stream . read (item , SIZE );
-stream . read (( char *) &onhand , sizeof (int ));
-stream . read (( char *) &cost , sizeof ( double ));
-}
 
 
 
