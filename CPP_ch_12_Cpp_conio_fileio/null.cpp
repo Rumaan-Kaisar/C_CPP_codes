@@ -41,7 +41,7 @@ int main(){
 
 
 
-// ----  rev[27-Mar-2026] ----
+// ----  rev[31-Mar-2026] ----
 
 
 // custom manipulator (rev done)
@@ -455,42 +455,20 @@ void inventory::retrieve( fstream & stream ) {
 
 
 int main() {
-    inventory ob(" hammer ", 4, 12.55);
+    std::fstream inv(" inv ", std::ios::out | std::ios::binary );
+    int i;
 
-    std::cout << ob;
-    std::cin >> ob;
-    std::cout << ob;
+    inventory temp("", 0, 0.0);
+    inventory pliers(" pliers ", 12, 4.95);
+    inventory hammers(" hammers ", 5, 9.45);
+    inventory wrenches(" wrenches ", 22, 13.90);
+    inventory batteries(" 18650 batteries ", 60, 1.00);
 
-    return 0;
-}
+    if(!inv) {
+        std::cout << " Cannot open file for output.\n";
+        return 1;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int main ()
-{
-fstream inv (" inv ", ios :: out | ios :: binary );
-int i;
-inventory pliers (" pliers ", 12, 4.95) ;
-inventory hammers (" hammers ", 5, 9.45) ;
-inventory wrenches (" wrenches ", 22, 13.90) ;
-inventory temp ("", 0, 0.0) ;
-if (! inv )
-{
-cout << " Cannot open file for output .\n";
-return 1;
-}
 // write to file
 pliers . store ( inv );
 hammers . store ( inv );
