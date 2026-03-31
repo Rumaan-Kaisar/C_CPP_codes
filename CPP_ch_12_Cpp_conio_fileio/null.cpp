@@ -458,36 +458,28 @@ int main() {
 
 
 
-ostream & operator <<( ostream &stream , inventory ob)
-{
-stream << ob. item << ": " << ob. onhand ;
-stream << " on hand at $" << ob. cost << ’\n’;
-return stream ;
-}
 
 
-istream & operator >>( istream &stream , inventory &ob)
-{
-cout << " Enter item name : ";
-stream >> ob. item ;
-cout << " Enter number on hand : ";
-stream >> ob. onhand ;
-cout << " Enter cost : ";
-stream >> ob. cost ;
-return stream ;
-}
+
 void inventory :: store ( fstream & stream )
 {
 stream . write (item , SIZE );
 stream . write (( char *) & onhand , sizeof (int ));
 stream . write (( char *) &cost , sizeof ( double ));
 }
+
+
+
 void inventory :: retrieve ( fstream & stream )
 {
 stream . read (item , SIZE );
 stream . read (( char *) &onhand , sizeof (int ));
 stream . read (( char *) &cost , sizeof ( double ));
 }
+
+
+
+
 int main ()
 {
 fstream inv (" inv ", ios :: out | ios :: binary );
