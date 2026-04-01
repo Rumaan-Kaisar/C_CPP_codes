@@ -495,8 +495,9 @@ int main() {
         std::cout << temp;
     } while(inv.good());
 
-inv . close ();
-return 0;
+    inv.close();
+
+    return 0;
 }
 
 
@@ -507,27 +508,25 @@ return 0;
 
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
-Review Skills Check
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
-
-/* Example 1: Create a manipulator that causes numbers to be displayed in scientific notation, using a
-capital E. */
 
 
-1. # include <iostream >
-using namespace std ;
-ostream & setsci ( ostream & stream )
-{
-stream . setf ( ios :: scientific | ios :: uppercase );
-return stream ;
+/* Example 1: Create a manipulator that causes numbers to be displayed 
+                in scientific notation, using a capital E.
+*/
+
+#include <iostream>
+
+ostream &setsci(ostream &stream) {
+    stream.setf( std::ios::scientific | std::ios::uppercase );
+    return stream;
 }
-int main ()
-{
-double f = 123.23;
-cout << setsci << f;
-cout << ’\n’;
-return 0;
+
+int main() {
+    double f = 123.23;
+    std::cout << setsci << f;
+    std::cout << '\n';
+    
+    return 0;
 }
 
 
