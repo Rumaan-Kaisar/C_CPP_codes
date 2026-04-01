@@ -469,27 +469,28 @@ int main() {
         return 1;
     }
 
-// write to file
-pliers . store ( inv );
-hammers . store ( inv );
-wrenches . store ( inv );
-inv . close ();
-// open for input
+    // write to file
+    pliers.store(inv);
+    hammers.store(inv);
+    wrenches.store(inv);
 
-inv . open (" inv ", ios :: in | ios :: binary );
-if (! inv )
-{
-cout << " Cannot open file for input .\n";
-return 1;
-}
-do
-{
-cout << " Record # (-1 to quit ): ";
-cin >> i;
-if(i == -1)
-break ;
-inv . seekg (i*( SIZE + sizeof (int)+ sizeof ( double )), ios ::
-beg );
+    inv.close();
+
+    // open for input
+    inv.open (" inv ", std::ios::in | std::ios::binary);
+
+    if(!inv){
+        std::cout << " Cannot open file for input .\n";
+        return 1;
+    }
+
+do {
+    std::cout << " Record # (-1 to quit ): ";
+    std::cin >> i;
+
+    if(i == -1) break;
+
+inv . seekg (i*( SIZE + sizeof (int)+ sizeof ( double )), std::ios :: beg );
 temp . retrieve ( inv );
 cout << temp ;
 }
