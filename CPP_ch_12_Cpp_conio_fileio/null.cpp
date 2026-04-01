@@ -484,17 +484,17 @@ int main() {
         return 1;
     }
 
-do {
-    std::cout << " Record # (-1 to quit ): ";
-    std::cin >> i;
+    do {
+        std::cout << " Record # (-1 to quit ): ";
+        std::cin >> i;
 
-    if(i == -1) break;
+        if(i == -1) break;
 
-inv . seekg (i*( SIZE + sizeof (int)+ sizeof ( double )), std::ios :: beg );
-temp . retrieve ( inv );
-cout << temp ;
-}
-while ( inv . good ());
+        inv.seekg(i*(SIZE + sizeof(int) + sizeof(double)), std::ios::beg);
+        temp.retrieve(inv);
+        std::cout << temp;
+    } while(inv.good());
+
 inv . close ();
 return 0;
 }
