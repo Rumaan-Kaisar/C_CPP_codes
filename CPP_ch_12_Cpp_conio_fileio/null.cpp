@@ -585,29 +585,26 @@ int main(int argc, char *argv[]) {
                 For simplicity, assume that anything surrounded by whitespace is a word.
 */
 
+#include <iostream>
+#include <fstream>
+#include <cstring>
 
-3. // Search file .
-# include <iostream >
-# include <fstream >
-# include <cstring >
-546ANSWERS
-10.2 EXERCISES
-using namespace std ;
-int main ( int argc , char * argv [])
-{
-if( argc !=3)
-{
-cout << " Usage : SEARCH <file > <word >\n";
-return 1;
-}
-ifstream in( argv [1]) ;
-if (! in)
-{
-cout << " Cannot open input file .\n";
-return 1;
-}
-char str [255];
-int count =0;
+int main(int argc, char *argv[]) {
+    if(argc!=3) {
+        std::cout << " Usage : SEARCH <file > <word >\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+char str[255];
+int count = 0;
+
 while (! in. eof ())
 {
 in >> str ;
