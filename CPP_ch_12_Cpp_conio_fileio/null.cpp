@@ -602,19 +602,20 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-char str[255];
-int count = 0;
+    char str[255];
+    int count = 0;
 
-while (! in. eof ())
-{
-in >> str ;
-if (! strcmp (str , argv [2]) )
-count ++;
-}
-cout << argv [2] << " found " << count ;
-cout << " number of times .\n";
-in. close ();
-return 0;
+    while(!in.eof()) {
+        in >> str;
+        if(!strcmp(str, argv[2])) count++;
+    }
+
+    std::cout << argv[2] << " found " << count;
+    std::cout << " number of times.\n";
+
+    in.close();
+
+    return 0;
 }
 
 
