@@ -579,9 +579,11 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 3: Write a program that searches a text file for a word specified on the command line. Have
-the program display how many times the specified word is found. For simplicity, assume
-that anything surrounded by whitespace is a word. */
+/* Example 3: Following program searches a text file for a word specified on the command line. 
+                The program display how many times the specified word is found. 
+                
+                For simplicity, assume that anything surrounded by whitespace is a word.
+*/
 
 
 3. // Search file .
