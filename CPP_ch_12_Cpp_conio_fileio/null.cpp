@@ -621,24 +621,31 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 4: Show the statement that sets the put pointer to the 234th byte in a file linked to a stream
-called out. */
+/* Example 4: Write a statement that sets the "put pointer" to the 234th byte 
+                in a file linked to a stream called "out". 
 
-4. The statement is
-out . seekp (234 , ios :: beg );
-
-
-
-
-/* Example 5: What functions report status information about the C++ I/O system? */
-
-5. The functions are rdstate(), good(), eof(), fail(), and bad().
+            ans:
+                The statement:
+                                out.seekp(234, ios::beg);
+*/
 
 
 
 
-/* Example 6: Give one advantage of using the C++ I/O functions instead of the C-like I/O system. */
+/* Example 5: What functions report status information about the C++ I/O system? 
 
-6. The C++ I/O system can be customized to operate on classes that you create.
+                ans:
+                    The functions are rdstate(), good(), eof(), fail(), and bad().
+*/
 
-// -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
+
+
+
+/* Example 6: Give one advantage of using the C++ I/O functions instead of the C-like I/O system. 
+
+            ans:
+                The C++ I/O system can be customized to operate on classes that you create.
+*/
+
+
+
