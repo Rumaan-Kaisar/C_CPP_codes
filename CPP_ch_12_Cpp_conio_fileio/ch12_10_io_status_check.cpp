@@ -171,7 +171,6 @@ int main(int argc, char *argv[]) {
                 the preceding section "ch12_09_random_access.cpp".
 */
 
-
 // Following program displays a text file backwards. 
 // CLI:    ch12_07_file_io_basics_16 accounts
 
@@ -276,4 +275,13 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+
+
+
+/* Example 4: What functions report status information about the C++ I/O system? 
+
+                ans:
+                    The functions are rdstate(), good(), eof(), fail(), and bad().
+*/
 
