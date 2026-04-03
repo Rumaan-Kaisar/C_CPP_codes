@@ -344,3 +344,14 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
+
+
+
+/* Example 5: Write a statement that sets the "put pointer" to the 234th byte 
+                in a file linked to a stream called "out". 
+
+            ans:
+                The statement:
+                                out.seekp(234, ios::beg);
+*/
+
