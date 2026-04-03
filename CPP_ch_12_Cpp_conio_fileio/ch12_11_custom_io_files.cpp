@@ -158,3 +158,11 @@ int main() {
 }
 
 
+
+
+/* Example 3: Give one advantage of using the C++ I/O functions instead of the C-like I/O system. 
+
+            ans:
+                The C++ I/O system can be customized to operate on classes that you create.
+*/
+
