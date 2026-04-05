@@ -280,3 +280,25 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 8: Following program uses an "output manipulator" that outputs "three tabs" 
+                and then sets the field width to 20. 
+                
+                Demonstrate that the manipulator works.
+*/
+
+#include <iostream>
+
+std::ostream & tabs( std::ostream &stream ) {
+    stream << '\t' << '\t' << '\t';
+    stream.width(20);
+    return stream;
+}
+
+int main(){
+    std::cout << tabs << " Testing \n";
+    return 0;
+}
+
