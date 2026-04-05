@@ -18,26 +18,6 @@
 At this point you should be able to perform the following exercises and answer the questions.
 
 
-// custom manipulator (rev done)
-
-/* Example 1: Following program uses an "output manipulator" that outputs "three tabs" 
-                and then sets the field width to 20. 
-                
-                Demonstrate that the manipulator works.
-*/
-
-#include <iostream>
-
-std::ostream & tabs( std::ostream &stream ) {
-    stream << '\t' << '\t' << '\t';
-    stream.width(20);
-    return stream;
-}
-
-int main(){
-    std::cout << tabs << " Testing \n";
-    return 0;
-}
 
 
 
@@ -53,6 +33,11 @@ int main(){
                     have the manipulator return it to the "input stream" and return. 
                     
                 Call this manipulator findalpha. 
+
+                Goal of findalpha manipulator:
+                    Skip (ignore) all non-alphabet characters
+                    Stop when the first alphabet character is found
+                    Then let normal input (>> str) read from that point
 */
 
 #include <iostream>
@@ -64,7 +49,10 @@ std::istream &findalpha( std::istream &stream ) {
     do {
         stream.get(ch);
     } while( !isalpha(ch) );
-
+    // above keeps reading characters until it finds a letter
+    // But the first letter is already consumed (removed from stream)
+    // So we need to put back the first letter
+    stream.putback(ch); // put back the first alphabet
     return stream ;
 }
 
@@ -597,7 +585,6 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
 
 
 
