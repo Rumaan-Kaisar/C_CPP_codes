@@ -38,6 +38,12 @@ At this point you should be able to perform the following exercises and answer t
                     Skip (ignore) all non-alphabet characters
                     Stop when the first alphabet character is found
                     Then let normal input (>> str) read from that point
+
+                Sample input:   1234@#Hello
+                output:     Hello
+
+                Sample input:   567786*&*nhan5875bina
+                output:     567786*&*nhan5875bina
 */
 
 #include <iostream>
