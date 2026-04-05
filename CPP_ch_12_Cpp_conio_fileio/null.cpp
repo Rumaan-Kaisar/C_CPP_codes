@@ -26,52 +26,6 @@ At this point you should be able to perform the following exercises and answer t
 
 // custom manipulator (rev done)
 
-/* Example 2: Following program uses an "input manipulator" 
-                that reads and discards all non-alphabetical characters.
-
-                When the first alphabetical character is read, 
-                    have the manipulator return it to the "input stream" and return. 
-                    
-                Call this manipulator findalpha. 
-
-                Goal of findalpha manipulator:
-                    Skip (ignore) all non-alphabet characters
-                    Stop when the first alphabet character is found
-                    Then let normal input (>> str) read from that point
-
-                Sample input:   1234@#Hello
-                output:     Hello
-
-                Sample input:   567786*&*nhan5875bina
-                output:     567786*&*nhan5875bina
-*/
-
-#include <iostream>
-#include <cctype>
-
-std::istream &findalpha( std::istream &stream ) {
-    char ch;
-
-    do {
-        stream.get(ch);
-    } while( !isalpha(ch) );
-    // above keeps reading characters until it finds a letter
-    // But the first letter is already consumed (removed from stream)
-    // So we need to put back the first letter
-    stream.putback(ch); // put back the first alphabet
-    return stream ;
-}
-
-
-int main() {
-    char str[80];
-
-    std::cin >> findalpha >> str;
-    std::cout << str << '\n';
-
-    return 0;
-}
-
 
 
 
