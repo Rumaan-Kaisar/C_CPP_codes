@@ -15,34 +15,8 @@
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
-At this point you should be able to perform the following exercises and answer the questions.
-
-
-
-
 
 // ----  rev[31-Mar-2026] ----
-
-
-// custom manipulator (rev done)
-
-
-
-
-// 3, 4, 5 goes to "ch12_10_io_status_check.cpp"
-
-
-
-
-
-
-
-
-
-
-
-// -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
-
 
 
 
@@ -335,92 +309,7 @@ int main() {
 
 
 
-/* Example 2: Following program copies a text file. During the copy process, 
-                it convert all "TABS" into the correct number of "SPACES".
-*/
 
-#include <iostream>
-#include <fstream>
-
-int main(int argc, char *argv[]) {
-    if(argc!=3) {
-        std::cout << " Usage : CPY <int > <out >\n";
-        return 1;
-    }
-
-    std::ifstream in(argv[1]);
-
-    if(!in) {
-        std::cout << " Cannot open input file .\n";
-        return 1;
-    }
-
-    std::ofstream out(argv[2]);
-
-    if(!out) {
-        std::cout << " Cannot open output file .\n";
-        return 1;
-    }
-
-    char ch;
-    int i = 8;  // 1 tab = 8 spaces
-
-    while(!in.eof()) {
-        in.get(ch);
-        if(ch == '\t') for( ; i>0; i--) out.put(' ');
-        else out.put(ch);
-
-        if(i == -1 || ch == '\n') i = 8;
-        i--;
-    }
-
-    in.close();
-    out.close();
-
-    return 0;
-}
-
-
-
-
-/* Example 3: Following program searches a text file for a word specified on the command line. 
-                The program display how many times the specified word is found. 
-                
-                For simplicity, assume that anything surrounded by whitespace is a word.
-*/
-
-#include <iostream>
-#include <fstream>
-#include <cstring>
-
-int main(int argc, char *argv[]) {
-    if(argc!=3) {
-        std::cout << " Usage : SEARCH <file > <word >\n";
-        return 1;
-    }
-
-    std::ifstream in(argv[1]);
-
-    if(!in) {
-        std::cout << " Cannot open input file .\n";
-        return 1;
-    }
-
-    char str[255];
-    int count = 0;
-
-    while(!in.eof()) {
-        in >> str;
-        if(!strcmp(str, argv[2])) count++;
-    }
-
-    std::cout << argv[2] << " found " << count;
-    std::cout << " number of times.\n";
-
-    in.close();
-
-    return 0;
-}
 
 
 
