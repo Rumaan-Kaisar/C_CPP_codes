@@ -614,3 +614,45 @@ int main(int argc, char *argv[]) {
 
 
 
+
+/* Example 8: Following program searches a text file for a word specified on the command line. 
+                The program display how many times the specified word is found. 
+                
+                For simplicity, assume that anything surrounded by whitespace is a word.
+
+                CLI:    prog_name file word
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+int main(int argc, char *argv[]) {
+    if(argc!=3) {
+        std::cout << " Usage : SEARCH <file> <word>\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+
+    char str[255];
+    int count = 0;
+
+    while(!in.eof()) {
+        in >> str;
+        if(!strcmp(str, argv[2])) count++;
+    }
+
+    std::cout << argv[2] << " found " << count;
+    std::cout << " number of times.\n";
+
+    in.close();
+
+    return 0;
+}
+
