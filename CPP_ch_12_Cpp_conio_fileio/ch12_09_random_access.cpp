@@ -355,3 +355,14 @@ int main(int argc, char *argv[]) {
                                 out.seekp(234, ios::beg);
 */
 
+
+
+
+/* Example 6: What function positions the "get pointer"? 
+              What function positions the "put pointer"?
+
+            ans:
+                To set the "get pointer", use seekg(). 
+                To set the "put pointer", use seekp().
+*/
+
