@@ -360,8 +360,8 @@ class inventory {
         }
 
         // fill these functions
-        void store( fstream & stream );
-        void retrieve( fstream & stream );
+        void store( std::fstream &stream );
+        void retrieve( std::fstream &stream );
 
         friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
         friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
@@ -389,13 +389,13 @@ std::istream &operator>>( std::istream &stream, inventory &ob ) {
     return stream;
 }
 
-void inventory::store( fstream &stream ) {
+void inventory::store( std::fstream &stream ) {
     stream.write(item, SIZE);
     stream.write((char*) &onhand, sizeof(int));
     stream.write((char*) &cost, sizeof(double));
 }
 
-void inventory::retrieve( fstream & stream ) {
+void inventory::retrieve( std::fstream &stream ) {
     stream.read(item, SIZE);
     stream.read((char*) &onhand, sizeof(int));
     stream.read((char*) &cost, sizeof(double));
@@ -403,7 +403,7 @@ void inventory::retrieve( fstream & stream ) {
 
 
 int main() {
-    std::fstream inv(" inv ", std::ios::out | std::ios::binary );
+    std::fstream inv("inv", std::ios::out | std::ios::binary );
     int i;
 
     inventory temp("", 0, 0.0);
@@ -425,7 +425,7 @@ int main() {
     inv.close();
 
     // open for input
-    inv.open (" inv ", std::ios::in | std::ios::binary);
+    inv.open ("inv", std::ios::in | std::ios::binary);
 
     if(!inv){
         std::cout << " Cannot open file for input .\n";
@@ -449,6 +449,93 @@ int main() {
 }
 
 
+
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+#define SIZE 40
+
+class inventory {
+    char item[SIZE];
+    int onhand;
+    double cost;
+
+public:
+    inventory(const char *i = "", int o = 0, double c = 0.0) {
+        std::strncpy(item, i, SIZE - 1);
+        item[SIZE - 1] = '\0';
+        onhand = o;
+        cost = c;
+    }
+
+    void store(std::fstream &stream);
+    bool retrieve(std::fstream &stream);
+
+    friend std::ostream &operator<<(std::ostream &stream, const inventory &ob);
+};
+
+// output
+std::ostream &operator<<(std::ostream &stream, const inventory &ob) {
+    stream << ob.item << ": " << ob.onhand
+           << " on hand at $" << ob.cost << '\n';
+    return stream;
+}
+
+// write
+void inventory::store(std::fstream &stream) {
+    stream.write(item, SIZE);
+    stream.write(reinterpret_cast<char*>(&onhand), sizeof(onhand));
+    stream.write(reinterpret_cast<char*>(&cost), sizeof(cost));
+}
+
+// read (returns false when EOF reached)
+bool inventory::retrieve(std::fstream &stream) {
+    if (!stream.read(item, SIZE))
+        return false;
+
+    item[SIZE - 1] = '\0';
+
+    stream.read(reinterpret_cast<char*>(&onhand), sizeof(onhand));
+    stream.read(reinterpret_cast<char*>(&cost), sizeof(cost));
+
+    return true;
+}
+
+int main() {
+    std::fstream inv("inv", std::ios::out | std::ios::binary);
+
+    inventory pliers("pliers", 12, 4.95);
+    inventory hammers("hammers", 5, 9.45);
+    inventory wrenches("wrenches", 22, 13.90);
+
+    // write
+    pliers.store(inv);
+    hammers.store(inv);
+    wrenches.store(inv);
+
+    inv.close();
+
+    // read all
+    inv.open("inv", std::ios::in | std::ios::binary);
+
+    if (!inv) {
+        std::cout << "Cannot open file.\n";
+        return 1;
+    }
+
+    inventory temp;
+
+    std::cout << "\nAll records:\n\n";
+
+    while (temp.retrieve(inv)) {
+        std::cout << temp;
+    }
+
+    inv.close();
+    return 0;
+}
 // -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-
 
 
