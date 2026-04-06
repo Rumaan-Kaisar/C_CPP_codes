@@ -384,3 +384,106 @@ int main(int argc, char *argv[]) {
 }
 
 
+
+
+/* Example 7: Following are rewarked versions of 'Example 5' and 'Example 6' above.
+                That does a complete error checking. 
+*/
+
+// Rewarked 1: Copy a file and reverse case of letters
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int main(int argc, char *argv[]) {
+    char ch;
+
+    if(argc!=3) {
+        std::cout << " Usage : COPYREV <source> <target>\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in){
+        std::cout << " Cannot open input file.\n";
+        return 1;
+    }
+
+    std::ofstream out(argv[2]);
+
+    if(!out) {
+        std::cout << " Cannot open output file.\n";
+        return 1;
+    }
+
+    while(!in.eof()) {
+        ch = in.get();
+        if(!in.good() && !in.eof()) return 1;   // Error checking
+
+        if(!in.eof()) {
+            if(islower(ch)) ch = toupper(ch);
+            else ch = tolower(ch);
+            out.put(ch);
+            if(!out.good()) return 1;   // Error checking
+        }
+    }
+
+    in.close();
+    out.close();
+    if (!in.good() && !out.good()) return 1;    // Error checking
+
+    return 0;
+}
+
+
+
+// Rewarked 2: Count letters with error checking .
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+int alpha[26];
+
+int main(int argc, char *argv[]) {
+    char ch;
+
+    if(argc!=2) {
+        std::cout << " Usage : COUNT <source>\n";
+        return 1;
+    }
+
+    std::ifstream in(argv[1]);
+
+    if(!in) {
+        std::cout << " Cannot open input file.\n";
+        return 1;
+    }
+
+    // init alpha []
+    int i;
+
+    for(i=0; i<26; i++) alpha[i] = 0;
+
+    while(!in.eof()) {
+        ch = in.get();
+        if(!in.good() && !in.eof()) return 1;   // Error checking
+
+        // if letter found , count it
+        if(isalpha(ch)) {
+            ch = toupper (ch); // normalize
+            alpha [ch -'A']++; // 'A'-'A' == 0, 'B'-'A' == 1, etc.
+        }
+    }
+
+    // display count
+    for(i =0; i <26; i ++) std::cout << (char)('A'+i) << ": " << alpha[i] << '\n';
+    
+    in.close();
+    if (!in.good()) return 1;    // Error checking
+
+    return 0;
+}
+
