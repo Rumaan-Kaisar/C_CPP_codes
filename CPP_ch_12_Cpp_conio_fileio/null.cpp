@@ -31,51 +31,6 @@ At this point you should be able to perform the following exercises and answer t
 
 // 3, 4, 5 goes to "ch12_10_io_status_check.cpp"
 
-/* Example 3: Following program copies a text file and reverse case of letters. */
-
-#include <iostream>
-#include <fstream>
-#include <cctype>
-
-int main(int argc, char *argv[]) {
-    char ch;
-
-    if(argc!=3) {
-        std::cout << " Usage : COPYREV <source > <target >\n";
-        return 1;
-    }
-
-    std::ifstream in(argv[1]);
-
-    if(!in){
-        std::cout << " Cannot open input file .\n";
-        return 1;
-    }
-
-    std::ofstream out(argv[2]);
-
-    if(!out) {
-        std::cout << " Cannot open output file .\n";
-        return 1;
-    }
-
-    while(!in.eof()) {
-        ch = in.get();
-
-        if(!in.eof()) {
-            if(islower(ch)) ch = toupper(ch);
-            else ch = tolower(ch);
-            out.put(ch);
-        }
-    }
-
-    in.close();
-    out.close();
-
-    return 0;
-}
-
-
 
 
 /* Example 4: Following program reads a text file and then 
