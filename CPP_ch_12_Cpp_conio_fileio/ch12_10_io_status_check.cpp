@@ -288,7 +288,10 @@ int main(int argc, char *argv[]) {
 
 
 
-/* Example 5: Following program copies a text file and reverse case of letters. */
+/* Example 5: Following program copies a text file and reverse case of letters. 
+
+                CLI:    name_of_prog input out
+*/
 
 #include <iostream>
 #include <fstream>
@@ -337,6 +340,8 @@ int main(int argc, char *argv[]) {
 
 /* Example 6: Following program reads a text file and then 
                 counts how many times each letter appears in that file.
+
+                CLI:    name_of_prog input out
 */
 
 #include <iostream>
@@ -388,6 +393,8 @@ int main(int argc, char *argv[]) {
 
 /* Example 7: Following are rewarked versions of 'Example 5' and 'Example 6' above.
                 That does a complete error checking. 
+                
+                CLI:    name_of_prog input out
 */
 
 // Rewarked 1: Copy a file and reverse case of letters
