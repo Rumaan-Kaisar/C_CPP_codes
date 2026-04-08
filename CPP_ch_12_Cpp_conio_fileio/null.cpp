@@ -233,6 +233,7 @@ int main() {
 
 
 
+// GPT : fix
 
 #include <iostream>
 #include <fstream>
@@ -339,7 +340,7 @@ int main() {
 
 
 
-
+// Fixed, but no user inputs
 
 #include <iostream>
 #include <fstream>
