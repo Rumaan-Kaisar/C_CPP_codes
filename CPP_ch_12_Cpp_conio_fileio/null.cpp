@@ -362,7 +362,7 @@ class inventory {
 
         // fill these functions
         void store( std::fstream &stream );
-        bool retrieve( std::fstream &stream );
+        void retrieve( std::fstream &stream );
 
         friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
         friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
@@ -396,25 +396,11 @@ void inventory::store( std::fstream &stream ) {
     stream.write((char*) &cost, sizeof(double));
 }
 
-/* void inventory::retrieve( std::fstream &stream ) {
+void inventory::retrieve( std::fstream &stream ) {
     stream.read(item, SIZE);
     stream.read((char*) &onhand, sizeof(int));
     stream.read((char*) &cost, sizeof(double));
-} */
-
-
-// read (returns false when EOF reached)
-bool inventory::retrieve(std::fstream &stream) {
-    if (!stream.read(item, SIZE))
-        return false;
-
-    item[SIZE - 1] = '\0';
-
-    stream.read(reinterpret_cast<char*>(&onhand), sizeof(onhand));
-    stream.read(reinterpret_cast<char*>(&cost), sizeof(cost));
-
-    return true;
-}
+} 
 
 
 int main() {
@@ -447,20 +433,11 @@ int main() {
         return 1;
     }
 
-/*     do {
-        std::cout << " Record # (-1 to quit ): ";
-        std::cin >> i;
-
-        if(i == -1) break;
-
-        inv.seekg(i*(SIZE + sizeof(int) + sizeof(double)), std::ios::beg);
-        temp.retrieve(inv);
-        std::cout << temp;
-    } while(inv.good()); */
-
+    // printing all the records
     std::cout << "\nAll records:\n\n";
 
-    while (temp.retrieve(inv)) {
+    while (inv.good()) {
+        temp.retrieve(inv);
         std::cout << temp;
     }
 
