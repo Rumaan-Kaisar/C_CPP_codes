@@ -200,7 +200,7 @@ int main() {
 
     while(true) {
         temp.retrieve(inv);
-        if(!inv) break;  // Check AFTER read
+        if(!inv) break;  // Check AFTER read: Did the read succeed?
         std::cout << temp;
     }
 
@@ -209,6 +209,19 @@ int main() {
                 temp.retrieve(inv);
                 std::cout << temp;
             }
+    
+        Note:
+            Do not use while(stream.good()) to control a read loop.
+
+        Why the last element prints twice:
+            -> while(inv.good()) checks the stream state before attempting to read
+            -> After successfully reading the last record ("batteries"), the stream is still "good" because the EOF flag isn't set until a read attempts to go past the end
+            -> The loop condition passes, so temp.retrieve(inv) executes again
+            -> This read fails (EOF reached), but retrieve() doesn't clear temp
+                it still holds the data from the previous successful read ("batteries")
+            -> std::cout << temp; prints the stale data again
+            -> Only after this failed read does the stream set eofbit/failbit, 
+                so the next loop check exits
     */
 
     inv.close();
@@ -466,6 +479,36 @@ int main() {
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
+// Random Access Approach
+
+do {
+    std::cout << " Record # (-1 to quit ): ";
+    std::cin >> i;
+
+    if(i == -1) break;
+    
+    // Calculate byte offset for record i
+    constexpr std::streampos RECORD_SIZE = SIZE + sizeof(int) + sizeof(double);
+    inv.seekg(i * RECORD_SIZE, std::ios::beg);
+    
+    // ⚠️ Critical: Check if seek/read succeeded
+    if(!inv) {
+        std::cout << " Error: Invalid record position or read failure.\n";
+        inv.clear(); // Clear error flags for next operation
+        continue;
+    }
+    
+    temp.retrieve(inv);
+    
+    // ⚠️ Also check AFTER retrieve() in case read failed
+    if(!inv) {
+        std::cout << " Error: Failed to read record.\n";
+        inv.clear();
+        continue;
+    }
+    
+    std::cout << temp;        
+} while(true);
 
 
 
@@ -475,8 +518,23 @@ int main() {
 
 
 
+// What if you want random access BUT still print ALL records?
+// If you know the number of records (e.g., 4), you can loop by index:
 
 
+constexpr std::streampos RECORD_SIZE = SIZE + sizeof(int) + sizeof(double);
+const int NUM_RECORDS = 4; // Or store this in the file header
 
-// Fixed, but no user inputs
-
+for(int i = 0; i < NUM_RECORDS; ++i) {
+    inv.seekg(i * RECORD_SIZE, std::ios::beg);
+    
+    if(!inv) {
+        std::cerr << " Seek failed for record " << i << "\n";
+        continue;
+    }
+    
+    temp.retrieve(inv);
+    if(inv) {  // Only print if read succeeded
+        std::cout << temp;
+    }
+}
