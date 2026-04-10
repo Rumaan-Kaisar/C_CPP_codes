@@ -693,3 +693,36 @@ int main() {
 }
 
 
+
+// Mod 1: Random Access Approach (with safety)
+
+do {
+    std::cout << " Record # (-1 to quit ): ";
+    std::cin >> i;
+
+    if(i == -1) break;
+    
+    // Calculate byte offset for record i
+    constexpr std::streampos RECORD_SIZE = SIZE + sizeof(int) + sizeof(double);
+    inv.seekg(i * RECORD_SIZE, std::ios::beg);
+    
+    // Check if seek/read succeeded
+    if(!inv) {
+        std::cout << " Error: Invalid record position or read failure.\n";
+        inv.clear(); // Clear error flags for next operation
+        continue;
+    }
+    
+    temp.retrieve(inv);
+    
+    // Also check AFTER retrieve() in case read failed
+    if(!inv) {
+        std::cout << " Error: Failed to read record.\n";
+        inv.clear();
+        continue;
+    }
+    
+    std::cout << temp;        
+} while(true);
+
+
