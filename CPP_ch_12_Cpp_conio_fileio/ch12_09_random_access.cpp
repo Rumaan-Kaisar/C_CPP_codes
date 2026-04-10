@@ -445,7 +445,125 @@ int main(int argc, char *argv[]) {
 
                     return 0;
                 }
+
+
+            NOTE: 
+                compile & run this code on PC (e.g. code blocks)
+                online compiler can fall into infinite loop.
 */
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+#define SIZE 40
+
+// inventory class
+class inventory {
+        char item[SIZE];    // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item, i);
+            onhand = o;
+            cost = c;
+        }
+
+        // fill these functions
+        void store( std::fstream &stream );
+        void retrieve( std::fstream &stream );
+
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
+};
+
+
+// inserter
+std::ostream &operator<<( std::ostream &stream, inventory ob ) {
+    stream << ob.item << ": " << ob.onhand;
+    stream << " on hand at $" << ob.cost << '\n';
+    return stream;
+}
+
+// extractor
+std::istream &operator>>( std::istream &stream, inventory &ob ) {
+    std::cout << " Enter item name : ";
+    stream >> ob.item;
+
+    std::cout << " Enter number on hand : ";
+    stream >> ob.onhand;
+    
+    std::cout << " Enter cost : ";
+    stream >> ob.cost;
+    
+    return stream;
+}
+
+void inventory::store( std::fstream &stream ) {
+    stream.write(item, SIZE);
+    stream.write((char*) &onhand, sizeof(int));
+    stream.write((char*) &cost, sizeof(double));
+}
+
+void inventory::retrieve( std::fstream &stream ) {
+    stream.read(item, SIZE);
+    stream.read((char*) &onhand, sizeof(int));
+    stream.read((char*) &cost, sizeof(double));
+}
+
+
+int main() {
+    std::fstream inv("inv", std::ios::out | std::ios::binary );
+    int i;
+
+    inventory temp("", 0, 0.0);
+    inventory pliers(" pliers ", 12, 4.95);
+    inventory hammers(" hammers ", 5, 9.45);
+    inventory wrenches(" wrenches ", 22, 13.90);
+    inventory batteries(" 18650 batteries ", 60, 1.00);
+
+    if(!inv) {
+        std::cout << " Cannot open file for output.\n";
+        return 1;
+    }
+
+    // write to file
+    pliers.store(inv);
+    hammers.store(inv);
+    wrenches.store(inv);
+    batteries.store(inv);
+
+    inv.close();
+
+    // open for input
+    inv.open ("inv", std::ios::in | std::ios::binary);
+
+    if(!inv){
+        std::cout << " Cannot open file for input .\n";
+        return 1;
+    }
+
+    do {
+        std::cout << " Record # (-1 to quit ): ";
+        std::cin >> i;
+
+        if(i == -1) break;
+
+        inv.seekg(i*(SIZE + sizeof(int) + sizeof(double)), std::ios::beg);
+        temp.retrieve(inv);
+        std::cout << temp;
+    } while(inv.good());
+
+    inv.close();
+
+    return 0;
+}
+
+
+
+// following runs in online compilers like codechef
 
 #include <iostream>
 #include <fstream>
