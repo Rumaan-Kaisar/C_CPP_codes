@@ -726,3 +726,25 @@ do {
 } while(true);
 
 
+
+// Mod 2: What if you want random access BUT still print ALL records?
+// If you know the number of records (e.g., 4), you can loop by index:
+
+
+constexpr std::streampos RECORD_SIZE = SIZE + sizeof(int) + sizeof(double);
+const int NUM_RECORDS = 4; // Or store this in the file header
+
+for(int i = 0; i < NUM_RECORDS; ++i) {
+    inv.seekg(i * RECORD_SIZE, std::ios::beg);
+    
+    if(!inv) {
+        std::cerr << " Seek failed for record " << i << "\n";
+        continue;
+    }
+    
+    temp.retrieve(inv);
+    if(inv) {  // Only print if read succeeded
+        std::cout << temp;
+    }
+}
+
