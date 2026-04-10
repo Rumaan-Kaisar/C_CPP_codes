@@ -366,3 +366,212 @@ int main(int argc, char *argv[]) {
                 To set the "put pointer", use seekp().
 */
 
+
+
+
+/* Example 7: Following is a reworked version of the inventory class 
+                (Example 8 of "ch12_05_inserter_extractor.cpp").
+
+                Write a program that fills in the functions store() and retrieve().                
+                Next, create a small inventory file on disk containing a few entries. 
+                
+                Then, using random I/O, allow the user to display the information about any item 
+                    by specifying its record number.
+
+
+                Following is an inventory class is created that stores 
+                    the name of an item, 
+                    the number on hand and 
+                    its cost. 
+                The program includes both an "inserter" and an "extractor" for this class.
+
+
+                #include <iostream>
+                #include <fstream>
+                #include <cstring>
+
+                #define SIZE 40
+
+                // inventory class
+                class inventory {
+                        char item[SIZE];    // name of item
+                        int onhand;     // number on hand
+                        double cost;    // cost of item
+
+                    public:
+                        inventory(char *i, int o, double c) {
+                            strcpy(item, i);
+                            onhand = o;
+                            cost = c;
+                        }
+
+                        // fill these functions
+                        void store( fstream & stream );
+                        void retrieve( fstream & stream );
+
+                        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+                        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
+                };
+
+
+                // inserter
+                std::ostream &operator<<( std::ostream &stream, inventory ob ) {
+                    stream << ob.item << ": " << ob.onhand;
+                    stream << " on hand at $" << ob.cost << '\n';
+                    return stream;
+                }
+
+                // extractor
+                std::istream &operator>>( std::istream &stream, inventory &ob ) {
+                    std::cout << " Enter item name : ";
+                    stream >> ob.item;
+
+                    std::cout << " Enter number on hand : ";
+                    stream >> ob.onhand;
+                    
+                    std::cout << " Enter cost : ";
+                    stream >> ob.cost;
+                    
+                    return stream;
+                }
+
+
+                int main() {
+                    inventory ob(" hammer ", 4, 12.55);
+
+                    std::cout << ob;
+                    std::cin >> ob;
+                    std::cout << ob;
+
+                    return 0;
+                }
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+#define SIZE 40
+
+// inventory class
+class inventory {
+        char item[SIZE];    // name of item
+        int onhand;     // number on hand
+        double cost;    // cost of item
+
+    public:
+        inventory(char *i, int o, double c) {
+            strcpy(item, i);
+            onhand = o;
+            cost = c;
+        }
+
+        // fill these functions
+        void store( std::fstream &stream );
+        void retrieve( std::fstream &stream );
+
+        friend std::ostream &operator<<(std::ostream &stream, inventory ob);    // inserter
+        friend std::istream &operator>>(std::istream &stream, inventory &ob);   // extractor
+};
+
+
+// inserter
+std::ostream &operator<<( std::ostream &stream, inventory ob ) {
+    stream << ob.item << ": " << ob.onhand;
+    stream << " on hand at $" << ob.cost << '\n';
+    return stream;
+}
+
+// extractor
+std::istream &operator>>( std::istream &stream, inventory &ob ) {
+    std::cout << " Enter item name : ";
+    stream >> ob.item;
+
+    std::cout << " Enter number on hand : ";
+    stream >> ob.onhand;
+    
+    std::cout << " Enter cost : ";
+    stream >> ob.cost;
+    
+    return stream;
+}
+
+void inventory::store( std::fstream &stream ) {
+    stream.write(item, SIZE);
+    stream.write((char*) &onhand, sizeof(int));
+    stream.write((char*) &cost, sizeof(double));
+}
+
+void inventory::retrieve( std::fstream &stream ) {
+    stream.read(item, SIZE);
+    stream.read((char*) &onhand, sizeof(int));
+    stream.read((char*) &cost, sizeof(double));
+} 
+
+
+int main() {
+    std::fstream inv("inv", std::ios::out | std::ios::binary );
+    int i;
+
+    inventory temp("", 0, 0.0);
+    inventory pliers(" pliers ", 12, 4.95);
+    inventory hammers(" hammers ", 5, 9.45);
+    inventory wrenches(" wrenches ", 22, 13.90);
+    inventory batteries(" 18650 batteries ", 60, 1.00);
+
+    if(!inv) {
+        std::cout << " Cannot open file for output.\n";
+        return 1;
+    }
+
+    // write to file
+    pliers.store(inv);
+    hammers.store(inv);
+    wrenches.store(inv);
+    batteries.store(inv);
+
+    inv.close();
+
+    // open for input
+    inv.open ("inv", std::ios::in | std::ios::binary);
+
+    if(!inv){
+        std::cout << " Cannot open file for input .\n";
+        return 1;
+    }
+
+    // printing all the records
+    std::cout << "\nAll records:\n\n";
+
+    while(true) {
+        temp.retrieve(inv);
+        if(!inv) break;  // Check AFTER read: Did the read succeed?
+        std::cout << temp;
+    }
+
+    /*  Alternative loop:
+            while(inv.good()) {
+                temp.retrieve(inv);
+                std::cout << temp;
+            }
+    
+        Note:
+            Do not use while(stream.good()) to control a read loop.
+
+        Why the last element prints twice:
+            -> while(inv.good()) checks the stream state before attempting to read
+            -> After successfully reading the last record ("batteries"), the stream is still "good" because the EOF flag isn't set until a read attempts to go past the end
+            -> The loop condition passes, so temp.retrieve(inv) executes again
+            -> This read fails (EOF reached), but retrieve() doesn't clear temp
+                it still holds the data from the previous successful read ("batteries")
+            -> std::cout << temp; prints the stale data again
+            -> Only after this failed read does the stream set eofbit/failbit, 
+                so the next loop check exits
+    */
+
+    inv.close();
+
+    return 0;
+}
+
+
