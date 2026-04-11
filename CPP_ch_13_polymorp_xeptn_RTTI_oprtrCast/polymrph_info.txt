@@ -18,10 +18,10 @@
 ---------------------------
 
 ch13_01_pointers_derived_classes.cpp
-ch13_02_intro_virtual_functions.cpp
-ch13_03_more_virtual_functions.cpp
-ch13_04_applying_polymorphism.cpp
-ch13_05_generic_functions.cpp
+ch13_02_intro_virtual_fn.cpp
+ch13_03_more_virtual_fn.cpp
+ch13_04_apply_polymorphism.cpp
+ch13_05_generic_fn.cpp
 ch13_06_generic_classes.cpp
 ch13_07_exception_handling.cpp
 ch13_08_more_exception_handling.cpp
@@ -29,3 +29,5 @@ ch13_09_exceptions_thrown_by_new.cpp
 ch13_10_understanding_rtti.cpp
 ch13_11_dynamic_cast.cpp
 ch13_12_const_reinterpret_static_casts.cpp
+
+
