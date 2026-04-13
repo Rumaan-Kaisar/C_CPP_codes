@@ -33,16 +33,19 @@
 
  
 
-Note (Be careful): 
+    --------  NOTE (Pointer arithmetic)  --------
 
-Pointer arithmetic is relative to the "data type" the pointer is declared as pointing to. 
+    Pointer arithmetic is relative to the "data type" the pointer is declared as pointing to. 
+
+    If you point a "base pointer" to a "derived object" then 
+        Incrementing a base pointer "p++" moves it by "sizeof(base)", not "sizeof(derived)".
+        It will not be pointing to the next derived object. 
+        It will be pointing to (what it thinks is) the next base object.
+
+    So, if pointing to a derived object, "p++" may misalign and cause errors.
 
 
-If you point a "base pointer" to a "derived object" then 
-    Incrementing a base pointer "p++" moves it by "sizeof(base)", not "sizeof(derived)".
-    It will not be pointing to the next derived object. 
-    It will be pointing to (what it thinks is) the next base object.
-
+----  rev[14-Apr-2026]  ----
 
 
    Example 1: Following illustrates how a base class pointer can be used to access a derived class:
@@ -57,9 +60,9 @@ If you point a "base pointer" to a "derived object" then
 
 
 
-  NOTE (Pointer arithmetic):
+  
      
-     So, if pointing to a derived object, `p++` may misalign and cause errors.
+     
 
 
 
