@@ -27,12 +27,13 @@
                 Cannot access members "added in the derived class".
                 because base pointer has knowledge only of the base class
 
+        The reverse is not true:
+            "Derived pointer" cannot access "base object"
+            (Can be forced with casting, but "not recommended".)
 
+ 
 
-   The reverse is not true: A pointer of the derived type cannot be used to access an object of the base class. 
-(A type cast can be used to overcome this restriction, but its use is not recommended practice.)
-
-   Note (Be careful): Pointer arithmetic is relative to the data type the pointer is declared as pointing to. 
+Note (Be careful): Pointer arithmetic is relative to the data type the pointer is declared as pointing to. 
 Thus, if you point a base pointer to a derived object and then increment that pointer, it will not be pointing to the next derived object. 
 It will be pointing to (what it thinks is) the next base object. Be careful about this.
 
@@ -46,14 +47,9 @@ It will be pointing to (what it thinks is) the next base object. Be careful abou
 
 - ✅ **Key Rules**:
 
-  1. *
 
 
-  2. **Derived pointer → base object**:  
-     ❌ Not allowed directly.  
-     (Can be forced with casting, but **not recommended**.)
-
-  3. ⚠️ **Pointer arithmetic warning**:  
+  Pointer arithmetic:
      Incrementing a base pointer (`p++`) moves it by `sizeof(base)`, not `sizeof(derived)`.  
      So, if pointing to a derived object, `p++` may **misalign** and cause errors.
 
