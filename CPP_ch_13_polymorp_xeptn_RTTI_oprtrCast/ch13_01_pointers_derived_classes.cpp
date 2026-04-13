@@ -33,12 +33,20 @@
 
  
 
-Note (Be careful): Pointer arithmetic is relative to the data type the pointer is declared as pointing to. 
-Thus, if you point a base pointer to a derived object and then increment that pointer, it will not be pointing to the next derived object. 
-It will be pointing to (what it thinks is) the next base object. Be careful about this.
+Note (Be careful): 
+
+Pointer arithmetic is relative to the "data type" the pointer is declared as pointing to. 
+
+
+If you point a "base pointer" to a "derived object" then 
+    Incrementing a base pointer "p++" moves it by "sizeof(base)", not "sizeof(derived)".
+    It will not be pointing to the next derived object. 
+    It will be pointing to (what it thinks is) the next base object.
+
+
 
    Example 1: Following illustrates how a base class pointer can be used to access a derived class:
-
+- Example use: Enables **polymorphism** and writing generic code using base pointers.
 
 
 
@@ -49,11 +57,11 @@ It will be pointing to (what it thinks is) the next base object. Be careful abou
 
 
 
-  Pointer arithmetic:
-     Incrementing a base pointer (`p++`) moves it by `sizeof(base)`, not `sizeof(derived)`.  
-     So, if pointing to a derived object, `p++` may **misalign** and cause errors.
+  NOTE (Pointer arithmetic):
+     
+     So, if pointing to a derived object, `p++` may misalign and cause errors.
 
-- Example use: Enables **polymorphism** and writing generic code using base pointers.
+
 
 > 🔍 Bottom line: Base pointers are flexible, but limited to base-class view of derived objects.
 
