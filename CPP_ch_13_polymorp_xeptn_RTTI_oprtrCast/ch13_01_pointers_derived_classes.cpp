@@ -17,13 +17,17 @@
                 p = &derived_ob ;       // p points to derived object : Advanced pointing by p 
 
 
-        A "pointer to a base class" can point to:
-          - An object of the base class, or
-          - An object of any class "derived from that base" without generating a type mismatch error
+
+    A "pointer to a base class" can point to:
+        - An object of the base class, or
+        - An object of any class "derived from that base" without generating a type mismatch error
+
+        "Base pointer" can access "derived object":
+            But you can "only access members inherited from the base class"
+                Cannot access members "added in the derived class".
+                because base pointer has knowledge only of the base class
 
 
-   By a base pointer we can access only those members of the derived object that were inherited from the base. 
-Because the base pointer has knowledge only of the base class, nothing about the members added by the derived class.
 
    The reverse is not true: A pointer of the derived type cannot be used to access an object of the base class. 
 (A type cast can be used to overcome this restriction, but its use is not recommended practice.)
@@ -42,9 +46,8 @@ It will be pointing to (what it thinks is) the next base object. Be careful abou
 
 - ✅ **Key Rules**:
 
-  1. **Base pointer → derived object**:  
-     Allowed. But you can **only access members inherited from the base class**.  
-     → Cannot access members **added in the derived class**.
+  1. *
+
 
   2. **Derived pointer → base object**:  
      ❌ Not allowed directly.  
