@@ -1,9 +1,11 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Pointers To Derived Classes    ------------------------
 
+    Pointers To Derived Classes
+        A pointer declared as a "pointer to a base class" can also be 
+            used to point to any class (child) derived from that base. 
 
-13.1 Pointers To Derived Classes
-A pointer declared as a pointer to a base class can also be used to point to any class derived from that base. For example, assume two classes called base and derived, where derived inherits base. Then the following statements are correct:
+For example, assume two classes called base and derived, where derived inherits base. Then the following statements are correct:
 
 base *p; 			/* base class pointer */ 
 
@@ -13,11 +15,55 @@ derived derived_ob ; 		/* object of type derived */
 p = &base_ob ; 		/* p points to base object : Normally p can.*/ 
 p = &derived_ob ; 		/* p points to derived object : Advanced pointing by p */ 
 
+
 	A base pointer can point to an object of any class derived from that base without generating a type mismatch error.
 	By a base pointer we can access only those members of the derived object that were inherited from the base. Because the base pointer has knowledge only of the base class, nothing about the members added by the derived class.
 	The reverse is not true: A pointer of the derived type cannot be used to access an object of the base class. (A type cast can be used to overcome this restriction, but its use is not recommended practice.)
 	Note (Be careful): Pointer arithmetic is relative to the data type the pointer is declared as pointing to. Thus, if you point a base pointer to a derived object and then increment that pointer, it will not be pointing to the next derived object. It will be pointing to (what it thinks is) the next base object. Be careful about this.
 	Example 1: Following illustrates how a base class pointer can be used to access a derived class:
+
+
+// QWEN
+
+### ✅ Simplified Pointwise: **Pointers to Derived Classes**
+
+- A **pointer to a base class** can point to:
+  - An object of the base class, or
+  - An object of any class **derived from that base**.
+
+- Example:
+  ```cpp
+  base *p;
+  base base_ob;
+  derived derived_ob;
+
+  p = &base_ob;     // OK: points to base object
+  p = &derived_ob;  // OK: base pointer can point to derived object
+  ```
+
+- ✅ **Key Rules**:
+
+  1. **Base pointer → derived object**:  
+     Allowed. But you can **only access members inherited from the base class**.  
+     → Cannot access members **added in the derived class**.
+
+  2. **Derived pointer → base object**:  
+     ❌ Not allowed directly.  
+     (Can be forced with casting, but **not recommended**.)
+
+  3. ⚠️ **Pointer arithmetic warning**:  
+     Incrementing a base pointer (`p++`) moves it by `sizeof(base)`, not `sizeof(derived)`.  
+     So, if pointing to a derived object, `p++` may **misalign** and cause errors.
+
+- Example use: Enables **polymorphism** and writing generic code using base pointers.
+
+> 🔍 Bottom line: Base pointers are flexible, but limited to base-class view of derived objects.
+
+
+
+
+
+
 
 class base{ 	int x;
 	public: 	void setx(int i){ x=i; }
