@@ -48,8 +48,7 @@
 ----  rev[14-Apr-2026]  ----
 
 
-   Example 1: Following illustrates how a base class pointer can be used to access a derived class:
-- Example use: Enables **polymorphism** and writing generic code using base pointers.
+
 
 
 class base{
@@ -82,9 +81,9 @@ cout << " Derived object y: " << d_ob.gety() << '\n';
 */  
 
 
+/* Example 1: Following illustrates how a "base class pointer" can be used to access a derived clas.s:
+                Enabling "polymorphism" and writing generic code using base pointers. */
 
-/* 1. Here is a short program that illustrates how a base class pointer can be used to access a
-derived class: */
 // Demonstrate pointer to derived class .
 # include <iostream >
 using namespace std ;
