@@ -85,8 +85,30 @@ class derived : public base {
 
 
 
-int main ()
-{
+
+int main(){ 
+    base *p;        // pointer to base type 
+
+    base b_ob ;     // object of base 
+    derived d_ob ;  // object of derived
+p = &b_ob ;               // p access base  : point to base object
+p-> setx(10) ;            // access base object 
+cout << " Base object x: " << p-> getx () << '\n';
+
+p = &d_ob ;               // p access derived : point to derived object 
+p-> setx(99) ;            // access derived object 
+
+d_ob.sety(88) ;            // can't use p to set y, so do it directly
+cout << " Derived object x: " << p-> getx() << '\n';
+cout << " Derived object y: " << d_ob.gety() << '\n';
+    return 0; }
+
+
+
+
+
+
+int main() {
 base *p; // pointer to base type
 base b_ob ; // object of base
 derived d_ob ; // object of derived
