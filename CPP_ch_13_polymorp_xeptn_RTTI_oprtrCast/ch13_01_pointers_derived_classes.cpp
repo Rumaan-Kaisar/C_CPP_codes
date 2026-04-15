@@ -45,36 +45,15 @@
     So, if pointing to a derived object, "p++" may misalign and cause errors.
 
 
-----  rev[14-Apr-2026]  ----
+----  rev[15-Apr-2026]  ----
 
 
 
 
 
-class base{
-    int x;
-    public:     void setx(int i){ x=i; }
-        int getx(){ return x; } };
 
-class derived : public base { int y;
-    public :    void sety(int i){ y=i; }
-        int gety(){ return y; } };
 
-int main(){ base *p;        // pointer to base type 
-        base b_ob ;     // object of base 
-        derived d_ob ;  // object of derived
-p = &b_ob ;               // p access base  : point to base object
-p-> setx(10) ;            // access base object 
-cout << " Base object x: " << p-> getx () << '\n';
 
-p = &d_ob ;               // p access derived : point to derived object 
-p-> setx(99) ;            // access derived object 
-
-d_ob.sety(88) ;            // can't use p to set y, so do it directly
-cout << " Derived object x: " << p-> getx() << '\n';
-cout << " Derived object y: " << d_ob.gety() << '\n';
-    return 0; }
-   There is no value in using a base class pointer in the way shown in this example.
 
 
 
@@ -82,25 +61,30 @@ cout << " Derived object y: " << d_ob.gety() << '\n';
 
 
 /* Example 1: Following illustrates how a "base class pointer" can be used to access a derived clas.s:
-                Enabling "polymorphism" and writing generic code using base pointers. */
+                Enabling "polymorphism" and writing generic code using base pointers. 
 
-// Demonstrate pointer to derived class .
-# include <iostream >
-using namespace std ;
-class base
-{
-int x;
-public :
-void setx ( int i) { x = i; }
-int getx () { return x; }
+            Note:
+                There is no value in using a base class pointer in the way shown in this example.
+*/
+
+#include <iostream>
+
+class base{
+        int x;
+    public:
+        void setx(int i){ x=i; }
+        int getx(){ return x; } 
 };
-class derived : public base
-{
-int y;
-public :
-void sety ( int i) { y = i; }
-int gety () { return y; }
+
+class derived : public base {
+        int y;
+    public :
+        void sety(int i){ y=i; }
+        int gety(){ return y; } 
 };
+
+
+
 int main ()
 {
 base *p; // pointer to base type
