@@ -86,8 +86,7 @@ int main(){
 
     // use p to access derived object
     p = &d_ob;       // p access derived : point to derived object 
-    // only access members inherited from the base class
-    p-> setx(99);    // access derived object 
+    p-> setx(99);    // access derived object. Can only access members inherited from the base class
     // Cannot access members "added in the derived class".
     d_ob.sety(88);   // can't use p to set y, so do it directly
     std::cout << " Derived object x: " << p-> getx() << '\n';
@@ -97,5 +96,3 @@ int main(){
 }
 
 
-
-----  rev[15-Apr-2026]  ----
