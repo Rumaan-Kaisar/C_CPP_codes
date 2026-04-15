@@ -52,28 +52,6 @@
 - Example use: Enables **polymorphism** and writing generic code using base pointers.
 
 
-
-// QWEN
-
-
-- ✅ **Key Rules**:
-
-
-
-  
-     
-     
-
-
-
-> 🔍 Bottom line: Base pointers are flexible, but limited to base-class view of derived objects.
-
-
-
-
-
-
-
 class base{
     int x;
     public:     void setx(int i){ x=i; }
