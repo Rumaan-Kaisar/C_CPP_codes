@@ -44,19 +44,6 @@
 
     So, if pointing to a derived object, "p++" may misalign and cause errors.
 
-
-----  rev[15-Apr-2026]  ----
-
-
-
-
-
-
-
-
-
-
-
 */  
 
 
@@ -91,12 +78,15 @@ int main(){
 
     base b_ob ;     // object of base 
     derived d_ob ;  // object of derived
-p = &b_ob ;               // p access base  : point to base object
-p-> setx(10) ;            // access base object 
-cout << " Base object x: " << p-> getx () << '\n';
 
-p = &d_ob ;               // p access derived : point to derived object 
-p-> setx(99) ;            // access derived object 
+    // use p to access base object
+    p = &b_ob ;      // p access base  : point to base object
+    p-> setx(10) ;   // access base object 
+    std::cout << " Base object x: " << p-> getx() << '\n';
+
+    // use p to access derived object
+    p = &d_ob ;       // p access derived : point to derived object 
+    p-> setx(99) ;    // access derived object 
 
 d_ob.sety(88) ;            // can't use p to set y, so do it directly
 cout << " Derived object x: " << p-> getx() << '\n';
@@ -109,16 +99,14 @@ cout << " Derived object y: " << d_ob.gety() << '\n';
 
 
 int main() {
-base *p; // pointer to base type
-base b_ob ; // object of base
-derived d_ob ; // object of derived
-// use p to access base object
-p = & b_ob ;
-p-> setx (10) ; // access base object
-cout << " Base object x: " << p-> getx () << ’\n’;
-// use p to access derived object
+
+
+
+
 p = & d_ob ; // point to derived object
 p-> setx (99) ; // access derived object
+
+
 // can ’t use p to set y, so do it directly
 d_ob . sety (88) ;
 263TEACH YOURSELF
@@ -130,3 +118,6 @@ return 0;
 Aside from illustrating pointers to derived classes, there is no value in using a base class
 pointer in the way shown in this example. However, in the next section you will see why
 base class pointers to derived objects are so important.
+
+
+----  rev[15-Apr-2026]  ----
