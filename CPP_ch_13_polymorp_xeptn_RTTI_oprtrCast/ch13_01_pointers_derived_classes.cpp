@@ -52,6 +52,8 @@
 
             Note:
                 There is no value in using a base class pointer in the way shown in this example.
+                Using a base class pointer following way is only useful for demonstration. 
+                In the next section we'll see why "base class pointers to derived objects" actually essential.
 */
 
 #include <iostream>
@@ -69,8 +71,6 @@ class derived : public base {
         void sety(int i){ y=i; }
         int gety(){ return y; } 
 };
-
-
 
 
 int main(){ 
@@ -96,26 +96,6 @@ int main(){
     return 0;
 }
 
-
-
-
-
-
-int main() {
-
-
-
-// can ’t use p to set y, so do it directly
-d_ob . sety (88) ;
-263TEACH YOURSELF
-C++
-cout << " Derived object x: " << p-> getx () << ’\n’;
-cout << " Derived object y: " << d_ob . gety () << ’\n’;
-return 0;
-}
-Aside from illustrating pointers to derived classes, there is no value in using a base class
-pointer in the way shown in this example. However, in the next section you will see why
-base class pointers to derived objects are so important.
 
 
 ----  rev[15-Apr-2026]  ----
