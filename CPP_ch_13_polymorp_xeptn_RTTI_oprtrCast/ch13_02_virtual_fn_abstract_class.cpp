@@ -23,11 +23,11 @@
 			 cout << i << '\n'; }
 			};
 class derived1 : public base {
-public : derived1(int x) : base(x){} /* passing argument to base constructor and uses same definition. Using base's constructor */
+public : derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
 void func(){cout<< " Using derived1's version of func (): ";
 	      cout << i*i << '\n'; }
 				};	class derived2 : public base {
-public : derived2(int x) : base(x){} /* passing argument to base constructor and uses same definition. Using base's constructor */
+public : derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
 void func(){cout << " Using derived2 's version of func (): ";
 	      cout << i+i << '\n'; }
 				};
@@ -35,9 +35,9 @@ int main(){	base *p;
 		base ob (10) ;
 		derived1 d_ob1 (10) ;
 		derived2 d_ob2 (10) ;
-	p = &ob; 	p -> func();  /* use base 's func() */ 
-	p = &d_ob1 ; 	p -> func();  /* use derived1's func() */ 
-	p = &d_ob2 ; 	p -> func();  /* use derived2 's func() */ 
+	p = &ob; 	p -> func();  // use base 's func()
+	p = &d_ob1 ; 	p -> func();  // use derived1's func()
+	p = &d_ob2 ; 	p -> func();  // use derived2 's func()
 return 0; }	This program displays the following output:
 
 Using base version of func( ): 10
@@ -55,11 +55,11 @@ iii.	Finally, p is assigned the address of d_ob2 and func() is called again by u
 class derived2 : public base
 { public :
 	derived2 (int x) : base(x){}
-	/* derived2 does not override func( ) */ 
+	// derived2 does not override func( )
 };	int main() {. . . . .
 	p = &d_ob2 ;
 	p -> func(); 
-	/* use base's func( ) */ 
+	// use base's func( )
 return 0;
 }	This program displays the following output:
 
@@ -78,10 +78,10 @@ int i,j;
 
 for(i=0; i<10; i++){	 j = rand();
 
-   if((j%2) ) p = &d_ob1 ; 	/* if odd use d_ob1 */ 
-   else p = &d_ob2 ; 		/* if even use d_ob2 */ 
+   if((j%2) ) p = &d_ob1 ; 	// if odd use d_ob1
+   else p = &d_ob2 ; 		// if even use d_ob2
 
-p -> func(); 	}		/* call appropriate function */	
+p -> func(); 	}		// call appropriate function
 return 0; }
 
 
@@ -111,7 +111,7 @@ virtual type func_name(parameter_list =0;
 	When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
 	Example 1: This program creates a base called area that holds two dimensions of a figure. It also declares a VF called getarea() that, when overridden by derived classes, returns the area of the type of figure defined by the derived. 
 
-	class area{ 	double dim1 , dim2 ; 	/* dimensions of figure */ 
+	class area{ 	double dim1 , dim2 ; 	// dimensions of figure
 		public : 	void setarea(double d1, double d2){ dim1 = d1; dim2 = d2;}
 		void getdim(double &d1 , double &d2) { d1 = dim1 ; d2 = dim2 ; }
 			virtual double getarea(){ 	cout << "You must override this function \n";
@@ -141,23 +141,23 @@ int main(){ 	area *p;
 	getarea() must be overridden by a derived class in order to be useful. 
 
 class area{ . . . . . . same as previous . . . . .
-virtual double getarea() = 0; 	/* pure virtual function */ 	};
+virtual double getarea() = 0; 	// pure virtual function 	};
 	Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
 class base {
 public : virtual void func(){ 
 cout << " Base version of func ( )\n"; }	};	class derived1 : public base {
 public : void func(){ 
 cout <<"derived1's version of func()\n"; }
- };	class derived2 : public derived1{ 	/* derived2 inherits derived1 */  
+ };	class derived2 : public derived1{ 	// derived2 inherits derived1
 public : void func(){ 
 cout << "derived2's version of func()\n"; } };
 int main() { 	base *p;
 		base ob;
 		derived1 d_ob1 ;
 		derived2 d_ob2 ;
-			p = &ob; 	p -> func(); 		/* use base's func() */ 
-			p = &d_ob1 ; 	p -> func(); 		/* use derived1's func() */ 
-			p = &d_ob2 ; 	p -> func(); 		/* use derived2's func() */ 
+			p = &ob; 	p -> func(); 		// use base's func()
+			p = &d_ob1 ; 	p -> func(); 		// use derived1's func()
+			p = &d_ob2 ; 	p -> func(); 		// use derived2's func()
 		return 0; }
 	The VF func() is first inherited by derived1, which overrides it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again overridden.
 	Since VFs are hierarchical, if derived2 did not override func(), when d_ob2 was accessed, derived1's func() would have been used.
