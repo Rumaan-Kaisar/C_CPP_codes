@@ -1,12 +1,17 @@
 
 /*  ------------------------    Virtual Functions (VF)    ------------------------
 
-
     A virtual function is a "base class member function" and redefined (overridden) by derived classes.
     
-    
-    
-     To create a virtual function, precede the function's declaration with the keyword virtual.  When a VF is redefined by a derived, the keyword virtual is not needed. A class that contains a VF is referred to as a polymorphic class.
+    Declaration:
+        Declared using the "virtual" keyword in the base class. 
+        The keyword is optional in derived classes.
+
+    polymorphic class:
+        A class that contains a virtual function (VF) is referred to as a "polymorphic class".
+
+
+    ----  rev[17-Apr-2026]  ----
 
 	When a class containing a VF is inherited, the derived redefines the VF relative to the derived.  VF implements the "one interface, multiple methods" philosophy that underlies polymorphism. 
 	The VF within the base class defines the form of the interface to that function. 
@@ -182,8 +187,7 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 🔹 Core Concepts
 
-Declared using the "virtual" keyword in the base class. 
-The keyword is optional in derived classes.
+
 
 
 Enables the "one interface, multiple methods" principle → foundation of polymorphism.
