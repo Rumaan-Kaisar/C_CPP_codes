@@ -159,4 +159,85 @@ int main() { 	base *p;
 	If neither derived1 nor derived2 had overridden func(), base's func( ) would have been used.
 
 
+
+
+
+
+
+
+
+----  QWEN  ----
+
+Here is a clean, simplified, and logically organized pointwise summary of your notes:
+
+---
+### 📘 **13.2 Virtual Functions (VF)**
+
+#### 🔹 **Core Concepts**
+- A **virtual function** is a base class member function intended to be redefined (overridden) in derived classes.
+- Declared using the `virtual` keyword in the base class. The keyword is **optional** in derived classes.
+- Enables the `"one interface, multiple methods"` principle → foundation of **polymorphism**.
+- Base class defines the **interface**; derived classes provide **specific implementations**.
+
+#### 🔹 **Run-Time Polymorphism**
+- Achieved when a VF is called through a **base class pointer**.
+- The **actual object type** pointed to determines which function version runs.
+- Function resolution happens at **run-time**, not compile-time.
+- Allows dynamic behavior: the same pointer can trigger different derived methods based on runtime conditions (e.g., user input, random selection).
+
+#### 🔹 **Inheritance & Hierarchy Behavior**
+- Virtual nature is **preserved** through multiple inheritance levels.
+- If a derived class **does not override** a VF, the nearest base class version is automatically used.
+- Example logic: `Base → Derived1 → Derived2`
+  - If only `Derived1` overrides, `Derived2` inherits that version.
+  - If neither overrides, `Base` version runs.
+
+#### 🔹 **Virtual Functions vs. Function Overloading**
+| Feature | Virtual Function (Overriding) | Function Overloading |
+|--------|-------------------------------|----------------------|
+| **Signature** | Must match exactly (same params & return type) | Must differ in parameter type/count |
+| **Scope** | Must be a class member | Can be standalone or class member |
+| **Resolution** | Run-time (dynamic binding) | Compile-time (static binding) |
+| **Keyword** | `virtual` in base | None required |
+| ⚠️ Changing a VF's signature destroys its virtual nature and turns it into an overloaded function. |
+
+#### 🔹 **Constructor & Destructor Rules**
+- ❌ **Constructors** cannot be virtual.
+- ✅ **Destructors** can (and often should) be virtual to ensure proper cleanup in polymorphic hierarchies.
+
+---
+### 📘 **13.3 Pure Virtual Functions (PVF) & Abstract Classes**
+
+#### 🔹 **Pure Virtual Function (PVF)**
+- Declared with `= 0` in the base class: `virtual return_type func() = 0;`
+- Has **no implementation** in the base class (acts only as an interface placeholder).
+- **Forces** every derived class to override it; otherwise, compilation fails.
+- Used when the base class has no meaningful default behavior for that function.
+
+#### 🔹 **Abstract Class**
+- Any class containing **at least one PVF** is an abstract class.
+- ❌ **Cannot be instantiated** (no objects can be created).
+- ✅ Exists **only to be inherited** and used as a base.
+- ✅ Pointers and references to abstract classes **are allowed** (essential for run-time polymorphism).
+
+#### 🔹 **Key Behavior & Usage**
+- PVFs define a **contract**: derived classes must provide the actual logic.
+- Example: `class area { virtual double getarea() = 0; };`
+  - `rectangle` and `triangle` inherit `area` and must implement `getarea()`.
+- Virtual hierarchy rules still apply: PVF overrides are inherited and can be further overridden down the chain.
+
+---
+### 💡 **Quick Reference Checklist**
+- ✅ Use `virtual` in base class to enable overriding.
+- ✅ Call through base pointer → run-time polymorphism.
+- ✅ Missing override? → Base/nearest version runs.
+- ✅ `= 0` → Pure virtual → Abstract class → Must be overridden.
+- ✅ Abstract classes: no objects, but pointers/references allowed.
+- ✅ Overriding ≠ Overloading (signature must match exactly for VFs).
+- ✅ Destructors: virtual ✅ | Constructors: virtual ❌
+
+Let me know if you'd like this converted into flashcards, a diagram, or a condensed cheat sheet!
+
+
+
 */  
