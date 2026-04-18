@@ -9,20 +9,25 @@
 
     polymorphic class:
         A class that contains a virtual function (VF) is referred to as a "polymorphic class".
-        i.e. enabling the "one interface, multiple methods" principle
-            Base class defines the interface; 
-            Derived classes provide specific implementations.
+        i.e. enabling the "one interface, multiple methods" principle:
+            Base class defines the interface of the VF; 
+            Different derived classes provide their specific implementations to the VF.
 
-    ----  rev[17-Apr-2026]  ----
+    
 
-	When a class containing a VF is inherited, the derived redefines the VF relative to the derived.
+    ----------------    Run-Time Polymorphism    ----------------
 
-  VF implements the "one interface, multiple methods" philosophy that underlies polymorphism. 
-	The VF within the base class defines the form of the interface to that function. 
-	Each redefinition of the VF by a derived implements its operation as it relates specifically to that derived. I.e. the redefinition creates a specific method. 
-	A VF can be called just like any other member function. But interesting thing happens when a virtual function is called through a pointer- creates the run-time polymorphism. 
+    A VF can be called just like any other member function. 
+
+    But interesting thing happens when a VF is called through a "pointer"
+        it creates the run-time polymorphism. 
+
+----  rev[18-Apr-2026]  ----
+
 	When a base pointer points to a derived object that contains a VF and that VF is called through that pointer, it is the type of that pointed object that determines which version of the VF will be executed at the time when the call occurs. And, this determination is made at run time. This process is the way that run-time polymorphism is achieved.
 	Therefore, if two or more different classes are derived from a base class that contains a VF, then when different objects are pointed to by a base pointer, different versions of the virtual function are executed.
+
+
 
 	Example 1: Following uses a VF. Here the type of the object being pointed to determines which version of an overridden virtual function will be executed when accessed via a base class pointer, and that this decision is made at run time. 
 			class base{
@@ -189,16 +194,26 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 📘 13.2 Virtual Functions (VF)
 
 
-🔹 Core Concepts
-
-
-
-
-
-
-
-
 🔹 Run-Time Polymorphism
+
+Here’s a clear, point-by-point breakdown with moderate detail:
+• Base Pointer, Derived Object: A base class pointer can reference an object of a derived class. While the pointer’s declared type is the base class, the actual object in memory belongs to the derived type.
+• Virtual Function Call Behavior: When you invoke a virtual function through that base pointer, the program doesn’t automatically use the base class’s implementation. Instead, it checks which specific derived object the pointer is currently referencing.
+• Runtime Resolution (Dynamic Dispatch): The exact function version to execute is determined at runtime, not at compile time. This "late binding" mechanism checks the object’s true type the moment the call is made, allowing the correct overridden version to run.
+• Foundation of Runtime Polymorphism: This runtime selection process is how polymorphism is achieved. It enables a single, consistent interface (the base pointer) to trigger different behaviors depending on the actual object it points to.
+• Support for Multiple Derived Classes: If several classes inherit from the same base and each overrides the virtual function, the same base pointer can point to any of them. Each call will automatically execute the version that matches whichever derived object is currently being referenced.
+
+
+
+
+"When a base pointer calls a virtual function, the actual type of the object it points to determines which version runs. This runtime decision enables polymorphism, meaning different derived objects will each execute their own specific function version, even when accessed through the same base pointer."
+💡 Even shorter (one-liner):
+Calling a virtual function through a base pointer executes the version defined by the object’s actual type, not the pointer’s type. This runtime resolution is what enables polymorphism.
+
+
+
+
+
 Achieved when a VF is called through a base class pointer.
 The actual object type pointed to determines which function version runs.
 Function resolution happens at run-time, not compile-time.
