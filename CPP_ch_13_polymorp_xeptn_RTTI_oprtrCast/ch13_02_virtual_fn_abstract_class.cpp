@@ -9,11 +9,15 @@
 
     polymorphic class:
         A class that contains a virtual function (VF) is referred to as a "polymorphic class".
-
+        i.e. enabling the "one interface, multiple methods" principle
+            Base class defines the interface; 
+            Derived classes provide specific implementations.
 
     ----  rev[17-Apr-2026]  ----
 
-	When a class containing a VF is inherited, the derived redefines the VF relative to the derived.  VF implements the "one interface, multiple methods" philosophy that underlies polymorphism. 
+	When a class containing a VF is inherited, the derived redefines the VF relative to the derived.
+
+  VF implements the "one interface, multiple methods" philosophy that underlies polymorphism. 
 	The VF within the base class defines the form of the interface to that function. 
 	Each redefinition of the VF by a derived implements its operation as it relates specifically to that derived. I.e. the redefinition creates a specific method. 
 	A VF can be called just like any other member function. But interesting thing happens when a virtual function is called through a pointer- creates the run-time polymorphism. 
@@ -190,8 +194,8 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 
 
-Enables the "one interface, multiple methods" principle → foundation of polymorphism.
-Base class defines the interface; derived classes provide specific implementations.
+
+
 
 
 🔹 Run-Time Polymorphism
