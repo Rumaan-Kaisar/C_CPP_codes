@@ -26,21 +26,31 @@
     ----  rev[18-Apr-2026]  ----
 
 🔹 Simplified Version
-When a base class pointer points to a derived class object that has a virtual function (VF):
-And that virtual function is called using the base pointer:
+
 Then the version of the function that runs depends on the actual object type (the derived object), not the pointer type.
 This decision is made at run time (when the program is executing).
 This mechanism is called run-time polymorphism.
 🔹 Second Part Simplified
-If multiple classes are derived from the same base class and each has its own version of the virtual function:
+If  derived from the same base class and  virtual function:
 Then a base pointer can point to different objects at different times.
 Depending on which object it points to, different versions of the virtual function will be executed.
 
 
-	When a base pointer points to a derived object that contains a VF and that VF is called through that pointer, it is the type of that pointed object that determines which version of the VF will be executed at the time when the call occurs. And, this determination is made at run time. This process is the way that run-time polymorphism is achieved.
+When a "base pointer" points to a derived object that contains a VF 
+    and that VF is called through that pointer: 
+    
+    It is the "type" of that "pointed object" that determines which version of 
+        the VF will be executed at the time when the call occurs.
+    
+     And, this determination is made at run time. 
+     
+    This process is the way that run-time polymorphism is achieved.
 
 
-	Therefore, if two or more different classes are derived from a base class that contains a VF, then when different objects are pointed to by a base pointer, different versions of the virtual function are executed.
+Therefore, if multiple classes are derived from a base class that contains a VF, 
+(each derived class has its own version of the VF)
+    then when different objects are pointed to by a base pointer, 
+    different versions of the virtual function are executed.
 
 
 
