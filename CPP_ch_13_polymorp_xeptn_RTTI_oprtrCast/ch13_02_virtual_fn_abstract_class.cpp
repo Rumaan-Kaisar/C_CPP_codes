@@ -23,38 +23,25 @@
         it creates the run-time polymorphism. 
 
 
-    ----  rev[18-Apr-2026]  ----
-
-🔹 Simplified Version
-
-Then the version of the function that runs depends on the actual object type (the derived object), not the pointer type.
-This decision is made at run time (when the program is executing).
-This mechanism is called run-time polymorphism.
-🔹 Second Part Simplified
-If  derived from the same base class and  virtual function:
-Then a base pointer can point to different objects at different times.
-Depending on which object it points to, different versions of the virtual function will be executed.
+    When a "base pointer" points to a derived object that contains a VF 
+        and that VF is called through that pointer: 
+        
+        It is the "type" of that "pointed object" that determines which version of 
+            the VF will be executed at the time when the call occurs.
+        
+        And, this determination is made at run time. 
+        This process is the way that run-time polymorphism is achieved.
 
 
-When a "base pointer" points to a derived object that contains a VF 
-    and that VF is called through that pointer: 
-    
-    It is the "type" of that "pointed object" that determines which version of 
-        the VF will be executed at the time when the call occurs.
-    
-     And, this determination is made at run time. 
-     
-    This process is the way that run-time polymorphism is achieved.
-
-
-Therefore, if multiple classes are derived from a base class that contains a VF, 
-(each derived class has its own version of the VF)
-    then when different objects are pointed to by a base pointer, 
-    different versions of the virtual function are executed.
+    Therefore, if multiple classes are derived from a base class that contains a VF, 
+    (each derived class has its own version of the VF)
+        Then a base pointer can point to different objects at different times.
+        And different versions of the VF are executed depending on which object it points to
 
 
 
 
+    ----  rev[19-Apr-2026]  ----
 
 
 
