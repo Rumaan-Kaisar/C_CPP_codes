@@ -33,6 +33,20 @@
         This process is the way that run-time polymorphism is achieved.
 
 
+    Runtime Resolution (Dynamic Dispatch):
+        The exact function version to execute is determined at "runtime", not at "compile time". 
+        This "late binding" mechanism checks the object's true type the moment the call is made, 
+            allowing the "correct overridden version" to run.
+
+        This runtime selection process is how polymorphism is achieved. 
+        It enables a single, consistent interface (the base pointer) to
+            trigger different behaviors depending on the actual object it points to.
+        Meaning "different derived objects will each execute their own specific function version, 
+            even when accessed through the same base pointer."
+
+    Note: Polymorphism is the goal. Dynamic dispatch is the tool. Runtime resolution is the timing.
+
+
     Therefore, if "multiple classes" are derived from a base class that contains a VF, 
     (each derived class has its own version of the VF)
         Then a base pointer can point to different objects at different times.
@@ -619,25 +633,6 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 🔹 Run-Time Polymorphism
 
-
-
-
-Runtime Resolution (Dynamic Dispatch):  [rev ----]
-    The exact function version to execute is determined at "runtime", not at "compile time". 
-    This "late binding" mechanism checks the object's true type the moment the call is made, 
-        allowing the "correct overridden version" to run.
-
-    This runtime selection process is how polymorphism is achieved. 
-    It enables a single, consistent interface (the base pointer) t
-        o trigger different behaviors depending on the actual object it points to.
-
-
-
-
-
-"When a base pointer calls a virtual function, the actual type of the object it points to determines which version runs. This runtime decision enables polymorphism, meaning different derived objects will each execute their own specific function version, even when accessed through the same base pointer."
-💡 Even shorter (one-liner):
-Calling a virtual function through a base pointer executes the version defined by the object’s actual type, not the pointer’s type. This runtime resolution is what enables polymorphism.
 
 
 
