@@ -42,11 +42,25 @@
 
 
     ----  rev[19-Apr-2026]  ----
+*/
 
 
 
-	Example 1: Following uses a VF. Here the type of the object being pointed to determines which version of an overridden virtual function will be executed when accessed via a base class pointer, and that this decision is made at run time. 
-			class base{
+/* Example 1: Following uses a VF. Here the type of the object being pointed to determines which version of an overridden virtual 
+function will be executed when accessed via a base class pointer, and that this decision is made at run time.  
+
+
+   Above program creates three classes. 
+   The base class defines the virtual function func(). 
+   "base" is then inherited by both derived1 and derived2. Each of these classes overrides func() with its individual implementation. 
+   Inside main(), the base pointer p is declared along with objects of type base, derived1, and derived2. 
+i.  First, p is assigned the address of ob (base type object). When func() is called by using p, the base version of func() is used. 
+ii. Next, p is assigned the address of d_ob1. In this time derived1 version (the overridden version) of func() is executed when func() is called using p. (the type of the object pointed to determines which VF will be called)
+iii.    Finally, p is assigned the address of d_ob2 and func() is called again by using p. This time, it is the overridden version of func() defined inside derived2 is executed.
+
+*/
+
+class base{
 			public: int i;
 			 base(int x) { i = x; }
 			 virtual void func() { cout<< " Using base version of func(): ";
