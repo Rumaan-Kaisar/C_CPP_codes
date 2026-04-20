@@ -33,33 +33,72 @@
         This process is the way that run-time polymorphism is achieved.
 
 
-    Therefore, if multiple classes are derived from a base class that contains a VF, 
+    Therefore, if "multiple classes" are derived from a base class that contains a VF, 
     (each derived class has its own version of the VF)
         Then a base pointer can point to different objects at different times.
         And different versions of the VF are executed depending on which object it points to
 
-
-
-
-    ----  rev[19-Apr-2026]  ----
 */
 
 
 
-/* Example 1: Following uses a VF. Here the type of the object being pointed to determines which version of an overridden virtual 
-function will be executed when accessed via a base class pointer, and that this decision is made at run time.  
+/* Example 1: Following program uses a VF. 
+
+                Here the "type of the object" being pointed to determines which version of an 
+                overridden VF will be executed when accessed via a base class pointer.
+                And this decision is made at run time.  
+
+                This program creates three classes : base, derived1 and derived2
+                    The "base" class defines the virtual function func(). 
+                    "base" is then inherited by both "derived1" and "derived2". 
+                    Each of these classes overrides func() with its individual implementation. 
 
 
-   Above program creates three classes. 
-   The base class defines the virtual function func(). 
-   "base" is then inherited by both derived1 and derived2. Each of these classes overrides func() with its individual implementation. 
-   Inside main(), the base pointer p is declared along with objects of type base, derived1, and derived2. 
-i.  First, p is assigned the address of ob (base type object). When func() is called by using p, the base version of func() is used. 
-ii. Next, p is assigned the address of d_ob1. In this time derived1 version (the overridden version) of func() is executed when func() is called using p. (the type of the object pointed to determines which VF will be called)
-iii.    Finally, p is assigned the address of d_ob2 and func() is called again by using p. This time, it is the overridden version of func() defined inside derived2 is executed.
+                Inside main(), the "base pointer p" is declared along with objects of type: 
+                    "base", "derived1", and "derived2". 
+
+                First, p is assigned the address of "ob" (base type object). 
+                    When func() is called by using p, the "base version" of func() is used. 
+
+                Next, p is assigned the address of "d_ob1" (derived1 type object). 
+                    This time derived1 version (the overridden version) of func() is executed when func() is called using p. 
+                    (the type of the object pointed to determines which VF will be called)
+
+                Finally, p is assigned the address of "d_ob2" (derived2 type object) 
+                    In this time, when func() is called by using p, 
+                    the overridden version of func() defined inside derived2 is executed.
+
+
+----  rev[20-Apr-2026]  ----
+
+
+The redefinition of a virtual function inside a derived class might, at first, seem somewhat
+similar to function overloading. However, the two processes are distinctly different. First,
+an overloaded function must differ in type and/or number of parameters, while a redefined
+virtual function must have precisely the same type and number of parameters and the
+same return type. (In fact, if you change either the number or type of parameters when
+redefining a virtual function, it simply becomes an overloaded function and its virtual
+nature is lost.) Further, virtual functions must be class members. This is not the case for
+overloaded functions. Also, while destructor functions can be virtual, constructors cannot.
+Because of the difference between overloaded functions and redefined virtual functions,
+the term overriding is used to describe virtual function redefinition.
+As you can see, the example program creates three classes. The base class defines the
+virtual function func(). This class is then inherited by both derived1 and derived2.
+Each of these classes overrides func() with its individual implementation. Inside main(),
+the base class pointer p is declared along with objects of type base, derived1, and
+derived2. First, p is assigned the address ob ob (an object of type base). When func()
+is called by using [, it is the version in base that is used. Next, p is assigned the address
+of d ob1 and func() is called again. Because it is the type of the object pointed to that
+determines which virtual function will be called, this time it is the overridden version
+in derived1 that is executed. Finally, p is assigned the address of d ob2 and func()
+is called again, This time, it is the version of func() defined inside derived2 that is
+executed.
+The key points to understand from the preceding example are that the type of the object being pointed to determines which version of an overridden virtual function will be
+executed when accessed via a base class pointer, and that this decision is made at run
+time.
+
 
 */
-
 
 
 
