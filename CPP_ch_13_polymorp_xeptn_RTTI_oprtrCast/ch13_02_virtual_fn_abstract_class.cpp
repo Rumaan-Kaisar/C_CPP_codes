@@ -86,8 +86,11 @@
 ----  rev[20-Apr-2026]  ----
 
 
-The redefinition of a virtual function inside a derived class might, at first, seem somewhat
-similar to function overloading. However, the two processes are distinctly different. First,
+The redefinition of a VF inside a derived class might, at first, seem somewhat
+similar to function overloading.
+
+
+ However, the two processes are distinctly different. First,
 an overloaded function must differ in type and/or number of parameters, while a redefined
 virtual function must have precisely the same type and number of parameters and the
 same return type. (In fact, if you change either the number or type of parameters when
@@ -167,7 +170,6 @@ int main(){
 
 
 /*  
-
     --------  Constructor & Destructor Rules  --------
 
     Constructors "cannot" be virtual.
@@ -214,8 +216,33 @@ return 0; }
 Note
 
 
-[1] Redefinition of a VF inside a derived class and function overloading are different process (although they look similar). 
-   An overloaded function must differ in type and/or number of parameters, while a redefined VF must have precisely the same type and number of parameters and the same return type. (changing either the number or type of parameters of redefined VF destroys its virtual nature and makes it an "overloaded function") 
+
+----------------   overriding vs overloading    ----------------
+
+"Redefinition of a VF" inside a derived class and "function overloading" are different process 
+(although they look similar). 
+
+overriding: Redefining a virtual function is called overriding, not overloading.
+
+Rules:
+Overloading: Functions must differ in parameter type, number, or both.
+Overriding: The derived function must exactly match the base function's parameter types, count, and return type.
+• Parameter Changes Break Virtual Behavior: If you alter the parameters when redefining a virtual function, it becomes a regular overload and loses its virtual (polymorphic) behavior.
+• Class Membership: Virtual functions must be class members. Overloaded functions can be standalone or class members.
+• Constructors vs. Destructors: Destructors can be virtual; constructors cannot.
+• Key Takeaway: Use the term overriding specifically for virtual function redefinition to avoid confusion with function overloading.
+
+
+
+
+
+   An overloaded function must differ in type and/or number of parameters, while 
+
+A redefined VF must have precisely the same type and number of parameters and the same return type.
+
+ (changing either the number or type of parameters of redefined VF destroys its virtual nature and makes it an "overloaded function")
+
+
    Virtual functions must be class members. This is not the case for overloaded functions. 
    Destructor functions can be virtual, constructors cannot.
    Because of the difference between overloaded functions and redefined VF, the term "overriding" is used to describe VF redefinition.
