@@ -82,73 +82,83 @@ class derived1 : public base {
         }
 };
 
-
-
 class derived2 : public base {
-public : derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
-void func(){cout << " Using derived2 's version of func (): ";
-	      cout << i+i << '\n'; }
-				};
-int main(){	base *p;
-		base ob (10) ;
-		derived1 d_ob1 (10) ;
-		derived2 d_ob2 (10) ;
-	p = &ob; 	p -> func();  // use base 's func()
-	p = &d_ob1 ; 	p -> func();  // use derived1's func()
-	p = &d_ob2 ; 	p -> func();  // use derived2 's func()
-return 0; }	This program displays the following output:
+    public:
+        derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout << " Using derived2 's version of func(): ";
+            std::cout << i+i << '\n';
+        }
+};
+
+
+int main(){ 
+    base *p;
+        base ob (10) ;
+        derived1 d_ob1 (10) ;
+        derived2 d_ob2 (10) ;
+    p = &ob;    p -> func();  // use base 's func()
+    p = &d_ob1 ;    p -> func();  // use derived1's func()
+    p = &d_ob2 ;    p -> func();  // use derived2 's func()
+return 0; 
+} 
+
+
+This program displays the following output:
 
 Using base version of func( ): 10
 Using derived1's version of func( ): 100
 Using derived2's version of func( ): 20
 
-	Above program creates three classes. 
-	The base class defines the virtual function func(). 
-	"base" is then inherited by both derived1 and derived2. Each of these classes overrides func() with its individual implementation. 
-	Inside main(), the base pointer p is declared along with objects of type base, derived1, and derived2. 
-i.	First, p is assigned the address of ob (base type object). When func() is called by using p, the base version of func() is used. 
-ii.	Next, p is assigned the address of d_ob1. In this time derived1 version (the overridden version) of func() is executed when func() is called using p. (the type of the object pointed to determines which VF will be called)
-iii.	Finally, p is assigned the address of d_ob2 and func() is called again by using p. This time, it is the overridden version of func() defined inside derived2 is executed.
-	Virtual functions are hierarchical in order of inheritance. Further, when a derived class does not override a virtual function, the function defined within its base class is used. For example consider the previous example with the modified "derived2" 
+
+
+
+
+/*  
+   Virtual functions are hierarchical in order of inheritance. 
+Further, when a derived class does not override a virtual function, the function defined within its base class is used. 
+For example consider the previous example with the modified "derived2" 
 class derived2 : public base
 { public :
-	derived2 (int x) : base(x){}
-	// derived2 does not override func( )
-};	int main() {. . . . .
-	p = &d_ob2 ;
-	p -> func(); 
-	// use base's func( )
+    derived2 (int x) : base(x){}
+    // derived2 does not override func( )
+};  int main() {. . . . .
+    p = &d_ob2 ;
+    p -> func(); 
+    // use base's func( )
 return 0;
-}	This program displays the following output:
+}   This program displays the following output:
 
 Using base version of func( ): 10
 Using derived1's version of func( ): 100
 Using base version of func( ): 10
 
-	In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
-	A VF can respond to random events that occur at run time. Consider Example 1, following modified main() selects between d_ob1 and d_ob2 based upon the value returned by the standard random number generator rand(). 
-	Remember that the version of func() executed is resolved at run time. (Which is impossible at compile time.)
+   In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
+   A VF can respond to random events that occur at run time. Consider Example 1, following modified main() selects between d_ob1 and d_ob2 based upon the value returned by the standard random number generator rand(). 
+   Remember that the version of func() executed is resolved at run time. (Which is impossible at compile time.)
 
-int main(){	base *p;
+int main(){ base *p;
 derived1 d_ob1 (10);
 derived2 d_ob2 (10);
 int i,j;
 
-for(i=0; i<10; i++){	 j = rand();
+for(i=0; i<10; i++){     j = rand();
 
-   if((j%2) ) p = &d_ob1 ; 	// if odd use d_ob1
-   else p = &d_ob2 ; 		// if even use d_ob2
+   if((j%2) ) p = &d_ob1 ;  // if odd use d_ob1
+   else p = &d_ob2 ;        // if even use d_ob2
 
-p -> func(); 	}		// call appropriate function
+p -> func();    }       // call appropriate function
 return 0; }
 
 
 Note
-[1]	Redefinition of a VF inside a derived class and function overloading are different process (although they look similar). 
-	An overloaded function must differ in type and/or number of parameters, while a redefined VF must have precisely the same type and number of parameters and the same return type. (changing either the number or type of parameters of redefined VF destroys its virtual nature and makes it an "overloaded function") 
-	Virtual functions must be class members. This is not the case for overloaded functions. 
-	Destructor functions can be virtual, constructors cannot.
-	Because of the difference between overloaded functions and redefined VF, the term "overriding" is used to describe VF redefinition.
+
+
+[1] Redefinition of a VF inside a derived class and function overloading are different process (although they look similar). 
+   An overloaded function must differ in type and/or number of parameters, while a redefined VF must have precisely the same type and number of parameters and the same return type. (changing either the number or type of parameters of redefined VF destroys its virtual nature and makes it an "overloaded function") 
+   Virtual functions must be class members. This is not the case for overloaded functions. 
+   Destructor functions can be virtual, constructors cannot.
+   Because of the difference between overloaded functions and redefined VF, the term "overriding" is used to describe VF redefinition.
 
 
 
@@ -159,67 +169,67 @@ Note
 
 13.3 Abstract class and Pure Virtual function (PVF)
 Sometimes when a VF is declared in the base class there is no meaningful operation for it to perform.  Because often a base simply supplies a core set of member functions and variables to which the derived class supplies the remainder.  In this case we use pure virtual functions (PVF).
-	A PVF has no definition relative to the base class. Only the function's prototype is included. To make a PVF, use this general form:
+   A PVF has no definition relative to the base class. Only the function's prototype is included. To make a PVF, use this general form:
 virtual type func_name(parameter_list =0;
-	The key part of this declaration is the setting of the function equal to 0. This tells the compiler that no body exists for this function relative to the base class. 
-	When a virtual function is made pure, it forces any derived class to override it. If a derived class does not, a compile-time error results. 
-	Abstract class: When a class contains at least one PVF, it is referred to as an abstract class. It is an incomplete type, and no objects of that class can be created.  Thus, abstract classes exist only to be inherited. They are neither intended nor able to stand alone. 
-	You can still create a pointer to an abstract class, since it is through the use of base class pointers that run-time polymorphism is achieved. 
-	It is also permissible to have a reference to an abstract class.
-	When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
-	Example 1: This program creates a base called area that holds two dimensions of a figure. It also declares a VF called getarea() that, when overridden by derived classes, returns the area of the type of figure defined by the derived. 
+   The key part of this declaration is the setting of the function equal to 0. This tells the compiler that no body exists for this function relative to the base class. 
+   When a virtual function is made pure, it forces any derived class to override it. If a derived class does not, a compile-time error results. 
+   Abstract class: When a class contains at least one PVF, it is referred to as an abstract class. It is an incomplete type, and no objects of that class can be created.  Thus, abstract classes exist only to be inherited. They are neither intended nor able to stand alone. 
+   You can still create a pointer to an abstract class, since it is through the use of base class pointers that run-time polymorphism is achieved. 
+   It is also permissible to have a reference to an abstract class.
+   When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
+   Example 1: This program creates a base called area that holds two dimensions of a figure. It also declares a VF called getarea() that, when overridden by derived classes, returns the area of the type of figure defined by the derived. 
 
-	class area{ 	double dim1 , dim2 ; 	// dimensions of figure
-		public : 	void setarea(double d1, double d2){ dim1 = d1; dim2 = d2;}
-		void getdim(double &d1 , double &d2) { d1 = dim1 ; d2 = dim2 ; }
-			virtual double getarea(){ 	cout << "You must override this function \n";
-							return 0.0; }
-		};
+    class area{     double dim1 , dim2 ;    // dimensions of figure
+        public :    void setarea(double d1, double d2){ dim1 = d1; dim2 = d2;}
+        void getdim(double &d1 , double &d2) { d1 = dim1 ; d2 = dim2 ; }
+            virtual double getarea(){   cout << "You must override this function \n";
+                            return 0.0; }
+        };
 class rectangle : public area {
-	public :
-		double getarea(){double d1, d2;
-				    getdim(d1, d2);
-				    return d1*d2;  }
-				};	class triangle : public area {
-	public :
-		double getarea() { double d1, d2;
-				     getdim(d1, d2);
-				  return 0.5*d1*d2;}
-				};
-int main(){ 	area *p;
-		rectangle r;
-		triangle t;
-			r.setarea(3.3, 4.5) ;
-			t.setarea(4.0, 5.0) ;
-			p = &r; cout << " Rectangle has area : " << p-> getarea() << '\n';
-			p = &t; cout << " Triangle has area : " << p-> getarea() << '\n';
-		return 0; }
-	In this case, the declaration of getarea() inside the base determines the nature of the interface. The actual implementation is left to the classes that inherit it. In this example, the area of a triangle and a rectangle are computed.
-	Here the definition of getarea() inside area is just a placeholder and performs no real function. Because area is not linked to any specific type of figure, there is no meaningful definition that can be given to getarea() inside area.  
-	getarea() must be overridden by a derived class in order to be useful. 
+    public :
+        double getarea(){double d1, d2;
+                    getdim(d1, d2);
+                    return d1*d2;  }
+                };  class triangle : public area {
+    public :
+        double getarea() { double d1, d2;
+                     getdim(d1, d2);
+                  return 0.5*d1*d2;}
+                };
+int main(){     area *p;
+        rectangle r;
+        triangle t;
+            r.setarea(3.3, 4.5) ;
+            t.setarea(4.0, 5.0) ;
+            p = &r; cout << " Rectangle has area : " << p-> getarea() << '\n';
+            p = &t; cout << " Triangle has area : " << p-> getarea() << '\n';
+        return 0; }
+   In this case, the declaration of getarea() inside the base determines the nature of the interface. The actual implementation is left to the classes that inherit it. In this example, the area of a triangle and a rectangle are computed.
+   Here the definition of getarea() inside area is just a placeholder and performs no real function. Because area is not linked to any specific type of figure, there is no meaningful definition that can be given to getarea() inside area.  
+   getarea() must be overridden by a derived class in order to be useful. 
 
 class area{ . . . . . . same as previous . . . . .
-virtual double getarea() = 0; 	// pure virtual function 	};
-	Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
+virtual double getarea() = 0;   // pure virtual function    };
+   Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
 class base {
 public : virtual void func(){ 
-cout << " Base version of func ( )\n"; }	};	class derived1 : public base {
+cout << " Base version of func ( )\n"; }    };  class derived1 : public base {
 public : void func(){ 
 cout <<"derived1's version of func()\n"; }
- };	class derived2 : public derived1{ 	// derived2 inherits derived1
+ }; class derived2 : public derived1{   // derived2 inherits derived1
 public : void func(){ 
 cout << "derived2's version of func()\n"; } };
-int main() { 	base *p;
-		base ob;
-		derived1 d_ob1 ;
-		derived2 d_ob2 ;
-			p = &ob; 	p -> func(); 		// use base's func()
-			p = &d_ob1 ; 	p -> func(); 		// use derived1's func()
-			p = &d_ob2 ; 	p -> func(); 		// use derived2's func()
-		return 0; }
-	The VF func() is first inherited by derived1, which overrides it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again overridden.
-	Since VFs are hierarchical, if derived2 did not override func(), when d_ob2 was accessed, derived1's func() would have been used.
-	If neither derived1 nor derived2 had overridden func(), base's func( ) would have been used.
+int main() {    base *p;
+        base ob;
+        derived1 d_ob1 ;
+        derived2 d_ob2 ;
+            p = &ob;    p -> func();        // use base's func()
+            p = &d_ob1 ;    p -> func();        // use derived1's func()
+            p = &d_ob2 ;    p -> func();        // use derived2's func()
+        return 0; }
+   The VF func() is first inherited by derived1, which overrides it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again overridden.
+   Since VFs are hierarchical, if derived2 did not override func(), when d_ob2 was accessed, derived1's func() would have been used.
+   If neither derived1 nor derived2 had overridden func(), base's func( ) would have been used.
 
 
 
