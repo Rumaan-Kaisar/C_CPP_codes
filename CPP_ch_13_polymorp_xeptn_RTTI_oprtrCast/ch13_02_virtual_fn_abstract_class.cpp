@@ -619,12 +619,18 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 🔹 Run-Time Polymorphism
 
-Here’s a clear, point-by-point breakdown with moderate detail:
-• Base Pointer, Derived Object: A base class pointer can reference an object of a derived class. While the pointer’s declared type is the base class, the actual object in memory belongs to the derived type.
-• Virtual Function Call Behavior: When you invoke a virtual function through that base pointer, the program doesn’t automatically use the base class’s implementation. Instead, it checks which specific derived object the pointer is currently referencing.
-• Runtime Resolution (Dynamic Dispatch): The exact function version to execute is determined at runtime, not at compile time. This "late binding" mechanism checks the object’s true type the moment the call is made, allowing the correct overridden version to run.
-• Foundation of Runtime Polymorphism: This runtime selection process is how polymorphism is achieved. It enables a single, consistent interface (the base pointer) to trigger different behaviors depending on the actual object it points to.
-• Support for Multiple Derived Classes: If several classes inherit from the same base and each overrides the virtual function, the same base pointer can point to any of them. Each call will automatically execute the version that matches whichever derived object is currently being referenced.
+
+
+
+Runtime Resolution (Dynamic Dispatch):  [rev ----]
+    The exact function version to execute is determined at "runtime", not at "compile time". 
+    This "late binding" mechanism checks the object's true type the moment the call is made, 
+        allowing the "correct overridden version" to run.
+
+    This runtime selection process is how polymorphism is achieved. 
+    It enables a single, consistent interface (the base pointer) t
+        o trigger different behaviors depending on the actual object it points to.
+
 
 
 
@@ -636,11 +642,6 @@ Calling a virtual function through a base pointer executes the version defined b
 
 
 
-
-Achieved when a VF is called through a base class pointer.
-The actual object type pointed to determines which function version runs.
-Function resolution happens at run-time, not compile-time.
-Allows dynamic behavior: the same pointer can trigger different derived methods based on runtime conditions (e.g., user input, random selection).
 
 
 🔹 Inheritance & Hierarchy Behavior
@@ -678,9 +679,7 @@ None required
 
 
 
-🔹 Constructor & Destructor Rules
-❌ Constructors cannot be virtual.
-✅ Destructors can (and often should) be virtual to ensure proper cleanup in polymorphic hierarchies.
+
 
 
 
