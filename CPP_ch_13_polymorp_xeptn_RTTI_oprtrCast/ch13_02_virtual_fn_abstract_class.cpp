@@ -96,20 +96,10 @@ nature is lost.) Further, virtual functions must be class members. This is not t
 overloaded functions. Also, while destructor functions can be virtual, constructors cannot.
 Because of the difference between overloaded functions and redefined virtual functions,
 the term overriding is used to describe virtual function redefinition.
-As you can see, the example program creates three classes. The base class defines the
-virtual function func(). This class is then inherited by both derived1 and derived2.
-Each of these classes overrides func() with its individual implementation. Inside main(),
-the base class pointer p is declared along with objects of type base, derived1, and
-derived2. First, p is assigned the address ob ob (an object of type base). When func()
-is called by using [, it is the version in base that is used. Next, p is assigned the address
-of d ob1 and func() is called again. Because it is the type of the object pointed to that
-determines which virtual function will be called, this time it is the overridden version
-in derived1 that is executed. Finally, p is assigned the address of d ob2 and func()
-is called again, This time, it is the version of func() defined inside derived2 that is
-executed.
-The key points to understand from the preceding example are that the type of the object being pointed to determines which version of an overridden virtual function will be
-executed when accessed via a base class pointer, and that this decision is made at run
-time.
+
+
+
+
 
 
 */
