@@ -226,9 +226,17 @@ overriding: Redefining a virtual function is called overriding, not overloading.
 
 Rules:
 Overloading: Functions must differ in parameter type, number, or both.
-Overriding: The derived function must exactly match the base function's parameter types, count, and return type.
-• Parameter Changes Break Virtual Behavior: If you alter the parameters when redefining a virtual function, it becomes a regular overload and loses its virtual (polymorphic) behavior.
-• Class Membership: Virtual functions must be class members. Overloaded functions can be standalone or class members.
+Overriding: The redefined VF must exactly match the base function's parameter types, count, and return type.
+
+
+Parameter Changes Break Virtual Behavior:
+
+
+
+Class Membership: 
+    Virtual functions must be class members. 
+    Overloaded functions can be standalone or class members.
+
 • Constructors vs. Destructors: Destructors can be virtual; constructors cannot.
 • Key Takeaway: Use the term overriding specifically for virtual function redefinition to avoid confusion with function overloading.
 
@@ -236,11 +244,8 @@ Overriding: The derived function must exactly match the base function's paramete
 
 
 
-   An overloaded function must differ in type and/or number of parameters, while 
-
-A redefined VF must have precisely the same type and number of parameters and the same return type.
-
- (changing either the number or type of parameters of redefined VF destroys its virtual nature and makes it an "overloaded function")
+Changing either the number or type of parameters of redefined VF
+    destroys its virtual (polymorphic) nature and makes it an "overloaded function"
 
 
    Virtual functions must be class members. This is not the case for overloaded functions. 
