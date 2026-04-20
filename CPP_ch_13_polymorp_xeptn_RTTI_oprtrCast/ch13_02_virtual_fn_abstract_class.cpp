@@ -101,6 +101,7 @@ time.
 */
 
 
+#include <iostream>
 
 class base{
     public:
@@ -126,29 +127,37 @@ class derived2 : public base {
         derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
         void func(){
             std::cout << " Using derived2 's version of func(): ";
-            std::cout << i+i << '\n';
+            std::cout << i + i << '\n';
         }
 };
 
 
 int main(){ 
     base *p;
-        base ob (10) ;
-        derived1 d_ob1 (10) ;
-        derived2 d_ob2 (10) ;
-    p = &ob;    p -> func();  // use base 's func()
-    p = &d_ob1 ;    p -> func();  // use derived1's func()
-    p = &d_ob2 ;    p -> func();  // use derived2 's func()
-return 0; 
+
+    base ob(10);
+    derived1 d_ob1(10);
+    derived2 d_ob2(10);
+
+    p = &ob;
+    p -> func();  // use base's func()
+
+    p = &d_ob1;
+    p -> func();  // use derived1's func()
+
+    p = &d_ob2;
+    p -> func();  // use derived2 's func()
+
+    return 0; 
 } 
 
+/* 
+    It displays the following output:
 
-This program displays the following output:
-
-Using base version of func( ): 10
-Using derived1's version of func( ): 100
-Using derived2's version of func( ): 20
-
+        Using base version of func(): 10
+        Using derived1's version of func(): 100
+        Using derived2's version of func(): 20
+*/
 
 
 
