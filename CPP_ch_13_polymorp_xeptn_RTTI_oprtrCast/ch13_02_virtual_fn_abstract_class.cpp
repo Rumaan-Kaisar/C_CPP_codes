@@ -60,17 +60,31 @@ iii.    Finally, p is assigned the address of d_ob2 and func() is called again b
 
 */
 
+
+
+
 class base{
-			public: int i;
-			 base(int x) { i = x; }
-			 virtual void func() { cout<< " Using base version of func(): ";
-			 cout << i << '\n'; }
-			};
+    public:
+        int i;
+        base(int x){ i = x; }
+        virtual void func(){ 
+            std::cout<< " Using base version of func(): ";
+            std::cout << i << '\n'; 
+        }
+};
+
 class derived1 : public base {
-public : derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
-void func(){cout<< " Using derived1's version of func (): ";
-	      cout << i*i << '\n'; }
-				};	class derived2 : public base {
+    public:
+        derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout<< " Using derived1's version of func(): ";
+            std::cout << i*i << '\n'; 
+        }
+};
+
+
+
+class derived2 : public base {
 public : derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
 void func(){cout << " Using derived2 's version of func (): ";
 	      cout << i+i << '\n'; }
