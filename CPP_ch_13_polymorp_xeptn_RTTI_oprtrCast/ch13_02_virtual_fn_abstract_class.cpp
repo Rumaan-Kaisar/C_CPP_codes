@@ -434,21 +434,13 @@ outhex and outoct that inherit num. Have the derived classs override shownum() s
 that it displays the value in hexadecimal and octal, respectively.
 
 
-2. Write a program that creates a base class called dist that stores the distance between two
-points in a double variable. In dist, create a virtual function called trav time() that
-outputs the time it takes to travel that distance, assuming that the distance is in miles and
-the speed is 60 miles per hour. In a derived class called metric, override trav time() so
-that it outputs the travel time assuming that the distance is in kilometers and the speed
-is 100 kilometers per hour.
-
 1. # include <iostream >
 using namespace std ;
 class num
 {
 public :
 int i;
-547TEACH YOURSELF
-C++
+
 num ( int x) { i = x; }
 virtual void shownum () { cout << i << ’\n’; }
 };
@@ -472,6 +464,20 @@ o. shownum ();
 h. shownum ();
 return 0;
 }
+
+
+
+
+
+2. Write a program that creates a base class called dist that stores the distance between two
+points in a double variable. In dist, create a virtual function called trav time() that
+outputs the time it takes to travel that distance, assuming that the distance is in miles and
+the speed is 60 miles per hour. In a derived class called metric, override trav time() so
+that it outputs the travel time assuming that the distance is in kilometers and the speed
+is 100 kilometers per hour.
+
+
+
 2. # include <iostream >
 using namespace std ;
 class dist
