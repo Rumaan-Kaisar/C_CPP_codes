@@ -428,10 +428,13 @@ must be overridden by a derived class in order to be useful. In the next section
 see a way to enforce this */
 
 
-1. Write a program that creates a base class called num. Have this class hold an integer
+
+
+
+/* Example 1: Write a program that creates a base class called num. Have this class hold an integer
 value and contain a virtual function called shownum(). Create two derived classes called
 outhex and outoct that inherit num. Have the derived classs override shownum() so
-that it displays the value in hexadecimal and octal, respectively.
+that it displays the value in hexadecimal and octal, respectively. */
 
 
 1. # include <iostream >
@@ -469,12 +472,12 @@ return 0;
 
 
 
-2. Write a program that creates a base class called dist that stores the distance between two
+/* Example 2: Write a program that creates a base class called dist that stores the distance between two
 points in a double variable. In dist, create a virtual function called trav time() that
 outputs the time it takes to travel that distance, assuming that the distance is in miles and
 the speed is 60 miles per hour. In a derived class called metric, override trav time() so
 that it outputs the travel time assuming that the distance is in kilometers and the speed
-is 100 kilometers per hour.
+is 100 kilometers per hour. */
 
 
 
