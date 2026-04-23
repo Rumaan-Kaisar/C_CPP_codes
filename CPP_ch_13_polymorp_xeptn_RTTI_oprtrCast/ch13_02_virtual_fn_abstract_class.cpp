@@ -223,33 +223,17 @@ Note
 
 
 
+*/
 
 
 
 
 
 
-1. Here is a short example that uses a virtual function:
-// A simple example using a virtual function .
 
-
-
-
-
-It displays the following output:
-Using base version of func(): 10
-
-Using derived1’s version of func(): 100
-Using derived2’s version of func(): 2
-
-
-
-
-
-
-2. Virtual functions are hierarchical in order of inheritance. Further, when a derived class
+/* Example 2: Virtual functions are hierarchical in order of inheritance. Further, when a derived class
 does not override a virtual function, the function defined within its base class is used. For
-example, here is a slightly different version of the preceding program:
+example, here is a slightly different version of the preceding program: */
 // Virtual functions are hierarchical .
 # include <iostream >
 using namespace std ;
@@ -267,8 +251,7 @@ cout << i << ’\n’;
 class derived1 : public base
 {
 public :
-266VIRTUAL FUNCTIONS
-10.2. INTRODUCTION TO VIRTUAL FUNCTIONS
+
 derived1 ( int x) : base (x) {}
 void func ()
 {
@@ -305,12 +288,15 @@ is called, base’s version is used because it is next up in the class hierarchy
 when a derived class does not override a virtual function, the base class’s version is use
 
 
-3. The next example shows how a virtual function can respond to random events that occur at
+
+/*
+
+Example 3: The next example shows how a virtual function can respond to random events that occur at
 run time. This program selects between d ob1 and d ob2 based upon the value returned
 by the standard random number generator rand(). Keep in mind that the version of
 func() executed is resolved at run time. (Indeed, it is impossible to resolve the calls to
 func() at compile time.)
-/*
+
 This example illustrates how a virtual function
 can be used to respond to random events occurring
 267TEACH YOURSELF
@@ -361,8 +347,7 @@ for (i =0; i <10; i ++)
 {
 j = rand ();
 if ((j %2) )
-268VIRTUAL FUNCTIONS
-10.2. INTRODUCTION TO VIRTUAL FUNCTIONS
+
 p = & d_ob1 ; // if odd use d_ob1
 else
 p = & d_ob2 ; // if even use d_ob2
@@ -370,13 +355,15 @@ p-> func (); // call appropriate function
 }
 return 0;
 }
-4. Here is a more practical example of how a virtual function can be used. This program
+
+
+/* Example 4: Here is a more practical example of how a virtual function can be used. This program
 creates a generic base class called area that holds two dimensions of a figure. It also
 declares a virtual function called getarea() that, when overridden by derived classes,
 returns the area of the type of figure defined by the derived class. In this case, the
 declaration of getarea() inside the base class determines the nature of the interface. The
 actual implementation is left to the classes that inherit it. In this example, the area of a
-triangle and a rectangle are computed.
+triangle and a rectangle are computed. */
 // Use virtual function to define interface .
 # include <iostream >
 using namespace std ;
@@ -410,8 +397,7 @@ getdim (d1 , d2);
 return d1 * d2;
 }
 };
-269TEACH YOURSELF
-C++
+
 class triangle : public area
 {
 public :
@@ -435,11 +421,11 @@ p = &t;
 cout << " Triangle has area : " << p-> getarea () << ’\n’;
 return 0;
 }
-Notice that the definition of getarea() inside area is just a placeholder and performs
+/* Notice that the definition of getarea() inside area is just a placeholder and performs
 no real function. Because area is not linked to any specific type of figure, there is no
 meaningful definition that can be given to getarea() inside area. In fact, getarea()
 must be overridden by a derived class in order to be useful. In the next section, you will
-see a way to enforce this
+see a way to enforce this */
 
 
 1. Write a program that creates a base class called num. Have this class hold an integer
@@ -506,8 +492,7 @@ metric ( double f) : dist (f) {}
 void trav_time ()
 {
 cout << " Travel time at 100 kph : ";
-548ANSWERS
-10.3 EXERCISES
+
 cout << d / 100 << ’\n’;
 }
 };
@@ -543,7 +528,7 @@ return 0;
 
 
 
-
+/* 
 
 13.3 Abstract class and Pure Virtual function (PVF)
 Sometimes when a VF is declared in the base class there is no meaningful operation for it to perform.  Because often a base simply supplies a core set of member functions and variables to which the derived class supplies the remainder.  In this case we use pure virtual functions (PVF).
@@ -787,5 +772,4 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 Let me know if you'd like this converted into flashcards, a diagram, or a condensed cheat sheet!
 
 
-
-*/  
+ */
