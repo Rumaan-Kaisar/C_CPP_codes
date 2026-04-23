@@ -235,8 +235,9 @@ Note
 does not override a virtual function, the function defined within its base class is used. For
 example, here is a slightly different version of the preceding program: */
 // Virtual functions are hierarchical .
-# include <iostream >
-using namespace std ;
+
+#include <iostream>
+
 class base
 {
 public :
@@ -265,6 +266,8 @@ public :
 derived2 ( int x) : base (x) {}
 // derived2 does not override func ()
 };
+
+
 int main ()
 {
 base *p;
@@ -279,13 +282,15 @@ p = & d_ob2 ;
 p-> func (); // use base ’s func ()
 return 0;
 }
-This program displays the following output:
+
+
+/* This program displays the following output:
 Using base version of func(): 10
 Using derived1’s version of func(): 100
 Using base version of func(): 10
 In this version, derived2 does not override func(). When p is assigned d ob2 and func()
 is called, base’s version is used because it is next up in the class hierarchy. In general,
-when a derived class does not override a virtual function, the base class’s version is use
+when a derived class does not override a virtual function, the base class’s version is use */
 
 
 
@@ -303,9 +308,10 @@ can be used to respond to random events occurring
 C++
 at run time .
 */
-# include <iostream >
-# include <cstdlib >
-using namespace std ;
+
+#include <iostream>
+#include <cstdlib>
+
 class base
 {
 public :
@@ -364,9 +370,12 @@ returns the area of the type of figure defined by the derived class. In this cas
 declaration of getarea() inside the base class determines the nature of the interface. The
 actual implementation is left to the classes that inherit it. In this example, the area of a
 triangle and a rectangle are computed. */
+
+
 // Use virtual function to define interface .
-# include <iostream >
-using namespace std ;
+
+#include <iostream>
+
 class area
 {
 double dim1 , dim2 ; // dimensions of figure
@@ -436,9 +445,8 @@ value and contain a virtual function called shownum(). Create two derived classe
 outhex and outoct that inherit num. Have the derived classs override shownum() so
 that it displays the value in hexadecimal and octal, respectively. */
 
+#include <iostream>
 
-1. # include <iostream >
-using namespace std ;
 class num
 {
 public :
@@ -479,10 +487,8 @@ the speed is 60 miles per hour. In a derived class called metric, override trav 
 that it outputs the travel time assuming that the distance is in kilometers and the speed
 is 100 kilometers per hour. */
 
+#include <iostream>
 
-
-2. # include <iostream >
-using namespace std ;
 class dist
 {
 public :
