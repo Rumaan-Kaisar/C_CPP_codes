@@ -183,19 +183,21 @@ int main(){
 
     --------   Inheritance & Hierarchy Behavior  --------
 
+    Virtual functions are hierarchical in "order of inheritance". 
+    Virtual nature is preserved through multiple inheritance levels.
+
+    when a derived class does not override a VF, 
+        the function defined within its base class (the nearest base) is used. 
+
 
 ----  rev[22-Apr-2026]  ----
 
 
-    Virtual functions are hierarchical in "order of inheritance". 
-when a derived class does not override a virtual function, the function defined within its base class is used. 
 
 
+Example: 
 
-
-Virtual nature is preserved through multiple inheritance levels.
-If a derived class does not override a VF, the nearest base class version is automatically used.
-Example logic: Base → Derived1 → Derived2
+    Base  ->  Derived1  ->  Derived2
 If only Derived1 overrides, Derived2 inherits that version.
 If neither overrides, Base version runs.
 
