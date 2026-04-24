@@ -197,31 +197,7 @@ int main(){
 
 
 
-----  rev[22-Apr-2026]  ----
-
-
-
-
-
-
-For example consider  
-
-class derived2 : public base
-{ public :
-    derived2 (int x) : base(x){}
-    // derived2 does not override func( )
-};  int main() {. . . . .
-    p = &d_ob2 ;
-    p -> func(); 
-    // use base's func( )
-return 0;
-}   This program displays the following output:
-
-Using base version of func( ): 10
-Using derived1's version of func( ): 100
-Using base version of func( ): 10
-
-
+----  rev[24-Apr-2026]  ----
 
 
    In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
@@ -292,14 +268,29 @@ class derived1 : public base {
         }
 };
 
-class derived2 : public base {
-    public:
-        derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
-        void func(){
-            std::cout << " Using derived2's version of func(): ";
-            std::cout << i + i << '\n';
-        }
+
+// VF is not overriden here, base version used autometically
+class derived2 : public base { 
+    public :
+        derived2(int x) : base(x){} // passing argument to base constructor
+        // derived2 does not override the VF func()
 };
+
+
+// rev [24-Apr-2026]
+
+  int main() {. . . . .
+    p = &d_ob2 ;
+    p -> func(); 
+    // use base's func( )
+return 0;
+}   This program displays the following output:
+
+Using base version of func( ): 10
+Using derived1's version of func( ): 100
+Using base version of func( ): 10
+
+
 
 
 int main(){ 
@@ -332,38 +323,6 @@ int main(){
 
 
 
-
-
-#include <iostream>
-
-class base
-{
-public :
-int i;
-base ( int x) { i = x; }
-virtual void func ()
-{
-cout << " Using base version of func (): ";
-cout << i << ’\n’;
-}
-};
-class derived1 : public base
-{
-public :
-
-derived1 ( int x) : base (x) {}
-void func ()
-{
-cout << " Using derived1 ’s version of func (): ";
-cout << i*i << ’\n’;
-}
-};
-class derived2 : public base
-{
-public :
-derived2 ( int x) : base (x) {}
-// derived2 does not override func ()
-};
 
 
 int main ()
