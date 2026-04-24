@@ -189,23 +189,22 @@ int main(){
     when a derived class does not override a VF, 
         the function defined within its base class (the nearest base) is used. 
 
+    Example: 
+            Base  ->  Derived1  ->  Derived2
+
+        If only Derived1 overrides, Derived2 inherits that version.
+        If neither overrides, Base version runs.
+
+
 
 ----  rev[22-Apr-2026]  ----
 
 
 
 
-Example: 
-
-    Base  ->  Derived1  ->  Derived2
-If only Derived1 overrides, Derived2 inherits that version.
-If neither overrides, Base version runs.
 
 
-
-
-
-For example consider the previous example with the modified "derived2" 
+For example consider  
 
 class derived2 : public base
 { public :
@@ -221,6 +220,9 @@ return 0;
 Using base version of func( ): 10
 Using derived1's version of func( ): 100
 Using base version of func( ): 10
+
+
+
 
    In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
 
@@ -256,10 +258,81 @@ Note
 
 
 
-/* Example 2: Virtual functions are hierarchical in order of inheritance. Further, when a derived class
-does not override a virtual function, the function defined within its base class is used. For
-example, here is a slightly different version of the preceding program: */
+/* Example 2: "VF are HIERARCHICAL" in order of inheritance. 
+
+                when a derived class does not override a virtual function, 
+                    the function defined within its base class is used.
+
+                Following is the reworked version of Example 1 with modified "derived2"
+*/
+
+
 // Virtual functions are hierarchical .
+
+
+
+#include <iostream>
+
+class base{
+    public:
+        int i;
+        base(int x){ i = x; }
+        virtual void func(){ 
+            std::cout<< " Using base version of func(): ";
+            std::cout << i << '\n'; 
+        }
+};
+
+class derived1 : public base {
+    public:
+        derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout<< " Using derived1's version of func(): ";
+            std::cout << i*i << '\n'; 
+        }
+};
+
+class derived2 : public base {
+    public:
+        derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout << " Using derived2's version of func(): ";
+            std::cout << i + i << '\n';
+        }
+};
+
+
+int main(){ 
+    base *p;
+
+    base ob(10);
+    derived1 d_ob1(10);
+    derived2 d_ob2(10);
+
+    p = &ob;
+    p -> func();  // use base's func()
+
+    p = &d_ob1;
+    p -> func();  // use derived1's func()
+
+    p = &d_ob2;
+    p -> func();  // use derived2 's func()
+
+    return 0; 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #include <iostream>
 
