@@ -158,7 +158,7 @@ int main(){
     "Redefinition of a VF" inside a derived class and "function overloading" are different process 
     (although they look similar). 
 
-    overriding: Redefining a virtual function is called overriding, not overloading.
+    overriding: Redefining a virtual function is called OVERRIDING, not overloading.
 
     parameter and return type Rules:
         Overloading: Functions must differ in parameter type, number, or both.
@@ -180,12 +180,31 @@ int main(){
         the term "overriding" is used to describe VF redefinition.
 
 
-----  rev[21-Apr-2026]  ----
+
+    --------   Inheritance & Hierarchy Behavior  --------
 
 
-   Virtual functions are hierarchical in order of inheritance. 
-Further, when a derived class does not override a virtual function, the function defined within its base class is used. 
+----  rev[22-Apr-2026]  ----
+
+
+    Virtual functions are hierarchical in "order of inheritance". 
+when a derived class does not override a virtual function, the function defined within its base class is used. 
+
+
+
+
+Virtual nature is preserved through multiple inheritance levels.
+If a derived class does not override a VF, the nearest base class version is automatically used.
+Example logic: Base → Derived1 → Derived2
+If only Derived1 overrides, Derived2 inherits that version.
+If neither overrides, Base version runs.
+
+
+
+
+
 For example consider the previous example with the modified "derived2" 
+
 class derived2 : public base
 { public :
     derived2 (int x) : base(x){}
@@ -202,7 +221,11 @@ Using derived1's version of func( ): 100
 Using base version of func( ): 10
 
    In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
+
+
    A VF can respond to random events that occur at run time. Consider Example 1, following modified main() selects between d_ob1 and d_ob2 based upon the value returned by the standard random number generator rand(). 
+
+
    Remember that the version of func() executed is resolved at run time. (Which is impossible at compile time.)
 
 int main(){ base *p;
@@ -626,43 +649,10 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 📘 13.2 Virtual Functions (VF)
 
 
-🔹 Run-Time Polymorphism
 
 
 
 
-
-
-
-🔹 Inheritance & Hierarchy Behavior
-Virtual nature is preserved through multiple inheritance levels.
-If a derived class does not override a VF, the nearest base class version is automatically used.
-Example logic: Base → Derived1 → Derived2
-If only Derived1 overrides, Derived2 inherits that version.
-If neither overrides, Base version runs.
-
-
-
-🔹 Virtual Functions vs. Function Overloading
-Feature
-Virtual Function (Overriding)
-Function Overloading
-
-Signature
-Must match exactly (same params & return type)
-Must differ in parameter type/count
-
-Scope
-Must be a class member
-Can be standalone or class member
-
-Resolution
-Run-time (dynamic binding)
-Compile-time (static binding)
-
-Keyword
-virtual in base
-None required
 
 
 ⚠️ Changing a VF's signature destroys its virtual nature and turns it into an overloaded function.
