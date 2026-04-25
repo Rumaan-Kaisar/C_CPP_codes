@@ -197,10 +197,17 @@ int main(){
 
 
 
-----  rev[24-Apr-2026]  ----
+----  rev[25-Apr-2026]  ----
 
 
-   In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. In general, when a derived class does not override a VF, the base class's version is used.
+In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. 
+
+
+
+
+ 
+
+
 
 
    A VF can respond to random events that occur at run time. Consider Example 1, following modified main() selects between d_ob1 and d_ob2 based upon the value returned by the standard random number generator rand(). 
@@ -242,11 +249,6 @@ Note
                 Following is the reworked version of Example 1 with modified "derived2"
 */
 
-
-// Virtual functions are hierarchical .
-
-
-
 #include <iostream>
 
 class base{
@@ -277,24 +279,6 @@ class derived2 : public base {
 };
 
 
-
-  int main() {. . . . .
-    p = &d_ob2 ;
-    p -> func(); 
-    // use base's func( )
-return 0;
-}   
-
-
-This program displays the following output:
-
-Using base version of func( ): 10
-Using derived1's version of func( ): 100
-Using base version of func( ): 10
-
-
-
-
 int main(){ 
     base *p;
 
@@ -315,16 +299,25 @@ int main(){
 } 
 
 
-// rev [25-Apr-2026]
+/* Above program displays the following output:
+
+        Using base version of func(): 10
+        Using derived1’s version of func(): 100
+        Using base version of func(): 10
 
 
-/* This program displays the following output:
-Using base version of func(): 10
-Using derived1’s version of func(): 100
-Using base version of func(): 10
-In this version, derived2 does not override func(). When p is assigned d ob2 and func()
-is called, base’s version is used because it is next up in the class hierarchy. In general,
-when a derived class does not override a virtual function, the base class’s version is use */
+    Here, derived2 does not override func(). 
+        When p points to d_ob2 and func() is called, 
+        the "base version" runs because it’s next in the hierarchy.
+
+    In general, when a derived class does not override a VF, 
+        the base class's version is used.   
+*/
+
+
+
+// ----  rev [25-Apr-2026]  ----
+
 
 
 
