@@ -277,14 +277,16 @@ class derived2 : public base {
 };
 
 
-// rev [24-Apr-2026]
 
   int main() {. . . . .
     p = &d_ob2 ;
     p -> func(); 
     // use base's func( )
 return 0;
-}   This program displays the following output:
+}   
+
+
+This program displays the following output:
 
 Using base version of func( ): 10
 Using derived1's version of func( ): 100
@@ -307,38 +309,13 @@ int main(){
     p -> func();  // use derived1's func()
 
     p = &d_ob2;
-    p -> func();  // use derived2 's func()
+    p -> func();  // Notice it use now base's func()
 
     return 0; 
 } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-int main ()
-{
-base *p;
-base ob (10) ;
-derived1 d_ob1 (10) ;
-derived2 d_ob2 (10) ;
-p = &ob;
-p-> func (); // use base ’s func ()
-p = & d_ob1 ;
-p-> func (); // use derived1 ’s func ()
-p = & d_ob2 ;
-p-> func (); // use base ’s func ()
-return 0;
-}
+// rev [25-Apr-2026]
 
 
 /* This program displays the following output:
