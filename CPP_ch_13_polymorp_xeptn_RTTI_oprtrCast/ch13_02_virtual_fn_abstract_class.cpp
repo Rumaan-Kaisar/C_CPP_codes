@@ -194,46 +194,7 @@ int main(){
 
         If only Derived1 overrides, Derived2 inherits that version.
         If neither overrides, Base version runs.
-
-
-
-----  rev[25-Apr-2026]  ----
-
-
-
-
- 
-
-
-
-
-   A VF can respond to random events that occur at run time. Consider Example 1, following modified main() selects between d_ob1 and d_ob2 based upon the value returned by the standard random number generator rand(). 
-
-
-   Remember that the version of func() executed is resolved at run time. (Which is impossible at compile time.)
-
-int main(){ base *p;
-derived1 d_ob1 (10);
-derived2 d_ob2 (10);
-int i,j;
-
-for(i=0; i<10; i++){     j = rand();
-
-   if((j%2) ) p = &d_ob1 ;  // if odd use d_ob1
-   else p = &d_ob2 ;        // if even use d_ob2
-
-p -> func();    }       // call appropriate function
-return 0; }
-
-
-Note
-
-
-
 */
-
-
-
 
 
 
@@ -313,24 +274,37 @@ int main(){
 
 
 
-// ----  rev [25-Apr-2026]  ----
+// ----  rev [26-Apr-2026]  ----
 
 
 
 
-/*
+/* Example 3: A VF can respond to "random events" that occur at run time. 
 
-Example 3: The next example shows how a virtual function can respond to random events that occur at
-run time. This program selects between d ob1 and d ob2 based upon the value returned
-by the standard random number generator rand(). Keep in mind that the version of
-func() executed is resolved at run time. (Indeed, it is impossible to resolve the calls to
-func() at compile time.)
+                Consider Example 1, following modified main() selects between d_ob1 and d_ob2 
+                    based upon the value returned by the standard random number generator rand(). 
 
-This example illustrates how a virtual function
-can be used to respond to random events occurring
-267TEACH YOURSELF
-C++
-at run time .
+                Remember that the version of func() executed is resolved at run time. 
+                    (Which is impossible at compile time.)
+
+
+                int main(){ 
+                    base *p;
+                    derived1 d_ob1 (10);
+                    derived2 d_ob2 (10);
+                    int i,j;
+
+                    for(i=0; i<10; i++){
+                        j = rand();
+
+                        if( (j%2) ) p = &d_ob1 ;    // if odd use d_ob1
+                        else p = &d_ob2 ;           // if even use d_ob2
+
+                        p -> func();    // call appropriate function
+                    }       
+
+                    return 0;
+                }
 */
 
 #include <iostream>
