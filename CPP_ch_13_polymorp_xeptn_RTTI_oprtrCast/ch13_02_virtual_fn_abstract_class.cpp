@@ -200,9 +200,6 @@ int main(){
 ----  rev[25-Apr-2026]  ----
 
 
-In this version, derived2 does not override func(). When p is assigned d_ob2 and func() is called, base's version is used because it is next up in the class hierarchy. 
-
-
 
 
  
