@@ -307,6 +307,39 @@ int main(){
                 }
 */
 
+
+#include <iostream>
+
+class base{
+    public:
+        int i;
+        base(int x){ i = x; }
+        virtual void func(){ 
+            std::cout<< " Using base version of func(): ";
+            std::cout << i << '\n'; 
+        }
+};
+
+class derived1 : public base {
+    public:
+        derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout<< " Using derived1's version of func(): ";
+            std::cout << i*i << '\n'; 
+        }
+};
+
+class derived2 : public base {
+    public:
+        derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        void func(){
+            std::cout << " Using derived2's version of func(): ";
+            std::cout << i + i << '\n';
+        }
+};
+
+
+
 #include <iostream>
 #include <cstdlib>
 
