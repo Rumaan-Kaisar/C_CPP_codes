@@ -318,7 +318,7 @@ base ( int x) { i = x; }
 virtual void func ()
 {
 std::cout << " Using base version of func (): ";
-std::cout << i << ’\n’;
+std::cout << i << '\n';
 }
 };
 class derived1 : public base
@@ -327,8 +327,8 @@ public :
 derived1 ( int x) : base (x) {}
 void func ()
 {
-std::cout << " Using derived1 ’s version of func (): ";
-std::cout << i*i << ’\n’;
+std::cout << " Using derived1's version of func (): ";
+std::cout << i*i << '\n';
 }
 };
 class derived2 : public base
@@ -338,7 +338,7 @@ derived2 ( int x) : base (x) {}
 void func ()
 {
 std::cout << " Using derived2 ’s version of func (): ";
-std::cout << i+i << ’\n’;
+std::cout << i+i << '\n';
 }
 };
 
@@ -455,10 +455,10 @@ int main() {
     t.setarea(4.0, 5.0);
 
 p = &r;
-std::cout << " Rectangle has area : " << p-> getarea () << ’\n’;
+std::cout << " Rectangle has area : " << p-> getarea () << '\n';
 p = &t;
 
-std::cout << " Triangle has area : " << p-> getarea () << ’\n’;
+std::cout << " Triangle has area : " << p-> getarea () << '\n';
 
 return 0;
 }
@@ -485,7 +485,7 @@ public :
 int i;
 
 num ( int x) { i = x; }
-virtual void shownum () { cout << i << ’\n’; }
+virtual void shownum () { cout << i << '\n'; }
 };
 
 
@@ -493,7 +493,7 @@ class outhex : public num
 {
 public :
 outhex ( int n) : num(n) {}
-void shownum () { cout << hex << i << ’\n’; }
+void shownum () { cout << hex << i << '\n'; }
 };
 
 
@@ -501,7 +501,7 @@ class outoct : public num
 {
 public :
 outoct ( int n) : num(n) {}
-void shownum () { cout << oct << i << ’\n’; }
+void shownum () { cout << oct << i << '\n'; }
 };
 
 
@@ -548,22 +548,22 @@ void trav_time ()
 {
 std::cout << " Travel time at 100 kph : ";
 
-std::cout << d / 100 << ’\n’;
+std::cout << d / 100 << '\n';
 }
 };
 
 
 int main() {
-dist *p, mph (88.0) ;
-metric kph (88) ;
+    dist *p, mph(88.0);
+    metric kph(88);
 
-p = & mph ;
-p-> trav_time ();
+    p = &mph;
+    p-> trav_time();
 
-p = & kph ;
-p-> trav_time ();
+    p = &kph;
+    p-> trav_time();
 
-return 0;
+    return 0;
 }
 
 
