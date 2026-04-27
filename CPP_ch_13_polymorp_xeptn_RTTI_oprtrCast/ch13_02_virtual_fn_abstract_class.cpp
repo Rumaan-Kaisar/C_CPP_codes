@@ -471,6 +471,8 @@ see a way to enforce this */
 
 
 
+
+
 /* Example 1: Write a program that creates a base class called num. Have this class hold an integer
 value and contain a virtual function called shownum(). Create two derived classes called
 outhex and outoct that inherit num. Have the derived classs override shownum() so
@@ -478,33 +480,39 @@ that it displays the value in hexadecimal and octal, respectively. */
 
 #include <iostream>
 
-class num
-{
+class num {
 public :
 int i;
 
 num ( int x) { i = x; }
 virtual void shownum () { cout << i << ’\n’; }
 };
+
+
 class outhex : public num
 {
 public :
 outhex ( int n) : num(n) {}
 void shownum () { cout << hex << i << ’\n’; }
 };
+
+
 class outoct : public num
 {
 public :
 outoct ( int n) : num(n) {}
 void shownum () { cout << oct << i << ’\n’; }
 };
-int main ()
-{
-outoct o (10) ;
-outhex h (20) ;
-o. shownum ();
-h. shownum ();
-return 0;
+
+
+int main() {
+    outoct o(10);
+    outhex h(20);
+
+    o.shownum();
+    h.shownum();
+
+    return 0;
 }
 
 
