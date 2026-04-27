@@ -90,6 +90,7 @@ class base{
     public:
         int i;
         base(int x){ i = x; }
+        // VF
         virtual void func(){ 
             std::cout<< " Using base version of func(): ";
             std::cout << i << '\n'; 
@@ -99,6 +100,7 @@ class base{
 class derived1 : public base {
     public:
         derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        // override VF
         void func(){
             std::cout<< " Using derived1's version of func(): ";
             std::cout << i*i << '\n'; 
@@ -108,6 +110,7 @@ class derived1 : public base {
 class derived2 : public base {
     public:
         derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        // override VF
         void func(){
             std::cout << " Using derived2's version of func(): ";
             std::cout << i + i << '\n';
@@ -213,6 +216,7 @@ class base{
     public:
         int i;
         base(int x){ i = x; }
+        // VF
         virtual void func(){ 
             std::cout<< " Using base version of func(): ";
             std::cout << i << '\n'; 
@@ -222,6 +226,7 @@ class base{
 class derived1 : public base {
     public:
         derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        // override VF
         void func(){
             std::cout<< " Using derived1's version of func(): ";
             std::cout << i*i << '\n'; 
@@ -309,11 +314,13 @@ int main(){
 
 
 #include <iostream>
+#include <cstdlib>
 
 class base{
     public:
         int i;
         base(int x){ i = x; }
+        // VF
         virtual void func(){ 
             std::cout<< " Using base version of func(): ";
             std::cout << i << '\n'; 
@@ -323,6 +330,7 @@ class base{
 class derived1 : public base {
     public:
         derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        // override VF
         void func(){
             std::cout<< " Using derived1's version of func(): ";
             std::cout << i*i << '\n'; 
@@ -332,6 +340,7 @@ class derived1 : public base {
 class derived2 : public base {
     public:
         derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        // override VF
         void func(){
             std::cout << " Using derived2's version of func(): ";
             std::cout << i + i << '\n';
@@ -340,8 +349,7 @@ class derived2 : public base {
 
 
 
-#include <iostream>
-#include <cstdlib>
+
 
 class base
 {
