@@ -529,27 +529,25 @@ is 100 kilometers per hour. */
 #include <iostream>
 
 class dist {
-public :
-double d;
-dist ( double f) { d = f; }
-virtual void trav_time ()
-{
-std::cout << " Travel time at 60 mph : ";
-std::cout << d / 60 << '\n';
-}
+    public:
+        double d;
+        dist(double f) { d = f; }
+        // VF
+        virtual void trav_time() {
+            std::cout << " Travel time at 60 mph : ";
+            std::cout << d / 60 << '\n';
+        }
 };
 
 
-class metric : public dist
-{
-public :
-metric ( double f) : dist (f) {}
-void trav_time ()
-{
-std::cout << " Travel time at 100 kph : ";
-
-std::cout << d / 100 << '\n';
-}
+class metric : public dist {
+    public:
+        metric(double f) : dist(f) {}   // passing argument to base constructor
+        // override VF
+        void trav_time() {
+            std::cout << " Travel time at 100 kph : ";
+            std::cout << d / 100 << '\n';
+        }
 };
 
 
