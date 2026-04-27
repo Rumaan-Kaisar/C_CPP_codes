@@ -317,8 +317,8 @@ int i;
 base ( int x) { i = x; }
 virtual void func ()
 {
-cout << " Using base version of func (): ";
-cout << i << ’\n’;
+std::cout << " Using base version of func (): ";
+std::cout << i << ’\n’;
 }
 };
 class derived1 : public base
@@ -327,8 +327,8 @@ public :
 derived1 ( int x) : base (x) {}
 void func ()
 {
-cout << " Using derived1 ’s version of func (): ";
-cout << i*i << ’\n’;
+std::cout << " Using derived1 ’s version of func (): ";
+std::cout << i*i << ’\n’;
 }
 };
 class derived2 : public base
@@ -337,8 +337,8 @@ public :
 derived2 ( int x) : base (x) {}
 void func ()
 {
-cout << " Using derived2 ’s version of func (): ";
-cout << i+i << ’\n’;
+std::cout << " Using derived2 ’s version of func (): ";
+std::cout << i+i << ’\n’;
 }
 };
 
@@ -414,7 +414,7 @@ d2 = dim2 ;
 }
 virtual double getarea ()
 {
-cout << " You must override this function \n";
+std::cout << " You must override this function \n";
 return 0.0;
 }
 };
@@ -455,10 +455,10 @@ int main() {
     t.setarea(4.0, 5.0);
 
 p = &r;
-cout << " Rectangle has area : " << p-> getarea () << ’\n’;
+std::cout << " Rectangle has area : " << p-> getarea () << ’\n’;
 p = &t;
 
-cout << " Triangle has area : " << p-> getarea () << ’\n’;
+std::cout << " Triangle has area : " << p-> getarea () << ’\n’;
 
 return 0;
 }
@@ -528,36 +528,41 @@ is 100 kilometers per hour. */
 
 #include <iostream>
 
-class dist
-{
+class dist {
 public :
 double d;
 dist ( double f) { d = f; }
 virtual void trav_time ()
 {
-cout << " Travel time at 60 mph : ";
-cout << d / 60 << ’\n’;
+std::cout << " Travel time at 60 mph : ";
+std::cout << d / 60 << '\n';
 }
 };
+
+
 class metric : public dist
 {
 public :
 metric ( double f) : dist (f) {}
 void trav_time ()
 {
-cout << " Travel time at 100 kph : ";
+std::cout << " Travel time at 100 kph : ";
 
-cout << d / 100 << ’\n’;
+std::cout << d / 100 << ’\n’;
 }
 };
-int main ()
-{
+
+
+int main() {
 dist *p, mph (88.0) ;
 metric kph (88) ;
+
 p = & mph ;
 p-> trav_time ();
+
 p = & kph ;
 p-> trav_time ();
+
 return 0;
 }
 
