@@ -383,7 +383,6 @@ int main(){
 }
 
 
-// ----  cp1  ----
 
 
 /* Example 4: Here is a more practical example of how a virtual function can be used. This program
@@ -419,6 +418,8 @@ cout << " You must override this function \n";
 return 0.0;
 }
 };
+
+
 class rectangle : public area
 {
 public :
@@ -430,6 +431,8 @@ return d1 * d2;
 }
 };
 
+
+
 class triangle : public area
 {
 public :
@@ -440,26 +443,31 @@ getdim (d1 , d2);
 return 0.5 * d1 * d2;
 }
 };
-int main ()
-{
-area *p;
-rectangle r;
-triangle t;
-r. setarea (3.3 , 4.5) ;
-t. setarea (4.0 , 5.0) ;
+
+
+
+int main() {
+    area *p;
+    rectangle r;
+    triangle t;
+
+    r.setarea(3.3, 4.5);
+    t.setarea(4.0, 5.0);
+
 p = &r;
 cout << " Rectangle has area : " << p-> getarea () << ’\n’;
 p = &t;
+
 cout << " Triangle has area : " << p-> getarea () << ’\n’;
+
 return 0;
 }
+
 /* Notice that the definition of getarea() inside area is just a placeholder and performs
 no real function. Because area is not linked to any specific type of figure, there is no
 meaningful definition that can be given to getarea() inside area. In fact, getarea()
 must be overridden by a derived class in order to be useful. In the next section, you will
 see a way to enforce this */
-
-
 
 
 
