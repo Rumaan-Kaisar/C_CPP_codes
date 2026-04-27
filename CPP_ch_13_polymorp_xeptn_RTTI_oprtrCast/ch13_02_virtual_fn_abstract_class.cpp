@@ -341,6 +341,9 @@ cout << " Using derived2 ’s version of func (): ";
 cout << i+i << ’\n’;
 }
 };
+
+
+
 int main ()
 {
 base *p;
@@ -359,6 +362,28 @@ p-> func (); // call appropriate function
 }
 return 0;
 }
+
+
+int main(){ 
+    base *p;
+    derived1 d_ob1 (10);
+    derived2 d_ob2 (10);
+    int i,j;
+
+    for(i=0; i<10; i++){
+        j = rand();
+
+        if( (j%2) ) p = &d_ob1 ;    // if odd use d_ob1
+        else p = &d_ob2 ;           // if even use d_ob2
+
+        p -> func();    // call appropriate function
+    }       
+
+    return 0;
+}
+
+
+// ----  cp1  ----
 
 
 /* Example 4: Here is a more practical example of how a virtual function can be used. This program
