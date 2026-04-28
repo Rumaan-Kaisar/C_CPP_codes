@@ -279,10 +279,6 @@ int main(){
 
 
 
-// ----  rev [26-Apr-2026]  ----
-
-
-
 
 /* Example 3: A VF can respond to "random events" that occur at run time. 
 
@@ -329,7 +325,7 @@ class base{
 
 class derived1 : public base {
     public:
-        derived1(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        derived1(int x) : base(x){} // passing argument to base constructor and using it
         // override VF
         void func(){
             std::cout<< " Using derived1's version of func(): ";
@@ -351,27 +347,8 @@ class derived2 : public base {
 
 
 
-class base
-{
-public :
-int i;
-base ( int x) { i = x; }
-virtual void func ()
-{
-std::cout << " Using base version of func (): ";
-std::cout << i << '\n';
-}
-};
-class derived1 : public base
-{
-public :
-derived1 ( int x) : base (x) {}
-void func ()
-{
-std::cout << " Using derived1's version of func (): ";
-std::cout << i*i << '\n';
-}
-};
+
+
 class derived2 : public base
 {
 public :
@@ -423,6 +400,9 @@ int main(){
     return 0;
 }
 
+
+
+// ----  rev [28-Apr-2026]  ----
 
 
 
