@@ -362,30 +362,19 @@ int main(){
 }
 
 
-
 /*  NOTE:
         Why does it produce the same output even though it uses rand()?
 
+        The “randomness” just isn’t actually changing between runs.
 
-The “randomness” just isn’t actually changing between runs.
+        The issue is with rand() from <cstdlib>: 
+            rand() produces the same output across runs because it isn't seeded, 
+            if you don’t seed it, it starts from the "same initial seed" every time the program runs.
+            
+            So it produces the same sequence of numbers each time.
 
-The issue is with rand() from <cstdlib>: 
-
-if you don’t seed it, it starts from the same initial seed every time the program runs, 
-
-so it produces the same sequence of numbers each time.
-
-rand() produces the same output across runs because it isn't seeded, 
-
-
-so it starts with the same initial value and generates the same sequence each time. 
-
-
-Use srand(time(0)) (or modern <random>) to get different results on each run.
+            Use srand(time(0)) (or modern <random>) to get different results on each run.
 */
-
-
-
 
 
 
