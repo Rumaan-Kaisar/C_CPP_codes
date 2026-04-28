@@ -335,7 +335,7 @@ class derived1 : public base {
 
 class derived2 : public base {
     public:
-        derived2(int x) : base(x){} // passing argument to base constructor and uses same definition. Using base's constructor
+        derived2(int x) : base(x){} // passing argument to base constructor and using it
         // override VF
         void func(){
             std::cout << " Using derived2's version of func(): ";
@@ -349,16 +349,7 @@ class derived2 : public base {
 
 
 
-class derived2 : public base
-{
-public :
-derived2 ( int x) : base (x) {}
-void func ()
-{
-std::cout << " Using derived2 ’s version of func (): ";
-std::cout << i+i << '\n';
-}
-};
+
 
 
 
