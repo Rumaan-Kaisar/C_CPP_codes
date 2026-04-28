@@ -369,19 +369,6 @@ int main(){
 
 
 
-int main ()
-{
-
-for (i =0; i <10; i ++)
-{
-
-
-else
-p = & d_ob2 ; // if even use d_ob2
-p-> func (); // call appropriate function
-}
-return 0;
-}
 
 
 
