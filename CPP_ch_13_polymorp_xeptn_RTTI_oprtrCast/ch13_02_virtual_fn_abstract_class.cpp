@@ -469,27 +469,24 @@ that it displays the value in hexadecimal and octal, respectively. */
 #include <iostream>
 
 class num {
-public :
-int i;
-
-num ( int x) { i = x; }
-virtual void shownum () { cout << i << '\n'; }
+    public:
+        int i;
+        num(int x) { i = x; }
+        virtual void shownum() { std::cout << i << '\n'; }
 };
 
 
-class outhex : public num
-{
-public :
-outhex ( int n) : num(n) {}
-void shownum () { cout << hex << i << '\n'; }
+class outhex : public num {
+    public:
+        outhex(int n):num(n){}
+        void shownum() { std::cout << hex << i << '\n'; }
 };
 
 
-class outoct : public num
-{
-public :
-outoct ( int n) : num(n) {}
-void shownum () { cout << oct << i << '\n'; }
+class outoct : public num {
+    public:
+        outoct(int n) : num(n){}
+        void shownum() { std::cout << oct << i << '\n'; }
 };
 
 
