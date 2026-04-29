@@ -386,30 +386,14 @@ int main(){
 
 
 /* Example 4: Following is a practical example of how a VF can be used.
+                This program creates a generic base class called "area"
+                    it holds two dimensions of a figure to represent general shapes (like triangle, rectangle)
 
+                It declares a virtual function getarea(), which is meant to calculate area.
 
-
-This program creates a generic base class called "area"
-
- is created to represent general shapes using two dimensions.
-It includes a virtual function getarea(), which is meant to calculate area.
-The base class only defines the interface (i.e., that getarea() exists), not how it works.
-Derived classes (like triangle and rectangle) provide the actual implementation of getarea() based on their formulas.
-This allows the same function name (getarea()) to behave differently depending on the object type (polymorphism).
-In the base class, getarea() is just a placeholder and doesn’t perform any real calculation.
-This is because the base class doesn’t represent a specific shape, so it cannot define a meaningful area formula.
-Therefore, getarea() must be overridden in derived classes to be useful.
-
-
-
-
-
-area that holds two dimensions of a figure. It also
-declares a virtual function called getarea() that, when overridden by derived classes,
-returns the area of the type of figure defined by the derived class. In this case, the
-declaration of getarea() inside the base class determines the nature of the interface. The
-actual implementation is left to the classes that inherit it. In this example, the area of a
-triangle and a rectangle are computed. */
+                The base class only defines the interface (i.e., that getarea() exists), not how it works.
+                Derived classes override it to provide the actual implementation.
+*/
 
 
 // Use virtual function to define interface .
