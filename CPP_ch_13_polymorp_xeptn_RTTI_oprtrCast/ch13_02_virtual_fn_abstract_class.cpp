@@ -379,12 +379,6 @@ int main(){
 
 
 
-
-
-// ----  rev [29-Apr-2026]  ----
-
-
-
 /* Example 4: Following is a practical example of how a VF can be used.
                 This program creates a generic base class called "area"
                     it holds two dimensions of a figure to represent general shapes (like triangle, rectangle)
@@ -454,15 +448,17 @@ int main() {
 }
 
 
+/*  The getarea() method in the base area class is just a placeholder. 
+        Since it isn't tied to a specific shape, it does nothing.
+        So it must be overridden by subclasses to actually calculate an area. 
 
-/* Notice that the definition of getarea() inside area is just a placeholder and performs
-no real function. Because area is not linked to any specific type of figure, there is no
-meaningful definition that can be given to getarea() inside area. In fact, getarea()
-must be overridden by a derived class in order to be useful. In the next section, you will
-see a way to enforce this */
+    The next section (abstract fn and PVF) shows how to enforce this requirement.
+*/
 
 
 
+
+// ----  rev [30-Apr-2026]  ----
 
 
 /* Example 1: Write a program that creates a base class called num. Have this class hold an integer
