@@ -461,10 +461,15 @@ int main() {
 // ----  rev [30-Apr-2026]  ----
 
 
-/* Example 1: Write a program that creates a base class called num. Have this class hold an integer
-value and contain a virtual function called shownum(). Create two derived classes called
-outhex and outoct that inherit num. Have the derived classs override shownum() so
-that it displays the value in hexadecimal and octal, respectively. */
+/* Example 5: Following program creates a base class called num.
+                This class hold an integer value and 
+                contain a virtual function called shownum().
+
+                Create two derived classes called "outhex" and "outoct" that inherit "num". 
+
+                Have these derived classs override shownum() 
+                    to display the number in hexadecimal and octal formats.
+*/
 
 #include <iostream>
 
