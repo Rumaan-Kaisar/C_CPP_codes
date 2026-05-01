@@ -458,9 +458,6 @@ int main() {
 
 
 
-// ----  rev [30-Apr-2026]  ----
-
-
 /* Example 5: Following program creates a base class called num.
                 This class hold an integer value and 
                 contain a virtual function called shownum().
@@ -484,14 +481,14 @@ class num {
 class outhex : public num {
     public:
         outhex(int n):num(n){}
-        void shownum() { std::cout << hex << i << '\n'; }
+        void shownum() { std::cout << std::hex << i << '\n'; }
 };
 
 
 class outoct : public num {
     public:
         outoct(int n) : num(n){}
-        void shownum() { std::cout << oct << i << '\n'; }
+        void shownum() { std::cout << std::oct << i << '\n'; }
 };
 
 
@@ -504,8 +501,6 @@ int main() {
 
     return 0;
 }
-
-
 
 
 
