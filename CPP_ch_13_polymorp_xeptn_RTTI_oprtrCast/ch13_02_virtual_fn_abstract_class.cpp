@@ -504,12 +504,24 @@ int main() {
 
 
 
-/* Example 2: Write a program that creates a base class called dist that stores the distance between two
-points in a double variable. In dist, create a virtual function called trav time() that
-outputs the time it takes to travel that distance, assuming that the distance is in miles and
-the speed is 60 miles per hour. In a derived class called metric, override trav time() so
-that it outputs the travel time assuming that the distance is in kilometers and the speed
-is 100 kilometers per hour. */
+
+/* Example 6: Following program creates a base class called "dist" 
+                This class stores the distance between two points in a double variable.
+
+                It has a virtual function called trav_time() that
+                    outputs the time it takes to travel that distance,
+
+                Assuming that:
+                    the "distance" is in miles and
+                    the "speed" is 60 miles per hour.
+
+
+                In a derived class called "metric"                
+                    override trav_time() so that it display travel time 
+                    assuming: 
+                        distance is in kilometers and 
+                        speed is 100 km/h.
+*/
 
 #include <iostream>
 
@@ -566,6 +578,7 @@ int main() {
 
 
 
+// ----  rev [01-May-2026]  ----
 
 
 
