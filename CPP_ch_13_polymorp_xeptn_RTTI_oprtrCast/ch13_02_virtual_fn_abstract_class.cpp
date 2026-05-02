@@ -568,6 +568,16 @@ int main() {
 
 
 
+/*  ------------------------    Abstract Class & Pure Virtual function (PVF)    ------------------------
+
+
+
+
+
+*/
+
+
+
 
 
 
@@ -585,7 +595,9 @@ int main() {
 
 /* 
 
-13.3 Abstract class and Pure Virtual function (PVF)
+
+
+
 Sometimes when a VF is declared in the base class there is no meaningful operation for it to perform.  Because often a base simply supplies a core set of member functions and variables to which the derived class supplies the remainder.  In this case we use pure virtual functions (PVF).
    A PVF has no definition relative to the base class. Only the function's prototype is included. To make a PVF, use this general form:
 virtual type func_name(parameter_list =0;
