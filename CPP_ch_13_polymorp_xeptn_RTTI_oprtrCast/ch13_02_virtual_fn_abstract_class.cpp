@@ -576,13 +576,22 @@ int main() {
         to focus on essential, general characteristics, reducing complexity.
 
 
+    Often a base class establishes a core framework of variables and functions, 
+        leaving the derived class to complete the implementation.
+
+
 ----  rev[02-May-2026]  ----
 
 Sometimes when a VF is declared in the base class there is no meaningful operation for it to perform.
 
-  Because often a base simply supplies a core set of member functions and variables to which the derived class supplies the remainder.  
+  Often a base simply supplies a "core set" of member functions and variables
+  and then the derived class supplies the remainder.  
   
   In this case we use pure virtual functions (PVF).
+
+Often a base class typically provides the core structure, while derived classes fill in the rest
+
+
 
 
 
