@@ -572,28 +572,24 @@ int main() {
 
     ---- More Abstraction ----
     
-    Abstraction is the process of removing specific details 
-        to focus on essential, general characteristics, reducing complexity.
+    Abstraction is "the process of removing specific details 
+        to focus on essential, general characteristics, reducing complexity".
 
 
-    Often a base class establishes a core framework of variables and functions, 
+    Often a base class establishes a "core set" (framework) of member functions and variables
         leaving the derived class to complete the implementation.
+
+    Sometimes when a VF is declared in this kind of base class, 
+        there is no meaningful operation for it to perform. 
+        
+    In this case, we use pure virtual functions (PVF). 
+        Implementing the details of these PVFs is fully left to the derived classes to fill in.
 
 
 ----  rev[02-May-2026]  ----
 
-Sometimes when a VF is declared in the base class there is no meaningful operation for it to perform.
 
-  Often a base simply supplies a "core set" of member functions and variables
-  and then the derived class supplies the remainder.  
-  
-  In this case we use pure virtual functions (PVF).
-
-Often a base class typically provides the core structure, while derived classes fill in the rest
-
-
-
-
+    Pure Virtual Function (PVF):
 
 */
 
@@ -615,10 +611,6 @@ Often a base class typically provides the core structure, while derived classes 
 
 
 /* 
-
-
-
-
 
 
    A PVF has no definition relative to the base class. Only the function's prototype is included. To make a PVF, use this general form:
