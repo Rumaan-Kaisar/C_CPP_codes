@@ -614,31 +614,35 @@ int main() {
         Pointers and references to abstract classes are allowed (essential for run-time polymorphism).
 
 
+
+    --------    VF to chain of subclass    --------
+
+    When a VF is inherited, so is its virtual nature.
+        Once a function is declared virtual, it stays virtual in all subclasses.
+        Any class in the inheritance chain can override it.
+
+    i.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, 
+        the VF can be overridden by the final derived class (as well as the first derived). 
+
+    For example, 
+        if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, 
+
+            B  -->  D1  -->  D2
+
+        both D1 and D2 can override f() relative to their respective classes.
 */
 
 
 
 
-// ----  rev[02-May-2026]  ----
+// ----  rev[03-May-2026]  ----
 
 
-
-
-
-
-
-
-
-// ----  rev [01-May-2026]  ----
 
 
 
 
 /* 
-
-
-   When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
-
 
 
    Example 1: This program creates a base called area that holds two dimensions of a figure. It also declares a VF called getarea() that, when overridden by derived classes, returns the area of the type of figure defined by the derived. 
