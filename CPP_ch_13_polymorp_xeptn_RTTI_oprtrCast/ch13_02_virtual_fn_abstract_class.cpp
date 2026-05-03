@@ -599,7 +599,7 @@ int main() {
         This tells the COMPILER that "no body exists" for this function relative to the base class. 
 
         It has no implementation in the base class (acts only as an interface placeholder).
-        Forces every derived class to override it; otherwise, compilation fails.
+        Forces every derived class to override it; otherwise, compilation fails (compile-time error results).
 
 
 */
@@ -625,19 +625,32 @@ int main() {
 /* 
 
 
+Abstract Class:
+    Any class containing at least one PVF is an abstract class.
+    It is an incomplete type, and no objects of that class can be created.
+        i.e. "Cannot" be instantiated.
+        Thus, it exists only to be inherited and used as a base.
+
+
+✅ Pointers and references to abstract classes are allowed (essential for run-time polymorphism).
 
 
 
 
 
 
-When a virtual function is made pure, it forces any derived class to override it. If a derived class does not, a compile-time error results. 
 
 
 
-   Abstract class: When a class contains at least one PVF, it is referred to as an abstract class. It is an incomplete type, and no objects of that class can be created.  Thus, abstract classes exist only to be inherited. They are neither intended nor able to stand alone. 
+
+   
+
+
    You can still create a pointer to an abstract class, since it is through the use of base class pointers that run-time polymorphism is achieved. 
    It is also permissible to have a reference to an abstract class.
+
+
+
    When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
 
 
