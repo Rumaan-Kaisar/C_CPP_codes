@@ -586,16 +586,28 @@ int main() {
         Implementing the details of these PVFs is fully left to the derived classes to fill in.
 
 
-----  rev[02-May-2026]  ----
 
+    --------    Pure Virtual Function (PVF)    --------
 
     Pure Virtual Function (PVF):
+        A PVF has no definition relative to the base class. Only the function's "prototype" is included. 
+        
+        General form:
+                virtual return_type function_name(parameter_list) = 0;
+
+        The key part of this declaration is the "setting of the function equal to 0". 
+        This tells the COMPILER that "no body exists" for this function relative to the base class. 
+
+        It has no implementation in the base class (acts only as an interface placeholder).
+        Forces every derived class to override it; otherwise, compilation fails.
+
 
 */
 
 
 
 
+// ----  rev[02-May-2026]  ----
 
 
 
@@ -613,14 +625,23 @@ int main() {
 /* 
 
 
-   A PVF has no definition relative to the base class. Only the function's prototype is included. To make a PVF, use this general form:
-virtual type func_name(parameter_list =0;
-   The key part of this declaration is the setting of the function equal to 0. This tells the compiler that no body exists for this function relative to the base class. 
-   When a virtual function is made pure, it forces any derived class to override it. If a derived class does not, a compile-time error results. 
+
+
+
+
+
+
+When a virtual function is made pure, it forces any derived class to override it. If a derived class does not, a compile-time error results. 
+
+
+
    Abstract class: When a class contains at least one PVF, it is referred to as an abstract class. It is an incomplete type, and no objects of that class can be created.  Thus, abstract classes exist only to be inherited. They are neither intended nor able to stand alone. 
    You can still create a pointer to an abstract class, since it is through the use of base class pointers that run-time polymorphism is achieved. 
    It is also permissible to have a reference to an abstract class.
    When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
+
+
+
    Example 1: This program creates a base called area that holds two dimensions of a figure. It also declares a VF called getarea() that, when overridden by derived classes, returns the area of the type of figure defined by the derived. 
 
     class area{     double dim1 , dim2 ;    // dimensions of figure
@@ -708,14 +729,8 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 
 
-📘 13.3 Pure Virtual Functions (PVF) & Abstract Classes
 
 
-🔹 Pure Virtual Function (PVF)
-Declared with = 0 in the base class: virtual return_type func() = 0;
-Has no implementation in the base class (acts only as an interface placeholder).
-Forces every derived class to override it; otherwise, compilation fails.
-Used when the base class has no meaningful default behavior for that function.
 
 
 🔹 Abstract Class
@@ -820,4 +835,4 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 Let me know if you'd like this converted into flashcards, a diagram, or a condensed cheat sheet!
 
 
- */
+*/
