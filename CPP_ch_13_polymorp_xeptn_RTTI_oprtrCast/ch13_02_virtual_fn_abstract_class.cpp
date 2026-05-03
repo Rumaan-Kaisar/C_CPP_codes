@@ -602,6 +602,18 @@ int main() {
         Forces every derived class to override it; otherwise, compilation fails (compile-time error results).
 
 
+
+    --------    Abstract Class    --------
+
+    Abstract Class:
+        Any class containing at least one PVF is an abstract class.
+        It is an incomplete type, and no objects of that class can be created.
+            i.e. "Cannot" be instantiated.
+            Thus, it exists only to be inherited and used as a base.
+
+        Pointers and references to abstract classes are allowed (essential for run-time polymorphism).
+
+
 */
 
 
@@ -623,32 +635,6 @@ int main() {
 
 
 /* 
-
-
-Abstract Class:
-    Any class containing at least one PVF is an abstract class.
-    It is an incomplete type, and no objects of that class can be created.
-        i.e. "Cannot" be instantiated.
-        Thus, it exists only to be inherited and used as a base.
-
-
-✅ Pointers and references to abstract classes are allowed (essential for run-time polymorphism).
-
-
-
-
-
-
-
-
-
-
-   
-
-
-   You can still create a pointer to an abstract class, since it is through the use of base class pointers that run-time polymorphism is achieved. 
-   It is also permissible to have a reference to an abstract class.
-
 
 
    When a VF is inherited, so is its virtual nature. I.e. when a derived inherits a VF from a base and then that derived is used as a base for yet another derived, the VF can be overridden by the final derived class (as well as the first derived). For example, if base B contains a VF called f(), and D1 inherits B and D2 inherits D1, both D1 and D2 can override f() relative to their respective classes.
@@ -746,15 +732,7 @@ Here is a clean, simplified, and logically organized pointwise summary of your n
 
 
 
-🔹 Abstract Class
-Any class containing at least one PVF is an abstract class.
-❌ Cannot be instantiated (no objects can be created).
-✅ Exists only to be inherited and used as a base.
-✅ Pointers and references to abstract classes are allowed (essential for run-time polymorphism).
 
-
-🔹 Key Behavior & Usage
-PVFs define a contract: derived classes must provide the actual logic.
 Example: class area { virtual double getarea() = 0; };
 rectangle and triangle inherit area and must implement getarea().
 Virtual hierarchy rules still apply: PVF overrides are inherited and can be further overridden down the chain.
