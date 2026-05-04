@@ -664,9 +664,8 @@ class area {
             d2 = dim2;
         }
         // pure virtual function
-        virtual double getarea() = 0
+        virtual double getarea() = 0;
         // Now this getarea() is pure, it ensures that each derived class will override it.
-
 };
 
 
@@ -711,32 +710,6 @@ int main() {
 // ----  rev[04-May-2026]  ----
 
  
-
-
-        
-            virtual double getarea(){   cout << "You must override this function \n";
-                            return 0.0; }
-        };
-class rectangle : public area {
-    public :
-        double getarea(){double d1, d2;
-                    getdim(d1, d2);
-                    return d1*d2;  }
-                };  class triangle : public area {
-    public :
-        double getarea() { double d1, d2;
-                     getdim(d1, d2);
-                  return 0.5*d1*d2;}
-                };
-int main(){     area *p;
-        rectangle r;
-        triangle t;
-            r.setarea(3.3, 4.5) ;
-            t.setarea(4.0, 5.0) ;
-            p = &r; cout << " Rectangle has area : " << p-> getarea() << '\n';
-            p = &t; cout << " Triangle has area : " << p-> getarea() << '\n';
-        return 0; }
-
 
 
 
