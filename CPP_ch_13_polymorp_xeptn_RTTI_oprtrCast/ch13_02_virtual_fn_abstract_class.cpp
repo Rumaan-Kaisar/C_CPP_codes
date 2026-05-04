@@ -706,6 +706,20 @@ int main() {
     return 0;
 }
 
+/*  In this case, the "declaration" of getarea() inside the base determines the "nature" of the interface.
+        The actual implementation is left to the classes that inherit it. 
+        In this example, the area of a "triangle" and a "rectangle" are computed.
+
+        Here the "definition" of getarea() inside "area" is just a PLACEHOLDER and performs no real function. 
+        Because area is not linked to any specific type of figure, 
+            there is no meaningful definition that can be given to getarea() inside area.  
+
+        getarea() must be overridden by a derived class in order to be useful. 
+
+                virtual double getarea() = 0;   // pure virtual function
+*/
+
+
 
 // ----  rev[04-May-2026]  ----
 
@@ -715,14 +729,6 @@ int main() {
 
 
 /*  
-
-   In this case, the declaration of getarea() inside the base determines the nature of the interface. The actual implementation is left to the classes that inherit it. In this example, the area of a triangle and a rectangle are computed.
-   Here the definition of getarea() inside area is just a placeholder and performs no real function. Because area is not linked to any specific type of figure, there is no meaningful definition that can be given to getarea() inside area.  
-   getarea() must be overridden by a derived class in order to be useful. 
-
-class area{ . . . . . . same as previous . . . . .
-virtual double getarea() = 0;   // pure virtual function    };
-
 
    Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
 class base {
