@@ -635,7 +635,10 @@ int main() {
 
 
 
-/* Example 7: This program creates a base called "area" that holds two dimensions of a figure.
+/* Example 7: Following program is an improved version of "Example 4".
+                In this version, the function getarea() is declared as Pure Virtual Function in the base class "area".
+
+                This program creates a base called "area" that holds two dimensions of a figure.
 
                 It also declares a VF called getarea() that, when overridden by derived classes, 
                     "returns the area" of the type of figure defined by the derived. 
@@ -660,11 +663,8 @@ class area {
             d1 = dim1;
             d2 = dim2;
         }
-        // virtual function that define interface
-        virtual double getarea() {
-            std::cout << " You must override this function \n";
-            return 0.0;
-        }
+        // pure virtual function
+        virtual double getarea() = 0
 };
 
 
@@ -747,6 +747,8 @@ int main(){     area *p;
 
 class area{ . . . . . . same as previous . . . . .
 virtual double getarea() = 0;   // pure virtual function    };
+
+
    Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
 class base {
 public : virtual void func(){ 
