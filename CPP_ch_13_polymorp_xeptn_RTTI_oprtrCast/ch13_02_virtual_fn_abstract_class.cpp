@@ -728,9 +728,8 @@ int main() {
 
 
 
-/*  
-
-   Example 2: Following program illustrates how a function's virtual nature is preserved when it is inherited:
+/*  Example 2: Following program illustrates how a function's 
+virtual nature is preserved  when it is inherited.
 class base {
 public : virtual void func(){ 
 cout << " Base version of func ( )\n"; }    };  class derived1 : public base {
@@ -757,100 +756,6 @@ int main() {    base *p;
 
 
 
-
-
-----  QWEN  ----
-
-Here is a clean, simplified, and logically organized pointwise summary of your notes:
-
-
-
-💡 Quick Reference Checklist
-✅ Use virtual in base class to enable overriding.
-✅ Call through base pointer → run-time polymorphism.
-✅ Missing override? → Base/nearest version runs.
-✅ = 0 → Pure virtual → Abstract class → Must be overridden.
-✅ Abstract classes: no objects, but pointers/references allowed.
-✅ Overriding ≠ Overloading (signature must match exactly for VFs).
-✅ Destructors: virtual ✅ | Constructors: virtual ❌
-Let me know if you'd like this converted into flashcards, a diagram, or a condensed cheat sheet!
-
-
-
-
-
-
-
-
-Here is a clean, simplified, and logically organized pointwise summary of your notes:
-
----
-### 📘 **13.2 Virtual Functions (VF)**
-
-#### 🔹 **Core Concepts**
-- A **virtual function** is a base class member function intended to be redefined (overridden) in derived classes.
-- Declared using the `virtual` keyword in the base class. The keyword is **optional** in derived classes.
-- Enables the `"one interface, multiple methods"` principle → foundation of **polymorphism**.
-- Base class defines the **interface**; derived classes provide **specific implementations**.
-
-#### 🔹 **Run-Time Polymorphism**
-- Achieved when a VF is called through a **base class pointer**.
-- The **actual object type** pointed to determines which function version runs.
-- Function resolution happens at **run-time**, not compile-time.
-- Allows dynamic behavior: the same pointer can trigger different derived methods based on runtime conditions (e.g., user input, random selection).
-
-#### 🔹 **Inheritance & Hierarchy Behavior**
-- Virtual nature is **preserved** through multiple inheritance levels.
-- If a derived class **does not override** a VF, the nearest base class version is automatically used.
-- Example logic: `Base → Derived1 → Derived2`
-  - If only `Derived1` overrides, `Derived2` inherits that version.
-  - If neither overrides, `Base` version runs.
-
-#### 🔹 **Virtual Functions vs. Function Overloading**
-| Feature | Virtual Function (Overriding) | Function Overloading |
-|--------|-------------------------------|----------------------|
-| **Signature** | Must match exactly (same params & return type) | Must differ in parameter type/count |
-| **Scope** | Must be a class member | Can be standalone or class member |
-| **Resolution** | Run-time (dynamic binding) | Compile-time (static binding) |
-| **Keyword** | `virtual` in base | None required |
-| ⚠️ Changing a VF's signature destroys its virtual nature and turns it into an overloaded function. |
-
-#### 🔹 **Constructor & Destructor Rules**
-- ❌ **Constructors** cannot be virtual.
-- ✅ **Destructors** can (and often should) be virtual to ensure proper cleanup in polymorphic hierarchies.
-
----
-### 📘 **13.3 Pure Virtual Functions (PVF) & Abstract Classes**
-
-#### 🔹 **Pure Virtual Function (PVF)**
-- Declared with `= 0` in the base class: `virtual return_type func() = 0;`
-- Has **no implementation** in the base class (acts only as an interface placeholder).
-- **Forces** every derived class to override it; otherwise, compilation fails.
-- Used when the base class has no meaningful default behavior for that function.
-
-#### 🔹 **Abstract Class**
-- Any class containing **at least one PVF** is an abstract class.
-- ❌ **Cannot be instantiated** (no objects can be created).
-- ✅ Exists **only to be inherited** and used as a base.
-- ✅ Pointers and references to abstract classes **are allowed** (essential for run-time polymorphism).
-
-#### 🔹 **Key Behavior & Usage**
-- PVFs define a **contract**: derived classes must provide the actual logic.
-- Example: `class area { virtual double getarea() = 0; };`
-  - `rectangle` and `triangle` inherit `area` and must implement `getarea()`.
-- Virtual hierarchy rules still apply: PVF overrides are inherited and can be further overridden down the chain.
-
----
-### 💡 **Quick Reference Checklist**
-- ✅ Use `virtual` in base class to enable overriding.
-- ✅ Call through base pointer → run-time polymorphism.
-- ✅ Missing override? → Base/nearest version runs.
-- ✅ `= 0` → Pure virtual → Abstract class → Must be overridden.
-- ✅ Abstract classes: no objects, but pointers/references allowed.
-- ✅ Overriding ≠ Overloading (signature must match exactly for VFs).
-- ✅ Destructors: virtual ✅ | Constructors: virtual ❌
-
-Let me know if you'd like this converted into flashcards, a diagram, or a condensed cheat sheet!
 
 
 */
@@ -922,8 +827,7 @@ return 0;
 }
 In this program, the virtual function func() is first inherited by derived1, which overrides
 it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again
-273TEACH YOURSELF
-C++
+
 overridden.
 Because virtual functions are hierarchical, if derived2 did not override func(), when
 d ob2 was accessed, derived1’s func() would have been used. If neither derived1 nor
@@ -947,6 +851,5 @@ that no body for that function exists relative to that class. Thus, there is no 
 object can be created because the class definition is not complete.
 3. When func() is called relative to derived1, it is the func() inside base that is used.
 The reason this works is that virtual functions are hierarchical.
-
 
 
