@@ -721,7 +721,7 @@ int main() {
 
 
 
-// ----  rev[04-May-2026]  ----
+// ----  rev[05-May-2026]  ----
 
  
 
@@ -729,23 +729,55 @@ int main() {
 
 
 /*  Example 2: Following program illustrates how a function's 
-virtual nature is preserved  when it is inherited.
+                virtual nature is preserved  when it is inherited.
+*/
+
+#include <iostream>
+
 class base {
-public : virtual void func(){ 
-cout << " Base version of func ( )\n"; }    };  class derived1 : public base {
-public : void func(){ 
-cout <<"derived1's version of func()\n"; }
- }; class derived2 : public derived1{   // derived2 inherits derived1
-public : void func(){ 
-cout << "derived2's version of func()\n"; } };
-int main() {    base *p;
-        base ob;
-        derived1 d_ob1 ;
-        derived2 d_ob2 ;
-            p = &ob;    p -> func();        // use base's func()
-            p = &d_ob1 ;    p -> func();        // use derived1's func()
-            p = &d_ob2 ;    p -> func();        // use derived2's func()
-        return 0; }
+    public :
+        virtual void func(){ 
+            std::cout << " Base version of func ()\n"; 
+        }
+};
+
+class derived1 : public base {
+    public :
+        void func(){ 
+            std::cout <<" derived1's version of func()\n"; 
+        }
+};
+
+// derived2 inherits derived1
+class derived2 : public derived1{   
+    public :
+        void func(){ 
+            std::cout << " derived2's version of func()\n"; 
+        } 
+};
+
+
+
+
+int main() {
+    base *p;
+    base ob;
+    derived1 d_ob1 ;
+    derived2 d_ob2 ;
+
+    p = &ob;
+    p -> func();        // use base's func()
+
+    p = &d_ob1;
+    p -> func();        // use derived1's func()
+
+    p = &d_ob2;
+    p -> func();        // use derived2's func()
+
+    return 0; 
+}
+
+
    The VF func() is first inherited by derived1, which overrides it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again overridden.
    Since VFs are hierarchical, if derived2 did not override func(), when d_ob2 was accessed, derived1's func() would have been used.
    If neither derived1 nor derived2 had overridden func(), base's func( ) would have been used.
@@ -756,9 +788,6 @@ int main() {    base *p;
 
 
 
-
-
-*/
 
 
 
@@ -778,39 +807,10 @@ int main() {    base *p;
 
 
 
-2. The following program illustrates how a function’s virtual nature is preserved when it is
-inherited:
-// Virtual functions retain their virtual nature when
-inherited ,
-272VIRTUAL FUNCTIONS
-10.3. MORE ABOUT VIRTUAL FUNCTIONS
-# include <iostream >
-using namespace std ;
-class base
-{
-public :
-virtual void func ()
-{
-cout << " Using base version of func ()\n";
-}
-};
-class derived1 : public base
-{
-public :
-void func ()
-{
-cout << " Using derived1 ’s version of func ()\n";
-}
-};
-// derived2 inherits derived1 .
-class derived2 : public derived1
-{
-public :
-void func ()
-{
-cout << " Using derived2 ’s version of func ()\n";
-}
-};
+
+
+
+
 int main ()
 {
 base *p;
@@ -835,10 +835,7 @@ derived2 had overridden func(), all references to it would have been routed to t
 defined in base
 
 
-1. On your own, experiment with the two example programs. Specifically, try creating an
-object by using area from Example 1 and observe the error message. In Example 2, try
-removing the redefinition of func() within derived2. Confirm that, indeed, the version
-inside derived1 is used.
+
 
 2. Why can’t an object be created by using an abstract class?
 
