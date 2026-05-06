@@ -797,17 +797,11 @@ int main() {
 
 
 
-In this program, the virtual function func() is first inherited by derived1, which overrides
-it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again
-
-overridden.
 
 
+/* 
 
-
-
-
-2. Why can’t an object be created by using an abstract class?
+2. Why can't an object be created by using an abstract class?
 
 
 3. In Example 2, what happens if you remove only the redefinition of func() inside derived1? Does the program still compile and run? If so, why?
@@ -818,4 +812,4 @@ that no body for that function exists relative to that class. Thus, there is no 
 object can be created because the class definition is not complete.
 3. When func() is called relative to derived1, it is the func() inside base that is used.
 The reason this works is that virtual functions are hierarchical.
-
+ */
