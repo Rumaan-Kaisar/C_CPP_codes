@@ -813,14 +813,10 @@ int main() {
 
 int main ()
 {
-base *p;
-base ob;
-derived1 d_ob1 ;
-derived2 d_ob2 ;
-p = &ob;
-p-> func (); // use base ’s func ()
-p = & d_ob1 ;
-p-> func (); // use derived1 ’s func ()
+
+
+
+
 p = & d_ob2 ;
 p-> func (); // use derived2 ’s func ()
 return 0;
@@ -848,5 +844,4 @@ that no body for that function exists relative to that class. Thus, there is no 
 object can be created because the class definition is not complete.
 3. When func() is called relative to derived1, it is the func() inside base that is used.
 The reason this works is that virtual functions are hierarchical.
-
 
