@@ -804,12 +804,21 @@ int main() {
 2. Why can't an object be created by using an abstract class?
 
 
-3. In Example 2, what happens if you remove only the redefinition of func() inside derived1? Does the program still compile and run? If so, why?
-
-
 2. By definition, an abstract class contains at least one pure virtual function. This means
 that no body for that function exists relative to that class. Thus, there is no way that an
 object can be created because the class definition is not complete.
+
+
+
+
+3. In Example 2, what happens if you remove only the redefinition of func() inside derived1? Does the program still compile and run? If so, why?
+
+
 3. When func() is called relative to derived1, it is the func() inside base that is used.
 The reason this works is that virtual functions are hierarchical.
- */
+
+
+*/
+
+
+
