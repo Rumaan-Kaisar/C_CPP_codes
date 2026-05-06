@@ -721,15 +721,23 @@ int main() {
 
 
 
-// ----  rev[05-May-2026]  ----
-
- 
-
-
-
 
 /*  Example 2: Following program illustrates how a function's 
                 virtual nature is preserved  when it is inherited.
+
+
+                Inheritance Chain:      base --> derived1 --> derived2
+                
+                Override Sequence:
+                    derived1 inherits from base and overrides func()
+                    derived2 inherits from derived1 and overrides func() again
+
+                Because virtual functions are hierarchical, 
+                    "Virtual function calls" follow the "inheritance chain" from MOST-DERIVED to LEAST-DERIVED:
+                    (Fallback Logic)
+                        If derived2 overrides               -->     uses derived2's version
+                        If derived2 does not override       -->     falls back to derived1's version
+                        If neither derived class overrides  -->     falls back to base's version
 */
 
 #include <iostream>
@@ -757,8 +765,6 @@ class derived2 : public derived1{
 };
 
 
-
-
 int main() {
     base *p;
     base ob;
@@ -778,9 +784,9 @@ int main() {
 }
 
 
-   The VF func() is first inherited by derived1, which overrides it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again overridden.
-   Since VFs are hierarchical, if derived2 did not override func(), when d_ob2 was accessed, derived1's func() would have been used.
-   If neither derived1 nor derived2 had overridden func(), base's func( ) would have been used.
+
+
+// ----  rev[06-May-2026]  ----
 
 
 
@@ -791,44 +797,12 @@ int main() {
 
 
 
-
-// cp 3
-
- abs fn EX:
-
-
-
-
-
-// ABS:
-
-
-
-
-
-
-
-
-
-
-int main ()
-{
-
-
-
-
-p = & d_ob2 ;
-p-> func (); // use derived2 ’s func ()
-return 0;
-}
 In this program, the virtual function func() is first inherited by derived1, which overrides
 it relative to itself. Next, derived2 inherits derived1. In derived2, func() is again
 
 overridden.
-Because virtual functions are hierarchical, if derived2 did not override func(), when
-d ob2 was accessed, derived1’s func() would have been used. If neither derived1 nor
-derived2 had overridden func(), all references to it would have been routed to the one
-defined in base
+
+
 
 
 
