@@ -630,6 +630,15 @@ int main() {
             B  -->  D1  -->  D2
 
         both D1 and D2 can override f() relative to their respective classes.
+
+
+    NOTE:
+        Objects cannot be created by using an abstract class:
+            By definition, an abstract class contains at least one pure virtual function.
+            i.e. no body for that function exists relative to that class. 
+
+            Hence the class definition is not complete
+            So there is no way that an object can be created because of the incomplete class.
 */
 
 
@@ -801,12 +810,7 @@ int main() {
 
 /* 
 
-2. Why can't an object be created by using an abstract class?
 
-
-2. By definition, an abstract class contains at least one pure virtual function. This means
-that no body for that function exists relative to that class. Thus, there is no way that an
-object can be created because the class definition is not complete.
 
 
 
