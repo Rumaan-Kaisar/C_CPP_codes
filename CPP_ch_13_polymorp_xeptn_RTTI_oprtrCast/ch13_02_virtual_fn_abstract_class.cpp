@@ -731,7 +731,7 @@ int main() {
 
 
 
-/*  Example 2: Following program illustrates how a function's 
+/*  Example 8: Following program illustrates how a function's 
                 virtual nature is preserved  when it is inherited.
 
 
@@ -815,13 +815,20 @@ int main() {
 
 
 
-3. In Example 2, what happens if you remove only the redefinition of func() inside derived1? Does the program still compile and run? If so, why?
+Example 9: In above "Example 8" what happens if we remove only the "redefinition" of func() inside derived1? 
+                Does the program still compile and run? If so, why?
 
 
 3. When func() is called relative to derived1, it is the func() inside base that is used.
 The reason this works is that virtual functions are hierarchical.
 
 
+
+If we remove only the func() function from derived1 in Example 8, the program will still compile and run correctly.
+
+When func() is called for derived1, the program will use the func() function from the base class.
+
+This works because virtual functions follow inheritance. If a derived class does not define its own version of a virtual function, it automatically uses the version from its parent class.
 */
 
 
