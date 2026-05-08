@@ -28,18 +28,19 @@ At this point you should be able to perform the following exercises and answer t
 4. What is a pure virtual function?
 5. What is an abstract class? What is a polymorphic class?
 6. Is the following fragment correct? If not, why not?
-class base
-{
-public :
-virtual int ( int a) = 0;
-// ...
-};
-class derived : public base
-{
-public :
-int f( int a, int b) { return a*b; }
-// ...
-}:
+
+        class base {
+            public :
+                virtual int (int a) = 0;
+                // ...
+        };
+
+        class derived : public base {
+            public :
+                int f(int a, int b) { return a*b; }
+                // ...
+        }:
+
 7. Is the virtual quality inherited?
 8. On your own, experiment with virtual functions at this time. This is an important concept
 and you should master the technique.
@@ -80,7 +81,7 @@ in which a virtual function can solve some of your own programming problems
 1. // Demonstrate virtual functions .
 # include <iostream >
 # include <cstdlib >
-using namespace std ;
+
 class list
 {
 public :
@@ -93,6 +94,8 @@ list () { head = tail = next = NULL ; }
 virtual void store (int i) = 0;
 virtual int retrieve () = 0;
 };
+
+
 // Create a queue - type list .
 class queue : public list
 {
@@ -102,6 +105,8 @@ int retrieve ();
 queue operator +( int i) { store (i); return * this ; }
 int operator --( int unused ) { return retrieve (); }
 };
+
+
 void queue :: store ( int i)
 {
 list * item ;
@@ -120,6 +125,8 @@ item -> next = NULL ;
 if (! head )
 head = tail ;
 }
+
+
 int queue :: retrieve ()
 {
 int i;
@@ -137,6 +144,8 @@ head = head -> next ;
 delete p;
 return i;
 }
+
+
 // Create a stack - type list .
 class stack : public list
 {
@@ -146,6 +155,8 @@ int retrieve ();
 stack operator +( int i) { store (i); return * this ; }
 int operator --( int unused ) { return retrieve (); }
 };
+
+
 void stack :: store ( int i)
 {
 list * item ;
@@ -172,6 +183,7 @@ if (! head )
 cout << " List empty .\n";
 return 0;
 }
+
 // remove from start of list
 i = head -> num ;
 p = head ;
@@ -180,6 +192,9 @@ delete p;
 
 return i;
 }
+
+
+
 int main ()
 {
 // demonstrate queue
@@ -191,7 +206,7 @@ cout << " Queue : ";
 cout << q_ob --;
 cout << q_ob --;
 cout << q_ob --;
-cout << ’\n’;
+cout << '\n';
 // demonstrate stack
 stack s_ob ;
 s_ob + 1;
@@ -201,9 +216,12 @@ cout << " Stack : ";
 cout << s_ob --;
 cout << s_ob --;
 cout << s_ob --;
-cout << ’\n’;
+cout << '\n';
 return 0;
 }
+
+
+
 2. Virtual functions differ from overloaded functions in that overloaded functions must differ
 from the number of parameters or the type of parameters. An overridden virtual function
 must have exactly the same prototype (that is, the same return type and the same type
