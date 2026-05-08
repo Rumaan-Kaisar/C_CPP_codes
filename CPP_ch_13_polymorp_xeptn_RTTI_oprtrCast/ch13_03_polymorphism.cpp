@@ -207,8 +207,7 @@ if( tail )
 tail -> next = item ;
 tail = item ;
 item -> next = NULL ;
-275TEACH YOURSELF
-C++
+
 if (! head )
 head = tail ;
 }
@@ -252,8 +251,7 @@ head = item ;
 if (! tail )
 tail = head ;
 }
-276VIRTUAL FUNCTIONS
-10.4. APPLYING POLYMORPHISM
+
 int stack :: retrieve ()
 {
 int i;
@@ -293,8 +291,7 @@ p-> store (3) ;
 cout << " Stack : ";
 cout << p-> retrieve ();
 cout << p-> retrieve ();
-277TEACH YOURSELF
-C++
+
 cout << p-> retrieve ();
 cout << ’\n’;
 return 0;
@@ -339,8 +336,7 @@ return 0;
 }
 This main() illustrates how random events that occur at run time can be easily handled
 by using virtual functions and run-time polymorphism. The program executes a for loop
-278VIRTUAL FUNCTIONS
-SKILLS CHECK
+
 running from 0 to 9. Each iteration through the loop, you are asked to choose into which
 type of list-stack or the queue-you want to put a value. According to your answer, the
 base pointer p is set to point to the correct object and the current value of i is stored.
@@ -353,8 +349,12 @@ operating system interfaces to a program by sending it messages. As far as the p
 is concerned, these messages are generated at random, and you r program must respond
 to each one as it is received. One way to respond to these messages is through the use of
 virtual functions.
+
+
 EXERCISES
 1. Add another type of list to the program in Example 1. Have this version maintain a sorted
 list (in ascending order). Call this list sorted.
 2. On you r own, think about ways in which you can apply run-time polymorphism to simplify
 the solutions to certain types of problems.
+
+
