@@ -1,9 +1,6 @@
 
 /*  ------------------------    chapter    ------------------------
 
-
-/*  ------------------------    chapter    ------------------------
-
 13.4 Polymorphism: Early binding & Late binding
 Polymorphism: Polymorphism is the process by which a common interface is applied to two or more similar (but technically different) situations, thus implementing the "one interface, multiple methods" philosophy. In polymorphism a single, well-defined interface is used to access a number of different but related actions, and artificial complexity is removed.
 	There are two terms that are often linked to OOP in general and to C++ specifically. They are early binding and late binding. 
@@ -165,4 +162,199 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 */  
 
 
-*/  
+
+1. Here is a program that illustrates "one interface, multiple methods." It defines an abstract
+list class for integer values. The interface to the list is defined by the pure virtual functions
+store() and retrieve(). To store a value, call retrieve(. The base class list does not
+define any default methods for these actions. Instead, each derived class defines exactly
+what type of list will be maintained. In the program, two types of lists are implemented: a
+queue and a stack. Although the two lists operate completely differently, each is accessed
+using the same interface. You should study this program carefully.
+// Demonstrate virtual functions .
+# include <iostream >
+# include <cstdlib >
+using namespace std ;
+class list
+{
+public :
+list * head ; // pointer to start of list
+list * tail ; // pointer to end of list
+list * next ; // pointer to next item
+int num ; // value to be stored
+list () { head = tail = next = NULL ; }
+virtual void store (int i) = 0;
+virtual int retrieve () = 0;
+};
+// Create a queue - type list .
+class queue : public list
+{
+public :
+void store ( int i);
+int retrieve ();
+};
+void queue :: store ( int i)
+{
+list * item ;
+item = new queue ;
+if (! item )
+{
+cout << " Allocation error .\n";
+exit (1) ;
+}
+item ->num = i;
+// put on end of list
+if( tail )
+tail -> next = item ;
+tail = item ;
+item -> next = NULL ;
+275TEACH YOURSELF
+C++
+if (! head )
+head = tail ;
+}
+int queue :: retrieve ()
+{
+int i;
+list *p;
+if (! head )
+{
+cout << " List empty .\n";
+return 0;
+}
+// remove from start of list
+i = head -> num ;
+p = head ;
+head = head -> next ;
+delete p;
+return i;
+}
+// Create a stack - type list .
+class stack : public list
+{
+public :
+void store ( int i);
+int retrieve ();
+};
+void stack :: store ( int i)
+{
+list * item ;
+item = new stack ;
+if (! item )
+{
+cout << " Allocation error .\n";
+exit (1) ;
+}
+item ->num = i;
+// put on front of list for stack - like operation
+if( head )
+item -> next = head ;
+head = item ;
+if (! tail )
+tail = head ;
+}
+276VIRTUAL FUNCTIONS
+10.4. APPLYING POLYMORPHISM
+int stack :: retrieve ()
+{
+int i;
+list *p;
+if (! head )
+{
+cout << " List empty .\n";
+return 0;
+}
+// remove from start of list
+i = head -> num ;
+p = head ;
+head = head -> next ;
+delete p;
+return i;
+}
+int main ()
+{
+list *p;
+// demonstrate queue
+queue q_ob ;
+p = & q_ob ; // point to queue
+p-> store (1) ;
+p-> store (2) ;
+p-> store (3) ;
+cout << " Queue : ";
+cout << p-> retrieve ();
+cout << p-> retrieve ();
+cout << p-> retrieve ();
+cout << ’\n’;
+// demonstrate stack
+stack s_ob ;
+p = & s_ob ; // point to stack
+p-> store (1) ;
+p-> store (2) ;
+p-> store (3) ;
+cout << " Stack : ";
+cout << p-> retrieve ();
+cout << p-> retrieve ();
+277TEACH YOURSELF
+C++
+cout << p-> retrieve ();
+cout << ’\n’;
+return 0;
+}
+2. The main() function in the list program just shown simply illustrates that the list classes
+do, indeed, work. However, to begin to see why run-time polymorphism is so powerful,
+try using this main() instead:
+int main ()
+{
+list *p;
+queue q_ob ;
+stack s_ob ;
+char ch;
+int i;
+for (i =0; i <10; i ++)
+{
+cout << " Stack or Queue ? (S/Q): ";
+cin >> ch;
+ch = tolower (ch);
+if(ch == ’q’)
+p = & q_ob ;
+else
+p = & s_ob ;
+p-> store (i);
+}
+cout << " Enter T to terminate \n";
+for (;;)
+{
+cout << " Remove from Stack or Queue ? (S/Q): ";
+cin >> ch;
+ch = tolower (ch);
+if(ch == ’t’)
+break ;
+if(ch == ’q’)
+p = & q_ob ;
+else
+p = & s_ob ;
+cout << p-> retrieve () << ’\n’;
+}
+cout << ’\n’;
+return 0;
+}
+This main() illustrates how random events that occur at run time can be easily handled
+by using virtual functions and run-time polymorphism. The program executes a for loop
+278VIRTUAL FUNCTIONS
+SKILLS CHECK
+running from 0 to 9. Each iteration through the loop, you are asked to choose into which
+type of list-stack or the queue-you want to put a value. According to your answer, the
+base pointer p is set to point to the correct object and the current value of i is stored.
+Once the loop is finished, another loop begins that prompts you to indicate you to indicate
+from which list to remove a value. Once again, it is your response that determines which
+list is selected.
+While this example is trivial, you should be able to see how run-time to polymorphism
+can simplify a program that must respond to random events. For instance, the Windows
+operating system interfaces to a program by sending it messages. As far as the program
+is concerned, these messages are generated at random, and you r program must respond
+to each one as it is received. One way to respond to these messages is through the use of
+virtual functions.
+EXERCISES
+1. Add another type of list to the program in Example 1. Have this version maintain a sorted
+list (in ascending order). Call this list sorted.
+2. On you r own, think about ways in which you can apply run-time polymorphism to simplify
+the solutions to certain types of problems.
