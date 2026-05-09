@@ -96,13 +96,15 @@ class list {
 
 
 // Create a queue - type list .
-class queue : public list
-{
+class queue : public list {
     public :
-void store ( int i);
-int retrieve ();
-queue operator +( int i) { store (i); return * this ; }
-int operator --( int unused ) { return retrieve (); }
+        void store( int i);
+        int retrieve();
+        queue operator+(int i) { 
+            store(i); 
+            return *this; 
+        }
+        int operator--( int unused ) { return retrieve(); }
 };
 
 
