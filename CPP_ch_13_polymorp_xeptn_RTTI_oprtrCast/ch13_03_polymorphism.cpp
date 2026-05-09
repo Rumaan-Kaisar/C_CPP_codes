@@ -124,6 +124,9 @@ int main() {    list *p;
             cout << '\n';
         return 0;}
 
+
+
+
    Example 2:  To see why run-time polymorphism is so powerful, try using this main() instead of previous example:
    This main() illustrates how random events that occur at run time can be easily handled by using VFs and run-time polymorphism. 
    The program executes a for loop running from 0 to 9. Each iteration through the loop, you are asked to choose into which type of list- stack or the queue-you want to put a value. According to your answer, the base pointer p is set to point to the correct object and the current value of i is stored.
@@ -170,17 +173,22 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-1. Here is a program that illustrates "one interface, multiple methods." It defines an abstract
+
+
+
+/* Example 1: Here is a program that illustrates "one interface, multiple methods." It defines an abstract
 list class for integer values. The interface to the list is defined by the pure virtual functions
 store() and retrieve(). To store a value, call retrieve(. The base class list does not
 define any default methods for these actions. Instead, each derived class defines exactly
 what type of list will be maintained. In the program, two types of lists are implemented: a
 queue and a stack. Although the two lists operate completely differently, each is accessed
 using the same interface. You should study this program carefully.
+*/
+
 // Demonstrate virtual functions .
 # include <iostream >
 # include <cstdlib >
-using namespace std ;
+
 class list
 {
 public :
@@ -303,9 +311,14 @@ cout << p-> retrieve ();
 cout << ’\n’;
 return 0;
 }
-2. The main() function in the list program just shown simply illustrates that the list classes
+
+
+
+/* Example 2: The main() function in the list program just shown simply illustrates that the list classes
 do, indeed, work. However, to begin to see why run-time polymorphism is so powerful,
-try using this main() instead:
+try using this main() instead: */
+
+
 int main ()
 {
 list *p;
