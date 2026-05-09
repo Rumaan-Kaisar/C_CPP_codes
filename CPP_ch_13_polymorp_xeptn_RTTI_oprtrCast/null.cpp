@@ -82,29 +82,32 @@ in which a virtual function can solve some of your own programming problems
 # include <iostream >
 # include <cstdlib >
 
-class list
-{
-public :
-list * head ; // pointer to start of list
-list * tail ; // pointer to end of list
-list * next ; // pointer to next item
-int num ; // value to be stored
+class list {
+    public :
+        list *head ;    // pointer to start of list
+        list *tail ;    // pointer to end of list
+        list *next ;    // pointer to next item
+        int num ;       // value to be stored
 
-list () { head = tail = next = NULL ; }
-virtual void store (int i) = 0;
-virtual int retrieve () = 0;
+        list() { head = tail = next = NULL ; }
+        virtual void store(int i) = 0;
+        virtual int retrieve() = 0;
 };
 
 
 // Create a queue - type list .
 class queue : public list
 {
-public :
+    public :
 void store ( int i);
 int retrieve ();
 queue operator +( int i) { store (i); return * this ; }
 int operator --( int unused ) { return retrieve (); }
 };
+
+
+
+// --------  cp1 :: 09-May-2026
 
 
 void queue :: store ( int i)
@@ -155,6 +158,9 @@ int retrieve ();
 stack operator +( int i) { store (i); return * this ; }
 int operator --( int unused ) { return retrieve (); }
 };
+
+
+// --------  cp2 :: 09-May-2026
 
 
 void stack :: store ( int i)
@@ -222,6 +228,10 @@ return 0;
 
 
 
+// --------  cp3 :: 09-May-2026
+
+
+
 2. Virtual functions differ from overloaded functions in that overloaded functions must differ
 from the number of parameters or the type of parameters. An overridden virtual function
 must have exactly the same prototype (that is, the same return type and the same type
@@ -255,7 +265,6 @@ the base class’s version of the virtual function.
 
 4. The main advantage of run-time polymorphism is flexibility. The main disadvantage is
 loss of execution speed.
-
 
 
 
