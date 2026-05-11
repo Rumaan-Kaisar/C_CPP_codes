@@ -18,8 +18,11 @@
 
     ----------------    Early binding & Late binding    ----------------
 
-   There are two terms that are often linked to OOP in general and to C++ specifically. They are early binding and late binding. 
-   Early binding: Early binding essentially refers to those events that can be known at compile time. Specifically, it refers to those function calls that can be resolved during compilation. Early bound entities include:
+Early binding:
+    Early binding essentially refers to those "events" that can be "known" at COMPILE time.
+    Specifically, it refers to those function calls that can be resolved "during compilation".
+    
+     Early bound entities include:
 [1] "Normal" functions,     [2] Overloaded functions,   [3] Non-virtual member  [4] Friend functions.
 
    When these types of functions are compiled, all address information necessary to call them is known at compile time. 
@@ -35,7 +38,9 @@
 
 ## 1. Early Binding (Compile-Time Binding)
 
-Early binding means the function call is decided **during compilation** (compile time).
+Early binding means 
+
+
 
 The compiler already knows which function will be called.
 
@@ -1432,4 +1437,3 @@ cout << p-> retrieve ();
 cout << ’\n’;
 return 0;
 }
-
