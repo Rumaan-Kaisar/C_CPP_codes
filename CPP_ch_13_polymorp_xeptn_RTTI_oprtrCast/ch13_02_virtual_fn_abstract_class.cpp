@@ -1,5 +1,5 @@
 
-// Following are related to "Inheritance"
+// Following are related to "Inheritance" and "Polymorphism" both
 
 /*  ------------------------    Virtual Functions (VF)    ------------------------
 
