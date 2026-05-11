@@ -109,26 +109,24 @@ class queue : public list {
 
 
 
-// --------  cp1 :: 09-May-2026
+void queue :: store(int i) {
+    list *item;
 
+    item = new queue ;
+    if(!item){
+        std::cout << " Allocation error .\n";
+        exit(1);
+    }
 
-void queue :: store ( int i)
-{
-list * item ;
-item = new queue ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// put on end of list
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-if (! head )
-head = tail ;
+    item -> num = i;
+
+    // put on end of list
+    if(tail) tail -> next = item;
+
+    tail = item;
+    item -> next = NULL;
+
+    if(!head) head = tail;
 }
 
 
