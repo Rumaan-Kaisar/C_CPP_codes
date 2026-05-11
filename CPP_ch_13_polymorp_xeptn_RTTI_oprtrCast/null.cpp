@@ -130,22 +130,22 @@ void queue :: store(int i) {
 }
 
 
-int queue :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
+int queue :: retrieve() {
+    int i;
+    list *p;
 
-delete p;
-return i;
+    if(!head) {
+        std::cout << " List empty .\n";
+        return 0;
+    }
+
+    // remove from start of list
+    i = head -> num ;
+    p = head;
+    head = head -> next;
+
+    delete p;
+    return i;
 }
 
 
