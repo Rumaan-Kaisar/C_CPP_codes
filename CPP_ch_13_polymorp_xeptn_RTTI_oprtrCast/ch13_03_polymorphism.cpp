@@ -3,25 +3,20 @@
 
 /*  ------------------------    Polymorphism    ------------------------
 
+    Polymorphism is an OOP concept where: 
+        One interface (common interface) can be used for many different actions.
+        It follows the idea of "one interface, multiple methods."
+
+        This means the same function or method name can behave differently 
+            depending on the object or situation, 
+            reducing complexity and improving flexibility.
+
+        In polymorphism a single, "well-defined interface" is used to access 
+            a number of different but related actions, and artificial complexity is removed.
 
 
 
-
-Polymorphism is an OOP concept where: 
-    One interface (common interface) can be used for many different actions.
-    It follows the idea of "one interface, multiple methods."
-
-    This means the same function or method name can behave differently 
-        depending on the object or situation, 
-        reducing complexity and improving flexibility.
-
-
-In polymorphism a single, "well-defined interface" is used to access a number of different but related actions, and artificial complexity is removed.
-
-
-
-
-Early binding & Late binding :
+    ----------------    Early binding & Late binding    ----------------
 
    There are two terms that are often linked to OOP in general and to C++ specifically. They are early binding and late binding. 
    Early binding: Early binding essentially refers to those events that can be known at compile time. Specifically, it refers to those function calls that can be resolved during compilation. Early bound entities include:
@@ -37,12 +32,6 @@ Early binding & Late binding :
 ## Polymorphism, Early Binding & Late Binding
 
 ### Polymorphism
-
-
-
----
-
-# Early Binding and Late Binding
 
 ## 1. Early Binding (Compile-Time Binding)
 
@@ -72,6 +61,9 @@ The compiler already knows which function will be called.
 * Less flexibility.
 
 ---
+
+
+
 
 ## 2. Late Binding (Run-Time Binding)
 
