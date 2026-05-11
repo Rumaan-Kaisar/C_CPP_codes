@@ -19,6 +19,153 @@ Polymorphism: Polymorphism is the process by which a common interface is applied
    In C++, a virtual function is a late bound object.  When a VF is accessed via a base class pointer, the program must determine at run time what type of object is being pointed to and then select which version of the overridden function to execute. 
    Advantage: Flexibility at run time.  Disadvantage: is that there Slower than early binding.
 
+
+## Polymorphism, Early Binding & Late Binding
+
+### Polymorphism
+
+Polymorphism is an OOP concept where **one interface can be used for many different actions**.
+It follows the idea of **“one interface, multiple methods.”**
+
+This means the same function or method name can behave differently depending on the object or situation, reducing complexity and improving flexibility.
+
+---
+
+# Early Binding and Late Binding
+
+## 1. Early Binding (Compile-Time Binding)
+
+Early binding means the function call is decided **during compilation** (compile time).
+
+The compiler already knows which function will be called.
+
+### Examples of Early Bound Functions
+
+1. Normal functions
+2. Overloaded functions
+3. Non-virtual member functions
+4. Friend functions
+
+### Features
+
+* Function addresses are fixed at compile time.
+* Faster execution.
+* Less flexible than late binding.
+
+### Advantage
+
+* High speed and better performance.
+
+### Disadvantage
+
+* Less flexibility.
+
+---
+
+## 2. Late Binding (Run-Time Binding)
+
+Late binding means the function call is decided **during program execution** (run time).
+
+The compiler does not know the exact function to call until the program runs.
+
+### In C++
+
+* **Virtual functions** use late binding.
+* When a virtual function is called through a base class pointer, C++ checks the actual object type at run time and then calls the correct overridden function.
+
+### Features
+
+* Function selection happens at run time.
+* More flexible than early binding.
+* Slightly slower.
+
+### Advantage
+
+* Greater flexibility and runtime decision-making.
+
+### Disadvantage
+
+* Slower than early binding.
+
+---
+
+## Short Comparison Table
+
+| Feature        | Early Binding                   | Late Binding      |
+| -------------- | ------------------------------- | ----------------- |
+| Decision Time  | Compile time                    | Run time          |
+| Functions Used | Normal, overloaded, non-virtual | Virtual functions |
+| Speed          | Faster                          | Slower            |
+| Flexibility    | Less flexible                   | More flexible     |
+| Also Called    | Static binding                  | Dynamic binding   |
+
+
+
+
+
+
+
+Polymorphism, Early Binding & Late Binding
+Polymorphism
+
+Polymorphism is an OOP concept where one interface can be used for many different actions.
+It follows the idea of “one interface, multiple methods.”
+
+This means the same function or method name can behave differently depending on the object or situation, reducing complexity and improving flexibility.
+
+Early Binding and Late Binding
+1. Early Binding (Compile-Time Binding)
+
+Early binding means the function call is decided during compilation (compile time).
+
+The compiler already knows which function will be called.
+
+Examples of Early Bound Functions
+Normal functions
+Overloaded functions
+Non-virtual member functions
+Friend functions
+Features
+Function addresses are fixed at compile time.
+Faster execution.
+Less flexible than late binding.
+Advantage
+High speed and better performance.
+Disadvantage
+Less flexibility.
+2. Late Binding (Run-Time Binding)
+
+Late binding means the function call is decided during program execution (run time).
+
+The compiler does not know the exact function to call until the program runs.
+
+In C++
+Virtual functions use late binding.
+When a virtual function is called through a base class pointer, C++ checks the actual object type at run time and then calls the correct overridden function.
+Features
+Function selection happens at run time.
+More flexible than early binding.
+Slightly slower.
+Advantage
+Greater flexibility and runtime decision-making.
+Disadvantage
+Slower than early binding.
+Short Comparison Table
+Feature	Early Binding	Late Binding
+Decision Time	Compile time	Run time
+Functions Used	Normal, overloaded, non-virtual	Virtual functions
+Speed	Faster	Slower
+Flexibility	Less flexible	More flexible
+Also Called	Static binding	Dynamic binding
+
+
+
+
+
+
+
+
+
    Example 1: Here is a program that illustrates "one interface, multiple methods." It defines an abstract list class for integer values. 
    The interface to the list is defined by the PVFs store() and retrieve(). To store a value, call store(). To retrieve a value, call retrieve(). 
    The base list does not define any default methods for these actions. Instead, each derived defines exactly what type of list will be maintained.
@@ -581,5 +728,4 @@ cout << p-> retrieve ();
 cout << ’\n’;
 return 0;
 }
-
 
