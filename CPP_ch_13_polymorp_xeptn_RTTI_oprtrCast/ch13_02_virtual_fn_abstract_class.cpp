@@ -1,4 +1,6 @@
 
+// Following are related to "Inheritance"
+
 /*  ------------------------    Virtual Functions (VF)    ------------------------
 
     A virtual function is a "base class member function" and redefined (overridden) by derived classes.
