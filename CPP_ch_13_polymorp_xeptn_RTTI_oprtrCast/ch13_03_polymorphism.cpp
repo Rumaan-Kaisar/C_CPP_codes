@@ -18,7 +18,7 @@
 
     ----------------    Early binding & Late binding    ----------------
 
-    Early binding:
+    Early binding (build-time):
         Early binding essentially refers to those "events" that can be "known" at COMPILE time.
         Specifically, it refers to those function calls that can be resolved "during compilation".
     
@@ -33,7 +33,7 @@
             Calls to functions bound at compile time are the fastest types of function calls.
 
         Features:
-            * Function addresses are fixed at compile time.
+            * Function addresses are fixed at "COMPILE time".
             * Faster execution.
             * Less flexible than late binding.
 
@@ -45,14 +45,22 @@
 
 
 
-    
+    Late binding (run-time):
+        Late binding refers to events that must occur at run time.
+            i.e. the function call is decided during "program EXECUTION" (run time).
+        
+        The compiler does not know the "exact function to call" until the program "runs".
+            the address of the function to be called is not known until the program runs. 
 
-    --------  rev[12-May-2026]  --------
+        In C++ a virtual function is a late bound object.  
+        When a VF is called through a base pointer, 
+            the program must determine at runtime what type of object the pointer actually refers to, 
+            and then runs the correct overridden function.
 
-    Late binding:
 
-Late binding refers to events that must occur at run time. A late bound function call is one in which the address of the function to be called is not known until the program runs. 
-   In C++, a virtual function is a late bound object.  When a VF is accessed via a base class pointer, the program must determine at run time what type of object is being pointed to and then select which version of the overridden function to execute. 
+    --------  rev[13-May-2026]  --------
+
+
    Advantage: Flexibility at run time.  Disadvantage: is that there Slower than early binding.
 
 
@@ -73,9 +81,7 @@ Late binding refers to events that must occur at run time. A late bound function
 
 ## 2. Late Binding (Run-Time Binding)
 
-Late binding means the function call is decided **during program execution** (run time).
 
-The compiler does not know the exact function to call until the program runs.
 
 ### In C++
 
