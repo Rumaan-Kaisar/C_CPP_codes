@@ -22,23 +22,36 @@
         Early binding essentially refers to those "events" that can be "known" at COMPILE time.
         Specifically, it refers to those function calls that can be resolved "during compilation".
     
-    Early bound entities include:
-        [1] "Normal" functions,
-        [2] Overloaded functions,
-        [3] Non-virtual member
-        [4] Friend functions.
+        Early bound entities include:
+            [1] "Normal" functions,
+            [2] Overloaded functions,
+            [3] Non-virtual member
+            [4] Friend functions.
 
-    When these types of functions are compiled:
-        All address information necessary to call them is "known at compile time". 
-        Calls to functions bound at compile time are the fastest types of function calls.
+        When these types of functions are compiled:
+            All address information necessary to call them is "known at compile time". 
+            Calls to functions bound at compile time are the fastest types of function calls.
 
-    Main disadvantage:
-        Lack of flexibility.
+        Features:
+            * Function addresses are fixed at compile time.
+            * Faster execution.
+            * Less flexible than late binding.
 
+        Advantage:
+            High speed and better performance.
+
+        Main disadvantage:
+            Lack of flexibility.
+
+
+
+    
 
     --------  rev[12-May-2026]  --------
 
-   Late binding: Late binding refers to events that must occur at run time. A late bound function call is one in which the address of the function to be called is not known until the program runs. 
+    Late binding:
+
+Late binding refers to events that must occur at run time. A late bound function call is one in which the address of the function to be called is not known until the program runs. 
    In C++, a virtual function is a late bound object.  When a VF is accessed via a base class pointer, the program must determine at run time what type of object is being pointed to and then select which version of the overridden function to execute. 
    Advantage: Flexibility at run time.  Disadvantage: is that there Slower than early binding.
 
@@ -50,19 +63,8 @@
 ## 1. Early Binding (Compile-Time Binding)
 
 
-### Features
 
-* Function addresses are fixed at compile time.
-* Faster execution.
-* Less flexible than late binding.
 
-### Advantage
-
-* High speed and better performance.
-
-### Disadvantage
-
-* Less flexibility.
 
 ---
 
