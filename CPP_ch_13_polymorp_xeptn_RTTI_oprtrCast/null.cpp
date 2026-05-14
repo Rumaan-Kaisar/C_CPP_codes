@@ -23,10 +23,20 @@
 
 At this point you should be able to perform the following exercises and answer the questions.
 1. What is a virtual function?
+
+
 2. What types of functions cannot be made virtual?
+
+
 3. How does a virtual function help achieve run-time polymorphism? Be specific.
+
+
 4. What is a pure virtual function?
+
+
 5. What is an abstract class? What is a polymorphic class?
+
+
 6. Is the following fragment correct? If not, why not?
 
         class base {
@@ -41,7 +51,11 @@ At this point you should be able to perform the following exercises and answer t
                 // ...
         }:
 
+
+
 7. Is the virtual quality inherited?
+
+
 8. On your own, experiment with virtual functions at this time. This is an important concept
 and you should master the technique.
 
@@ -51,17 +65,31 @@ and you should master the technique.
 1. A virtual function is essentially a placeholder function that is declared in a base class and
 that is redefined by a class derived from that base. The process of redefinition is called
 overriding.
+
+
 2. Nonmember functions and constructor functions cannot be made virtual.
+
+
 3. A virtual function supports run-time polymorphism through the use of base class pointers.
 When a base class pointer points to an object of a derived class containing a virtual
 function, the specific function called is determined by the type of object being pointed to.
+
+
 4. A pure virtual function is one that contains no definition relative to the base class.
+
+
 5. An abstract class is a base class that contains at least one pure virtual function. A
 polymorphic class is one that contains at least one virtual function.
+
+
 6. The fragment is incorrect because the redefinition of a virtual function must have the
 same return type and type and number of parameters as the original function. In this
 case, the redefinition of f() differs in the number of its parameters.
+
+
 7. Yes.
+
+
 
 
 
@@ -71,7 +99,11 @@ This section checks how well you have integrated material in this chapter with t
 preceding chapters.
 1. Enhance the list example from Section 10.4, Example 1, so that it overloads the + and {
 operators. Have the + store an element and the { retrieve an element.
+
+
 2. How do virtual functions differ from overloaded functions?
+
+
 3. On your own, reexamine some of the function overloading examples presented earlier in
 this book. Determine which can be converted to virtual functions. Also, think about ways
 in which a virtual function can solve some of your own programming problems
@@ -150,17 +182,17 @@ int queue :: retrieve() {
 
 
 // Create a stack - type list .
-class stack : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-stack operator +( int i) { store (i); return * this ; }
-int operator --( int unused ) { return retrieve (); }
+class stack : public list {
+    public :
+        void store(int i);
+        int retrieve();
+
+        stack operator +(int i) { store (i); return * this ; }
+        int operator --(int unused ) { return retrieve (); }
 };
 
 
-// --------  cp2 :: 09-May-2026
+
 
 
 void stack :: store ( int i)
@@ -265,6 +297,5 @@ the base class’s version of the virtual function.
 
 4. The main advantage of run-time polymorphism is flexibility. The main disadvantage is
 loss of execution speed.
-
 
 
