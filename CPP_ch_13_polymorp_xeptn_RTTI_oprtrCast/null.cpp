@@ -216,23 +216,22 @@ void stack :: store (int i) {
 }
 
 
-int stack :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
+int stack :: retrieve() {
+    int i;
+    list *p;
 
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
+    if (!head){
+        std::cout << " List empty .\n";
+        return 0;
+    }
 
-return i;
+    // remove from start of list
+    i = head -> num;
+    p = head;
+    head = head -> next;
+    delete p;
+
+    return i;
 }
 
 
