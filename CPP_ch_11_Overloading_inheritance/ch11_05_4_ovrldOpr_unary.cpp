@@ -5,6 +5,22 @@
 
         Overloading a "unary" operator as a member function requires "no parameters"
         The single operand triggers the call to the operator function
+
+    whitespace usage:
+    whitespace is allowed and mostly a matter of style in C++ operator overloading declarations.
+    
+        These are all valid:
+        
+                operator--(int)
+                operator --(int)
+                operator -- (int)
+        
+        So your example:
+        
+                int operator --(int unused)
+                int operator +(int i)
+        
+        is perfectly valid.
 */
 
 
