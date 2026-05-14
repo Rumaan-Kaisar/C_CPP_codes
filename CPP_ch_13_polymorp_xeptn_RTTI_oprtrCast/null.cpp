@@ -187,31 +187,35 @@ class stack : public list {
         void store(int i);
         int retrieve();
 
-        stack operator +(int i) { store (i); return * this ; }
-        int operator --(int unused ) { return retrieve (); }
+        stack operator +(int i) { 
+            store(i);
+            return *this;
+        }
+        int operator --(int unused) { return retrieve(); }
 };
 
 
 
 
 
-void stack :: store ( int i)
-{
-list * item ;
-item = new stack ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
+void stack :: store (int i) {
+    list *item;
+    item = new stack;
+
+    if(!item) {
+        std::cout << " Allocation error .\n";
+        exit(1);
+    }
+
+    item -> num = i;
+
+    // put on front of list for stack - like operation
+    if(head) item -> next = head;
+    head = item;
+    if(!tail) tail = head;
 }
-item ->num = i;
-// put on front of list for stack - like operation
-if( head )
-item -> next = head ;
-head = item ;
-if (! tail )
-tail = head ;
-}
+
+
 int stack :: retrieve ()
 {
 int i;
