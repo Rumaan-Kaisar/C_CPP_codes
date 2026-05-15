@@ -53,9 +53,14 @@
             the address of the function to be called is not known until the program runs. 
 
         In C++ a virtual function is a late bound object.  
-        When a VF is called through a base pointer, 
-            the program must determine at runtime what type of object the pointer actually refers to, 
+        When a VF is called through a base class pointer, 
+            the program must determine at "runtime" what type of object the pointer actually refers to, 
             and then runs the correct overridden function.
+
+        Features:
+            Function selection happens at run time.
+            More flexible than early binding.
+            Slightly slower.
 
 
     --------  rev[13-May-2026]  --------
@@ -85,14 +90,10 @@
 
 ### In C++
 
-* **Virtual functions** use late binding.
-* When a virtual function is called through a base class pointer, C++ checks the actual object type at run time and then calls the correct overridden function.
 
-### Features
 
-* Function selection happens at run time.
-* More flexible than early binding.
-* Slightly slower.
+
+
 
 ### Advantage
 
