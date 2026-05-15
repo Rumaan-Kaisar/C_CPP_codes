@@ -195,9 +195,6 @@ class stack : public list {
 };
 
 
-
-
-
 void stack :: store (int i) {
     list *item;
     item = new stack;
@@ -235,35 +232,39 @@ int stack :: retrieve() {
 }
 
 
+int main() {
+    // demonstrate queue
+    queue q_ob;
 
-int main ()
-{
-// demonstrate queue
-queue q_ob ;
-q_ob + 1;
-q_ob + 2;
-q_ob + 3;
-cout << " Queue : ";
-cout << q_ob --;
-cout << q_ob --;
-cout << q_ob --;
-cout << '\n';
-// demonstrate stack
-stack s_ob ;
-s_ob + 1;
-s_ob + 2;
-s_ob + 3;
-cout << " Stack : ";
-cout << s_ob --;
-cout << s_ob --;
-cout << s_ob --;
-cout << '\n';
-return 0;
+    q_ob+1;
+    q_ob+2;
+    q_ob+3;
+
+    std::cout << " Queue : ";
+    std::cout << q_ob--;
+    std::cout << q_ob--;
+    std::cout << q_ob--;
+    std::cout << '\n';
+
+    // demonstrate stack
+    stack s_ob ;
+
+    s_ob+1;
+    s_ob+2;
+    s_ob+3;
+
+    std::cout << " Stack : ";
+    std::cout << s_ob--;
+    std::cout << s_ob--;
+    std::cout << s_ob--;
+    std::cout << '\n';
+
+    return 0;
 }
 
 
 
-// --------  cp3 :: 09-May-2026
+
 
 
 
