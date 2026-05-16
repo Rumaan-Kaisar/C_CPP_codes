@@ -79,65 +79,7 @@
     | Also Called    | Static binding                  | Dynamic binding   |
 
 
-    --------  rev[13-May-2026]  --------
-
-
-
-
-
-Polymorphism, Early Binding & Late Binding
-Polymorphism
-
-Polymorphism is an OOP concept where one interface can be used for many different actions.
-It follows the idea of “one interface, multiple methods.”
-
-This means the same function or method name can behave differently depending on the object or situation, reducing complexity and improving flexibility.
-
-Early Binding and Late Binding
-1. Early Binding (Compile-Time Binding)
-
-Early binding means the function call is decided during compilation (compile time).
-
-The compiler already knows which function will be called.
-
-Examples of Early Bound Functions
-Normal functions
-Overloaded functions
-Non-virtual member functions
-Friend functions
-Features
-Function addresses are fixed at compile time.
-Faster execution.
-Less flexible than late binding.
-Advantage
-High speed and better performance.
-Disadvantage
-Less flexibility.
-2. Late Binding (Run-Time Binding)
-
-Late binding means the function call is decided during program execution (run time).
-
-The compiler does not know the exact function to call until the program runs.
-
-In C++
-Virtual functions use late binding.
-When a virtual function is called through a base class pointer, C++ checks the actual object type at run time and then calls the correct overridden function.
-Features
-Function selection happens at run time.
-More flexible than early binding.
-Slightly slower.
-Advantage
-Greater flexibility and runtime decision-making.
-Disadvantage
-Slower than early binding.
-Short Comparison Table
-Feature	Early Binding	Late Binding
-Decision Time	Compile time	Run time
-Functions Used	Normal, overloaded, non-virtual	Virtual functions
-Speed	Faster	Slower
-Flexibility	Less flexible	More flexible
-Also Called	Static binding	Dynamic binding
-
+    --------  rev[16-May-2026]  --------
 
 
 
