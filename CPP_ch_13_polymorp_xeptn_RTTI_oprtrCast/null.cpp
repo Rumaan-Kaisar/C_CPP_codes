@@ -111,8 +111,8 @@ in which a virtual function can solve some of your own programming problems
 
 
 1. // Demonstrate virtual functions .
-# include <iostream >
-# include <cstdlib >
+# include <iostream>
+# include <cstdlib>
 
 class list {
     public :
@@ -282,12 +282,20 @@ and number of parameters) as the original function.
 Before proceeding, you should be able to correctly answer the following questions and do the
 exercises.
 1. What is a virtual function?
+
+
 2. What is a pure virtual function? If a class declaration contains a pure virtual function,
 what is that class called, and what restrictions apply to its usage?
+
+
 3. Run-time polymorphism is achieved through the use of functions and
 class pointers. (Fill in the missing words.)
+
+
 4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function,
 what happens when an object of that derived class calls that function?
+
+
 5. What is the main advantage of run-time polymorphism? What is its potential disadvantage?
 
 
@@ -295,11 +303,16 @@ what happens when an object of that derived class calls that function?
 1. A virtual function is a function that is declared as virtual by the base class and then
 overridden by a derived class. A base class that contains at least one pure virtual function
 is called an abstract class.
+
+
 2. The missing words are "virtual" and "base".
+
+
 3. If a derived class does not override a non-pure virtual function, the derived class will use
 the base class’s version of the virtual function.
 
+
+
 4. The main advantage of run-time polymorphism is flexibility. The main disadvantage is
 loss of execution speed.
-
 
