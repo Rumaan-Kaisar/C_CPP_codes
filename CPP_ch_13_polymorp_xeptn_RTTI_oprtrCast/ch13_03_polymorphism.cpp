@@ -40,7 +40,7 @@
         Advantage:
             High speed and better performance.
 
-        Main disadvantage:
+        Disadvantage:
             Lack of flexibility.
 
 
@@ -62,11 +62,24 @@
             More flexible than early binding.
             Slightly slower.
 
+        Advantage: 
+            Flexibility at run time.  
 
+        Disadvantage:
+            Slower than early binding.
+
+ 
     --------  rev[13-May-2026]  --------
 
 
-   Advantage: Flexibility at run time.  Disadvantage: is that there Slower than early binding.
+### Advantage
+
+* Greater flexibility and runtime decision-making.
+
+### Disadvantage
+
+* 
+
 
 
 ## Polymorphism, Early Binding & Late Binding
@@ -88,20 +101,7 @@
 
 
 
-### In C++
 
-
-
-
-
-
-### Advantage
-
-* Greater flexibility and runtime decision-making.
-
-### Disadvantage
-
-* Slower than early binding.
 
 ---
 
