@@ -68,24 +68,18 @@
         Disadvantage:
             Slower than early binding.
 
- 
+
+    ------------------------------------------------------------------------
+    | Feature        | Early Binding                   | Late Binding      |
+    | -------------- | ------------------------------- | ----------------- |
+    | Decision Time  | Compile time                    | Run time          |
+    | Functions Used | Normal, overloaded, non-virtual | Virtual functions |
+    | Speed          | Faster                          | Slower            |
+    | Flexibility    | Less flexible                   | More flexible     |
+    | Also Called    | Static binding                  | Dynamic binding   |
+
+
     --------  rev[13-May-2026]  --------
-
-
-
----
-
-## Short Comparison Table
-
-| Feature        | Early Binding                   | Late Binding      |
-| -------------- | ------------------------------- | ----------------- |
-| Decision Time  | Compile time                    | Run time          |
-| Functions Used | Normal, overloaded, non-virtual | Virtual functions |
-| Speed          | Faster                          | Slower            |
-| Flexibility    | Less flexible                   | More flexible     |
-| Also Called    | Static binding                  | Dynamic binding   |
-
-
 
 
 
