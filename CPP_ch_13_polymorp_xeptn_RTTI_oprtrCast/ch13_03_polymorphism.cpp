@@ -72,36 +72,6 @@
     --------  rev[13-May-2026]  --------
 
 
-### Advantage
-
-* Greater flexibility and runtime decision-making.
-
-### Disadvantage
-
-* 
-
-
-
-## Polymorphism, Early Binding & Late Binding
-
-### Polymorphism
-
-## 1. Early Binding (Compile-Time Binding)
-
-
-
-
-
----
-
-
-
-
-## 2. Late Binding (Run-Time Binding)
-
-
-
-
 
 ---
 
