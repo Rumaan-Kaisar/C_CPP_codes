@@ -91,42 +91,18 @@ so what is the difference from the "inheritance" using the idea of "Virtual func
 ########################################################
 
 
-## Difference Between Polymorphism and Inheritance
+----------------    Difference Between Polymorphism and Inheritance    ----------------
 
-These concepts are closely related, but they are **not the same thing**.
+These concepts are closely related, but they are "not the same thing".
 
----
+Inheritance:
+    One class acquires the properties and behaviors of another class.
+    It creates an “is-a” relationship.
 
-# 1. Inheritance
-
-Inheritance means **one class acquires the properties and behaviors of another class**.
-
-It creates an **“is-a” relationship**.
-
-### Example
-
-```cpp
-class Animal {
-public:
-    void eat() {
-        cout << "Eating";
-    }
-};
-
-class Dog : public Animal {
-};
-```
-
-Here:
-
-* `Dog` inherits from `Animal`
-* Dog gets the `eat()` function automatically.
-
-### Purpose of Inheritance
-
-* Code reuse
-* Creating relationships between classes
-* Building class hierarchies
+    Purpose of Inheritance:
+        * Code reuse
+        * Creating relationships between classes
+        * Building class hierarchies
 
 ---
 
