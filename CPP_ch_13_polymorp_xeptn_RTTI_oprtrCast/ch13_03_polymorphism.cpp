@@ -1150,7 +1150,10 @@ the solutions to certain types of problems.
 1. // Demonstrate virtual functions .
 # include <iostream >
 # include <cstdlib >
+
 using namespace std ;
+
+
 class list
 {
 public :
@@ -1162,6 +1165,8 @@ list () { head = tail = next = NULL ; }
 virtual void store (int i) = 0;
 virtual int retrieve () = 0;
 };
+
+
 // Create a queue - type list .
 class queue : public list
 {
@@ -1170,6 +1175,8 @@ public :
 void store ( int i);
 int retrieve ();
 };
+
+
 void queue :: store ( int i)
 {
 list * item ;
@@ -1188,6 +1195,8 @@ item -> next = NULL ;
 if (! head )
 head = tail ;
 }
+
+
 int queue :: retrieve ()
 {
 int i;
@@ -1204,6 +1213,8 @@ head = head -> next ;
 delete p;
 return i;
 }
+
+
 // Create a stack - type list .
 class stack : public list
 {
@@ -1212,6 +1223,8 @@ void store ( int i);
 int retrieve ();
 
 };
+
+
 void stack :: store ( int i)
 {
 list * item ;
@@ -1229,6 +1242,8 @@ head = item ;
 if (! tail )
 tail = head ;
 }
+
+
 int stack :: retrieve ()
 {
 int i;
@@ -1245,6 +1260,8 @@ head = head -> next ;
 delete p;
 return i;
 }
+
+
 // Create a sorted list .
 class sorted : public list
 {
@@ -1252,8 +1269,9 @@ public :
 void store ( int i);
 int retrieve ();
 };
-void sorted :: store ( int i)
 
+
+void sorted :: store ( int i)
 {
 list * item ;
 list *p, *p2;
@@ -1291,6 +1309,8 @@ item -> next = NULL ;
 if (! head ) // is first element
 head = item ;
 }
+
+
 int sorted :: retrieve ()
 {
 int i;
@@ -1308,6 +1328,9 @@ head = head -> next ;
 delete p;
 return i;
 }
+
+
+
 int main ()
 {
 list *p;
