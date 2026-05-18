@@ -205,19 +205,34 @@ class stack : public list {
 
 // --------  derived class queue's versions of "store" and "retrieve"  --------
 
-void queue :: store(int i){ list *item;
-    item = new queue ;
-    if(!item ){     cout << " Allocation error .\n";
-            exit(1); }
-    item -> num = i;
+void queue :: store(int i){ 
+    // It adds a new item to the end of the queue (FIFO: First In, First Out).
+    
+    list *item;         // A pointer item is created. It will point to a new node in the list.
+    item = new queue;   // Memory is allocated for a new object. This new object acts as a node in the "queue"
 
-// put on end of list 
-    if(tail) tail -> next = item ;
-    tail = item ;
-    item -> next = NULL ;
-    if(!head) head = tail ;  }
+    // Checks if memory allocation fails
+    if(!item ){
+        std::cout << " Allocation error .\n";
+        exit(1);
+    }
+    
+    // Note: item, head, tail, next are "pointers" of type "list"
 
-int queue :: retrieve(){    int i;
+    item->num = i;      // Stores the given value i inside the new node.
+    
+    // put on end of list 
+    if(tail) tail->next = item;     // If the queue already has elements: The current last node (tail) is linked to the new node.
+    tail = item;    // Updates tail to point to the new node. Now this new node is the last element of the queue.
+    item -> next = NULL;    // Since it's the last node, it doesn’t point to anything after it.
+
+    // initializes the queue properly.
+    if(!head) head = tail;  // If the queue was empty before: Both head and tail will point to this new node.
+}
+
+
+int queue :: retrieve(){
+        int i;
                 list *p;
     if(!head){  cout << " List empty.\n ";
             return 0; }
