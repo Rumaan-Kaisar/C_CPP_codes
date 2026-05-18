@@ -150,6 +150,7 @@
 
 
 
+
 /* Example 1: This program shows the idea of “one interface, multiple methods.” 
                 It creates an abstract "list" class for storing integers.
 
@@ -178,7 +179,7 @@ class list{
 
         int num;            // value to be stored  
 
-        list(){ head = tail = next = NULL ; }
+        list(){ head = tail = next = NULL; }
 
         // actions for add and get values
         virtual void store(int i) = 0;      // PVF 
@@ -186,11 +187,23 @@ class list{
 };
 
 
-// Create a queue - type list.
+// Create a queue - type "list".
 class queue : public list {
-            public : void store(int i);
-                   int retrieve();
-                };
+    public :
+        void store(int i);
+        int retrieve();
+};
+
+
+// Create a stack - type "list".
+class stack : public list {
+    public :
+        void store(int i);
+        int retrieve();
+};
+
+
+// --------  derived class queue's versions of "store" and "retrieve"  --------
 
 void queue :: store(int i){ list *item;
     item = new queue ;
@@ -215,12 +228,9 @@ int queue :: retrieve(){    int i;
     head = head -> next ;
     delete p;
     return i; } 
-// Create a stack - type list.
 
-class stack : public list {
-            public : void store(int i);
-                   int retrieve();
-                };
+
+// --------  derived class stack's own versions of "store" and "retrieve"  --------
 
 void stack :: store(int i){ list *item ;
     item = new stack ;
@@ -349,27 +359,11 @@ using the same interface. You should study this program carefully.
 */
 
 // Demonstrate virtual functions .
-# include <iostream >
-# include <cstdlib >
 
-class list
-{
-public :
-list * head ; // pointer to start of list
-list * tail ; // pointer to end of list
-list * next ; // pointer to next item
-int num ; // value to be stored
-list () { head = tail = next = NULL ; }
-virtual void store (int i) = 0;
-virtual int retrieve () = 0;
-};
-// Create a queue - type list .
-class queue : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-};
+
+
+
+
 void queue :: store ( int i)
 {
 list * item ;
@@ -405,13 +399,8 @@ head = head -> next ;
 delete p;
 return i;
 }
-// Create a stack - type list .
-class stack : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-};
+
+
 void stack :: store ( int i)
 {
 list * item ;
