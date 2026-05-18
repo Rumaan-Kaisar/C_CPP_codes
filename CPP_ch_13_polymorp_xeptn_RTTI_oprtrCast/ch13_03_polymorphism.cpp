@@ -150,20 +150,7 @@
 
 
 
-/* --------  rev[17-May-2026]  --------
-
-
-
-
-
-
- 
- Instead, each derived defines exactly what type of list will be maintained.
-   In the program, two types of lists : a queue and a stack. Although the two lists operate completely differently, each is accessed using the same interface. 
-
-
-
-Example 1: This program shows the idea of “one interface, multiple methods.” 
+/* Example 1: This program shows the idea of “one interface, multiple methods.” 
                 It creates an abstract "list" class for storing integers.
 
                 The "list" uses two functions: 
@@ -179,23 +166,27 @@ Example 1: This program shows the idea of “one interface, multiple methods.”
                 In this program, two types of lists are implemented: a queue and a stack. 
                     Even though they work differently, both use the same interface (store and retrieve).
 */
-#include<iostream >
-#include<cstdlib >
-using namespace std;
 
-class list{     public:     list *head ;        // pointer to start of list  
-                list *tail ;        // pointer to end of list  
-                list *next ;        // pointer to next item  
+#include<iostream>
+#include<cstdlib>
 
-                int num ;           // value to be stored  
+class list{
+    public:
+        list *head;         // pointer to start of list  
+        list *tail;         // pointer to end of list  
+        list *next;         // pointer to next item  
 
-                list(){ head = tail = next = NULL ; }
-            virtual void store(int i) = 0;      // PVF 
-            virtual int retrieve() = 0;         // PVF 
-    };
+        int num;            // value to be stored  
+
+        list(){ head = tail = next = NULL ; }
+
+        // actions for add and get values
+        virtual void store(int i) = 0;      // PVF 
+        virtual int retrieve() = 0;         // PVF 
+};
+
 
 // Create a queue - type list.
-
 class queue : public list {
             public : void store(int i);
                    int retrieve();
@@ -279,6 +270,7 @@ int main() {    list *p;
         return 0;}
 
 
+// --------  rev[17-May-2026]  --------
 
 /* Example 2: The Power of Run-Time Polymorphism
 
