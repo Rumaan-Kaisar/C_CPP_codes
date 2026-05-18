@@ -152,12 +152,33 @@
 
 /* --------  rev[17-May-2026]  --------
 
-   Example 1: Here is a program that illustrates "one interface, multiple methods." It defines an abstract list class for integer values. 
-   The interface to the list is defined by the PVFs store() and retrieve(). To store a value, call store(). To retrieve a value, call retrieve(). 
-   The base list does not define any default methods for these actions. Instead, each derived defines exactly what type of list will be maintained.
-   In the program, two types of lists are implemented: a queue and a stack. Although the two lists operate completely differently, each is accessed using the same interface. 
 
- */
+
+
+
+
+ 
+ Instead, each derived defines exactly what type of list will be maintained.
+   In the program, two types of lists : a queue and a stack. Although the two lists operate completely differently, each is accessed using the same interface. 
+
+
+
+Example 1: This program shows the idea of “one interface, multiple methods.” 
+                It creates an abstract "list" class for storing integers.
+
+                The "list" uses two functions: 
+                    store() to add a value and 
+                    retrieve() to get a value.
+
+                    They both are Pure Virtual Functions (PVFs)
+                    So the interface to the "list" is defined by the PVFs store() and retrieve().
+
+                The base (abstract) class "list" does not define any default methods for these functions.
+                    Instead, each derived class decides how to store and retrieve data.
+
+                In this program, two types of lists are implemented: a queue and a stack. 
+                    Even though they work differently, both use the same interface (store and retrieve).
+*/
 #include<iostream >
 #include<cstdlib >
 using namespace std;
