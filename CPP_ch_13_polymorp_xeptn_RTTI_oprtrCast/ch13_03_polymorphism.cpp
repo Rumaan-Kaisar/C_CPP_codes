@@ -274,19 +274,22 @@ int main() {    list *p;
 */
 
 
-int main(){     list *p;
-        queue q_ob ;
-        stack s_ob ;
-        char ch;
-        int i;
+int main(){
+    list *p;
+    queue q_ob;
+    stack s_ob;
+    char ch;
+    int i;
 
-    for(i=0; i <10; i++) {
-        cout << " Stack or Queue ? (S/Q): ";
-        cin >> ch;
+    for(i=0; i<10; i++) {
+        std::cout << " Stack or Queue ? (S/Q): ";
+        std::cin >> ch;
         ch = tolower(ch);
         if(ch == 'q') p = &q_ob ;
         else p = &s_ob ;
-        p -> store(i);  }   cout << " Enter T to terminate \n";
+        p -> store(i);  
+    }
+    std::cout << " Enter T to terminate \n";
 
 for(;;){  cout << " Remove from Stack or Queue ? (S/Q): ";
         cin >> ch;
@@ -463,22 +466,7 @@ try using this main() instead: */
 
 int main ()
 {
-list *p;
-queue q_ob ;
-stack s_ob ;
-char ch;
-int i;
-for (i =0; i <10; i ++)
-{
-cout << " Stack or Queue ? (S/Q): ";
-cin >> ch;
-ch = tolower (ch);
-if(ch == ’q’)
-p = & q_ob ;
-else
-p = & s_ob ;
-p-> store (i);
-}
+
 cout << " Enter T to terminate \n";
 for (;;)
 {
