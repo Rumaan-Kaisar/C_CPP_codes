@@ -233,7 +233,7 @@ void queue :: store(int i){
 
 int queue :: retrieve(){
         int i;
-                list *p;
+        list *p;
     if(!head){  cout << " List empty.\n ";
             return 0; }
 
@@ -242,7 +242,86 @@ int queue :: retrieve(){
     p = head ;
     head = head -> next ;
     delete p;
-    return i; } 
+    return i; 
+} 
+
+/*  
+
+
+This function is the opposite of store(). It defines how a queue removes and returns a value—always from the front (FIFO behavior).
+
+Let’s go through it carefully.
+
+What this function does overall
+
+It:
+
+Takes the first element from the queue
+Removes it from the list
+Returns its value
+Step-by-step explanation
+int queue :: retrieve(){
+    int i;
+    list *p;
+i will store the value being removed
+p is a temporary pointer used to safely delete a node
+    if(!head){
+        cout << " List empty.\n ";
+        return 0;
+    }
+Checks if the queue is empty (head == NULL)
+If empty:
+Prints a message
+Returns 0 (not ideal in real programs, but okay for learning)
+    // remove from start of list 
+    i = head -> num;
+Gets the value from the first node
+This is the value that will be returned
+    p = head;
+Saves the current first node in p
+This is important because we’re about to move head
+    head = head -> next;
+Moves head to the next node
+Effectively removes the first node from the queue
+    delete p;
+Frees the memory of the old first node
+Prevents memory leaks
+    return i;
+}
+Returns the value that was stored in the removed node
+In simple terms
+
+This function:
+
+Checks if the queue is empty
+Takes the value from the front
+Moves the front pointer forward
+Deletes the old front node
+Returns the value
+Important idea (Queue behavior)
+store() → adds to the end (tail)
+retrieve() → removes from the front (head)
+
+That’s exactly how a queue (FIFO) works:
+
+First In → First Out
+
+Small note (good to know)
+
+There’s a minor issue in this code:
+
+If the last element is removed, tail should also be set to NULL
+Otherwise, tail may point to deleted memory
+
+A safer version would include:
+
+if(!head) tail = NULL;
+
+
+*/
+
+
+
 
 
 // --------  derived class stack's own versions of "store" and "retrieve"  --------
