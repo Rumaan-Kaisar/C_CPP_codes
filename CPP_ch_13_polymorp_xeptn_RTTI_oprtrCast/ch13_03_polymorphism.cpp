@@ -289,17 +289,22 @@ int main(){
         else p = &s_ob ;
         p -> store(i);  
     }
-    std::cout << " Enter T to terminate \n";
 
-for(;;){  cout << " Remove from Stack or Queue ? (S/Q): ";
-        cin >> ch;
+    std::cout << " Enter T to terminate \n";
+    // infinite loop
+    for(;;){
+        std::cout << " Remove from Stack or Queue ? (S/Q): ";
+        std::cin >> ch;
         ch = tolower(ch);
-        if(ch == 't') break ;
-        if(ch == 'q') p = &q_ob ;
+        if(ch == 't') break;
+        if(ch == 'q') p = &q_ob;
         else p = &s_ob ;
-        cout << p-> retrieve() << '\n';   }
-        cout << '\n';
-return 0;}
+        std::cout << p-> retrieve() << '\n';
+    }
+    std::cout << '\n';
+
+    return 0;
+}
 
 
 
@@ -467,18 +472,11 @@ try using this main() instead: */
 int main ()
 {
 
-cout << " Enter T to terminate \n";
-for (;;)
-{
-cout << " Remove from Stack or Queue ? (S/Q): ";
-cin >> ch;
-ch = tolower (ch);
-if(ch == ’t’)
-break ;
-if(ch == ’q’)
-p = & q_ob ;
-else
-p = & s_ob ;
+
+
+
+
+
 cout << p-> retrieve () << ’\n’;
 }
 cout << ’\n’;
