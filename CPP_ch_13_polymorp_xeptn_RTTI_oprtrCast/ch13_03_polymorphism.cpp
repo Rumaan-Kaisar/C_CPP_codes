@@ -430,23 +430,6 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-void stack :: store ( int i)
-{
-list * item ;
-item = new stack ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// put on front of list for stack - like operation
-if( head )
-item -> next = head ;
-head = item ;
-if (! tail )
-tail = head ;
-}
 
 int stack :: retrieve ()
 {
