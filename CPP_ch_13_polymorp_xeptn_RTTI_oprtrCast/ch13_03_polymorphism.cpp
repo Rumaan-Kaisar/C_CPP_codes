@@ -335,7 +335,8 @@ int main() {    list *p;
             cout << p-> retrieve();
             cout << p-> retrieve();
             cout << p-> retrieve();
-            cout << '\n';   // demonstrate stack 
+            cout << '\n';   
+        // demonstrate stack 
         stack s_ob;
         p = &s_ob;  // point to stack  
             p-> store(1);
@@ -418,13 +419,7 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-/* Example 1: Here is a program that illustrates "one interface, multiple methods." It defines an abstract
-list class for integer values. The interface to the list is defined by the pure virtual functions
-store() and retrieve(). To store a value, call retrieve(. The base class list does not
-define any default methods for these actions. Instead, each derived class defines exactly
-what type of list will be maintained. In the program, two types of lists are implemented: a
-queue and a stack. Although the two lists operate completely differently, each is accessed
-using the same interface. You should study this program carefully.
+/* Example 1: .
 */
 
 // Demonstrate virtual functions .
@@ -432,26 +427,6 @@ using the same interface. You should study this program carefully.
 
 
 
-
-void queue :: store ( int i)
-{
-list * item ;
-item = new queue ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// put on end of list
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-
-if (! head )
-head = tail ;
-}
 int queue :: retrieve ()
 {
 int i;
