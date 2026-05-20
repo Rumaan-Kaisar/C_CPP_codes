@@ -187,7 +187,7 @@ class list{
 };
 
 
-// Create a queue - type "list".
+// Create a derived class "queue" - type "list".
 class queue : public list {
     public :
         void store(int i);
@@ -195,7 +195,7 @@ class queue : public list {
 };
 
 
-// Create a stack - type "list".
+// Create a derived class "stack" - type "list" .
 class stack : public list {
     public :
         void store(int i);
@@ -203,7 +203,7 @@ class stack : public list {
 };
 
 
-// --------  derived class queue's versions of "store" and "retrieve"  --------
+// -------- queue's versions of "store" and "retrieve"  --------
 
 void queue :: store(int i){ 
     // It adds a new item to the end of the queue (FIFO: First In, First Out).
@@ -254,44 +254,8 @@ int queue :: retrieve(){
     return i;   // Returns the value that was stored in the removed node
 }
 
-/*  
 
-simple terms
-
-This function:
-
-Checks if the queue is empty
-Takes the value from the front
-Moves the front pointer forward
-Deletes the old front node
-Returns the value
-Important idea (Queue behavior)
-store() → adds to the end (tail)
-retrieve() → removes from the front (head)
-
-That’s exactly how a queue (FIFO) works:
-
-First In → First Out
-
-Small note (good to know)
-
-There’s a minor issue in this code:
-
-If the last element is removed, tail should also be set to NULL
-Otherwise, tail may point to deleted memory
-
-A safer version would include:
-
-if(!head) tail = NULL;
-
-
-*/
-
-
-
-
-
-// --------  derived class stack's own versions of "store" and "retrieve"  --------
+// -------- stack's own versions of "store" and "retrieve"  --------
 
 void stack :: store(int i){ list *item ;
     item = new stack ;
@@ -315,6 +279,8 @@ int stack :: retrieve(){    int i;
     head = head -> next ;
     delete p;
     return i; }
+
+
 
 int main() {    list *p;
 // demonstrate queue 
