@@ -324,9 +324,9 @@ int stack :: retrieve(){
 */
 
 
-Here’s your `main()` rewritten with **clear, proper comments** that match the style and intent of the rest of your code. I’ve also fixed a couple of small issues (like `cout` namespace and quote characters) so it’s clean and consistent.
 
-```cpp
+// ----  rev[21-May-2026]  ----
+
 int main ()
 {
     list *p;  
@@ -386,8 +386,8 @@ int main ()
 
     return 0;
 }
-```
 
+/* 
 ---
 
 ### What this `main()` is really demonstrating
@@ -422,36 +422,7 @@ Stack: 321
 ---
 
 If you want, I can also show you a cleaner modern C++ version (without mixing node + container in one class), because this design works but is a bit unconventional.
-
-
-
-
-
-
-int main() {    list *p;
-// demonstrate queue 
-        queue q_ob ;
-        p = &q_ob;      // point to queue  
-            p-> store(1);
-            p-> store(2);
-            p-> store(3);
-        cout << " Queue : ";
-            cout << p-> retrieve();
-            cout << p-> retrieve();
-            cout << p-> retrieve();
-            cout << '\n';   
-        // demonstrate stack 
-        stack s_ob;
-        p = &s_ob;  // point to stack  
-            p-> store(1);
-            p-> store(2);
-            p-> store(3);
-        cout << " Stack : ";
-            cout << p-> retrieve();
-            cout << p-> retrieve();
-            cout << p-> retrieve();
-            cout << '\n';
-        return 0;}
+ */
 
 
 // --------  rev[17-May-2026]  --------
