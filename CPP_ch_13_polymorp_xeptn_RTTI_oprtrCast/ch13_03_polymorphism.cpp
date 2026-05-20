@@ -427,22 +427,7 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-int queue :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
+
 
 
 void stack :: store ( int i)
