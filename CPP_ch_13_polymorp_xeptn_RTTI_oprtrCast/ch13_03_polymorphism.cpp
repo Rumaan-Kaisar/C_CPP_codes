@@ -232,7 +232,13 @@ void queue :: store(int i){
 
 
 int queue :: retrieve(){
-        int i;
+    // Opposite of store(). It defines how a queue removes and returns a value—always from the front (FIFO behavior).
+    // Takes the first element from the queue
+    // Removes it from the list
+    // Returns its value
+
+
+        int i;  // i will store the value being removed
         list *p;
     if(!head){  cout << " List empty.\n ";
             return 0; }
@@ -248,7 +254,6 @@ int queue :: retrieve(){
 /*  
 
 
-This function is the opposite of store(). It defines how a queue removes and returns a value—always from the front (FIFO behavior).
 
 Let’s go through it carefully.
 
@@ -256,14 +261,13 @@ What this function does overall
 
 It:
 
-Takes the first element from the queue
-Removes it from the list
-Returns its value
+
+
+
 Step-by-step explanation
 int queue :: retrieve(){
     int i;
     list *p;
-i will store the value being removed
 p is a temporary pointer used to safely delete a node
     if(!head){
         cout << " List empty.\n ";
