@@ -255,27 +255,6 @@ int queue :: retrieve(){
 }
 
 
-
-
-
-
-int stack :: retrieve(){    int i;
-                list *p;
-    if(!head){  cout << " List empty .\n";
-            return 0; }
-
-// remove from start of list 
-    i = head -> num;
-    p = head ;
-    head = head -> next ;
-    delete p;
-    return i; }
-
-
-
-
-// ====================================
-
 // -------- stack's own versions of "store" and "retrieve"  --------
 
 void stack :: store(int i){ 
@@ -322,7 +301,7 @@ int stack :: retrieve(){
 
     // Checks if the stack is empty (head == NULL)
     if(!head){  
-        cout << " List empty .\n";
+        std::cout << " List empty .\n";
         return 0; 
     }
 
@@ -335,19 +314,14 @@ int stack :: retrieve(){
     return i;         // Returns the value that was removed
 }
 
-If you compare this with your queue version, the key difference is just where insertion happens:
+/*  If you compare this with above queue version, the key difference is just 
+        where insertion happens:
 
-Queue → insert at end, remove from front
-Stack → insert at front, remove from front
+            Queue --> insert at end, remove from front
+            Stack --> insert at front, remove from front
 
-That single change is what flips FIFO into LIFO.
-
-// ====================================
-
-
-
-
-
+        That single change is what flips FIFO into LIFO. 
+*/
 
 
 int main() {    list *p;
