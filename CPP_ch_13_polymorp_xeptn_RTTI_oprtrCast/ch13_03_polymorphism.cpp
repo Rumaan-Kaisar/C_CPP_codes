@@ -237,19 +237,22 @@ int queue :: retrieve(){
     // Removes it from the list
     // Returns its value
 
+    int i;      // i will store the value being removed
+    list *p;    // p is a temporary pointer used to safely delete a node
 
-        int i;  // i will store the value being removed
-        list *p;
-    if(!head){  cout << " List empty.\n ";
-            return 0; }
+    // Checks if the queue is empty (head == NULL)
+    if(!head){
+        std::cout << " List empty.\n ";
+        return 0; 
+    }
 
-// remove from start of list 
-    i = head -> num;
-    p = head ;
-    head = head -> next ;
-    delete p;
-    return i; 
-} 
+    // remove from start of list 
+    i = head -> num;    // Gets the value from the first node. This is the value that will be returned
+    p = head;   // Saves the current first node in p (because we’re about to move head)
+    head = head -> next;    // Moves "head" to the next node
+    delete p;   // Frees the memory of the old first node
+    return i;   // Returns the value that was stored in the removed node
+}
 
 /*  
 
@@ -263,36 +266,14 @@ It:
 
 
 
-
-Step-by-step explanation
-int queue :: retrieve(){
-    int i;
-    list *p;
-p is a temporary pointer used to safely delete a node
-    if(!head){
-        cout << " List empty.\n ";
-        return 0;
-    }
-Checks if the queue is empty (head == NULL)
-If empty:
-Prints a message
-Returns 0 (not ideal in real programs, but okay for learning)
-    // remove from start of list 
-    i = head -> num;
-Gets the value from the first node
-This is the value that will be returned
-    p = head;
-Saves the current first node in p
-This is important because we’re about to move head
     head = head -> next;
-Moves head to the next node
+
 Effectively removes the first node from the queue
     delete p;
-Frees the memory of the old first node
+
 Prevents memory leaks
     return i;
 }
-Returns the value that was stored in the removed node
 In simple terms
 
 This function:
