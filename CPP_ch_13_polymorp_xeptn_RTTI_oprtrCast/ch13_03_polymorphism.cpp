@@ -282,6 +282,83 @@ int stack :: retrieve(){    int i;
 
 
 
+
+// ====================================
+
+// -------- stack's own versions of "store" and "retrieve"  --------
+
+void stack :: store(int i){ 
+    // It adds a new item to the top of the stack (LIFO: Last In, First Out).
+
+    list *item;     // A pointer 'item' is created. It will point to a new node.
+    item = new stack;   // Memory is allocated for a new object (node in the stack).
+
+    // Checks if memory allocation fails
+    if(!item){  
+        cout << " Allocation error.\n";
+        exit(1); 
+    }
+
+    // Note: item, head, tail, next are pointers of type "list"
+
+    item->num = i;  // Stores the given value i inside the new node.
+
+    // put on front of list for stack-like operation
+    if(head) item->next = head;  
+    // If stack already has elements:
+    // The new node points to the current top (head)
+
+    head = item;    
+    // Updates head to point to the new node.
+    // Now this new node becomes the top of the stack.
+
+    // initializes the stack properly
+    if(!tail) tail = head;  
+    // If the stack was empty before:
+    // Both head and tail point to this new node.
+}
+
+
+int stack :: retrieve(){    
+    // Opposite of store(). Defines how a stack removes and returns a value.
+    // Always removes from the top (LIFO behavior).
+    // Takes the top element
+    // Removes it from the list
+    // Returns its value
+
+    int i;      // i will store the value being removed
+    list *p;    // p is a temporary pointer used to safely delete a node
+
+    // Checks if the stack is empty (head == NULL)
+    if(!head){  
+        cout << " List empty .\n";
+        return 0; 
+    }
+
+    // remove from start of list (top of stack)
+    i = head->num;    // Gets the value from the top node
+    p = head;         // Saves the current top node
+    head = head->next;    // Moves head to the next node (new top)
+    delete p;         // Frees memory of the old top node
+
+    return i;         // Returns the value that was removed
+}
+
+If you compare this with your queue version, the key difference is just where insertion happens:
+
+Queue → insert at end, remove from front
+Stack → insert at front, remove from front
+
+That single change is what flips FIFO into LIFO.
+
+// ====================================
+
+
+
+
+
+
+
 int main() {    list *p;
 // demonstrate queue 
         queue q_ob ;
