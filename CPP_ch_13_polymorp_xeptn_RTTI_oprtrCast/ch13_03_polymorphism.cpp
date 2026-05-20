@@ -256,25 +256,7 @@ int queue :: retrieve(){
 
 /*  
 
-
-
-Let’s go through it carefully.
-
-What this function does overall
-
-It:
-
-
-
-    head = head -> next;
-
-Effectively removes the first node from the queue
-    delete p;
-
-Prevents memory leaks
-    return i;
-}
-In simple terms
+simple terms
 
 This function:
 
