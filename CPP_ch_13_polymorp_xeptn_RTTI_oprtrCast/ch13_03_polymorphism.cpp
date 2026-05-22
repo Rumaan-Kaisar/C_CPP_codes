@@ -603,7 +603,7 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 // Demonstrate virtual functions .
 
 
-
+Although this example is simple, it shows how runtime polymorphism can make programs easier to write. In our program, the user can choose either a stack or a queue at any time. The base-class pointer p automatically calls the correct store() or retrieve() function depending on the object it points to. The program does not need separate code for stacks and queues. This same idea is useful in larger programs, where events or requests can occur unpredictably. By using virtual functions, the program can respond appropriately to each situation at runtime.
 
 
 
