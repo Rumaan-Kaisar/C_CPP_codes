@@ -324,9 +324,6 @@ int stack :: retrieve(){
 */
 
 
-
-// ----  rev[21-May-2026]  ----
-
 int main(){
     list *p;  
     // Base class pointer.
@@ -385,6 +382,8 @@ int main(){
 
     return 0;
 }
+
+
 
 /* 
 ---
@@ -472,6 +471,90 @@ int main(){
 
     return 0;
 }
+
+
+int main(){
+    list *p;  
+    // Base class pointer.
+    // Will point either to a queue object or a stack object,
+    // demonstrating runtime polymorphism.
+
+    queue q_ob;  
+    // Queue object (FIFO behavior)
+
+    stack s_ob;  
+    // Stack object (LIFO behavior)
+
+    char ch;  
+    // Stores user's choice:
+    // 's' for stack, 'q' for queue, 't' to terminate
+
+    int i;
+
+    // -------- Store values --------
+    for(i = 0; i < 10; i++) {
+
+        std::cout << "Stack or Queue ? (S/Q): ";
+        std::cin >> ch;
+
+        ch = tolower(ch);
+        // Convert input to lowercase so that
+        // both uppercase and lowercase letters work.
+
+        if(ch == 'q')
+            p = &q_ob;
+        // If user chooses queue,
+        // base pointer points to queue object.
+
+        else
+            p = &s_ob;
+        // Otherwise use stack object.
+
+        p->store(i);
+        // Store current value of i.
+        // Because store() is virtual:
+        //   queue::store() is called for queues
+        //   stack::store() is called for stacks
+    }
+
+    std::cout << "Enter T to terminate\n";
+
+    // -------- Retrieve values --------
+    // Infinite loop; exits only when user enters 't'
+    for(;;){
+
+        std::cout << "Remove from Stack or Queue ? (S/Q): ";
+        std::cin >> ch;
+
+        ch = tolower(ch);
+        // Make input case-insensitive.
+
+        if(ch == 't')
+            break;
+        // Terminate retrieval loop.
+
+        if(ch == 'q')
+            p = &q_ob;
+        // Retrieve from queue.
+
+        else
+            p = &s_ob;
+        // Retrieve from stack.
+
+        std::cout << p->retrieve() << '\n';
+        // Calls either:
+        //   queue::retrieve()  --> FIFO removal
+        //   stack::retrieve()  --> LIFO removal
+        //
+        // The returned value is displayed.
+    }
+
+    std::cout << '\n';
+
+    return 0;
+}
+
+
 
 
 
