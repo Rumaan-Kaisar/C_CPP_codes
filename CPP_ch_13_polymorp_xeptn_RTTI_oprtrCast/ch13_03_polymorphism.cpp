@@ -432,7 +432,7 @@ If you want, I can also show you a cleaner modern C++ version (without mixing no
 
                 Storing values:
                     A FOR-loop runs from 0 to 9. For each number, you choose whether to add it to a stack or a queue. 
-                    Your choice updates a base pointer (p) to point to the correct object, which then stores the value i.
+                    Your choice updates a base pointer "p" to point to the correct object, which then stores the value i.
 
                 Removing values:
                     After storing, a second loop asks which list you want to remove values from. 
@@ -609,35 +609,6 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-
-
-/* Example 2: The main() function in the list program just shown simply illustrates that the list classes
-do, indeed, work. However, to begin to see why run-time polymorphism is so powerful,
-try using this main() instead: */
-
-
-int main ()
-{
-
-
-
-
-
-
-cout << p-> retrieve () << ’\n’;
-}
-cout << ’\n’;
-return 0;
-}
-This main() illustrates how random events that occur at run time can be easily handled
-by using virtual functions and run-time polymorphism. The program executes a for loop
-
-running from 0 to 9. Each iteration through the loop, you are asked to choose into which
-type of list-stack or the queue-you want to put a value. According to your answer, the
-base pointer p is set to point to the correct object and the current value of i is stored.
-Once the loop is finished, another loop begins that prompts you to indicate you to indicate
-from which list to remove a value. Once again, it is your response that determines which
-list is selected.
 While this example is trivial, you should be able to see how run-time to polymorphism
 can simplify a program that must respond to random events. For instance, the Windows
 operating system interfaces to a program by sending it messages. As far as the program
