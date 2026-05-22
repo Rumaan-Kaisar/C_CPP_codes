@@ -554,7 +554,7 @@ int main(){
     return 0;
 }
 
-
+/* 
 What this program demonstrates
 The user chooses whether each number (0–9) is stored in the queue or the stack.
 During retrieval, the user chooses from which container to remove an element.
@@ -575,6 +575,49 @@ Q -> 1
 S -> 4
 S -> 3
 Q -> 2
+
+
+
+
+This main() demonstrates how runtime polymorphism allows one pointer (p) 
+    to work with different objects and automatically invoke the appropriate function, 
+    making programs more flexible and easier to manage.
+
+
+The example is simple, but it shows the idea of runtime polymorphism.
+    The program uses one base-class pointer (p) to work with both a queue and a stack.
+
+The user's choices are not known in advance.
+    During execution, the user can choose whether to store or retrieve data from a stack or a queue.
+    These choices occur at runtime, similar to random events in real programs.
+
+The same pointer can refer to different objects.
+    If the user enters 'q', p points to the queue object (q_ob).
+    Otherwise, p points to the stack object (s_ob).
+
+Virtual functions select the correct function automatically.
+    p->store(i) calls either queue::store() or stack::store().
+    p->retrieve() calls either queue::retrieve() or stack::retrieve().
+    The correct function is chosen while the program is running.
+
+This reduces the need for separate code.
+    The program does not need different function calls for stacks and queues.
+    The same interface (store() and retrieve()) works for both.
+
+The same concept is used in larger applications.
+    Operating systems such as Windows send different messages or events to programs.
+    Since these events can occur unpredictably, the program must respond at runtime.
+    Virtual functions provide a convenient way to handle different actions through a common interface.
+
+
+
+
+
+*/
+
+
+
+
 
 
 
@@ -603,50 +646,9 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 // Demonstrate virtual functions .
 
 
-Although this example is simple, 
-    it shows how runtime polymorphism can make programs easier to write. 
-
-This main() demonstrates how runtime polymorphism allows one pointer (p) 
-    to work with different objects and automatically invoke the appropriate function, 
-    making programs more flexible and easier to manage.
 
 
 
-
-The example is simple, but it shows the idea of runtime polymorphism.
-    The program uses one base-class pointer (p) to work with both a queue and a stack.
-
-The user's choices are not known in advance.
-    During execution, the user can choose whether to store or retrieve data from a stack or a queue.
-    These choices occur at runtime, similar to random events in real programs.
-The same pointer can refer to different objects.
-If the user enters 'q', p points to the queue object (q_ob).
-Otherwise, p points to the stack object (s_ob).
-Virtual functions select the correct function automatically.
-p->store(i) calls either queue::store() or stack::store().
-p->retrieve() calls either queue::retrieve() or stack::retrieve().
-The correct function is chosen while the program is running.
-This reduces the need for separate code.
-The program does not need different function calls for stacks and queues.
-The same interface (store() and retrieve()) works for both.
-The same concept is used in larger applications.
-Operating systems such as Windows send different messages or events to programs.
-Since these events can occur unpredictably, the program must respond at runtime.
-Virtual functions provide a convenient way to handle different actions through a common interface.
-
-
-
-In our program, the user can choose either a stack or a queue at any time. 
-The base-class pointer p automatically calls the correct store() or retrieve() 
-    depending on the object it points to. 
-
-The program does not need separate code for stacks and queues. 
-
-This same idea is useful in larger programs, 
-    where events or requests can occur unpredictably.
-
-By using virtual functions, the program can 
-    respond appropriately to each situation at runtime.
 
 
 
