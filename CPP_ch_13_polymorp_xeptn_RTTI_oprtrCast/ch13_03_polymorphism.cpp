@@ -168,8 +168,8 @@
                     Even though they work differently, both use the same interface (store and retrieve).
 */
 
-#include<iostream>
-#include<cstdlib>
+#include <iostream>
+#include <cstdlib>
 
 class list{
     public:
@@ -554,6 +554,27 @@ int main(){
     return 0;
 }
 
+
+What this program demonstrates
+The user chooses whether each number (0–9) is stored in the queue or the stack.
+During retrieval, the user chooses from which container to remove an element.
+The same base-class pointer p is used for both objects.
+Because store() and retrieve() are virtual functions, the correct version (queue or stack) is selected at runtime (runtime polymorphism).
+
+Example:
+
+Store:
+Q Q Q S S
+
+Queue contains: 0 1 2
+Stack contains: 3 4
+
+Retrieve:
+Q -> 0
+Q -> 1
+S -> 4
+S -> 3
+Q -> 2
 
 
 
