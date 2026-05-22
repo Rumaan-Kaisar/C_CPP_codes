@@ -327,8 +327,7 @@ int stack :: retrieve(){
 
 // ----  rev[21-May-2026]  ----
 
-int main ()
-{
+int main(){
     list *p;  
     // Base class pointer.
     // This will be used to demonstrate runtime polymorphism:
@@ -505,36 +504,6 @@ Stack: A stack is a linear data structure in which elements can be inserted and 
 
 
 
-
-
-int main ()
-{
-list *p;
-// demonstrate queue
-queue q_ob ;
-p = & q_ob ; // point to queue
-p-> store (1) ;
-p-> store (2) ;
-p-> store (3) ;
-cout << " Queue : ";
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << ’\n’;
-// demonstrate stack
-stack s_ob ;
-p = & s_ob ; // point to stack
-p-> store (1) ;
-p-> store (2) ;
-p-> store (3) ;
-cout << " Stack : ";
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-
-cout << p-> retrieve ();
-cout << ’\n’;
-return 0;
-}
 
 
 
