@@ -426,11 +426,11 @@ int main(){
 
 
 int main(){
-    list *p;
-    queue q_ob;
-    stack s_ob;
-    char ch;
-    int i;
+    
+    
+    
+    
+    
 
     for(i=0; i<10; i++) {
         std::cout << " Stack or Queue ? (S/Q): ";
@@ -459,21 +459,13 @@ int main(){
 
 
 int main(){
-    list *p;  
-    // Base class pointer.
-    // Will point either to a queue object or a stack object,
-    // demonstrating runtime polymorphism.
+    list *p;    // Base class pointer.
+                // Will point either to a queue object or a stack object,
+                // demonstrating runtime polymorphism.
 
-    queue q_ob;  
-    // Queue object (FIFO behavior)
-
-    stack s_ob;  
-    // Stack object (LIFO behavior)
-
-    char ch;  
-    // Stores user's choice:
-    // 's' for stack, 'q' for queue, 't' to terminate
-
+    queue q_ob; // Queue object (FIFO behavior)
+    stack s_ob; // Stack object (LIFO behavior)
+    char ch;    // Stores user's choice: 's' for stack, 'q' for queue, 't' to terminate
     int i;
 
     // -------- Store values --------
