@@ -325,58 +325,56 @@ int stack :: retrieve(){
 
 
 int main(){
-    list *p;  
-    // Base class pointer.
-    // This will be used to demonstrate runtime polymorphism:
-    // the same pointer will behave differently for queue and stack.
+    list *p;    // Base class pointer.
+                // This will be used to demonstrate runtime polymorphism:
+                // the same pointer will behave differently for queue and stack.
 
     // -------- Demonstrate Queue (FIFO) --------
-    queue q_ob;      
-    // Create a queue object
+    queue q_ob; // Create a queue object
 
-    p = &q_ob;       
-    // Point base class pointer to queue object
+    p = &q_ob;  // Point base class pointer to queue object
 
+    // Insert elements into queue
     p->store(1);     
     p->store(2);
     p->store(3);
-    // Insert elements into queue
-    // Order inserted: 1 → 2 → 3
+    // Order inserted: 1 --> 2 --> 3
 
     std::cout << "Queue: ";
 
+    // Retrieve elements from queue
+        // Since queue is FIFO:
+        // Output will be: 1 2 3
     std::cout << p->retrieve();  
     std::cout << p->retrieve();
     std::cout << p->retrieve();
-    // Retrieve elements from queue
-    // Since queue is FIFO:
-    // Output will be: 1 2 3
+
 
     std::cout << '\n';
 
 
     // -------- Demonstrate Stack (LIFO) --------
-    stack s_ob;      
-    // Create a stack object
+    stack s_ob; // Create a stack object
 
-    p = &s_ob;       
-    // Point same base class pointer to stack object
+    p = &s_ob;  // Point same base class pointer to stack object
 
+    // Insert elements into stack
+        // Order pushed: 1 --> 2 --> 3
+        // Top of stack is now 3
     p->store(1);
     p->store(2);
     p->store(3);
-    // Insert elements into stack
-    // Order pushed: 1 → 2 → 3
-    // Top of stack is now 3
+
 
     std::cout << "Stack: ";
 
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
     // Retrieve elements from stack
-    // Since stack is LIFO:
-    // Output will be: 3 2 1
+        // Since stack is LIFO:
+        // Output will be: 3 2 1
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    
 
     std::cout << '\n';
 
@@ -388,11 +386,10 @@ int main(){
 /* 
 ---
 
-### What this `main()` is really demonstrating
+main():
+    The important idea here isn’t just stack vs queue — it’s "runtime polymorphism":
 
-The important idea here isn’t just stack vs queue — it’s **runtime polymorphism**:
-
-* `list *p;` is a **base class pointer**
+list *p; is a **base class pointer**
 * It points to:
 
   * a `queue` object → behaves like FIFO
@@ -410,12 +407,11 @@ produces **different behavior depending on the object type**.
 
 ---
 
-### Output
+Output:
 
-```
-Queue: 123
-Stack: 321
-```
+        Queue: 123
+        Stack: 321
+
 
 ---
 
@@ -424,6 +420,8 @@ If you want, I can also show you a cleaner modern C++ version (without mixing no
 
 
 // --------  rev[17-May-2026]  --------
+
+
 
 /* Example 2: The Power of Run-Time Polymorphism
 
