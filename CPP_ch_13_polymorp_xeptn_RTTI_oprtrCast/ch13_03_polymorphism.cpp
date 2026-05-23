@@ -424,27 +424,6 @@ int main(){
                     Again, your choice dynamically selects the correct object.
 */
 
-
-int main(){
-    
-
-    std::cout << " Enter T to terminate \n";
-    // infinite loop
-    for(;;){
-        std::cout << " Remove from Stack or Queue ? (S/Q): ";
-        std::cin >> ch;
-        ch = tolower(ch);
-        if(ch == 't') break;
-        if(ch == 'q') p = &q_ob;
-        else p = &s_ob ;
-        std::cout << p-> retrieve() << '\n';
-    }
-    std::cout << '\n';
-
-    return 0;
-}
-
-
 int main(){
     list *p;    // Base class pointer.
                 // Will point either to a queue object or a stack object,
@@ -488,24 +467,14 @@ int main(){
         ch = tolower(ch);
         // Make input case-insensitive.
 
-        if(ch == 't')
-            break;
-        // Terminate retrieval loop.
+        if(ch == 't') break;        // Terminate retrieval loop.
+        if(ch == 'q') p = &q_ob;    // Retrieve from queue.
+        else p = &s_ob;             // Retrieve from stack.
 
-        if(ch == 'q')
-            p = &q_ob;
-        // Retrieve from queue.
-
-        else
-            p = &s_ob;
-        // Retrieve from stack.
-
-        std::cout << p->retrieve() << '\n';
         // Calls either:
-        //   queue::retrieve()  --> FIFO removal
-        //   stack::retrieve()  --> LIFO removal
-        //
-        // The returned value is displayed.
+            // queue::retrieve()  --> FIFO removal
+            // stack::retrieve()  --> LIFO removal
+        std::cout << p->retrieve() << '\n';     // The returned value is displayed.
     }
 
     std::cout << '\n';
