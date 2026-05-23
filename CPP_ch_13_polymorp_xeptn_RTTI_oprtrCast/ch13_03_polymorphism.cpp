@@ -427,19 +427,6 @@ int main(){
 
 int main(){
     
-    
-    
-    
-    
-
-    for(i=0; i<10; i++) {
-        std::cout << " Stack or Queue ? (S/Q): ";
-        std::cin >> ch;
-        ch = tolower(ch);
-        if(ch == 'q') p = &q_ob ;
-        else p = &s_ob ;
-        p -> store(i);  
-    }
 
     std::cout << " Enter T to terminate \n";
     // infinite loop
