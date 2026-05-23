@@ -461,24 +461,19 @@ int main(){
         std::cout << "Stack or Queue ? (S/Q): ";
         std::cin >> ch;
 
+        // Convert input to lowercase so that both uppercase and lowercase letters work.
         ch = tolower(ch);
-        // Convert input to lowercase so that
-        // both uppercase and lowercase letters work.
 
-        if(ch == 'q')
-            p = &q_ob;
-        // If user chooses queue,
-        // base pointer points to queue object.
-
-        else
-            p = &s_ob;
-        // Otherwise use stack object.
-
-        p->store(i);
+        // If user chooses queue, base pointer points to queue object.
+            // Otherwise use stack object.
+        if(ch == 'q') p = &q_ob;
+        else p = &s_ob;
+        
         // Store current value of i.
+        p->store(i);
         // Because store() is virtual:
-        //   queue::store() is called for queues
-        //   stack::store() is called for stacks
+            // queue::store() is called for queues
+            // stack::store() is called for stacks
     }
 
     std::cout << "Enter T to terminate\n";
