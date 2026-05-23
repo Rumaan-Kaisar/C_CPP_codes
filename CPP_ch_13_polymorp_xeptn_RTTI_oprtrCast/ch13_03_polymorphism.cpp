@@ -389,21 +389,20 @@ int main(){
 main():
     The important idea here isn’t just stack vs queue — it’s "runtime polymorphism":
 
-list *p; is a **base class pointer**
-* It points to:
+    list *p;    is a base class pointer
 
-  * a `queue` object → behaves like FIFO
-  * a `stack` object → behaves like LIFO
-* Calls like `p->store()` and `p->retrieve()` are resolved **at runtime** via `virtual` functions
+    It points to:
 
-So the same code:
+        a "queue" object --> behaves like FIFO
+        a "stack" object --> behaves like LIFO
 
-```cpp
-p->store(...);
-p->retrieve();
-```
+    Calls like "p->store()" and "p->retrieve()" are resolved "at runtime" via "virtual" functions
 
-produces **different behavior depending on the object type**.
+    So the same code:
+                        p->store(...);
+                        p->retrieve();
+
+        produces "different behavior depending on the object type"
 
 ---
 
