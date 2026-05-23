@@ -381,12 +381,7 @@ int main(){
     return 0;
 }
 
-
-
-/* 
----
-
-main():
+/* main():
     The important idea here isn’t just stack vs queue — it’s "runtime polymorphism":
 
     list *p;    is a base class pointer
@@ -404,18 +399,11 @@ main():
 
         produces "different behavior depending on the object type"
 
----
-
-Output:
+    Output:
 
         Queue: 123
         Stack: 321
-
-
----
-
-If you want, I can also show you a cleaner modern C++ version (without mixing node + container in one class), because this design works but is a bit unconventional.
- */
+*/
 
 
 // --------  rev[17-May-2026]  --------
