@@ -406,11 +406,11 @@ int main(){
 */
 
 
-// --------  rev[17-May-2026]  --------
+// --------  rev[25-May-2026]  --------
 
 
 
-/* Example 2: The Power of Run-Time Polymorphism
+/* Example 3: The Power of Run-Time Polymorphism
 
                 Following updated main() function shows how random events that occur at run time 
                     can be easily handled by using "Virtual Functions" and run-time polymorphism.
@@ -561,8 +561,6 @@ int main(){
 EXERCISES
 1. Add another type of list to the program in Example 1. Have this version maintain a sorted
 list (in ascending order). Call this list sorted.
-2. On you r own, think about ways in which you can apply run-time polymorphism to simplify
-the solutions to certain types of problems.
 
 1. // Demonstrate virtual functions .
 # include <iostream >
