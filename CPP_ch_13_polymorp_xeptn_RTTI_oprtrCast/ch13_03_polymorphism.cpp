@@ -486,8 +486,9 @@ int main(){
 What this program demonstrates
 The user chooses whether each number (0–9) is stored in the queue or the stack.
 During retrieval, the user chooses from which container to remove an element.
-The same base-class pointer p is used for both objects.
-Because store() and retrieve() are virtual functions, the correct version (queue or stack) is selected at runtime (runtime polymorphism).
+The same  is used for both objects.
+
+
 
 Example:
 
@@ -507,35 +508,37 @@ Q -> 2
 
 
 
-This main() demonstrates how runtime polymorphism allows one pointer (p) 
-    to work with different objects and automatically invoke the appropriate function, 
-    making programs more flexible and easier to manage.
+    This main() demonstrates how runtime polymorphism allows one pointer (p) 
+        to work with different objects and automatically invoke the appropriate function, 
+        making programs more flexible and easier to manage.
 
 
-The example is simple, but it shows the idea of runtime polymorphism.
-    The program uses one base-class pointer (p) to work with both a queue and a stack.
+    The example is simple, but it shows the idea of runtime polymorphism.
+        The program uses one base-class pointer (p) to work with both a queue and a stack.
 
-The user's choices are not known in advance.
-    During execution, the user can choose whether to store or retrieve data from a stack or a queue.
-    These choices occur at runtime, similar to random events in real programs.
+    The user's choices are not known in advance.
+        During execution, the user can choose whether to store or retrieve data from a stack or a queue.
+        These choices occur at runtime, similar to random events in real programs.
 
-The same pointer can refer to different objects.
-    If the user enters 'q', p points to the queue object (q_ob).
-    Otherwise, p points to the stack object (s_ob).
+    The same base-class pointer p can refer to different objects.
+        If the user enters 'q', p points to the queue object (q_ob).
+        Otherwise, p points to the stack object (s_ob).
 
-Virtual functions select the correct function automatically.
-    p->store(i) calls either queue::store() or stack::store().
-    p->retrieve() calls either queue::retrieve() or stack::retrieve().
-    The correct function is chosen while the program is running.
+    Virtual functions select the correct function automatically.
+        p->store(i) calls either queue::store() or stack::store().
+        p->retrieve() calls either queue::retrieve() or stack::retrieve().
+        Because store() and retrieve() are VFs,
+            The correct version (queue or stack) is chosen while the program is running.
+            (making runtime polymorphism).
 
-This reduces the need for separate code.
-    The program does not need different function calls for stacks and queues.
-    The same interface (store() and retrieve()) works for both.
+    This reduces the need for separate code.
+        The program does not need different function calls for stacks and queues.
+        The same interface (store() and retrieve()) works for both.
 
-The same concept is used in larger applications.
-    Operating systems such as Windows send different messages or events to programs.
-    Since these events can occur unpredictably, the program must respond at runtime.
-    Virtual functions provide a convenient way to handle different actions through a common interface.
+    The same concept is used in larger applications.
+        Operating systems such as Windows send different messages or events to programs.
+        Since these events can occur unpredictably, the program must respond at runtime.
+        Virtual functions provide a convenient way to handle different actions through a common interface.
 
 
 
@@ -816,3 +819,4 @@ cout << p-> retrieve ();
 cout << ’\n’;
 return 0;
 }
+
