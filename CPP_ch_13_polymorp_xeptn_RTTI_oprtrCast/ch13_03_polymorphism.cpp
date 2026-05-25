@@ -151,7 +151,28 @@
 
 
 
-/* Example 1: This program shows the idea of “one interface, multiple methods.” 
+/*  
+
+Difference between Stack and Queue Data Structures :
+
+Stack: A stack is a linear data structure in which elements can be inserted and deleted only from one side of the list, called the top. 
+   A stack follows the LIFO (Last In First Out) principle, i.e., the element inserted at the last is the first element to come out. 
+   The insertion of an element into stack is called push operation, and deletion of an element from the stack is called pop operation. 
+   In stack we always keep track of the last element present in the list with a pointer called top.    Queue: A queue is a linear data structure in which elements can be inserted only from one side of the list called rear, and the elements can be deleted only from the other side called the front.
+
+   The queue follows the FIFO (First In First Out) principle, i.e. the element inserted at first in the list, is the first element to be removed from the list. 
+   The insertion of an element in a queue is called an enqueue operation and the deletion of an element is called a dequeue operation. 
+   In queue we always maintain two pointers, one pointing to the element which was inserted at the first and still present in the list with the front pointer and the second pointer pointing to the element inserted at the last with the rear pointer.
+
+
+
+
+*/
+
+
+
+
+/* Example 2: This program shows the idea of “one interface, multiple methods.” 
                 It creates an abstract "list" class for storing integers.
 
                 The "list" uses two functions: 
@@ -482,33 +503,7 @@ int main(){
     return 0;
 }
 
-/* 
-What this program demonstrates
-The user chooses whether each number (0–9) is stored in the queue or the stack.
-During retrieval, the user chooses from which container to remove an element.
-The same  is used for both objects.
-
-
-
-Example:
-
-Store:
-Q Q Q S S
-
-Queue contains: 0 1 2
-Stack contains: 3 4
-
-Retrieve:
-Q -> 0
-Q -> 1
-S -> 4
-S -> 3
-Q -> 2
-
-
-
-
-    This main() demonstrates how runtime polymorphism allows one pointer (p) 
+/*  This main() demonstrates how runtime polymorphism allows one pointer (p) 
         to work with different objects and automatically invoke the appropriate function, 
         making programs more flexible and easier to manage.
 
@@ -539,11 +534,6 @@ Q -> 2
         Operating systems such as Windows send different messages or events to programs.
         Since these events can occur unpredictably, the program must respond at runtime.
         Virtual functions provide a convenient way to handle different actions through a common interface.
-
-
-
-
-
 */
 
 
@@ -552,19 +542,6 @@ Q -> 2
 
 
 
-
-Difference between Stack and Queue Data Structures :
-
-Stack: A stack is a linear data structure in which elements can be inserted and deleted only from one side of the list, called the top. 
-   A stack follows the LIFO (Last In First Out) principle, i.e., the element inserted at the last is the first element to come out. 
-   The insertion of an element into stack is called push operation, and deletion of an element from the stack is called pop operation. 
-   In stack we always keep track of the last element present in the list with a pointer called top.    Queue: A queue is a linear data structure in which elements can be inserted only from one side of the list called rear, and the elements can be deleted only from the other side called the front.
-
-   The queue follows the FIFO (First In First Out) principle, i.e. the element inserted at first in the list, is the first element to be removed from the list. 
-   The insertion of an element in a queue is called an enqueue operation and the deletion of an element is called a dequeue operation. 
-   In queue we always maintain two pointers, one pointing to the element which was inserted at the first and still present in the list with the front pointer and the second pointer pointing to the element inserted at the last with the rear pointer.
-
-*/  
 
 
 
