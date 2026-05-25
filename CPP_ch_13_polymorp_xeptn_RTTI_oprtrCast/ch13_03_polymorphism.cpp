@@ -750,22 +750,22 @@ p = & q_ob ; // point to queue
 p-> store (1) ;
 p-> store (2) ;
 p-> store (3) ;
-cout << " Queue : ";
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << ’\n’;
+std::cout << " Queue : ";
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << ’\n’;
 // demonstrate stack
 stack s_ob ;
 p = & s_ob ; // point to stack
 p-> store (1) ;
 p-> store (2) ;
 p-> store (3) ;
-cout << " Stack : ";
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << ’\n’;
+std::cout << " Stack : ";
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << ’\n’;
 // demonstrate sorted list
 sorted sorted_ob ;
 p = & sorted_ob ;
@@ -775,13 +775,12 @@ p-> store (3) ;
 p-> store (9) ;
 
 p-> store (5) ;
-cout << " Sorted : ";
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << p-> retrieve ();
-cout << ’\n’;
+std::cout << " Sorted : ";
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << p-> retrieve ();
+std::cout << ’\n’;
 return 0;
 }
-
