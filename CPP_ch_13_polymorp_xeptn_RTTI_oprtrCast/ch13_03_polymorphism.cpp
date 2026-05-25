@@ -552,15 +552,10 @@ int main(){
 
 
 
-
-
-
-
-
-
-EXERCISES
-1. Add another type of list to the program in Example 1. Have this version maintain a sorted
-list (in ascending order). Call this list sorted.
+/* Example 4: Add another type of list to the program in Example 2. 
+                Have this version maintain a sorted list (in ascending order). 
+                Call this list "sorted".
+*/
 
 1. // Demonstrate virtual functions .
 # include <iostream >
