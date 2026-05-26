@@ -729,49 +729,6 @@ int main(){
 
 
 
-// --------  cp2
-
-
-void queue :: store ( int i)
-{
-list * item ;
-item = new queue ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-if (! head )
-head = tail ;
-}
-
-
-// --------  cp3
-
-
-int queue :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
-
-
 // --------  cp4
 
 
