@@ -638,7 +638,7 @@ int queue::retrieve(){
 void stack::store(int i){
     // push at top (LIFO)
 
-    list *item;
+    list *item;         // new node
     item = new stack;
 
     if(!item){
