@@ -406,8 +406,6 @@ int main(){
 */
 
 
-// --------  rev[25-May-2026]  --------
-
 
 
 /* Example 3: The Power of Run-Time Polymorphism
@@ -557,19 +555,178 @@ int main(){
                 Call this list "sorted".
 */
 
-1. // Demonstrate virtual functions .
-# include <iostream >
-# include <cstdlib >
+#include <iostream>
+#include <cstdlib>
 
-using namespace std ;
+class list{
+    public:
+        list *head;     // first node
+        list *tail;     // last node
+        list *next;     // next node
+
+        int num;        // stored value
+
+        list(){ head = tail = next = NULL; }
+
+        // pure virtual functions
+        virtual void store(int i) = 0;
+        virtual int retrieve() = 0;
+};
 
 
-class list
-{
-public :
-list * head ; // pointer to start of list
-list * tail ; // pointer to end of list
-list * next ; // pointer to next item
+// Queue class
+class queue : public list {
+    public:
+        void store(int i);
+        int retrieve();
+};
+
+
+// Stack class
+class stack : public list {
+    public:
+        void store(int i);
+        int retrieve();
+};
+
+
+// ----- Queue operations -----
+
+void queue::store(int i){
+    // insert at rear (FIFO)
+
+    list *item;            // new node
+    item = new queue;
+
+    if(!item){
+        std::cout << "Allocation error.\n";
+        exit(1);
+    }
+
+    item->num = i;         // save value
+
+    if(tail) tail->next = item; // link last node
+    tail = item;                // update rear
+    item->next = NULL;
+
+    if(!head) head = tail;      // first node
+}
+
+
+int queue::retrieve(){
+    // remove from front
+
+    int i;
+    list *p;
+
+    if(!head){
+        std::cout << "List empty.\n";
+        return 0;
+    }
+
+    i = head->num;        // get value
+    p = head;             // old front
+    head = head->next;    // move front
+    delete p;             // free memory
+
+    return i;
+}
+
+
+// ----- Stack operations -----
+
+void stack::store(int i){
+    // push at top (LIFO)
+
+    list *item;
+    item = new stack;
+
+    if(!item){
+        std::cout << "Allocation error.\n";
+        exit(1);
+    }
+
+    item->num = i;        // save value
+
+    if(head) item->next = head; // link old top
+    head = item;                // new top
+
+    if(!tail) tail = head;      // first node
+}
+
+
+int stack::retrieve(){
+    // pop from top
+
+    int i;
+    list *p;
+
+    if(!head){
+        std::cout << "List empty.\n";
+        return 0;
+    }
+
+    i = head->num;        // get value
+    p = head;             // old top
+    head = head->next;    // move top
+    delete p;             // free memory
+
+    return i;
+}
+
+/*
+    Queue: insert rear, remove front
+    Stack: insert front, remove front
+*/
+
+
+int main(){
+    list *p;      // base-class pointer
+
+    // Queue demo
+    queue q_ob;
+    p = &q_ob;
+
+    p->store(1);
+    p->store(2);
+    p->store(3);
+
+    std::cout << "Queue: ";
+
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+
+    std::cout << '\n';
+
+    // Stack demo
+    stack s_ob;
+    p = &s_ob;
+
+    p->store(1);
+    p->store(2);
+    p->store(3);
+
+    std::cout << "Stack: ";
+
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+
+    std::cout << '\n';
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <cstdlib 
+
+class list {
+    public:
+        list * head ; // pointer to start of list
+        list * tail ; // pointer to end of list
+        list * next ; // pointer to next item
 int num ; // value to be stored
 list () { head = tail = next = NULL ; }
 virtual void store (int i) = 0;
