@@ -727,68 +727,6 @@ int main(){
 
 
 
-
-
-// --------  cp4
-
-
-// Create a stack - type list .
-class stack : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-
-};
-
-
-// --------  cp5
-
-
-void stack :: store ( int i)
-{
-list * item ;
-item = new stack ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-if( head )
-item -> next = head ;
-head = item ;
-if (! tail )
-tail = head ;
-}
-
-
-// --------  cp6
-
-
-int stack :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
-
-
-
-
-
-
-
-
 // =================================  NEW code ========================
 
 // Create a sorted list .
