@@ -605,6 +605,7 @@ void queue::store(int i){
 
     item->num = i;         // save value
 
+    // put on end of list
     if(tail) tail->next = item; // link last node
     tail = item;                // update rear
     item->next = NULL;
@@ -624,6 +625,7 @@ int queue::retrieve(){
         return 0;
     }
 
+    // remove from start of list
     i = head->num;        // get value
     p = head;             // old front
     head = head->next;    // move front
@@ -648,6 +650,7 @@ void stack::store(int i){
 
     item->num = i;        // save value
 
+    // put on front of list for stack - like operation
     if(head) item->next = head; // link old top
     head = item;                // new top
 
@@ -666,6 +669,7 @@ int stack::retrieve(){
         return 0;
     }
 
+    // remove from start of list
     i = head->num;        // get value
     p = head;             // old top
     head = head->next;    // move top
@@ -716,228 +720,4 @@ int main(){
     std::cout << '\n';
 
     return 0;
-}
-
-
-#include <iostream>
-#include <cstdlib 
-
-class list {
-    public:
-        list * head ; // pointer to start of list
-        list * tail ; // pointer to end of list
-        list * next ; // pointer to next item
-int num ; // value to be stored
-list () { head = tail = next = NULL ; }
-virtual void store (int i) = 0;
-virtual int retrieve () = 0;
-};
-
-
-// Create a queue - type list .
-class queue : public list
-{
-public :
-
-void store ( int i);
-int retrieve ();
-};
-
-
-void queue :: store ( int i)
-{
-list * item ;
-item = new queue ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// put on end of list
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-if (! head )
-head = tail ;
-}
-
-
-int queue :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
-
-
-// Create a stack - type list .
-class stack : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-
-};
-
-
-void stack :: store ( int i)
-{
-list * item ;
-item = new stack ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// put on front of list for stack - like operation
-if( head )
-item -> next = head ;
-head = item ;
-if (! tail )
-tail = head ;
-}
-
-
-int stack :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
-
-
-// Create a sorted list .
-class sorted : public list
-{
-public :
-void store ( int i);
-int retrieve ();
-};
-
-
-void sorted :: store ( int i)
-{
-list * item ;
-list *p, *p2;
-item = new sorted ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// find where to put next item
-p = head ;
-p2 = NULL ;
-while (p) // goes in middle
-{
-if(p->num > i)
-{
-item -> next = p;
-if(p2)
-p2 -> next = item ; // not 1st element
-if(p== head )
-head = item ; // new first element
-break ;
-}
-p2 = p;
-p = p-> next ;
-}
-if (!p) // goes on end
-{
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-}
-if (! head ) // is first element
-head = item ;
-}
-
-
-int sorted :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
-
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
-}
-
-
-
-int main ()
-{
-list *p;
-// demonstrate queue
-queue q_ob ;
-p = & q_ob ; // point to queue
-p-> store (1) ;
-p-> store (2) ;
-p-> store (3) ;
-std::cout << " Queue : ";
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << ’\n’;
-// demonstrate stack
-stack s_ob ;
-p = & s_ob ; // point to stack
-p-> store (1) ;
-p-> store (2) ;
-p-> store (3) ;
-std::cout << " Stack : ";
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << ’\n’;
-// demonstrate sorted list
-sorted sorted_ob ;
-p = & sorted_ob ;
-p-> store (4) ;
-p-> store (1) ;
-p-> store (3) ;
-p-> store (9) ;
-
-p-> store (5) ;
-std::cout << " Sorted : ";
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << ’\n’;
-return 0;
 }
