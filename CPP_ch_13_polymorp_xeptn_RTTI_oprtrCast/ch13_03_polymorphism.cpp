@@ -729,16 +729,20 @@ int main(){
 
 // =================================  NEW code ========================
 
-// ----  cp1: move it up
+// ----  cp1: rev + move it up
 
-// Create a sorted list .
-class sorted : public list
-{
+// sorted list class
+
+class sorted : public list {
 public :
 void store ( int i);
 int retrieve ();
 };
 
+
+// ----  cp2: rev + move it up
+
+// ----- sorted list operations -----
 
 void sorted :: store ( int i)
 {
@@ -780,6 +784,9 @@ head = item ;
 }
 
 
+// ----  cp3: rev + move it up
+
+
 int sorted :: retrieve ()
 {
 int i;
@@ -805,8 +812,7 @@ int main ()
 
 
 
-
-// demonstrate sorted list
+// sorted list demo
 sorted sorted_ob ;
 p = & sorted_ob ;
 p-> store (4) ;
@@ -823,4 +829,5 @@ std::cout << p-> retrieve ();
 std::cout << p-> retrieve ();
 std::cout << ’\n’;
 return 0;
+
 }
