@@ -800,18 +800,9 @@ return i;
 
 int main ()
 {
-list *p;
-// demonstrate queue
-queue q_ob ;
-p = & q_ob ; // point to queue
-p-> store (1) ;
-p-> store (2) ;
-p-> store (3) ;
-std::cout << " Queue : ";
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << ’\n’;
+
+
+
 // demonstrate stack
 stack s_ob ;
 p = & s_ob ; // point to stack
