@@ -812,22 +812,24 @@ int main ()
 
 
 
-// sorted list demo
-sorted sorted_ob ;
-p = & sorted_ob ;
-p-> store (4) ;
-p-> store (1) ;
-p-> store (3) ;
-p-> store (9) ;
+    // sorted list demo
+    sorted sorted_ob;
+    p = &sorted_ob;
 
-p-> store (5) ;
-std::cout << " Sorted : ";
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << p-> retrieve ();
-std::cout << ’\n’;
-return 0;
+    p->store(4);
+    p->store(1);
+    p->store(3);
+    p->store(9);
+    p-> store (5);
+
+    std::cout << " Sorted : ";
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << '\n';
+
+    return 0;
 
 }
