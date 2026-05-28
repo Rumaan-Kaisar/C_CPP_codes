@@ -744,34 +744,34 @@ int main(){
 
 // ----- sorted list operations -----
 
-void sorted :: store ( int i)
-{
-list * item ;
-list *p, *p2;
-item = new sorted ;
-if (! item )
-{
-cout << " Allocation error .\n";
-exit (1) ;
-}
-item ->num = i;
-// find where to put next item
-p = head ;
-p2 = NULL ;
-while (p) // goes in middle
-{
-if(p->num > i)
-{
-item -> next = p;
-if(p2)
-p2 -> next = item ; // not 1st element
-if(p== head )
-head = item ; // new first element
-break ;
-}
-p2 = p;
-p = p-> next ;
-}
+void sorted::store(int i) {
+    list *item;
+    list *p, *p2;
+
+    item = new sorted;
+
+    if(!item){
+        std::cout << "Allocation error.\n";
+        exit(1);
+    }
+
+    item->num = i;
+
+    // find where to put next item
+    p = head;
+    p2 = NULL;
+    // goes in middle
+    while(p){
+        if(p->num > i) {
+            item->next = p;
+            if(p2) p2->next = item ;    // not 1st element
+            if(p==head) head = item ;   // new first element
+            break;
+        }
+        p2 = p;
+        p = p->next;
+    }
+
 if (!p) // goes on end
 {
 if( tail )
