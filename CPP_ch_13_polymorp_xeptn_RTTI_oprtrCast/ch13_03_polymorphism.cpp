@@ -598,7 +598,6 @@ class sorted : public list {
 };
 
 
-
 // ----- Queue operations -----
 
 void queue::store(int i){
@@ -693,55 +692,6 @@ int stack::retrieve(){
 */
 
 
-int main(){
-    list *p;      // base-class pointer
-
-    // Queue demo
-    queue q_ob;
-    p = &q_ob;
-
-    p->store(1);
-    p->store(2);
-    p->store(3);
-
-    std::cout << "Queue: ";
-
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
-
-    std::cout << '\n';
-
-    // Stack demo
-    stack s_ob;
-    p = &s_ob;
-
-    p->store(1);
-    p->store(2);
-    p->store(3);
-
-    std::cout << "Stack: ";
-
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
-    std::cout << p->retrieve();
-
-    std::cout << '\n';
-
-    return 0;
-}
-
-
-
-
-
-
-// =================================  NEW code ========================
-
-// ----  cp1: rev + move it up
-
-// ----  cp2: rev + move it up
-
 // ----- sorted list operations -----
 
 void sorted::store(int i) {
@@ -784,9 +734,6 @@ void sorted::store(int i) {
 }
 
 
-// ----  cp3: rev + move it up
-
-
 int sorted::retrieve() {
     int i;
     list *p;
@@ -805,11 +752,40 @@ int sorted::retrieve() {
 }
 
 
+int main(){
+    list *p;      // base-class pointer
 
-int main ()
-{
+    // Queue demo
+    queue q_ob;
+    p = &q_ob;
 
+    p->store(1);
+    p->store(2);
+    p->store(3);
 
+    std::cout << "Queue: ";
+
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+
+    std::cout << '\n';
+
+    // Stack demo
+    stack s_ob;
+    p = &s_ob;
+
+    p->store(1);
+    p->store(2);
+    p->store(3);
+
+    std::cout << "Stack: ";
+
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+
+    std::cout << '\n';
 
     // sorted list demo
     sorted sorted_ob;
@@ -830,5 +806,18 @@ int main ()
     std::cout << '\n';
 
     return 0;
-
 }
+
+
+
+
+
+
+// =================================  NEW code ========================
+
+// ----  cp1: rev + move it up
+
+// ----  cp2: rev + move it up
+
+
+
