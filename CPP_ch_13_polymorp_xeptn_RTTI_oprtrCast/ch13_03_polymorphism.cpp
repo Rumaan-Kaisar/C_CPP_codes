@@ -815,9 +815,88 @@ int main(){
 
 // =================================  NEW code ========================
 
-// ----  cp1: rev + move it up
+// ----- sorted list operations -----
 
-// ----  cp2: rev + move it up
+void sorted::store(int i) {
+
+    list *item;
+    list *p, *p2;
+
+    // create new node
+    item = new sorted;
+
+    if(!item){
+        std::cout << "Allocation error.\n";
+        exit(1);
+    }
+
+    // store value in node
+    item->num = i;
+
+    // search correct position for ascending order
+    p = head;
+    p2 = NULL;
+
+    // insert in middle or beginning
+    while(p){
+
+        // found larger value -> insert before it
+        if(p->num > i) {
+
+            item->next = p;
+
+            // link previous node if not first node
+            if(p2) p2->next = item;
+
+            // update head if inserted at front
+            if(p == head) head = item;
+
+            break;
+        }
+
+        // move to next node
+        p2 = p;
+        p = p->next;
+    }
+
+    // insert at end if no larger element found
+    if(!p) {
+
+        if(tail) tail->next = item;
+
+        tail = item;
+        item->next = NULL;
+    }
+
+    // first element in list
+    if(!head)
+        head = item;
+}
+
+
+int sorted::retrieve() {
+
+    int i;
+    list *p;
+
+    // check for empty list
+    if(!head) {
+
+        std::cout << "List empty.\n";
+        return 0;
+    }
+
+    // remove first node (smallest value)
+    i = head->num;
+
+    p = head;
+    head = head->next;
+
+    // free old node
+    delete p;
+
+    return i;
+}
 
 
 
