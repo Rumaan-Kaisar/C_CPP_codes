@@ -590,6 +590,15 @@ class stack : public list {
 };
 
 
+// sorted list class
+class sorted : public list {
+    public:
+        void store(int i);
+        int retrieve();
+};
+
+
+
 // ----- Queue operations -----
 
 void queue::store(int i){
@@ -730,15 +739,6 @@ int main(){
 // =================================  NEW code ========================
 
 // ----  cp1: rev + move it up
-
-// sorted list class
-
-class sorted : public list {
-public :
-void store ( int i);
-int retrieve ();
-};
-
 
 // ----  cp2: rev + move it up
 
