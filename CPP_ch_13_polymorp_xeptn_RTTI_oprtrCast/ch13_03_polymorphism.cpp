@@ -772,37 +772,36 @@ void sorted::store(int i) {
         p = p->next;
     }
 
-if (!p) // goes on end
-{
-if( tail )
-tail -> next = item ;
-tail = item ;
-item -> next = NULL ;
-}
-if (! head ) // is first element
-head = item ;
+
+    if(!p) {
+        if(tail) tail->next = item;
+        tail = item;
+        item->next = NULL;
+    }
+
+    if(!head)   // is first element
+    head = item;
 }
 
 
 // ----  cp3: rev + move it up
 
 
-int sorted :: retrieve ()
-{
-int i;
-list *p;
-if (! head )
-{
-cout << " List empty .\n";
-return 0;
-}
+int sorted::retrieve() {
+    int i;
+    list *p;
 
-// remove from start of list
-i = head -> num ;
-p = head ;
-head = head -> next ;
-delete p;
-return i;
+    if(!head) {
+        std::cout << " List empty .\n";
+        return 0;
+    }
+
+    // remove from start of list
+    i = head->num;
+    p = head;
+    head = head->next;
+    delete p;
+    return i;
 }
 
 
