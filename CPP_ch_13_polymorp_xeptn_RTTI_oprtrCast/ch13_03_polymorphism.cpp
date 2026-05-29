@@ -736,11 +736,11 @@ void sorted::store(int i) {
 }
 
 
-
 int sorted::retrieve() {
     int i;
     list *p;
 
+    // check for empty list
     if(!head) {
         std::cout << " List empty .\n";
         return 0;
@@ -820,61 +820,8 @@ int main(){
 
 // ----- sorted list operations -----
 
-void sorted::store(int i) {
-
-
-
-
-
-
-    
-    while(p){
-
-        // found larger value -> insert before it
-        if(p->num > i) {
-
-            item->next = p;
-
-            // link previous node if not first node
-            if(p2) p2->next = item;
-
-            // update head if inserted at front
-            if(p == head) head = item;
-
-            break;
-        }
-
-        // move to next node
-        p2 = p;
-        p = p->next;
-    }
-
-    // insert at end if no larger element found
-    if(!p) {
-
-        if(tail) tail->next = item;
-
-        tail = item;
-        item->next = NULL;
-    }
-
-    // first element in list
-    if(!head)
-        head = item;
-}
-
 
 int sorted::retrieve() {
-
-    int i;
-    list *p;
-
-    // check for empty list
-    if(!head) {
-
-        std::cout << "List empty.\n";
-        return 0;
-    }
 
     // remove first node (smallest value)
     i = head->num;
