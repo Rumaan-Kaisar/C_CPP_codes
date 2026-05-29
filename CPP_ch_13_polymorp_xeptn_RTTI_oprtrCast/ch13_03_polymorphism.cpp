@@ -746,11 +746,11 @@ int sorted::retrieve() {
         return 0;
     }
 
-    // remove from start of list
+    // remove from start of list, i.e. remove first node (smallest value)
     i = head->num;
     p = head;
     head = head->next;
-    delete p;
+    delete p;   // free old node
     return i;
 }
 
@@ -823,13 +823,9 @@ int main(){
 
 int sorted::retrieve() {
 
-    // remove first node (smallest value)
-    i = head->num;
 
-    p = head;
-    head = head->next;
 
-    // free old node
+    
     delete p;
 
     return i;
