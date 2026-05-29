@@ -814,21 +814,3 @@ int main(){
 
 
 
-
-
-// =================================  NEW code ========================
-
-// ----- sorted list operations -----
-
-
-int sorted::retrieve() {
-
-
-
-    
-    delete p;
-
-    return i;
-}
-
-
