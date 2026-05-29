@@ -698,19 +698,19 @@ void sorted::store(int i) {
     list *item;
     list *p, *p2;
 
-    item = new sorted;
+    item = new sorted;  // create new node
 
     if(!item){
         std::cout << "Allocation error.\n";
         exit(1);
     }
 
-    item->num = i;
+    item->num = i;  // store value in node
 
-    // find where to put next item
+    // search correct position for ascending order
     p = head;
     p2 = NULL;
-    // goes in middle
+    // insert in middle or beginning
     while(p){
         if(p->num > i) {
             item->next = p;
@@ -819,25 +819,12 @@ int main(){
 
 void sorted::store(int i) {
 
-    list *item;
-    list *p, *p2;
 
-    // create new node
-    item = new sorted;
 
-    if(!item){
-        std::cout << "Allocation error.\n";
-        exit(1);
-    }
 
-    // store value in node
-    item->num = i;
 
-    // search correct position for ascending order
-    p = head;
-    p2 = NULL;
 
-    // insert in middle or beginning
+    
     while(p){
 
         // found larger value -> insert before it
@@ -897,6 +884,5 @@ int sorted::retrieve() {
 
     return i;
 }
-
 
 
