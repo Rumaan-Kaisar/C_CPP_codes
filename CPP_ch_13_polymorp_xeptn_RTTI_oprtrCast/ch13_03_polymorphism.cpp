@@ -712,15 +712,18 @@ void sorted::store(int i) {
     p2 = NULL;
     // insert in middle or beginning
     while(p){
+        // found larger value -> insert before it
         if(p->num > i) {
-            item->next = p;
-            if(p2) p2->next = item ;    // not 1st element
-            if(p==head) head = item ;   // new first element
+            item->next = p;     // link previous node if not first node
+            if(p2) p2->next = item;     // not 1st element
+            if(p==head) head = item;    // update head if inserted at front
             break;
         }
+        // move to next node
         p2 = p;
         p = p->next;
     }
+
 
 
     if(!p) {
