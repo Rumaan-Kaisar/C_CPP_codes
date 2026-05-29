@@ -725,16 +725,16 @@ void sorted::store(int i) {
     }
 
 
-
+    // insert at end if no larger element found
     if(!p) {
         if(tail) tail->next = item;
         tail = item;
         item->next = NULL;
     }
 
-    if(!head)   // is first element
-    head = item;
+    if(!head) head = item;  // first element in list
 }
+
 
 
 int sorted::retrieve() {
