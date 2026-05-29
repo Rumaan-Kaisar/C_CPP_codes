@@ -1,6 +1,4 @@
 
-// --------  cp4 :: 09-May-2026
-
 /*  ------------------------    Polymorphism    ------------------------
 
     Polymorphism is an OOP concept where: 
@@ -800,7 +798,7 @@ int main(){
     p->store(9);
     p-> store (5);
 
-    std::cout << " Sorted : ";
+    std::cout << "Sorted : ";
     std::cout << p->retrieve();
     std::cout << p->retrieve();
     std::cout << p->retrieve();
@@ -810,7 +808,5 @@ int main(){
 
     return 0;
 }
-
-
 
 
