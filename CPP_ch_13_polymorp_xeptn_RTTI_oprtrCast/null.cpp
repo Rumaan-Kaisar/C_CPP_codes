@@ -129,29 +129,51 @@ case, the redefinition of f() differs in the number of its parameters.
 
 Yes.
 
+----------------
+Here are the additional Q&A organized in the same clear, pointwise format:
 
+**6. Is the following fragment correct? If not, why not?**
+```cpp
+class base {
+    public :
+        virtual int f(int a) = 0;  // Note: assuming function name is 'f'
+        // ...
+};
 
+class derived : public base {
+    public :
+        int f(int a, int b) { return a*b; }  // Mismatched signature
+        // ...
+};
+```
+• **Verdict:** ❌ The fragment is **incorrect**.
+• **Reason:** When overriding a virtual function, the derived class version must have:
+  - The **same function name**
+  - The **same return type**
+  - The **same number and types of parameters** (identical signature)
+• **Issue in code:** The base class declares `f(int)`, but the derived class defines `f(int, int)` — the parameter count differs.
+• **Result:** This does **not** override the base function; it *hides* it and creates a new overloaded function, leaving the pure virtual function unimplemented → compilation error if `derived` is instantiated.
 
+**7. Is the virtual quality inherited?**
+• **Answer:** ✅ **Yes**.
+• **Explanation:**
+  - Once a function is declared `virtual` in a base class, it remains `virtual` in all derived classes.
+  - Derived classes may optionally use the `virtual` keyword again (for clarity), but it is not required.
+  - This inheritance of the `virtual` property is what enables consistent run-time polymorphism throughout the inheritance hierarchy.
+• **Example:**
+  ```cpp
+  class Base {
+  public:
+      virtual void show(); // virtual here
+  };
+  
+  class Derived : public Base {
+  public:
+      void show(); // still virtual, even without 'virtual' keyword
+  };
+  ```
+--------------------
 
-
-1. 
-
-2. 
-
-
-3. 
-
-
-4. 
-
-
-5.
-
-
-6.
-
-
-7. 
 
 
 
