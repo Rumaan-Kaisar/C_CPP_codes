@@ -25,35 +25,30 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-2. What types of functions cannot be made virtual?
-
-Nonmember functions and constructor functions cannot be made virtual.
-
-
-
 3. How does a virtual function help achieve run-time polymorphism? Be specific.
 
-A virtual function supports run-time polymorphism through the use of base class pointers.
+
 When a base class pointer points to an object of a derived class containing a virtual
 function, the specific function called is determined by the type of object being pointed to.
 
 
 ------------
 /* Example 1:
+                What is a virtual function?
+                    A VF is a placeholder function declared within a base class.
+                    It is intended to be redefined by any class derived from that base class.
+                    This redefinition process is technically known as "OVERRIDING".
 
-What is a virtual function?
-    A VF is a placeholder function declared within a base class.
-    It is intended to be redefined by any class derived from that base class.
-    This redefinition process is technically known as "OVERRIDING".
+                What types of functions "cannot be made virtual"?
+                    Nonmember functions (functions not part of any class).
+                    Constructor functions.
 
-What types of functions cannot be made virtual?
-    Nonmember functions (functions not part of any class).
-    Constructor functions.
-
-How does a virtual function help achieve run-time polymorphism?**
-    It utilizes base class pointers to enable dynamic function resolution.
-    When a base class pointer points to a derived class object containing the virtual function, the program determines which version to call during execution (run-time).
-    The specific function executed depends on the actual type of the object being pointed to, rather than the declared type of the pointer. */
+                How does a virtual function help achieve run-time polymorphism (dynamic function resolution)?
+                    A virtual function supports run-time polymorphism through the use of base class pointers.
+                    (also  referred as "dynamic binding" or "late binding")
+                    
+                    When a base class pointer points to a derived class object containing the virtual function, the program determines which version to call during execution (run-time).
+                    The specific function executed depends on the actual type of the object being pointed to, rather than the declared type of the pointer. */
 ------------
 
 
