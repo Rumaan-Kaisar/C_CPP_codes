@@ -48,14 +48,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-
-5. What is an abstract class? What is a polymorphic class?
-
- An abstract class is a base class that contains at least one pure virtual function. A
-polymorphic class is one that contains at least one virtual function.
-
-
-
 /* Example 2:
                 What is a pure virtual function?
                     It is a virtual function that contains no definition in the base class.
@@ -65,12 +57,12 @@ polymorphic class is one that contains at least one virtual function.
 
                 What is an abstract class? What is a polymorphic class?
                     Abstract Class:
-                        A base class that contains **at least one pure virtual function**.
+                        A base class that contains "at least one PURE Virtual Function".
                         Cannot be instantiated; it is designed to be inherited by derived classes.
                         Provides a common interface for derived classes to implement.
 
                     Polymorphic Class:
-                        A class that contains **at least one virtual function** (regular or pure).
+                        A class that contains "at least one Virtual Function" (regular or pure).
                         Enables run-time polymorphism through base class pointers or references.
                         Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
 
