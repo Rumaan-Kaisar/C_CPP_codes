@@ -49,12 +49,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-4. What is a pure virtual function?
-
-A pure virtual function is one that contains no definition relative to the base class.
-
-
-
 5. What is an abstract class? What is a polymorphic class?
 
  An abstract class is a base class that contains at least one pure virtual function. A
@@ -63,27 +57,26 @@ polymorphic class is one that contains at least one virtual function.
 
 
 /* Example 2:
+                What is a pure virtual function?
+                    It is a virtual function that contains no definition in the base class.
+                    It is declared using the syntax "= 0" (e.g., "virtual void func() = 0;").
+                    It serves as a placeholder that "must be overridden" by any concrete derived class.
+                    Classes containing pure virtual functions cannot be instantiated directly.
 
-What is a pure virtual function?
-    It is a virtual function that contains **no definition** in the base class.
-    It is declared using the syntax `= 0` (e.g., `virtual void func() = 0;`).
-    It serves as a placeholder that *must* be overridden by any concrete derived class.
-    Classes containing pure virtual functions cannot be instantiated directly.
+                What is an abstract class? What is a polymorphic class?
+                    Abstract Class:
+                        A base class that contains **at least one pure virtual function**.
+                        Cannot be instantiated; it is designed to be inherited by derived classes.
+                        Provides a common interface for derived classes to implement.
 
-What is an abstract class? What is a polymorphic class?
-    Abstract Class:
-        A base class that contains **at least one pure virtual function**.
-        Cannot be instantiated; it is designed to be inherited by derived classes.
-        Provides a common interface for derived classes to implement.
+                    Polymorphic Class:
+                        A class that contains **at least one virtual function** (regular or pure).
+                        Enables run-time polymorphism through base class pointers or references.
+                        Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
 
-    Polymorphic Class:
-        A class that contains **at least one virtual function** (regular or pure).
-        Enables run-time polymorphism through base class pointers or references.
-        Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
-
-    Key Relationship:
-        All abstract classes are polymorphic (since pure virtual functions are virtual), 
-        but not all polymorphic classes are abstract (a class with only regular virtual functions can still be instantiated).
+                    Key Relationship:
+                        All abstract classes are polymorphic (since pure virtual functions are virtual), 
+                        but not all polymorphic classes are abstract (a class with only regular virtual functions can still be instantiated).
 */
 
 
