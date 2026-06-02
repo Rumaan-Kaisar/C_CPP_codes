@@ -22,11 +22,7 @@
 
 
 At this point you should be able to perform the following exercises and answer the questions.
-1. What is a virtual function?
 
-A virtual function is essentially a placeholder function that is declared in a base class and
-that is redefined by a class derived from that base. The process of redefinition is called
-overriding.
 
 
 2. What types of functions cannot be made virtual?
@@ -43,21 +39,21 @@ function, the specific function called is determined by the type of object being
 
 
 ------------
-Here are the Q&A organized in a clear, pointwise format:
+/* Example 1:
 
-**1. What is a virtual function?**
-• It is a placeholder function declared within a base class.
-• It is intended to be redefined by any class derived from that base class.
-• This redefinition process is technically known as *overriding*.
+What is a virtual function?
+    A VF is a placeholder function declared within a base class.
+    It is intended to be redefined by any class derived from that base class.
+    This redefinition process is technically known as "OVERRIDING".
 
-**2. What types of functions cannot be made virtual?**
-• Nonmember functions (functions not part of any class).
-• Constructor functions.
+What types of functions cannot be made virtual?
+    Nonmember functions (functions not part of any class).
+    Constructor functions.
 
-**3. How does a virtual function help achieve run-time polymorphism?**
-• It utilizes base class pointers to enable dynamic function resolution.
-• When a base class pointer points to a derived class object containing the virtual function, the program determines which version to call during execution (run-time).
-• The specific function executed depends on the actual type of the object being pointed to, rather than the declared type of the pointer.
+How does a virtual function help achieve run-time polymorphism?**
+    It utilizes base class pointers to enable dynamic function resolution.
+    When a base class pointer points to a derived class object containing the virtual function, the program determines which version to call during execution (run-time).
+    The specific function executed depends on the actual type of the object being pointed to, rather than the declared type of the pointer. */
 ------------
 
 
