@@ -25,50 +25,50 @@ At this point you should be able to perform the following exercises and answer t
 
 
 /* Example 1:
-                What is a virtual function?
-                    A VF is a placeholder function declared within a base class.
-                    It is intended to be redefined by any class derived from that base class.
-                    This redefinition process is technically known as "OVERRIDING".
+            What is a virtual function?
+                A VF is a placeholder function declared within a base class.
+                It is intended to be redefined by any class derived from that base class.
+                This redefinition process is technically known as "OVERRIDING".
 
-                What types of functions "cannot be made virtual"?
-                    Nonmember functions (functions not part of any class).
-                    Constructor functions.
+            What types of functions "cannot be made virtual"?
+                Nonmember functions (functions not part of any class).
+                Constructor functions.
 
-                How does a virtual function help achieve run-time polymorphism (dynamic function resolution)?
-                    A virtual function supports run-time polymorphism through the use of base class pointers.
-                    (also  referred as "dynamic binding" or "late binding")
-                    
-                    When a base class pointer points to a derived class object containing the virtual function, 
-                        the program determines which version to call during execution (run-time).
-                    
-                    The specific function executed depends on the "actual type" of the object being pointed to, 
-                        rather than the "declared type" of the pointer.
+            How does a virtual function help achieve run-time polymorphism (dynamic function resolution)?
+                A virtual function supports run-time polymorphism through the use of base class pointers.
+                (also  referred as "dynamic binding" or "late binding")
+                
+                When a base class pointer points to a derived class object containing the virtual function, 
+                    the program determines which version to call during execution (run-time).
+                
+                The specific function executed depends on the "actual type" of the object being pointed to, 
+                    rather than the "declared type" of the pointer.
 */
 
 
 
 
 /* Example 2:
-                What is a pure virtual function?
-                    It is a virtual function that contains no definition in the base class.
-                    It is declared using the syntax "= 0" (e.g., "virtual void func() = 0;").
-                    It serves as a placeholder that "must be overridden" by any concrete derived class.
-                    Classes containing pure virtual functions cannot be instantiated directly.
+            What is a pure virtual function?
+                It is a virtual function that contains no definition in the base class.
+                It is declared using the syntax "= 0" (e.g., "virtual void func() = 0;").
+                It serves as a placeholder that "must be overridden" by any concrete derived class.
+                Classes containing pure virtual functions cannot be instantiated directly.
 
-                What is an abstract class? What is a polymorphic class?
-                    Abstract Class:
-                        A base class that contains "at least one PURE Virtual Function".
-                        Cannot be instantiated; it is designed to be inherited by derived classes.
-                        Provides a common interface for derived classes to implement.
+            What is an abstract class? What is a polymorphic class?
+                Abstract Class:
+                    A base class that contains "at least one PURE Virtual Function".
+                    Cannot be instantiated; it is designed to be inherited by derived classes.
+                    Provides a common interface for derived classes to implement.
 
-                    Polymorphic Class:
-                        A class that contains "at least one Virtual Function" (regular or pure).
-                        Enables run-time polymorphism through base class pointers or references.
-                        Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
+                Polymorphic Class:
+                    A class that contains "at least one Virtual Function" (regular or pure).
+                    Enables run-time polymorphism through base class pointers or references.
+                    Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
 
-                    Key Relationship:
-                        All abstract classes are polymorphic (since pure virtual functions are virtual), 
-                        but not all polymorphic classes are abstract (a class with only regular virtual functions can still be instantiated).
+                Key Relationship:
+                    All abstract classes are polymorphic (since pure virtual functions are virtual), 
+                    but not all polymorphic classes are abstract (a class with only regular virtual functions can still be instantiated).
 */
 
 
@@ -76,17 +76,7 @@ At this point you should be able to perform the following exercises and answer t
 
 6. Is the following fragment correct? If not, why not?
 
-        class base {
-            public :
-                virtual int (int a) = 0;
-                // ...
-        };
 
-        class derived : public base {
-            public :
-                int f(int a, int b) { return a*b; }
-                // ...
-        }:
 
  The fragment is incorrect because the redefinition of a virtual function must have the
 same return type and type and number of parameters as the original function. In this
@@ -99,17 +89,24 @@ case, the redefinition of f() differs in the number of its parameters.
 7. Is the virtual quality inherited?
 
 Yes.
+/* Example 3: 
+            Is the following fragment correct? If not, why explain?
 
-----------------
-Here are the additional Q&A organized in the same clear, pointwise format:
+                class base {
+                    public :
+                        virtual int f(int a) = 0;
+                        // ...
+                };
 
-**6. Is the following fragment correct? If not, why not?**
-```cpp
-class base {
-    public :
-        virtual int f(int a) = 0;  // Note: assuming function name is 'f'
-        // ...
-};
+                class derived : public base {
+                    public :
+                        int f(int a, int b) { return a*b; }
+                        // ...
+                }:
+
+
+
+
 
 class derived : public base {
     public :
@@ -142,10 +139,9 @@ class derived : public base {
   public:
       void show(); // still virtual, even without 'virtual' keyword
   };
-  ```
---------------------
+  
 
-
+*/
 
 
 
