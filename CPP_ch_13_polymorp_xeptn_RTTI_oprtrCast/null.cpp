@@ -109,33 +109,21 @@ At this point you should be able to perform the following exercises and answer t
                     So this fragment "does not OVERRIDE" the base function; instead it creates a new "overloaded" function, 
                     --> leaving the "pure virtual function unimplemented"
                     --> compilation error if `derived` is instantiated.
-
-
-
-
 */
  
  
  
 /* Example 4: Is the virtual quality inherited?
-• **Answer:** ✅ **Yes**.
-• **Explanation:**
-  - Once a function is declared `virtual` in a base class, it remains `virtual` in all derived classes.
-  - Derived classes may optionally use the `virtual` keyword again (for clarity), but it is not required.
-  - This inheritance of the `virtual` property is what enables consistent run-time polymorphism throughout the inheritance hierarchy.
-• **Example:**
-  ```cpp
-  class Base {
-  public:
-      virtual void show(); // virtual here
-  };
-  
-  class Derived : public Base {
-  public:
-      void show(); // still virtual, even without 'virtual' keyword
-  };
-  
 
+            ans:
+                Yes. Once a function is declared "virtual" in a base class, 
+                    it remains "virtual" in all derived classes.
+  
+                Derived classes may optionally use the "virtual" keyword again (for clarity), 
+                    but it is not required.
+  
+                This inheritance of the "virtual" property is what enables "consistent run-time polymorphism" 
+                    throughout the inheritance hierarchy.
 */
 
 
