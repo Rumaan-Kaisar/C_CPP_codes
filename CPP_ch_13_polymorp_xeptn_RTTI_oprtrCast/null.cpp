@@ -74,21 +74,12 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-6. Is the following fragment correct? If not, why not?
-
-
-
- The fragment is incorrect because the redefinition of a virtual function must have the
-same return type and type and number of parameters as the original function. In this
-case, the redefinition of f() differs in the number of its parameters.
-
-
 
 
 
 7. Is the virtual quality inherited?
 
-Yes.
+
 /* Example 3: 
             Is the following fragment correct? If not, why explain?
 
@@ -104,23 +95,24 @@ Yes.
                         // ...
                 }:
 
+            ans:
+                The fragment is "incorrect".
+                When overriding a virtual function, the derived class version (redefinition of the VF) must have:
+                    same function name
+                    same return type
+                    same number and types of parameters as the original function (identical signature)
 
-
-
-
-class derived : public base {
-    public :
-        int f(int a, int b) { return a*b; }  // Mismatched signature
-        // ...
-};
-```
-• **Verdict:** ❌ The fragment is **incorrect**.
-• **Reason:** When overriding a virtual function, the derived class version must have:
-  - The **same function name**
-  - The **same return type**
-  - The **same number and types of parameters** (identical signature)
 • **Issue in code:** The base class declares `f(int)`, but the derived class defines `f(int, int)` — the parameter count differs.
 • **Result:** This does **not** override the base function; it *hides* it and creates a new overloaded function, leaving the pure virtual function unimplemented → compilation error if `derived` is instantiated.
+
+
+
+ The fragment is incorrect because the  must have the
+same return type and type and number of parameters . In this
+case, the redefinition of f() differs in the number of its parameters.
+
+
+
 
 **7. Is the virtual quality inherited?**
 • **Answer:** ✅ **Yes**.
