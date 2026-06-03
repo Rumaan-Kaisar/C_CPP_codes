@@ -77,7 +77,7 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-7. Is the virtual quality inherited?
+
 
 
 /* Example 3: 
@@ -102,19 +102,22 @@ At this point you should be able to perform the following exercises and answer t
                     same return type
                     same number and types of parameters as the original function (identical signature)
 
-• **Issue in code:** The base class declares `f(int)`, but the derived class defines `f(int, int)` — the parameter count differs.
-• **Result:** This does **not** override the base function; it *hides* it and creates a new overloaded function, leaving the pure virtual function unimplemented → compilation error if `derived` is instantiated.
+                In this case, the redefinition of f() differs in the number of its parameters.
+                    The base class declares f(int), but the derived class defines f(int, int) — the "parameter count" differs.
+
+                Result:
+                    So this fragment "does not OVERRIDE" the base function; instead it creates a new "overloaded" function, 
+                    --> leaving the "pure virtual function unimplemented"
+                    --> compilation error if `derived` is instantiated.
 
 
 
- The fragment is incorrect because the  must have the
-same return type and type and number of parameters . In this
-case, the redefinition of f() differs in the number of its parameters.
 
-
-
-
-**7. Is the virtual quality inherited?**
+*/
+ 
+ 
+ 
+/* Example 4: Is the virtual quality inherited?
 • **Answer:** ✅ **Yes**.
 • **Explanation:**
   - Once a function is declared `virtual` in a base class, it remains `virtual` in all derived classes.
