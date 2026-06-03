@@ -74,12 +74,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-
-
-
-
-
-
 /* Example 3: 
             Is the following fragment correct? If not, why explain?
 
@@ -133,18 +127,15 @@ At this point you should be able to perform the following exercises and answer t
 
 This section checks how well you have integrated material in this chapter with that from the
 preceding chapters.
-1. Enhance the list example from Section 10.4, Example 1, so that it overloads the + and {
-operators. Have the + store an element and the { retrieve an element.
 
 
-2. How do virtual functions differ from overloaded functions?
 
 
-3. On your own, reexamine some of the function overloading examples presented earlier in
-this book. Determine which can be converted to virtual functions. Also, think about ways
-in which a virtual function can solve some of your own programming problems
 
 
+// polymorph
+/* Example 1: Enhance the list example from above, Example 2, so that it overloads the + and --
+operators. Have the + store an element and the { retrieve an element. */
 
 1. // Demonstrate virtual functions .
 # include <iostream>
@@ -298,16 +289,246 @@ int main() {
     return 0;
 }
 
+/* Example 2: This program shows the idea of “one interface, multiple methods.” 
+                It creates an abstract "list" class for storing integers.
+
+                The "list" uses two functions: 
+                    store() to add a value and 
+                    retrieve() to get a value.
+
+                    They both are Pure Virtual Functions (PVFs)
+                    So the interface to the "list" is defined by the PVFs store() and retrieve().
+
+                The base (abstract) class "list" does not define any default methods for these functions.
+                    Instead, each derived class decides how to store and retrieve data.
+
+                In this program, two types of lists are implemented: a queue and a stack. 
+                    Even though they work differently, both use the same interface (store and retrieve).
+*/
+
+#include <iostream>
+#include <cstdlib>
+
+class list{
+    public:
+        list *head;         // pointer to start of list  
+        list *tail;         // pointer to end of list  
+        list *next;         // pointer to next item  
+
+        int num;            // value to be stored  
+
+        list(){ head = tail = next = NULL; }
+
+        // actions for add and get values
+        virtual void store(int i) = 0;      // PVF 
+        virtual int retrieve() = 0;         // PVF 
+};
+
+
+// Create a derived class "queue" - type "list".
+class queue : public list {
+    public :
+        void store(int i);
+        int retrieve();
+};
+
+
+// Create a derived class "stack" - type "list" .
+class stack : public list {
+    public :
+        void store(int i);
+        int retrieve();
+};
+
+
+// -------- queue's versions of "store" and "retrieve"  --------
+
+void queue :: store(int i){ 
+    // It adds a new item to the end of the queue (FIFO: First In, First Out).
+    
+    list *item;         // A pointer item is created. It will point to a new node in the list.
+    item = new queue;   // Memory is allocated for a new object. This new object acts as a node in the "queue"
+
+    // Checks if memory allocation fails
+    if(!item ){
+        std::cout << " Allocation error .\n";
+        exit(1);
+    }
+    
+    // Note: item, head, tail, next are "pointers" of type "list"
+
+    item->num = i;      // Stores the given value i inside the new node.
+    
+    // put on end of list 
+    if(tail) tail->next = item;     // If the queue already has elements: The current last node (tail) is linked to the new node.
+    tail = item;    // Updates tail to point to the new node. Now this new node is the last element of the queue.
+    item -> next = NULL;    // Since it's the last node, it doesn’t point to anything after it.
+
+    // initializes the queue properly.
+    if(!head) head = tail;  // If the queue was empty before: Both head and tail will point to this new node.
+}
+
+
+int queue :: retrieve(){
+    // Opposite of store(). It defines how a queue removes and returns a value—always from the front (FIFO behavior).
+    // Takes the first element from the queue
+    // Removes it from the list
+    // Returns its value
+
+    int i;      // i will store the value being removed
+    list *p;    // p is a temporary pointer used to safely delete a node
+
+    // Checks if the queue is empty (head == NULL)
+    if(!head){
+        std::cout << " List empty.\n ";
+        return 0; 
+    }
+
+    // remove from start of list 
+    i = head -> num;    // Gets the value from the first node. This is the value that will be returned
+    p = head;   // Saves the current first node in p (because we’re about to move head)
+    head = head -> next;    // Moves "head" to the next node
+    delete p;   // Frees the memory of the old first node
+    return i;   // Returns the value that was stored in the removed node
+}
+
+
+// -------- stack's own versions of "store" and "retrieve"  --------
+
+void stack :: store(int i){ 
+    // It adds a new item to the top of the stack (LIFO: Last In, First Out).
+
+    list *item;     // A pointer 'item' is created. It will point to a new node.
+    item = new stack;   // Memory is allocated for a new object (node in the stack).
+
+    // Checks if memory allocation fails
+    if(!item){  
+        std::cout << " Allocation error.\n";
+        exit(1); 
+    }
+
+    // Note: item, head, tail, next are pointers of type "list"
+
+    item->num = i;  // Stores the given value i inside the new node.
+
+    // put on front of list for stack-like operation
+    if(head) item->next = head;  
+    // If stack already has elements:
+    // The new node points to the current top (head)
+
+    head = item;    
+    // Updates head to point to the new node.
+    // Now this new node becomes the top of the stack.
+
+    // initializes the stack properly
+    if(!tail) tail = head;  
+    // If the stack was empty before:
+    // Both head and tail point to this new node.
+}
+
+
+int stack :: retrieve(){    
+    // Opposite of store(). Defines how a stack removes and returns a value.
+    // Always removes from the top (LIFO behavior).
+    // Takes the top element
+    // Removes it from the list
+    // Returns its value
+
+    int i;      // i will store the value being removed
+    list *p;    // p is a temporary pointer used to safely delete a node
+
+    // Checks if the stack is empty (head == NULL)
+    if(!head){  
+        std::cout << " List empty .\n";
+        return 0; 
+    }
+
+    // remove from start of list (top of stack)
+    i = head->num;    // Gets the value from the top node
+    p = head;         // Saves the current top node
+    head = head->next;    // Moves head to the next node (new top)
+    delete p;         // Frees memory of the old top node
+
+    return i;         // Returns the value that was removed
+}
+
+/*  If you compare this with above queue version, the key difference is just 
+        where insertion happens:
+
+            Queue --> insert at end, remove from front
+            Stack --> insert at front, remove from front
+
+        That single change is what flips FIFO into LIFO. 
+*/
+
+
+int main(){
+    list *p;    // Base class pointer.
+                // This will be used to demonstrate runtime polymorphism:
+                // the same pointer will behave differently for queue and stack.
+
+    // -------- Demonstrate Queue (FIFO) --------
+    queue q_ob; // Create a queue object
+
+    p = &q_ob;  // Point base class pointer to queue object
+
+    // Insert elements into queue
+    p->store(1);     
+    p->store(2);
+    p->store(3);
+    // Order inserted: 1 --> 2 --> 3
+
+    std::cout << "Queue: ";
+
+    // Retrieve elements from queue
+        // Since queue is FIFO:
+        // Output will be: 1 2 3
+    std::cout << p->retrieve();  
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+
+
+    std::cout << '\n';
+
+
+    // -------- Demonstrate Stack (LIFO) --------
+    stack s_ob; // Create a stack object
+
+    p = &s_ob;  // Point same base class pointer to stack object
+
+    // Insert elements into stack
+        // Order pushed: 1 --> 2 --> 3
+        // Top of stack is now 3
+    p->store(1);
+    p->store(2);
+    p->store(3);
+
+
+    std::cout << "Stack: ";
+
+    // Retrieve elements from stack
+        // Since stack is LIFO:
+        // Output will be: 3 2 1
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    std::cout << p->retrieve();
+    
+
+    std::cout << '\n';
+
+    return 0;
+}
 
 
 
 
+/* Example 2: How do virtual functions differ from overloaded functions? */
 
-
-2. Virtual functions differ from overloaded functions in that overloaded functions must differ
+Virtual functions differ from overloaded functions in that overloaded functions must differ
 from the number of parameters or the type of parameters. An overridden virtual function
 must have exactly the same prototype (that is, the same return type and the same type
 and number of parameters) as the original function.
+
 
 
 
