@@ -157,6 +157,38 @@ class list{
 };
 
 
+// Create a derived class "queue" - type "list". Notice the operator overloading
+class queue : public list {
+    public :
+        void store(int i);
+        int retrieve();
+        
+        // operator overloading
+        queue operator+(int i) { 
+            store(i); 
+            return *this; 
+        }
+        int operator--( int unused ) { return retrieve(); }
+};
+
+
+// Create a derived class "stack" - type "list". Notice the operator overloading
+class stack : public list {
+    public :
+        void store(int i);
+        int retrieve();
+
+        // operator overloading
+        stack operator +(int i) { 
+            store(i);
+            return *this;
+        }
+        int operator --(int unused) { return retrieve(); }
+};
+
+
+
+
 
 
 
@@ -200,18 +232,7 @@ int queue :: retrieve() {
 }
 
 
-// Create a stack - type list .
-class stack : public list {
-    public :
-        void store(int i);
-        int retrieve();
 
-        stack operator +(int i) { 
-            store(i);
-            return *this;
-        }
-        int operator --(int unused) { return retrieve(); }
-};
 
 
 void stack :: store (int i) {
@@ -297,29 +318,6 @@ int main() {
                 In this program, two types of lists are implemented: a queue and a stack. 
                     Even though they work differently, both use the same interface (store and retrieve).
 */
-
-
-// Create a derived class "queue" - type "list". Notice the operator overloading
-class queue : public list {
-    public :
-        void store(int i);
-        int retrieve();
-        
-        // operator overloading
-        queue operator+(int i) { 
-            store(i); 
-            return *this; 
-        }
-        int operator--( int unused ) { return retrieve(); }
-};
-
-
-// Create a derived class "stack" - type "list". Notice the operator overloading
-class stack : public list {
-    public :
-        void store(int i);
-        int retrieve();
-};
 
 
 // -------- queue's versions of "store" and "retrieve"  --------
