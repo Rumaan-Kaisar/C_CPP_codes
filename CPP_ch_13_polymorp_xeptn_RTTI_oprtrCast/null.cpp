@@ -229,10 +229,9 @@ int queue :: retrieve() {
 }
 
 
+// -------- stack's own versions of "store" and "retrieve"  --------
 
-
-
-void stack :: store (int i) {
+void stack :: store(int i) {
     list *item;
     item = new stack;
 
@@ -320,42 +319,7 @@ int main() {
 
 
 
-int queue :: retrieve(){
-}
 
-
-// -------- stack's own versions of "store" and "retrieve"  --------
-
-void stack :: store(int i){ 
-    // It adds a new item to the top of the stack (LIFO: Last In, First Out).
-
-    list *item;     // A pointer 'item' is created. It will point to a new node.
-    item = new stack;   // Memory is allocated for a new object (node in the stack).
-
-    // Checks if memory allocation fails
-    if(!item){  
-        std::cout << " Allocation error.\n";
-        exit(1); 
-    }
-
-    // Note: item, head, tail, next are pointers of type "list"
-
-    item->num = i;  // Stores the given value i inside the new node.
-
-    // put on front of list for stack-like operation
-    if(head) item->next = head;  
-    // If stack already has elements:
-    // The new node points to the current top (head)
-
-    head = item;    
-    // Updates head to point to the new node.
-    // Now this new node becomes the top of the stack.
-
-    // initializes the stack properly
-    if(!tail) tail = head;  
-    // If the stack was empty before:
-    // Both head and tail point to this new node.
-}
 
 
 int stack :: retrieve(){    
