@@ -321,26 +321,6 @@ int main() {
 
 
 int queue :: retrieve(){
-    // Opposite of store(). It defines how a queue removes and returns a value—always from the front (FIFO behavior).
-    // Takes the first element from the queue
-    // Removes it from the list
-    // Returns its value
-
-    int i;      // i will store the value being removed
-    list *p;    // p is a temporary pointer used to safely delete a node
-
-    // Checks if the queue is empty (head == NULL)
-    if(!head){
-        std::cout << " List empty.\n ";
-        return 0; 
-    }
-
-    // remove from start of list 
-    i = head -> num;    // Gets the value from the first node. This is the value that will be returned
-    p = head;   // Saves the current first node in p (because we’re about to move head)
-    head = head -> next;    // Moves "head" to the next node
-    delete p;   // Frees the memory of the old first node
-    return i;   // Returns the value that was stored in the removed node
 }
 
 
