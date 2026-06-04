@@ -137,34 +137,26 @@ preceding chapters.
 /* Example 1: Enhance the list example from above, Example 2, so that it overloads the + and --
 operators. Have the + store an element and the { retrieve an element. */
 
-1. // Demonstrate virtual functions .
-# include <iostream>
-# include <cstdlib>
 
-class list {
-    public :
-        list *head ;    // pointer to start of list
-        list *tail ;    // pointer to end of list
-        list *next ;    // pointer to next item
-        int num ;       // value to be stored
+#include <iostream>
+#include <cstdlib>
 
-        list() { head = tail = next = NULL ; }
-        virtual void store(int i) = 0;
-        virtual int retrieve() = 0;
+class list{
+    public:
+        list *head;         // pointer to start of list  
+        list *tail;         // pointer to end of list  
+        list *next;         // pointer to next item  
+
+        int num;            // value to be stored  
+
+        list(){ head = tail = next = NULL; }
+
+        // actions for add and get values
+        virtual void store(int i) = 0;      // PVF 
+        virtual int retrieve() = 0;         // PVF 
 };
 
 
-// Create a queue - type list .
-class queue : public list {
-    public :
-        void store( int i);
-        int retrieve();
-        queue operator+(int i) { 
-            store(i); 
-            return *this; 
-        }
-        int operator--( int unused ) { return retrieve(); }
-};
 
 
 
@@ -306,34 +298,23 @@ int main() {
                     Even though they work differently, both use the same interface (store and retrieve).
 */
 
-#include <iostream>
-#include <cstdlib>
 
-class list{
-    public:
-        list *head;         // pointer to start of list  
-        list *tail;         // pointer to end of list  
-        list *next;         // pointer to next item  
-
-        int num;            // value to be stored  
-
-        list(){ head = tail = next = NULL; }
-
-        // actions for add and get values
-        virtual void store(int i) = 0;      // PVF 
-        virtual int retrieve() = 0;         // PVF 
-};
-
-
-// Create a derived class "queue" - type "list".
+// Create a derived class "queue" - type "list". Notice the operator overloading
 class queue : public list {
     public :
         void store(int i);
         int retrieve();
+        
+        // operator overloading
+        queue operator+(int i) { 
+            store(i); 
+            return *this; 
+        }
+        int operator--( int unused ) { return retrieve(); }
 };
 
 
-// Create a derived class "stack" - type "list" .
+// Create a derived class "stack" - type "list". Notice the operator overloading
 class stack : public list {
     public :
         void store(int i);
