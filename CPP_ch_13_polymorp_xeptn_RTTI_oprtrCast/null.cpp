@@ -322,40 +322,6 @@ int main() {
 
 
 
-int stack :: retrieve(){    
-    // Opposite of store(). Defines how a stack removes and returns a value.
-    // Always removes from the top (LIFO behavior).
-    // Takes the top element
-    // Removes it from the list
-    // Returns its value
-
-    int i;      // i will store the value being removed
-    list *p;    // p is a temporary pointer used to safely delete a node
-
-    // Checks if the stack is empty (head == NULL)
-    if(!head){  
-        std::cout << " List empty .\n";
-        return 0; 
-    }
-
-    // remove from start of list (top of stack)
-    i = head->num;    // Gets the value from the top node
-    p = head;         // Saves the current top node
-    head = head->next;    // Moves head to the next node (new top)
-    delete p;         // Frees memory of the old top node
-
-    return i;         // Returns the value that was removed
-}
-
-/*  If you compare this with above queue version, the key difference is just 
-        where insertion happens:
-
-            Queue --> insert at end, remove from front
-            Stack --> insert at front, remove from front
-
-        That single change is what flips FIFO into LIFO. 
-*/
-
 
 int main(){
     list *p;    // Base class pointer.
