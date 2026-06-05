@@ -312,13 +312,6 @@ int main() {
 
 
 
-3. Run-time polymorphism is achieved through the use of ______ functions and  ______
-class pointers. (Fill in the missing words.)
-
-The missing words are "virtual" and "base".
-
-
-
 4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function,
 what happens when an object of that derived class calls that function?
 
@@ -369,15 +362,6 @@ loss of execution speed.
 
 
 
-
-
-
-
-
-
-    3. Run-time polymorphism is achieved through the use of ______ functions and ______ class pointers. (Fill in the missing words.)
-            The missing words are "virtual" and "base".
-            (Complete statement: Run-time polymorphism is achieved through the use of virtual functions and base class pointers.)
 
     4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function, what happens when an object of that derived class calls that function?
             If a derived class does not override a non-pure virtual function, the derived class will automatically inherit and use the base class’s version of that virtual function.
