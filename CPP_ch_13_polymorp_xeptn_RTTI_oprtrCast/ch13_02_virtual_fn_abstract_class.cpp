@@ -15,6 +15,9 @@
             Base class defines the interface of the VF; 
             Different derived classes provide their specific implementations to the VF.
 
+    Run-time polymorphism:
+        Run-time polymorphism is achieved through the use of virtual functions and base class pointers.
+
     
 
     ----------------    Run-Time Polymorphism    ----------------
