@@ -311,18 +311,6 @@ int main() {
 
 
 
-1. What is a virtual function? How do virtual functions differ from overloaded functions? 
-
-A virtual function is a function that is declared as virtual by the base class and then
-overridden by a derived class. A base class that contains at least one pure virtual function
-is called an abstract class.
-
-Virtual functions differ from overloaded functions in that overloaded functions must differ
-from the number of parameters or the type of parameters. An overridden virtual function
-must have exactly the same prototype (that is, the same return type and the same type
-and number of parameters) as the original function.
-
-
 2. What is a pure virtual function? If a class declaration contains a pure virtual function,
 what is that class called, and what restrictions apply to its usage?
 
@@ -353,14 +341,33 @@ loss of execution speed.
 
 // ----  QWEN  ----
 
-/* Formatted Q&A:
+/* Example 1:
 
-    1. What is a virtual function? How do virtual functions differ from overloaded functions?
-            A virtual function is a function declared as virtual in a base class and intended to be overridden by a derived class.
-            A base class that contains at least one pure virtual function is called an "abstract class".
-            Difference from overloaded functions:
-                Overloaded functions must differ in the number of parameters or the type of parameters.
-                An overridden virtual function must have exactly the same prototype (same return type, and same type and number of parameters) as the original function.
+            What is a virtual function? How do virtual functions differ from overloaded functions?
+
+                A virtual function is a function declared as "virtual" in a "base" class 
+                    and intended to be "overridden" by a derived class.
+                    A base class that contains at least one pure virtual function is called an "abstract class".
+
+                Difference from overloaded functions:
+                    "Overloaded" functions must differ in the "number of parameters" or the "type of parameters".
+                    An overridden virtual function "must have exactly the same prototype" as the original function.
+                    (i.e. same return type, and same type and number of parameters) 
+
+
+
+
+1. What is a virtual function? How do virtual functions differ from overloaded functions? 
+
+
+
+Virtual functions differ from overloaded functions in that overloaded functions must differ
+from the number of parameters or the type of parameters. An overridden virtual function
+must have exactly the same prototype (that is, the same return type and the same type
+and number of parameters) as the original function.
+
+
+
 
     2. What is a pure virtual function? If a class declaration contains a pure virtual function, what is that class called, and what restrictions apply to its usage?
             A pure virtual function is a virtual function declared with "= 0" (e.g., virtual void func() = 0;) and typically has no implementation in the base class.
