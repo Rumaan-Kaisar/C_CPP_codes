@@ -133,10 +133,12 @@ preceding chapters.
 
 
 
-// polymorph
-/* Example 1: Enhance the list example from above, Example 2, so that it overloads the + and --
-operators. Have the + store an element and the { retrieve an element. */
+// polymorph: compiled
+/* Example 1: Enhance the list example from above, Example 2, 
+                so that it overloads the + and -- operators. 
 
+                Have the + store an element and the -- retrieve an element. 
+*/
 
 #include <iostream>
 #include <cstdlib>
@@ -302,7 +304,18 @@ int main() {
 
 
 
-/* Example 2: How do virtual functions differ from overloaded functions? */
+/* Example 2: */
+
+
+
+
+
+
+1. What is a virtual function? How do virtual functions differ from overloaded functions? 
+
+A virtual function is a function that is declared as virtual by the base class and then
+overridden by a derived class. A base class that contains at least one pure virtual function
+is called an abstract class.
 
 Virtual functions differ from overloaded functions in that overloaded functions must differ
 from the number of parameters or the type of parameters. An overridden virtual function
@@ -310,23 +323,20 @@ must have exactly the same prototype (that is, the same return type and the same
 and number of parameters) as the original function.
 
 
-
-
-// ----  rev[31-Mar-2026] ----
-
-// -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
-
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
-1. What is a virtual function?
-
-
 2. What is a pure virtual function? If a class declaration contains a pure virtual function,
 what is that class called, and what restrictions apply to its usage?
 
+The missing words are "virtual" and "base".
 
-3. Run-time polymorphism is achieved through the use of functions and
+
+
+
+3. Run-time polymorphism is achieved through the use of ______ functions and  ______
 class pointers. (Fill in the missing words.)
+
+If a derived class does not override a non-pure virtual function, the derived class will use
+the base class’s version of the virtual function.
+
 
 
 4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function,
@@ -336,19 +346,36 @@ what happens when an object of that derived class calls that function?
 5. What is the main advantage of run-time polymorphism? What is its potential disadvantage?
 
 
-
-1. A virtual function is a function that is declared as virtual by the base class and then
-overridden by a derived class. A base class that contains at least one pure virtual function
-is called an abstract class.
-
-
-2. The missing words are "virtual" and "base".
-
-
-3. If a derived class does not override a non-pure virtual function, the derived class will use
-the base class’s version of the virtual function.
-
-
-
-4. The main advantage of run-time polymorphism is flexibility. The main disadvantage is
+The main advantage of run-time polymorphism is flexibility. The main disadvantage is
 loss of execution speed.
+
+
+
+// ----  QWEN  ----
+
+/* Formatted Q&A:
+
+    1. What is a virtual function? How do virtual functions differ from overloaded functions?
+            A virtual function is a function declared as virtual in a base class and intended to be overridden by a derived class.
+            A base class that contains at least one pure virtual function is called an "abstract class".
+            Difference from overloaded functions:
+                Overloaded functions must differ in the number of parameters or the type of parameters.
+                An overridden virtual function must have exactly the same prototype (same return type, and same type and number of parameters) as the original function.
+
+    2. What is a pure virtual function? If a class declaration contains a pure virtual function, what is that class called, and what restrictions apply to its usage?
+            A pure virtual function is a virtual function declared with "= 0" (e.g., virtual void func() = 0;) and typically has no implementation in the base class.
+            A class containing at least one pure virtual function is called an "abstract class".
+            Restrictions: You cannot instantiate (create objects of) an abstract class directly. It can only be used as a base class, and any derived class must override all pure virtual functions to become a concrete (instantiable) class.
+
+    3. Run-time polymorphism is achieved through the use of ______ functions and ______ class pointers. (Fill in the missing words.)
+            The missing words are "virtual" and "base".
+            (Complete statement: Run-time polymorphism is achieved through the use of virtual functions and base class pointers.)
+
+    4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function, what happens when an object of that derived class calls that function?
+            If a derived class does not override a non-pure virtual function, the derived class will automatically inherit and use the base class’s version of that virtual function.
+
+    5. What is the main advantage of run-time polymorphism? What is its potential disadvantage?
+            Main advantage: Flexibility (it allows writing generic code that can work with objects of different derived classes through a common base class interface).
+            Potential disadvantage: Loss of execution speed (due to the slight overhead of dynamic binding and virtual table lookups at run-time).
+*/
+
