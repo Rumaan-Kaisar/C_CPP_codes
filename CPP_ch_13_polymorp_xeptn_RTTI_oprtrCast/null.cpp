@@ -312,11 +312,7 @@ int main() {
 
 
 
-4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function,
-what happens when an object of that derived class calls that function?
 
-If a derived class does not override a non-pure virtual function, the derived class will use
-the base class’s version of the virtual function.
 
 
 5. What is the main advantage of run-time polymorphism? What is its potential disadvantage?
@@ -360,11 +356,13 @@ loss of execution speed.
 
 
 
+            If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function, 
+                what happens when an object of that derived class calls that function?
+            
+                If a derived class does not override a "non-pure virtual function", 
+                the derived class will automatically inherit and use the "base class’s version" of that virtual function.
 
 
-
-    4. If, in a class hierarchy, a derived class neglects to override a (non-pure) virtual function, what happens when an object of that derived class calls that function?
-            If a derived class does not override a non-pure virtual function, the derived class will automatically inherit and use the base class’s version of that virtual function.
 
     5. What is the main advantage of run-time polymorphism? What is its potential disadvantage?
             Main advantage: Flexibility (it allows writing generic code that can work with objects of different derived classes through a common base class interface).
