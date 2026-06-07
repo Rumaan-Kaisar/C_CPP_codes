@@ -1,7 +1,7 @@
 
 
 
-// ----  rev[08-May-2026]  ----
+// ----  rev[07-Jun-2026]  ----
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
 
@@ -19,9 +19,6 @@
 
 
 // -=-=-=-=-=-=-    Mastery Skills Check    -=-=-=-=-=-=-
-
-
-At this point you should be able to perform the following exercises and answer the questions.
 
 
 /* Example 1:
@@ -124,11 +121,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 // -=-=-=-=-=-=-=-=-    Cumulative Skills Check    -=-=-=-=-=-=-=-=-
-
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapters.
-
-
 
 
 
@@ -302,27 +294,6 @@ int main() {
 
 
 
-
-
-/* Example 2: */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ----  QWEN  ----
 
 /* Example 1:
 
