@@ -363,13 +363,16 @@ int main() {
 
 
 
-            What is the main advantage of run-time polymorphism? 
+            What is the main advantage of "run-time polymorphism"? 
             What is its potential disadvantage?
             
-                Main advantage: Flexibility (it allows writing generic code that can work with objects of different derived classes through a common base class interface).
-            Potential disadvantage: Loss of execution speed (due to the slight overhead of dynamic binding and virtual table lookups at run-time).
-
-The main advantage of run-time polymorphism is flexibility. The main disadvantage is
-loss of execution speed.
+                Main advantage: 
+                    Flexibility.
+                    It allows writing generic code that can work with objects of 
+                    different derived classes through a common base class interface).
+            
+                Potential disadvantage: 
+                    Loss of execution speed. 
+                    Due to the slight overhead of "dynamic binding" and virtual table lookups at run-time.
 */
 
