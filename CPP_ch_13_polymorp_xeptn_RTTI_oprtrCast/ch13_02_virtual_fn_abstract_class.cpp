@@ -817,3 +817,27 @@ int main() {
 
 
 
+
+/* Example 10:
+            What is a virtual function?
+                A VF is a placeholder function declared within a base class.
+                It is intended to be redefined by any class derived from that base class.
+                This redefinition process is technically known as "OVERRIDING".
+
+            What types of functions "cannot be made virtual"?
+                Nonmember functions (functions not part of any class).
+                Constructor functions.
+
+            How does a virtual function help achieve run-time polymorphism (dynamic function resolution)?
+                A virtual function supports run-time polymorphism through the use of base class pointers.
+                (also  referred as "dynamic binding" or "late binding")
+                
+                When a base class pointer points to a derived class object containing the virtual function, 
+                    the program determines which version to call during execution (run-time).
+                
+                The specific function executed depends on the "actual type" of the object being pointed to, 
+                    rather than the "declared type" of the pointer.
+*/
+
+
+
