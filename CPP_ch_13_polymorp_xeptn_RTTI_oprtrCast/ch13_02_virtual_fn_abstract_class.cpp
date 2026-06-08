@@ -867,3 +867,37 @@ int main() {
 
 
 
+
+/* Example 13: 
+            Is the following fragment correct? If not, why explain?
+
+                class base {
+                    public :
+                        virtual int f(int a) = 0;
+                        // ...
+                };
+
+                class derived : public base {
+                    public :
+                        int f(int a, int b) { return a*b; }
+                        // ...
+                }:
+
+            ans:
+                The fragment is "incorrect".
+                When overriding a virtual function, the derived class version (redefinition of the VF) must have:
+                    same function name
+                    same return type
+                    same number and types of parameters as the original function (identical signature)
+
+                In this case, the redefinition of f() differs in the number of its parameters.
+                    The base class declares f(int), but the derived class defines f(int, int) — the "parameter count" differs.
+
+                Result:
+                    So this fragment "does not OVERRIDE" the base function; instead it creates a new "overloaded" function, 
+                    --> leaving the "pure virtual function unimplemented"
+                    --> compilation error if `derived` is instantiated.
+*/
+
+
+
