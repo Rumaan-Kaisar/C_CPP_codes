@@ -841,3 +841,29 @@ int main() {
 
 
 
+
+/* Example 11:
+            What is a pure virtual function?
+                It is a virtual function that contains no definition in the base class.
+                It is declared using the syntax "= 0" (e.g., "virtual void func() = 0;").
+                It serves as a placeholder that "must be overridden" by any concrete derived class.
+                Classes containing pure virtual functions cannot be instantiated directly.
+
+            What is an abstract class? What is a polymorphic class?
+                Abstract Class:
+                    A base class that contains "at least one PURE Virtual Function".
+                    Cannot be instantiated; it is designed to be inherited by derived classes.
+                    Provides a common interface for derived classes to implement.
+
+                Polymorphic Class:
+                    A class that contains "at least one Virtual Function" (regular or pure).
+                    Enables run-time polymorphism through base class pointers or references.
+                    Allows derived class objects to be treated as base class objects while maintaining correct function behavior.
+
+                Key Relationship:
+                    All abstract classes are polymorphic (since pure virtual functions are virtual), 
+                    but not all polymorphic classes are abstract (a class with only regular virtual functions can still be instantiated).
+*/
+
+
+
