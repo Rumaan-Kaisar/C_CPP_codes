@@ -901,3 +901,18 @@ int main() {
 
 
 
+ 
+/* Example 14: Is the virtual quality inherited?
+
+            ans:
+                Yes. Once a function is declared "virtual" in a base class, 
+                    it remains "virtual" in all derived classes.
+  
+                Derived classes may optionally use the "virtual" keyword again (for clarity), 
+                    but it is not required.
+  
+                This inheritance of the "virtual" property is what enables "consistent run-time polymorphism" 
+                    throughout the inheritance hierarchy.
+*/
+
+
