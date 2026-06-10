@@ -46,8 +46,7 @@ return 0;
 }
 The keyword template is used to define a generic function. The line:
 template <class X> void swapargs (X &a, X &b)
-283TEACH YOURSELF
-C++
+
 tells the compiler two things: that a template is being created and that a generic definition
 is beginning. Here X is a generic type that is used as a placeholder. After the template
 portion, the function swapargs() is declared, using X as the data type of the values that
@@ -137,8 +136,7 @@ cout << i;
 void outdata ( double d)
 {
 cout << setprecision (10) << setfill (’#’);
-285TEACH YOURSELF
-C++
+
 cout << d;
 cout << setprecision (6) << setfill (’ ’);
 }
@@ -179,13 +177,15 @@ generate this version of the generic swapargs() function because the generic fun
 overridden by the explicit overloading.
 Manual overloading of a template, as shown in this example, allows you to tailor a version
 of a generic function to accommodate a special situation. However, in general, if you need
-286TEMPLATES AND EXCEPTION HANDLING
-11.2. GENERIC CLASSES
+
 to have different versions of a function for different data types, you should use overloaded
 functions rather than templates.
 
 
-EXERCISES
+
+
+
+
 1. If you have not done so, try each of the preceding examples.
 2. Write a generic function, called min(), that returns the lesser of its two arguments. For
 example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonstrate your
@@ -201,6 +201,66 @@ int find ( int object , int *list , int size )
 }
 4. In your own words, explain why generic functions are valuable and may help simplify the
 source code to program that you create.
+
+
+2. # include <iostream >
+using namespace std ;
+template <class X> X min (X a, X b)
+{
+if(a <=b)
+return a;
+else
+return b;
+}
+int main ()
+{
+cout << min (12.2 , 2.0) ;
+cout << endl ;
+cout << min (3, 4);
+cout << endl ;
+cout << min (’c’, ’a’);
+return 0;
+}
+/*
+This min (X, X) function might cause ambiguity
+because of STL function min ( const _Tp &, const _Tp &).
+Try a different name .
+*/
+3. # include <iostream >
+# include <cstring >
+using namespace std ;
+template <class X> int find (X object , X *list , int size )
+{
+int i;
+for (i =0; i< size ; i ++)
+if( object == list [i])
+return i;
+return -1;
+}
+int main ()
+{
+int a[] = {1, 2, 3, 4};
+char *c = " this is a test ";
+
+double d[] = {1.1 , 2.2 , 3.3};
+cout << find (3, a, 4);
+cout << endl ;
+cout << find (’a’, c, (int ) strlen (c));
+cout << endl ;
+cout << find (0.0 , d, 3);
+return 0;
+}
+4. Generic functions are valuable because they allow you to define a general algorithm that
+can be applied to various types of data. (That is, specific versions of the algorithm need
+not be explicitly created by you.) Generic functions further help implement the concept
+of "one interface, multiple methods," which is a common theme in C++ programming.
+
+
+
+
+
+
+
 
 
 
@@ -247,8 +307,7 @@ while (p)
 {
 cout << p-> getdata ();
 p = p-> getnext ();
-288TEMPLATES AND EXCEPTION HANDLING
-11.2. GENERIC CLASSES
+
 }
 return 0;
 }
@@ -291,8 +350,7 @@ template <class StackType > class stack
 {
 StackType stck [ SIZE ]; // holds the stack
 int tos ; // index of top of stack
-289TEACH YOURSELF
-C++
+
 public :
 void init () { tos = 0; } // initialize stack
 void push ( StackType ch); // push object on stack
@@ -338,8 +396,7 @@ s1. push (’c’);
 s2. push (’z’);
 for (i =0; i <3; i ++)
 cout << " Pop s1: " << s1.pop () << "\n";
-290TEMPLATES AND EXCEPTION HANDLING
-11.2. GENERIC CLASSES
+
 for (i =0; i <3; i ++)
 cout << " Pop s2: " << s2.pop () << "\n";
 // demonstrate double stacks
@@ -397,7 +454,11 @@ X This is a test
 The program declares two types of objects. ob1 uses integer and double data. ob2 uses
 a character and a character pointer. For both cases, the compiler automatically generates
 the appropriate data and functions to accommodate the way the objects are created.
-EXERCISES
+
+
+
+
+
 1. If you have not yet done so, compile and run the two generic class examples. Try declaring
 lists and/or stacks of different data types.
 2. Create and demonstrate a generic queue class.
@@ -410,6 +471,92 @@ input ob(" prompt message ", min_value , max_value )
 Here prompt message is the message that prompt for input. The minimum and maximum
 acceptable values are specified by min-value and max-value, respectively. (Note: the type
 of data entered by the user will be the same as the type of min-valueand max-value.)
+
+2. // Create a generic queue .
+# include <iostream >
+using namespace std ;
+# define SIZE 100
+template <class Qtype > class q_type
+{
+Qtype queue [ SIZE ]; // holds the queue
+int head , tail ; // indices of head and tail
+public :
+q_type () { head = tail = 0; }
+void q( Qtype num ); // store
+Qtype deq (); // retrieve
+};
+// Put value on queue .
+template <class Qtype > void q_type <Qtype >::q( Qtype num)
+{
+if( tail +1== head || ( tail +1== SIZE && ! head ))
+{
+cout << " Queue is full .\n";
+return ;
+}
+tail ++;
+if( tail == SIZE )
+tail = 0; // cycle around
+queue [ tail ] = num ;
+}
+// Remove value from queue .
+template <class Qtype > Qtype q_type <Qtype >:: deq ()
+{
+
+if( head == tail )
+{
+cout << " Queue is empty .\n";
+return 0; // or some other error indicator
+}
+head ++;
+if( head == SIZE )
+head = 0; // cycle around
+return queue [ head ];
+}
+int main ()
+{
+q_type <int > q1;
+q_type <char > q2;
+int i;
+for (i =1; i <=10; i ++)
+{
+q1.q(i);
+q2.q(i -1+ ’A’);
+}
+for (i =1; i <=10; i ++)
+{
+cout << " Dequeue 1: " << q1.deq () << ’\n’;
+cout << " Dequeue 2: " << q2.deq () << ’\n’;
+}
+return 0;
+}
+
+
+3. # include <iostream >
+using namespace std ;
+template <class X> class input
+{
+X data ;
+public :
+input ( char *s, X min , X max);
+// ...
+};
+template <class X>
+input <X >:: input ( char *s, X min , X max )
+{
+do
+{
+cout << s << ": ";
+cin >> data ;
+}
+
+while ( data < min || data > max);
+}
+int main ()
+{
+input <int > i(" enter int ", 0, 10) ;
+input <char > c(" enter char ", ’A’, ’Z’);
+return 0;
+}
 
 
 
