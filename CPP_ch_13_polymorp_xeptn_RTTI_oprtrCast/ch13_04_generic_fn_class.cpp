@@ -1,5 +1,5 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    Generic-Functions & Generic-Classes    ------------------------
 
 13. 5 Generic-Functions & Generic-Classes (GnF & GnC)
 Generic functions and classes (reusable code): We create generic functions  & classes using templates. In a generic function or class, the type of data that operated upon is specified as a parameter. This allows you to use one function or class with several different types of data without specific explicit-code  for each different data type. 
@@ -8,7 +8,7 @@ Generic functions and classes (reusable code): We create generic functions  & cl
 	It helps a lot because many algorithms are logically the same no matter what type of data is being operated upon. For example, the Quicksort algorithm is applicable for both integers and floats.  It is just that the type of the data being sorted is different.
 	template: A GnF is created using the keyword template.  In C++ the keyword template  is used to create a template (or framework) that describes what a function will do, leaving it to the compiler to fill in the details as needed. The general form of a template is :
 
-template <class Ttype> ret_type func_name(parameter list){ /* body of function */ }
+template <class Ttype> ret_type func_name(parameter list){ // body of function }
 	Here Ttype is a placeholder name for a data type used by the function. It can be used within the function definition. The compiler will automatically replace this placeholder with an actual data type during function execution.
 	Class is used to specify a generic type in a template declaration. It is traditional; you can also use the keyword typename.
 	Template function:  A generic function / GnF (that is, a function definition preceded by a template statement) is also called a template function.
@@ -41,8 +41,8 @@ int main( ){	int i=10 , j =20;
 		float x=10 , y =23.3;
 		cout << " Original i, j: " << i << ' ' << j << endl ;
 		cout << " Original x, y: " << x << ' ' << y << endl ;	
-	swapargs(i, j); 		/* swap integers */ 
-	swapargs(x, y); 		/* swap floats */ 
+	swapargs(i, j); 		// swap integers
+	swapargs(x, y); 		// swap floats
 
 	cout << " Swapped i, j: " << i << ' ' << j << endl ;
 	cout << " Swapped x, y: " << x << ' ' << y << endl ;
@@ -62,7 +62,7 @@ template <class X>
 void swapargs(X &a, X &b) { X temp;  temp=a;  a=b;  b=temp;  }
 	No other statements can occur between the template statement and the start of the GnF definition. For example, the following fragment will not compile:
 template <class X>
-int i; 	/* this line causes error */ 
+int i; 	// this line causes error
 void swapargs (X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
 	Instead of using the keyword class, we can use the keyword typename to specify a generic type in a template definition. Eg: 
 template<typename X> void swapargs(X &a, X &b){ X temp; temp = a; a = b; b= temp; }
@@ -86,13 +86,13 @@ cout << setprecision(6) << setfill (' '); }
 	Example 2 (overloading GnF / template): Generally a template function overloads itself as needed. But we can explicitly overload one, too. If you overload a GnF, that overloaded function (our version) overrides (or "hides") the GnF relative to that specific version. For example, consider this version of Example 1:
 
 template <class X> void swapargs(X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
-void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }	 /* This overrides the GnF swapargs().*/ 
+void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }	 // This overrides the GnF swapargs().
 
 int main( ){ 	int i=10, j =20;
 float x=10, y =23.3;
 cout << " Original i, j: " << i << ' ' << j << endl ;	   cout << " Original x, y: " << x << ' ' << y << endl ;
-swapargs(i, j); 		/* calls overloaded swapargs(), because of matched int arguments  */ 
-swapargs (x, y); 		/* swap floats */ 
+swapargs(i, j); 		// calls overloaded swapargs(), because of matched int arguments 
+swapargs (x, y); 		// swap floats
 cout << " Swapped i, j: " << i << ' '<< j << endl ; 	   cout << " Swapped x, y: " << x << ' ' << y << endl ;
 return 0; }
 
@@ -111,18 +111,18 @@ list *getnext(){ return next ; }
 data_t getdata(){ return data ; }
 };
 
-/* definition of member function 'list' */
+// definition of member function 'list'
 
 template <class data_t > list <data_t >:: list ( data_t d) {	data = d;
 						next = 0;}	int main(){	list<char>  start ('a');
 		list<char>  *p, * last ;
 		int i;
-/* build a list */
+// build a list
 	last = &start ;
 	for (i=1; i <26; i++){  p = new list <char >( 'a' + i);
 			     p->add ( last );
 			     last = p;	}
-/* follow the list */ 
+// follow the list 
 	p = &start ;
 	while(p) {  cout << p-> getdata();
 		    p = p-> getnext();}
@@ -149,8 +149,8 @@ template <class Type_1 , class Type_2> class myclass{ 	Type1 i;
 	         void show() { cout << i << ' ' << j << '\n'; }	     
 	         };	int main(){         myclass< int, double > ob1 (10 , 0.23) ;
 	              myclass<char , char *> ob2('X', " This is a test ");
-		ob1.show(); 	/* show int , double */ 
-		ob2.show(); 	/* show char , char **/ 
+		ob1.show(); 	// show int , double 
+		ob2.show(); 	// show char , char *
 	   return 0; }
 		This program produces the following output:	     10     0.23
 							     X This is a test
@@ -164,3 +164,5 @@ Note
 
 
 */  
+
+
