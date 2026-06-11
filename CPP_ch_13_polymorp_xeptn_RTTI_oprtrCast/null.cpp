@@ -18,9 +18,14 @@
 
 // --------  Generic-Functions  --------
 
-1. The following program creates a generic function that swaps the values of the two variables
+
+
+
+
+Example 1: The following program creates a generic function that swaps the values of the two variables
 it is called with. Because the general process of exchanging two values is independent of
 the type of the variables, this process is a good choice to be made into a generic function.
+
 // Function template example .
 # include <iostream >
 using namespace std ;
@@ -61,7 +66,11 @@ function definition preceded by a template statement) is also called a template 
 When the compiler creates a specific version of this function, it is said to have created a
 generated function. The act of generating a function is referred to as instantiating it. Put
 differently, a generated function is a specific instance of a template function.
-2. The template portion of a generic function definition does not have to be on the same
+
+
+
+
+Example 2: The template portion of a generic function definition does not have to be on the same
 line as the function’s name. For example, the following is also a common way to format
 the swapargs() function:
 template <class X>
@@ -87,7 +96,11 @@ b= temp ;
 }
 As the comments imply, the template specification must directly precede the rest of the
 function definition.
-3. As mentioned, instead of using the keyword class, you can use the keyword typename
+
+
+
+
+Example 3: As mentioned, instead of using the keyword class, you can use the keyword typename
 to specify a generic type in a template definition. For example, here is another way to
 declare the swapargs() function.
 // Use typename
@@ -102,7 +115,11 @@ b= temp ;
 }
 The typename keyword can also be used to specify an unknown type within a template,
 but this use is beyond the scope of this book.
-4. You can define more than one generic data type with the template statement, using a
+
+
+
+
+Example 4: You can define more than one generic data type with the template statement, using a
 comma-separated list. For example, this program creates a generic function that has two
 generic types:
 # include <iostream >
@@ -124,7 +141,11 @@ generates the specific instances of myfunc().
 Remember: When you create a generic function, you are, in essence, allowing the
 compiler to generate as many different versions of that function as necessary to handle
 the various ways that your program calls that function.
-5. Generic functions are similar to overloaded functions except that they are more restrictive.
+
+
+
+
+Example 5: Generic functions are similar to overloaded functions except that they are more restrictive.
 When functions are overloaded, you can have different actions performed within the body
 of each function. But a generic function must perform the same general action for all
 versions. For example, the following overloaded functions cannot be replaced by a generic
@@ -140,7 +161,11 @@ cout << setprecision (10) << setfill (’#’);
 cout << d;
 cout << setprecision (6) << setfill (’ ’);
 }
-6. Even though a template function overloads itself as needed, you can explicitly overload
+
+
+
+
+Example 6: Even though a template function overloads itself as needed, you can explicitly overload
 one, too. If you overload a generic function, that overloaded function overrides (or *hides*)
 the generic function relative to that specific version. For example, consider this version of
 Example 1:
@@ -557,7 +582,6 @@ input <int > i(" enter int ", 0, 10) ;
 input <char > c(" enter char ", ’A’, ’Z’);
 return 0;
 }
-
 
 
 
