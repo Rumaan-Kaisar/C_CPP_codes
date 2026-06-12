@@ -19,6 +19,38 @@
             Highly useful when algorithms are logically identical regardless of the data type 
             (e.g., the Quicksort algorithm works the same way for integers and floats; only the data type differs).
 
+
+    ---- rev[12-Jun-2026] ----
+
+    ----------------    Generic functions (GnF)    ----------------
+
+
+
+---
+
+## 2. Generic Functions (GnF) / Template Functions
+A Generic Function (GnF) defines a general set of operations applied to various data types. The data type is passed as a parameter, allowing the function to automatically overload itself.
+
+### Syntax
+```cpp
+template <class Ttype> 
+ret_type func_name(parameter_list) { 
+    // body of function 
+}
+```
+*   `Ttype`: A placeholder name for the data type. The compiler replaces this with the actual data type during execution.
+*   `class`: Used to specify a generic type. The keyword `typename` can also be used interchangeably (e.g., `template <typename Ttype>`).
+
+### Key Terminology
+*   **Template Function:** A generic function (a function definition preceded by a `template` statement).
+*   **Generated Function:** A specific version of the function created by the compiler for a specific data type.
+*   **Instantiating:** The act of generating a specific function. A generated function is a specific instance of a template function.
+
+### Important Rules
+*   **No Intermediate Statements:** No other statements can occur between the `template` statement and the start of the function definition.
+    *   *Incorrect:* `template <class X> int i; void swapargs(...) { ... }` (Causes a compilation error).
+*   **Formatting:** The template portion does not have to be on the same line as the function name, but they must be consecutive.
+
 ---
 
 
@@ -37,6 +69,12 @@ template <class Ttype> ret_type func_name(parameter list){ // body of function }
 	Template function:  A generic function / GnF (that is, a function definition preceded by a template statement) is also called a template function.
 	Generated function: When the compiler creates a specific version of this function, it is said to have created a generated function.
 	Instantiating a function: The act of generating a function is referred to as instantiating it.  Put differently, a generated function is a specific instance of a template function.
+
+
+
+
+    ----------------    Generic-Classes (GnC)    ----------------
+
 
 
 	Generic-Classes (GnC):  When you define GnC you create a class that defines all algorithms used by that class, but the actual type of the data being manipulated will be specified as a parameter when objects of that class are created.
@@ -198,38 +236,10 @@ Note
 
 Here is the organized, clean, and pointwise version of your notes on Generic Functions and Generic Classes in C++. The formatting has been improved for readability, with code blocks properly indented and symbols replaced with standard bullet points.
 
----
-
-# 13. Generic Functions & Generic Classes (GnF & GnC)
 
 
 
 
-
-## 2. Generic Functions (GnF) / Template Functions
-A Generic Function (GnF) defines a general set of operations applied to various data types. The data type is passed as a parameter, allowing the function to automatically overload itself.
-
-### Syntax
-```cpp
-template <class Ttype> 
-ret_type func_name(parameter_list) { 
-    // body of function 
-}
-```
-*   `Ttype`: A placeholder name for the data type. The compiler replaces this with the actual data type during execution.
-*   `class`: Used to specify a generic type. The keyword `typename` can also be used interchangeably (e.g., `template <typename Ttype>`).
-
-### Key Terminology
-*   **Template Function:** A generic function (a function definition preceded by a `template` statement).
-*   **Generated Function:** A specific version of the function created by the compiler for a specific data type.
-*   **Instantiating:** The act of generating a specific function. A generated function is a specific instance of a template function.
-
-### Important Rules
-*   **No Intermediate Statements:** No other statements can occur between the `template` statement and the start of the function definition.
-    *   *Incorrect:* `template <class X> int i; void swapargs(...) { ... }` (Causes a compilation error).
-*   **Formatting:** The template portion does not have to be on the same line as the function name, but they must be consecutive.
-
----
 
 
 
