@@ -5,8 +5,12 @@
         Generic functions and classes allow for the creation of "reusable code".
         In a generic function or class, the type of data that operated upon is specified as a parameter.
 
-        
-*   **Purpose:** Allows a single function or class to work with multiple different data types without writing explicit, repetitive code for each type.
+        We create generic functions  & classes using "templates". 
+
+        Purpose:
+            Allows a single function or class to work with "multiple different data types" 
+            without writing explicit, repetitive code for each type.
+
 *   **Data Independence:** Generics define the nature of an algorithm independently of the data. The compiler automatically generates the correct code for the specific data type during execution.
 *   **Use Case:** Highly useful when algorithms are logically identical regardless of the data type (e.g., the Quicksort algorithm works the same way for integers and floats; only the data type differs).
 
@@ -15,12 +19,6 @@
 
 
 Generic functions and classes (reusable code): 
-
-We create generic functions  & classes using "templates". 
-
-
-
- This allows you to use one function or class with several different types of data without specific explicit-code  for each different data type. 
 
 
 	A GnF defines a general set of operations that will be applied to various types of data. A GnF has the type of data that it will operate upon passed to it as a parameter. 
