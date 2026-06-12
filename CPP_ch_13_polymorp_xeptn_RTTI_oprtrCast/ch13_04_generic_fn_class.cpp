@@ -11,8 +11,13 @@
             Allows a single function or class to work with "multiple different data types" 
             without writing explicit, repetitive code for each type.
 
-*   **Data Independence:** Generics define the nature of an algorithm independently of the data. The compiler automatically generates the correct code for the specific data type during execution.
-*   **Use Case:** Highly useful when algorithms are logically identical regardless of the data type (e.g., the Quicksort algorithm works the same way for integers and floats; only the data type differs).
+        Data Independence:
+            Generics define the nature of an algorithm independently of the data. 
+            The compiler automatically generates the correct code for the specific data type during execution.
+
+        Use Case:
+            Highly useful when algorithms are logically identical regardless of the data type 
+            (e.g., the Quicksort algorithm works the same way for integers and floats; only the data type differs).
 
 ---
 
