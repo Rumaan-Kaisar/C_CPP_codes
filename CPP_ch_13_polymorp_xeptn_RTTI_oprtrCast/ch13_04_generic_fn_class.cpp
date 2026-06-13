@@ -20,16 +20,28 @@
             (e.g., the Quicksort algorithm works the same way for integers and floats; only the data type differs).
 
 
-    ---- rev[12-Jun-2026] ----
 
     ----------------    Generic functions (GnF)    ----------------
 
+    A Generic Function (GnF) defines a general set of operations applied to "various data types". 
+    The "data type" that it will operate upon passed to it as a parameter. 
+
+    By a Gnf the function can automatically overload itself.
+
+    A GnF is the data-independent-code which defines the nature of the algorithm. 
+    The compiler automatically generates the correct code for the type of data during function execution. 
 
 
----
+    ---- rev[13-Jun-2026] ----
 
-## 2. Generic Functions (GnF) / Template Functions
-A Generic Function (GnF) defines a general set of operations applied to various data types. The data type is passed as a parameter, allowing the function to automatically overload itself.
+
+	It helps a lot because many algorithms are logically the same no matter what type of data is being operated upon. For example, the Quicksort algorithm is applicable for both integers and floats.  It is just that the type of the data being sorted is different.
+
+
+	template: A GnF is created using the keyword template.  In C++ the keyword template  is used to create a template (or framework) that describes what a function will do, leaving it to the compiler to fill in the details as needed. The general form of a template is :
+
+
+
 
 ### Syntax
 ```cpp
@@ -57,11 +69,6 @@ ret_type func_name(parameter_list) {
 
 Generic functions and classes (reusable code): 
 
-
-	A GnF defines a general set of operations that will be applied to various types of data. A GnF has the type of data that it will operate upon passed to it as a parameter. 
-	A GnF is the data-independent-code which defines the nature of the algorithm. The compiler automatically generates the correct code for the type of data during function execution. By a Gnf the function can automatically overload itself.
-	It helps a lot because many algorithms are logically the same no matter what type of data is being operated upon. For example, the Quicksort algorithm is applicable for both integers and floats.  It is just that the type of the data being sorted is different.
-	template: A GnF is created using the keyword template.  In C++ the keyword template  is used to create a template (or framework) that describes what a function will do, leaving it to the compiler to fill in the details as needed. The general form of a template is :
 
 template <class Ttype> ret_type func_name(parameter list){ // body of function }
 	Here Ttype is a placeholder name for a data type used by the function. It can be used within the function definition. The compiler will automatically replace this placeholder with an actual data type during function execution.
