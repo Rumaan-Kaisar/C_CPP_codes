@@ -41,7 +41,6 @@
             It is just that the type of the data being sorted is different.
 
 
-
     --------  template  --------
 
     In C++ the keyword "template"  is used to create a template (or framework) 
@@ -50,29 +49,27 @@
 
     The general form of a template is:
 
+                template <class Ttype> return_type func_name(parameter list){ 
+                    // body of function 
+                }
 
-    ---- rev[13-Jun-2026] ----
+        Ttype:
+            A placeholder name for the data type. 
+            The compiler replaces this with the actual data type during execution.
+
+        class:
+            Used to specify a generic type. 
+            The keyword "typename" can also be used interchangeably 
+            (e.g.,  template <typename Ttype>).
 
 
 
 
+    ---- rev[15-Jun-2026] ----
 
 
 
 
-
-
-
-
-### Syntax
-```cpp
-template <class Ttype> 
-ret_type func_name(parameter_list) { 
-    // body of function 
-}
-```
-*   `Ttype`: A placeholder name for the data type. The compiler replaces this with the actual data type during execution.
-*   `class`: Used to specify a generic type. The keyword `typename` can also be used interchangeably (e.g., `template <typename Ttype>`).
 
 ### Key Terminology
 *   **Template Function:** A generic function (a function definition preceded by a `template` statement).
@@ -88,12 +85,6 @@ ret_type func_name(parameter_list) {
 
 
 
-
-
-
-template <class Ttype> ret_type func_name(parameter list){ // body of function }
-	Here Ttype is a placeholder name for a data type used by the function. It can be used within the function definition. The compiler will automatically replace this placeholder with an actual data type during function execution.
-	Class is used to specify a generic type in a template declaration. It is traditional; you can also use the keyword typename.
 	Template function:  A generic function / GnF (that is, a function definition preceded by a template statement) is also called a template function.
 	Generated function: When the compiler creates a specific version of this function, it is said to have created a generated function.
 	Instantiating a function: The act of generating a function is referred to as instantiating it.  Put differently, a generated function is a specific instance of a template function.
