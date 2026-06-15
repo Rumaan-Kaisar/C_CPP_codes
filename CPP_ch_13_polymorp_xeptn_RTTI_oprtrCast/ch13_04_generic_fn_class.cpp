@@ -1,11 +1,12 @@
 
-/*  ------------------------    Generic-Functions & Generic-Classes    ------------------------
+/*  ------------------------    Generic-Functions & Generic-Classes (reusable code)    ------------------------
 
     Core Concepts of GENERICS:
         Generic functions and classes allow for the creation of "reusable code".
         In a generic function or class, the type of data that operated upon is specified as a parameter.
 
         We create generic functions  & classes using "templates". 
+        A GnF is created using the keyword "template".
 
         Purpose:
             Allows a single function or class to work with "multiple different data types" 
@@ -39,13 +40,26 @@
             the Quicksort algorithm is applicable for both integers and floats.  
             It is just that the type of the data being sorted is different.
 
+
+
+    --------  template  --------
+
+    In C++ the keyword "template"  is used to create a template (or framework) 
+        that describes what a function will do, 
+        leaving it to the compiler to fill in the details as needed. 
+
+    The general form of a template is:
+
+
     ---- rev[13-Jun-2026] ----
 
 
 
 
 
-	template: A GnF is created using the keyword template.  In C++ the keyword template  is used to create a template (or framework) that describes what a function will do, leaving it to the compiler to fill in the details as needed. The general form of a template is :
+
+
+
 
 
 
@@ -74,7 +88,7 @@ ret_type func_name(parameter_list) {
 
 
 
-Generic functions and classes (reusable code): 
+
 
 
 template <class Ttype> ret_type func_name(parameter list){ // body of function }
