@@ -27,15 +27,22 @@
     The "data type" that it will operate upon passed to it as a parameter. 
 
     By a Gnf the function can automatically overload itself.
-
-    A GnF is the data-independent-code which defines the nature of the algorithm. 
     The compiler automatically generates the correct code for the type of data during function execution. 
 
+    Benefits:
+        A GnF is the data-independent-code which defines the nature of the algorithm. 
+        
+        It helps a lot because many algorithms are logically the same 
+            no matter what type of data is being operated upon. 
+            
+        For example: 
+            the Quicksort algorithm is applicable for both integers and floats.  
+            It is just that the type of the data being sorted is different.
 
     ---- rev[13-Jun-2026] ----
 
 
-	It helps a lot because many algorithms are logically the same no matter what type of data is being operated upon. For example, the Quicksort algorithm is applicable for both integers and floats.  It is just that the type of the data being sorted is different.
+
 
 
 	template: A GnF is created using the keyword template.  In C++ the keyword template  is used to create a template (or framework) that describes what a function will do, leaving it to the compiler to fill in the details as needed. The general form of a template is :
