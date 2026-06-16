@@ -63,28 +63,16 @@
             (e.g.,  template <typename Ttype>).
 
 
+    --------  Key Terminology  --------
+
+    Template Function:      A generic function (a function definition preceded by a "template" statement).
+    Generated Function:     A specific version of the function created by the compiler for a specific data type.
+
+    Instantiating:          The act of generating a specific function. 
+                            A generated function is a specific instance of a template function.
 
 
-    ---- rev[15-Jun-2026] ----
-
-
-
-
-
-Key Terminology:
-
-
-
-
-
-
-
-
-Template Function:      A generic function (a function definition preceded by a "template" statement).
-Generated Function:     A specific version of the function created by the compiler for a specific data type.
-
-Instantiating:          The act of generating a specific function. 
-                        A generated function is a specific instance of a template function.
+---- rev[16-Jun-2026] ----
 
 ### Important Rules
 *   **No Intermediate Statements:** No other statements can occur between the `template` statement and the start of the function definition.
