@@ -74,8 +74,9 @@
 
 ---- rev[16-Jun-2026] ----
 
-### Important Rules
-*   **No Intermediate Statements:** No other statements can occur between the `template` statement and the start of the function definition.
+====  Important Rules  ====
+No Intermediate Statements:
+    No other statements can occur between the `template` statement and the start of the function definition.
     *   *Incorrect:* `template <class X> int i; void swapargs(...) { ... }` (Causes a compilation error).
 *   **Formatting:** The template portion does not have to be on the same line as the function name, but they must be consecutive.
 
@@ -100,6 +101,7 @@ template <class Ttype > class class_name { . . .
 	If necessary, you can define more than one generic data type by using a comma-separated list.
 	Once you have created a GnC, you create a specific instance of that class by using the following general form:
 class_name <type> ob;
+
 	Here type is the type name of the data that the class will be operating upon.
 	One point to remember(?): in the case of GnC we create the object of that generic class using 
  class_name<type> obj_name ;
@@ -107,6 +109,8 @@ instead of ordinary " class_name obj_name ;". And we can access/define any funct
 template <class Ttype > class_name<type> :: member(parametr){}
 Here the key point is that " class_name<type>" considered the class name instead of ordinary " class_name" to define an object of its type or accessing any member outside of it.
 	When you create a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle the various ways that your program calls that function.
+
+
 
 
 
@@ -161,6 +165,10 @@ void outdata(int i){ cout << i; }
 void outdata(double d){ 	cout << setprecision(10) << setfill ('#');
 cout << d;
 cout << setprecision(6) << setfill (' '); }
+
+
+
+
 
 
 	Example 2 (overloading GnF / template): Generally a template function overloads itself as needed. But we can explicitly overload one, too. If you overload a GnF, that overloaded function (our version) overrides (or "hides") the GnF relative to that specific version. For example, consider this version of Example 1:
