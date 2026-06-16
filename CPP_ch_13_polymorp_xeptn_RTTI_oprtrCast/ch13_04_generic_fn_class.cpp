@@ -72,15 +72,24 @@
                             A generated function is a specific instance of a template function.
 
 
+
+    ========  Important Rules  ========
+
+    No Intermediate Statements:
+        No other statements can occur between the "template" statement and the "start of the function definition".
+
+        Incorrect:  
+                    template <class X> int i; 
+                    void swapargs(...) { ... } 
+                    
+                    (Causes a compilation error).
+
+
+
 ---- rev[16-Jun-2026] ----
 
-====  Important Rules  ====
-No Intermediate Statements:
-    No other statements can occur between the `template` statement and the start of the function definition.
-    *   *Incorrect:* `template <class X> int i; void swapargs(...) { ... }` (Causes a compilation error).
-*   **Formatting:** The template portion does not have to be on the same line as the function name, but they must be consecutive.
 
----
+
 
 
 
