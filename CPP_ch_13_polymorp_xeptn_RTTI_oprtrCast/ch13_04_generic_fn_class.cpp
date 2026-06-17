@@ -99,6 +99,7 @@
     The compiler will automatically generate the correct type of object based upon the "type" you specify when the object is created.
     Member functions of a GnC are, themselves, automatically GnF. They "need not be explicitly specified" as such using template.
 
+
     The general form of a GnC:
 
                 template <class Ttype> class class_name { 
@@ -107,16 +108,26 @@
                     . . . 
                 };
 
+        "Ttype" is the placeholder type name that will be specified when a class is instantiated.
 
-```
-*   `Ttype` is the placeholder type name.
-*   Multiple generic types can be defined using a comma-separated list: `template <class T1, class T2>`.
+        Multiple generic types can be defined using a comma-separated list: 
 
-**Object Instantiation:**
-```cpp
-class_name <type> object_name;
-```
-*   *Note:* Unlike normal classes, you must specify the data type inside angle brackets `< >` when creating the object.
+                template <class T1, class T2, . . .>
+
+
+    Object Instantiation:
+        Once a GnC created, we can create a "specific instance" of that class by using the following general form:
+
+                class_name <type> object_name;
+
+        Here "type" is the "type name" of the data that the class will be operating upon.
+
+        Note: 
+            Unlike normal classes, you must specify the data type inside angle brackets "< >" when creating the object.
+
+
+    ----  rev[17-Jul-2026]  ----
+
 
 ### Member Functions in GnC
 *   Member functions of a GnC are automatically generic. They do not need to be explicitly defined with a `template` prefix inside the class.
@@ -140,19 +151,6 @@ class_name <type> object_name;
 
 
 
-
-
-
-
-
-
-
-	Here Ttype is the placeholder type name that will be specified when a class is instantiated. 
-	If necessary, you can define more than one generic data type by using a comma-separated list.
-	Once you have created a GnC, you create a specific instance of that class by using the following general form:
-class_name <type> ob;
-
-	Here type is the type name of the data that the class will be operating upon.
 	One point to remember(?): in the case of GnC we create the object of that generic class using 
  class_name<type> obj_name ;
 instead of ordinary " class_name obj_name ;". And we can access/define any function/member of that generic class "outside" of it by using: 
