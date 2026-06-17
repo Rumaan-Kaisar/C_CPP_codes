@@ -99,13 +99,15 @@
     The compiler will automatically generate the correct type of object based upon the "type" you specify when the object is created.
     Member functions of a GnC are, themselves, automatically GnF. They "need not be explicitly specified" as such using template.
 
+    The general form of a GnC:
 
----- rev[17-Jun-2026] ----
+                template <class Ttype> class class_name { 
+                    // class members
+                    . . .
+                    . . . 
+                };
 
-template <class Ttype> 
-class class_name { 
-    // class members 
-};
+
 ```
 *   `Ttype` is the placeholder type name.
 *   Multiple generic types can be defined using a comma-separated list: `template <class T1, class T2>`.
@@ -142,9 +144,9 @@ class_name <type> object_name;
 
 
 
-	The general form of a GnC declaration is:
-template <class Ttype > class class_name { . . .
-. . . };
+
+
+
 	Here Ttype is the placeholder type name that will be specified when a class is instantiated. 
 	If necessary, you can define more than one generic data type by using a comma-separated list.
 	Once you have created a GnC, you create a specific instance of that class by using the following general form:
