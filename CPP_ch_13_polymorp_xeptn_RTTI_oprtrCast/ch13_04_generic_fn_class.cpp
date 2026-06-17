@@ -86,7 +86,7 @@
 
 
 
----- rev[16-Jun-2026] ----
+---- rev[17-Jun-2026] ----
 
 
 
@@ -97,10 +97,49 @@
 
     ----------------    Generic-Classes (GnC)    ----------------
 
+    A Generic Class defines all algorithms used by the class, 
+    But the actual data type being manipulated is specified as a parameter when objects are created.
 
 
-	Generic-Classes (GnC):  When you define GnC you create a class that defines all algorithms used by that class, but the actual type of the data being manipulated will be specified as a parameter when objects of that class are created.
-	GnC are useful when a class contains generalizable logic (i.e when data types varies). By using a GnC, you can create a class that will maintain a queue, a linked list, and so on for any type of data. 
+template <class Ttype> 
+class class_name { 
+    // class members 
+};
+```
+*   `Ttype` is the placeholder type name.
+*   Multiple generic types can be defined using a comma-separated list: `template <class T1, class T2>`.
+
+**Object Instantiation:**
+```cpp
+class_name <type> object_name;
+```
+*   *Note:* Unlike normal classes, you must specify the data type inside angle brackets `< >` when creating the object.
+
+### Member Functions in GnC
+*   Member functions of a GnC are automatically generic. They do not need to be explicitly defined with a `template` prefix inside the class.
+*   **Defining Member Functions Outside the Class:** 
+    When defining a member function outside the class, you must use the template prefix and append `<type>` to the class name.
+    ```cpp
+    template <class Ttype> 
+    return_type class_name<Ttype>::member_function(parameters) {
+        // function body
+    }
+    ```
+    *Key Point:* `class_name<Ttype>` is treated as the full class name in this context.
+
+---
+
+
+
+
+
+
+
+GnC are useful when a class contains generalizable logic (i.e when data types varies). 
+For example: 
+    By using a GnC, you can create a class that will maintain a queue, a linked list, and so on for any type of data. 
+
+
 	The compiler will automatically generate the correct type of object based upon the type you specify when the object is created.
 	Member functions of a GnC are, themselves, automatically GnF. They need not be explicitly specified as such using template.
 	The general form of a GnC declaration is:
@@ -274,39 +313,9 @@ Here is the organized, clean, and pointwise version of your notes on Generic Fun
 
 
 
-## 3. Generic Classes (GnC)
-A Generic Class defines all algorithms used by the class, but the actual data type being manipulated is specified as a parameter when objects are created.
 
-### Syntax & Instantiation
-**Declaration:**
-```cpp
-template <class Ttype> 
-class class_name { 
-    // class members 
-};
-```
-*   `Ttype` is the placeholder type name.
-*   Multiple generic types can be defined using a comma-separated list: `template <class T1, class T2>`.
 
-**Object Instantiation:**
-```cpp
-class_name <type> object_name;
-```
-*   *Note:* Unlike normal classes, you must specify the data type inside angle brackets `< >` when creating the object.
 
-### Member Functions in GnC
-*   Member functions of a GnC are automatically generic. They do not need to be explicitly defined with a `template` prefix inside the class.
-*   **Defining Member Functions Outside the Class:** 
-    When defining a member function outside the class, you must use the template prefix and append `<type>` to the class name.
-    ```cpp
-    template <class Ttype> 
-    return_type class_name<Ttype>::member_function(parameters) {
-        // function body
-    }
-    ```
-    *Key Point:* `class_name<Ttype>` is treated as the full class name in this context.
-
----
 
 ## 4. Generics vs. Function Overloading
 While GnFs automatically overload themselves, they differ from standard overloaded functions.
