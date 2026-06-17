@@ -86,20 +86,21 @@
 
 
 
----- rev[17-Jun-2026] ----
-
-
-
-
-
-
-
 
     ----------------    Generic-Classes (GnC)    ----------------
 
     A Generic Class defines all algorithms used by the class, 
     But the actual data type being manipulated is specified as a parameter when objects are created.
 
+    GnC are useful when a class contains generalizable logic (i.e when data types varies). 
+    For example: 
+        By using a GnC, you can create a class that will maintain a queue, a linked list, and so on for any type of data. 
+
+    The compiler will automatically generate the correct type of object based upon the "type" you specify when the object is created.
+    Member functions of a GnC are, themselves, automatically GnF. They "need not be explicitly specified" as such using template.
+
+
+---- rev[17-Jun-2026] ----
 
 template <class Ttype> 
 class class_name { 
@@ -135,13 +136,12 @@ class_name <type> object_name;
 
 
 
-GnC are useful when a class contains generalizable logic (i.e when data types varies). 
-For example: 
-    By using a GnC, you can create a class that will maintain a queue, a linked list, and so on for any type of data. 
 
 
-	The compiler will automatically generate the correct type of object based upon the type you specify when the object is created.
-	Member functions of a GnC are, themselves, automatically GnF. They need not be explicitly specified as such using template.
+
+
+
+
 	The general form of a GnC declaration is:
 template <class Ttype > class class_name { . . .
 . . . };
