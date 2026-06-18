@@ -124,15 +124,19 @@
 
         Note: 
             Unlike normal classes, you must specify the data type inside angle brackets "< >" when creating the object.
-
+            Note that- we're using "class_name <type> obj_name;" instead of ordinary "class_name obj_name;".
 
     ----  rev[17-Jul-2026]  ----
 
 
-### Member Functions in GnC
-*   Member functions of a GnC are automatically generic. They do not need to be explicitly defined with a `template` prefix inside the class.
-*   **Defining Member Functions Outside the Class:** 
-    When defining a member function outside the class, you must use the template prefix and append `<type>` to the class name.
+    Member Functions:
+        Member functions of a GnC are automatically generic. 
+        They do not need to be explicitly defined with a "template" prefix inside the class.
+
+    Defining Member Functions Outside the Class:
+    
+    
+    
     ```cpp
     template <class Ttype> 
     return_type class_name<Ttype>::member_function(parameters) {
@@ -151,12 +155,12 @@
 
 
 
-	One point to remember(?): in the case of GnC we create the object of that generic class using 
- class_name <type> obj_name;
-instead of ordinary " class_name obj_name ;". 
+ 
 
-And we can access/define any function/member of that generic class "outside" of it by using: 
+And we can access/define any function/member of a generic class "outside" of it by using: 
 template <class Ttype > class_name<type> :: member(parametr){}
+you must use the template prefix and append `<type>` to the class name.
+
 
 The key point is:
  that " class_name <type>" considered the class name instead of ordinary "class_name" to define an object of its type or accessing any member outside of it.
