@@ -133,19 +133,24 @@
         Member functions of a GnC are automatically generic. 
         They do not need to be explicitly defined with a "template" prefix inside the class.
 
-    Defining Member Functions Outside the Class:
-    
-    
-    
-    ```cpp
-    template <class Ttype> 
-    return_type class_name<Ttype>::member_function(parameters) {
-        // function body
-    }
-    ```
-    *Key Point:* `class_name<Ttype>` is treated as the full class name in this context.
 
----
+    Access/Define Member Functions Outside the Class:
+        We can access/define any function/member of a generic class "outside" of it by using: 
+
+                template <class Ttype> return_type class_name<Ttype> :: member_function(parameters) {
+                    // function body
+                }
+
+        you must use the "template" prefix and append "<type>" to the class name.
+    
+    
+The key point is:
+    that "class_name <type>" considered the class name instead of ordinary "class_name" 
+    to define an object of its type or accessing any member outside of it.
+
+    
+
+
 
 
 
@@ -157,13 +162,10 @@
 
  
 
-And we can access/define any function/member of a generic class "outside" of it by using: 
-template <class Ttype > class_name<type> :: member(parametr){}
-you must use the template prefix and append `<type>` to the class name.
 
 
-The key point is:
- that " class_name <type>" considered the class name instead of ordinary "class_name" to define an object of its type or accessing any member outside of it.
+
+
 
 
 	When you create a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle the various ways that your program calls that function.
