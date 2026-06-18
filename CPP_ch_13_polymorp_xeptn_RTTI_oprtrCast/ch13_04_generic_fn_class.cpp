@@ -152,11 +152,63 @@
 
 
 	One point to remember(?): in the case of GnC we create the object of that generic class using 
- class_name<type> obj_name ;
-instead of ordinary " class_name obj_name ;". And we can access/define any function/member of that generic class "outside" of it by using: 
+ class_name <type> obj_name;
+instead of ordinary " class_name obj_name ;". 
+
+And we can access/define any function/member of that generic class "outside" of it by using: 
 template <class Ttype > class_name<type> :: member(parametr){}
-Here the key point is that " class_name<type>" considered the class name instead of ordinary " class_name" to define an object of its type or accessing any member outside of it.
+
+The key point is:
+ that " class_name <type>" considered the class name instead of ordinary "class_name" to define an object of its type or accessing any member outside of it.
+
+
 	When you create a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle the various ways that your program calls that function.
+
+
+
+Here's a simplified version:
+
+---
+
+### Generic Classes (GnC)
+
+Remember:
+
+* For a generic class, create an object like this:
+
+```cpp
+ClassName<Type> obj;
+```
+
+instead of:
+
+```cpp
+ClassName obj;
+```
+
+* To define a member function outside the class, use:
+
+```cpp
+template <class T>
+ReturnType ClassName<T>::functionName(parameters)
+{
+    // code
+}
+```
+
+**Key idea:**
+For generic classes, `ClassName<Type>` is treated as the class name, not just `ClassName`. Use it when creating objects or defining members outside the class.
+
+---
+
+### Generic Functions (GnF)
+
+When you create a generic function (function template), you allow the compiler to automatically generate different versions of that function for different data types as needed.
+
+For example, if the function is called with `int`, `double`, and `char`, the compiler creates appropriate versions for those types.
+
+---
+
 
 
 
