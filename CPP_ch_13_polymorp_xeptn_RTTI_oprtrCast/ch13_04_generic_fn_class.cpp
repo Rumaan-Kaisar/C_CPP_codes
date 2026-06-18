@@ -126,8 +126,6 @@
             Unlike normal classes, you must specify the data type inside angle brackets "< >" when creating the object.
             Note that- we're using "class_name <type> obj_name;" instead of ordinary "class_name obj_name;".
 
-    ----  rev[17-Jul-2026]  ----
-
 
     Member Functions:
         Member functions of a GnC are automatically generic. 
@@ -144,13 +142,14 @@
         you must use the "template" prefix and append "<type>" to the class name.
     
     
-The key point is:
-    that "class_name <type>" considered the class name instead of ordinary "class_name" 
-    to define an object of its type or accessing any member outside of it.
+    The key point is:
+        that "class_name <type>" considered the class name instead of ordinary "class_name" 
+        to define an object of its type or accessing any member outside of it.
 
     
 
 
+    ----  rev[18-Jul-2026]  ----
 
 
 
@@ -172,35 +171,6 @@ The key point is:
 
 
 
-Here's a simplified version:
-
----
-
-### Generic Classes (GnC)
-
-Remember:
-
-* For a generic class, create an object like this:
-
-```cpp
-ClassName<Type> obj;
-```
-
-instead of:
-
-```cpp
-ClassName obj;
-```
-
-* To define a member function outside the class, use:
-
-```cpp
-template <class T>
-ReturnType ClassName<T>::functionName(parameters)
-{
-    // code
-}
-```
 
 **Key idea:**
 For generic classes, `ClassName<Type>` is treated as the class name, not just `ClassName`. Use it when creating objects or defining members outside the class.
