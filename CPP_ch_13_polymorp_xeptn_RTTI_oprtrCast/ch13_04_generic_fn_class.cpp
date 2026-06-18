@@ -153,37 +153,51 @@
     The key point is:
         that "class_name <type>" considered the class name instead of ordinary "class_name" 
         to define an object of its type or accessing any member outside of it.
+*/
 
+
+// ----  rev[18-Jul-2026]  ----
+
+
+
+/* Example 1: The following program creates a GnF / Function template that swaps the values of the two variables it is called with. 
+(Because the general process of exchanging two values is independent of the type of the variables) */
+
+
+
+
+### Example 1: Basic Generic Function (Swapping Values)
+```cpp
+#include <iostream>
+using namespace std;
+
+// Generic Function Definition
+template <class X> 
+void swapargs(X &a, X &b) {       
+    X temp;
+    temp = a;
+    a = b;
+    b = temp;  
+}
+
+int main() {    
+    int i = 10, j = 20;
+    float x = 10.0, y = 23.3;
     
+    cout << "Original i, j: " << i << ' ' << j << endl;
+    cout << "Original x, y: " << x << ' ' << y << endl; 
+        
+    swapargs(i, j); // Compiler generates int version
+    swapargs(x, y); // Compiler generates float version
+
+    cout << "Swapped i, j: " << i << ' ' << j << endl;
+    cout << "Swapped x, y: " << x << ' ' << y << endl;
+        
+    return 0; 
+}
+``
 
 
-    ----  rev[18-Jul-2026]  ----
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   Example 1: The following program creates a GnF / Function template that swaps the values of the two variables it is called with. (Because the general process of exchanging two values is independent of the type of the variables)
 template<class X> void swapargs(X &a, X &b){       X temp;
                              temp = a;
                              a = b;
@@ -199,6 +213,16 @@ int main( ){    int i=10 , j =20;
     cout << " Swapped x, y: " << x << ' ' << y << endl ;
         
     return 0; }
+
+
+
+
+
+
+
+
+/*  
+
 
    The keyword template is used to define a generic function. The line:
 template<class X> void swapargs(X &a, X &b)
@@ -234,6 +258,7 @@ void outdata(int i){ cout << i; }
 void outdata(double d){     cout << setprecision(10) << setfill ('#');
 cout << d;
 cout << setprecision(6) << setfill (' '); }
+
 
 
 
@@ -351,40 +376,12 @@ You can manually overload a generic function for a specific data type.
 *   If you do this, your explicitly overloaded version **overrides (hides)** the generic version for that specific data type.
 *   *Use Case:* Allows you to tailor a generic function to accommodate a special situation for a specific data type.
 
+
+
 ---
 
 ## 5. Code Examples
-
-### Example 1: Basic Generic Function (Swapping Values)
-```cpp
-#include <iostream>
-using namespace std;
-
-// Generic Function Definition
-template <class X> 
-void swapargs(X &a, X &b) {       
-    X temp;
-    temp = a;
-    a = b;
-    b = temp;  
-}
-
-int main() {    
-    int i = 10, j = 20;
-    float x = 10.0, y = 23.3;
-    
-    cout << "Original i, j: " << i << ' ' << j << endl;
-    cout << "Original x, y: " << x << ' ' << y << endl; 
-        
-    swapargs(i, j); // Compiler generates int version
-    swapargs(x, y); // Compiler generates float version
-
-    cout << "Swapped i, j: " << i << ' ' << j << endl;
-    cout << "Swapped x, y: " << x << ' ' << y << endl;
-        
-    return 0; 
-}
-```
+`
 
 ### Example 2: Explicitly Overloading a Generic Function
 ```cpp
