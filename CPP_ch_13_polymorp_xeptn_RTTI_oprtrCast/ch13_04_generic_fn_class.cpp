@@ -85,6 +85,14 @@
                     (Causes a compilation error).
 
 
+    When you create a GnF, you are, in essence, allowing the compiler to generate 
+        as many different versions of that function as necessary 
+        to handle the various ways that your program calls that function.
+
+        For example, if the function is called with "int", "double", and "char", 
+            the compiler creates appropriate versions for those types.
+
+
 
 
     ----------------    Generic-Classes (GnC)    ----------------
@@ -167,23 +175,8 @@
 
 
 
-   When you create a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle the various ways that your program calls that function.
 
 
-
-
-**Key idea:**
-For generic classes, `ClassName<Type>` is treated as the class name, not just `ClassName`. Use it when creating objects or defining members outside the class.
-
----
-
-### Generic Functions (GnF)
-
-When you create a generic function (function template), you allow the compiler to automatically generate different versions of that function for different data types as needed.
-
-For example, if the function is called with `int`, `double`, and `char`, the compiler creates appropriate versions for those types.
-
----
 
 
 
