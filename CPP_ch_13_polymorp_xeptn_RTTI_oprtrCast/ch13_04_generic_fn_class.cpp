@@ -156,8 +156,6 @@
 */
 
 
-// ----  rev[18-Jul-2026]  ----
-
 
 
 /* Example 1: The following program creates a GnF / Function template 
@@ -178,37 +176,22 @@ template <class X> void swapargs(X &a, X &b) {
 
 int main() {    
     int i = 10, j = 20;
-    float x = 10.0, y = 23.3;
+    float x = 10, y = 23.3;
     
-    cout << "Original i, j: " << i << ' ' << j << endl;
-    cout << "Original x, y: " << x << ' ' << y << endl; 
+    std::cout << "Original i, j: " << i << ' ' << j << std::endl;
+    std::cout << "Original x, y: " << x << ' ' << y << std::endl; 
         
-    swapargs(i, j); // Compiler generates int version
-    swapargs(x, y); // Compiler generates float version
+    swapargs(i, j); // Compiler generates int version to swap integers
+    swapargs(x, y); // Compiler generates float version to swap floats
 
-    cout << "Swapped i, j: " << i << ' ' << j << endl;
-    cout << "Swapped x, y: " << x << ' ' << y << endl;
+    std::cout << "Swapped i, j: " << i << ' ' << j << std::endl;
+    std::cout << "Swapped x, y: " << x << ' ' << y << std::endl;
         
     return 0; 
 }
-``
 
 
-
-int main( ){    int i=10 , j =20;
-        float x=10 , y =23.3;
-        cout << " Original i, j: " << i << ' ' << j << endl ;
-        cout << " Original x, y: " << x << ' ' << y << endl ;   
-    swapargs(i, j);         // swap integers
-    swapargs(x, y);         // swap floats
-
-    cout << " Swapped i, j: " << i << ' ' << j << endl ;
-    cout << " Swapped x, y: " << x << ' ' << y << endl ;
-        
-    return 0; }
-
-
-
+// ----  rev[19-Jul-2026]  ----
 
 
 
