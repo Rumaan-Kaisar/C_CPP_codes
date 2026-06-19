@@ -166,16 +166,10 @@
                 (We're using Generics because the way to swap two values does not depend on their type.)
 */
 
-
-
-
-
 #include <iostream>
-using namespace std;
 
 // Generic Function Definition
-template <class X> 
-void swapargs(X &a, X &b) {       
+template <class X> void swapargs(X &a, X &b) {       
     X temp;
     temp = a;
     a = b;
@@ -200,10 +194,7 @@ int main() {
 ``
 
 
-template<class X> void swapargs(X &a, X &b){       X temp;
-                             temp = a;
-                             a = b;
-                             b= temp ;  }
+
 int main( ){    int i=10 , j =20;
         float x=10 , y =23.3;
         cout << " Original i, j: " << i << ' ' << j << endl ;
