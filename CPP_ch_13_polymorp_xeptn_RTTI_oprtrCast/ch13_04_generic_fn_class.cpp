@@ -160,14 +160,16 @@
 
 
 
-/* Example 1: The following program creates a GnF / Function template that swaps the values of the two variables it is called with. 
-(Because the general process of exchanging two values is independent of the type of the variables) */
+/* Example 1: The following program creates a GnF / Function template 
+                that "swaps the values" of the two variables it is called with. 
+
+                (We're using Generics because the way to swap two values does not depend on their type.)
+*/
 
 
 
 
-### Example 1: Basic Generic Function (Swapping Values)
-```cpp
+
 #include <iostream>
 using namespace std;
 
