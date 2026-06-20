@@ -276,25 +276,29 @@ Here is the simplified, point-by-point breakdown of the text:
 * The `typename` keyword is also specifically used to handle unknown data types that exist *inside* a template.
 
 
+*/
+
+
+
+
+/* Example 2: To define more than one generic data-type with the template statement, use a comma-separated list. For example: */
+
+template <class type1, class type2> void myfunc(type1 x, type2 y){ 
+    std:cout<< x <<' '<< y << std::endl;
+}
+
+int main(){
+    myfunc(10 , "hi");
+    myfunc(0.23 , 10L);
+    
+    return 0;
+}
 
 
 
 
 
-
-
-
-
-
-
-   To define more than one generic data-type with the template statement, use a comma-separated list. For example:
-
-template<class type1, class type2> 
-void myfunc(type1 x, type2 y){ cout<< x <<' '<< y << endl; }
-
-int main(){     myfunc(10 , "hi");
-myfunc (0.23 , 10L);
-return 0; }
+/*  
 
    The placeholder types type1 and type2 are replaced by the compiler with the data types int and char * and double and long, respectively, when the compiler generates the specific instances (or specific object) of myfunc().
    GnF are similar to overloaded functions except that they are more restrictive.
@@ -302,10 +306,20 @@ return 0; }
    But a GnF must perform the same general action for all versions. 
 
    For example, the following overloaded functions cannot be replaced by a Gnf because they do not do the same thing:
+
+
+*/
+
 void outdata(int i){ cout << i; }
 void outdata(double d){     cout << setprecision(10) << setfill ('#');
 cout << d;
 cout << setprecision(6) << setfill (' '); }
+
+
+
+/*  
+
+
 
 
 
