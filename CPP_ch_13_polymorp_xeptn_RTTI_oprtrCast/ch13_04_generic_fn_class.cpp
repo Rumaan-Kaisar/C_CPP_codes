@@ -191,7 +191,31 @@ int main() {
 }
 
 
-// ----  rev[19-Jul-2026]  ----
+/*  
+    The keyword "template" is used to define a generic function. 
+
+
+    The line:
+                template <class X> void swapargs(X &a, X &b)
+    
+        tells the compiler two things that:
+            a template is being created and 
+            a generic definition is beginning. 
+
+        Here X acts as a placeholder for a data type (instead of a specific type like "int" or "float").
+
+        After the template portion, function swapargs() is declared, 
+            using X as the data type of the values that will be swapped. 
+
+
+    Inside main(), the swapargs() is called using two different types of data: integers and floats. 
+    Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()
+        one that will exchange integer values and 
+        one that will exchange floating-point values. 
+
+*/
+
+
 
 
 
@@ -216,25 +240,11 @@ int main() {
 
 
 
-The keyword "template" is used to define a generic function. 
-The line:
-            template <class X> void swapargs(X &a, X &b)
- 
-    tells the compiler two things that:
-        a template is being created and 
-        a generic definition is beginning. 
 
 
-    Here X acts as a placeholder for a data type (instead of a specific type like "int" or "float").
 
-    After the template portion, function swapargs() is declared, 
-        using X as the data type of the values that will be swapped. 
+--------  rev[21-Jun-2026]  --------
 
-
-   In main(), the swapargs() function is called using two different types of data: integers and floats. 
-Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()-
-   one that will exchange integer values and 
-   one that will exchange floating-point values. 
    The template portion of a GnF definition does not have to be on the same line as the function's name. For example, 
 template <class X>
 void swapargs(X &a, X &b) { X temp;  temp=a;  a=b;  b=temp;  }
@@ -251,19 +261,7 @@ template<typename X> void swapargs(X &a, X &b){ X temp; temp = a; a = b; b= temp
 
 Here is a simplified, easy-to-understand breakdown of the explanation, directly tied to your code:
 
-### 1. The Core Idea: One Function for All Types
-Normally, if you want to swap integers, you write a swap function for integers. If you want to swap floats, you write another one for floats. 
 
-A **template** lets you write **one generic function** that works for *any* data type. 
-* `template <class X>` tells the compiler: *"I am about to write a function where `X` is just a placeholder for whatever data type I end up using."*
-* Inside the function, `X` acts exactly like a normal data type (like `int` or `float`).
-
-### 2. The "Magic" Happens in `main()`
-Look at your `main()` function. You call `swapargs` twice:
-```cpp
-swapargs(i, j); // i and j are integers
-swapargs(x, y); // x and y are floats
-```
 You only wrote the function once, but it works perfectly for both. Why? 
 Because the compiler is smart. When it sees you passing `int` variables, it **automatically generates a hidden integer version** of the function. When it sees `float` variables, it **automatically generates a hidden float version**. 
 
