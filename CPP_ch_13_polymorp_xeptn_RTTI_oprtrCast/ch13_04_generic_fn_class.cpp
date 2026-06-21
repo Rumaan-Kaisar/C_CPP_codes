@@ -201,10 +201,6 @@ int main() {
 
 
 
-**1. What is a Template?**
-* The `template` keyword creates a generic (universal) function.
-* `X` acts as a placeholder for a data type. The function uses `X` instead of a specific type like `int` or `float`.
-
 **2. How it Works in `main()`**
 * When you call the function with different data types (like `int` and `float`), the compiler automatically generates specific versions of that function for each type behind the scenes.
 
@@ -229,9 +225,14 @@ The line:
         a generic definition is beginning. 
 
 
-   Here X is a "generic type" that is used as a placeholder. 
-   After the template portion, function swapargs() is declared, using X as the data type of the values that will be swapped. 
-   In main(), the swapargs() function is called using two different types of data: integers and floats. Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()-
+    Here X acts as a placeholder for a data type (instead of a specific type like "int" or "float").
+
+    After the template portion, function swapargs() is declared, 
+        using X as the data type of the values that will be swapped. 
+
+
+   In main(), the swapargs() function is called using two different types of data: integers and floats. 
+Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()-
    one that will exchange integer values and 
    one that will exchange floating-point values. 
    The template portion of a GnF definition does not have to be on the same line as the function's name. For example, 
