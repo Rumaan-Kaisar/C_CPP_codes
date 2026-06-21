@@ -200,10 +200,36 @@ int main() {
 /*  
 
 
-   The keyword template is used to define a generic function. The line:
-template<class X> void swapargs(X &a, X &b)
-tells the compiler two things: that a template is being created and that a generic definition is beginning. 
-   Here X is a generic type that is used as a placeholder. 
+
+**1. What is a Template?**
+* The `template` keyword creates a generic (universal) function.
+* `X` acts as a placeholder for a data type. The function uses `X` instead of a specific type like `int` or `float`.
+
+**2. How it Works in `main()`**
+* When you call the function with different data types (like `int` and `float`), the compiler automatically generates specific versions of that function for each type behind the scenes.
+
+**3. Formatting Rules**
+* **Line breaks are allowed:** The `template` declaration and the function definition can be written on separate lines.
+* **No interruptions:** You cannot put any other code (like `int i;`) between the `template` line and the function definition. Doing so will cause a compilation error.
+
+**4. `typename` vs. `class`**
+* You can use `typename` instead of `class` (e.g., `template<typename X>`). In this context, they mean the exact same thing.
+* The `typename` keyword is also specifically used to handle unknown data types that exist *inside* a template.
+
+
+
+
+
+The keyword "template" is used to define a generic function. 
+The line:
+            template <class X> void swapargs(X &a, X &b)
+ 
+    tells the compiler two things that:
+        a template is being created and 
+        a generic definition is beginning. 
+
+
+   Here X is a "generic type" that is used as a placeholder. 
    After the template portion, function swapargs() is declared, using X as the data type of the values that will be swapped. 
    In main(), the swapargs() function is called using two different types of data: integers and floats. Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()-
    one that will exchange integer values and 
@@ -259,22 +285,6 @@ Your code uses a **template** to create a universal swap function. The placehold
 
 
 Here is the simplified, point-by-point breakdown of the text:
-
-**1. What is a Template?**
-* The `template` keyword creates a generic (universal) function.
-* `X` acts as a placeholder for a data type. The function uses `X` instead of a specific type like `int` or `float`.
-
-**2. How it Works in `main()`**
-* When you call the function with different data types (like `int` and `float`), the compiler automatically generates specific versions of that function for each type behind the scenes.
-
-**3. Formatting Rules**
-* **Line breaks are allowed:** The `template` declaration and the function definition can be written on separate lines.
-* **No interruptions:** You cannot put any other code (like `int i;`) between the `template` line and the function definition. Doing so will cause a compilation error.
-
-**4. `typename` vs. `class`**
-* You can use `typename` instead of `class` (e.g., `template<typename X>`). In this context, they mean the exact same thing.
-* The `typename` keyword is also specifically used to handle unknown data types that exist *inside* a template.
-
 
 */
 
