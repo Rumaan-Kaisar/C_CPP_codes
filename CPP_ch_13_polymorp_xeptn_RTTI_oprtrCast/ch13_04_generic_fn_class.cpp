@@ -72,6 +72,32 @@
                             A generated function is a specific instance of a template function.
 
 
+    Definition formatting:
+        The template portion of a GnF definition does not have to be on the same line as the function's name. 
+        For example:
+                template <class X>
+                    void swapargs(X &a, X &b) { 
+                        X temp;
+                        temp=a;
+                        a=b;
+                        b=temp;
+                }
+
+No other statements can occur between the "template statement" and the start of the "GnF definition".
+For example, the following fragment will not compile:
+
+template <class X>
+
+int i;  // this line causes error
+
+void swapargs(X &a, X &b) { 
+    X temp;
+    temp=a;
+    a=b;
+    b=temp;
+}
+
+
 
     ========  Important Rules  ========
 
@@ -208,10 +234,12 @@ int main() {
             using X as the data type of the values that will be swapped. 
 
 
-    Inside main(), the swapargs() is called using two different types of data: integers and floats. 
-    Because swapargs() is a generic function, the compiler automatically creates two versions of swapargs()
+    Inside main(), the swapargs() is called using two different types of data: "int" and "float". 
+    Because swapargs() is a GnF, the compiler automatically creates two versions of swapargs()
         one that will exchange integer values and 
         one that will exchange floating-point values. 
+
+
 
 */
 
@@ -223,10 +251,6 @@ int main() {
 
 /*  
 
-
-
-**2. How it Works in `main()`**
-* When you call the function with different data types (like `int` and `float`), the compiler automatically generates specific versions of that function for each type behind the scenes.
 
 **3. Formatting Rules**
 * **Line breaks are allowed:** The `template` declaration and the function definition can be written on separate lines.
@@ -245,13 +269,10 @@ int main() {
 
 --------  rev[21-Jun-2026]  --------
 
-   The template portion of a GnF definition does not have to be on the same line as the function's name. For example, 
-template <class X>
-void swapargs(X &a, X &b) { X temp;  temp=a;  a=b;  b=temp;  }
-   No other statements can occur between the template statement and the start of the GnF definition. For example, the following fragment will not compile:
-template <class X>
-int i;  // this line causes error
-void swapargs (X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
+
+
+
+
    Instead of using the keyword class, we can use the keyword typename to specify a generic type in a template definition. Eg: 
 template<typename X> void swapargs(X &a, X &b){ X temp; temp = a; a = b; b= temp; }
    The typename keyword can also be used to specify an unknown type within a template.
