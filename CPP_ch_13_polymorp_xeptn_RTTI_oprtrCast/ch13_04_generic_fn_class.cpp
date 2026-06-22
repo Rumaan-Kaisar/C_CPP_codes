@@ -253,13 +253,19 @@ int main() {
 /*  
 
 
-**3. Formatting Rules**
-* **Line breaks are allowed:** The `template` declaration and the function definition can be written on separate lines.
-* **No interruptions:** You cannot put any other code (like `int i;`) between the `template` line and the function definition. Doing so will cause a compilation error.
+"typename" vs. "class":
+    You can use "typename" instead of "class" to specify a generic type in a template definition.
 
-**4. `typename` vs. `class`**
-* You can use `typename` instead of `class` (e.g., `template<typename X>`). In this context, they mean the exact same thing.
-* The `typename` keyword is also specifically used to handle unknown data types that exist *inside* a template.
+template <typename X> void swapargs(X &a, X &b) { 
+    X temp;
+    temp=a;
+    a=b;
+    b=temp;
+}
+
+In this context, "template <typename X>" and "template <class X>" mean the exact same thing.
+
+The "typename" keyword is also specifically used to handle unknown data types that exist *inside* a template.
 
 
 
@@ -274,7 +280,10 @@ int main() {
 
 
 
-   Instead of using the keyword class, we can use the keyword typename to specify a generic type in a template definition. Eg: 
+   Instead of using the keyword class, we can use the keyword typename 
+
+
+ Eg: 
 template<typename X> void swapargs(X &a, X &b){ X temp; temp = a; a = b; b= temp; }
    The typename keyword can also be used to specify an unknown type within a template.
 
