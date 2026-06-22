@@ -75,6 +75,7 @@
     Definition formatting:
         The template portion of a GnF definition does not have to be on the same line as the function's name. 
         For example:
+
                 template <class X>
                     void swapargs(X &a, X &b) { 
                         X temp;
@@ -83,19 +84,19 @@
                         b=temp;
                 }
 
-No other statements can occur between the "template statement" and the start of the "GnF definition".
-For example, the following fragment will not compile:
+        No other statements can occur between the "template statement" and the start of the "GnF definition".
+        For example, the following fragment will not compile:
 
-template <class X>
+                template <class X>
 
-int i;  // this line causes error
+                int i;  // this line causes error
 
-void swapargs(X &a, X &b) { 
-    X temp;
-    temp=a;
-    a=b;
-    b=temp;
-}
+                void swapargs(X &a, X &b) { 
+                    X temp;
+                    temp=a;
+                    a=b;
+                    b=temp;
+                }
 
 
 
