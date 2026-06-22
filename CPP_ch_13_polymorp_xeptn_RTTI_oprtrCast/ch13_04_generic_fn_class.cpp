@@ -180,6 +180,21 @@
     The key point is:
         that "class_name <type>" considered the class name instead of ordinary "class_name" 
         to define an object of its type or accessing any member outside of it.
+
+
+    --------    "typename" vs. "class"    --------
+
+    You can use "typename" instead of "class" to specify a generic type in a template definition.
+
+                template <typename X> void swapargs(X &a, X &b) { 
+                    X temp;
+                    temp=a;
+                    a=b;
+                    b=temp;
+                }
+
+        In this context, "template <typename X>" and "template <class X>" mean the exact same thing.
+        The "typename" keyword is specifically used to handle "unknown data type"s that exist "inside" a template.
 */
 
 
@@ -252,20 +267,6 @@ int main() {
 
 /*  
 
-
-"typename" vs. "class":
-    You can use "typename" instead of "class" to specify a generic type in a template definition.
-
-template <typename X> void swapargs(X &a, X &b) { 
-    X temp;
-    temp=a;
-    a=b;
-    b=temp;
-}
-
-In this context, "template <typename X>" and "template <class X>" mean the exact same thing.
-
-The "typename" keyword is also specifically used to handle unknown data types that exist *inside* a template.
 
 
 
