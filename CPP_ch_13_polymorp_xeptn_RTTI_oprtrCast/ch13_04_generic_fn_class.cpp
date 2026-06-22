@@ -194,7 +194,7 @@
                 }
 
         In this context, "template <typename X>" and "template <class X>" mean the exact same thing.
-        The "typename" keyword is specifically used to handle "unknown data type"s that exist "inside" a template.
+        The "typename" keyword is used to specify an "unknown type" within a template.
 */
 
 
@@ -275,47 +275,9 @@ int main() {
 
 
 
---------  rev[21-Jun-2026]  --------
+--------  rev[22-Jun-2026]  --------
 
 
-
-
-
-   Instead of using the keyword class, we can use the keyword typename 
-
-
- Eg: 
-template<typename X> void swapargs(X &a, X &b){ X temp; temp = a; a = b; b= temp; }
-   The typename keyword can also be used to specify an unknown type within a template.
-
-
-----  Qwen  ----
-
-Here is a simplified, easy-to-understand breakdown of the explanation, directly tied to your code:
-
-
-You only wrote the function once, but it works perfectly for both. Why? 
-Because the compiler is smart. When it sees you passing `int` variables, it **automatically generates a hidden integer version** of the function. When it sees `float` variables, it **automatically generates a hidden float version**. 
-
-### 3. Three Simple Syntax Rules
-The original text gives a few strict rules about how to write this. Here is the short version:
-
-* **Rule 1: Formatting is flexible.** The `template` line and the function definition don't have to be on the exact same line. You can put them on separate lines, just like you did in your code.
-* **Rule 2: No interruptions allowed.** You **cannot** put any other code between the `template` line and the function. 
-  * *Bad:* `template <class X>` \n `int i;` \n `void swapargs...` (This will cause an error).
-* **Rule 3: `typename` and `class` are twins.** You can write `template <typename X>` instead of `template <class X>`. They mean the exact same thing in this context.
-
-***
-
-### 💡 Summary (TL;DR)
-Your code uses a **template** to create a universal swap function. The placeholder `X` allows the function to accept any data type. When you call it with integers and floats in `main()`, the compiler automatically creates two specific versions of the function behind the scenes so your code runs perfectly.
-
-
-
----------    pointwise version    --------
-
-
-Here is the simplified, point-by-point breakdown of the text:
 
 */
 
