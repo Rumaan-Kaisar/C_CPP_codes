@@ -262,35 +262,13 @@ int main() {
 
 
 
-
-
-
-/*  
-
-
-
-
-
-
-
-
-
---------  rev[22-Jun-2026]  --------
-
-
-
-*/
-
-
-
-
 /* Example 2: To define "more than one" generic data-type with the template statement, 
                 use a comma-separated list.
 
                 When creating instances of myfunc(), the compiler replaces 
                 the placeholders type1 and type2 with actual data types:
-                    First instance: int and char*
-                    Second instance: double and long
+                    First instance:     int and char*
+                    Second instance:    double and long
 */
 
 #include <iostream>
@@ -310,12 +288,11 @@ int main(){
 }
 
 
+// --------  rev[23-Jun-2026]  --------
 
 
 
 /*  
-
-   The placeholder types type1 and type2 are replaced by the compiler with the data types int and char * and double and long, respectively, when the compiler generates the specific instances (or specific object) of myfunc().
 
    GnF are similar to overloaded functions except that they are more restrictive.
    For overloaded function different actions can be performed within the body of each function. 
