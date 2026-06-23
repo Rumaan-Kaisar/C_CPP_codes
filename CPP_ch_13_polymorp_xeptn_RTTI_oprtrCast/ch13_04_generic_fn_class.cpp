@@ -284,14 +284,21 @@ int main() {
 
 
 
-/* Example 2: To define more than one generic data-type with the template statement, use a comma-separated list. For example: */
+/* Example 2: To define "more than one" generic data-type with the template statement, 
+                use a comma-separated list.
+*/
+
+#include <iostream>
 
 template <class type1, class type2> void myfunc(type1 x, type2 y){ 
     std:cout<< x <<' '<< y << std::endl;
 }
 
 int main(){
+    // Compiler generates a version for (int, const char*)
     myfunc(10 , "hi");
+
+    // Compiler generates a version for (double, long)
     myfunc(0.23 , 10L);
     
     return 0;
@@ -323,30 +330,6 @@ cout << setprecision(6) << setfill (' '); }
 
 Here are the completed, fully compilable C++ programs, followed by the simplified and rearranged explanation.
 
-### Part 1: Completed C++ Programs
-
-**Program 1: Using Multiple Template Parameters**
-*(This demonstrates passing different data types to a single generic function).*
-```cpp
-#include <iostream>
-using namespace std;
-
-// Generic function with TWO placeholder types
-template<class type1, class type2> 
-void myfunc(type1 x, type2 y) { 
-    cout << x << " " << y << endl; 
-}
-
-int main() {    
-    // Compiler generates a version for (int, const char*)
-    myfunc(10, "hi"); 
-    
-    // Compiler generates a version for (double, long)
-    myfunc(0.23, 10L); 
-    
-    return 0; 
-}
-```
 
 **Program 2: Overloaded Functions (That cannot be Generic)**
 *(This demonstrates functions that do completely different things based on the data type).*
