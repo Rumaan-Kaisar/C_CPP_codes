@@ -296,34 +296,30 @@ int main(){
 
     GnF are similar to overloaded functions except that they are more "RESTRICTIVE".
 
+    Standard Overloaded Functions:
+        Can perform completely different actions within the body of each function version.
+        Example:
+            One version might just print an integer, 
+            while another prints a double with specific precision and fill characters.
 
-
-Standard Overloaded Functions:
-    Can perform completely different actions within the body of each function version.
-    Example:
-        One version might just print an integer, 
-        while another prints a double with specific precision and fill characters.
-
-Generic Functions:
-    "Must" perform the exact same general algorithm/action for all data types. 
-    Rule:
-        Use regular function overloading, not templates, if different data types 
-        require completely different logic.
+    Generic Functions:
+        "Must" perform the exact same general algorithm/action for all data types. 
+        Rule:
+            Use regular function overloading, not templates, if different data types 
+            require completely different logic.
     
+    Example:
+        Following overloaded functions cannot be replaced by a Gnf 
+        because they do not do the same thing:
 
-
-
-Example:
-Following overloaded functions cannot be replaced by a Gnf 
-because they do not do the same thing:
-
-
-
-
-void outdata(int i){ cout << i; }
-void outdata(double d){     cout << setprecision(10) << setfill ('#');
-cout << d;
-cout << setprecision(6) << setfill (' '); }
+                void outdata(int i){ 
+                    std::cout << i;
+                }
+                void outdata(double d){
+                    std::cout << setprecision(10) << setfill ('#');
+                    std::cout << d;
+                    std::cout << setprecision(6) << setfill (' ');
+                }
 
 
 
