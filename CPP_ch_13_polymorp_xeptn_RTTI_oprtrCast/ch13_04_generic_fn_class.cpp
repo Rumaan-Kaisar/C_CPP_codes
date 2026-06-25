@@ -328,23 +328,15 @@ int main(){
     If you do this, your explicitly overloaded version overrides (hides) the generic version for that specific data type.
 */
 
-// ----  cp1
 
 
 
-/*  ----  Qwen  ----
+/*  Example 3: If your functions need to do different things based on the data type, you "must" use function overloading. 
+                In the following "outdata" program, the "int" version simply prints the number, 
+                while the "double" version adds special formatting (like '#' fills and specific decimal precision). 
+                Because the internal actions are completely different, a single generic function cannot replace them.
+*/
 
-Here are the completed, fully compilable C++ programs, followed by the simplified and rearranged explanation.
-
-
-* If your functions need to do different things based on the data type, you **must** use function overloading. 
-* **Example:** In the `outdata` program above, the `int` version simply prints the number, 
-while the `double` version adds special formatting (like `#` fills and specific decimal precision). 
-Because the internal actions are completely different, a single generic function cannot replace them.
-
-**Program 2: Overloaded Functions (That cannot be Generic)**
-*(This demonstrates functions that do completely different things based on the data type).*
-```cpp
 
 #include <iostream>
 #include <iomanip> // Required for setprecision and setfill
@@ -370,6 +362,19 @@ int main() {
     outdata(3.14159265);  // Calls the double version
     return 0; 
 }
+
+
+/*  ----  Qwen  ----
+
+Here are the completed, fully compilable C++ programs, followed by the simplified and rearranged explanation.
+
+
+**Program 2: Overloaded Functions (That cannot be Generic)**
+*(This demonstrates functions that do completely different things based on the data type).*
+
+
+```cpp
+
 ```
 
 ***
