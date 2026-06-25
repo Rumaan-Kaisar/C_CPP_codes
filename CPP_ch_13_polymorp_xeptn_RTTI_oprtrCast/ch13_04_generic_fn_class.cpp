@@ -332,21 +332,20 @@ int main(){
 
 
 
-
-
-
-
-
-
-
 /*  ----  Qwen  ----
 
 Here are the completed, fully compilable C++ programs, followed by the simplified and rearranged explanation.
 
 
+* If your functions need to do different things based on the data type, you **must** use function overloading. 
+* **Example:** In the `outdata` program above, the `int` version simply prints the number, 
+while the `double` version adds special formatting (like `#` fills and specific decimal precision). 
+Because the internal actions are completely different, a single generic function cannot replace them.
+
 **Program 2: Overloaded Functions (That cannot be Generic)**
 *(This demonstrates functions that do completely different things based on the data type).*
 ```cpp
+
 #include <iostream>
 #include <iomanip> // Required for setprecision and setfill
 using namespace std;
@@ -381,14 +380,8 @@ int main() {
 * You are not limited to just one placeholder. You can define multiple generic data types by separating them with commas (e.g., `template<class type1, class type2>`).
 * When you call the function, the compiler looks at the arguments you pass and automatically replaces the placeholders (`type1`, `type2`) with the actual data types (like `int`, `double`, `char*`) to generate the specific function.
 
-**2. Generic Functions vs. Function Overloading**
-While both allow a function to handle different data types, they have a major difference in how they work:
-* **Generic Functions (GnF):** Must perform the **exact same general action** for all data types. The logic inside the function body is identical; only the data types change.
-* **Overloaded Functions:** Can perform **completely different actions** for each data type. The logic inside each function body can be entirely unique.
-
 **3. When You CANNOT Use a Generic Function**
-* If your functions need to do different things based on the data type, you **must** use function overloading. 
-* **Example:** In the `outdata` program above, the `int` version simply prints the number, while the `double` version adds special formatting (like `#` fills and specific decimal precision). Because the internal actions are completely different, a single generic function cannot replace them.
+
 
 
 */
@@ -411,7 +404,11 @@ While both allow a function to handle different data types, they have a major di
 
 
 
-   Example 2 (overloading GnF / template): Generally a template function overloads itself as needed. But we can explicitly overload one, too. If you overload a GnF, that overloaded function (our version) overrides (or "hides") the GnF relative to that specific version. For example, consider this version of Example 1:
+   Example 2 (overloading GnF / template): 
+
+Generally a template function overloads itself as needed. 
+But we can explicitly overload one, too. If you overload a GnF, that overloaded function (our version) overrides (or "hides") 
+the GnF relative to that specific version. For example, consider this version of Example 1:
 
 template <class X> void swapargs(X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
 void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }   // This overrides the GnF swapargs().
@@ -430,7 +427,9 @@ return 0; }
 
 
 
-   Example 3: This program creates a very simple generic singly linked list class. It then demonstrates the class by creating a linked list that stores characters.
+   Example 3: This program creates a very simple generic singly linked list class. 
+It then demonstrates the class by creating a linked list that stores characters.
+
 template <class data_t > class list {   data_t data ;
 list *next ;
 public :
