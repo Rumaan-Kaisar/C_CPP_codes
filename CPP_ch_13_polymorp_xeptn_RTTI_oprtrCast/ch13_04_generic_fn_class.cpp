@@ -322,21 +322,13 @@ int main(){
                 }
 
 
+    --------  Explicit Overloading of a Template Function  --------
 
-
-
-
-## 4. Generics vs. Function Overloading
-
-
-
-### Explicit Overloading of a Template Function
-You can manually overload a generic function for a specific data type. 
-*   If you do this, your explicitly overloaded version **overrides (hides)** the generic version for that specific data type.
-*   *Use Case:* Allows you to tailor a generic function to accommodate a special situation for a specific data type.
-
-
+    You can manually overload a generic function for a specific data type. 
+    If you do this, your explicitly overloaded version overrides (hides) the generic version for that specific data type.
 */
+
+// ----  cp1
 
 
 
@@ -435,6 +427,9 @@ return 0; }
    When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
    Manual overloading of a template, as shown in this example, allows you to tailor a version of a GnF to accommodate a special situation. 
    In general, if you need to have different versions of a function for different data types, you should use overloaded functions rather than templates.
+
+
+
    Example 3: This program creates a very simple generic singly linked list class. It then demonstrates the class by creating a linked list that stores characters.
 template <class data_t > class list {   data_t data ;
 list *next ;
@@ -478,6 +473,8 @@ struct addr {   char name[40];
     Then, to use list to generate objects that will store objects of type addr, use:              list< addr > obj( structvar );
  (assuming that structvar contains a valid addr structure)
    A template class can have more than one generic data type. Simply declare all the data types required by the class in a comma-separated list within the template specification.
+
+
    Example 4:  the following short example creates a class that uses two generic data types:
 template <class Type_1 , class Type_2> class myclass{   Type1 i;
                         Type2 j;
