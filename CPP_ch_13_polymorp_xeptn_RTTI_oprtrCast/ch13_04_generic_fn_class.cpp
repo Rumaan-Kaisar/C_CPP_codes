@@ -288,8 +288,6 @@ int main(){
 }
 
 
-// --------  rev[23-Jun-2026]  --------
-
 
 
 /*  ----------------    Generics vs. Function Overloading    ----------------
@@ -339,22 +337,21 @@ int main(){
 
 
 #include <iostream>
-#include <iomanip> // Required for setprecision and setfill
-using namespace std;
+#include <iomanip>      // Required for setprecision and setfill
 
 // Overloaded function 1: Just prints the integer
 void outdata(int i) { 
-    cout << "Int: " << i << endl; 
+    std::cout << "Int: " << i << std::endl; 
 }
 
 // Overloaded function 2: Prints the double with special formatting
 void outdata(double d) {     
-    cout << "Double: ";
-    cout << setprecision(10) << setfill('#');
-    cout << d << endl;
+    std::cout << "Double: ";
+    std::cout << std::setprecision(10) << std::setfill('#');
+    std::cout << d << std::endl;
     
     // Reset formatting back to normal
-    cout << setprecision(6) << setfill(' '); 
+    std::cout << std::setprecision(6) << std::setfill(' '); 
 }
 
 int main() {
@@ -364,32 +361,9 @@ int main() {
 }
 
 
-/*  ----  Qwen  ----
 
-Here are the completed, fully compilable C++ programs, followed by the simplified and rearranged explanation.
+// --------  rev[23-Jun-2026]  --------
 
-
-**Program 2: Overloaded Functions (That cannot be Generic)**
-*(This demonstrates functions that do completely different things based on the data type).*
-
-
-```cpp
-
-```
-
-***
-
-### Part 2: Simplified & Rearranged Explanation
-
-**1. Using Multiple Generic Types**
-* You are not limited to just one placeholder. You can define multiple generic data types by separating them with commas (e.g., `template<class type1, class type2>`).
-* When you call the function, the compiler looks at the arguments you pass and automatically replaces the placeholders (`type1`, `type2`) with the actual data types (like `int`, `double`, `char*`) to generate the specific function.
-
-**3. When You CANNOT Use a Generic Function**
-
-
-
-*/
 
 
 
@@ -477,6 +451,15 @@ struct addr {   char name[40];
     Then, to use list to generate objects that will store objects of type addr, use:              list< addr > obj( structvar );
  (assuming that structvar contains a valid addr structure)
    A template class can have more than one generic data type. Simply declare all the data types required by the class in a comma-separated list within the template specification.
+
+
+
+
+
+
+**1. Using Multiple Generic Types**
+* You are not limited to just one placeholder. You can define multiple generic data types by separating them with commas (e.g., `template<class type1, class type2>`).
+* When you call the function, the compiler looks at the arguments you pass and automatically replaces the placeholders (`type1`, `type2`) with the actual data types (like `int`, `double`, `char*`) to generate the specific function.
 
 
    Example 4:  the following short example creates a class that uses two generic data types:
