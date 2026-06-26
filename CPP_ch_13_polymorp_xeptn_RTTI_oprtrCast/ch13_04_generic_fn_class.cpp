@@ -392,21 +392,15 @@ int main() {
     int i = 10, j = 20;
     float x = 10.0, y = 23.3;
     
-
-std::cout << " Original i, j: " << i << ' ' << j << endl;
-std::cout << " Original x, y: " << x << ' ' << y << endl;
-swapargs(i, j);     // calls overloaded swapargs(), because of matched int arguments 
-swapargs (x, y);    // swap floats
-
-
-std::cout << " Swapped i, j: " << i << ' '<< j << endl ;
-std::cout << " Swapped x, y: " << x << ' ' << y << endl ;
-
-return 0;
+    std::cout << " Original i, j: " << i << ' ' << j << std::endl;
+    std::cout << " Original x, y: " << x << ' ' << y << std::endl;
 
     swapargs(i, j); // Calls the explicit overloaded version (int)
     swapargs(x, y); // Calls the generic version (float)
     
+    std::cout << " Swapped i, j: " << i << ' '<< j << std::endl;
+    std::cout << " Swapped x, y: " << x << ' ' << y << std::endl;
+
     return 0; 
 }
 
