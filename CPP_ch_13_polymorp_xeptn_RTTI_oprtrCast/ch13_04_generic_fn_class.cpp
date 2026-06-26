@@ -373,7 +373,7 @@ int main() {
                 For example, consider following version of Example 1.
 */
 
-// Explicitly Overloading a GnF
+
 #include <iostream>
 
 template <class X> void swapargs(X &a, X &b) { 
@@ -384,9 +384,8 @@ template <class X> void swapargs(X &a, X &b) {
 }
 
 // Explicitly overloaded version for integers (Overrides the GnF for ints)
-// This overrides the GnF swapargs().
 void swapargs(int a, int b) { 
-    cout << "This is inside swapargs(int, int)\n"; 
+    std::cout << "This is inside swapargs(int, int)\n"; 
 }   
 
 int main() {    
@@ -473,11 +472,12 @@ int main() {
 
 
 
-int main( ){    int i=10, j =20;
-float x=10, y =23.3;
-cout << " Original i, j: " << i << ' ' << j << endl ;      cout << " Original x, y: " << x << ' ' << y << endl ;
-swapargs(i, j);         // calls overloaded swapargs(), because of matched int arguments 
-swapargs (x, y);        // swap floats
+
+
+cout << " Original i, j: " << i << ' ' << j << endl;
+cout << " Original x, y: " << x << ' ' << y << endl;
+swapargs(i, j);     // calls overloaded swapargs(), because of matched int arguments 
+swapargs (x, y);    // swap floats
 cout << " Swapped i, j: " << i << ' '<< j << endl ;        cout << " Swapped x, y: " << x << ' ' << y << endl ;
 return 0; }
 
