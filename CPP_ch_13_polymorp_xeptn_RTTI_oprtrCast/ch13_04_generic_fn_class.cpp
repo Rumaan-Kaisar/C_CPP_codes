@@ -392,6 +392,18 @@ int main() {
     int i = 10, j = 20;
     float x = 10.0, y = 23.3;
     
+
+std::cout << " Original i, j: " << i << ' ' << j << endl;
+std::cout << " Original x, y: " << x << ' ' << y << endl;
+swapargs(i, j);     // calls overloaded swapargs(), because of matched int arguments 
+swapargs (x, y);    // swap floats
+
+
+std::cout << " Swapped i, j: " << i << ' '<< j << endl ;
+std::cout << " Swapped x, y: " << x << ' ' << y << endl ;
+
+return 0;
+
     swapargs(i, j); // Calls the explicit overloaded version (int)
     swapargs(x, y); // Calls the generic version (float)
     
@@ -474,15 +486,8 @@ int main() {
 
 
 
-std::cout << " Original i, j: " << i << ' ' << j << endl;
-std::cout << " Original x, y: " << x << ' ' << y << endl;
-swapargs(i, j);     // calls overloaded swapargs(), because of matched int arguments 
-swapargs (x, y);    // swap floats
 
-
-std::cout << " Swapped i, j: " << i << ' '<< j << endl ;
-std::cout << " Swapped x, y: " << x << ' ' << y << endl ;
-return 0; }
+}
 
    When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). 
 Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
