@@ -366,8 +366,91 @@ int main() {
 
 
 
-/*  */
+/*  Example 4: We can EXPLICITLY overload a GnF too. 
+                In this case, that overloaded function (our version) 
+                overrides (or "hides") the GnF relative to that specific version. 
 
+                For example, consider following version of Example 1.
+*/
+
+// Explicitly Overloading a Generic Function
+#include <iostream>
+
+template <class X> void swapargs(X &a, X &b) { 
+    X temp; 
+    temp = a; 
+    a = b; 
+    b = temp; 
+}
+
+// Explicitly overloaded version for integers (Overrides the GnF for ints)
+void swapargs(int a, int b) { 
+    cout << "This is inside swapargs(int, int)\n"; 
+}   
+
+int main() {    
+    int i = 10, j = 20;
+    float x = 10.0, y = 23.3;
+    
+    swapargs(i, j); // Calls the explicit overloaded version (int)
+    swapargs(x, y); // Calls the generic version (float)
+    
+    return 0; 
+}
+
+
+
+```
+
+### Example 3: Generic Class (Singly Linked List)
+```cpp
+#include <iostream>
+using namespace std;
+
+template <class data_t> 
+class list {    
+    data_t data;
+    list *next;
+public:
+    list(data_t d);               // Constructor declaration
+    void add(list *node) {
+        node->next = this; 
+        next = 0; 
+    }
+    list* getnext() { return next; }
+    data_t getdata() { return data; }
+};
+
+// Defining member function outside the class
+template <class data_t> 
+list<data_t>::list(data_t d) {  
+    data = d;
+    next = 0;
+}   
+
+int main() {    
+    // Specifying the data type (char) inside < >
+    list<char> start('a');
+    list<char> *p, *last;
+    
+    // Build a list
+    last = &start;
+    for(int i = 1; i < 26; i++) {  
+        p = new list<char>('a' + i);
+        p->add(last);
+        last = p;   
+    }
+    
+    // Follow and print the list 
+    p = &start;
+    while(p) {  
+        cout << p->getdata();
+        p = p->getnext();
+    }
+    return 0;
+}
+```
+*Note on Custom Types:* You can use generic classes to store custom structures. For example, if you have a `struct addr`, you can create a list of addresses using: `list<addr> obj(structvar);`
 
 
 
@@ -383,11 +466,7 @@ int main() {
 
 
 
-Example 4: We can EXPLICITLY overload a GnF too. 
-                In this case, that overloaded function (our version) 
-                overrides (or "hides") the GnF relative to that specific version. 
 
-                For example, consider following version of Example 1:
 
 template <class X> void swapargs(X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
 void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }   // This overrides the GnF swapargs().
@@ -400,9 +479,12 @@ swapargs (x, y);        // swap floats
 cout << " Swapped i, j: " << i << ' '<< j << endl ;        cout << " Swapped x, y: " << x << ' ' << y << endl ;
 return 0; }
 
-   When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
+   When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). 
+Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
    Manual overloading of a template, as shown in this example, allows you to tailor a version of a GnF to accommodate a special situation. 
    In general, if you need to have different versions of a function for different data types, you should use overloaded functions rather than templates.
+
+
 
 
 
@@ -507,78 +589,8 @@ Here is the organized, clean, and pointwise version of your notes on Generic Fun
 ## 5. Code Examples
 `
 
-### Example 2: Explicitly Overloading a Generic Function
-```cpp
-template <class X> 
-void swapargs(X &a, X &b) { 
-    X temp; temp = a; a = b; b = temp; 
-}
+### Example 2: 
 
-// Explicitly overloaded version for integers (Overrides the GnF for ints)
-void swapargs(int a, int b) { 
-    cout << "This is inside swapargs(int, int)\n"; 
-}   
-
-int main() {    
-    int i = 10, j = 20;
-    float x = 10.0, y = 23.3;
-    
-    swapargs(i, j); // Calls the explicit overloaded version (int)
-    swapargs(x, y); // Calls the generic version (float)
-    
-    return 0; 
-}
-```
-
-### Example 3: Generic Class (Singly Linked List)
-```cpp
-#include <iostream>
-using namespace std;
-
-template <class data_t> 
-class list {    
-    data_t data;
-    list *next;
-public:
-    list(data_t d);               // Constructor declaration
-    void add(list *node) {
-        node->next = this; 
-        next = 0; 
-    }
-    list* getnext() { return next; }
-    data_t getdata() { return data; }
-};
-
-// Defining member function outside the class
-template <class data_t> 
-list<data_t>::list(data_t d) {  
-    data = d;
-    next = 0;
-}   
-
-int main() {    
-    // Specifying the data type (char) inside < >
-    list<char> start('a');
-    list<char> *p, *last;
-    
-    // Build a list
-    last = &start;
-    for(int i = 1; i < 26; i++) {  
-        p = new list<char>('a' + i);
-        p->add(last);
-        last = p;   
-    }
-    
-    // Follow and print the list 
-    p = &start;
-    while(p) {  
-        cout << p->getdata();
-        p = p->getnext();
-    }
-    return 0;
-}
-```
-*Note on Custom Types:* You can use generic classes to store custom structures. For example, if you have a `struct addr`, you can create a list of addresses using: `list<addr> obj(structvar);`
 
 
 
