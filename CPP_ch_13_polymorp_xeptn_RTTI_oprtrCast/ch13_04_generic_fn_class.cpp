@@ -474,11 +474,14 @@ int main() {
 
 
 
-cout << " Original i, j: " << i << ' ' << j << endl;
-cout << " Original x, y: " << x << ' ' << y << endl;
+std::cout << " Original i, j: " << i << ' ' << j << endl;
+std::cout << " Original x, y: " << x << ' ' << y << endl;
 swapargs(i, j);     // calls overloaded swapargs(), because of matched int arguments 
 swapargs (x, y);    // swap floats
-cout << " Swapped i, j: " << i << ' '<< j << endl ;        cout << " Swapped x, y: " << x << ' ' << y << endl ;
+
+
+std::cout << " Swapped i, j: " << i << ' '<< j << endl ;
+std::cout << " Swapped x, y: " << x << ' ' << y << endl ;
 return 0; }
 
    When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). 
