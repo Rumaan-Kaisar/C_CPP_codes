@@ -362,11 +362,11 @@ int main() {
 
 
 
-// --------  rev[23-Jun-2026]  --------
+// --------  rev[26-Jun-2026]  --------
 
 
 
-
+/*  */
 
 
 
@@ -383,11 +383,11 @@ int main() {
 
 
 
-   Example 2 (overloading GnF / template): 
+Example 4: We can EXPLICITLY overload a GnF too. 
+                In this case, that overloaded function (our version) 
+                overrides (or "hides") the GnF relative to that specific version. 
 
-Generally a template function overloads itself as needed. 
-But we can explicitly overload one, too. If you overload a GnF, that overloaded function (our version) overrides (or "hides") 
-the GnF relative to that specific version. For example, consider this version of Example 1:
+                For example, consider following version of Example 1:
 
 template <class X> void swapargs(X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
 void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }   // This overrides the GnF swapargs().
@@ -579,6 +579,10 @@ int main() {
 }
 ```
 *Note on Custom Types:* You can use generic classes to store custom structures. For example, if you have a `struct addr`, you can create a list of addresses using: `list<addr> obj(structvar);`
+
+
+
+
 
 ### Example 4: Multiple Generic Data Types in a Class
 ```cpp
