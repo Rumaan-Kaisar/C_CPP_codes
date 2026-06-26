@@ -373,7 +373,7 @@ int main() {
                 For example, consider following version of Example 1.
 */
 
-// Explicitly Overloading a Generic Function
+// Explicitly Overloading a GnF
 #include <iostream>
 
 template <class X> void swapargs(X &a, X &b) { 
@@ -384,6 +384,7 @@ template <class X> void swapargs(X &a, X &b) {
 }
 
 // Explicitly overloaded version for integers (Overrides the GnF for ints)
+// This overrides the GnF swapargs().
 void swapargs(int a, int b) { 
     cout << "This is inside swapargs(int, int)\n"; 
 }   
@@ -468,8 +469,9 @@ int main() {
 
 
 
-template <class X> void swapargs(X &a, X &b) { X temp ; temp = a; a = b; b= temp ; }
-void swapargs (int a, int b) { cout << " this is inside swapargs (int ,int )\n"; }   // This overrides the GnF swapargs().
+ 
+
+
 
 int main( ){    int i=10, j =20;
 float x=10, y =23.3;
