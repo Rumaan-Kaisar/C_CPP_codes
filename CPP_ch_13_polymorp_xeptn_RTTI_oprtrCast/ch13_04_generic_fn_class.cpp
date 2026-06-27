@@ -459,47 +459,25 @@ int main() {
     return 0;
 }
 ```
-*Note on Custom Types:* You can use generic classes to store custom structures. For example, if you have a `struct addr`, you can create a list of addresses using: `list<addr> obj(structvar);`
+Note on Custom Types: 
+    You can use generic classes to store custom structures. 
+
+For example, if you have a "struct addr", you can create a list of addresses using: `list<addr> obj(structvar);`
 
 
 
 
 
-/*  
+/*  Example 5: Manual Overloading of a template, 
+                as shown in this example, it allows you to tailor a version of a GnF to accommodate a special situation. 
 
+                In general, if you need to have different versions of a function for different data types, 
+                    you should use overloaded functions rather than templates.
 
-
-
-
-
-
-
-
-
-
+                Following program creates a very simple generic "singly linked list" class. 
+                It then demonstrates the class by creating a linked list that stores characters.
+*/
  
-
-
-
-
-
-
-}
-
-
-
-
-
-   Manual overloading of a template, as shown in this example, allows you to tailor a version of a GnF to accommodate a special situation. 
-   In general, if you need to have different versions of a function for different data types, you should use overloaded functions rather than templates.
-
-
-
-
-
-   Example 3: This program creates a very simple generic singly linked list class. 
-It then demonstrates the class by creating a linked list that stores characters.
-
 template <class data_t > class list {   data_t data ;
 list *next ;
 public :
@@ -528,6 +506,9 @@ template <class data_t > list <data_t >:: list ( data_t d) {    data = d;
             p = p-> getnext();}
     return 0;}
 
+
+
+/* 
    The actual data-type stored by the list is generic in the class declaration. Here objects and pointers are created inside main() that specify that the data-type of the list will be char.
    Setting data type in object declaration of a generic class-type: The desired data type is passed inside the angle brackets in the following declaration:
 list< char > start('a') ;
@@ -551,6 +532,7 @@ struct addr {   char name[40];
 **1. Using Multiple Generic Types**
 * You are not limited to just one placeholder. You can define multiple generic data types by separating them with commas (e.g., `template<class type1, class type2>`).
 * When you call the function, the compiler looks at the arguments you pass and automatically replaces the placeholders (`type1`, `type2`) with the actual data types (like `int`, `double`, `char*`) to generate the specific function.
+
 
 
    Example 4:  the following short example creates a class that uses two generic data types:
