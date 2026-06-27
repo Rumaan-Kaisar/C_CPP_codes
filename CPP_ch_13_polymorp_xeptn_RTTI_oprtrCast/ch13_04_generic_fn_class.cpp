@@ -369,9 +369,12 @@ int main() {
 
                 For example, consider following version of Example 1.
 
-                When swapargs(i, j) is called, the program uses the explicitly overloaded swapargs() function because the arguments are of type int. Therefore, the compiler does not create the generic swapargs() function for int values, since the explicit version overrides it.
+                When swapargs(i, j) is called, the program uses the explicitly overloaded swapargs() function 
+                    because the arguments are of type int. 
+                    
+                Therefore, the compiler does not create the generic swapargs() function for "int" values, 
+                    since the explicit version overrides it.
 */
-
 
 #include <iostream>
 
@@ -483,8 +486,7 @@ int main() {
 
 }
 
-   When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). 
-Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
+
 
 
 
