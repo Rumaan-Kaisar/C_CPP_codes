@@ -368,6 +368,8 @@ int main() {
                 overrides (or "hides") the GnF relative to that specific version. 
 
                 For example, consider following version of Example 1.
+
+                When swapargs(i, j) is called, the program uses the explicitly overloaded swapargs() function because the arguments are of type int. Therefore, the compiler does not create the generic swapargs() function for int values, since the explicit version overrides it.
 */
 
 
@@ -483,6 +485,9 @@ int main() {
 
    When swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program (because of int values). 
 Thus, the compiler does not generate this version of the generic swapargs() function because the GnF is overridden by the explicit overloading.
+
+
+
    Manual overloading of a template, as shown in this example, allows you to tailor a version of a GnF to accommodate a special situation. 
    In general, if you need to have different versions of a function for different data types, you should use overloaded functions rather than templates.
 
