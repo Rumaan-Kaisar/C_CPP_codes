@@ -254,9 +254,6 @@ int main() {
     Because swapargs() is a GnF, the compiler automatically creates two versions of swapargs()
         one that will exchange integer values and 
         one that will exchange floating-point values. 
-
-
-
 */
 
 
@@ -413,7 +410,6 @@ int main() {
 
 ### Example 3: Generic Class (Singly Linked List)
 ```cpp
-#include <iostream>
 using namespace std;
 
 template <class data_t> 
@@ -474,19 +470,23 @@ For example, if you have a "struct addr", you can create a list of addresses usi
                 In general, if you need to have different versions of a function for different data types, 
                     you should use overloaded functions rather than templates.
 
-                Following program creates a very simple generic "singly linked list" class. 
+                Following program creates a very simple generic "Singly Linked List" class. 
                 It then demonstrates the class by creating a linked list that stores characters.
 */
+
+#include <iostream>
  
-template <class data_t > class list {   data_t data ;
-list *next ;
-public :
-list ( data_t d);
-void add(list *node){
-node -> next = this; 
-next = 0; }
-list *getnext(){ return next ; }
-data_t getdata(){ return data ; }
+template <class data_t> class list {
+        data_t data;
+        list *next;
+    public:
+        list(data_t d);     // constructor declaration
+        void add(list *node){
+            node->next = this; 
+            next = 0;
+        }
+    list* getnext(){ return next; }
+    data_t getdata(){ return data; }
 };
 
 // definition of member function 'list'
@@ -514,6 +514,8 @@ template <class data_t > list <data_t >:: list ( data_t d) {    data = d;
 list< char > start('a') ;
    By simply changing the data-type specified "inside < >" when list objects are created, you can change the type of data stored by the list. For example, you could create another object that stores integers by using:
 list< int > int_start(1) ;
+
+
    Use list to store data types that you create: For example, if you want to store address information, use following structure:
 struct addr {   char name[40];
         char street[40];
