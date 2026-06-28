@@ -410,28 +410,9 @@ int main() {
 
 ### Example 3: Generic Class (Singly Linked List)
 ```cpp
-using namespace std;
 
-template <class data_t> 
-class list {    
-    data_t data;
-    list *next;
-public:
-    list(data_t d);               // Constructor declaration
-    void add(list *node) {
-        node->next = this; 
-        next = 0; 
-    }
-    list* getnext() { return next; }
-    data_t getdata() { return data; }
-};
 
-// Defining member function outside the class
-template <class data_t> 
-list<data_t>::list(data_t d) {  
-    data = d;
-    next = 0;
-}   
+  
 
 int main() {    
     // Specifying the data type (char) inside < >
@@ -489,10 +470,16 @@ template <class data_t> class list {
     data_t getdata(){ return data; }
 };
 
-// definition of member function 'list'
 
-template <class data_t > list <data_t >:: list ( data_t d) {    data = d;
-                        next = 0;}  int main(){ list<char>  start ('a');
+// definition of member function (constructor) 'list'
+template <class data_t> list <data_t>::list(data_t d) {
+    data = d;
+    next = 0;
+}
+
+// ----  rev[28-Jun-@026]  ----
+
+int main(){ list<char>  start ('a');
         list<char>  *p, * last ;
         int i;
 // build a list
