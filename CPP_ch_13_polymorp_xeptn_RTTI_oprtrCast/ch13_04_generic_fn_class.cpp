@@ -415,9 +415,7 @@ int main() {
   
 
 int main() {    
-    // Specifying the data type (char) inside < >
-    list<char> start('a');
-    list<char> *p, *last;
+
     
     // Build a list
     last = &start;
@@ -479,9 +477,12 @@ template <class data_t> list <data_t>::list(data_t d) {
 
 // ----  rev[28-Jun-@026]  ----
 
-int main(){ list<char>  start ('a');
-        list<char>  *p, * last ;
-        int i;
+int main(){
+    // Specifying the data type (char) inside < >
+    list<char>  start('a');
+    list<char>  *p, *last;
+    int i;
+
 // build a list
     last = &start ;
     for (i=1; i <26; i++){  p = new list <char >( 'a' + i);
