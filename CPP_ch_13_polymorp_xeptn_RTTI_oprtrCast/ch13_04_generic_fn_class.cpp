@@ -408,18 +408,7 @@ int main() {
 
 ```
 
-### Example 3: Generic Class (Singly Linked List)
-```cpp
 
-
-  
-
-
-```
-Note on Custom Types: 
-    You can use generic classes to store custom structures. 
-
-For example, if you have a "struct addr", you can create a list of addresses using: `list<addr> obj(structvar);`
 
 
 
@@ -484,14 +473,17 @@ int main(){
 
 
 
-// ----  rev[29-Jun-@026]  ----
+// ----  rev[29-Jun-2026]  ----
 
 
 
-/* 
-   The actual data-type stored by the list is generic in the class declaration. Here objects and pointers are created inside main() that specify that the data-type of the list will be char.
+/* In the above program-
+   The actual data-type stored by the list is generic in the "class declaration". 
+Here objects and pointers are created inside main() that specify that the data-type of the list will be char.
+
    Setting data type in object declaration of a generic class-type: The desired data type is passed inside the angle brackets in the following declaration:
 list< char > start('a') ;
+
    By simply changing the data-type specified "inside < >" when list objects are created, you can change the type of data stored by the list. For example, you could create another object that stores integers by using:
 list< int > int_start(1) ;
 
@@ -504,6 +496,15 @@ struct addr {   char name[40];
         char zip[12]; }
     Then, to use list to generate objects that will store objects of type addr, use:              list< addr > obj( structvar );
  (assuming that structvar contains a valid addr structure)
+
+
+Note on Custom Types: 
+    You can use generic classes to store custom structures. 
+
+For example, if you have a "struct addr", you can create a list of addresses using: `list<addr> obj(structvar);`
+
+
+
    A template class can have more than one generic data type. Simply declare all the data types required by the class in a comma-separated list within the template specification.
 
 
@@ -540,32 +541,6 @@ Note
 
 
 --------    Qwen    --------
-
-Here is the organized, clean, and pointwise version of your notes on Generic Functions and Generic Classes in C++. The formatting has been improved for readability, with code blocks properly indented and symbols replaced with standard bullet points.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-## 5. Code Examples
-`
-
-### Example 2: 
-
-
-
 
 
 
