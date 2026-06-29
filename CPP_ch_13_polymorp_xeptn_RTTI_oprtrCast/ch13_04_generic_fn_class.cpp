@@ -414,25 +414,7 @@ int main() {
 
   
 
-int main() {    
 
-    
-    // Build a list
-    last = &start;
-    for(int i = 1; i < 26; i++) {  
-        p = new list<char>('a' + i);
-        p->add(last);
-        last = p;   
-    }
-    
-    // Follow and print the list 
-    p = &start;
-    while(p) {  
-        cout << p->getdata();
-        p = p->getnext();
-    }
-    return 0;
-}
 ```
 Note on Custom Types: 
     You can use generic classes to store custom structures. 
@@ -475,24 +457,34 @@ template <class data_t> list <data_t>::list(data_t d) {
     next = 0;
 }
 
-// ----  rev[28-Jun-@026]  ----
 
 int main(){
     // Specifying the data type (char) inside < >
-    list<char>  start('a');
-    list<char>  *p, *last;
+    list <char>  start('a');
+    list <char>  *p, *last;
     int i;
 
-// build a list
+    // build a list
     last = &start ;
-    for (i=1; i <26; i++){  p = new list <char >( 'a' + i);
-                 p->add ( last );
-                 last = p;  }
-// follow the list 
-    p = &start ;
-    while(p) {  cout << p-> getdata();
-            p = p-> getnext();}
-    return 0;}
+    for(i=1; i<26; i++){
+        p = new list <char> ('a' + i);
+        p->add(last);
+        last = p;
+    }
+
+    // follow the list and print
+    p = &start;
+    while(p) {
+        std::cout << p->getdata();
+        p = p->getnext();
+    }
+    
+    return 0;
+}
+
+
+
+// ----  rev[29-Jun-@026]  ----
 
 
 
