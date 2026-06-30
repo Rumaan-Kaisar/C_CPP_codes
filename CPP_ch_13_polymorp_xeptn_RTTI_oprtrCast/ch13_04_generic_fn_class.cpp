@@ -488,13 +488,17 @@ int main(){
 
     By simply changing the data-type specified "inside < >" when list objects are created, 
         you can change the "type of data" stored by the list. 
-        For example, you could create "another object" that stores "integers" by using:
+        For example, 
+            You could create "another object" that stores "integers" by using:
 
                 list <int> int_start(1);
 
 
-   Use list to store data types that you create: For example, if you want to store address information, use following structure:
-struct addr {   char name[40];
+    Use "list" to store user defined data types "struct":
+        For example, if you want to store address information, use following structure:
+
+                struct addr {
+                   char name[40];
         char street[40];
         char city[30];
         char state[3];
