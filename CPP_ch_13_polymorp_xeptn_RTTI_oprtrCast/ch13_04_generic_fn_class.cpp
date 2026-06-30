@@ -478,11 +478,13 @@ int main(){
 
 
 /* In the above program-
-   The actual data-type stored by the list is generic in the "class declaration". 
-Here objects and pointers are created inside main() that specify that the data-type of the list will be char.
+    The "actual data-type" stored by the "list" is generic in the "class declaration". 
+    Here objects and pointers are created inside main() that specify that the data-type of the list will be "char".
 
-   Setting data type in object declaration of a generic class-type: The desired data type is passed inside the angle brackets in the following declaration:
-list< char > start('a') ;
+    Setting "data type" in "object declaration" of a generic class-type: 
+        The desired data type is passed inside the angle brackets in the following declaration:
+
+                list <char> start('a');
 
    By simply changing the data-type specified "inside < >" when list objects are created, you can change the type of data stored by the list. For example, you could create another object that stores integers by using:
 list< int > int_start(1) ;
