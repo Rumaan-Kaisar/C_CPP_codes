@@ -498,13 +498,18 @@ int main(){
         For example, if you want to store address information, use following structure:
 
                 struct addr {
-                   char name[40];
-        char street[40];
-        char city[30];
-        char state[3];
-        char zip[12]; }
-    Then, to use list to generate objects that will store objects of type addr, use:              list< addr > obj( structvar );
- (assuming that structvar contains a valid addr structure)
+                    char name[40];
+                    char street[40];
+                    char city[30];
+                    char state[3];
+                    char zip[12];
+                }
+    
+        Then, to use list to generate objects that will store objects of type "addr", use:
+        
+                list <addr> obj(struct_var);
+            
+            (assuming that struct_var contains a valid "addr" structure)
 
 
 Note on Custom Types: 
