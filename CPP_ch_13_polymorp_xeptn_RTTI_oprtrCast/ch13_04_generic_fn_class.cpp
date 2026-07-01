@@ -494,7 +494,14 @@ int main(){
                 list <int> int_start(1);
 
 
-    Use "list" to store user defined data types "struct":
+    ----------------    Custom Types    ----------------
+    
+    You can use generic classes to store custom structures. 
+    For example, if you have a "struct addr", you can create a list of addresses using: 
+
+                list<addr> obj(structvar);
+
+        Use "list" to store user defined data types "struct":
         For example, if you want to store address information, use following structure:
 
                 struct addr {
@@ -512,10 +519,7 @@ int main(){
             (assuming that struct_var contains a valid "addr" structure)
 
 
-Note on Custom Types: 
-    You can use generic classes to store custom structures. 
 
-For example, if you have a "struct addr", you can create a list of addresses using: `list<addr> obj(structvar);`
 
 
 
