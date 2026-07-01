@@ -517,24 +517,27 @@ int main(){
                 list <addr> obj(struct_var);
             
             (assuming that struct_var contains a valid "addr" structure)
+*/
+
+
+/*  ----------------    Multiple generic types    ----------------
+
+    A template class can have more than one generic data type. 
+
+    Simply declare all the data types required by the class 
+        in a comma-separated list within the template specification.
+
+                template <class type1, class type2, ... >
+
+        When you call the function, the compiler looks at the arguments you pass and 
+            automatically replaces the placeholders ("type1", "type2") 
+            with the actual data types (like "int", "double", "char*") to generate the specific function.
+
+*/
 
 
 
-
-
-
-   A template class can have more than one generic data type. Simply declare all the data types required by the class in a comma-separated list within the template specification.
-
-
-
-
-
-
-**1. Using Multiple Generic Types**
-* You are not limited to just one placeholder. You can define multiple generic data types by separating them with commas (e.g., `template<class type1, class type2>`).
-* When you call the function, the compiler looks at the arguments you pass and automatically replaces the placeholders (`type1`, `type2`) with the actual data types (like `int`, `double`, `char*`) to generate the specific function.
-
-
+/*  
 
    Example 4:  the following short example creates a class that uses two generic data types:
 template <class Type_1 , class Type_2> class myclass{   Type1 i;
