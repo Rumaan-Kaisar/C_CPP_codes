@@ -472,11 +472,6 @@ int main(){
 }
 
 
-
-// ----  rev[29-Jun-2026]  ----
-
-
-
 /* In the above program-
     The "actual data-type" stored by the "list" is generic in the "class declaration". 
     Here objects and pointers are created inside main() that specify that the data-type of the list will be "char".
@@ -520,6 +515,8 @@ int main(){
 */
 
 
+
+
 /*  ----------------    Multiple generic types    ----------------
 
     A template class can have more than one generic data type. 
@@ -559,7 +556,7 @@ Note
 [2] STL provides generic versions of the most commonly used algorithms and data structures. 
 
 
-
+// ----  rev[29-Jun-2026]  ----
 
 --------    Qwen    --------
 
