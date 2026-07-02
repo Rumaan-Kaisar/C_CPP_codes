@@ -404,14 +404,6 @@ int main() {
 }
 
 
-// --------  rev[27-Jun-2026]  --------
-
-```
-
-
-
-
-
 
 
 /*  Example 5: Manual Overloading of a template, 
@@ -534,9 +526,9 @@ int main(){
 
 
 
-/*  
 
-   Example 4:  the following short example creates a class that uses two generic data types:
+/* Example 6:  The following program creates a class that uses two generic data types. */
+
 template <class Type_1 , class Type_2> class myclass{   Type1 i;
                         Type2 j;
              public : myclass( Type1 a, Type2 b) {  i = a;   j = b; }
@@ -546,8 +538,12 @@ template <class Type_1 , class Type_2> class myclass{   Type1 i;
         ob1.show();     // show int , double 
         ob2.show();     // show char , char *
        return 0; }
-        This program produces the following output:      10     0.23
-                                 X This is a test
+
+
+
+/*  
+
+
    The program declares two types of objects. ob1 uses integer and double data. ob2 uses a character and a character pointer. 
    For both cases, the compiler automatically generates the appropriate data and functions for each object.
 
