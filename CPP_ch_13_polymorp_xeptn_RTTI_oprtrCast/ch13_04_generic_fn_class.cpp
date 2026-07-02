@@ -529,9 +529,13 @@ int main(){
 
 /* Example 6:  The following program creates a class that uses two generic data types. */
 
-template <class Type_1 , class Type_2> class myclass{   Type1 i;
-                        Type2 j;
-             public : myclass( Type1 a, Type2 b) {  i = a;   j = b; }
+#include <iostream>
+
+template <class Type_1 , class Type_2> class myclass{
+        Type1 i;
+        Type2 j;
+    public:
+        myclass( Type1 a, Type2 b) {  i = a;   j = b; }
              void show() { cout << i << ' ' << j << '\n'; }      
              }; int main(){         myclass< int, double > ob1 (10 , 0.23) ;
                   myclass<char , char *> ob2('X', " This is a test ");
@@ -539,6 +543,25 @@ template <class Type_1 , class Type_2> class myclass{   Type1 i;
         ob2.show();     // show char , char *
        return 0; }
 
+
+
+
+
+
+public: 
+    myclass(Type1 a, Type2 b) {  i = a; j = b; }
+    void show() { cout << i << ' ' << j << '\n'; }       
+};  
+
+int main() {         
+    myclass<int, double> ob1(10, 0.23);
+    myclass<char, char*> ob2('X', "This is a test");
+    
+    ob1.show(); // Outputs: 10 0.23
+    ob2.show(); // Outputs: X This is a test
+    
+    return 0; 
+}
 
 
 /*  
@@ -558,29 +581,6 @@ Note
 
 
 
-### Example 4: Multiple Generic Data Types in a Class
-```cpp
-#include <iostream>
-using namespace std;
-
-template <class Type1, class Type2> 
-class myclass {  
-    Type1 i;
-    Type2 j;
-public: 
-    myclass(Type1 a, Type2 b) {  i = a; j = b; }
-    void show() { cout << i << ' ' << j << '\n'; }       
-};  
-
-int main() {         
-    myclass<int, double> ob1(10, 0.23);
-    myclass<char, char*> ob2('X', "This is a test");
-    
-    ob1.show(); // Outputs: 10 0.23
-    ob2.show(); // Outputs: X This is a test
-    
-    return 0; 
-}
 ```
 
 ---
