@@ -548,31 +548,13 @@ int main(){
     myclass <int, double> ob1(10 ,0.23);
     myclass <char, char*> ob2('X', " This is a test ");
     
-    ob1.show();     // show int , double 
-    ob2.show();     // show char , char *
+    ob1.show();     // show int , double  i.e. Outputs: 10 0.23
+    ob2.show();     // show char , char * i.e. Outputs: X This is a test
 
     return 0;
 }
 
 
-
-
-
-
-public: 
-    myclass(Type1 a, Type2 b) {  i = a; j = b; }
-    void show() { cout << i << ' ' << j << '\n'; }       
-};  
-
-int main() {         
-    myclass<int, double> ob1(10, 0.23);
-    myclass<char, char*> ob2('X', "This is a test");
-    
-    ob1.show(); // Outputs: 10 0.23
-    ob2.show(); // Outputs: X This is a test
-    
-    return 0; 
-}
 
 
 /*  
