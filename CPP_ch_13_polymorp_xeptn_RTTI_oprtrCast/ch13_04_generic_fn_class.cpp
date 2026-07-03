@@ -535,7 +535,10 @@ template <class Type_1 , class Type_2> class myclass{
         Type1 i;
         Type2 j;
     public:
-        myclass( Type1 a, Type2 b) {  i = a;   j = b; }
+        myclass(Type1 a, Type2 b) {
+            i = a;
+            j = b;
+        }
              void show() { cout << i << ' ' << j << '\n'; }      
              }; int main(){         myclass< int, double > ob1 (10 , 0.23) ;
                   myclass<char , char *> ob2('X', " This is a test ");
