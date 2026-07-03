@@ -545,11 +545,14 @@ template <class Type_1 , class Type_2> class myclass{
 };
 
 int main(){
-    myclass< int, double > ob1 (10 , 0.23) ;
-                  myclass<char , char *> ob2('X', " This is a test ");
-        ob1.show();     // show int , double 
-        ob2.show();     // show char , char *
-       return 0; }
+    myclass <int, double> ob1(10 ,0.23);
+    myclass <char, char*> ob2('X', " This is a test ");
+    
+    ob1.show();     // show int , double 
+    ob2.show();     // show char , char *
+
+    return 0;
+}
 
 
 
