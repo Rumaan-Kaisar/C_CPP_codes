@@ -527,11 +527,18 @@ int main(){
 
 
 
-/* Example 6:  The following program creates a class that uses two generic data types. */
+/* Example 6:  The following program creates a class that uses two generic data types. 
+
+                The program declares two types of objects. 
+                    ob1 uses integer and double data. 
+                    ob2 uses a character and a character pointer.
+
+                For both cases, the compiler automatically generates the appropriate data and functions for each object.
+*/
 
 #include <iostream>
 
-template <class Type_1 , class Type_2> class myclass{
+template <class Type1 , class Type2> class myclass{
         Type1 i;
         Type2 j;
     public:
@@ -557,30 +564,15 @@ int main(){
 
 
 
-/*  
+/*  --------  STL: Standard Template Library  --------
+
+    C++ provides a library that is built upon template classes. 
+    This library is usually referred to as the "Standard Template Library", or STL for short. 
+    STL provides generic versions of the most commonly used "algorithms" and "data structures". 
 
 
-   The program declares two types of objects. ob1 uses integer and double data. ob2 uses a character and a character pointer. 
-   For both cases, the compiler automatically generates the appropriate data and functions for each object.
-
-Note
-[1] C++ provides a library that is built upon template classes. This library is usually referred to as the Standard Template Library, or STL for short. 
-[2] STL provides generic versions of the most commonly used algorithms and data structures. 
-
-
-// ----  rev[29-Jun-2026]  ----
-
---------    Qwen    --------
-
-
-
-```
-
----
-
-## 6. Additional Notes
-1.  **Standard Template Library (STL):** C++ provides a massive built-in library constructed entirely upon template classes, known as the STL.
-2.  **STL Purpose:** It provides highly optimized, generic versions of the most commonly used algorithms (like sorting and searching) and data structures (like vectors, lists, and queues).
+// ----  rev[04-Jun-2026]  ----
 
 
 */  
+
