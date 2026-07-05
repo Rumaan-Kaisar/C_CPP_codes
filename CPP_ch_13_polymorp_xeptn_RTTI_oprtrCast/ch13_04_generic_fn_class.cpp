@@ -195,6 +195,14 @@
 
         In this context, "template <typename X>" and "template <class X>" mean the exact same thing.
         The "typename" keyword is used to specify an "unknown type" within a template.
+
+
+
+    --------  STL: Standard Template Library  --------
+
+    C++ provides a library that is built upon template classes. 
+    This library is usually referred to as the "Standard Template Library", or STL for short. 
+    STL provides generic versions of the most commonly used "algorithms" and "data structures". 
 */
 
 
@@ -564,12 +572,7 @@ int main(){
 
 
 
-/*  --------  STL: Standard Template Library  --------
-
-    C++ provides a library that is built upon template classes. 
-    This library is usually referred to as the "Standard Template Library", or STL for short. 
-    STL provides generic versions of the most commonly used "algorithms" and "data structures". 
-
+/*  
 
 // ----  rev[04-Jun-2026]  ----
 
