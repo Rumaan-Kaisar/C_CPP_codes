@@ -611,6 +611,7 @@ cout << " Swapped i, j: " << i << ’ ’ << j << endl ;
 cout << " Swapped x, y: " << x << ’ ’ << y << endl ;
 return 0;
 }
+/* 
 The keyword template is used to define a generic function. The line:
 template <class X> void swapargs (X &a, X &b)
 
@@ -627,7 +628,7 @@ that you might encounter in other C++ literature. First, a generic function (tha
 function definition preceded by a template statement) is also called a template function.
 When the compiler creates a specific version of this function, it is said to have created a
 generated function. The act of generating a function is referred to as instantiating it. Put
-differently, a generated function is a specific instance of a template function.
+differently, a generated function is a specific instance of a template function. */
 
 
 
@@ -643,9 +644,11 @@ temp = a;
 a = b;
 b= temp ;
 }
-If you use this form, it is important to understand that no other statements can occur
+
+/* If you use this form, it is important to understand that no other statements can occur
 between the template statement and the start of the generic function definition. For
-example, the following fragment will not compile:
+example, the following fragment will not compile: */
+
 // This will not compile .
 template <class X>
 int i; // this is an error
