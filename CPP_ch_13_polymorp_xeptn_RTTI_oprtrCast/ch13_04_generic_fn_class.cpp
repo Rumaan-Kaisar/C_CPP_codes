@@ -582,24 +582,7 @@ int main(){
 
 
 
-/* 
-The keyword template is used to define a generic function. The line:
-template <class X> void swapargs (X &a, X &b)
 
-tells the compiler two things: that a template is being created and that a generic definition
-is beginning. Here X is a generic type that is used as a placeholder. After the template
-portion, the function swapargs() is declared, using X as the data type of the values that
-will be swapped. In main(), the swapargs() function is called using two different types
-of data: integers and floats. Because swapargs() is a generic function, the compiler
-automatically creates two versions of swapargs()-one that will exchange integer values
-and one that will exchange floating-point values. You should compile and try this program
-now.
-Here are some other terms that are sometimes used when templates are discussed and
-that you might encounter in other C++ literature. First, a generic function (that is, a
-function definition preceded by a template statement) is also called a template function.
-When the compiler creates a specific version of this function, it is said to have created a
-generated function. The act of generating a function is referred to as instantiating it. Put
-differently, a generated function is a specific instance of a template function. */
 
 
 
