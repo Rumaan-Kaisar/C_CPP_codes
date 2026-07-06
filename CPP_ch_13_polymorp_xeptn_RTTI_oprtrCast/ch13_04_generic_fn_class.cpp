@@ -572,7 +572,7 @@ int main(){
 
 
 
-/*  
+
 
 // ----  rev[04-Jun-2026]  ----
 
@@ -584,9 +584,9 @@ int main(){
 
 
 
-Example 1: The following program creates a generic function that swaps the values of the two variables
+/* Example 1: The following program creates a generic function that swaps the values of the two variables
 it is called with. Because the general process of exchanging two values is independent of
-the type of the variables, this process is a good choice to be made into a generic function.
+the type of the variables, this process is a good choice to be made into a generic function. */
 
 // Function template example .
 # include <iostream >
@@ -632,9 +632,9 @@ differently, a generated function is a specific instance of a template function.
 
 
 
-Example 2: The template portion of a generic function definition does not have to be on the same
+/* Example 2: The template portion of a generic function definition does not have to be on the same
 line as the function’s name. For example, the following is also a common way to format
-the swapargs() function:
+the swapargs() function: */
 template <class X>
 void swapargs (X &a, X &b)
 {
@@ -662,9 +662,9 @@ function definition.
 
 
 
-Example 3: As mentioned, instead of using the keyword class, you can use the keyword typename
+/* Example 3: As mentioned, instead of using the keyword class, you can use the keyword typename
 to specify a generic type in a template definition. For example, here is another way to
-declare the swapargs() function.
+declare the swapargs() function. */
 // Use typename
 template <typename X> void swapargs (X &a, X &b)
 284TEMPLATES AND EXCEPTION HANDLING
@@ -681,9 +681,9 @@ but this use is beyond the scope of this book.
 
 
 
-Example 4: You can define more than one generic data type with the template statement, using a
+/* Example 4: You can define more than one generic data type with the template statement, using a
 comma-separated list. For example, this program creates a generic function that has two
-generic types:
+generic types: */
 # include <iostream >
 using namespace std ;
 template <class type1 , class type2 >
@@ -697,12 +697,12 @@ myfunc (10 , "hi");
 myfunc (0.23 , 10L);
 return 0;
 }
-In this example, the placeholder types type1 and type2 are replaced by the compiler with
+/* In this example, the placeholder types type1 and type2 are replaced by the compiler with
 the data types int and char * and double and long, respectively, when the compiler
 generates the specific instances of myfunc().
 Remember: When you create a generic function, you are, in essence, allowing the
 compiler to generate as many different versions of that function as necessary to handle
-the various ways that your program calls that function.
+the various ways that your program calls that function. */
 
 
 
