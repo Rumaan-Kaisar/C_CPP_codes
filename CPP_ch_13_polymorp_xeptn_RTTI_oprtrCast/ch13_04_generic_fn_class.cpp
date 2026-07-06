@@ -584,21 +584,7 @@ int main(){
 
 
 
-/* Example 1: The following program creates a generic function that swaps the values of the two variables
-it is called with. Because the general process of exchanging two values is independent of
-the type of the variables, this process is a good choice to be made into a generic function. */
 
-// Function template example .
-# include <iostream >
-using namespace std ;
-// This is a function template .
-template <class X> void swapargs (X &a, X &b)
-{
-X temp ;
-temp = a;
-a = b;
-b= temp ;
-}
 int main ()
 {
 int i=10 , j =20;
@@ -860,4 +846,3 @@ of "one interface, multiple methods," which is a common theme in C++ programming
 
 
 */  
-
