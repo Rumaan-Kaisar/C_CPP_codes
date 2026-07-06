@@ -774,20 +774,10 @@ functions rather than templates.
 
 
 1. If you have not done so, try each of the preceding examples.
-2. Write a generic function, called min(), that returns the lesser of its two arguments. For
+
+/* 2. Write a generic function, called min(), that returns the lesser of its two arguments. For
 example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonstrate your
-function in a program.
-3. A good candidate for a template function is called find(). This function searches an array
-for an object. It returns either the index of the matching object (if one is found) or -1 if no
-match is found. Here is the prototype for a specific version of find(). Convert find() into
-a generic function and demonstrate your solution within a program. (The size parameter
-specifies the number of elements in the array.)
-int find ( int object , int *list , int size )
-{
-// ...
-}
-4. In your own words, explain why generic functions are valuable and may help simplify the
-source code to program that you create.
+function in a program. */
 
 
 2. # include <iostream >
@@ -813,6 +803,21 @@ This min (X, X) function might cause ambiguity
 because of STL function min ( const _Tp &, const _Tp &).
 Try a different name .
 */
+
+
+/* 
+3. A good candidate for a template function is called find(). This function searches an array
+for an object. It returns either the index of the matching object (if one is found) or -1 if no
+match is found. Here is the prototype for a specific version of find(). Convert find() into
+a generic function and demonstrate your solution within a program. (The size parameter
+specifies the number of elements in the array.)
+int find ( int object , int *list , int size )
+{
+// ...
+}
+ */
+
+
 3. # include <iostream >
 # include <cstring >
 using namespace std ;
@@ -837,6 +842,14 @@ cout << endl ;
 cout << find (0.0 , d, 3);
 return 0;
 }
+
+
+
+
+/* 4. In your own words, explain why generic functions are valuable and may help simplify the
+source code to program that you create. */
+
+
 4. Generic functions are valuable because they allow you to define a general algorithm that
 can be applied to various types of data. (That is, specific versions of the algorithm need
 not be explicitly created by you.) Generic functions further help implement the concept
