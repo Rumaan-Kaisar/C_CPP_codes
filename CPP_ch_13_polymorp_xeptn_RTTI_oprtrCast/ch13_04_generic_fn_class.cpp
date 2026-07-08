@@ -271,9 +271,12 @@ int main() {
                 use a comma-separated list.
 
                 When creating instances of myfunc(), the compiler replaces 
-                the placeholders type1 and type2 with actual data types:
+                the placeholders "type1" and "type2" with actual data types:
                     First instance:     int and char*
                     Second instance:    double and long
+
+            Note: 
+                Creating a GnF allows the compiler to make as many function variations as your program needs.
 */
 
 #include <iostream>
@@ -583,31 +586,12 @@ int main(){
 
 
 
+Remember: 
+By crerating a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle
+the various ways that your program calls that function. 
 
 
-
-/* Example 4: You can define more than one generic data type with the template statement, using a
-comma-separated list. For example, this program creates a generic function that has two
-generic types: */
-# include <iostream >
-using namespace std ;
-template <class type1 , class type2 >
-void myfunc ( type1 x, type2 y)
-{
-cout << x << ’ ’ << y << endl ;
-}
-int main ()
-{
-myfunc (10 , "hi");
-myfunc (0.23 , 10L);
-return 0;
-}
-/* In this example, the placeholder types type1 and type2 are replaced by the compiler with
-the data types int and char * and double and long, respectively, when the compiler
-generates the specific instances of myfunc().
-Remember: When you create a generic function, you are, in essence, allowing the
-compiler to generate as many different versions of that function as necessary to handle
-the various ways that your program calls that function. */
+*/
 
 
 
