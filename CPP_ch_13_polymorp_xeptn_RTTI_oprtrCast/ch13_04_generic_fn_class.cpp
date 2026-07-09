@@ -337,10 +337,10 @@ int main(){
 
 
 
-/*  Example 3: If your functions need to do different things based on the data type, you "must" use function overloading. 
+/*  Example 3: If your functions need to do different things based on the data type, you "must" use function OVERLOADING. 
                 In the following "outdata" program, the "int" version simply prints the number, 
                 while the "double" version adds special formatting (like '#' fills and specific decimal precision). 
-                Because the internal actions are completely different, a single generic function cannot replace them.
+                Because the internal actions are completely different, a single Generic Function cannot replace them.
 */
 
 
@@ -596,14 +596,6 @@ int main(){
 
 */
 
-
-
-
-/* Example 5: Generic functions are similar to overloaded functions except that they are more restrictive.
-When functions are overloaded, you can have different actions performed within the body
-of each function. But a generic function must perform the same general action for all
-versions. For example, the following overloaded functions cannot be replaced by a generic
-function because they do not do the same thing: */
 
 
 
