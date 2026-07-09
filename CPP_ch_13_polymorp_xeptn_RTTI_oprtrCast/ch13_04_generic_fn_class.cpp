@@ -386,6 +386,7 @@ int main() {
 
 #include <iostream>
 
+// A function template
 template <class X> void swapargs(X &a, X &b) { 
     X temp; 
     temp = a; 
@@ -405,14 +406,24 @@ int main() {
     std::cout << " Original i, j: " << i << ' ' << j << std::endl;
     std::cout << " Original x, y: " << x << ' ' << y << std::endl;
 
-    swapargs(i, j); // Calls the explicit overloaded version (int)
-    swapargs(x, y); // Calls the generic version (float)
+    swapargs(i, j); // Calls the explicit overloaded version (swap int)
+    swapargs(x, y); // Calls the generic version (swap float)
     
     std::cout << " Swapped i, j: " << i << ' '<< j << std::endl;
     std::cout << " Swapped x, y: " << x << ' ' << y << std::endl;
 
     return 0; 
 }
+
+
+/*  Note:
+        Manual overloading of a "template", as shown in this example, 
+        allows you to tailor a version of a generic function to accommodate a special situation. 
+        
+        However, 
+            in general, if you need to have "different versions of a function" (differnt algorithm) for different data types, 
+            you should use overloaded functions rather than templates. 
+*/
 
 
 
@@ -594,48 +605,10 @@ int main(){
  
 
 
-*/
 
 
 
 
-
-// Overriding a template function .
-# include <iostream >
-using namespace std ;
-// This is a function template .
-template <class X> void swapargs (X &a, X &b)
-{
-X temp ;
-temp = a;
-a = b;
-b= temp ;
-}
-// This overrides the generic version of swapargs ().
-void swapargs ( int a, int b)
-{
-cout << " this is inside swapargs (int ,int )\n";
-}
-int main ()
-{
-int i=10 , j =20;
-float x=10 , y =23.3;
-cout << " Original i, j: " << i << ’ ’ << j << endl ;
-cout << " Original x, y: " << x << ’ ’ << y << endl ;
-swapargs (i, j); // calls overloaded swapargs ()
-swapargs (x, y); // swap floats
-cout << " Swapped i, j: " << i << ’ ’ << j << endl ;
-cout << " Swapped x, y: " << x << ’ ’ << y << endl ;
-return 0;
-}
-As the comments indicate, when swapargs(i,j) is called, it invokes the explicitly overloaded version of swapargs() defined in the program. Thus, the compiler does not
-/* generate this version of the generic swapargs() function because the generic function is
-overridden by the explicit overloading.
-Manual overloading of a template, as shown in this example, allows you to tailor a version
-of a generic function to accommodate a special situation. However, in general, if you need
-
-to have different versions of a function for different data types, you should use overloaded
-functions rather than templates. */
 
 
 
