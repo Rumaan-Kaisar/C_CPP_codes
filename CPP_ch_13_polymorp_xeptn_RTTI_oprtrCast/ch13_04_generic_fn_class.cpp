@@ -600,11 +600,6 @@ int main(){
 
 
 
-
-/* Example 6: Even though a template function overloads itself as needed, you can explicitly overload
-one, too. If you overload a generic function, that overloaded function overrides (or *hides*)
-the generic function relative to that specific version. For example, consider this version of
-Example 1: */
 // Overriding a template function .
 # include <iostream >
 using namespace std ;
