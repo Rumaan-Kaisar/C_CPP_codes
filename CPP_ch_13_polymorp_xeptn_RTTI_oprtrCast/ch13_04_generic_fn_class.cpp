@@ -545,6 +545,11 @@ int main(){
                     ob2 uses a character and a character pointer.
 
                 For both cases, the compiler automatically generates the appropriate data and functions for each object.
+
+            Remember: 
+            By crerating a GnF, you are, in essence, allowing the compiler to generate as many 
+                different versions of that function as necessary to handle
+                the various ways that your program calls that function.
 */
 
 #include <iostream>
@@ -586,9 +591,7 @@ int main(){
 
 
 
-Remember: 
-By crerating a GnF, you are, in essence, allowing the compiler to generate as many different versions of that function as necessary to handle
-the various ways that your program calls that function. 
+ 
 
 
 */
@@ -743,6 +746,5 @@ source code to program that you create. */
 can be applied to various types of data. (That is, specific versions of the algorithm need
 not be explicitly created by you.) Generic functions further help implement the concept
 of "one interface, multiple methods," which is a common theme in C++ programming.
-
 
 
