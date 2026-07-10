@@ -674,12 +674,17 @@ return 0;
 
 
 
-/* Example 9: Explain why generic functions are valuable and may help simplify the source code.
+/* Example 9: Explain why generic functions are useful to simplify the source code.
 
-Generic functions are valuable because they allow you to define a general algorithm that
-can be applied to various types of data. (That is, specific versions of the algorithm need
-not be explicitly created by you.) Generic functions further help implement the concept
-of "one interface, multiple methods," which is a common theme in C++ programming.
+            ans:
+            
+                Generic functions let you write one function that works with "different data types". 
+                This saves time, reduces repeated code, and makes programs easier to write and maintain. 
+                
+                They support the idea of "one interface, multiple methods", 
+                    where the same function can work differently depending on the data type.
+
+
 */
 
 
