@@ -603,7 +603,7 @@ int main(){
 
 
 
-/* 2. Write a generic function, called min(), that returns the lesser of its two arguments. For
+/* Example 7: Write a generic function, called min(), that returns the lesser of its two arguments. For
 example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonstrate your
 function in a program. */
 
@@ -634,7 +634,7 @@ Try a different name .
 
 
 /* 
-3. A good candidate for a template function is called find(). This function searches an array
+Example 8: A good candidate for a template function is called find(). This function searches an array
 for an object. It returns either the index of the matching object (if one is found) or -1 if no
 match is found. Here is the prototype for a specific version of find(). Convert find() into
 a generic function and demonstrate your solution within a program. (The size parameter
@@ -674,12 +674,14 @@ return 0;
 
 
 
-/* 4. In your own words, explain why generic functions are valuable and may help simplify the
-source code to program that you create. */
+/* Example 9: Explain why generic functions are valuable and may help simplify the source code.
 
-
-4. Generic functions are valuable because they allow you to define a general algorithm that
+Generic functions are valuable because they allow you to define a general algorithm that
 can be applied to various types of data. (That is, specific versions of the algorithm need
 not be explicitly created by you.) Generic functions further help implement the concept
 of "one interface, multiple methods," which is a common theme in C++ programming.
+*/
+
+
+
 
