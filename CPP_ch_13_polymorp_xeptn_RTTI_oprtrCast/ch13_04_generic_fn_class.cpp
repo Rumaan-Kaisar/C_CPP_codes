@@ -602,20 +602,6 @@ int main(){
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-1. If you have not done so, try each of the preceding examples.
 
 /* 2. Write a generic function, called min(), that returns the lesser of its two arguments. For
 example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonstrate your
@@ -696,5 +682,4 @@ source code to program that you create. */
 can be applied to various types of data. (That is, specific versions of the algorithm need
 not be explicitly created by you.) Generic functions further help implement the concept
 of "one interface, multiple methods," which is a common theme in C++ programming.
-
 
