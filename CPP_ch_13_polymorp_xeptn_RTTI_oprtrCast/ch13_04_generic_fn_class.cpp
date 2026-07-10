@@ -608,8 +608,8 @@ example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonst
 function in a program. */
 
 
-2. # include <iostream >
-using namespace std ;
+#include <iostream>
+
 template <class X> X min (X a, X b)
 {
 if(a <=b)
@@ -619,11 +619,11 @@ return b;
 }
 int main ()
 {
-cout << min (12.2 , 2.0) ;
-cout << endl ;
-cout << min (3, 4);
-cout << endl ;
-cout << min (’c’, ’a’);
+std::cout << min (12.2 , 2.0) ;
+std::cout << endl ;
+std::cout << min (3, 4);
+std::cout << endl ;
+std::cout << min (’c’, ’a’);
 return 0;
 }
 /*
@@ -633,12 +633,14 @@ Try a different name .
 */
 
 
-/* 
-Example 8: A good candidate for a template function is called find(). This function searches an array
+
+
+/* Example 8: A good candidate for a template function is called find(). This function searches an array
 for an object. It returns either the index of the matching object (if one is found) or -1 if no
 match is found. Here is the prototype for a specific version of find(). Convert find() into
-a generic function and demonstrate your solution within a program. (The size parameter
-specifies the number of elements in the array.)
+a generic function and demonstrate your solution within a program. 
+(The size parameter specifies the number of elements in the array.)
+
 int find ( int object , int *list , int size )
 {
 // ...
@@ -646,9 +648,9 @@ int find ( int object , int *list , int size )
  */
 
 
-3. # include <iostream >
-# include <cstring >
-using namespace std ;
+#include <iostream>
+#include <cstring>
+
 template <class X> int find (X object , X *list , int size )
 {
 int i;
@@ -677,14 +679,15 @@ return 0;
 /* Example 9: Explain why generic functions are useful to simplify the source code.
 
             ans:
-            
+                Generic functions are valuable because they allow you to define 
+                    a general algorithm that can be applied to various types of data. 
+                    (i.e. specific versions of the algorithm need not be explicitly created by you.)
+
                 Generic functions let you write one function that works with "different data types". 
                 This saves time, reduces repeated code, and makes programs easier to write and maintain. 
                 
                 They support the idea of "one interface, multiple methods", 
                     where the same function can work differently depending on the data type.
-
-
 */
 
 
