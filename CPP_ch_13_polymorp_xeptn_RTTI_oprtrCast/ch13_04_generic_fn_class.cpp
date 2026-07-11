@@ -606,15 +606,33 @@ int main(){
 
 /* Example 7: Write a generic function, called min(), that returns the lesser of its two arguments. 
                 For example, min(3, 4) will return 3 and min('c', 'a') will return a.
+
+
+                template <typename X>
+
+                    Declares a template.
+                    X is a type parameter (a placeholder for an actual data type).
+                    "typename" here means "type".
+
+
+                X min(X a, X b)
+
+                    "min" functions return type is X.
+                    First parameter a is of type X.
+                    Second parameter b is of type X.
+
+                    When the compiler sees this function, it doesn't yet know what X is.
 */
 
 #include <iostream>
 
 // generic function
-template <class X> X min(X a, X b) {
+template <typename X> X min(X a, X b) {
     if(a <= b) return a;
     else return b;
 }
+
+// ---- rev[11-Jul-2026] ----
 
 int main()
 {
@@ -622,7 +640,7 @@ std::cout << min (12.2 , 2.0) ;
 std::cout << endl ;
 std::cout << min (3, 4);
 std::cout << endl ;
-std::cout << min (’c’, ’a’);
+std::cout << min ('c', 'a');
 return 0;
 }
 
