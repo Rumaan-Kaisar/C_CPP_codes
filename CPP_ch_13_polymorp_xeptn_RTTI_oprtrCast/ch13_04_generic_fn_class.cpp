@@ -592,8 +592,9 @@ int main(){
 
 
 
+// all ex above tested
 
-// ----  rev[04-Jun-2026]  ----
+// ----  rev[11-Jun-2026]  ----
 
 
 
@@ -603,21 +604,19 @@ int main(){
 
 
 
-/* Example 7: Write a generic function, called min(), that returns the lesser of its two arguments. For
-example, min(3, 4) will return 3 and min(’c’, ’a’ will return a. Demonstrate your
-function in a program. */
-
+/* Example 7: Write a generic function, called min(), that returns the lesser of its two arguments. 
+                For example, min(3, 4) will return 3 and min('c', 'a') will return a.
+*/
 
 #include <iostream>
 
-template <class X> X min (X a, X b)
-{
-if(a <=b)
-return a;
-else
-return b;
+// generic function
+template <class X> X min(X a, X b) {
+    if(a <= b) return a;
+    else return b;
 }
-int main ()
+
+int main()
 {
 std::cout << min (12.2 , 2.0) ;
 std::cout << endl ;
@@ -626,6 +625,8 @@ std::cout << endl ;
 std::cout << min (’c’, ’a’);
 return 0;
 }
+
+
 /*
 This min (X, X) function might cause ambiguity
 because of STL function min ( const _Tp &, const _Tp &).
@@ -689,7 +690,6 @@ return 0;
                 They support the idea of "one interface, multiple methods", 
                     where the same function can work differently depending on the data type.
 */
-
 
 
 
