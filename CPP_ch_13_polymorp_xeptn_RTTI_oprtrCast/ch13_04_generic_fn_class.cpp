@@ -632,27 +632,28 @@ template <typename X> X min_(X a, X b) {
     else return b;
 }
 
-// ---- rev[11-Jul-2026] ----
 
 int main() {
     std::cout << min_(12.2 , 2.0) ;
     std::cout << std::endl;
-    
+
     std::cout << min_(3, 4);
     std::cout << std::endl;
-    
+
     std::cout << min_('c', 'a');
 
     return 0;
 }
 
 
-/*
-This min (X, X) function might cause ambiguity
-because of STL function min ( const _Tp &, const _Tp &).
-Try a different name.
+/*  Note:
+        This min(X, X) function might cause ambiguity
+        because of STL function min(const _Tp &, const _Tp &).
+        Try a different name like min_().
 */
 
+
+// ---- rev[12-Jul-2026] ----
 
 
 
