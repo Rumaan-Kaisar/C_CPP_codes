@@ -627,28 +627,30 @@ int main(){
 #include <iostream>
 
 // generic function
-template <typename X> X min(X a, X b) {
+template <typename X> X min_(X a, X b) {
     if(a <= b) return a;
     else return b;
 }
 
 // ---- rev[11-Jul-2026] ----
 
-int main()
-{
-std::cout << min (12.2 , 2.0) ;
-std::cout << endl ;
-std::cout << min (3, 4);
-std::cout << endl ;
-std::cout << min ('c', 'a');
-return 0;
+int main() {
+    std::cout << min_(12.2 , 2.0) ;
+    std::cout << std::endl;
+    
+    std::cout << min_(3, 4);
+    std::cout << std::endl;
+    
+    std::cout << min_('c', 'a');
+
+    return 0;
 }
 
 
 /*
 This min (X, X) function might cause ambiguity
 because of STL function min ( const _Tp &, const _Tp &).
-Try a different name .
+Try a different name.
 */
 
 
