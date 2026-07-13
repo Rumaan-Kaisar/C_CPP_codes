@@ -642,16 +642,6 @@ int main() {
 
 
 
-
-// all ex above tested
-
-// ----  rev[13-Jun-2026]  ----
-
-
-
-// --------  Generic-Functions  --------
-
-
 /* Example 8: Following template function find() searches an array for an object.
                 It returns either the index of the matching object (if one is found) or 
                 -1 if no match is found. 
@@ -676,12 +666,12 @@ int main() {
 #include <cstring>
 
 template <class X> int find(X object, X *list, int size) {
-int i;
-for (i =0; i< size ; i ++)
-if( object == list [i])
-return i;
-return -1;
+    int i;
+
+    for(i=0; i<size; i++) if( object == list[i]) return i;
+    return -1;
 }
+
 int main ()
 {
 int a[] = {1, 2, 3, 4};
@@ -712,6 +702,5 @@ return 0;
                 They support the idea of "one interface, multiple methods", 
                     where the same function can work differently depending on the data type.
 */
-
 
 
