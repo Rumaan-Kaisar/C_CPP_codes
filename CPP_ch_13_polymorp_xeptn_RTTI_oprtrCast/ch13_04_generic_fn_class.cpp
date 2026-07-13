@@ -652,26 +652,20 @@ int main() {
 // --------  Generic-Functions  --------
 
 
-
-
-
-
-
 /* Example 8: Following template function find() searches an array for an object.
                 It returns either the index of the matching object (if one is found) or 
                 -1 if no match is found. 
  
- Here is the prototype for a specific version of find(). 
- 
- We need to convert find() into
-a generic function and apply it in a C++ progrma.
-(The size parameter specifies the number of elements in the array.)
+                Here is the prototype for "int" version of find():
 
-int find ( int object , int *list , int size )
-{
-// ...
-}
- */
+                    int find(int object, int *list, int size) {
+                        // ...
+                    }
+
+                    size: specifies the number of elements in the array.
+                
+                We need to convert find() into a generic function and apply it in a C++ progrma.
+*/
 
 
 #include <iostream>
