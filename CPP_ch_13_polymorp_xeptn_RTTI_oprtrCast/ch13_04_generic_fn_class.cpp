@@ -591,19 +591,6 @@ int main(){
 
 
 
-
-// all ex above tested
-
-// ----  rev[11-Jun-2026]  ----
-
-
-
-// --------  Generic-Functions  --------
-
-
-
-
-
 /* Example 7: Write a generic function, called min(), that returns the lesser of its two arguments. 
                 For example, min(3, 4) will return 3 and min('c', 'a') will return a.
 
@@ -653,12 +640,27 @@ int main() {
 */
 
 
-// ---- rev[12-Jul-2026] ----
 
 
 
-/* Example 8: A good candidate for a template function is called find(). This function searches an array
-for an object. It returns either the index of the matching object (if one is found) or -1 if no
+// all ex above tested
+
+// ----  rev[13-Jun-2026]  ----
+
+
+
+// --------  Generic-Functions  --------
+
+
+
+
+
+
+
+/* Example 8: Following template function find() searches an array for an object.
+
+
+ It returns either the index of the matching object (if one is found) or -1 if no
 match is found. Here is the prototype for a specific version of find(). Convert find() into
 a generic function and demonstrate your solution within a program. 
 (The size parameter specifies the number of elements in the array.)
