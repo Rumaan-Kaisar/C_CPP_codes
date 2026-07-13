@@ -658,11 +658,13 @@ int main() {
 
 
 /* Example 8: Following template function find() searches an array for an object.
-
-
- It returns either the index of the matching object (if one is found) or -1 if no
-match is found. Here is the prototype for a specific version of find(). Convert find() into
-a generic function and demonstrate your solution within a program. 
+                It returns either the index of the matching object (if one is found) or 
+                -1 if no match is found. 
+ 
+ Here is the prototype for a specific version of find(). 
+ 
+ We need to convert find() into
+a generic function and apply it in a C++ progrma.
 (The size parameter specifies the number of elements in the array.)
 
 int find ( int object , int *list , int size )
