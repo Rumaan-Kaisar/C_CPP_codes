@@ -663,6 +663,10 @@ int main() {
                     }
 
                     size: specifies the number of elements in the array.
+                    
+                    Notice: 
+                        the return type is "int", which remains same for the GnF
+                        the "object" and "*list" types will be generic.
                 
                 We need to convert find() into a generic function and apply it in a C++ progrma.
 */
@@ -671,8 +675,7 @@ int main() {
 #include <iostream>
 #include <cstring>
 
-template <class X> int find (X object , X *list , int size )
-{
+template <class X> int find(X object, X *list, int size) {
 int i;
 for (i =0; i< size ; i ++)
 if( object == list [i])
