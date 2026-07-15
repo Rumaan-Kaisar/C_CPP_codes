@@ -774,6 +774,9 @@ char zip [12];
 Then, to use list to generate objects that will store objects of type addr, use a declaration
 like this (assuming that structvar contains a valid addr structure):
 list <addr > obj ( structvar );
+
+
+
 2. Here is another example of a generic class. It is a reworking of the stack class first
 introduced in Chapter 1. However, in this case, stack has been made into a template
 class. Thus, it can be used to store any type of object. In the example, shown here, a
@@ -894,19 +897,8 @@ the appropriate data and functions to accommodate the way the objects are create
 
 
 
-
-1. If you have not yet done so, compile and run the two generic class examples. Try declaring
-lists and/or stacks of different data types.
 2. Create and demonstrate a generic queue class.
-3. Create a generic class, called input, that does the following when its constructor is called:
-➤ prompts the user for input,
-➤ inputs the data entered by the user, and
-➤ reprompts if the data is not within a predetermined range.
-Objects of type input should be declared like this:
-input ob(" prompt message ", min_value , max_value )
-Here prompt message is the message that prompt for input. The minimum and maximum
-acceptable values are specified by min-value and max-value, respectively. (Note: the type
-of data entered by the user will be the same as the type of min-valueand max-value.)
+
 
 2. // Create a generic queue .
 #include <iostream>
@@ -965,6 +957,20 @@ cout << " Dequeue 2: " << q2.deq () << ’\n’;
 }
 return 0;
 }
+
+
+
+
+
+3. Create a generic class, called input, that does the following when its constructor is called:
+➤ prompts the user for input,
+➤ inputs the data entered by the user, and
+➤ reprompts if the data is not within a predetermined range.
+Objects of type input should be declared like this:
+input ob(" prompt message ", min_value , max_value )
+Here prompt message is the message that prompt for input. The minimum and maximum
+acceptable values are specified by min-value and max-value, respectively. (Note: the type
+of data entered by the user will be the same as the type of min-valueand max-value.)
 
 
 #include <iostream>
