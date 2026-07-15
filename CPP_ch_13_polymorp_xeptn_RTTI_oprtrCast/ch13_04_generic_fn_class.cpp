@@ -865,8 +865,8 @@ For example, the following short example creates a class that uses two generic d
 This example uses two generic data types in a
 class definition
 */
-# include <iostream >
-using namespace std ;
+# include <iostream>
+
 template <class Type1 , class Type2 > class myclass
 {
 Type1 i;
@@ -877,8 +877,7 @@ void show () { cout << i << ’ ’ << j << ’\n’; }
 };
 int main ()
 {
-291TEACH YOURSELF
-C++
+
 myclass <int , double > ob1 (10 , 0.23) ;
 myclass <char , char *> ob2(’X’, " This is a test ");
 ob1 . show (); // show int , double
@@ -910,9 +909,9 @@ acceptable values are specified by min-value and max-value, respectively. (Note:
 of data entered by the user will be the same as the type of min-valueand max-value.)
 
 2. // Create a generic queue .
-# include <iostream >
-using namespace std ;
-# define SIZE 100
+#include <iostream>
+
+#define SIZE 100
 template <class Qtype > class q_type
 {
 Qtype queue [ SIZE ]; // holds the queue
@@ -968,8 +967,8 @@ return 0;
 }
 
 
-3. # include <iostream >
-using namespace std ;
+#include <iostream>
+
 template <class X> class input
 {
 X data ;
@@ -994,6 +993,5 @@ input <int > i(" enter int ", 0, 10) ;
 input <char > c(" enter char ", ’A’, ’Z’);
 return 0;
 }
-
 
 
