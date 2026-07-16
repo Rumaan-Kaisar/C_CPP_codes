@@ -711,16 +711,10 @@ the class by creating a linked list that stores characters.
 
 
 
-template <class data_t > list <data_t >:: list ( data_t d)
-{
-data = d;
-next = 0;
-}
+
 int main ()
 {
-list <char > start (’a’);
-list <char > *p, * last ;
-int i;
+
 // build a list
 last = & start ;
 for (i =1; i <26; i ++)
