@@ -711,28 +711,6 @@ the class by creating a linked list that stores characters.
 
 
 
-
-int main ()
-{
-
-// build a list
-last = & start ;
-for (i =1; i <26; i ++)
-{
-p = new list <char >( ’a’ + i);
-p->add ( last );
-last = p;
-}
-// follow the list
-p = & start ;
-while (p)
-{
-cout << p-> getdata ();
-p = p-> getnext ();
-
-}
-return 0;
-}
 As you can see, the declaration of a generic class is similar to that of a generic function.
 The actual type of data stored by the list is generic in the class declaration. It is not until
 an object of the list is declared that the actual data type is determined. In this example,
