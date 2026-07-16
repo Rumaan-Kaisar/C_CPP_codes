@@ -703,23 +703,14 @@ int main() {
 
 
 
+
 // --------  Generic-Classes  --------
 
 1. This program creates a very simple generic singly linked list class. It then demonstrates
 the class by creating a linked list that stores characters.
-// A simple generic linked list .
-# include <iostream >
-using namespace std ;
-template <class data_t > class list
-{
-data_t data ;
-list * next ;
-public :
-list ( data_t d);
-void add ( list * node ) { node -> next = this ; next = 0; }
-list * getnext () { return next ; }
-data_t getdata () { return data ; }
-};
+
+
+
 template <class data_t > list <data_t >:: list ( data_t d)
 {
 data = d;
