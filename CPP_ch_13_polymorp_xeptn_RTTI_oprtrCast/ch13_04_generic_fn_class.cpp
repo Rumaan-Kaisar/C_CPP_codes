@@ -708,10 +708,17 @@ int main() {
 
 
 
-2. Here is another example of a generic class. It is a reworking of the stack class first
-introduced in Chapter 1. However, in this case, stack has been made into a template
-class. Thus, it can be used to store any type of object. In the example, shown here, a
-character stack and a floating-point stack are created:
+
+/* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
+                However, in this case, stack has been made into a template class. 
+                Thus, it can be used to store any type of object. 
+                In this example, a character stack and a floating-point stack are created.
+*/
+
+
+
+
+
 // This function demonstrates a generic stack ,
 # include <iostream >
 using namespace std ;
