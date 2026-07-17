@@ -715,17 +715,16 @@ int main() {
                 In this example, a character stack and a floating-point stack are created.
 */
 
-# include <iostream >
-using namespace std ;
-# define SIZE 10
-// Create a generic stack class
-template <class StackType > class stack
-{
-StackType stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
+#include <iostream>
 
-public :
-void init () { tos = 0; } // initialize stack
+#define SIZE 10
+
+// Create a generic stack class
+template <class StackType> class stack {
+        StackType stck [SIZE];      // holds the stack
+        int tos;                    // index of top of stack
+    public:
+        void init() { tos = 0; } // initialize stack
 void push ( StackType ch); // push object on stack
 StackType pop (); // pop object from stack
 };
