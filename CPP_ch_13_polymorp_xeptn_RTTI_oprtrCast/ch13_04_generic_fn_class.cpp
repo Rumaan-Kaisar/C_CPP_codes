@@ -724,32 +724,30 @@ template <class StackType> class stack {
         StackType stck [SIZE];      // holds the stack
         int tos;                    // index of top of stack
     public:
-        void init() { tos = 0; } // initialize stack
-void push ( StackType ch); // push object on stack
-StackType pop (); // pop object from stack
+        void init() { tos = 0; }    // initialize stack
+        void push(StackType ch);    // push object on stack
+        StackType pop();            // pop object from stack
 };
-// Push an object .
-template <class StackType >
-void stack < StackType >:: push ( StackType ob)
-{
-if( tos == SIZE )
-{
-cout << " Stack is full .\n";
-return ;
+
+
+// Push an object (GnF)
+template <class StackType> void stack <StackType>::push(StackType ob) {
+    if(tos == SIZE) {
+        std::cout << " Stack is full .\n";
+        return;
+    }
+    stck [tos] = ob;
+    tos++;
 }
-stck [ tos ] = ob;
-tos ++;
+
+
+// Pop an object (GnF)
+template <class StackType> StackType stack <StackType>::pop() {
+if(tos==0) {
+    std::cout << " Stack is empty .\n";
+    return 0;   // return null on empty stack
 }
-// Pop an object
-template <class StackType >
-StackType stack < StackType >:: pop ()
-{
-if( tos ==0)
-{
-cout << " Stack is empty .\n";
-return 0; // return null on empty stack
-}
-tos --;
+tos--;
 return stck [ tos ];
 }
 int main ()
