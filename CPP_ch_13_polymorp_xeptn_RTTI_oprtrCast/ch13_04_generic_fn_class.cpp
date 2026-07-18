@@ -743,13 +743,15 @@ template <class StackType> void stack <StackType>::push(StackType ob) {
 
 // Pop an object (GnF)
 template <class StackType> StackType stack <StackType>::pop() {
-if(tos==0) {
-    std::cout << " Stack is empty .\n";
-    return 0;   // return null on empty stack
+    if(tos==0) {
+        std::cout << " Stack is empty .\n";
+        return 0;   // return null on empty stack
+    }
+    tos--;
+    return stck[tos];
 }
-tos--;
-return stck [ tos ];
-}
+
+
 int main ()
 {
 // Demonstrate character stacks .
