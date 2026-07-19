@@ -771,25 +771,27 @@ int main() {
     for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop() << "\n";
     for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop() << "\n";
 
-// demonstrate double stacks
-stack < double > ds1 , ds2 ; // create two stacks
+    // demonstrate double stacks
+    stack <double> ds1, ds2;    // create two stacks
 
-// initialize the stacks
-ds1 . init ();
-ds2 . init ();
-ds1 . push (1.1) ;
-ds2 . push (2.2) ;
-ds1 . push (3.3) ;
-ds2 . push (4.4) ;
-ds1 . push (5.5) ;
-ds2 . push (6.6) ;
+    // initialize the stacks
+    ds1.init();
+    ds2.init();
 
-for (i =0; i <3; i ++)
-cout << " Pop ds1 : " << ds1 .pop () << "\n";
-for (i =0; i <3; i ++)
-cout << " Pop ds2 : " << ds2 .pop () << "\n";
-return 0;
+    ds1.push(1.1);
+    ds2.push(2.2);
+    ds1.push(3.3);
+    ds2.push(4.4);
+    ds1.push(5.5);
+    ds2.push(6.6);
+
+    for (i=0; i<3; i++) cout << " Pop ds1 : " << ds1 .pop () << "\n";
+    for (i=0; i<3; i++) cout << " Pop ds2 : " << ds2 .pop () << "\n";
+
+    return 0;
 }
+
+
 As the stacl class (and the preceding list class) illustrates, generic function and classes
 provide a powerful tool that you can use to maximize your programming time because
 they allow you to define the general form of an algorithm that can be used with any type
