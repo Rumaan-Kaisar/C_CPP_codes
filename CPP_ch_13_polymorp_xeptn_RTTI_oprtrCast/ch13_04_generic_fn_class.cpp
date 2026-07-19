@@ -768,13 +768,12 @@ int main() {
     s1.push('c');
     s2.push('z');
 
-for (i =0; i <3; i ++)
-std::cout << " Pop s1: " << s1.pop () << "\n";
+    for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop() << "\n";
 
-for (i =0; i <3; i ++)
-std::cout << " Pop s2: " << s2.pop () << "\n";
 // demonstrate double stacks
 stack < double > ds1 , ds2 ; // create two stacks
+
 // initialize the stacks
 ds1 . init ();
 ds2 . init ();
@@ -784,6 +783,7 @@ ds1 . push (3.3) ;
 ds2 . push (4.4) ;
 ds1 . push (5.5) ;
 ds2 . push (6.6) ;
+
 for (i =0; i <3; i ++)
 cout << " Pop ds1 : " << ds1 .pop () << "\n";
 for (i =0; i <3; i ++)
