@@ -801,15 +801,7 @@ int main() {
 
 
 
-
-
-This program produces the following output:
-10 0.23
-X This is a test
-
-The program declares two types of objects. ob1 uses integer and double data. ob2 uses
-a character and a character pointer. For both cases, the compiler automatically generates
-the appropriate data and functions to accommodate the way the objects are created.
+// ----  rev [20-Jul-2026]  ----
 
 
 
