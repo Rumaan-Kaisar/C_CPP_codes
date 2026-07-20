@@ -554,7 +554,10 @@ int main(){
 
 
 
-/* Example 6:  The following program creates a class that uses two generic data types. 
+/* Example 6:  A template class can have more than one generic data type.
+                Using comma-separated list of data types within the template specification.
+
+                The following program creates a class that uses two generic data types. 
 
                 The program declares two types of objects. 
                     ob1 uses integer and double data. 
@@ -798,10 +801,6 @@ int main() {
 
 
 
-
-/* Example 11: A template class can have more than one generic data type. Simply declare all the data
-types required by the class in a comma-separated list within the template specification.
-For example, the following short example creates a class that uses two generic data types. */
 
 
 /*
