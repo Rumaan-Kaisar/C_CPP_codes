@@ -203,6 +203,11 @@
     C++ provides a library that is built upon template classes. 
     This library is usually referred to as the "Standard Template Library", or STL for short. 
     STL provides generic versions of the most commonly used "algorithms" and "data structures". 
+
+
+    Following programs illustrates, 
+        Generic functions and classes save programming time by defining algorithms that work with any data type, 
+        eliminating the need to write separate implementations for each type.
 */
 
 
@@ -792,11 +797,10 @@ int main() {
 }
 
 
-As the stacl class (and the preceding list class) illustrates, generic function and classes
-provide a powerful tool that you can use to maximize your programming time because
-they allow you to define the general form of an algorithm that can be used with any type
-of data. You are saved from the tedium of creating separate implementations for each
-data type that you want the algorithm to work with.
+
+
+
+
 3. A template class can have more than one generic data type. Simply declare all the data
 types required by the class in a comma-separated list within the template specification.
 For example, the following short example creates a class that uses two generic data types:
@@ -823,6 +827,7 @@ ob1 . show (); // show int , double
 ob2 . show (); // show char , char *
 return 0;
 }
+
 This program produces the following output:
 10 0.23
 X This is a test
