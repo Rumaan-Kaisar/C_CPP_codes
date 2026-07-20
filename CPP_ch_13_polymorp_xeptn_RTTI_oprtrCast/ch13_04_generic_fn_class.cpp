@@ -587,7 +587,7 @@ template <class Type1 , class Type2> class myclass{
 };
 
 int main(){
-    myclass <int, double> ob1(10 ,0.23);
+    myclass <int, double> ob1(10, 0.23);
     myclass <char, char*> ob2('X', " This is a test ");
     
     ob1.show();     // show int , double  i.e. Outputs: 10 0.23
@@ -802,30 +802,6 @@ int main() {
 
 
 
-
-/*
-This example uses two generic data types in a
-class definition
-*/
-# include <iostream>
-
-template <class Type1 , class Type2 > class myclass
-{
-Type1 i;
-Type2 j;
-public :
-myclass ( Type1 a, Type2 b) { i = a; j = b; }
-void show () { cout << i << ’ ’ << j << ’\n’; }
-};
-int main ()
-{
-
-myclass <int , double > ob1 (10 , 0.23) ;
-myclass <char , char *> ob2(’X’, " This is a test ");
-ob1 . show (); // show int , double
-ob2 . show (); // show char , char *
-return 0;
-}
 
 This program produces the following output:
 10 0.23
