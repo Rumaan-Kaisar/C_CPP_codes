@@ -712,8 +712,6 @@ int main() {
 // --------  Generic-Classes  --------
 
 
-
-
 /* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
                 However, in this case, stack has been made into a template class (i.e a generic stack). 
                 Thus, it can be used to store any type of object. 
@@ -801,9 +799,11 @@ int main() {
 
 
 
-3. A template class can have more than one generic data type. Simply declare all the data
+/* Example 11: A template class can have more than one generic data type. Simply declare all the data
 types required by the class in a comma-separated list within the template specification.
-For example, the following short example creates a class that uses two generic data types:
+For example, the following short example creates a class that uses two generic data types. */
+
+
 /*
 This example uses two generic data types in a
 class definition
@@ -831,6 +831,7 @@ return 0;
 This program produces the following output:
 10 0.23
 X This is a test
+
 The program declares two types of objects. ob1 uses integer and double data. ob2 uses
 a character and a character pointer. For both cases, the compiler automatically generates
 the appropriate data and functions to accommodate the way the objects are created.
