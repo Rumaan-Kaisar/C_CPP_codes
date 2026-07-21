@@ -791,8 +791,8 @@ int main() {
     ds1.push(5.5);
     ds2.push(6.6);
 
-    for (i=0; i<3; i++) cout << " Pop ds1 : " << ds1 .pop () << "\n";
-    for (i=0; i<3; i++) cout << " Pop ds2 : " << ds2 .pop () << "\n";
+    for (i=0; i<3; i++) std::cout << " Pop ds1 : " << ds1.pop() << "\n";
+    for (i=0; i<3; i++) std::cout << " Pop ds2 : " << ds2.pop() << "\n";
 
     return 0;
 }
@@ -908,5 +908,4 @@ input <int > i(" enter int ", 0, 10) ;
 input <char > c(" enter char ", ’A’, ’Z’);
 return 0;
 }
-
 
