@@ -727,7 +727,7 @@ int main() {
 
 // Create a generic stack class
 template <class StackType> class stack {
-        StackType stck [SIZE];      // holds the stack
+        StackType stck[SIZE];       // holds the stack
         int tos;                    // index of top of stack
     public:
         void init() { tos = 0; }    // initialize stack
@@ -806,22 +806,21 @@ int main() {
 
 
 
-2. Create and demonstrate a generic queue class.
+/* Example 11: Following program uses a generic queue class. */
 
-
-2. // Create a generic queue .
 #include <iostream>
 
 #define SIZE 100
-template <class Qtype > class q_type
-{
-Qtype queue [ SIZE ]; // holds the queue
-int head , tail ; // indices of head and tail
-public :
-q_type () { head = tail = 0; }
-void q( Qtype num ); // store
-Qtype deq (); // retrieve
+
+template <class Qtype> class q_type {
+        Qtype queue[SIZE];      // holds the queue
+        int head, tail;         // indices of head and tail
+    public:
+        q_type() { head = tail = 0; }
+        void q(Qtype num );     // store
+        Qtype deq();            // retrieve
 };
+
 // Put value on queue .
 template <class Qtype > void q_type <Qtype >::q( Qtype num)
 {
