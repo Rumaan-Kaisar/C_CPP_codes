@@ -836,19 +836,17 @@ template <class Qtype> void q_type <Qtype>::q(Qtype num) {
 
 
 // Remove value from queue (GnF)
-template <class Qtype > Qtype q_type <Qtype >:: deq ()
-{
+template <class Qtype> Qtype q_type <Qtype>::deq() {
+    if(head == tail) {
+        std::cout << " Queue is empty .\n";
+        return 0;   // or some other error indicator
+    }
+    head++;
+    if(head == SIZE) head = 0;  // cycle around
+    return queue[head];
+}
 
-if( head == tail )
-{
-cout << " Queue is empty .\n";
-return 0; // or some other error indicator
-}
-head ++;
-if( head == SIZE )
-head = 0; // cycle around
-return queue [ head ];
-}
+
 int main ()
 {
 q_type <int > q1;
