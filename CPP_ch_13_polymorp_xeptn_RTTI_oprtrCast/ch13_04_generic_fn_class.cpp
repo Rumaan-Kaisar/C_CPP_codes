@@ -812,6 +812,7 @@ int main() {
 
 #define SIZE 100
 
+
 template <class Qtype> class q_type {
         Qtype queue[SIZE];      // holds the queue
         int head, tail;         // indices of head and tail
@@ -821,20 +822,20 @@ template <class Qtype> class q_type {
         Qtype deq();            // retrieve
 };
 
-// Put value on queue .
-template <class Qtype > void q_type <Qtype >::q( Qtype num)
-{
-if( tail +1== head || ( tail +1== SIZE && ! head ))
-{
-cout << " Queue is full .\n";
-return ;
+
+// Put value on queue (GnF)
+template <class Qtype> void q_type <Qtype>::q(Qtype num) {
+    if( (tail+1 == head) || ((tail+1 == SIZE) && !head) ) {
+        std::cout << " Queue is full .\n";
+        return;
+    }
+    tail++;    
+    if(tail == SIZE) tail = 0;  // cycle around
+    queue[tail] = num;
 }
-tail ++;
-if( tail == SIZE )
-tail = 0; // cycle around
-queue [ tail ] = num ;
-}
-// Remove value from queue .
+
+
+// Remove value from queue (GnF)
 template <class Qtype > Qtype q_type <Qtype >:: deq ()
 {
 
