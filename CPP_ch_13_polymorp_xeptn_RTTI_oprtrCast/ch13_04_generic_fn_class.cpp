@@ -847,16 +847,16 @@ template <class Qtype> Qtype q_type <Qtype>::deq() {
 }
 
 
-int main ()
-{
-q_type <int > q1;
-q_type <char > q2;
-int i;
-for (i =1; i <=10; i ++)
-{
-q1.q(i);
-q2.q(i -1+ ’A’);
-}
+int main() {
+    q_type <int> q1;
+    q_type <char> q2;
+    int i;
+
+    for(i=1; i<=10; i++) {
+        q1.q(i);
+        q2.q(i -1 + 'A');
+    }
+
 for (i =1; i <=10; i ++)
 {
 cout << " Dequeue 1: " << q1.deq () << ’\n’;
@@ -906,4 +906,3 @@ input <int > i(" enter int ", 0, 10) ;
 input <char > c(" enter char ", ’A’, ’Z’);
 return 0;
 }
-
