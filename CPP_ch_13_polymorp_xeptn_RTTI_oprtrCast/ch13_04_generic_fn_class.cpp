@@ -899,11 +899,11 @@ Note: The input value, min_value, and max_value must all be of the same data typ
 template <class X> class input {
         X data;
     public:
-input ( char *s, X min , X max);
-// ...
+        input ( char *s, X min , X max);
+            // ...
 };
-template <class X>
-input <X >:: input ( char *s, X min , X max )
+
+template <class X> input <X >:: input ( char *s, X min , X max )
 {
 do
 {
