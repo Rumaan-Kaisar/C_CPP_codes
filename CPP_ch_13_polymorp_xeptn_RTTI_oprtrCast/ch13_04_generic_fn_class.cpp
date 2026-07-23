@@ -893,8 +893,8 @@ Note: The input value, min_value, and max_value must all be of the same data typ
 
 */
 
-
 #include <iostream>
+
 
 template <class X> class input {
         X data;
@@ -903,18 +903,19 @@ template <class X> class input {
             // ...
 };
 
+
 template <class X> input <X> :: input(char *s, X min, X max) {
     do {
         std::cout << s << ": ";
         std::cin >> data ;
-    }
-
-while ( data < min || data > max);
+    } while( (data < min) || (data > max) );
 }
-int main ()
-{
-input <int > i(" enter int ", 0, 10) ;
-input <char > c(" enter char ", ’A’, ’Z’);
-return 0;
+
+
+int main() {
+    input <int> i(" enter int ", 0, 10) ;
+    input <char> c(" enter char ", 'A', 'Z');
+
+    return 0;
 }
 
