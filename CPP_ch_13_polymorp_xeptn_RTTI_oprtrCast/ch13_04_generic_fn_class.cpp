@@ -873,24 +873,15 @@ int main() {
                     ask the user to enter it again until a valid value is entered.
 
 
+            Create an object like this:
 
-input ob(" prompt message ", min_value , max_value )
-Here prompt message is the message that prompt for input. The minimum and maximum
-acceptable values are specified by min-value and max-value, respectively. (Note: the type
-of data entered by the user will be the same as the type of min-valueand max-value.) 
+                input ob("Prompt message", min_value, max_value);
 
+                    Prompt message:     The message shown to the user.
+                    min_value:          The smallest allowed value.
+                    max_value:          The largest allowed value.
 
-
-Create an object like this:
-
-input ob("Prompt message", min_value, max_value);
-Prompt message: The message shown to the user.
-min_value: The smallest allowed value.
-max_value: The largest allowed value.
-
-Note: The input value, min_value, and max_value must all be of the same data type (such as int, float, or double).
-
-
+            (Note: the type of data entered by the user will be the same as the type of min_value and max_value.) 
 */
 
 #include <iostream>
