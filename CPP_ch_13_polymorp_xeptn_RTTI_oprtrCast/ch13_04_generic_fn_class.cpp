@@ -903,13 +903,11 @@ template <class X> class input {
             // ...
 };
 
-template <class X> input <X >:: input ( char *s, X min , X max )
-{
-do
-{
-cout << s << ": ";
-cin >> data ;
-}
+template <class X> input <X> :: input(char *s, X min, X max) {
+    do {
+        std::cout << s << ": ";
+        std::cin >> data ;
+    }
 
 while ( data < min || data > max);
 }
@@ -919,3 +917,4 @@ input <int > i(" enter int ", 0, 10) ;
 input <char > c(" enter char ", ’A’, ’Z’);
 return 0;
 }
+
