@@ -864,32 +864,22 @@ int main() {
 // ----  rev [23-Jul-2026]  ----
 
 
-/* Example 12:
+/* Example 12: Create a generic (template) class named input. 
+                When an object of this class is created (i.e. when its constructor is called), it should:
+                --> prompts the user for input,
+                --> inputs the data entered by the user, and
+                --> Check if the input is between a given minimum and maximum value.
+                    If the input is outside the allowed range, 
+                    ask the user to enter it again until a valid value is entered.
 
 
 
-
-
-Objects of type input should be declared like this:
 input ob(" prompt message ", min_value , max_value )
 Here prompt message is the message that prompt for input. The minimum and maximum
 acceptable values are specified by min-value and max-value, respectively. (Note: the type
 of data entered by the user will be the same as the type of min-valueand max-value.) 
 
 
-
-
-Create a generic (template) class named input. 
-When an object of this class is created (i.e. when its constructor is called), it should:
-    prompts the user for input,
-    inputs the data entered by the user, and
-    reprompts if the data is not within a predetermined range.
-
-
-Display a message asking the user for input.
-Read the user's input.
-Check if the input is between a given minimum and maximum value.
-If the input is outside the allowed range, ask the user to enter it again until a valid value is entered.
 
 Create an object like this:
 
