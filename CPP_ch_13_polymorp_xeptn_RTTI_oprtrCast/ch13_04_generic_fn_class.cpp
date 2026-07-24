@@ -861,8 +861,6 @@ int main() {
 
 
 
-// ----  rev [23-Jul-2026]  ----
-
 
 /* Example 12: Create a generic (template) class named input. 
                 When an object of this class is created (i.e. when its constructor is called), it should:
