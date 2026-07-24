@@ -284,4 +284,14 @@ statement
 
 
 
+11.3 EXERCISES
+2. The throw is called before execution passes through a try block.
+3. A character exception is thrown, but the catch statement will handle only a character
+pointer. (That is, there is no corresponding catch statement to handle the character
+exception.)
+4. If an exception is thrown for which there is no corresponding catch, terminate() is called
+and abnormal program termination might occur.
+11.4 EXERCISES
+
+  
 
