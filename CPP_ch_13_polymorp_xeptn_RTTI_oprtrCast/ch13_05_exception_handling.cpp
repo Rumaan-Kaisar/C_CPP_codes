@@ -326,6 +326,168 @@ catch(...) {
 
 
 
+/*  
+
+### **Exception Handling (C++) – Simplified Pointwise Notes**
+
+## 1. What is Exception Handling?
+
+* Exception handling is C++'s built-in mechanism for handling **run-time errors**.
+* It allows a program to respond to errors in a **structured and controlled** way.
+* Instead of crashing, the program can execute an error-handling routine.
+
+---
+
+## 2. Main Keywords
+
+* **try** → Contains code that may generate an exception.
+* **throw** → Generates (throws) an exception when an error occurs.
+* **catch** → Receives and handles the thrown exception.
+
+---
+
+## 3. Basic Flow
+
+1. Place risky code inside a **try** block.
+2. If an error occurs, use **throw** to throw an exception.
+3. A matching **catch** block catches and processes the exception.
+
+---
+
+## 4. General Syntax
+
+```cpp
+try {
+    // Code that may cause an exception
+}
+catch(type1 arg) {
+    // Handle exception
+}
+catch(type2 arg) {
+    // Handle another exception
+}
+```
+
+---
+
+## 5. About `try`
+
+* Contains code to be monitored for errors.
+* Can include:
+
+  * A few statements
+  * An entire function
+  * Even the whole `main()` function.
+* Only code executed inside a `try` block (or functions called from it) can throw exceptions that are caught.
+
+---
+
+## 6. About `catch`
+
+* Must immediately follow the corresponding `try` block.
+* Handles the thrown exception.
+* Multiple `catch` blocks are allowed.
+* The matching `catch` is selected based on the **data type** of the thrown exception.
+* The exception parameter (`arg`) is optional if its value is not needed.
+
+Example:
+
+```cpp
+catch(int)
+{
+    // Handle integer exception
+}
+```
+
+---
+
+## 7. About `throw`
+
+### Syntax
+
+```cpp
+throw exception;
+```
+
+* Used to generate an exception.
+* Can be used:
+
+  * Inside a `try` block.
+  * Inside functions called by the `try` block.
+* The thrown value is called the **exception**.
+
+---
+
+## 8. If No Matching `catch` Exists
+
+* The exception remains **unhandled**.
+* C++ calls:
+
+  * `terminate()`
+  * which usually calls `abort()`
+* Result: **Abnormal program termination**.
+
+---
+
+## 9. Catch All Exceptions
+
+Use an ellipsis (`...`) to catch every type of exception.
+
+```cpp
+catch(...)
+{
+    // Handle all exceptions
+}
+```
+
+* `...` is called **ellipsis**.
+* Matches **any type** of exception.
+
+---
+
+## 10. Restricting Exceptions
+
+A function can specify which exception types it may throw.
+
+Syntax:
+
+```cpp
+return_type function(arguments) throw(type_list)
+{
+    ...
+}
+```
+
+Example:
+
+```cpp
+int func() throw(int, float)
+{
+    ...
+}
+```
+
+* Only the listed exception types can be thrown.
+* Throwing any other type calls:
+
+  * `unexpected()`
+  * which then calls `terminate()`.
+
+---
+
+## 11. Key Points to Remember
+
+* Exception handling deals with **run-time errors**.
+* Three keywords: **try**, **throw**, **catch**.
+* `try` → Monitor code.
+* `throw` → Raise exception.
+* `catch` → Handle exception.
+* Multiple `catch` blocks are allowed.
+* `catch(...)` catches all exceptions.
+* Unhandled exceptions cause abnormal program termination (`terminate()` → `abort()`).
+
+
+*/
 
 
 
