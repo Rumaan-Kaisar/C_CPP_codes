@@ -1,7 +1,7 @@
 
-/*  ------------------------    chapter    ------------------------
+/*  ------------------------    EXCEPTION HANDLING    ------------------------
 
-13.6 EXCEPTION HANDLING
+
 Exception handling (resilient code): Exception handling is the subsystem of C++ that allows us to handle errors that occur at run time in a structured and controlled way. By exception handling, your program can automatically invoke an error handling routine when an error occurs. 
 	Exception handling is C++'s built-in error handling mechanism. Mostly used to manage and respond to run-time errors. C++ exception handling is built upon three keywords: try, catch, and throw. 
 	Generally the program statements that you want to monitor for exceptions are contained in a try block. 
@@ -216,6 +216,119 @@ char * inside main
 end
 
 
-
-
 */  
+
+
+
+/*  
+
+Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
+
+### 1. Introduction to Exception Handling
+*   **Definition:** A subsystem in C++ that allows structured and controlled handling of run-time errors.
+*   **Purpose:** To automatically invoke error-handling routines when errors occur, making code more resilient.
+*   **Core Mechanism:** Built upon three keywords: `try`, `catch`, and `throw`.
+
+### 2. The Three Key Components
+#### A. `try` Block
+*   Contains the portion of the program monitored for errors.
+*   Can enclose a few statements or the entire `main()` function.
+*   Any statement throwing an exception must be executed from within a `try` block (or a function called from within it).
+
+#### B. `throw` Statement
+*   **Syntax:** `throw exception;`
+*   Used to signal that an error has occurred.
+*   Must be executed within a `try` block or a function called by the `try` block.
+*   `exception` is the value being thrown (can be any data type, often class types).
+*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, which calls `abort()` by default, causing abnormal termination.
+
+#### C. `catch` Block
+*   Immediately follows the `try` block.
+*   Processes the exception.
+*   **Matching:** The data type in `catch(type arg)` must match the type of the thrown exception.
+*   **Argument:** `arg` receives the value of the exception. It is optional if access to the value is not needed.
+*   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
+
+### 3. General Syntax Structure
+```cpp
+try {
+    // Code to monitor
+}
+catch(type1 arg) {
+    // Handle type1
+}
+catch(type2 arg) {
+    // Handle type2
+}
+...
+catch(...) {
+    // Catch-all handler
+}
+```
+
+### 4. Advanced Features & Rules
+
+#### A. Catch-All Handler (`...`)
+*   **Syntax:** `catch(...)`
+*   Uses ellipsis to match **any** type of data.
+*   Useful as a default handler to prevent abnormal program termination from unhandled exceptions.
+*   Often placed as the last catch block in a cluster.
+
+#### B. Multiple Catch Blocks
+*   A single `try` can have multiple `catch` blocks.
+*   Each `catch` must handle a different data type.
+*   Checked in order; only the first matching `catch` is executed.
+
+#### C. Exception Specifications (Restricting Throws)
+*   Functions can restrict the types of exceptions they throw to the caller.
+*   **Syntax:** `ret_type func_name(arg_list) throw(type_list) { ... }`
+*   **Empty List:** `throw()` prevents the function from throwing *any* exceptions.
+*   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
+*   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
+
+#### D. Rethrowing Exceptions
+*   **Syntax:** `throw;` (used inside a `catch` block with no argument).
+*   Passes the current exception to an outer `try/catch` sequence.
+*   Allows multiple handlers to process different aspects of the same exception.
+*   The rethrown exception is not caught by the same `catch` block that rethrew it.
+
+### 5. Execution Behavior Examples
+
+#### Example 1: Basic Flow
+*   Code after `throw` in the `try` block is **never executed**.
+*   Control jumps directly to `catch`.
+*   Stack is automatically reset.
+
+#### Example 2: Throwing from Called Functions
+*   Exceptions can be thrown by functions called *within* a `try` block.
+*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
+
+#### Example 3: Localized Try-Catch in Functions
+*   Placing `try-catch` inside a function (rather than `main`) resets exception handling every time the function is called.
+*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
+
+#### Example 4: Type Matching Strictness
+*   If the thrown type (e.g., `int`) does not match the catch type (e.g., `double`), the exception remains unhandled.
+*   Result: Abnormal program termination.
+
+#### Example 5 & 6: Using `catch(...)`
+*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
+*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors.
+
+#### Example 7 & 8: Function Throw Restrictions
+*   `void func() throw(int, char)` allows only int/char throws.
+*   `void func() throw()` allows no throws. Attempting to throw results in termination.
+
+#### Example 9: Rethrowing
+*   Inner handler processes part of the error, then uses `throw;` to pass it to the outer handler in `main` for further processing.
+
+*/
+
+
+
+
+
+
+
+
+
