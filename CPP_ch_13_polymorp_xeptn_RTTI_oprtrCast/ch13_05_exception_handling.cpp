@@ -2,19 +2,45 @@
 /*  ------------------------    EXCEPTION HANDLING    ------------------------
 
 
+### 1. Introduction to Exception Handling
+*   **Definition:** A subsystem in C++ that allows structured and controlled handling of run-time errors.
+*   **Purpose:** To automatically invoke error-handling routines when errors occur, making code more resilient.
+*   **Core Mechanism:** Built upon three keywords: `try`, `catch`, and `throw`.
+
+
+## 1. What is Exception Handling?
+
+* Exception handling is C++'s built-in mechanism for handling **run-time errors**.
+* It allows a program to respond to errors in a **structured and controlled** way.
+* Instead of crashing, the program can execute an error-handling routine.
+
+
 Exception handling (resilient code): Exception handling is the subsystem of C++ that allows us to handle errors that occur at run time in a structured and controlled way. By exception handling, your program can automatically invoke an error handling routine when an error occurs. 
 	Exception handling is C++'s built-in error handling mechanism. Mostly used to manage and respond to run-time errors. C++ exception handling is built upon three keywords: try, catch, and throw. 
+
+
+
 	Generally the program statements that you want to monitor for exceptions are contained in a try block. 
 	If an exception (i.e., an error) occurs within the try block, it is thrown using throw. 
 	The exception is caught, using catch, and processed. 
 	General Form and try-catch blocks: The general form of try and catch are:
 
-try{ 	/* try block */ }
-catch(type1 arg){		/* catch block */ 	}
-catch(type2 arg){		/* catch block */ 	}
-catch(type3 arg){		/* catch block */ 	}
+try{
+ 	// try block
+ }
+catch(type1 arg){
+    // catch block
+}
+catch(type2 arg){
+    // catch block
+}
+catch(type3 arg){
+    // catch block
+}
 . . .
-catch(typeN arg){		/* catch block */ 	}
+catch(typeN arg){
+    // catch block
+}
 	try: The try block must contain the portion of your program that you want to monitor for errors. This can be a few statements within one function or all-codes by enclosing the main() function within a try block (which causes the entire program to be monitored).
 	Any statement that throws an exception must have been executed from within a try block. 
 	A function called from within a try block can also throw an exception.
@@ -224,10 +250,6 @@ end
 
 Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
 
-### 1. Introduction to Exception Handling
-*   **Definition:** A subsystem in C++ that allows structured and controlled handling of run-time errors.
-*   **Purpose:** To automatically invoke error-handling routines when errors occur, making code more resilient.
-*   **Core Mechanism:** Built upon three keywords: `try`, `catch`, and `throw`.
 
 ### 2. The Three Key Components
 #### A. `try` Block
@@ -248,6 +270,10 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 *   **Matching:** The data type in `catch(type arg)` must match the type of the thrown exception.
 *   **Argument:** `arg` receives the value of the exception. It is optional if access to the value is not needed.
 *   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
+
+
+
+
 
 ### 3. General Syntax Structure
 ```cpp
@@ -329,12 +355,6 @@ catch(...) {
 /*  
 
 ### **Exception Handling (C++) – Simplified Pointwise Notes**
-
-## 1. What is Exception Handling?
-
-* Exception handling is C++'s built-in mechanism for handling **run-time errors**.
-* It allows a program to respond to errors in a **structured and controlled** way.
-* Instead of crashing, the program can execute an error-handling routine.
 
 ---
 
