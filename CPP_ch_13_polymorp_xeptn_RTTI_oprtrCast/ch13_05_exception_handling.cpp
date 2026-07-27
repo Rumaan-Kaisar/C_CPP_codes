@@ -25,22 +25,24 @@
    The exception is caught, using catch, and processed. 
    General Form and try-catch blocks: The general form of try and catch are:
 
-try{
-    // try block
- }
-catch(type1 arg){
-    // catch block
-}
-catch(type2 arg){
-    // catch block
-}
-catch(type3 arg){
-    // catch block
-}
-. . .
-catch(typeN arg){
-    // catch block
-}
+                try{
+                    // try block
+                }
+                catch(type1 arg){
+                    // catch block
+                }
+                catch(type2 arg){
+                    // catch block
+                }
+                catch(type3 arg){
+                    // catch block
+                }
+                . . .
+                catch(typeN arg){
+                    // catch block
+                }
+
+
    try: The try block must contain the portion of your program that you want to monitor for errors. This can be a few statements within one function or all-codes by enclosing the main() function within a try block (which causes the entire program to be monitored).
    Any statement that throws an exception must have been executed from within a try block. 
    A function called from within a try block can also throw an exception.
