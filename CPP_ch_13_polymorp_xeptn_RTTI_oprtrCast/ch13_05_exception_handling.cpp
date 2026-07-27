@@ -16,6 +16,95 @@
         "throw". 
  
 
+----------------------------
+
+
+### 2. The Three Key Components
+#### A. `try` Block
+*   Contains the portion of the program monitored for errors.
+*   Can enclose a few statements or the entire `main()` function.
+*   Any statement throwing an exception must be executed from within a `try` block (or a function called from within it).
+
+#### B. `throw` Statement
+*   **Syntax:** `throw exception;`
+*   Used to signal that an error has occurred.
+*   Must be executed within a `try` block or a function called by the `try` block.
+*   `exception` is the value being thrown (can be any data type, often class types).
+*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, which calls `abort()` by default, causing abnormal termination.
+
+#### C. `catch` Block
+*   Immediately follows the `try` block.
+*   Processes the exception.
+*   **Matching:** The data type in `catch(type arg)` must match the type of the thrown exception.
+*   **Argument:** `arg` receives the value of the exception. It is optional if access to the value is not needed.
+*   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
+
+
+
+
+
+---
+
+## 2. Main Keywords
+
+* **try** → Contains code that may generate an exception.
+* **throw** → Generates (throws) an exception when an error occurs.
+* **catch** → Receives and handles the thrown exception.
+
+---
+
+## 3. Basic Flow
+
+1. Place risky code inside a **try** block.
+2. If an error occurs, use **throw** to throw an exception.
+3. A matching **catch** block catches and processes the exception.
+
+---
+
+## 4. General Syntax
+
+```cpp
+try {
+    // Code that may cause an exception
+}
+catch(type1 arg) {
+    // Handle exception
+}
+catch(type2 arg) {
+    // Handle another exception
+}
+```
+
+---
+
+## 5. About `try`
+
+* Contains code to be monitored for errors.
+* Can include:
+
+  * A few statements
+  * An entire function
+  * Even the whole `main()` function.
+* Only code executed inside a `try` block (or functions called from it) can throw exceptions that are caught.
+
+---
+
+## 6. About `catch`
+
+* Must immediately follow the corresponding `try` block.
+* Handles the thrown exception.
+* Multiple `catch` blocks are allowed.
+* The matching `catch` is selected based on the **data type** of the thrown exception.
+* The exception parameter (`arg`) is optional if its value is not needed.
+
+
+
+
+
+
+
+
+
 // ---- rev[26-jul-2026]
 
 
@@ -253,27 +342,6 @@ end
 Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
 
 
-### 2. The Three Key Components
-#### A. `try` Block
-*   Contains the portion of the program monitored for errors.
-*   Can enclose a few statements or the entire `main()` function.
-*   Any statement throwing an exception must be executed from within a `try` block (or a function called from within it).
-
-#### B. `throw` Statement
-*   **Syntax:** `throw exception;`
-*   Used to signal that an error has occurred.
-*   Must be executed within a `try` block or a function called by the `try` block.
-*   `exception` is the value being thrown (can be any data type, often class types).
-*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, which calls `abort()` by default, causing abnormal termination.
-
-#### C. `catch` Block
-*   Immediately follows the `try` block.
-*   Processes the exception.
-*   **Matching:** The data type in `catch(type arg)` must match the type of the thrown exception.
-*   **Argument:** `arg` receives the value of the exception. It is optional if access to the value is not needed.
-*   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
-
-
 
 
 
@@ -357,60 +425,6 @@ catch(...) {
 /*  
 
 ### **Exception Handling (C++) – Simplified Pointwise Notes**
-
----
-
-## 2. Main Keywords
-
-* **try** → Contains code that may generate an exception.
-* **throw** → Generates (throws) an exception when an error occurs.
-* **catch** → Receives and handles the thrown exception.
-
----
-
-## 3. Basic Flow
-
-1. Place risky code inside a **try** block.
-2. If an error occurs, use **throw** to throw an exception.
-3. A matching **catch** block catches and processes the exception.
-
----
-
-## 4. General Syntax
-
-```cpp
-try {
-    // Code that may cause an exception
-}
-catch(type1 arg) {
-    // Handle exception
-}
-catch(type2 arg) {
-    // Handle another exception
-}
-```
-
----
-
-## 5. About `try`
-
-* Contains code to be monitored for errors.
-* Can include:
-
-  * A few statements
-  * An entire function
-  * Even the whole `main()` function.
-* Only code executed inside a `try` block (or functions called from it) can throw exceptions that are caught.
-
----
-
-## 6. About `catch`
-
-* Must immediately follow the corresponding `try` block.
-* Handles the thrown exception.
-* Multiple `catch` blocks are allowed.
-* The matching `catch` is selected based on the **data type** of the thrown exception.
-* The exception parameter (`arg`) is optional if its value is not needed.
 
 Example:
 
