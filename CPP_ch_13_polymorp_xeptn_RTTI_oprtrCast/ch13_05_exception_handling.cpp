@@ -11,10 +11,18 @@
 
     ----------------    Core Mechanism    ----------------
     C++ exception handling is built upon three keywords: 
-        "try", 
-        "catch", and 
-        "throw". 
+        try:        Contains code that may generate an exception.
+        throw:      Generates (throws) an exception when an error occurs.
+        catch:      Receives and handles the thrown exception.
  
+        Generally the program statements that you want to monitor for exceptions 
+            are contained in a "try" block. 
+
+        If an exception (i.e., an error) occurs within the "try" block, it is thrown using "throw". 
+
+        The exception is caught, using "catch", and processed. 
+
+
 
 ----------------------------
 
@@ -47,9 +55,9 @@
 
 ## 2. Main Keywords
 
-* **try** → Contains code that may generate an exception.
-* **throw** → Generates (throws) an exception when an error occurs.
-* **catch** → Receives and handles the thrown exception.
+
+
+
 
 ---
 
@@ -109,9 +117,6 @@ catch(type2 arg) {
 
 
 
-   Generally the program statements that you want to monitor for exceptions are contained in a try block. 
-   If an exception (i.e., an error) occurs within the try block, it is thrown using throw. 
-   The exception is caught, using catch, and processed. 
    General Form and try-catch blocks: The general form of try and catch are:
 
                 try{
