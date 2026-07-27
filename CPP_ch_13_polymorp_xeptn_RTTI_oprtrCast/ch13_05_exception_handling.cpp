@@ -15,11 +15,20 @@
         throw:      Generates (throws) an exception when an error occurs.
         catch:      Receives and handles the thrown exception.
  
+    try BLOCK:
         Generally the program statements that you want to monitor for exceptions 
             are contained in a "try" block. 
+        Can enclose a few statements or the entire "main()" function.
+        Any "statement throwing an exception" must be executed from within a "try" block 
+        (or a function called from within it).
 
+    throw STATEMENT:
         If an exception (i.e., an error) occurs within the "try" block, it is thrown using "throw". 
 
+        Syntax:     throw exception;
+
+
+    catch BLOCK:
         The exception is caught, using "catch", and processed. 
 
 
@@ -27,14 +36,9 @@
 ----------------------------
 
 
-### 2. The Three Key Components
-#### A. `try` Block
-*   Contains the portion of the program monitored for errors.
-*   Can enclose a few statements or the entire `main()` function.
-*   Any statement throwing an exception must be executed from within a `try` block (or a function called from within it).
 
-#### B. `throw` Statement
-*   **Syntax:** `throw exception;`
+
+
 *   Used to signal that an error has occurred.
 *   Must be executed within a `try` block or a function called by the `try` block.
 *   `exception` is the value being thrown (can be any data type, often class types).
