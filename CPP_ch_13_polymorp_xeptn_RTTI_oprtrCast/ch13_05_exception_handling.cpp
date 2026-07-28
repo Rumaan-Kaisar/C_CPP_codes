@@ -21,7 +21,7 @@
         Generally the program statements that you want to monitor for exceptions are contained in a "try" block. 
         Can enclose a few statements or the entire "main()" function (causes the entire program to be monitored).
         Any "statement throwing an exception" must be executed from within a "try" block 
-        (or a function called from within it).
+        A function called from "within a try block" can also throw an exception.
 
 
     throw STATEMENT:
@@ -149,8 +149,8 @@ catch(type2 arg) {
 
    try: 
 
-   Any statement that throws an exception must have been executed from within a try block. 
-   A function called from within a try block can also throw an exception.
+// ----  rev 28-Jul-2026  ----
+
    catch: Any exception must be caught by a catch statement that immediately follows the try statement that throws the exception. Catch statement processes the exception. 
    Any type of data can be caught by catch. Class types are frequently used as exceptions.
 
