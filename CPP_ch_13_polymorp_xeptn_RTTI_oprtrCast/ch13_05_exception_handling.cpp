@@ -10,6 +10,7 @@
 
 
     ----------------    Core Mechanism    ----------------
+
     C++ exception handling is built upon three keywords: 
         try:        Contains code that may generate an exception.
         throw:      Generates (throws) an exception when an error occurs.
@@ -27,6 +28,8 @@
 
         Syntax:     throw exception;
 
+        Used to signal that an error has occurred.
+        Must be executed within a "try" block or a function called by the "try" block.
 
     catch BLOCK:
         The exception is caught, using "catch", and processed. 
@@ -36,13 +39,12 @@
 ----------------------------
 
 
+"exception" is the value being thrown (can be any data type, often class types).
+
+*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, 
+which calls `abort()` by default, causing abnormal termination.
 
 
-
-*   Used to signal that an error has occurred.
-*   Must be executed within a `try` block or a function called by the `try` block.
-*   `exception` is the value being thrown (can be any data type, often class types).
-*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, which calls `abort()` by default, causing abnormal termination.
 
 #### C. `catch` Block
 *   Immediately follows the `try` block.
