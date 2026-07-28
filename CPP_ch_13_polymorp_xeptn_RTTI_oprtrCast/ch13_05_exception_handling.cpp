@@ -16,12 +16,14 @@
         throw:      Generates (throws) an exception when an error occurs.
         catch:      Receives and handles the thrown exception.
  
+
     try BLOCK:
         Generally the program statements that you want to monitor for exceptions 
             are contained in a "try" block. 
         Can enclose a few statements or the entire "main()" function.
         Any "statement throwing an exception" must be executed from within a "try" block 
         (or a function called from within it).
+
 
     throw STATEMENT:
         If an exception (i.e., an error) occurs within the "try" block, it is thrown using "throw". 
@@ -31,6 +33,13 @@
         Used to signal that an error has occurred.
         Must be executed within a "try" block or a function called by the "try" block.
 
+        "exception" is the value being thrown (can be any data type, often class types).
+
+        Uncaught Exceptions:
+            If no matching "catch" exists, STL function "terminate()" is invoked, 
+            which calls "abort()" by default, causing abnormal termination.
+
+
     catch BLOCK:
         The exception is caught, using "catch", and processed. 
 
@@ -39,10 +48,7 @@
 ----------------------------
 
 
-"exception" is the value being thrown (can be any data type, often class types).
 
-*   **Uncaught Exceptions:** If no matching `catch` exists, `terminate()` is invoked, 
-which calls `abort()` by default, causing abnormal termination.
 
 
 
@@ -148,12 +154,19 @@ catch(type2 arg) {
    A function called from within a try block can also throw an exception.
    catch: Any exception must be caught by a catch statement that immediately follows the try statement that throws the exception. Catch statement processes the exception. 
    Any type of data can be caught by catch. Class types are frequently used as exceptions.
+
    There can be more than one catch associated with a try. The catch that is used is determined by the type of the exception. I.e, if the data type specified by a catch matches the data type of the exception, that catch is executed (and all others are bypassed). 
    When an exception is caught, arg will receive its value. If you don't need access to the exception itself, specify only type in the catch clause-arg is optional. 
+
+
+
    General form of the throw: The general form of the throw statement is:  throw exception ;
    throw must be executed either from within the try block proper or from any function that the code within the block calls (directly or indirectly). 
    exception is the value thrown. If you throw an exception for which there is no applicable catch statement, an abnormal program termination might occur. 
    In standard C++, throwing an unhandled exception causes the standard library function terminate() to be invoked. By default, terminate() calls abort() to stop your program.
+
+
+
    You can specify your own termination handler by referring to your compiler's library reference for details.
 
    Catch all exceptions with ellipsis ". . ." : To catch all exceptions instead of just a certain type, use following form of catch:
