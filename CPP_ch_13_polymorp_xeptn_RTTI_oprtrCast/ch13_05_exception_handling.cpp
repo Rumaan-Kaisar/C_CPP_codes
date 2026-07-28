@@ -18,9 +18,8 @@
  
 
     try BLOCK:
-        Generally the program statements that you want to monitor for exceptions 
-            are contained in a "try" block. 
-        Can enclose a few statements or the entire "main()" function.
+        Generally the program statements that you want to monitor for exceptions are contained in a "try" block. 
+        Can enclose a few statements or the entire "main()" function (causes the entire program to be monitored).
         Any "statement throwing an exception" must be executed from within a "try" block 
         (or a function called from within it).
 
@@ -44,18 +43,17 @@
         The exception is caught, using "catch", and processed. 
         Immediately follows the "try" block.
 
+        Matching type:
+            The data type in "catch(type arg)" must match the type of the "thrown exception".
 
+        Argument:
+            "arg" receives the value of the exception. 
+            It is optional if access to the value is not needed.
 
 ----------------------------
 
 
 
-Matching type:
-    The data type in "catch(type arg)" must match the type of the "thrown exception".
-
-Argument:
-    "arg" receives the value of the exception. 
-    It is optional if access to the value is not needed.
 
 *   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
 
@@ -149,7 +147,8 @@ catch(type2 arg) {
                 }
 
 
-   try: The try block must contain the portion of your program that you want to monitor for errors. This can be a few statements within one function or all-codes by enclosing the main() function within a try block (which causes the entire program to be monitored).
+   try: 
+
    Any statement that throws an exception must have been executed from within a try block. 
    A function called from within a try block can also throw an exception.
    catch: Any exception must be caught by a catch statement that immediately follows the try statement that throws the exception. Catch statement processes the exception. 
