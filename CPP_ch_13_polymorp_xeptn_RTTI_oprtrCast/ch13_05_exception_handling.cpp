@@ -42,6 +42,7 @@
 
     catch BLOCK:
         The exception is caught, using "catch", and processed. 
+        Immediately follows the "try" block.
 
 
 
@@ -49,14 +50,13 @@
 
 
 
+Matching type:
+    The data type in "catch(type arg)" must match the type of the "thrown exception".
 
+Argument:
+    "arg" receives the value of the exception. 
+    It is optional if access to the value is not needed.
 
-
-#### C. `catch` Block
-*   Immediately follows the `try` block.
-*   Processes the exception.
-*   **Matching:** The data type in `catch(type arg)` must match the type of the thrown exception.
-*   **Argument:** `arg` receives the value of the exception. It is optional if access to the value is not needed.
 *   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
 
 
