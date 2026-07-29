@@ -50,12 +50,37 @@
             "arg" receives the value of the exception. 
             It is optional if access to the value is not needed.
 
+
+
 ----------------------------
 
 
 
 
-*   **Execution Flow:** When an exception is thrown, control transfers immediately to the matching `catch` block; remaining statements in the `try` block are skipped. After `catch` executes, control continues with statements following the catch block.
+    --------  Execution Flow  --------
+
+    General Form and try-catch blocks:
+
+                try{
+                    // try block
+                }
+                catch(type1 arg){
+                    // catch block
+                }
+                catch(type2 arg){
+                    // catch block
+                }
+                catch(type3 arg){
+                    // catch block
+                }
+                . . .
+                catch(typeN arg){
+                    // catch block
+                }
+
+        When an exception is thrown, control transfers immediately to the "matching catch block"; 
+        Remaining statements in the "try block" are skipped.
+        After catch executes, control continues with statements following the catch block.
 
 
 
@@ -127,24 +152,7 @@ catch(type2 arg) {
 
 
 
-   General Form and try-catch blocks: The general form of try and catch are:
 
-                try{
-                    // try block
-                }
-                catch(type1 arg){
-                    // catch block
-                }
-                catch(type2 arg){
-                    // catch block
-                }
-                catch(type3 arg){
-                    // catch block
-                }
-                . . .
-                catch(typeN arg){
-                    // catch block
-                }
 
 
    try: 
@@ -547,7 +555,6 @@ int func() throw(int, float)
 
 
 */
-
 
 
 
