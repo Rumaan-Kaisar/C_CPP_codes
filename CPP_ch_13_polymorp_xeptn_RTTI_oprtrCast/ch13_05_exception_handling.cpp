@@ -40,17 +40,21 @@
 
 
     catch BLOCK:
-        The exception is caught, using "catch", and processed. 
-        Immediately follows the "try" block.
-
+        Any exception must be caught and processed, using "catch", that immediately follows 
+            the "try" statement that throws the exception.
+        
         Matching type:
+            Any type of data can be caught by catch, but "Class" types are frequently used as exceptions.
             The data type in "catch(type arg)" must match the type of the "thrown exception".
 
         Argument:
             "arg" receives the value of the exception. 
             It is optional if access to the value is not needed.
 
-
+        There can be more than one catch associated with a try.
+        The catch that is used is determined by the "type of the exception". 
+            i.e, if the "data type" specified by a catch matches the "data type" of the exception, 
+            that catch is executed (and all others are bypassed). 
 
 ----------------------------
 
@@ -159,13 +163,8 @@ catch(type2 arg) {
 
 // ----  rev 28-Jul-2026  ----
 
-   catch: Any exception must be caught by a catch statement that immediately follows the try statement that throws the exception. Catch statement processes the exception. 
-   Any type of data can be caught by catch. Class types are frequently used as exceptions.
 
-   There can be more than one catch associated with a try. The catch that is used is determined by the type of the exception. I.e, if the data type specified by a catch matches the data type of the exception, that catch is executed (and all others are bypassed). 
    When an exception is caught, arg will receive its value. If you don't need access to the exception itself, specify only type in the catch clause-arg is optional. 
-
-
 
    General form of the throw: The general form of the throw statement is:  throw exception ;
    throw must be executed either from within the try block proper or from any function that the code within the block calls (directly or indirectly). 
