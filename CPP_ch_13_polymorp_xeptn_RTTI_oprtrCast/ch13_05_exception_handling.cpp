@@ -19,7 +19,12 @@
 
     try BLOCK:
         Generally the program statements that you want to monitor for exceptions are contained in a "try" block. 
-        Can enclose a few statements or the entire "main()" function (causes the entire program to be monitored).
+        
+        Can enclose:
+            A few statements
+            An entire function
+            Even the whole "main()" function (causes the entire program to be monitored).
+
         Any "statement throwing an exception" must be executed from within a "try" block 
         A function called from "within a try block" can also throw an exception.
 
@@ -63,16 +68,20 @@
 
     --------  Execution Flow  --------
 
+    Place risky code inside a "try" block.
+    If an error occurs, use "throw" to throw an exception.
+    A matching "catch" block catches and processes the exception.
+
     General Form and try-catch blocks:
 
                 try{
-                    // try block
+                    // try block: Code that may cause an exception
                 }
                 catch(type1 arg){
-                    // catch block
+                    // catch block: Handle exception
                 }
                 catch(type2 arg){
-                    // catch block
+                    // catch block: Handle another exception
                 }
                 catch(type3 arg){
                     // catch block
@@ -98,41 +107,8 @@
 
 
 
----
-
-## 3. Basic Flow
-
-Place risky code inside a "try" block.
-If an error occurs, use "throw" to throw an exception.
-A matching "catch" block catches and processes the exception.
-
----
-
-## 4. General Syntax
-
-```cpp
-try {
-    // Code that may cause an exception
-}
-catch(type1 arg) {
-    // Handle exception
-}
-catch(type2 arg) {
-    // Handle another exception
-}
-```
-
----
-
-## 5. About `try`
-
-* Contains code to be monitored for errors.
-* Can include:
-
-  * A few statements
-  * An entire function
-  * Even the whole `main()` function.
-* Only code executed inside a `try` block (or functions called from it) can throw exceptions that are caught.
+* Only code executed inside a `try` block (or functions called from it) 
+can throw exceptions that are caught.
 
 ---
 
