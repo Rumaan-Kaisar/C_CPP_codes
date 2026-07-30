@@ -45,6 +45,7 @@
 
 
     catch BLOCK:
+        It Handles the thrown exception.
         Any exception must be caught and processed, using "catch", that immediately follows 
             the "try" statement that throws the exception.
         
@@ -60,9 +61,6 @@
         The catch that is used is determined by the "type of the exception". 
             i.e, if the "data type" specified by a catch matches the "data type" of the exception, 
             that catch is executed (and all others are bypassed). 
-
-----------------------------
-
 
 
 
@@ -104,21 +102,6 @@
 ## 2. Main Keywords
 
 
-
-
-
-* Only code executed inside a `try` block (or functions called from it) 
-can throw exceptions that are caught.
-
----
-
-## 6. About `catch`
-
-* Must immediately follow the corresponding `try` block.
-* Handles the thrown exception.
-* Multiple `catch` blocks are allowed.
-* The matching `catch` is selected based on the **data type** of the thrown exception.
-* The exception parameter (`arg`) is optional if its value is not needed.
 
 
 
