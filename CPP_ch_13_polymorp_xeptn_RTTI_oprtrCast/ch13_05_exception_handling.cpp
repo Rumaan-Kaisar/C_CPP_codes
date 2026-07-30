@@ -35,13 +35,13 @@
         Syntax:     throw exception;
 
         Used to signal that an error has occurred.
-        Must be executed within a "try" block or a function called by the "try" block.
+        Must be executed within a "try" block or a function called by the "try" block (directly or indirectly).
 
         "exception" is the value being thrown (can be any data type, often class types).
 
         Uncaught Exceptions:
             If no matching "catch" exists, STL function "terminate()" is invoked, 
-            which calls "abort()" by default, causing abnormal termination.
+            which calls "abort()" by default, causing "abnormal termination".
 
 
     catch BLOCK:
@@ -91,6 +91,11 @@
 
         When an exception is thrown, control transfers immediately to the "matching catch block"; 
         Remaining statements in the "try block" are skipped.
+
+        When an exception is caught, "arg" will receive its value. 
+            If you don't need access to the exception itself, 
+            "specify only type" in the catch clause- "arg" is optional. 
+        
         After catch executes, control continues with statements following the catch block.
 
 
@@ -103,39 +108,12 @@
 
 
 
-
-
-
-
-
-
-
-
-// ---- rev[26-jul-2026]
-
-
-
-
-
-
-   try: 
-
-// ----  rev 28-Jul-2026  ----
-
-
-   When an exception is caught, arg will receive its value. If you don't need access to the exception itself, specify only type in the catch clause-arg is optional. 
-
-   General form of the throw: The general form of the throw statement is:  throw exception ;
-   throw must be executed either from within the try block proper or from any function that the code within the block calls (directly or indirectly). 
-   exception is the value thrown. If you throw an exception for which there is no applicable catch statement, an abnormal program termination might occur. 
-   In standard C++, throwing an unhandled exception causes the standard library function terminate() to be invoked. By default, terminate() calls abort() to stop your program.
-
-
+// ---- rev[30-Jul-2026] ----
 
    You can specify your own termination handler by referring to your compiler's library reference for details.
 
    Catch all exceptions with ellipsis ". . ." : To catch all exceptions instead of just a certain type, use following form of catch:
-catch(...){  /* process all exceptions */  }
+catch(...){  // process all exceptions   }
 Here the ellipsis matches any type of data. [ ". . ." called ellipsis. It indicates an intentional omission of a word/whole-line/text-section without altering original meaning.]
    Appling restrictions to exceptions: 
    We can restrict the type of exceptions that a function can throw back to its caller. 
@@ -143,7 +121,7 @@ Here the ellipsis matches any type of data. [ ". . ." called ellipsis. It indica
    We can also prevent a function from throwing any exceptions whatsoever. 
    To apply these restrictions, you must add a throw clause to the function definition. The general form is: 
 
-ret_type func_name(arg_list)  throw(type_list){ /* exceptions */ }
+ret_type func_name(arg_list)  throw(type_list){ // exceptions  }
 
    Here only those data types contained in the comma-separated  type-list  may be thrown by the function. 
    When a function attempts to throw a disallowed exception the standard library function unexpected() is called, this causes the terminate() function to be called, which causes abnormal program termination. 
@@ -153,13 +131,13 @@ ret_type func_name(arg_list)  throw(type_list){ /* exceptions */ }
 
    Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
 int main(){cout << " start \n";
-try{                    /* start a try block */
+try{                    // start a try block
     cout << " Inside try block \n";              
-throw 10;               /* throw an error */ 
-cout << " This will not execute "; /* not execute, control transferred to "catch" due to "throw 10"*/
+throw 10;               // throw an error 
+cout << " This will not execute "; // not execute, control transferred to "catch" due to "throw 10"
 }
 
-catch(int i){               /* beginning catch block: catch an error */ 
+catch(int i){               // beginning catch block: catch an error 
 cout << " Caught One ! Number is: ";
 cout << i << "\n"; }
 cout << "end ";
@@ -177,7 +155,7 @@ end
    After the catch statement executes, program control continues with the statements following the catch. 
    Often, however, a catch block will end with a call to exit(), abort(), or some other function that causes program termination because exception handling is frequently used to handle catastrophic errors.
    The type of the exception must match the type specified in a catch statement. Considering Example 1, following won't  work .
-catch(double i){    /* 'catch' is double  type: won't work for an int exception */ 
+catch(double i){    // 'catch' is double  type: won't work for an int exception 
 cout << " Caught One ! Number is: ";
 cout << i << "\n"; }
    This program produces the following output because the integer exception will not be caught by a double catch statement.
@@ -189,10 +167,10 @@ Abnormal program termination
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
                 if(test) throw test ; }
 int main(){     cout << " start \n";
-       try{   /* throwing by the function Xtest : calling function within try block */
+       try{   // throwing by the function Xtest : calling function within try block
         Xtest(0); 
         Xtest(1);
-        Xtest(2);}  /* it is also an exception but never thrown or executed */
+        Xtest(2);}  // it is also an exception but never thrown or executed
        catch(int i{   cout << " Caught One ! Number is: ";
                  cout << i << "\n"; }
     cout << "end ";
@@ -231,17 +209,17 @@ output:     start
 void Xhandler(int test){    try {   if(test)  throw test ;
 else throw "value is zero" }
     catch(int i){ cout << " Caught One ! Ex. #: " << i << '\n'; }
-    catch(char *str){       /* *str is used to print ' value is zero ' */
+    catch(char *str){       // *str is used to print ' value is zero '
 cout << " Caught a string :";
 cout << str << '\n';}   
    }
    In general, catch expressions are checked in the order in which they occur in a program. Only a matching statement is executed. All other catch blocks are ignored.
    Example 5: Following catches all exceptions [with ellipsis . . .] using catch(...):
-void Xhandler (int test ) {     try { if( test ==0) throw test ;      /* throw int */ 
-                      if( test ==1) throw 'a';           /* throw char */ 
-                      if( test ==2) throw 123.23;  /* throw double */ 
+void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int 
+                      if( test ==1) throw 'a';           // throw char 
+                      if( test ==2) throw 123.23;  // throw double 
                        }
-            catch (...){                   /* catch all exceptions */ 
+            catch (...){                   // catch all exceptions 
                     cout << " Caught One !\n";    }
             }   int main(){ cout << " start \n";
         Xhandler(0);
@@ -258,13 +236,13 @@ void Xhandler (int test ) {     try { if( test ==0) throw test ;      /* throw i
 
    All three throws were caught using the one catch statement.
    Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
-void Xhandler (int test ) {     try { if( test ==0) throw test ;      /* throw int */ 
-                      if( test ==1) throw 'a';           /* throw char */ 
-                      if( test ==2) throw 123.23;  /* throw double */ 
+void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
+                      if( test ==1) throw 'a';           // throw char
+                      if( test ==2) throw 123.23;  // throw double
                        }
-            catch (int i){                   /* catch an int exception */ 
+            catch (int i){                   // catch an int exception
                     cout << " Caught" << i << '\n';    }
-            catch (...){                   /* all other  exceptions */ 
+            catch (...){                   // all other  exceptions
                     cout << " Caught One !\n";    }
             }   
 int main(){ cout << " start \n";
@@ -281,13 +259,13 @@ int main(){ cout << " start \n";
       end
 
    By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
-   Example 7: ret_type func_name(arg_list)  throw(type_list){ /* exceptions */ } to restrict the types of exceptions that can be thrown from a function:
+   Example 7: ret_type func_name(arg_list)  throw(type_list){ // exceptions } to restrict the types of exceptions that can be thrown from a function:
 
 void Xhandler(int test ) throw(int, char, double)  {
-    if( test ==0) throw test ;  /* throw int */ 
-    if( test ==1) throw 'a';    /* throw char */ 
-    if( test ==2) throw 123.23;     /* throw double */    } int main(){ cout<< "start \n";
-        try{ Xhandler(0);   }   /* 1 and 2 also  */   
+    if( test ==0) throw test ;  // throw int 
+    if( test ==1) throw 'a';    // throw char 
+    if( test ==2) throw 123.23;     // throw double    } int main(){ cout<< "start \n";
+        try{ Xhandler(0);   }   // 1 and 2 also    
         catch(int i) { cout << " Caught int \n";}
         catch ( char c) { cout << " Caught char \n"; }
         catch ( double d) { cout << " Caught double \n"; }
@@ -306,10 +284,10 @@ if( test ==2) throw 123.23; }
    When you rethrow an exception, it will not be recaught by the same catch statement. It will propagate to an outer catch statement. 
    The following program illustrates rethrowing an exception. It rethrows a char * exception.
 void Xhandler() {
-    try { throw " hello "; }    /* throw  char *  */ 
-    catch( const char *) {  /* catch  char *  */
+    try { throw " hello "; }    // throw  char *  
+    catch( const char *) {  // catch  char * 
            cout << " char * inside Xhandler \n";
-           throw ;          /* rethrow char * */      }
+           throw ;          // rethrow char *      }
         }   int main(){ cout << " start \n";
     try { Xhandler (); }
     catch ( const char *) {
