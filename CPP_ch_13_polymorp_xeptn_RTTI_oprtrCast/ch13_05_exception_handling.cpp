@@ -102,9 +102,9 @@
 
 ## 3. Basic Flow
 
-1. Place risky code inside a **try** block.
-2. If an error occurs, use **throw** to throw an exception.
-3. A matching **catch** block catches and processes the exception.
+Place risky code inside a "try" block.
+If an error occurs, use "throw" to throw an exception.
+A matching "catch" block catches and processes the exception.
 
 ---
 
