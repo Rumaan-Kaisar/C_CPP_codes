@@ -85,10 +85,10 @@
                     // try block: Code that may cause an exception
                 }
                 catch(type1 arg){
-                    // catch block: Handle exception
+                    // catch block: Handle exception type1
                 }
                 catch(type2 arg){
-                    // catch block: Handle another exception
+                    // catch block: Handle another exception type2
                 }
                 catch(type3 arg){
                     // catch block
@@ -107,7 +107,12 @@
         
         After catch executes, control continues with statements following the catch block.
 
+    Note: 
+        to catch all handler we can use 
 
+                catch(...) {
+                    // Catch-all handler
+                }
 
 
 
@@ -333,10 +338,11 @@ catch(type2 arg) {
     // Handle type2
 }
 ...
-catch(...) {
-    // Catch-all handler
-}
+
 ```
+
+
+
 
 ### 4. Advanced Features & Rules
 
