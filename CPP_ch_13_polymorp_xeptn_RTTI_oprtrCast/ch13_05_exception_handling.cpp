@@ -326,21 +326,6 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 
 
-### 3. General Syntax Structure
-```cpp
-try {
-    // Code to monitor
-}
-catch(type1 arg) {
-    // Handle type1
-}
-catch(type2 arg) {
-    // Handle type2
-}
-...
-
-```
-
 
 
 
