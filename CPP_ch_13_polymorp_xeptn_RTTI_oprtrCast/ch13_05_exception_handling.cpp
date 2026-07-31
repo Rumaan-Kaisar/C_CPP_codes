@@ -43,6 +43,15 @@
             If no matching "catch" exists, STL function "terminate()" is invoked, 
             which calls "abort()" by default, causing "abnormal termination".
 
+            You can specify your own termination handler by referring 
+                to your compiler's library reference for details.
+
+            In C++, a "termination handler" is used when the runtime system encounters a critical failure 
+                during "exception propagation" and cannot safely continue executing. 
+
+            When this happens, the standard library automatically calls std::terminate(), 
+                which triggers either the default handler or a custom function registered via std::set_terminate().
+
 
     catch BLOCK:
         It Handles the thrown exception.
@@ -110,7 +119,7 @@
 
 // ---- rev[30-Jul-2026] ----
 
-   You can specify your own termination handler by referring to your compiler's library reference for details.
+
 
    Catch all exceptions with ellipsis ". . ." : To catch all exceptions instead of just a certain type, use following form of catch:
 catch(...){  // process all exceptions   }
@@ -491,7 +500,6 @@ int func() throw(int, float)
 
 
 */
-
 
 
 
