@@ -110,26 +110,31 @@
     Note: 
         to catch all handler we can use 
 
-                catch(...) {
-                    // Catch-all handler
-                }
+            catch(...) {
+                // Catch-all handler
+            }
 
 
 
----
+    --------  ellipsis ". . ."  --------
 
-## 2. Main Keywords
+    Catch all exceptions with ellipsis ". . ."
+    Use following form of catch:
+
+            catch(...){  
+                // process all exceptions   
+            }
+
+    Here the ellipsis matches any type of data. 
+    [". . ." called ellipsis. It indicates an intentional omission of a word/whole-line/text-section without altering original meaning.]
 
 
 
-// ---- rev[30-Jul-2026] ----
+// ---- rev[31-Jul-2026] ----
+
+    ----------------    Appling restrictions to exceptions    ----------------
 
 
-
-   Catch all exceptions with ellipsis ". . ." : To catch all exceptions instead of just a certain type, use following form of catch:
-catch(...){  // process all exceptions   }
-Here the ellipsis matches any type of data. [ ". . ." called ellipsis. It indicates an intentional omission of a word/whole-line/text-section without altering original meaning.]
-   Appling restrictions to exceptions: 
    We can restrict the type of exceptions that a function can throw back to its caller. 
    We can control what type of exceptions a function can throw outside of itself. 
    We can also prevent a function from throwing any exceptions whatsoever. 
