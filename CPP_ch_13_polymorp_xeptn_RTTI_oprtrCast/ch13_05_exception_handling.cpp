@@ -108,7 +108,11 @@
         After catch executes, control continues with statements following the catch block.
 
     Note: 
-        to catch all handler we can use 
+        A single "try" can have multiple "catch" blocks.
+        Each "catch" must handle a different data type.
+        Checked in order; only the first matching "catch" is executed.
+
+        To catch all handler we can use 
 
             catch(...) {
                 // Catch-all handler
@@ -328,26 +332,6 @@ end
 /*  
 
 Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
-
-
-
-
-
-
-
-
-### 4. Advanced Features & Rules
-
-
-
-
-
-
-#### B. Multiple Catch Blocks
-*   A single `try` can have multiple `catch` blocks.
-*   Each `catch` must handle a different data type.
-*   Checked in order; only the first matching `catch` is executed.
-
 
 
 #### C. Exception Specifications (Restricting Throws)
