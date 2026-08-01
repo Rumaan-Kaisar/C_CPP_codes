@@ -126,6 +126,8 @@
             }
 
     Here the ellipsis matches any type of data. 
+    Useful as a default handler to prevent abnormal program termination from unhandled exceptions.
+    Often placed as the last catch block in a cluster.
     [". . ." called ellipsis. It indicates an intentional omission of a word/whole-line/text-section without altering original meaning.]
 
 
@@ -336,16 +338,17 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 ### 4. Advanced Features & Rules
 
-#### A. Catch-All Handler (`...`)
-*   **Syntax:** `catch(...)`
-*   Uses ellipsis to match **any** type of data.
-*   Useful as a default handler to prevent abnormal program termination from unhandled exceptions.
-*   Often placed as the last catch block in a cluster.
+
+
+
+
 
 #### B. Multiple Catch Blocks
 *   A single `try` can have multiple `catch` blocks.
 *   Each `catch` must handle a different data type.
 *   Checked in order; only the first matching `catch` is executed.
+
+
 
 #### C. Exception Specifications (Restricting Throws)
 *   Functions can restrict the types of exceptions they throw to the caller.
@@ -353,6 +356,8 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 *   **Empty List:** `throw()` prevents the function from throwing *any* exceptions.
 *   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
 *   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
+
+
 
 #### D. Rethrowing Exceptions
 *   **Syntax:** `throw;` (used inside a `catch` block with no argument).
