@@ -140,9 +140,19 @@
 
     ----------------    Appling restrictions to exceptions    ----------------
 
+    Exception Specifications (Restricting Throws):
+        We can restrict the type of exceptions that a function can throw back to its caller.
+        We can control what "type of exceptions" a function can throw outside of itself.
 
-   We can restrict the type of exceptions that a function can throw back to its caller. 
-   We can control what type of exceptions a function can throw outside of itself. 
+*   **Syntax:** `ret_type func_name(arg_list) throw(type_list) { ... }`
+*   **Empty List:** `throw()` prevents the function from throwing *any* exceptions.
+*   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
+*   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
+
+
+
+
+
    We can also prevent a function from throwing any exceptions whatsoever. 
    To apply these restrictions, you must add a throw clause to the function definition. The general form is: 
 
@@ -152,6 +162,12 @@ ret_type func_name(arg_list)  throw(type_list){ // exceptions  }
    When a function attempts to throw a disallowed exception the standard library function unexpected() is called, this causes the terminate() function to be called, which causes abnormal program termination. 
    For own termination handler: need to refer to compiler's documentation for directions on how this can be accomplished.
    If you don't want a function to be able to throw any exceptions, use an empty list.
+
+
+
+
+
+
    Rethrowing exceptions: To rethrow an expression from within an exception handler: call throw, by itself with no exception. This causes the current exception to be passed on to an outer try/catch sequence.
 
    Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
@@ -333,13 +349,6 @@ end
 
 Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
 
-
-#### C. Exception Specifications (Restricting Throws)
-*   Functions can restrict the types of exceptions they throw to the caller.
-*   **Syntax:** `ret_type func_name(arg_list) throw(type_list) { ... }`
-*   **Empty List:** `throw()` prevents the function from throwing *any* exceptions.
-*   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
-*   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
 
 
 
