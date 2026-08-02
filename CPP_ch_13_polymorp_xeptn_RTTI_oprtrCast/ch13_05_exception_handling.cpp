@@ -136,33 +136,36 @@
 
 
 
-// ---- rev[31-Jul-2026] ----
-
     ----------------    Appling restrictions to exceptions    ----------------
 
     Exception Specifications (Restricting Throws):
         We can restrict the type of exceptions that a function can throw back to its caller.
         We can control what "type of exceptions" a function can throw outside of itself.
+        To apply these restrictions, you must add a "throw clause" to the function definition.
 
-*   **Syntax:** `ret_type func_name(arg_list) throw(type_list) { ... }`
-*   **Empty List:** `throw()` prevents the function from throwing *any* exceptions.
+        Syntax:
+                ret_type func_name(arg_list)  throw(type_list){
+                    // exceptions
+                }
+
+        Preventing a function from throwing any exceptions:
+            Empty arg List in throw() prevents the function from throwing *any* exceptions.
+ 
+
+// ---- rev[02-Aug-2026] ----
+
+
 *   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
 *   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
 
-
-
-
-
-   We can also prevent a function from throwing any exceptions whatsoever. 
-   To apply these restrictions, you must add a throw clause to the function definition. The general form is: 
-
-ret_type func_name(arg_list)  throw(type_list){ // exceptions  }
+-------------------
 
    Here only those data types contained in the comma-separated  type-list  may be thrown by the function. 
    When a function attempts to throw a disallowed exception the standard library function unexpected() is called, this causes the terminate() function to be called, which causes abnormal program termination. 
    For own termination handler: need to refer to compiler's documentation for directions on how this can be accomplished.
    If you don't want a function to be able to throw any exceptions, use an empty list.
 
+-------------------
 
 
 
