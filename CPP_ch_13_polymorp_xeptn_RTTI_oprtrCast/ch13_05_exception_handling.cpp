@@ -157,13 +157,15 @@
         If a function throws a disallowed type, "unexpected()" is called, 
         leading to "terminate()" and abnormal termination.
 
+
+
 // ---- rev[02-Aug-2026] ----
 
 
 
 
 
-*   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
+
 
 -------------------
 
@@ -174,7 +176,7 @@
 
 
    For own termination handler: need to refer to compiler's documentation for directions on how this can be accomplished.
-   If you don't want a function to be able to throw any exceptions, use an empty list.
+   If you don't want a function to be able to throw any exceptions, use an "empty list".
 
 -------------------
 
