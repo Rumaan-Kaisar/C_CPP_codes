@@ -151,16 +151,20 @@
         Preventing a function from throwing any exceptions:
             Empty arg List in throw() prevents the function from throwing *any* exceptions.
  
+        Here only those "data types" contained in the comma-separated  "type-list"  may be thrown by the function. 
 
 // ---- rev[02-Aug-2026] ----
 
 
-*   **Violation:** If a function throws a disallowed type, `unexpected()` is called, leading to `terminate()` and abnormal termination.
+*   **Violation:** If a function throws a disallowed type, `unexpected()` is called, 
+    leading to `terminate()` and abnormal termination.
 *   **Note:** Restrictions apply only to exceptions thrown *out* of the function. Internal try-catch blocks within the function can handle any type.
 
 -------------------
 
-   Here only those data types contained in the comma-separated  type-list  may be thrown by the function. 
+
+
+
    When a function attempts to throw a disallowed exception the standard library function unexpected() is called, this causes the terminate() function to be called, which causes abnormal program termination. 
    For own termination handler: need to refer to compiler's documentation for directions on how this can be accomplished.
    If you don't want a function to be able to throw any exceptions, use an empty list.
