@@ -32,12 +32,12 @@
     throw STATEMENT:
         If an exception (i.e., an error) occurs within the "try" block, it is thrown using "throw". 
 
-        Syntax:     throw exception;
+        Syntax:     throw exception;    // It generates an exception.
 
         Used to signal that an error has occurred.
         Must be executed within a "try" block or a function called by the "try" block (directly or indirectly).
 
-        "exception" is the value being thrown (can be any data type, often class types).
+        The thrown value is called the "exception". (can be any data type, often class types).
 
         Uncaught Exceptions:
             If no matching "catch" exists, STL function "terminate()" is invoked, 
@@ -64,7 +64,11 @@
 
         Argument:
             "arg" receives the value of the exception. 
-            It is optional if access to the value is not needed.
+            It is optional if access to the value is not needed. Eg:
+
+                catch(int) {
+                    // Handle integer exception
+                }
 
         There can be more than one catch associated with a try.
         The catch that is used is determined by the "type of the exception". 
@@ -163,23 +167,21 @@
     If you don't want a function to be able to throw any exceptions, use an "empty list".
 
 
+    --------  Rethrowing exceptions  --------
+
+    To rethrow an expression from within an exception handler, call "throw", by itself with no exception.
+    This causes the current exception to be passed on to an outer try/catch sequence.
+
+    Syntax: 
+            throw;      // used inside a "catch" block with no argument.
+
+        Passes the current exception to an "outer try/catch" sequence.
+        Allows "multiple handlers" to process different aspects of the same exception.
+
+    The rethrown exception is not caught by the "same catch block" that rethrew it.
+
 
 // ---- rev[03-Aug-2026] ----
-
-    Rethrowing exceptions:
-        To rethrow an expression from within an exception handler, call "throw", by itself with no exception.
-        This causes the current exception to be passed on to an outer try/catch sequence.
-
-        Syntax: 
-                throw;      // used inside a "catch" block with no argument.
-
-            Passes the current exception to an "outer try/catch" sequence.
-            Allows "multiple handlers" to process different aspects of the same exception.
-
-        The rethrown exception is not caught by the "same catch block" that rethrew it.
-
-
-
 
 
    Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
@@ -402,35 +404,7 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 /*  
 
-### **Exception Handling (C++) – Simplified Pointwise Notes**
 
-Example:
-
-```cpp
-catch(int)
-{
-    // Handle integer exception
-}
-```
-
----
-
-## 7. About `throw`
-
-### Syntax
-
-```cpp
-throw exception;
-```
-
-* Used to generate an exception.
-* Can be used:
-
-  * Inside a `try` block.
-  * Inside functions called by the `try` block.
-* The thrown value is called the **exception**.
-
----
 
 ## 8. If No Matching `catch` Exists
 
@@ -458,6 +432,8 @@ catch(...)
 * Matches **any type** of exception.
 
 ---
+
+
 
 ## 10. Restricting Exceptions
 
