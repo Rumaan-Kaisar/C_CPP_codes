@@ -183,10 +183,18 @@
     The rethrown exception is not caught by the "same catch block" that rethrew it.
 
 
-// ---- rev[03-Aug-2026] ----
+// ---- rev[05-Aug-2026] ----
 
 
    Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
+
+
+#### Example 1: Basic Flow
+*   Code after `throw` in the `try` block is **never executed**.
+*   Control jumps directly to `catch`.
+*   Stack is automatically reset.
+
+
 int main(){cout << " start \n";
 try{                    // start a try block
     cout << " Inside try block \n";              
@@ -220,7 +228,18 @@ cout << i << "\n"; }
         This program displays the output:   start
 Inside try block
 Abnormal program termination
-   Example 2: An exception can be thrown from a statement that is outside the try block as long as the statement is within a function that is called from within the try block. For example, this is a valid program:
+
+
+
+   Example 2: An exception can be thrown from a statement that is outside the try block as long as the statement is within a function that is called from within the try block. 
+For example, this is a valid program:
+
+
+#### Example 2: Throwing from Called Functions
+*   Exceptions can be thrown by functions called *within* a `try` block.
+*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
+
+
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
                 if(test) throw test ; }
 int main(){     cout << " start \n";
@@ -240,7 +259,17 @@ output:  start
               end
 
    Xtest(2) is also exception but never thrown because of control transferred to "catch" after throwing 1 as exception.
-   Example 3: [To avoid "error skipping" as Xtest(2) in Example 2] A try block can be localized to a function. In this case, each time the function is entered, the exception handling relative to that function is reset. For example:
+
+
+
+   Example 3: [To avoid "error skipping" as Xtest(2) in Example 2] A try block can be localized to a function. 
+In this case, each time the function is entered, the exception handling relative to that function is reset. For example:
+
+
+#### Example 3: Localized Try-Catch in Functions
+*   Placing `try-catch` inside a function (rather than `main`) resets exception handling every time the function is called.
+*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
+
 
     void Xhandler(int test){    try {   if( test )
     throw test ; }
@@ -261,7 +290,16 @@ output:     start
 
    try block is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
    As you can see, three exceptions are thrown. After each exception, the function returns. When the function is called again, the exception handling is reset.
+
+
+
    Example 4: More than one catch associated with a try. Each catch must catch a different type of exception (two or more catch with same data-type returns error). For example, consider Example 3 with the following Xhandler() [catches both integers and strings]:
+
+
+#### Example 4: Type Matching Strictness
+*   If the thrown type (e.g., `int`) does not match the catch type (e.g., `double`), the exception remains unhandled.
+*   Result: Abnormal program termination.
+
 
 void Xhandler(int test){    try {   if(test)  throw test ;
 else throw "value is zero" }
@@ -271,6 +309,12 @@ cout << " Caught a string :";
 cout << str << '\n';}   
    }
    In general, catch expressions are checked in the order in which they occur in a program. Only a matching statement is executed. All other catch blocks are ignored.
+
+
+
+
+
+
    Example 5: Following catches all exceptions [with ellipsis . . .] using catch(...):
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int 
                       if( test ==1) throw 'a';           // throw char 
@@ -292,7 +336,11 @@ void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw i
       end
 
    All three throws were caught using the one catch statement.
-   Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
+
+
+
+   Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
+For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
                       if( test ==1) throw 'a';           // throw char
                       if( test ==2) throw 123.23;  // throw double
@@ -316,6 +364,16 @@ int main(){ cout << " start \n";
       end
 
    By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
+
+
+
+#### Example 5 & 6: Using `catch(...)`
+*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
+*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors.
+
+
+
+
    Example 7: ret_type func_name(arg_list)  throw(type_list){ // exceptions } to restrict the types of exceptions that can be thrown from a function:
 
 void Xhandler(int test ) throw(int, char, double)  {
@@ -331,12 +389,30 @@ void Xhandler(int test ) throw(int, char, double)  {
    In this program, the function Xhandler() can throw only integer, character, and double exceptions. If it attempts to throw any other type of exception, an abnormal program termination will occur. (That is, unexpected() will be called.) To see an example of this, remove int from the list and retry the program.
    A function can only be restricted in what types of exceptions it throws back to the try block that called it. That is, a try block within a function can thrown any type of exception so long as it is caught within that function.
    The restriction applies only when throwing an exception out of the function.
+
+
+
    Example 8: The following change to Xhandler() prevents it from throwing any exceptions:
 void Xhandler(int test ) throw(){   if( test ==0) throw test ;
 if( test ==0) throw 'a';
 if( test ==2) throw 123.23; }
    The above statements no longer work . Instead , they will cause an abnormal program termination . 
-   Example 9: The reason for rethrow an exception is to allow multiple handlers access to the exception. For example, perhaps one exception handler manages one aspect of an exception and a second handler copes with another. 
+
+
+#### Example 7 & 8: Function Throw Restrictions
+*   `void func() throw(int, char)` allows only int/char throws.
+*   `void func() throw()` allows no throws. Attempting to throw results in termination.
+
+
+
+
+
+   Example 9: The reason for rethrow an exception is to allow multiple handlers access to the exception. 
+For example, perhaps one exception handler manages one aspect of an exception and a second handler copes with another. 
+
+#### Example 9: Rethrowing
+*   Inner handler processes part of the error, then uses `throw;` to pass it to the outer handler in `main` for further processing.
+
    An exception can only be rethrown from within a catch block (or from any function called from within that block). 
    When you rethrow an exception, it will not be recaught by the same catch statement. It will propagate to an outer catch statement. 
    The following program illustrates rethrowing an exception. It rethrows a char * exception.
@@ -371,34 +447,6 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 
 ### 5. Execution Behavior Examples
-
-#### Example 1: Basic Flow
-*   Code after `throw` in the `try` block is **never executed**.
-*   Control jumps directly to `catch`.
-*   Stack is automatically reset.
-
-#### Example 2: Throwing from Called Functions
-*   Exceptions can be thrown by functions called *within* a `try` block.
-*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
-
-#### Example 3: Localized Try-Catch in Functions
-*   Placing `try-catch` inside a function (rather than `main`) resets exception handling every time the function is called.
-*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
-
-#### Example 4: Type Matching Strictness
-*   If the thrown type (e.g., `int`) does not match the catch type (e.g., `double`), the exception remains unhandled.
-*   Result: Abnormal program termination.
-
-#### Example 5 & 6: Using `catch(...)`
-*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
-*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors.
-
-#### Example 7 & 8: Function Throw Restrictions
-*   `void func() throw(int, char)` allows only int/char throws.
-*   `void func() throw()` allows no throws. Attempting to throw results in termination.
-
-#### Example 9: Rethrowing
-*   Inner handler processes part of the error, then uses `throw;` to pass it to the outer handler in `main` for further processing.
 
 */
 
@@ -452,7 +500,6 @@ int func() throw(int, float)
 
 
 */
-
 
 
 
