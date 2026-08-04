@@ -39,18 +39,20 @@
 
         The thrown value is called the "exception". (can be any data type, often class types).
 
-        Uncaught Exceptions:
-            If no matching "catch" exists, STL function "terminate()" is invoked, 
-            which calls "abort()" by default, causing "abnormal termination".
 
-            You can specify your own termination handler by referring 
-                to your compiler's library reference for details.
+        --------  Uncaught Exceptions  --------
 
-            In C++, a "termination handler" is used when the runtime system encounters a critical failure 
-                during "exception propagation" and cannot safely continue executing. 
+        If no matching "catch" exists, STL function "terminate()" is invoked, 
+        which calls "abort()" by default, causing "abnormal termination".
 
-            When this happens, the standard library automatically calls std::terminate(), 
-                which triggers either the default handler or a custom function registered via std::set_terminate().
+        You can specify your own termination handler by referring 
+            to your compiler's library reference for details.
+
+        In C++, a "termination handler" is used when the runtime system encounters a critical failure 
+            during "exception propagation" and cannot safely continue executing. 
+
+        When this happens, the standard library automatically calls std::terminate(), 
+            which triggers either the default handler or a custom function registered via std::set_terminate().
 
 
     catch BLOCK:
@@ -404,34 +406,6 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 /*  
 
-
-
-## 8. If No Matching `catch` Exists
-
-* The exception remains **unhandled**.
-* C++ calls:
-
-  * `terminate()`
-  * which usually calls `abort()`
-* Result: **Abnormal program termination**.
-
----
-
-## 9. Catch All Exceptions
-
-Use an ellipsis (`...`) to catch every type of exception.
-
-```cpp
-catch(...)
-{
-    // Handle all exceptions
-}
-```
-
-* `...` is called **ellipsis**.
-* Matches **any type** of exception.
-
----
 
 
 
