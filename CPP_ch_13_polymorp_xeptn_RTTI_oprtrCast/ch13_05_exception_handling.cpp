@@ -166,16 +166,17 @@
 
 // ---- rev[03-Aug-2026] ----
 
-Rethrowing exceptions:
+    Rethrowing exceptions:
+        To rethrow an expression from within an exception handler, call "throw", by itself with no exception.
+        This causes the current exception to be passed on to an outer try/catch sequence.
 
-To rethrow an expression from within an exception handler, call "throw", by itself with no exception.
-This causes the current exception to be passed on to an outer try/catch sequence.
+        Syntax: 
+                throw;      // used inside a "catch" block with no argument.
 
-#### D. Rethrowing Exceptions
-*   **Syntax:** `throw;` (used inside a `catch` block with no argument).
-*   Passes the current exception to an outer `try/catch` sequence.
-*   Allows multiple handlers to process different aspects of the same exception.
-*   The rethrown exception is not caught by the same `catch` block that rethrew it.
+            Passes the current exception to an "outer try/catch" sequence.
+            Allows "multiple handlers" to process different aspects of the same exception.
+
+        The rethrown exception is not caught by the "same catch block" that rethrew it.
 
 
 
