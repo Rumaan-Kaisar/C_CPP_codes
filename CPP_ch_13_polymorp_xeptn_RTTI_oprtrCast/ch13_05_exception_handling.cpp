@@ -166,13 +166,20 @@
 
 // ---- rev[03-Aug-2026] ----
 
+Rethrowing exceptions:
+
+To rethrow an expression from within an exception handler, call "throw", by itself with no exception.
+This causes the current exception to be passed on to an outer try/catch sequence.
+
+#### D. Rethrowing Exceptions
+*   **Syntax:** `throw;` (used inside a `catch` block with no argument).
+*   Passes the current exception to an outer `try/catch` sequence.
+*   Allows multiple handlers to process different aspects of the same exception.
+*   The rethrown exception is not caught by the same `catch` block that rethrew it.
 
 
 
 
-
-
-   Rethrowing exceptions: To rethrow an expression from within an exception handler: call throw, by itself with no exception. This causes the current exception to be passed on to an outer try/catch sequence.
 
    Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
 int main(){cout << " start \n";
@@ -356,11 +363,7 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 
 
-#### D. Rethrowing Exceptions
-*   **Syntax:** `throw;` (used inside a `catch` block with no argument).
-*   Passes the current exception to an outer `try/catch` sequence.
-*   Allows multiple handlers to process different aspects of the same exception.
-*   The rethrown exception is not caught by the same `catch` block that rethrew it.
+
 
 ### 5. Execution Behavior Examples
 
