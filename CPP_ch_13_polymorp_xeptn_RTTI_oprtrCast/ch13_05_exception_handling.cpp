@@ -181,21 +181,42 @@
         Allows "multiple handlers" to process different aspects of the same exception.
 
     The rethrown exception is not caught by the "same catch block" that rethrew it.
+*/
 
 
-// ---- rev[05-Aug-2026] ----
 
+/* Example 1 (Execution process of Exception Handling): 
+                Following shows the way C++ exception handling operates.
 
-   Example 1: (Execution process of Exception Handling): Following shows the way C++ exception handling operates:
+                Code after "throw" in the "try" block is "never executed".
+                Control jumps directly to "catch".
+                Stack is automatically reset.
+*/
 
+#include <iostream>
 
-#### Example 1: Basic Flow
-*   Code after `throw` in the `try` block is **never executed**.
-*   Control jumps directly to `catch`.
-*   Stack is automatically reset.
+int main ()
+{
+cout << " start \n";
+try // start a try block
+{
+cout << " Inside try block \n";
+throw 10; // throw an error
+cout << " This will not execute ";
+}
+catch ( int i) // catch an error
+{
+cout << " Caught One ! Number is: ";
+cout << i << "\n";
+}
+cout << " end ";
+return 0;
+}
 
+// -----------
 
-int main(){cout << " start \n";
+int main(){
+    cout << " start \n";
 try{                    // start a try block
     cout << " Inside try block \n";              
 throw 10;               // throw an error 
@@ -208,6 +229,13 @@ cout << i << "\n"; }
 cout << "end ";
 return 0; }
         
+
+
+/*  
+
+// ---- rev[05-Aug-2026] ----
+
+
         This program displays the output:   start
 Inside try block
 Caught One! Number is: 10
