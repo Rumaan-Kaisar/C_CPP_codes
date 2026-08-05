@@ -215,16 +215,7 @@ int main() {
     return 0;
 }
 
-// -----------
 
-
-
-catch(int i){               // beginning catch block: catch an error 
-cout << " Caught One ! Number is: ";
-cout << i << "\n"; }
-cout << "end ";
-return 0; }
-        
 
 
 /*  
@@ -232,18 +223,30 @@ return 0; }
 // ---- rev[05-Aug-2026] ----
 
 
-        This program displays the output:   start
-Inside try block
-Caught One! Number is: 10
-end
+output:
+    start 
+    Inside try block 
+    Caught One ! Number is: 10
+    end 
 
-   There is:      a try block containing three statements and
-   a catch(int i) statement that processes an integer exception.
-   Within the try block, only two of the three statements will execute: the first cout statement and the throw. Once an exception has been thrown, control passes to the catch expression and the try block is terminated. The cout statement following the throw will never execute.
-   i.e. catch is not called, rather, program execution is transferred to it. (The stack is automatically reset as needed to accomplish this.) 
-   After the catch statement executes, program control continues with the statements following the catch. 
-   Often, however, a catch block will end with a call to exit(), abort(), or some other function that causes program termination because exception handling is frequently used to handle catastrophic errors.
-   The type of the exception must match the type specified in a catch statement. Considering Example 1, following won't  work .
+Notice:
+    There is a "try block" containing three statements and
+    A catch(int i) statement that processes an "integer exception".
+
+    Within the try block, only two of the three statements will execute: the first cout statement and the throw. Once an exception has been thrown, control passes to the catch expression and the try block is terminated. The cout statement following the throw will never execute.
+        i.e. catch is not called, rather, program "execution is transferred" to it.
+        (The stack is automatically reset as needed to accomplish this.) 
+
+    After the catch statement executes, program control continues with the statements following the catch. 
+    
+    Often, however, a catch block will end with a call to 
+        exit(), abort(), or some other function that causes program termination 
+        because exception handling is frequently used to handle catastrophic errors.
+
+// ----  rev[06-Aug-2026]  ----
+Note:
+   The type of the exception must match the type specified in a catch statement.
+Considering Example 1, following won't  work .
 catch(double i){    // 'catch' is double  type: won't work for an int exception 
 cout << " Caught One ! Number is: ";
 cout << i << "\n"; }
