@@ -195,22 +195,22 @@
 
 #include <iostream>
 
-int main ()
-{
-cout << " start \n";
+int main() {
+    std::cout << " start \n";
 try // start a try block
 {
-cout << " Inside try block \n";
+    std::cout << " Inside try block \n";
 throw 10; // throw an error
-cout << " This will not execute ";
+    std::cout << " This will not execute ";
 }
 catch ( int i) // catch an error
 {
-cout << " Caught One ! Number is: ";
-cout << i << "\n";
+    std::cout << " Caught One ! Number is: ";
+    std::cout << i << "\n";
 }
-cout << " end ";
-return 0;
+    std::cout << " end ";
+
+    return 0;
 }
 
 // -----------
