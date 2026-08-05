@@ -197,17 +197,19 @@
 
 int main() {
     std::cout << " start \n";
-try // start a try block
-{
-    std::cout << " Inside try block \n";
-throw 10; // throw an error
-    std::cout << " This will not execute ";
-}
-catch ( int i) // catch an error
-{
-    std::cout << " Caught One ! Number is: ";
-    std::cout << i << "\n";
-}
+
+    // start a try block
+    try {
+        std::cout << " Inside try block \n";
+        throw 10; // throw an error
+        std::cout << " This will not execute ";
+    }
+    // catch an error
+    catch(int i) {
+        std::cout << " Caught One ! Number is: ";
+        std::cout << i << "\n";
+    }
+    
     std::cout << " end ";
 
     return 0;
