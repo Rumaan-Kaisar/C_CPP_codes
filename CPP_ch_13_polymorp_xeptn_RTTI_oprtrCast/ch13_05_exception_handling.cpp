@@ -202,14 +202,14 @@ int main() {
     try {
         std::cout << " Inside try block \n";
         throw 10; // throw an error
-        std::cout << " This will not execute ";
+        std::cout << " This will not execute ";     // won't execute, control transferred to "catch" due to "throw 10"
     }
     // catch an error
     catch(int i) {
         std::cout << " Caught One ! Number is: ";
         std::cout << i << "\n";
     }
-    
+
     std::cout << " end ";
 
     return 0;
@@ -217,13 +217,7 @@ int main() {
 
 // -----------
 
-int main(){
-    cout << " start \n";
-try{                    // start a try block
-    cout << " Inside try block \n";              
-throw 10;               // throw an error 
-cout << " This will not execute "; // not execute, control transferred to "catch" due to "throw 10"
-}
+
 
 catch(int i){               // beginning catch block: catch an error 
 cout << " Caught One ! Number is: ";
