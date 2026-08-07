@@ -233,7 +233,11 @@ Notice:
     There is a "try block" containing three statements and
     A catch(int i) statement that processes an "integer exception".
 
-    Within the try block, only two of the three statements will execute: the first cout statement and the throw. Once an exception has been thrown, control passes to the catch expression and the try block is terminated. The cout statement following the throw will never execute.
+    Within the try block, only two of the three statements will execute: 
+        the first cout statement and the throw. 
+        Once an exception has been thrown, control passes to the catch expression and the try block is terminated. 
+        The cout statement following the throw will never execute.
+        
         i.e. catch is not called, rather, program "execution is transferred" to it.
         (The stack is automatically reset as needed to accomplish this.) 
 
