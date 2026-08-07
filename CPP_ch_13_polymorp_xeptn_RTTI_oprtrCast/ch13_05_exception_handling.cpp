@@ -258,11 +258,13 @@ Note:
             std::cout << " Caught One ! Number is: ";
             std::cout << i << "\n";
         }
-   This program produces the following output because the integer exception will not be caught by a double catch statement.
+
+        This program-part produces the following output because the integer exception will not be caught by a double catch statement.
         
-        This program displays the output:   start
-Inside try block
-Abnormal program termination
+        output:
+            start
+            Inside try block
+            Abnormal program termination
 
 
 
