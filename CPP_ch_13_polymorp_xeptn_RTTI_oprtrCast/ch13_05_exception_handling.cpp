@@ -150,8 +150,13 @@
         To apply these restrictions, you must add a "throw clause" to the function definition.
 
         Syntax:
-                ret_type func_name(arg_list)  throw(type_list){
+                return_type func_name(arg_list)  throw(type_list){
                     // exceptions
+                }
+
+        Example:
+                int func() throw(int, float) {
+                    // ...
                 }
 
         Preventing a function from throwing any exceptions:
@@ -160,6 +165,7 @@
         Here only those "data types" contained in the comma-separated  "type-list"  may be thrown by the function. 
 
     Violation:
+        Only the listed exception types can be thrown.
         If a function throws a disallowed type, "unexpected()" is called, 
         leading to "terminate()" and abnormal termination.
 
@@ -262,18 +268,21 @@ int main() {
 */
 
 
-/*
 
 
-// ----  rev[07-Aug-2026]  ----
+/* Example 2: An exception can be thrown from a statement that is outside the try block as long as the statement is within a function that is called from within the try block. 
 
-Example 2: An exception can be thrown from a statement that is outside the try block as long as the statement is within a function that is called from within the try block. 
+
 For example, this is a valid program:
 
 
 #### Example 2: Throwing from Called Functions
 *   Exceptions can be thrown by functions called *within* a `try` block.
 *   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
+
+
+
+// ----  rev[07-Aug-2026]  ----
 
 
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
@@ -475,14 +484,7 @@ end
 
 /*  
 
-Here is the organized pointwise summary of C++ Exception Handling based on the provided text:
 
-
-
-
-
-
-### 5. Execution Behavior Examples
 
 */
 
@@ -493,35 +495,9 @@ Here is the organized pointwise summary of C++ Exception Handling based on the p
 
 
 
-## 10. Restricting Exceptions
 
-A function can specify which exception types it may throw.
 
-Syntax:
 
-```cpp
-return_type function(arguments) throw(type_list)
-{
-    ...
-}
-```
-
-Example:
-
-```cpp
-int func() throw(int, float)
-{
-    ...
-}
-```
-
-* Only the listed exception types can be thrown.
-* Throwing any other type calls:
-
-  * `unexpected()`
-  * which then calls `terminate()`.
-
----
 
 ## 11. Key Points to Remember
 
