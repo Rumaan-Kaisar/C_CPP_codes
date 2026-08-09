@@ -197,32 +197,6 @@
                 Code after "throw" in the "try" block is "never executed".
                 Control jumps directly to "catch".
                 Stack is automatically reset.
-
-
-            output:
-                start 
-                Inside try block 
-                Caught One ! Number is: 10
-                end 
-
-            Notice:
-                There is a "try block" containing three statements and
-                A catch(int i) statement that processes an "integer exception".
-
-                Within the try block, only two of the three statements will execute: 
-                    the first cout statement and the throw. 
-                    Once an exception has been thrown, control passes to the catch expression and the try block is terminated. 
-                    The cout statement following the throw will never execute.
-                    
-                    i.e. catch is not called, rather, program "execution is transferred" to it.
-                    (The stack is automatically reset as needed to accomplish this.) 
-
-                After the catch statement executes, program control continues with the statements following the catch. 
-                
-                Often, however, a catch block will end with a call to 
-                    exit(), abort(), or some other function that causes program termination 
-                    because exception handling is frequently used to handle catastrophic errors.
-
 */
 
 #include <iostream>
@@ -248,8 +222,31 @@ int main() {
 }
 
 
+/*  output:
+        start 
+        Inside try block 
+        Caught One ! Number is: 10
+        end 
 
-/*  Note:
+    Notice:
+        There is a "try block" containing three statements and
+        A catch(int i) statement that processes an "integer exception".
+
+        Within the try block, only two of the three statements will execute: 
+            the first cout statement and the throw. 
+            Once an exception has been thrown, control passes to the catch expression and the try block is terminated. 
+            The cout statement following the throw will never execute.
+            
+            i.e. catch is not called, rather, program "execution is transferred" to it.
+            (The stack is automatically reset as needed to accomplish this.) 
+
+        After the catch statement executes, program control continues with the statements following the catch. 
+        
+        Often, however, a catch block will end with a call to 
+            exit(), abort(), or some other function that causes program termination 
+            because exception handling is frequently used to handle catastrophic errors.
+
+    Note:
         The type of the exception must match the type specified in a catch statement.
         Considering Example 1, following won't  work .
 
@@ -270,7 +267,8 @@ int main() {
 
 
 
-/* Example 2: An exception can be thrown from a statement that is outside the try block as long as the statement is within a function that is called from within the try block. 
+/* Example 2: An exception can be thrown from a statement that is outside the try block as 
+long as the statement is within a function that is called from within the try block. 
 
 
 For example, this is a valid program:
@@ -518,28 +516,6 @@ end
 
 // --------  EXCP TN  --------
 
-1. Here is a simple example that shows the way C++ exception handling operates:
-// A simple exception handling example .
-
-# include <iostream >
-using namespace std ;
-int main ()
-{
-cout << " start \n";
-try // start a try block
-{
-cout << " Inside try block \n";
-throw 10; // throw an error
-cout << " This will not execute ";
-}
-catch ( int i) // catch an error
-{
-cout << " Caught One ! Number is: ";
-cout << i << "\n";
-}
-cout << " end ";
-return 0;
-}
 This program displays the following output:
 start
 Inside try block
@@ -750,6 +726,5 @@ and abnormal program termination might occur.
 11.4 EXERCISES
 
   
-
 
 
