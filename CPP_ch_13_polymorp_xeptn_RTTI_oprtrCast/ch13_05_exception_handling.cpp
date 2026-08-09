@@ -235,12 +235,12 @@ int main() {
         Within the try block, only two of the three statements will execute: 
             the first cout statement and the throw. 
             Once an exception has been thrown, control passes to the catch expression and the try block is terminated. 
-            The cout statement following the throw will never execute.
+            The "cout" statement following the "throw" will never execute.
             
             i.e. catch is not called, rather, program "execution is transferred" to it.
             (The stack is automatically reset as needed to accomplish this.) 
 
-        After the catch statement executes, program control continues with the statements following the catch. 
+        After the "catch" statement executes, program control continues with the statements following the catch. 
         
         Often, however, a catch block will end with a call to 
             exit(), abort(), or some other function that causes program termination 
@@ -516,25 +516,14 @@ end
 
 // --------  EXCP TN  --------
 
-This program displays the following output:
-start
-Inside try block
-Caught One! Number is: 10
-end
-Look carefully at this program. As you can see, there is a try block containing three
-statements and a catch(int i) statement that processes an integer exception. Within the
-try block, only two of the three statements will execute: the first cout statement and the
-throw. Once an exception has been thrown, control passes to the catch expression and
-the try block is terminated. That is, catch is not called. Rather, program execution is
-transferred to it. (The stack is automatically reset as needed to accomplish this.) Thus,
-the cout statement following the throw will never execute.
-After the catch statement executes, program control continues with the statements following the catch. Often, however, a catch block will end with a call to exit(), abort(),
-or some other function that causes program termination because exception handling is
-frequently used to handle catastrophic errors.
 
 
 
-2. As mentioned, the type of the exception must match the type specified in a catch statement. For example, in the preceding example, if you change the type in the catch statement to double, the exception will not be caught, and abnormal termination will occur.
+
+2. As mentioned, the type of the exception must match the type specified in a catch statement. 
+For example, in the preceding example, if you change the type in the catch statement to double, 
+the exception will not be caught, and abnormal termination will occur.
+
 This change is shown here:
 // This example will not work .
 # include <iostream >
