@@ -298,16 +298,15 @@ int main() {
 
 /* Example 3: An exception can be thrown from a statement that is outside the try block 
                 as long as the statement is within a "function that is called from" within the try block 
+
+            output:
+                start
+                Inside try block
+                Inside Xtest, test is: 0
+                Inside Xtest, test is: 1
+                Caught One! Number is: 1
+                end
 */
- 
-
-
-
-/*
-Throwing an exception from a function outside
-the try block .
-*/
-
 
 #include <iostream>
 
@@ -319,7 +318,7 @@ void Xtest(int test) {
 
 int main() {
     std::cout << " start \n";
-    // start a try block
+    // calling the exception throwing function within try block
     try {
         Xtest(0);
         Xtest(1);
@@ -335,18 +334,10 @@ int main() {
     return 0;
 }
 
-This program produces the following output:
-start
-Inside try block
-Inside Xtest, test is: 0
-Inside Xtest, test is: 1
-Caught One! Number is: 1
-end
-
- 
 
 
 
+// ----  rev[10-aug-2026]  ----
 
 
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
