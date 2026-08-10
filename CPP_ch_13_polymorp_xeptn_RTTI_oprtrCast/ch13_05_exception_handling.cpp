@@ -267,22 +267,48 @@ int main() {
 
 
 
-/* Example 2: An exception can be thrown from a statement that is outside the try block 
+/*  Example 2: The type of the exception must match the type specified in a catch statement. 
+                in the preceding example, if you change the type in the catch statement to double, 
+                the exception will not be caught, and abnormal termination will occur.
+*/
+
+
+#include <iostream>
+
+int main() {
+    std::cout << " start \n";
+
+    // start a try block
+    try {
+        std::cout << " Inside try block \n";
+        throw 10; // throw an error
+        std::cout << " This will not execute ";     // won't execute, control transferred to "catch" due to "throw 10"
+    }
+    // catch an error : won't work for an int exception
+    catch(double i) {
+        std::cout << " Caught One ! Number is: ";
+        std::cout << i << "\n";
+    }
+
+    std::cout << " end ";
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+/* Example 3: An exception can be thrown from a statement that is outside the try block 
                 as long as the statement is within a "function that is called from" within the try block 
+*/
+ 
+ 
 
-
-
-
-
-
-*   Exceptions can be thrown by functions called *within* a `try` block.
-*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
-
-
-
-// ----  rev[07-Aug-2026]  ----
-
-/ Throwing exception from Called Functions
+// Throwing exception from Called Functions
 
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
                 if(test) throw test ; }
@@ -295,6 +321,21 @@ int main(){     cout << " start \n";
                  cout << i << "\n"; }
     cout << "end ";
     return 0; } 
+
+
+
+/* 
+
+
+
+*   Exceptions can be thrown by functions called *within* a `try` block.
+*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
+
+
+
+// ----  rev[07-Aug-2026]  ----
+
+
 output:  start
                Inside try block
                Inside Xtest, test is: 0
@@ -521,37 +562,6 @@ end
 
 
 
-2. As mentioned, the type of the exception must match the type specified in a catch statement. 
-For example, in the preceding example, if you change the type in the catch statement to double, 
-the exception will not be caught, and abnormal termination will occur.
-
-This change is shown here:
-// This example will not work .
-# include <iostream >
-using namespace std ;
-
-int main ()
-{
-cout << " start \n";
-try // start a try block
-{
-cout << " Inside try block \n";
-throw 10; // throw an error
-cout << " This will not execute ";
-}
-catch ( double i) // won ’t work for an int exception
-{
-cout << " Caught One ! Number is: ";
-cout << i << "\n";
-}
-cout << " end ";
-return 0;
-}
-This program produces the following output because the integer exception will not be
-caught by a double catch statement.
-start
-Inside try block
-Abnormal program termination
 3. An exception can be thrown from a statement that is outside the try block as long as the
 statement is within a function that is called from within the try block. For example, this
 is a valid program:
@@ -593,6 +603,10 @@ Inside Xtest, test is: 0
 Inside Xtest, test is: 1
 Caught One! Number is: 1
 end
+
+
+
+
 4. A try block can be localized to a function. When this is the case, each time the function
 is entered, the exception handling relative to that function is reset. For example, examine
 this program:
