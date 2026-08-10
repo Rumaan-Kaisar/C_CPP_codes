@@ -271,8 +271,6 @@ int main() {
                 in the preceding example, if you change the type in the catch statement to double, 
                 the exception will not be caught, and abnormal termination will occur.
 */
-
-
 #include <iostream>
 
 int main() {
@@ -298,17 +296,58 @@ int main() {
 
 
 
-
-
-
-
 /* Example 3: An exception can be thrown from a statement that is outside the try block 
                 as long as the statement is within a "function that is called from" within the try block 
 */
  
+
+
+
+/*
+Throwing an exception from a function outside
+the try block .
+*/
+
+
+#include <iostream>
+
+// following function throws an exception
+void Xtest(int test) {
+    std::cout << " Inside Xtest , test is: " << test << "\n";
+    if(test) throw test;
+}
+
+int main() {
+    std::cout << " start \n";
+    // start a try block
+    try {
+        Xtest(0);
+        Xtest(1);
+        Xtest(2);
+    }
+    // catch an error
+    catch(int i) {
+        std::cout << " Caught One! Number is: ";
+        std::cout << i << "\n";
+    }
+    std::cout << " end ";
+
+    return 0;
+}
+
+This program produces the following output:
+start
+Inside try block
+Inside Xtest, test is: 0
+Inside Xtest, test is: 1
+Caught One! Number is: 1
+end
+
  
 
-// Throwing exception from Called Functions
+
+
+
 
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
                 if(test) throw test ; }
@@ -561,48 +600,6 @@ end
 
 
 
-
-3. An exception can be thrown from a statement that is outside the try block as long as the
-statement is within a function that is called from within the try block. For example, this
-is a valid program:
-/*
-Throwing an exception from a function outside
-the try block .
-*/
-# include <iostream >
-using namespace std ;
-void Xtest ( int test )
-{
-cout << " Inside Xtest , test is: " << test << "\n";
-if( test )
-throw test ;
-}
-int main ()
-{
-cout << " start \n";
-try // start a try block
-{
-295TEACH YOURSELF
-C++
-Xtest (0) ;
-Xtest (1) ;
-Xtest (2) ;
-}
-catch ( int i) // catch an error
-{
-cout << " Caught One ! Number is: ";
-cout << i << "\n";
-}
-cout << " end ";
-return 0;
-}
-This program produces the following output:
-start
-Inside try block
-Inside Xtest, test is: 0
-Inside Xtest, test is: 1
-Caught One! Number is: 1
-end
 
 
 
