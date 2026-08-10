@@ -267,14 +267,14 @@ int main() {
 
 
 
-/* Example 2: An exception can be thrown from a statement that is outside the try block as 
-long as the statement is within a function that is called from within the try block. 
+/* Example 2: An exception can be thrown from a statement that is outside the try block 
+                as long as the statement is within a "function that is called from" within the try block 
 
 
-For example, this is a valid program:
 
 
-#### Example 2: Throwing from Called Functions
+
+
 *   Exceptions can be thrown by functions called *within* a `try` block.
 *   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
 
@@ -282,6 +282,7 @@ For example, this is a valid program:
 
 // ----  rev[07-Aug-2026]  ----
 
+/ Throwing exception from Called Functions
 
 void Xtest(int test) {  cout << " Inside Xtest , test is: " << test << "\n";
                 if(test) throw test ; }
