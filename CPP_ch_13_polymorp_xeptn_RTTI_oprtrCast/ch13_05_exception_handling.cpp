@@ -334,17 +334,6 @@ int main() {
     return 0;
 }
 
-
-
-
-// ----  rev[10-aug-2026]  ----
-
-catch(int i{   cout << " Caught One ! Number is: ";
-                 cout << i << "\n"; }
-    cout << "end ";
-    return 0; } 
-
-
 /*  Once an exception is "thrown and caught", subsequent function calls in the "try" block are not executed.
     e.g., "Xtest(2)" after "Xtest(1)" throws are not executed.
 */
@@ -354,7 +343,8 @@ catch(int i{   cout << " Caught One ! Number is: ";
 
 
 
-// ----  rev[07-Aug-2026]  ----
+// ----  rev[11-aug-2026]  ----
+
 
 
 output:  start
