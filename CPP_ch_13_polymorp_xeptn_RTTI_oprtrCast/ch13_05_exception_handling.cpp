@@ -335,8 +335,15 @@ int main() {
 }
 
 /*  Once an exception is "thrown and caught", subsequent function calls in the "try" block are not executed.
-    e.g., "Xtest(2)" after "Xtest(1)" throws are not executed.
+    e.g., "Xtest(2)" is not executed, since "Xtest(1)" is caught.
 */
+
+
+
+
+// --------  Localized Try-Catch in Functions  --------
+
+
 
 
 /*  
@@ -347,14 +354,7 @@ int main() {
 
 
 
-output:  start
-               Inside try block
-               Inside Xtest, test is: 0
-               Inside Xtest, test is: 1
-              Caught One! Number is: 1
-              end
 
-   Xtest(2) is also exception but never thrown because of control transferred to "catch" after throwing 1 as exception.
 
 
 
