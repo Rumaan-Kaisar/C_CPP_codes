@@ -353,13 +353,12 @@ int main(){     cout << " start \n";
     return 0; } 
 
 
+/*  Once an exception is "thrown and caught", subsequent function calls in the "try" block are not executed.
+    e.g., "Xtest(2)" after "Xtest(1)" throws are not executed.
+*/
 
-/* 
 
-
-
-*   Exceptions can be thrown by functions called *within* a `try` block.
-*   Once an exception is thrown and caught, subsequent function calls in the `try` block (e.g., `Xtest(2)` after `Xtest(1)` throws) are **not executed**.
+/*  
 
 
 
