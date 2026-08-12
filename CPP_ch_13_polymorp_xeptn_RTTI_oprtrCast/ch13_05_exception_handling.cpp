@@ -343,6 +343,20 @@ int main() {
 
 // --------  Localized Try-Catch in Functions  --------
 
+/*  Example 3: [To avoid "error skipping" as Xtest(2) in Example 3] A try block can be "localized" to a function. 
+
+                In this case, each time the function is entered, the exception handling relative to that function is reset.
+
+
+
+*   Placing "try-catch" inside a function (rather than "main") resets exception handling every time the function is called.
+*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
+
+
+
+
+
+*/
 
 
 
@@ -351,21 +365,6 @@ int main() {
 
 
 // ----  rev[11-aug-2026]  ----
-
-
-
-
-
-
-
-   Example 3: [To avoid "error skipping" as Xtest(2) in Example 2] A try block can be localized to a function. 
-In this case, each time the function is entered, the exception handling relative to that function is reset. For example:
-
-
-#### Example 3: Localized Try-Catch in Functions
-*   Placing `try-catch` inside a function (rather than `main`) resets exception handling every time the function is called.
-*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
-
 
     void Xhandler(int test){    try {   if( test )
     throw test ; }
@@ -386,6 +385,9 @@ output:     start
 
    try block is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
    As you can see, three exceptions are thrown. After each exception, the function returns. When the function is called again, the exception handling is reset.
+
+
+
 
 
 
@@ -699,5 +701,4 @@ and abnormal program termination might occur.
 11.4 EXERCISES
 
   
-
 
