@@ -347,15 +347,46 @@ int main() {
 
                 In this case, each time the function is entered, the exception handling relative to that function is reset.
 
+                Placing "try-catch" inside a function (rather than "main") "resets exception handling" every time the function is called.
+                Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
+*/
+
+#include <iostream>
+
+// A try / catch can be inside a function other than main().
+void Xhandler(int test) {
+    try {
+        if(test) throw test;
+    }
+    catch(int i) {
+        std::cout << " Caught One ! Ex , #: " << i << ’\n’;
+    }
+}
 
 
-*   Placing "try-catch" inside a function (rather than "main") resets exception handling every time the function is called.
-*   Allows the program to continue executing subsequent calls to the function even if previous calls threw exceptions.
+int main(){
+    std::cout << " start \n";
+    Xhandler(1);
+    Xhandler(2);
 
+    Xhandler(0);
+    Xhandler(3);
 
+    std::cout << " end ";
 
+    return 0;
+}
 
+/*  output:
+        start
+        Caught One! Ex. #: 1
+        Caught One! Ex. #: 2
+        Caught One! Ex. #: 3
+        end
 
+    Notice, three exceptions are thrown. 
+    After each exception, the function returns.
+    When the function is called again, the exception handling is reset.
 */
 
 
@@ -578,44 +609,9 @@ end
 
 
 
-4. A try block can be localized to a function. When this is the case, each time the function
-is entered, the exception handling relative to that function is reset. For example, examine
-this program:
-# include <iostream >
-using namespace std ;
-// A try / catch can be inside a function other than main ().
-void Xhandler ( int test )
-{
-try
-{
-if( test )
-throw test ;
-}
-catch ( int i)
-{
-cout << " Caught One ! Ex , #: " << i << ’\n’;
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (1) ;
-Xhandler (2) ;
-296TEMPLATES AND EXCEPTION HANDLING
-11.3. EXCEPTION HANDLING
-Xhandler (0) ;
-Xhandler (3) ;
-cout << " end ";
-return 0;
-}
-This program displays this output:
-start
-Caught One! Ex. #: 1
-Caught One! Ex. #: 2
-Caught One! Ex. #: 3
-end
-As you can see, three exceptions are thrown. After each exception, the function returns.
-When the function is called again, the exception handling is reset.
+
+
+
 5. As stated earlier, you can have more than one catch associated with a try. In fact, it
 is common to do so. However, each catch must catch a different type of exception. For
 example, the following program catches both integers and strings:
