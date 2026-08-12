@@ -359,7 +359,7 @@ void Xhandler(int test) {
         if(test) throw test;
     }
     catch(int i) {
-        std::cout << " Caught One ! Ex , #: " << i << ’\n’;
+        std::cout << " Caught One ! Ex , #: " << i << '\n';
     }
 }
 
@@ -395,7 +395,7 @@ int main(){
 
 
 
-// ----  rev[11-aug-2026]  ----
+// ----  rev[12-aug-2026]  ----
 
     void Xhandler(int test){    try {   if( test )
     throw test ; }
