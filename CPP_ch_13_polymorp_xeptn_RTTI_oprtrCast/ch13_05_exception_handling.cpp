@@ -384,9 +384,12 @@ int main(){
         Caught One! Ex. #: 3
         end
 
-    Notice, three exceptions are thrown. 
-    After each exception, the function returns.
-    When the function is called again, the exception handling is reset.
+    Notice:
+        "try block" is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
+
+        Also notice, three exceptions are thrown. 
+            After each exception, the function returns.
+            When the function is called again, the exception handling is reset.
 */
 
 
@@ -396,18 +399,6 @@ int main(){
 
 
 // ----  rev[12-aug-2026]  ----
-
-
-
-"try block" is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
-
-As you can see, three exceptions are thrown. 
-    After each exception, the function returns. 
-    When the function is called again, the exception handling is reset.
-
-
-
-
 
 
    Example 4: More than one catch associated with a try. Each catch must catch a different type of exception (two or more catch with same data-type returns error). For example, consider Example 3 with the following Xhandler() [catches both integers and strings]:
