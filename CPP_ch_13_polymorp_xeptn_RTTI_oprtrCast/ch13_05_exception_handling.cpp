@@ -397,14 +397,8 @@ int main(){
 
 // ----  rev[12-aug-2026]  ----
 
-    int main(){     cout << " start \n";
-    Xhandler (1);
-    Xhandler (2);
-    Xhandler (0);
-    Xhandler (3);
-    cout << "end ";
-    return 0;}  
-    
+
+
 output:     start
         Caught One! Ex. #: 1
         Caught One! Ex. #: 2
