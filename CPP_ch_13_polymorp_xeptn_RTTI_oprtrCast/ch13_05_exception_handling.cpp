@@ -397,10 +397,6 @@ int main(){
 
 // ----  rev[12-aug-2026]  ----
 
-    void Xhandler(int test){    try {   if( test )
-    throw test ; }
-    catch(int i){ cout << " Caught One ! Ex. #: " << i << '\n'; }
-       }
     int main(){     cout << " start \n";
     Xhandler (1);
     Xhandler (2);
@@ -408,6 +404,7 @@ int main(){
     Xhandler (3);
     cout << "end ";
     return 0;}  
+    
 output:     start
         Caught One! Ex. #: 1
         Caught One! Ex. #: 2
