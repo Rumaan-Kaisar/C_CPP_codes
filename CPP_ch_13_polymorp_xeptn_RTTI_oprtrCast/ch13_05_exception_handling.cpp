@@ -399,14 +399,11 @@ int main(){
 
 
 
-output:     start
-        Caught One! Ex. #: 1
-        Caught One! Ex. #: 2
-        Caught One! Ex. #: 3
-        end
+"try block" is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
 
-   try block is not inside main(), instead try-catch blocks containing function Xhandler() is called from main().
-   As you can see, three exceptions are thrown. After each exception, the function returns. When the function is called again, the exception handling is reset.
+As you can see, three exceptions are thrown. 
+    After each exception, the function returns. 
+    When the function is called again, the exception handling is reset.
 
 
 
