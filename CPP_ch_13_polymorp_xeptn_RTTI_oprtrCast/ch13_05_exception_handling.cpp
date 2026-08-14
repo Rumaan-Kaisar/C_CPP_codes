@@ -405,6 +405,35 @@ int main(){
 
 
 
+# include <iostream >
+
+// Different types of exceptions can be caught.
+void Xhandler(int test){
+    try {
+        if(test) throw test;
+        else throw "value is zero";
+    }
+    catch(int i){
+        std::cout << " Caught One ! Ex. #: " << i << '\n';
+    }
+    catch(char *str){       // *str is used to print ' value is zero '
+        std::cout << " Caught a string :";
+        std::cout << str << '\n';
+    }
+}
+
+
+int main ()
+{
+cout << " start \n";
+Xhandler (1) ;
+
+Xhandler (2) ;
+Xhandler (0) ;
+Xhandler (3) ;
+cout << " end ";
+return 0;
+}
 
 
 /*  
@@ -420,56 +449,13 @@ int main(){
 
 
 
-void Xhandler(int test){    try {   if(test)  throw test ;
-else throw "value is zero" }
-    catch(int i){ cout << " Caught One ! Ex. #: " << i << '\n'; }
-    catch(char *str){       // *str is used to print ' value is zero '
-cout << " Caught a string :";
-cout << str << '\n';}   
-   }
-
 
 
    In general, catch expressions are checked in the order in which they occur in a program. Only a matching statement is executed. All other catch blocks are ignored.
 
 
 
-5. As stated earlier, you can have more than one catch associated with a try. In fact, it
-is common to do so. However, each catch must catch a different type of exception. For
-example, the following program catches both integers and strings:
-# include <iostream >
-using namespace std ;
-// Different types of exceptions can be caught .
-void Xhandler ( int test )
-{
-try
-{
-if( test )
-throw test ;
-else
-throw " Value is zero .";
-}
-catch ( int i)
-{
-cout << " Caught One ! Ex , #: " << i << ’\n’;
-}
-catch ( const char * str)
-{
-cout << " Caught a string : ";
-cout << str << ’\n’;
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (1) ;
 
-Xhandler (2) ;
-Xhandler (0) ;
-Xhandler (3) ;
-cout << " end ";
-return 0;
-}
 This program produces the following output:
 start
 Caught One! Ex. #: 1
