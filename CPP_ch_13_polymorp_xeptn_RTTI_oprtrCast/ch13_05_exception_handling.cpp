@@ -366,9 +366,9 @@ void Xhandler(int test) {
 
 int main(){
     std::cout << " start \n";
+
     Xhandler(1);
     Xhandler(2);
-
     Xhandler(0);
     Xhandler(3);
 
@@ -403,9 +403,7 @@ int main(){
                 [catches both integers and strings]
 */
 
-
-
-# include <iostream >
+# include <iostream>
 
 // Different types of exceptions can be caught.
 void Xhandler(int test){
@@ -416,37 +414,52 @@ void Xhandler(int test){
     catch(int i){
         std::cout << " Caught One ! Ex. #: " << i << '\n';
     }
-    catch(char *str){       // *str is used to print ' value is zero '
+    catch(const char *str){       // *str is used to print "value is zero"
         std::cout << " Caught a string :";
         std::cout << str << '\n';
     }
 }
 
 
-int main ()
-{
-cout << " start \n";
-Xhandler (1) ;
+int main(){
+    std::cout << " start \n";
 
-Xhandler (2) ;
-Xhandler (0) ;
-Xhandler (3) ;
-cout << " end ";
-return 0;
+    Xhandler(1);
+    Xhandler(2);
+    Xhandler(0);
+    Xhandler(3);
+
+    std::cout << " end ";
+    
+    return 0;
 }
 
 
 /*  
 
+// ----  rev[14-Aug-2026]  ----
 
+// string throw issue fix for above code
 
-// ----  rev[12-aug-2026]  ----
+The issue is in this line:
 
+throw "value is zero";
 
+A string literal has type const char[], which decays to const char*. Therefore, your handler:
 
+catch(char *str) { //... }
 
+does not match it.
 
+Fix
 
+Change:
+
+catch(char *str)
+
+to:
+
+catch(const char *str)
 
 
 
