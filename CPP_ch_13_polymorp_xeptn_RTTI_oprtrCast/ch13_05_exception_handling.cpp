@@ -394,6 +394,19 @@ int main(){
 
 
 
+
+/*  Example 4: We can use more than one catch associated with a try. 
+                Each catch must catch a different type of exception 
+                (two or more catch with same data-type returns error). 
+
+                For example, consider "Example 3" with the following Xhandler() 
+                [catches both integers and strings]
+*/
+
+
+
+
+
 /*  
 
 
@@ -401,17 +414,10 @@ int main(){
 // ----  rev[12-aug-2026]  ----
 
 
-   Example 4: More than one catch associated with a try. 
-Each catch must catch a different type of exception 
-(two or more catch with same data-type returns error). 
-
-For example, consider Example 3 with the following Xhandler() 
-[catches both integers and strings]:
 
 
-#### Example 4: Type Matching Strictness
-*   If the thrown type (e.g., `int`) does not match the catch type (e.g., `double`), the exception remains unhandled.
-*   Result: Abnormal program termination.
+
+
 
 
 void Xhandler(int test){    try {   if(test)  throw test ;
@@ -421,6 +427,9 @@ else throw "value is zero" }
 cout << " Caught a string :";
 cout << str << '\n';}   
    }
+
+
+
    In general, catch expressions are checked in the order in which they occur in a program. Only a matching statement is executed. All other catch blocks are ignored.
 
 
