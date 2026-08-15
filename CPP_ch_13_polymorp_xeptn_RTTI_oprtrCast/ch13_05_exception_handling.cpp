@@ -708,4 +708,255 @@ and abnormal program termination might occur.
 11.4 EXERCISES
 
   
+// more exeption 
 
+1. The following program illustrates catch(...):
+// This example catches all exceptions .
+# include <iostream >
+using namespace std ;
+void Xhandler ( int test )
+{
+try
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+299TEACH YOURSELF
+C++
+catch (...) // catch all exceptions
+{
+cout << " Caught One !\n";
+}
+}
+int main ()
+{
+cout << " start \n";
+Xhandler (0) ;
+Xhandler (1) ;
+Xhandler (2) ;
+cout << " end ";
+return 0;
+}
+This program displays the following output:
+start
+Caught One!
+Caught One!
+Caught One!
+end
+As you can see, all three throws were caught using the one catch statement.
+2. One very good use for catch(...) is as the last catch of a cluster of catches. In this
+capacity it provides a useful default or "catch all" statement. For example, this slightly
+different version of the preceding program explicitly catches integer exceptions but relies
+upon catch(...) to catch all others:
+// This example catch (...) as a default .
+# include <iostream >
+using namespace std ;
+void Xhandler ( int test )
+{
+try
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+catch ( int i) // catch an int exception
+{
+cout << " Caught " << i << ’\n’;
+300TEMPLATES AND EXCEPTION HANDLING
+11.4. MORE ABOUT EXCEPTION HANDLING
+}
+catch (...) // catch all other exceptions
+{
+cout << " Caught One !\n";
+}
+}
+int main ()
+{
+cout << " start \n";
+Xhandler (0) ;
+Xhandler (1) ;
+Xhandler (2) ;
+cout << " end ";
+return 0;
+}
+The output produced by this program is shown here:
+start
+Caught 0
+Caught One!
+Caught One!
+end
+As this example suggest, using catch(...) as a default is a good way to catch all exceptions
+that you don’t want to handle explicitly. Also, by catching all exceptions, you prevent an
+unhandled exception from causing an abnormal program termination.
+3. The following program shows how to restrict the types of exceptions that can be thrown
+from a function:
+// Restricting function throw types
+# include <iostream >
+using namespace std ;
+// This function can only throw ints , chars , and doubles .
+void Xhandler ( int test ) throw (int , char , double )
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+int main ()
+301TEACH YOURSELF
+C++
+{
+cout << " start \n";
+try
+{
+Xhandler (0) ; // also , try passing 1 and 2 to Xhandler
+}
+catch ( int i)
+{
+cout << " Caught int \n";
+}
+catch ( char c)
+{
+cout << " Caught char \n";
+}
+catch ( double d)
+{
+cout << " Caught double \n";
+}
+cout << " end ";
+return 0;
+}
+In this program, the function Xhandler() can throw only integer, character, and double
+exceptions. If it attempts to throw any other type of exception, an abnormal program
+termination will occur. (That is, unexpected() will be called.) To see an example of
+this, remove int from the list and retry the program.
+It is important to understand that a function can only be restricted in what types of
+exceptions it throws back to the try block that called it. That is, a try block within a
+function can thrown any type of exception so long as it is caught within that function.
+The restriction applies only when throwing an exception out of the function.
+4. The following change to Xhandler() prevents it from throwing any exceptions:
+// This function can thrown NO exceptions !
+void Xhandler ( int test ) throw ()
+{
+/*
+The following statements no longer work . Instead ,
+they will cause an abnormal program termination .
+*/
+if( test ==0)
+throw test ;
+if( test ==0)
+throw ’a’;
+if( test ==2)
+throw 123.23;
+}
+As you have learned, you can rethrow an exception. The most likely reason for doing so
+is to allow multiple handlers access to the exception. For example, perhaps one exception
+302TEMPLATES AND EXCEPTION HANDLING
+11.4. MORE ABOUT EXCEPTION HANDLING
+handler manages one aspect of an exception and a second handler copes with another. An
+exception can only be rethrown from within a catch block (or from any function called
+from within that block). When you rethrow an exception, it will not be recaught by the
+same catch statement. It will propagate to an outer catch statement. The following
+program illustrates rethrowing an exception. It rethrows a char * exception.
+// Example of rethrowing an exception .
+# include <iostream >
+using namespace std ;
+void Xhandler ()
+{
+try
+{
+throw " hello "; // throw a const char *
+}
+catch ( const char *) // catch a const char *
+{
+cout << " Caught const char * inside Xhandler \n";
+throw ; // rethrow const char * out of function
+}
+}
+int main ()
+{
+cout << " start \n";
+try
+{
+Xhandler ();
+}
+catch ( const char *)
+{
+cout << " Caught const char * inside main \n";
+}
+cout << " end ";
+return 0;
+}
+This program displays the following output:
+start
+Caught const char * inside Xhandler
+Caught const char * inside main
+end
+
+
+EXERCISES
+1. Before continuing, compile and run all of the examples in this section. Be sure you
+understand why each program produces the output that it does.
+303TEACH YOURSELF
+C++
+2. What is wrong with this fragment?
+try
+{
+// ...
+throw 10;
+}
+catch ( int *p)
+{
+// ...
+}
+3. Show one way to fix the preceding fragment.
+4. What catch expression catches all types of exceptions?
+5. Here is a skeleton for a function called divide().
+double divide ( double a, double b)
+{
+// add error handling
+return a/b;
+}
+This function returns the result of dividing a by b. Add error checking to this function
+using C++ exception handling. Specifically, prevent a divide-by-zero error. Demonstrate
+your solution in a program.
+
+
+EXERCISES
+2. There is no corresponding catch statement for the throw.
+3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
+catch all exceptions with a catch(...) handler.
+4. catch(...) catches all exceptions.
+5. # include <iostream >
+# include <cstdlib >
+using namespace std ;
+double divide ( double a, double b)
+{
+try
+{
+if (!b)
+throw (b);
+}
+catch ( double )
+{
+cout << " Cannot divide by zero .\n";
+exit (1) ;
+}
+return a/b;
+}
+int main ()
+{
+561TEACH YOURSELF
+C++
+cout << divide (10.0 , 2.5) << endl ;
+cout << divide (10.0 , 0.0) ;
+return 0;
+}
