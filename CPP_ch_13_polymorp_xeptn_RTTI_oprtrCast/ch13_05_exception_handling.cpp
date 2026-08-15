@@ -399,6 +399,10 @@ int main(){
                 Each catch must catch a different type of exception 
                 (two or more catch with same data-type returns error). 
 
+                In general, catch expressions are checked in the order in which they occur in a program.
+                    Only a matching statement is executed. 
+                    All other catch blocks are ignored.
+
                 For example, consider "Example 3" with the following Xhandler() 
                 [catches both integers and strings]
 */
@@ -435,36 +439,28 @@ int main(){
 }
 
 
-/*  
+/*  ----  string throw issue fix  ----
+    
+    The issue is in this line:
 
-// ----  rev[14-Aug-2026]  ----
+            throw "value is zero";
 
-// string throw issue fix for above code
+    A string literal has type "const char[]", which decays to "const char*". 
+    Therefore, our handler:
 
-The issue is in this line:
+            catch(char *str) { //... }
 
-throw "value is zero";
-
-A string literal has type const char[], which decays to const char*. Therefore, your handler:
-
-catch(char *str) { //... }
-
-does not match it.
-
-Fix
-
-Change:
-
-catch(char *str)
-
-to:
-
-catch(const char *str)
+    does not match it.
 
 
+    ----  Fix
 
+    Change:
+            catch(char *str)
 
-   In general, catch expressions are checked in the order in which they occur in a program. Only a matching statement is executed. All other catch blocks are ignored.
+    to:
+            catch(const char *str)
+
 
 
 
@@ -477,8 +473,7 @@ Caught a string: Value is zero
 Caught One! Ex. #: 3
 end
 As you can see, each catch statement responds only to its own type.
-In general, catch expressions are checked in the order in which they occur in a program.
-Only a matching statement is executed. All other catch blocks are ignored.
+
 
 
 
