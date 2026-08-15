@@ -463,53 +463,58 @@ int main(){
 
 
 
+    This program produces the following output:
 
+        start
+        Caught One! Ex. #: 1
+        Caught One! Ex. #: 2
+        Caught a string: Value is zero
+        Caught One! Ex. #: 3
+        end
 
-This program produces the following output:
-start
-Caught One! Ex. #: 1
-Caught One! Ex. #: 2
-Caught a string: Value is zero
-Caught One! Ex. #: 3
-end
-As you can see, each catch statement responds only to its own type.
-
-
-
-
+    As you can see, each catch statement responds only to its own type.
+*/
 
 
 
+/* Example 5 & 6: Using `catch(...)`
+*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
+*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors. 
 
+*/
 
+/* Example 5: Following catches all exceptions [with ellipsis "..." ] using catch(...) */
 
-
-
-   Example 5: Following catches all exceptions [with ellipsis . . .] using catch(...):
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int 
                       if( test ==1) throw 'a';           // throw char 
                       if( test ==2) throw 123.23;  // throw double 
                        }
             catch (...){                   // catch all exceptions 
                     cout << " Caught One !\n";    }
-            }   int main(){ cout << " start \n";
+            }   
+
+int main(){ cout << " start \n";
         Xhandler(0);
         Xhandler(1);
         Xhandler(2);
         cout << "end ";
-        return 0; }
-    output:
+        return 0;
+}
+
+
+/*
+output:
       start
       Caught One!
       Caught One!
       Caught One!
       end
 
-   All three throws were caught using the one catch statement.
+All three throws were caught using the one catch statement. 
+*/
 
 
-
-   Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
+/*  Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
 For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
                       if( test ==1) throw 'a';           // throw char
@@ -534,12 +539,23 @@ int main(){ cout << " start \n";
       end
 
    By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
+*/
 
 
 
-#### Example 5 & 6: Using `catch(...)`
-*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
-*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors.
+
+
+
+
+
+/*
+
+
+
+
+
+
+
 
 
 
@@ -559,6 +575,7 @@ void Xhandler(int test ) throw(int, char, double)  {
    In this program, the function Xhandler() can throw only integer, character, and double exceptions. If it attempts to throw any other type of exception, an abnormal program termination will occur. (That is, unexpected() will be called.) To see an example of this, remove int from the list and retry the program.
    A function can only be restricted in what types of exceptions it throws back to the try block that called it. That is, a try block within a function can thrown any type of exception so long as it is caught within that function.
    The restriction applies only when throwing an exception out of the function.
+
 
 
 
