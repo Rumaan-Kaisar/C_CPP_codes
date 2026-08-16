@@ -477,6 +477,58 @@ int main(){
 
 
 
+/*  Example 5: What is wrong with this fragment?
+
+                int main() {
+                    throw 12.23;
+
+            ans:
+                "throw" is called before execution passes through a "try block".
+*/
+
+
+
+
+
+3. What is wrong with this fragment?
+try
+{
+// ...
+throw ’a’;
+// ...
+}
+catch ( char *)
+{
+// ...
+}
+
+
+4. What will happen if an exception is thrown for which there is no corresponding catch
+statement
+
+
+
+
+11.3 EXERCISES
+
+
+3. A character exception is thrown, but the catch statement will handle only a character
+pointer. (That is, there is no corresponding catch statement to handle the character
+exception.)
+
+
+4. If an exception is thrown for which there is no corresponding catch, terminate() is called
+and abnormal program termination might occur.
+11.4 EXERCISES
+
+
+
+
+
+
+
+
+
 /* Example 5 & 6: Using `catch(...)`
 *   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
 *   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors. 
@@ -673,41 +725,9 @@ end
 
 
 
-EXERCISES
-1. By far, the best way to understand how C++ exception handling works is to play with it.
-Enter, compile, and run the preceding example programs. Then experiment with them,
-altering pieces of them and observing the results.
-2. What is wrong with this fragment?
-int main ()
-{
-throw 12.23;
-3. What is wrong with this fragment?
-try
-{
-// ...
-throw ’a’;
-// ...
-}
-catch ( char *)
-{
-// ...
-}
-4. What will happen if an exception is thrown for which there is no corresponding catch
-statement
 
 
 
-
-11.3 EXERCISES
-2. The throw is called before execution passes through a try block.
-3. A character exception is thrown, but the catch statement will handle only a character
-pointer. (That is, there is no corresponding catch statement to handle the character
-exception.)
-4. If an exception is thrown for which there is no corresponding catch, terminate() is called
-and abnormal program termination might occur.
-11.4 EXERCISES
-
-  
 // more exeption 
 
 1. The following program illustrates catch(...):
