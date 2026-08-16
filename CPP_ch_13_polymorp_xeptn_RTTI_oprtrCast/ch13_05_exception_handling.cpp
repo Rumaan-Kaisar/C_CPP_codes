@@ -488,23 +488,30 @@ int main(){
 
 
 
+/*  Example 6: What is wrong with this fragment?
 
 
-3. What is wrong with this fragment?
-try
-{
-// ...
-throw ’a’;
-// ...
+
+                What will happen if an exception is thrown 
+                    for which there is no corresponding catch statement?
+
+
+            ans:
+                "throw" is called before execution passes through a "try block".
+*/
+
+
+try{
+    // ...
+    throw 'a';
+    // ...
 }
-catch ( char *)
-{
-// ...
+catch (char *){
+    // ...
 }
 
 
-4. What will happen if an exception is thrown for which there is no corresponding catch
-statement
+
 
 
 
