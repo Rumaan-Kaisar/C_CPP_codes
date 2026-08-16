@@ -477,6 +477,7 @@ int main(){
 
 
 
+
 /*  Example 5: What is wrong with this fragment?
 
                 int main() {
@@ -488,45 +489,31 @@ int main(){
 
 
 
+
 /*  Example 6: What is wrong with this fragment?
 
-
+                try{
+                    // ...
+                    throw 'a';
+                    // ...
+                }
+                catch (char *){
+                    // ...
+                }
 
                 What will happen if an exception is thrown 
                     for which there is no corresponding catch statement?
 
 
             ans:
-                "throw" is called before execution passes through a "try block".
+                A "character exception" is thrown, but there is "no matching catch statement" to handle it, 
+                    since the existing statement only catches a character pointer.
+
+                If a thrown exception has no matching catch statement, 
+                    the program calls terminate() and may "crash".
 */
 
 
-try{
-    // ...
-    throw 'a';
-    // ...
-}
-catch (char *){
-    // ...
-}
-
-
-
-
-
-
-
-11.3 EXERCISES
-
-
-3. A character exception is thrown, but the catch statement will handle only a character
-pointer. (That is, there is no corresponding catch statement to handle the character
-exception.)
-
-
-4. If an exception is thrown for which there is no corresponding catch, terminate() is called
-and abnormal program termination might occur.
-11.4 EXERCISES
 
 
 
