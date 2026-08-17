@@ -523,13 +523,14 @@ int main(){
 
 
 
-/* Example 5 & 6: Using `catch(...)`
-*   `catch(...)` can handle integers, chars, doubles, etc., in a single block.
-*   Best practice: Use specific catches first, then `catch(...)` as a fallback for miscellaneous errors. 
-
+/*  Example 5 & 6: Using "catch(...)"
+    ==> "catch(...)" can handle integers, chars, doubles, etc., in a single block.
+    ==> Best practice: Use specific catches first, then "catch(...)" as a fallback for miscellaneous errors. 
 */
 
-/* Example 5: Following catches all exceptions [with ellipsis "..." ] using catch(...) */
+
+
+/* Example 5: Following catches all exceptions [with ellipsis "..." ] using "catch(...)" */
 
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int 
                       if( test ==1) throw 'a';           // throw char 
@@ -546,6 +547,50 @@ int main(){ cout << " start \n";
         cout << "end ";
         return 0;
 }
+
+
+
+
+
+1. The following program illustrates catch(...):
+// This example catches all exceptions .
+# include <iostream >
+using namespace std ;
+void Xhandler ( int test )
+{
+try
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+
+catch (...) // catch all exceptions
+{
+cout << " Caught One !\n";
+}
+}
+int main ()
+{
+cout << " start \n";
+Xhandler (0) ;
+Xhandler (1) ;
+Xhandler (2) ;
+cout << " end ";
+return 0;
+}
+This program displays the following output:
+start
+Caught One!
+Caught One!
+Caught One!
+end
+As you can see, all three throws were caught using the one catch statement.
+
+
 
 
 /*
@@ -586,6 +631,7 @@ int main(){ cout << " start \n";
 
    By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
 */
+
 
 
 
@@ -723,45 +769,6 @@ end
 
 
 // more exeption 
-
-1. The following program illustrates catch(...):
-// This example catches all exceptions .
-# include <iostream >
-using namespace std ;
-void Xhandler ( int test )
-{
-try
-{
-if( test ==0)
-throw test ; // throw int
-if( test ==1)
-throw ’a’; // throw char
-if( test ==2)
-throw 123.23; // throw double
-}
-
-catch (...) // catch all exceptions
-{
-cout << " Caught One !\n";
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (0) ;
-Xhandler (1) ;
-Xhandler (2) ;
-cout << " end ";
-return 0;
-}
-This program displays the following output:
-start
-Caught One!
-Caught One!
-Caught One!
-end
-As you can see, all three throws were caught using the one catch statement.
-
 
 
 
