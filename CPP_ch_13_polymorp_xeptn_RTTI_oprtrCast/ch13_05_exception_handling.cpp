@@ -551,33 +551,14 @@ int main(){
 
 
 
+output:
+        start
+        Caught One!
+        Caught One!
+        Caught One!
+        end
 
-1. The following program illustrates catch(...):
-// This example catches all exceptions .
-
-
-
-catch (...) // catch all exceptions
-{
-cout << " Caught One !\n";
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (0) ;
-Xhandler (1) ;
-Xhandler (2) ;
-cout << " end ";
-return 0;
-}
-This program displays the following output:
-start
-Caught One!
-Caught One!
-Caught One!
-end
-As you can see, all three throws were caught using the one catch statement.
+    Notice, all three throws were caught using the one catch statement.
 
 
 
