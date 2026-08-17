@@ -516,13 +516,6 @@ int main(){
 
 
 
-
-
-
-
-
-
-
 /*  Example 5 & 6: Using "catch(...)"
     ==> "catch(...)" can handle integers, chars, doubles, etc., in a single block.
     ==> Best practice: Use specific catches first, then "catch(...)" as a fallback for miscellaneous errors. 
@@ -532,20 +525,27 @@ int main(){
 
 /* Example 5: Following catches all exceptions [with ellipsis "..." ] using "catch(...)" */
 
-void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int 
-                      if( test ==1) throw 'a';           // throw char 
-                      if( test ==2) throw 123.23;  // throw double 
-                       }
-            catch (...){                   // catch all exceptions 
-                    cout << " Caught One !\n";    }
-            }   
+#include <iostream>
 
-int main(){ cout << " start \n";
-        Xhandler(0);
-        Xhandler(1);
-        Xhandler(2);
-        cout << "end ";
-        return 0;
+void Xhandler(int test) {
+    try { 
+        if(test==0) throw test;     // throw int 
+        if(test==1) throw 'a';      // throw char 
+        if(test==2) throw 123.23;   // throw double 
+    }
+    catch(...){                     // catch all exceptions 
+        std::cout << " Caught One !\n";
+    }
+}
+
+int main(){ 
+    std::cout << " start \n";
+    Xhandler(0);
+    Xhandler(1);
+    Xhandler(2);
+    std::cout << "end ";
+        
+    return 0;
 }
 
 
@@ -554,19 +554,8 @@ int main(){ cout << " start \n";
 
 1. The following program illustrates catch(...):
 // This example catches all exceptions .
-# include <iostream >
-using namespace std ;
-void Xhandler ( int test )
-{
-try
-{
-if( test ==0)
-throw test ; // throw int
-if( test ==1)
-throw ’a’; // throw char
-if( test ==2)
-throw 123.23; // throw double
-}
+
+
 
 catch (...) // catch all exceptions
 {
