@@ -516,14 +516,24 @@ int main(){
 
 
 
-/*  Example 5 & 6: Using "catch(...)"
+/*  Example 7 & 8: Using "catch(...)"
     ==> "catch(...)" can handle integers, chars, doubles, etc., in a single block.
     ==> Best practice: Use specific catches first, then "catch(...)" as a fallback for miscellaneous errors. 
 */
 
 
 
-/* Example 5: Following catches all exceptions [with ellipsis "..." ] using "catch(...)" */
+/* Example 7: Following catches all exceptions [with ellipsis "..." ] using "catch(...)" 
+
+            output:
+                    start
+                    Caught One!
+                    Caught One!
+                    Caught One!
+                    end
+
+                Notice, all three throws were caught using the one catch statement.
+*/
 
 #include <iostream>
 
@@ -543,7 +553,7 @@ int main(){
     Xhandler(0);
     Xhandler(1);
     Xhandler(2);
-    std::cout << "end ";
+    std::cout << " end ";
         
     return 0;
 }
@@ -551,31 +561,7 @@ int main(){
 
 
 
-output:
-        start
-        Caught One!
-        Caught One!
-        Caught One!
-        end
-
-    Notice, all three throws were caught using the one catch statement.
-
-
-
-
-/*
-output:
-      start
-      Caught One!
-      Caught One!
-      Caught One!
-      end
-
-All three throws were caught using the one catch statement. 
-*/
-
-
-/*  Example 6: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
+/*  Example 8: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
 For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
                       if( test ==1) throw 'a';           // throw char
@@ -611,15 +597,6 @@ int main(){ cout << " start \n";
 
 
 /*
-
-
-
-
-
-
-
-
-
 
 
    Example 7: ret_type func_name(arg_list)  throw(type_list){ // exceptions } to restrict the types of exceptions that can be thrown from a function:
