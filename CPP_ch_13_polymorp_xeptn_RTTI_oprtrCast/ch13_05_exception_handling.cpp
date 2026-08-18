@@ -561,8 +561,25 @@ int main(){
 
 
 
-/*  Example 8: Use catch(...) as the last catch of a cluster of catches [as last catch block for miscellaneous errors ]. In this capacity it provides a useful default or "catch all" statement. 
-For example, this slightly different version of the preceding program explicitly catches integer exceptions but relies upon catch(...) to catch all others:
+/*  Example 8: Place catch(...) at the very end of your catch blocks to handle any unexpected errors. 
+                It acts as a universal safety net.
+                
+                In this example, this updated code handles specific integer errors first, 
+                while catch(...) quietly intercepts all other types.
+
+
+
+    output:
+      start
+      Caught 0
+      Caught One!
+      Caught One!
+      end
+
+By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
+*/
+
+
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
                       if( test ==1) throw 'a';           // throw char
                       if( test ==2) throw 123.23;  // throw double
@@ -578,18 +595,6 @@ int main(){ cout << " start \n";
         Xhandler(2);
         cout << "end ";
         return 0; }
-    output:
-      start
-      Caught 0
-      Caught One!
-      Caught One!
-      end
-
-   By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
-*/
-
-
-
 
 
 
@@ -837,12 +842,12 @@ throw 123.23;
 As you have learned, you can rethrow an exception. The most likely reason for doing so
 is to allow multiple handlers access to the exception. For example, perhaps one exception
 
-11.4. MORE ABOUT EXCEPTION HANDLING
 handler manages one aspect of an exception and a second handler copes with another. An
 exception can only be rethrown from within a catch block (or from any function called
 from within that block). When you rethrow an exception, it will not be recaught by the
 same catch statement. It will propagate to an outer catch statement. The following
 program illustrates rethrowing an exception. It rethrows a char * exception.
+
 // Example of rethrowing an exception .
 # include <iostream >
 using namespace std ;
