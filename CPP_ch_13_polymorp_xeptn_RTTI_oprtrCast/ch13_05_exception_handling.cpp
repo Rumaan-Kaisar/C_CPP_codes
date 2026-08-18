@@ -561,7 +561,8 @@ int main(){
 
 
 
-/*  Example 8: Place catch(...) at the very end of your catch blocks to handle any unexpected errors. 
+/*  Example 8: One very good use for catch(...) is as the last catch of a cluster of catches.
+                Place catch(...) at the very end of your catch blocks to handle any unexpected errors. 
                 It acts as a universal safety net.
                 
                 In this example, this updated code handles specific integer errors first, 
@@ -595,11 +596,7 @@ int main(){ cout << " start \n";
 
 
 
-2. One very good use for catch(...) is as the last catch of a cluster of catches. In this
-capacity it provides a useful default or "catch all" statement. For example, this slightly
-different version of the preceding program explicitly catches integer exceptions but relies
-upon catch(...) to catch all others:
-// This example catch (...) as a default .
+
 # include <iostream >
 using namespace std ;
 void Xhandler ( int test )
