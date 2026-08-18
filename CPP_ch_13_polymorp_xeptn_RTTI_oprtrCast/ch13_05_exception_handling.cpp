@@ -882,8 +882,7 @@ end
 
 
 EXERCISES
-1. Before continuing, compile and run all of the examples in this section. Be sure you
-understand why each program produces the output that it does.
+
 
 2. What is wrong with this fragment?
 try
@@ -895,8 +894,24 @@ catch ( int *p)
 {
 // ...
 }
+
+2. There is no corresponding catch statement for the throw.
+
+
+
 3. Show one way to fix the preceding fragment.
+
+3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
+catch all exceptions with a catch(...) handler.
+
+
+
 4. What catch expression catches all types of exceptions?
+
+4. catch(...) catches all exceptions.
+
+
+
 5. Here is a skeleton for a function called divide().
 double divide ( double a, double b)
 {
@@ -908,13 +923,6 @@ using C++ exception handling. Specifically, prevent a divide-by-zero error. Demo
 your solution in a program.
 
 
-
-
-EXERCISES
-2. There is no corresponding catch statement for the throw.
-3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
-catch all exceptions with a catch(...) handler.
-4. catch(...) catches all exceptions.
 5. # include <iostream >
 # include <cstdlib >
 using namespace std ;
