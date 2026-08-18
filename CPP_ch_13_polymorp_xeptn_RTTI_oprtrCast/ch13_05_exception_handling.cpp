@@ -567,18 +567,15 @@ int main(){
                 In this example, this updated code handles specific integer errors first, 
                 while catch(...) quietly intercepts all other types.
 
+            output:
+                start
+                Caught 0
+                Caught One!
+                Caught One!
+                end
 
-
-    output:
-      start
-      Caught 0
-      Caught One!
-      Caught One!
-      end
-
-By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
+                By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
 */
-
 
 void Xhandler (int test ) {     try { if( test ==0) throw test ;      // throw int
                       if( test ==1) throw 'a';           // throw char
@@ -597,6 +594,53 @@ int main(){ cout << " start \n";
         return 0; }
 
 
+
+2. One very good use for catch(...) is as the last catch of a cluster of catches. In this
+capacity it provides a useful default or "catch all" statement. For example, this slightly
+different version of the preceding program explicitly catches integer exceptions but relies
+upon catch(...) to catch all others:
+// This example catch (...) as a default .
+# include <iostream >
+using namespace std ;
+void Xhandler ( int test )
+{
+try
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+catch ( int i) // catch an int exception
+{
+cout << " Caught " << i << ’\n’;
+
+}
+catch (...) // catch all other exceptions
+{
+cout << " Caught One !\n";
+}
+}
+int main ()
+{
+cout << " start \n";
+Xhandler (0) ;
+Xhandler (1) ;
+Xhandler (2) ;
+cout << " end ";
+return 0;
+}
+The output produced by this program is shown here:
+start
+Caught 0
+Caught One!
+Caught One!
+end
+As this example suggest, using catch(...) as a default is a good way to catch all exceptions
+that you don’t want to handle explicitly. Also, by catching all exceptions, you prevent an
+unhandled exception from causing an abnormal program termination.
 
 
 
@@ -723,53 +767,6 @@ end
 // more exeption 
 
 
-
-2. One very good use for catch(...) is as the last catch of a cluster of catches. In this
-capacity it provides a useful default or "catch all" statement. For example, this slightly
-different version of the preceding program explicitly catches integer exceptions but relies
-upon catch(...) to catch all others:
-// This example catch (...) as a default .
-# include <iostream >
-using namespace std ;
-void Xhandler ( int test )
-{
-try
-{
-if( test ==0)
-throw test ; // throw int
-if( test ==1)
-throw ’a’; // throw char
-if( test ==2)
-throw 123.23; // throw double
-}
-catch ( int i) // catch an int exception
-{
-cout << " Caught " << i << ’\n’;
-
-}
-catch (...) // catch all other exceptions
-{
-cout << " Caught One !\n";
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (0) ;
-Xhandler (1) ;
-Xhandler (2) ;
-cout << " end ";
-return 0;
-}
-The output produced by this program is shown here:
-start
-Caught 0
-Caught One!
-Caught One!
-end
-As this example suggest, using catch(...) as a default is a good way to catch all exceptions
-that you don’t want to handle explicitly. Also, by catching all exceptions, you prevent an
-unhandled exception from causing an abnormal program termination.
 
 
 
