@@ -578,6 +578,8 @@ int main(){
                 By catching all exceptions, you prevent an unhandled exception from causing an abnormal program termination.
 */
 
+#include <iostream>
+
 void Xhandler(int test){
     try { 
         if(test==0) throw test;     // throw int 
@@ -585,26 +587,29 @@ void Xhandler(int test){
         if(test==2) throw 123.23;   // throw double 
     }
     catch (int i){                  // catch an int exception
-        std::cout << " Caught" << i << '\n';    
+        std::cout << " Caught " << i << '\n';    
     }
     catch(...){                     // catch all other exceptions 
         std::cout << " Caught One !\n";
     }
+}    
+
+int main(){
+    std::cout << " start \n";
     
+    Xhandler(0);
+    Xhandler(1);
+    Xhandler(2);
     
-            
-
-int main(){ cout << " start \n";
-        Xhandler(0);
-        Xhandler(1);
-        Xhandler(2);
-        cout << "end ";
-        return 0; }
+    std::cout << "end ";
+    
+    return 0;
+}
 
 
 
 
-# include <iostream >
+
 using namespace std ;
 void Xhandler ( int test )
 {
