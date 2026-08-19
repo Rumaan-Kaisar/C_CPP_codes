@@ -561,7 +561,7 @@ int main(){
 
 
 
-/*  Example 8: One very good use for catch(...) is as the last catch of a cluster of catches.
+/*  Example 8: One very good use for catch(...) is as the last catch of a "cluster of catches".
                 Place catch(...) at the very end of your catch blocks to handle any unexpected errors. 
                 It acts as a universal safety net.
                 
@@ -609,49 +609,7 @@ int main(){
 
 
 
-
-using namespace std ;
-void Xhandler ( int test )
-{
-try
-{
-if( test ==0)
-throw test ; // throw int
-if( test ==1)
-throw ’a’; // throw char
-if( test ==2)
-throw 123.23; // throw double
-}
-catch ( int i) // catch an int exception
-{
-cout << " Caught " << i << ’\n’;
-
-}
-catch (...) // catch all other exceptions
-{
-cout << " Caught One !\n";
-}
-}
-int main ()
-{
-cout << " start \n";
-Xhandler (0) ;
-Xhandler (1) ;
-Xhandler (2) ;
-cout << " end ";
-return 0;
-}
-The output produced by this program is shown here:
-start
-Caught 0
-Caught One!
-Caught One!
-end
-As this example suggest, using catch(...) as a default is a good way to catch all exceptions
-that you don’t want to handle explicitly. Also, by catching all exceptions, you prevent an
-unhandled exception from causing an abnormal program termination.
-
-
+// ----  rev[19-Aug-2026]  ----
 
 
 /*
