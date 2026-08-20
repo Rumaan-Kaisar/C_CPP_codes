@@ -665,7 +665,6 @@ int main() {
 
 
 
-// ----  rev[20-Aug-2026]  ----
 
 /*  Example 10: The following change to Xhandler() prevents it from throwing any exceptions:
 
@@ -680,23 +679,34 @@ int main() {
 
                 This throw() function is not allowed to let any exception escape, it has no "type list".
 
-            Function Throw Restrictions:
-                "void func() throw(int, char)"  allows only int/char throws.
-                "void func() throw()"           allows no throws. Attempting to throw results in termination.
+
+                Function Throw Restrictions:
+                    "void func() throw(int, char)"  allows only int/char throws.
+                    "void func() throw()"           allows no throws. Attempting to throw results in termination.
+*/
+
+
+// ----  rev[21-Aug-2026]  ----
 
 
 
+/*  Example 11: Rethrowing an exception
 
-
-   Example 9: The reason for rethrow an exception is to allow multiple handlers access to the exception. 
+The reason for rethrow an exception is to allow multiple handlers access to the exception. 
 For example, perhaps one exception handler manages one aspect of an exception and a second handler copes with another. 
 
-#### Example 9: Rethrowing
+#### Example 9: 
 *   Inner handler processes part of the error, then uses `throw;` to pass it to the outer handler in `main` for further processing.
+
+
 
    An exception can only be rethrown from within a catch block (or from any function called from within that block). 
    When you rethrow an exception, it will not be recaught by the same catch statement. It will propagate to an outer catch statement. 
+
+
    The following program illustrates rethrowing an exception. It rethrows a char * exception.
+
+
 void Xhandler() {
     try { throw " hello "; }    // throw  char *  
     catch( const char *) {  // catch  char * 
@@ -707,14 +717,67 @@ void Xhandler() {
     catch ( const char *) {
            cout << "char * inside main \n"; }
          cout << "end ";
-         return 0; }    output:
-start
-char * inside Xhandler
-char * inside main
-end
+         return 0; }
+         
+output:
+    start
+    char * inside Xhandler
+    char * inside main
+    end
+
+
+
+As you have learned, you can rethrow an exception. The most likely reason for doing so
+is to allow multiple handlers access to the exception. For example, perhaps one exception
+
+handler manages one aspect of an exception and a second handler copes with another. An
+exception can only be rethrown from within a catch block (or from any function called
+from within that block). When you rethrow an exception, it will not be recaught by the
+same catch statement. It will propagate to an outer catch statement. The following
+program illustrates rethrowing an exception. It rethrows a char * exception.
 
 
 */  
+
+
+
+
+// Example of rethrowing an exception .
+# include <iostream >
+using namespace std ;
+void Xhandler ()
+{
+try
+{
+throw " hello "; // throw a const char *
+}
+catch ( const char *) // catch a const char *
+{
+cout << " Caught const char * inside Xhandler \n";
+throw ; // rethrow const char * out of function
+}
+}
+int main ()
+{
+cout << " start \n";
+try
+{
+Xhandler ();
+}
+catch ( const char *)
+{
+cout << " Caught const char * inside main \n";
+}
+cout << " end ";
+return 0;
+}
+
+
+This program displays the following output:
+start
+Caught const char * inside Xhandler
+Caught const char * inside main
+end
 
 
 
@@ -778,57 +841,6 @@ end
 
 
 
-
-
-4. The following change to Xhandler() prevents it from throwing any exceptions:
-
-
-
-
-
-As you have learned, you can rethrow an exception. The most likely reason for doing so
-is to allow multiple handlers access to the exception. For example, perhaps one exception
-
-handler manages one aspect of an exception and a second handler copes with another. An
-exception can only be rethrown from within a catch block (or from any function called
-from within that block). When you rethrow an exception, it will not be recaught by the
-same catch statement. It will propagate to an outer catch statement. The following
-program illustrates rethrowing an exception. It rethrows a char * exception.
-
-// Example of rethrowing an exception .
-# include <iostream >
-using namespace std ;
-void Xhandler ()
-{
-try
-{
-throw " hello "; // throw a const char *
-}
-catch ( const char *) // catch a const char *
-{
-cout << " Caught const char * inside Xhandler \n";
-throw ; // rethrow const char * out of function
-}
-}
-int main ()
-{
-cout << " start \n";
-try
-{
-Xhandler ();
-}
-catch ( const char *)
-{
-cout << " Caught const char * inside main \n";
-}
-cout << " end ";
-return 0;
-}
-This program displays the following output:
-start
-Caught const char * inside Xhandler
-Caught const char * inside main
-end
 
 
 
