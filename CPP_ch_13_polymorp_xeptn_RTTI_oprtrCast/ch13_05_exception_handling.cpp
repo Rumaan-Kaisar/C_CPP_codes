@@ -743,33 +743,31 @@ program illustrates rethrowing an exception. It rethrows a char * exception.
 
 
 // Example of rethrowing an exception .
-# include <iostream >
-using namespace std ;
-void Xhandler ()
-{
-try
-{
-throw " hello "; // throw a const char *
+#include <iostream>
+
+void Xhandler() {
+    try{
+        throw " hello "; // throw a const char *
+    }
+    // catch a const char *
+    catch(const char *) {
+        std::cout << " Caught const char * inside Xhandler \n";
+        throw;  // rethrow const char * out of function
+    }
 }
-catch ( const char *) // catch a const char *
-{
-cout << " Caught const char * inside Xhandler \n";
-throw ; // rethrow const char * out of function
-}
-}
-int main ()
-{
-cout << " start \n";
-try
-{
-Xhandler ();
-}
-catch ( const char *)
-{
-cout << " Caught const char * inside main \n";
-}
-cout << " end ";
-return 0;
+
+
+int main() {
+    std::cout << " start \n";
+    try {
+        Xhandler();
+    }
+    catch(const char *) {
+        std::cout << " Caught const char * inside main \n";
+    }
+    std::cout << " end ";
+    
+    return 0;
 }
 
 
@@ -780,24 +778,7 @@ Caught const char * inside main
 end
 
 
-
 /*  
-
-
-
-*/
-
-
-
-/*  
-
-
-
-
-
-
-
-
 ## 11. Key Points to Remember
 
 * Exception handling deals with **run-time errors**.
@@ -808,8 +789,6 @@ end
 * Multiple `catch` blocks are allowed.
 * `catch(...)` catches all exceptions.
 * Unhandled exceptions cause abnormal program termination (`terminate()` → `abort()`).
-
-
 */
 
 
