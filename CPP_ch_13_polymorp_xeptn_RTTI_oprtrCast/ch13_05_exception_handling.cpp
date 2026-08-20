@@ -609,16 +609,21 @@ int main(){
 
 
 
-// ----  rev[19-Aug-2026]  ----
-
-
-
 /*  Example 9: The following program shows how to restrict the "types of exceptions" that can be thrown from a function.
 
                 // Restricting function throw types
                 ret_type func_name(arg_list) throw(type_list){
                     // exceptions
                 }
+
+                The function Xhandler() is restricted to throwing only three types of exceptions: integers, characters, and doubles. 
+                    Throwing any other type will crash the program (by calling unexpected()).
+                    You can test this by removing int from the allowed list and running the program again.
+
+                The restriction applies only when throwing an exception out of the function.
+                (when an exception leaves the function and goes back to the calling try block.)
+
+                Inside the function itself, a try block can throw any exception type, as long as it is caught before exiting that function.
 */
 
 #include <iostream>
@@ -651,25 +656,22 @@ int main() {
     return 0;
 }
 
+/* Note: 
+    the code wont compile in ISO C++17 and later.
+    Instead try older versions like C++14 or C++11
 
-In this program, the function Xhandler() can throw only integer, character, and double
-exceptions. If it attempts to throw any other type of exception, an abnormal program
-termination will occur. (That is, unexpected() will be called.) 
-
-To see an example of
-this, remove int from the list and retry the program.
-It is important to understand that a function can only be restricted in what types of
-exceptions it throws back to the try block that called it. That is, a try block within a
-function can thrown any type of exception so long as it is caught within that function.
-The restriction applies only when throwing an exception out of the function.
+    Use "https://www.onlinegdb.com/" and select older C++ version from setting.
+*/
 
 
+
+// ----  rev[20-Aug-2026]  ----
 
 /*  
 
-   In this program, the function Xhandler() can throw only integer, character, and double exceptions. If it attempts to throw any other type of exception, an abnormal program termination will occur. (That is, unexpected() will be called.) To see an example of this, remove int from the list and retry the program.
-   A function can only be restricted in what types of exceptions it throws back to the try block that called it. That is, a try block within a function can thrown any type of exception so long as it is caught within that function.
-   The restriction applies only when throwing an exception out of the function.
+
+
+
 
 
 
