@@ -625,12 +625,10 @@ int main(){
 
 // This function can only throw ints, chars, and doubles
 void Xhandler(int test) throw(int , char , double) {
-    try { 
-        if(test==0) throw test;     // throw int 
-        if(test==1) throw 'a';      // throw char 
-        if(test==2) throw 123.23;   // throw double 
-    }
-    // no "catch" is used here
+    if(test==0) throw test;     // throw int 
+    if(test==1) throw 'a';      // throw char 
+    if(test==2) throw 123.23;   // throw double 
+    // no "try-catch" is used here. Instead this function will be called from "try"
 }    
 
 
@@ -669,19 +667,6 @@ The restriction applies only when throwing an exception out of the function.
 
 /*  
 
-
-
-
-void Xhandler(int test ) throw(int, char, double)  {
-    if( test ==0) throw test ;  // throw int 
-    if( test ==1) throw 'a';    // throw char 
-    if( test ==2) throw 123.23;     // throw double    } int main(){ cout<< "start \n";
-        try{ Xhandler(0);   }   // 1 and 2 also    
-        catch(int i) { cout << " Caught int \n";}
-        catch ( char c) { cout << " Caught char \n"; }
-        catch ( double d) { cout << " Caught double \n"; }
-    cout << "end ";
-    return 0; }
    In this program, the function Xhandler() can throw only integer, character, and double exceptions. If it attempts to throw any other type of exception, an abnormal program termination will occur. (That is, unexpected() will be called.) To see an example of this, remove int from the list and retry the program.
    A function can only be restricted in what types of exceptions it throws back to the try block that called it. That is, a try block within a function can thrown any type of exception so long as it is caught within that function.
    The restriction applies only when throwing an exception out of the function.
