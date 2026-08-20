@@ -667,32 +667,22 @@ int main() {
 
 // ----  rev[20-Aug-2026]  ----
 
-/*  
+/*  Example 10: The following change to Xhandler() prevents it from throwing any exceptions:
 
+                    // This function can thrown NO exceptions!
+                    void Xhandler(int test) throw(){
+                        if(test==0) throw test;
+                        if(test==0) throw 'a;
+                        if(test==2) throw 123.23;
+                    }
 
+                The above statements no longer work. Instead, they will cause an abnormal program termination.
 
+                This throw() function is not allowed to let any exception escape, it has no "type list".
 
-
-
-
-
-Example 10: The following change to Xhandler() prevents it from throwing any exceptions:
-
-void Xhandler(int test) throw(){
-    if(test==0) throw test;
-    if(test==0) throw 'a;
-    if(test==2) throw 123.23;
-}
-
-
-The above statements no longer work . Instead, they will cause an abnormal program termination.
-
-
-
-
-#### Example 7 & 8: Function Throw Restrictions
-*   `void func() throw(int, char)` allows only int/char throws.
-*   `void func() throw()` allows no throws. Attempting to throw results in termination.
+            Function Throw Restrictions:
+                "void func() throw(int, char)"  allows only int/char throws.
+                "void func() throw()"           allows no throws. Attempting to throw results in termination.
 
 
 
@@ -791,7 +781,8 @@ end
 
 
 4. The following change to Xhandler() prevents it from throwing any exceptions:
-// This function can thrown NO exceptions !
+
+
 
 
 
