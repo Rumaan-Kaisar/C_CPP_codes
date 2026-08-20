@@ -676,11 +676,18 @@ int main() {
 
 
 
-   Example 8: The following change to Xhandler() prevents it from throwing any exceptions:
-void Xhandler(int test ) throw(){   if( test ==0) throw test ;
-if( test ==0) throw 'a';
-if( test ==2) throw 123.23; }
-   The above statements no longer work . Instead , they will cause an abnormal program termination . 
+Example 10: The following change to Xhandler() prevents it from throwing any exceptions:
+
+void Xhandler(int test) throw(){
+    if(test==0) throw test;
+    if(test==0) throw 'a;
+    if(test==2) throw 123.23;
+}
+
+
+The above statements no longer work . Instead, they will cause an abnormal program termination.
+
+
 
 
 #### Example 7 & 8: Function Throw Restrictions
@@ -785,19 +792,9 @@ end
 
 4. The following change to Xhandler() prevents it from throwing any exceptions:
 // This function can thrown NO exceptions !
-void Xhandler ( int test ) throw ()
-{
-/*
-The following statements no longer work . Instead ,
-they will cause an abnormal program termination .
-*/
-if( test ==0)
-throw test ;
-if( test ==0)
-throw ’a’;
-if( test ==2)
-throw 123.23;
-}
+
+
+
 As you have learned, you can rethrow an exception. The most likely reason for doing so
 is to allow multiple handlers access to the exception. For example, perhaps one exception
 
