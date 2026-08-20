@@ -612,10 +612,65 @@ int main(){
 // ----  rev[19-Aug-2026]  ----
 
 
-/*
+
+/*  Example 9: The following program shows how to restrict the "types of exceptions" that can be thrown from a function.
+
+                // Restricting function throw types
+                ret_type func_name(arg_list) throw(type_list){
+                    // exceptions
+                }
+*/
+
+# include <iostream >
+using namespace std ;
+// This function can only throw ints , chars , and doubles .
+void Xhandler ( int test ) throw (int , char , double )
+{
+if( test ==0)
+throw test ; // throw int
+if( test ==1)
+throw ’a’; // throw char
+if( test ==2)
+throw 123.23; // throw double
+}
+int main ()
+
+{
+cout << " start \n";
+try
+{
+Xhandler (0) ; // also , try passing 1 and 2 to Xhandler
+}
+catch ( int i)
+{
+cout << " Caught int \n";
+}
+catch ( char c)
+{
+cout << " Caught char \n";
+}
+catch ( double d)
+{
+cout << " Caught double \n";
+}
+cout << " end ";
+return 0;
+}
+In this program, the function Xhandler() can throw only integer, character, and double
+exceptions. If it attempts to throw any other type of exception, an abnormal program
+termination will occur. (That is, unexpected() will be called.) To see an example of
+this, remove int from the list and retry the program.
+It is important to understand that a function can only be restricted in what types of
+exceptions it throws back to the try block that called it. That is, a try block within a
+function can thrown any type of exception so long as it is caught within that function.
+The restriction applies only when throwing an exception out of the function.
 
 
-   Example 7: ret_type func_name(arg_list)  throw(type_list){ // exceptions } to restrict the types of exceptions that can be thrown from a function:
+
+/*  
+
+
+
 
 void Xhandler(int test ) throw(int, char, double)  {
     if( test ==0) throw test ;  // throw int 
@@ -737,53 +792,6 @@ end
 
 
 
-
-3. The following program shows how to restrict the types of exceptions that can be thrown
-from a function:
-// Restricting function throw types
-# include <iostream >
-using namespace std ;
-// This function can only throw ints , chars , and doubles .
-void Xhandler ( int test ) throw (int , char , double )
-{
-if( test ==0)
-throw test ; // throw int
-if( test ==1)
-throw ’a’; // throw char
-if( test ==2)
-throw 123.23; // throw double
-}
-int main ()
-
-{
-cout << " start \n";
-try
-{
-Xhandler (0) ; // also , try passing 1 and 2 to Xhandler
-}
-catch ( int i)
-{
-cout << " Caught int \n";
-}
-catch ( char c)
-{
-cout << " Caught char \n";
-}
-catch ( double d)
-{
-cout << " Caught double \n";
-}
-cout << " end ";
-return 0;
-}
-In this program, the function Xhandler() can throw only integer, character, and double
-exceptions. If it attempts to throw any other type of exception, an abnormal program
-termination will occur. (That is, unexpected() will be called.) To see an example of
-this, remove int from the list and retry the program.
-It is important to understand that a function can only be restricted in what types of
-exceptions it throws back to the try block that called it. That is, a try block within a
-function can thrown any type of exception so long as it is caught within that function.
-The restriction applies only when throwing an exception out of the function.
 
 
 
