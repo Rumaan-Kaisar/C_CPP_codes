@@ -623,8 +623,6 @@ int main(){
 
 #include <iostream>
 
-
-
 // This function can only throw ints, chars, and doubles
 void Xhandler(int test) throw(int , char , double) {
     try { 
@@ -636,33 +634,31 @@ void Xhandler(int test) throw(int , char , double) {
 }    
 
 
+int main() {
+    std::cout << " start \n";
+    try {
+        Xhandler(0);    // also , try passing 1 and 2 to Xhandler
+    }
+    catch(int i) {
+        std::cout << " Caught int \n";
+    }
+    catch(char c) {
+        std::cout << " Caught char \n";
+    }
+    catch(double d) {
+        std::cout << " Caught double \n";
+    }
+    std::cout << " end ";
 
-int main ()
+    return 0;
+}
 
-{
-cout << " start \n";
-try
-{
-Xhandler (0) ; // also , try passing 1 and 2 to Xhandler
-}
-catch ( int i)
-{
-cout << " Caught int \n";
-}
-catch ( char c)
-{
-cout << " Caught char \n";
-}
-catch ( double d)
-{
-cout << " Caught double \n";
-}
-cout << " end ";
-return 0;
-}
+
 In this program, the function Xhandler() can throw only integer, character, and double
 exceptions. If it attempts to throw any other type of exception, an abnormal program
-termination will occur. (That is, unexpected() will be called.) To see an example of
+termination will occur. (That is, unexpected() will be called.) 
+
+To see an example of
 this, remove int from the list and retry the program.
 It is important to understand that a function can only be restricted in what types of
 exceptions it throws back to the try block that called it. That is, a try block within a
