@@ -186,6 +186,9 @@
         Passes the current exception to an "outer try/catch" sequence.
         Allows "multiple handlers" to process different aspects of the same exception.
 
+    The reason for "rethrow" an exception is to allow "multiple handlers access" to the exception. 
+        For example, one exception handler manages one aspect of an exception and a second handler copes with another. 
+
     The rethrown exception is not caught by the "same catch block" that rethrew it.
 
     An exception can only be "rethrown" from within a "catch block" (or from any function called from within that block). 
@@ -695,11 +698,8 @@ int main() {
 
 
 /*  Example 11: Rethrowing an exception
-                The reason for "rethrow" an exception is to allow "multiple handlers access" to the exception. 
-For example, perhaps one exception handler manages one aspect of an exception and a second handler copes with another. 
-
-#### Example 9: 
-*   Inner handler processes part of the error, then uses `throw;` to pass it to the outer handler in `main` for further processing.
+                Inner handler processes part of the error, 
+                then uses "throw;" to pass it to the outer handler in "main" for further processing.
 
 
 
