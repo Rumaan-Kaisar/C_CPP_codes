@@ -194,6 +194,20 @@
     An exception can only be "rethrown" from within a "catch block" (or from any function called from within that block). 
         When you rethrow an exception, it will not be "recaught" by the "same catch statement". 
         It will propagate to an outer catch statement. 
+
+
+    --------  Key Points  --------
+    
+    Exception handling deals with "run-time errors".
+
+    Three keywords: "try", "throw", "catch".
+        "try"   --> Monitor code.
+        "throw" --> Raise exception.
+        "catch" --> Handle exception.
+
+    Multiple "catch" blocks are allowed.
+    "catch(...)" catches all exceptions.
+    Unhandled exceptions cause abnormal program termination ("terminate()" --> "abort()").
 */
 
 
@@ -693,8 +707,6 @@ int main() {
 */
 
 
-// ----  rev[21-Aug-2026]  ----
-
 
 
 /*  Example 11: The following program illustrates "rethrowing an exception". It rethrows a "char *" exception.
@@ -738,6 +750,7 @@ int main() {
 
 
 
+// ----  rev[22-Aug-2026]  ----
 
 
 
@@ -747,16 +760,7 @@ int main() {
 
 
 /*  
-## 11. Key Points to Remember
 
-* Exception handling deals with **run-time errors**.
-* Three keywords: **try**, **throw**, **catch**.
-* `try` → Monitor code.
-* `throw` → Raise exception.
-* `catch` → Handle exception.
-* Multiple `catch` blocks are allowed.
-* `catch(...)` catches all exceptions.
-* Unhandled exceptions cause abnormal program termination (`terminate()` → `abort()`).
 */
 
 
