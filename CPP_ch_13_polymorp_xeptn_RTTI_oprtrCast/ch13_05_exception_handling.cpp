@@ -697,54 +697,18 @@ int main() {
 
 
 
-/*  Example 11: Rethrowing an exception
+/*  Example 11: The following program illustrates "rethrowing an exception". It rethrows a "char *" exception.
+
                 Inner handler processes part of the error, 
                 then uses "throw;" to pass it to the outer handler in "main" for further processing.
 
-
-
-
-
-
-   The following program illustrates rethrowing an exception. It rethrows a char * exception.
-
-
-void Xhandler() {
-    try { throw " hello "; }    // throw  char *  
-    catch( const char *) {  // catch  char * 
-           cout << " char * inside Xhandler \n";
-           throw ;          // rethrow char *      }
-        }   int main(){ cout << " start \n";
-    try { Xhandler (); }
-    catch ( const char *) {
-           cout << "char * inside main \n"; }
-         cout << "end ";
-         return 0; }
-         
-output:
-    start
-    char * inside Xhandler
-    char * inside main
-    end
-
-
-
-As you have learned, you can rethrow an exception. The most likely reason for doing so
-is to allow multiple handlers access to the exception. For example, perhaps one exception
-
-handler manages one aspect of an exception and a second handler copes with another. An
-exception can only be rethrown from within a catch block (or from any function called
-from within that block). When you rethrow an exception, it will not be recaught by the
-same catch statement. It will propagate to an outer catch statement. The following
-program illustrates rethrowing an exception. It rethrows a char * exception.
-
-
+            output:
+                start
+                Caught const char * inside Xhandler
+                Caught const char * inside main
+                end
 */  
 
-
-
-
-// Example of rethrowing an exception .
 #include <iostream>
 
 void Xhandler() {
@@ -754,7 +718,7 @@ void Xhandler() {
     // catch a const char *
     catch(const char *) {
         std::cout << " Caught const char * inside Xhandler \n";
-        throw;  // rethrow const char * out of function
+        throw;  // "rethrow" const char * out of function
     }
 }
 
@@ -773,11 +737,13 @@ int main() {
 }
 
 
-This program displays the following output:
-start
-Caught const char * inside Xhandler
-Caught const char * inside main
-end
+
+
+
+
+
+
+
 
 
 /*  
