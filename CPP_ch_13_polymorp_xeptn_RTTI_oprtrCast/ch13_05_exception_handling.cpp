@@ -187,6 +187,10 @@
         Allows "multiple handlers" to process different aspects of the same exception.
 
     The rethrown exception is not caught by the "same catch block" that rethrew it.
+
+    An exception can only be "rethrown" from within a "catch block" (or from any function called from within that block). 
+        When you rethrow an exception, it will not be "recaught" by the "same catch statement". 
+        It will propagate to an outer catch statement. 
 */
 
 
@@ -691,8 +695,7 @@ int main() {
 
 
 /*  Example 11: Rethrowing an exception
-
-The reason for rethrow an exception is to allow multiple handlers access to the exception. 
+                The reason for "rethrow" an exception is to allow "multiple handlers access" to the exception. 
 For example, perhaps one exception handler manages one aspect of an exception and a second handler copes with another. 
 
 #### Example 9: 
@@ -700,8 +703,7 @@ For example, perhaps one exception handler manages one aspect of an exception an
 
 
 
-   An exception can only be rethrown from within a catch block (or from any function called from within that block). 
-   When you rethrow an exception, it will not be recaught by the same catch statement. It will propagate to an outer catch statement. 
+
 
 
    The following program illustrates rethrowing an exception. It rethrows a char * exception.
