@@ -780,25 +780,18 @@ int main() {
 // ----  rev[23-Aug-2026]  ----
 
 
+/* Example 13: Here is a skeleton for a function called divide().
 
+                    double divide(double a, double b) {
+                        // add error handling
+                        return a/b;
+                    }
 
-
-
-
-
-
-
-
-
-5. Here is a skeleton for a function called divide().
-double divide ( double a, double b)
-{
-// add error handling
-return a/b;
-}
-This function returns the result of dividing a by b. Add error checking to this function
-using C++ exception handling. Specifically, prevent a divide-by-zero error. Demonstrate
-your solution in a program.
+                This function returns the result of dividing a by b. 
+                
+                Add C++ exception handling to the divide() function to prevent division by zero. 
+                Then, write a complete program to demonstrate your solution.
+*/
 
 
 5. # include <iostream >
