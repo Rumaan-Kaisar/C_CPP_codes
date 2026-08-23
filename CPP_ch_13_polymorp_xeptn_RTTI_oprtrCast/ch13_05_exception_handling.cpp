@@ -750,10 +750,10 @@ int main() {
 
 
 
-// ----  rev[22-Aug-2026]  ----
 
+/*  Example 12: What catch expression catches all types of exceptions?
 
-/*  Example 12: What is wrong with this fragment?
+                What is wrong with this fragment?
 
                         try {
                             // ...
@@ -765,33 +765,19 @@ int main() {
 
                 Show one way to fix the preceding fragment.
 
-                What catch expression catches all types of exceptions?
 
             ans:
-                There is no "corresponding catch statement" for the throw.
+                "catch(...)" catches all exceptions.
 
+                In the above fragment there is no "corresponding catch statement" for the throw.
 
-
-
-3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
-catch all exceptions with a catch(...) handler.
-
-
-
-
-
-4. catch(...) catches all exceptions.
+            Fix:
+                One way to fix this problem is to create a catch(int) handler. 
+                Another way to fix it is to catch all exceptions with a catch(...) handler (ellipsis).
 */
 
 
-
-
-
-/*  
-
-*/
-
-
+// ----  rev[23-Aug-2026]  ----
 
 
 
