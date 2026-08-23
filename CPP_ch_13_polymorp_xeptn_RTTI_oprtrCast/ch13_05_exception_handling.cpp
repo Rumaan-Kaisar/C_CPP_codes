@@ -753,7 +753,19 @@ int main() {
 // ----  rev[22-Aug-2026]  ----
 
 
+/*  Example 12: What is wrong with this fragment?
 
+                        try {
+                            // ...
+                            throw 10;
+                        }
+                        catch(int *p) {
+                            // ...
+                        }
+
+                Show one way to fix the preceding fragment.
+
+*/
 
 
 
@@ -766,55 +778,15 @@ int main() {
 
 
 
-// --------  EXCP TN  --------
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// more exeption 
-
-
-
-
-
-
-
-
-
-
-
-EXERCISES
-
-
-2. What is wrong with this fragment?
-try
-{
-// ...
-throw 10;
-}
-catch ( int *p)
-{
-// ...
-}
 
 2. There is no corresponding catch statement for the throw.
 
 
 
-3. Show one way to fix the preceding fragment.
+3. 
 
 3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
 catch all exceptions with a catch(...) handler.
@@ -824,6 +796,8 @@ catch all exceptions with a catch(...) handler.
 4. What catch expression catches all types of exceptions?
 
 4. catch(...) catches all exceptions.
+
+
 
 
 
