@@ -765,6 +765,22 @@ int main() {
 
                 Show one way to fix the preceding fragment.
 
+                What catch expression catches all types of exceptions?
+
+            ans:
+                There is no "corresponding catch statement" for the throw.
+
+
+
+
+3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
+catch all exceptions with a catch(...) handler.
+
+
+
+
+
+4. catch(...) catches all exceptions.
 */
 
 
@@ -782,20 +798,7 @@ int main() {
 
 
 
-2. There is no corresponding catch statement for the throw.
 
-
-
-3. 
-
-3. One way to fix the problem is to create a catch(int) handler. Another way to fix it is to
-catch all exceptions with a catch(...) handler.
-
-
-
-4. What catch expression catches all types of exceptions?
-
-4. catch(...) catches all exceptions.
 
 
 
