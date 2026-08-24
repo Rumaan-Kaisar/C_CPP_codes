@@ -777,7 +777,6 @@ int main() {
 */
 
 
-// ----  rev[23-Aug-2026]  ----
 
 
 /* Example 13: Here is a skeleton for a function called divide().
@@ -794,9 +793,10 @@ int main() {
 */
 
 
-5. # include <iostream >
-# include <cstdlib >
-using namespace std ;
+#include <iostream>
+#include <cstdlib>
+
+
 double divide ( double a, double b)
 {
 try
