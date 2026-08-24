@@ -810,7 +810,10 @@ double divide (double a, double b) {
 
 
 int main() {
-std::cout << divide (10.0 , 2.5) << endl ;
-std::cout << divide (10.0 , 0.0) ;
-return 0;
+    std::cout << divide (10.0, 2.5) << std::endl;
+    std::cout << divide (10.0, 0.0);
+
+    return 0;
 }
+
+
