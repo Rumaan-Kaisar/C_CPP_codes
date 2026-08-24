@@ -797,17 +797,13 @@ int main() {
 #include <cstdlib>
 
 
-double divide ( double a, double b)
-{
-try
-{
-if (!b)
-throw (b);
+double divide (double a, double b) {
+try {
+    if(!b) throw(b);
 }
-catch ( double )
-{
-cout << " Cannot divide by zero .\n";
-exit (1) ;
+catch(double) {
+    std::cout << " Cannot divide by zero .\n";
+    exit(1);
 }
 return a/b;
 }
