@@ -792,25 +792,25 @@ int main() {
                 Then, write a complete program to demonstrate your solution.
 */
 
-
 #include <iostream>
 #include <cstdlib>
 
 
 double divide (double a, double b) {
-try {
-    if(!b) throw(b);
-}
-catch(double) {
-    std::cout << " Cannot divide by zero .\n";
-    exit(1);
-}
-return a/b;
-}
-int main ()
-{
+    try {
+        if(!b) throw(b);
+    }
+    catch(double) {
+        std::cout << " Cannot divide by zero .\n";
+        exit(1);
+    }
 
-cout << divide (10.0 , 2.5) << endl ;
-cout << divide (10.0 , 0.0) ;
+    return a/b;
+}
+
+
+int main() {
+std::cout << divide (10.0 , 2.5) << endl ;
+std::cout << divide (10.0 , 0.0) ;
 return 0;
 }
