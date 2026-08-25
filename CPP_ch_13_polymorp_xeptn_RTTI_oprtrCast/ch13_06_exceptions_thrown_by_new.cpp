@@ -38,6 +38,32 @@ else cout << "Allocation error \n";
 return 0;}
 	When you use the nothrow approach, you must check the pointer returned by new after each allocation request.
 
-
-
 */  
+
+1. Here is an example of new that uses a try/catch block to monitor for an allocation
+failure.
+# include <iostream >
+# include <new >
+using namespace std ;
+int main ()
+{
+int *p;
+try
+{
+p = new int ; // allocate memory for int
+}
+catch ( bad_alloc xa)
+{
+cout << " Allocation failure .\n";
+return 1;
+}
+for (*p = 0; *p < 10; (*p)++)
+cout << *p << " ";
+delete p; // free the memory
+return 0;
+}
+Her if an allocation failure occurs, it is caught by the catch statement.
+
+
+
+	
