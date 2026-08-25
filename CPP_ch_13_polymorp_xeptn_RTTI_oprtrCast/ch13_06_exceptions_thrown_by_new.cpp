@@ -132,6 +132,36 @@ SKILLS CHECK
 Example 1.
 
 
+1. Explain the difference between the behavior of new and new(nothrow) when an allocation failure occurs.
+2. Given the following fragment, show two ways to convert it into modern C++-style code.
+p = malloc ( sizeof ( int ));
+if (!p)
+{
+cout << " Allocation error .\n";
+exit (1) ;
+}
 
 
-	
+
+
+
+1. By default, new throws an exception when an allocation error occurs. The nothrow
+version of new returns a null pointer if memory cannot be allocated.
+2. p = new ( nothrow ) int ;
+if (!p)
+{
+cout << " Allocation error .\n";
+// ...
+}
+try
+{
+p = new int ;
+}
+catch ( bad_alloc ba)
+{
+cout << " Allocation error .\n";
+// ...
+}
+
+
+
