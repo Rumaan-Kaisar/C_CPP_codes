@@ -40,7 +40,7 @@ return 0;}
 
 */  
 
-1. Here is an example of new that uses a try/catch block to monitor for an allocation
+Example 1. Here is an example of new that uses a try/catch block to monitor for an allocation
 failure.
 # include <iostream >
 # include <new >
@@ -63,6 +63,48 @@ delete p; // free the memory
 return 0;
 }
 Her if an allocation failure occurs, it is caught by the catch statement.
+
+
+
+	
+Example 1. Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new’s exception-throwing capability bu forcing on allocation
+failure. It does this by allocating memory until it is exhausted.
+// Force an allocation failure .
+# include <iostream >
+# include <new >
+using namespace std ;
+int main ()
+305TEACH YOURSELF
+C++
+{
+double *p;
+// this will eventually run out of memory
+do
+{
+try
+{
+p = new double [100000];
+}
+catch ( bad_alloc xa)
+{
+cout << " Allocation failure .\n";
+return 1;
+}
+}
+while (p);
+return 0;
+}
+
+
+
+
+Example 1.
+
+
+
+
+Example 1.
+
 
 
 
