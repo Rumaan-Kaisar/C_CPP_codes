@@ -100,6 +100,32 @@ return 0;
 
 Example 1.
 
+The following program shows how to use the new(nothrow) alternative. It reworks te
+preceding program and forces an allocation failure.
+// Demonstrate the new ( nothrow ) alternative .
+# include <iostream >
+# include <new >
+using namespace std ;
+int main ()
+{
+double *p;
+// this will eventually run out of memory
+do
+{
+p = new ( nothrow ) double [100000];
+if(p)
+cout << " Allocation OK\n";
+else
+cout << " Allocation Error .\n";
+}
+while (p);
+return 0;
+}
+As this program demonstrates, when you use the nothrow approach, you must check the
+pointer returned by new after each allocation request.
+306TEMPLATES AND EXCEPTION HANDLING
+SKILLS CHECK
+
 
 
 
