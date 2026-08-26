@@ -13,6 +13,7 @@ Behavior of new as specified by Standard C++: In early C++, new returned null on
 
 
 
+
 13.7 Handling Exceptions Thrown by new
 How new works: In old C++, new returned null when memory allocation failed. Modern C++ throws an exception by default when allocation fails. However, you can choose to make it return null instead.
 bad_alloc exception: When new cannot allocate memory, it throws a bad_alloc exception. In older C++, this was called xalloc. If you do not handle the exception, the program will terminate.
@@ -36,7 +37,7 @@ You want to avoid exception handling.
 #include <new>
 using namespace std;
     int main(){ int *p;
-                     try{ p = new int; }    /* allocate memory for int */      
+                     try{ p = new int; }    // allocate memory for int
                  catch (bad_alloc xa){  cout << " Allocation failure .\n";
                                     return 1;  }    for(*p = 0; *p < 10; (*p)++)      cout << *p << " "  ;
 delete p; // free the memory
@@ -49,14 +50,16 @@ return 0; }
    Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new's exception-throwing capability by forcing on allocation failure. It does this by allocating memory until it is exhausted.
 
 int main(){ double *p;
-do{ try{ p = new double[100000]; }      /* this will eventually run out of memory */ 
+do{ try{ p = new double[100000]; }      // this will eventually run out of memory
 catch( bad_alloc xa ){  cout << " Allocation failure .\n";
 return 1;}
 }while (p);
 return 0;}
+
+
    Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure.
 int main(){ double *p;
-do{ p = new(nothrow) double[100000];        /* this will eventually run out of memory */ 
+do{ p = new(nothrow) double[100000];        // this will eventually run out of memory
 if(p) cout << "Allocation ok \n";
 else cout << "Allocation error \n";
 }while (p);
