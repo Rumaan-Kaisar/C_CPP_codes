@@ -29,47 +29,10 @@ Working with old C++ code.
 Replacing malloc() with new.
 You want to avoid exception handling.
 
-
-
-
-   Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation failure.
-#include <iostream>
-#include <new>
-using namespace std;
-    int main(){ int *p;
-                     try{ p = new int; }    // allocate memory for int
-                 catch (bad_alloc xa){  cout << " Allocation failure .\n";
-                                    return 1;  }    for(*p = 0; *p < 10; (*p)++)      cout << *p << " "  ;
-delete p; // free the memory
-return 0; }
-   Here if an allocation failure occurs, it is caught by the catch statement.
-
-
-
-
-   Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new's exception-throwing capability by forcing on allocation failure. It does this by allocating memory until it is exhausted.
-
-int main(){ double *p;
-do{ try{ p = new double[100000]; }      // this will eventually run out of memory
-catch( bad_alloc xa ){  cout << " Allocation failure .\n";
-return 1;}
-}while (p);
-return 0;}
-
-
-   Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure.
-int main(){ double *p;
-do{ p = new(nothrow) double[100000];        // this will eventually run out of memory
-if(p) cout << "Allocation ok \n";
-else cout << "Allocation error \n";
-}while (p);
-return 0;}
-   When you use the nothrow approach, you must check the pointer returned by new after each allocation request.
-
 */  
 
-Example 1. Here is an example of new that uses a try/catch block to monitor for an allocation
-failure.
+/* Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation
+failure. */
 # include <iostream >
 # include <new >
 using namespace std ;
@@ -92,18 +55,29 @@ return 0;
 }
 Her if an allocation failure occurs, it is caught by the catch statement.
 
+   Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation failure.
+#include <iostream>
+#include <new>
+using namespace std;
+    int main(){ int *p;
+                     try{ p = new int; }    // allocate memory for int
+                 catch (bad_alloc xa){  cout << " Allocation failure .\n";
+                                    return 1;  }    for(*p = 0; *p < 10; (*p)++)      cout << *p << " "  ;
+delete p; // free the memory
+return 0; }
+   Here if an allocation failure occurs, it is caught by the catch statement.
+
 
 
         
-Example 1. Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new’s exception-throwing capability bu forcing on allocation
-failure. It does this by allocating memory until it is exhausted.
+/* Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new’s exception-throwing capability bu forcing on allocation
+failure. It does this by allocating memory until it is exhausted. */
 // Force an allocation failure .
 # include <iostream >
 # include <new >
 using namespace std ;
 int main ()
-305TEACH YOURSELF
-C++
+
 {
 double *p;
 // this will eventually run out of memory
@@ -123,13 +97,20 @@ while (p);
 return 0;
 }
 
+//    Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new's exception-throwing capability by forcing on allocation failure. It does this by allocating memory until it is exhausted.
+
+int main(){ double *p;
+do{ try{ p = new double[100000]; }      // this will eventually run out of memory
+catch( bad_alloc xa ){  cout << " Allocation failure .\n";
+return 1;}
+}while (p);
+return 0;}
 
 
 
-Example 1.
 
-The following program shows how to use the new(nothrow) alternative. It reworks te
-preceding program and forces an allocation failure.
+/* Example 3: The following program shows how to use the new(nothrow) alternative. It reworks te
+preceding program and forces an allocation failure. */
 // Demonstrate the new ( nothrow ) alternative .
 # include <iostream >
 # include <new >
@@ -151,13 +132,21 @@ return 0;
 }
 As this program demonstrates, when you use the nothrow approach, you must check the
 pointer returned by new after each allocation request.
-306TEMPLATES AND EXCEPTION HANDLING
-SKILLS CHECK
+
+
+   Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure.
+int main(){ double *p;
+do{ p = new(nothrow) double[100000];        // this will eventually run out of memory
+if(p) cout << "Allocation ok \n";
+else cout << "Allocation error \n";
+}while (p);
+return 0;}
+   When you use the nothrow approach, you must check the pointer returned by new after each allocation request.
 
 
 
 
-Example 1.
+/* Example 4:
 
 
 1. Explain the difference between the behavior of new and new(nothrow) when an allocation failure occurs.
@@ -168,7 +157,7 @@ if (!p)
 cout << " Allocation error .\n";
 exit (1) ;
 }
-
+ */
 
 
 
@@ -190,5 +179,4 @@ catch ( bad_alloc ba)
 cout << " Allocation error .\n";
 // ...
 }
-
 
