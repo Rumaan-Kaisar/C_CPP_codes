@@ -2,6 +2,7 @@
 /*  ------------------------    Exceptions thrown by "new"    ------------------------
 
 13.7 Handling exceptions thrown by new
+
 Behavior of new as specified by Standard C++: In early C++, new returned null on failure. In later version new caused an exception on failure.  Finally, it was decided that a new failure will generate an exception by default, but that a null pointer could be returned instead, as an option. 
    Allocation exceptions with new and xalloc or bad_alloc: In Standard C++, when an allocation request cannot be honored, new throws a bad_alloc (xalloc in older versions) exception. If you don't catch this exception, your program will be terminated.
    It is good for short programs but in real applications you must catch this exception and process it in some rational manner. 
@@ -33,9 +34,10 @@ You want to avoid exception handling.
 
 /* Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation
 failure. */
-# include <iostream >
-# include <new >
-using namespace std ;
+
+#include <iostream>
+#include <new>
+
 int main ()
 {
 int *p;
