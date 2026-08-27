@@ -6,9 +6,11 @@
     However, you can choose to make it "return null" instead (as an option).
 
     
+    --------  Allocation exceptions with "new" and "xalloc" or "bad_alloc"  --------
+
+If you don't catch this exception, your program will be terminated.
 
 
-   Allocation exceptions with new and xalloc or bad_alloc: In Standard C++, when an allocation request cannot be honored, new throws a bad_alloc (xalloc in older versions) exception. If you don't catch this exception, your program will be terminated.
    It is good for short programs but in real applications you must catch this exception and process it in some rational manner. 
    To have access to this exception, you must include the header  <new> in your program.
    Returning old fashioned null In Standard C++:  It is also possible to have new return null instead of throwing an exception when an allocation failure occurs.  This form of new is :   p_var =new(nothrow) type ;
@@ -23,7 +25,10 @@
 
 
 
-bad_alloc exception: When new cannot allocate memory, it throws a bad_alloc exception. In older C++, this was called xalloc. If you do not handle the exception, the program will terminate.
+bad_alloc: 
+When new cannot allocate memory, it throws a "bad_alloc" exception (xalloc in older versions).
+If you do not handle the exception, the program will terminate.
+
 Handling the exception: For small programs, this may be acceptable. In real applications, it is better to catch the exception and handle the error properly.
 To use bad_alloc, include:
 #include <new>
