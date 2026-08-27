@@ -1,9 +1,11 @@
 
 /*  ------------------------    Exceptions thrown by "new"    ------------------------
 
-    Handling exceptions thrown by new
+    In old C++, "new" returned "null" when memory allocation failed. 
+    Modern C++ throws an "exception" by default when allocation fails. 
+    However, you can choose to make it "return null" instead (as an option).
 
-Behavior of new as specified by Standard C++: In early C++, new returned null on failure. In later version new caused an exception on failure.  Finally, it was decided that a new failure will generate an exception by default, but that a null pointer could be returned instead, . 
+    
 
 
    Allocation exceptions with new and xalloc or bad_alloc: In Standard C++, when an allocation request cannot be honored, new throws a bad_alloc (xalloc in older versions) exception. If you don't catch this exception, your program will be terminated.
@@ -17,10 +19,8 @@ Behavior of new as specified by Standard C++: In early C++, new returned null on
 
 
 
-13.7 Handling Exceptions Thrown by new
-In old C++, "new" returned "null" when memory allocation failed. 
-Modern C++ throws an "exception" by default when allocation fails. 
-However, you can choose to make it return "null" instead (as an option).
+
+
 
 
 bad_alloc exception: When new cannot allocate memory, it throws a bad_alloc exception. In older C++, this was called xalloc. If you do not handle the exception, the program will terminate.
