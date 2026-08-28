@@ -17,7 +17,7 @@
     Handling the exception:
         To use "bad_alloc", you must include the header: #include <new>
 
-        Returning old fashioned null In Standard C++:
+        nothrow - Returning old fashioned null In Standard C++:
             You can make "new" return "null" instead of throwing an exception using "nothrow" when an allocation failure occurs
             This form of new is :   
                 
@@ -29,17 +29,15 @@
             It behaves like the old version of "new". 
             If memory allocation fails, it returns "null" instead of throwing an "exception".
 
+        This is useful when:
+            Working with old C++ code with a modern C++ compiler.
+            Replacing malloc() with new.
+            You want to avoid exception handling.
+*/  
+
+
 // ----  rev[28-Aug-2026]  ----
 
-
-
-
-This is useful when:
-Working with old C++ code with a modern C++ compiler.
-Replacing malloc() with new.
-You want to avoid exception handling.
-
-*/  
 
 /* Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation
 failure. */
