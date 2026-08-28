@@ -29,17 +29,13 @@
             It behaves like the old version of "new". 
             If memory allocation fails, it returns "null" instead of throwing an "exception".
 
-// ----  rev[27-Aug-2026]  ----
-
-   The nothrow form of new works like the original version of new from years ago. Since it returns null on failure, it can be "dropped into" older code and avoid exception handling.  Useful when compiling older code with a modern C++ compiler. 
-   It is also valuable when you are replacing calls to malloc() with new. 
-
+// ----  rev[28-Aug-2026]  ----
 
 
 
 
 This is useful when:
-Working with old C++ code.
+Working with old C++ code with a modern C++ compiler.
 Replacing malloc() with new.
 You want to avoid exception handling.
 
