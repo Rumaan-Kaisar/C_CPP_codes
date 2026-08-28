@@ -25,6 +25,9 @@
 
             Here "p_var" is a pointer variable of "type". 
 
+        Why use "nothrow"? 
+            It behaves like the old version of "new". 
+            If memory allocation fails, it returns "null" instead of throwing an "exception".
 
 // ----  rev[27-Aug-2026]  ----
 
@@ -33,9 +36,7 @@
 
 
 
-Why use nothrow? 
-    It behaves like the old version of new. 
-    If memory allocation fails, it returns null instead of throwing an exception.
+
 
 This is useful when:
 Working with old C++ code.
