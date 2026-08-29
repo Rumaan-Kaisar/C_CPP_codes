@@ -36,7 +36,6 @@
 */  
 
 
-// ----  rev[28-Aug-2026]  ----
 
 
 /* Example 1: Following uses "new" with a try/catch block for an allocation failure. */
@@ -62,11 +61,12 @@ int main() {
     return 0;
 }
 
+// ----  rev[29-Aug-2026]  ----
 
 
-#include <iostream>
-#include <new>
-using namespace std;
+
+
+
     int main(){ int *p;
                      try{ p = new int; }    // allocate memory for int
                  catch (bad_alloc xa){  cout << " Allocation failure .\n";
