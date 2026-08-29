@@ -64,19 +64,6 @@ int main() {
 // ----  rev[29-Aug-2026]  ----
 
 
-
-
-
-    int main(){ int *p;
-                     try{ p = new int; }    // allocate memory for int
-                 catch (bad_alloc xa){  cout << " Allocation failure .\n";
-                                    return 1;  }    for(*p = 0; *p < 10; (*p)++)      cout << *p << " "  ;
-delete p; // free the memory
-return 0; }
-   Here if an allocation failure occurs, it is caught by the catch statement.
-
-
-
         
 /* Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new’s exception-throwing capability bu forcing on allocation
 failure. It does this by allocating memory until it is exhausted. */
