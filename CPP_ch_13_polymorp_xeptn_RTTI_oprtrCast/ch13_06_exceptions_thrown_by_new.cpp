@@ -44,24 +44,24 @@
 #include <iostream>
 #include <new>
 
-int main ()
-{
-int *p;
-try
-{
-p = new int ; // allocate memory for int
+int main() {
+    int *p;
+    
+    // any allocation failure will caught by the catch statement.
+    try {
+        p = new int;    // allocate memory for int
+    }
+    catch(bad_alloc xa) {
+        std::cout << " Allocation failure .\n";
+        return 1;
+    }
+
+    for(*p = 0; *p < 10; (*p)++) std::cout << *p << " ";
+    delete p;   // free the memory
+
+    return 0;
 }
-catch ( bad_alloc xa)
-{
-cout << " Allocation failure .\n";
-return 1;
-}
-for (*p = 0; *p < 10; (*p)++)
-cout << *p << " ";
-delete p; // free the memory
-return 0;
-}
-Her if an allocation failure occurs, it is caught by the catch statement.
+
 
 
 #include <iostream>
