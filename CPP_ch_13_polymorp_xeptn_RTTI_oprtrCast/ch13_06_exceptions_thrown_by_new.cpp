@@ -39,8 +39,7 @@
 // ----  rev[28-Aug-2026]  ----
 
 
-/* Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation
-failure. */
+/* Example 1: Following uses "new" with a try/catch block for an allocation failure. */
 
 #include <iostream>
 #include <new>
@@ -64,7 +63,7 @@ return 0;
 }
 Her if an allocation failure occurs, it is caught by the catch statement.
 
-   Example 1: Here is an example of new that uses a try/catch block to monitor for an allocation failure.
+
 #include <iostream>
 #include <new>
 using namespace std;
