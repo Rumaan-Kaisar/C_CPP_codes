@@ -74,20 +74,19 @@ int main() {
 */
 
 
-// Force an allocation failure .
-# include <iostream >
-# include <new >
-using namespace std ;
-int main ()
+// .
+#include <iostream>
+#include <new>
 
-{
-double *p;
-// this will eventually run out of memory
+int main() {
+    double *p;
+    // Force an allocation failure:
+
 do
 {
 try
 {
-p = new double [100000];
+p = new double [100000];    // this will eventually run out of memory
 }
 catch ( bad_alloc xa)
 {
