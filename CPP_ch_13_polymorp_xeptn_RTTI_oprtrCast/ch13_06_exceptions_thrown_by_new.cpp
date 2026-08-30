@@ -82,7 +82,7 @@ int main() {
         try{
             p = new double [100000];    // this will eventually run out of memory
         }
-        catch(bad_alloc xa) {
+        catch(std::bad_alloc xa) {
             std::cout << " Allocation failure .\n";
             return 1;
         }
