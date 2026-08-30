@@ -50,7 +50,7 @@ int main() {
     try {
         p = new int;    // allocate memory for int
     }
-    catch(bad_alloc xa) {
+    catch(std::bad_alloc xa) {
         std::cout << " Allocation failure .\n";
         return 1;
     }
@@ -174,4 +174,3 @@ catch ( bad_alloc ba)
 cout << " Allocation error .\n";
 // ...
 }
-
