@@ -98,16 +98,6 @@ int main() {
 
 
 
-int main(){
-    double *p;
-
-return 1;}
-}while (p);
-return 0;}
-
-
-
-
 /* Example 3: The following program shows how to use the new(nothrow) alternative. It reworks te
 preceding program and forces an allocation failure. */
 // Demonstrate the new ( nothrow ) alternative .
