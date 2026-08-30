@@ -98,9 +98,9 @@ int main() {
 
 
 
-int main(){ double *p;
-do{ try{ p = new double[100000]; }      // this will eventually run out of memory
-catch( bad_alloc xa ){  cout << " Allocation failure .\n";
+int main(){
+    double *p;
+
 return 1;}
 }while (p);
 return 0;}
