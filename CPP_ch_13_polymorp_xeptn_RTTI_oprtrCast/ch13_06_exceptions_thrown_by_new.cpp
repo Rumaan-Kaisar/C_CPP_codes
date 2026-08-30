@@ -65,8 +65,15 @@ int main() {
 
 
         
-/* Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new’s exception-throwing capability bu forcing on allocation
-failure. It does this by allocating memory until it is exhausted. */
+/* Example 2: Since the previous program normally does not fail, 
+                the next program shows how new throws an exception when memory allocation fails.
+
+                Forcing an allocation error:
+                It does this by continuously allocating memory until all available memory is used up.
+
+*/
+
+
 // Force an allocation failure .
 # include <iostream >
 # include <new >
