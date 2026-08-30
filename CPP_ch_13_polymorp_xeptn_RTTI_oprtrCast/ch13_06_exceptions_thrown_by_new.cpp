@@ -70,11 +70,8 @@ int main() {
 
                 Forcing an allocation error:
                 It does this by continuously allocating memory until all available memory is used up.
-
 */
 
-
-// .
 #include <iostream>
 #include <new>
 
@@ -82,21 +79,20 @@ int main() {
     double *p;
     // Force an allocation failure:
 
-do
-{
-try
-{
-p = new double [100000];    // this will eventually run out of memory
+    do {
+        try{
+            p = new double [100000];    // this will eventually run out of memory
+        }
+        catch(bad_alloc xa) {
+            std::cout << " Allocation failure .\n";
+            return 1;
+        }
+    } while(p);
+
+    return 0;
 }
-catch ( bad_alloc xa)
-{
-cout << " Allocation failure .\n";
-return 1;
-}
-}
-while (p);
-return 0;
-}
+
+
 
 //    Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new's exception-throwing capability by forcing on allocation failure. It does this by allocating memory until it is exhausted.
 
