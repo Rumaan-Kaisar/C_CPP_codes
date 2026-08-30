@@ -61,7 +61,6 @@ int main() {
     return 0;
 }
 
-// ----  rev[29-Aug-2026]  ----
 
 
         
@@ -94,7 +93,10 @@ int main() {
 
 
 
-//    Example 2: Since the previous program is unlikely to fail under any normal circumstance, the following program demonstrates new's exception-throwing capability by forcing on allocation failure. It does this by allocating memory until it is exhausted.
+// ----  rev[31-Aug-2026]  ----
+
+
+
 
 int main(){ double *p;
 do{ try{ p = new double[100000]; }      // this will eventually run out of memory
