@@ -102,13 +102,35 @@ int main() {
 preceding program and forces an allocation failure. 
 
 */
+
+
+
+int main() {
+    double *p;
+    // Force an allocation failure:
+
+    do {
+        try{
+            p = new double [100000];    // this will eventually run out of memory
+        }
+        catch(std::bad_alloc xa) {
+            std::cout << " Allocation failure .\n";
+            return 1;
+        }
+    } while(p);
+
+    return 0;
+}
+
+
+
 // Demonstrate the new ( nothrow ) alternative .
 
 #include <iostream>
 #include <new>
 
 int main() {
-double *p;
+    double *p;
 // this will eventually run out of memory
 do
 {
