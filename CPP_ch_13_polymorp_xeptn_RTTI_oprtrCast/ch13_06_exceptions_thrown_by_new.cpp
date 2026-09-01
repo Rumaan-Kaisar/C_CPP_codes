@@ -99,8 +99,11 @@ int main() {
 
 
 /* Example 3: The following program shows how to use the new(nothrow) alternative. It reworks te
-preceding program and forces an allocation failure. */
+preceding program and forces an allocation failure. 
+
+*/
 // Demonstrate the new ( nothrow ) alternative .
+
 # include <iostream >
 # include <new >
 using namespace std ;
