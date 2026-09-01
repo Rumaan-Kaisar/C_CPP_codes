@@ -104,11 +104,10 @@ preceding program and forces an allocation failure.
 */
 // Demonstrate the new ( nothrow ) alternative .
 
-# include <iostream >
-# include <new >
-using namespace std ;
-int main ()
-{
+#include <iostream>
+#include <new>
+
+int main() {
 double *p;
 // this will eventually run out of memory
 do
