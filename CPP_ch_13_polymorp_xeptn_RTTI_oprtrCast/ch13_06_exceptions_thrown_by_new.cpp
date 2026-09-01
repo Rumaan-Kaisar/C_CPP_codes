@@ -99,8 +99,7 @@ int main() {
 
 
 /* Example 3: The following program shows how to use the new(nothrow) alternative. 
-It reworks above program and forces an allocation failure. 
-
+                It reworks above program and forces an allocation failure. 
 */
 
 
@@ -148,7 +147,7 @@ As this program demonstrates, when you use the nothrow approach, you must check 
 pointer returned by new after each allocation request.
 
 
-   Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure.
+/* Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure. */
 int main(){ double *p;
 do{ p = new(nothrow) double[100000];        // this will eventually run out of memory
 if(p) cout << "Allocation ok \n";
@@ -160,11 +159,8 @@ return 0;}
 
 
 
-/* Example 4:
-
-
-1. Explain the difference between the behavior of new and new(nothrow) when an allocation failure occurs.
-2. Given the following fragment, show two ways to convert it into modern C++-style code.
+/* Example 4:   1. Explain the difference between the behavior of new and new(nothrow) when an allocation failure occurs.
+                2. Given the following fragment, show two ways to convert it into modern C++-style code.
 p = malloc ( sizeof ( int ));
 if (!p)
 {
