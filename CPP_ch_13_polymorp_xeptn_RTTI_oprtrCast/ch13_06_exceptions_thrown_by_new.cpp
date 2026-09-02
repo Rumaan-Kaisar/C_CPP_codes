@@ -102,18 +102,21 @@ int main() {
                 It reworks above program and forces an allocation failure. 
 */
 
+#include <iostream>
+#include <new>
+
 int main() {
     double *p;
     // Force an allocation failure:
     do {
-        try{
+
             // notice the use of "new ( nothrow )"
             p = new (nothrow) double [100000];    // this will eventually run out of memory
-        }
-        catch(std::bad_alloc xa) {
+
+    
             std::cout << " Allocation failure .\n";
             return 1;
-        }
+    // notice, no try-catch is used
     } while(p);
 
     return 0;
@@ -123,8 +126,7 @@ int main() {
 
 // Demonstrate the  alternative .
 
-#include <iostream>
-#include <new>
+
 
 int main() {
     double *p;
@@ -137,6 +139,7 @@ else
 cout << " Allocation Error .\n";
 }
 while (p);
+
 return 0;
 }
 
