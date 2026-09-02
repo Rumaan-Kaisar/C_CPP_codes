@@ -93,7 +93,7 @@ int main() {
 
 
 
-// ----  rev[31-Aug-2026]  ----
+// ----  rev[02-Sep-2026]  ----
 
 
 
@@ -102,15 +102,13 @@ int main() {
                 It reworks above program and forces an allocation failure. 
 */
 
-
-
 int main() {
     double *p;
     // Force an allocation failure:
-
     do {
         try{
-            p = new double [100000];    // this will eventually run out of memory
+            // notice the use of "new ( nothrow )"
+            p = new (nothrow) double [100000];    // this will eventually run out of memory
         }
         catch(std::bad_alloc xa) {
             std::cout << " Allocation failure .\n";
@@ -123,7 +121,7 @@ int main() {
 
 
 
-// Demonstrate the new ( nothrow ) alternative .
+// Demonstrate the  alternative .
 
 #include <iostream>
 #include <new>
@@ -132,7 +130,7 @@ int main() {
     double *p;
     // this will eventually run out of memory
     do {
-p = new ( nothrow ) double [100000];
+
 if(p)
 cout << " Allocation OK\n";
 else
