@@ -93,13 +93,12 @@ int main() {
 
 
 
-// ----  rev[02-Sep-2026]  ----
-
-
-
 
 /* Example 3: The following program shows how to use the new(nothrow) alternative. 
                 It reworks above program and forces an allocation failure. 
+
+                Remember, when you use the "nothrow" approach, 
+                you must "check" the "pointer returned by new" after each allocation request.
 */
 
 #include <iostream>
@@ -110,7 +109,7 @@ int main() {
     // Force an allocation failure:
     do {
         // notice the use of "new ( nothrow )"
-        p = new (nothrow) double [100000];    // this will eventually run out of memory
+        p = new (std::nothrow) double [100000];    // this will eventually run out of memory
 
         if(p) std::cout << " Allocation OK\n";
         else std::cout << " Allocation failure .\n";
@@ -122,22 +121,7 @@ int main() {
 }
 
 
-
-// Demonstrate the  alternative .
-
-
-
-int main() {
-    double *p;
-
-while (p);
-
-return 0;
-}
-
-
-As this program demonstrates, when you use the nothrow approach, you must check the
-pointer returned by new after each allocation request.
+// ----  rev[02-Sep-2026]  ----
 
 
 /* Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure. */
