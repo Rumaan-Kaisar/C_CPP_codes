@@ -109,14 +109,13 @@ int main() {
     double *p;
     // Force an allocation failure:
     do {
+        // notice the use of "new ( nothrow )"
+        p = new (nothrow) double [100000];    // this will eventually run out of memory
 
-            // notice the use of "new ( nothrow )"
-            p = new (nothrow) double [100000];    // this will eventually run out of memory
-
+        if(p) std::cout << " Allocation OK\n";
+        else std::cout << " Allocation failure .\n";
     
-            std::cout << " Allocation failure .\n";
-            return 1;
-    // notice, no try-catch is used
+        // notice, no try-catch is used
     } while(p);
 
     return 0;
@@ -130,14 +129,7 @@ int main() {
 
 int main() {
     double *p;
-    // this will eventually run out of memory
-    do {
 
-if(p)
-cout << " Allocation OK\n";
-else
-cout << " Allocation Error .\n";
-}
 while (p);
 
 return 0;
