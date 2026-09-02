@@ -124,14 +124,6 @@ int main() {
 // ----  rev[02-Sep-2026]  ----
 
 
-/* Example 3: Following shows the use of new(nothrow) alternative. It reworks the Example 2 and forces an allocation failure. */
-int main(){ double *p;
-do{ p = new(nothrow) double[100000];        // this will eventually run out of memory
-if(p) cout << "Allocation ok \n";
-else cout << "Allocation error \n";
-}while (p);
-return 0;}
-   When you use the nothrow approach, you must check the pointer returned by new after each allocation request.
 
 
 
