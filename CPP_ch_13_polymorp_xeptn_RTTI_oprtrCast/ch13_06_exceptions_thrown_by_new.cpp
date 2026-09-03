@@ -136,13 +136,18 @@ int main() {
                             cout << " Allocation error .\n";
                             exit(1);
                         }
+
+            ans:
+                By default, new throws an "exception" when an allocation error occurs. 
+                The nothrow version of new "returns a null pointer" if memory cannot be allocated.
+
 */
 
 
 
 
-1. By default, new throws an exception when an allocation error occurs. The nothrow
-version of new returns a null pointer if memory cannot be allocated.
+
+
 2. p = new ( nothrow ) int ;
 if (!p)
 {
