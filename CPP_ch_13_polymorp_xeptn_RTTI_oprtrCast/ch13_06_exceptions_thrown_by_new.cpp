@@ -128,7 +128,7 @@ int main() {
 
 
 
-/* Example 4:   1. Explain the difference between the behavior of new and new(nothrow) when an allocation failure occurs.
+/* Example 4:   1. Explain the difference between the behavior of "new" and "new(nothrow)" when an allocation failure occurs.
                 2. Given the following fragment, show two ways to convert it into modern C++-style code.
 p = malloc ( sizeof ( int ));
 if (!p)
