@@ -121,11 +121,6 @@ int main() {
 }
 
 
-// ----  rev[02-Sep-2026]  ----
-
-
-
-
 
 
 /* Example 4:   1. Explain the difference between the behavior of "new" and "new(nothrow)" when an allocation failure occurs.
@@ -141,25 +136,24 @@ int main() {
                 By default, new throws an "exception" when an allocation error occurs. 
                 The nothrow version of new "returns a null pointer" if memory cannot be allocated.
 
+
+                way 1:
+                    p = new (nothrow) int;
+                    if(!p){
+                        cout << " Allocation error .\n";
+                        // ...
+                    }
+
+                way 2:
+                    try{
+                        p = new int ;
+                    }
+                    catch(bad_alloc ba) {
+                        cout << " Allocation error .\n";
+                        // ...
+                    }
 */
 
 
 
 
-
-
-2. p = new ( nothrow ) int ;
-if (!p)
-{
-cout << " Allocation error .\n";
-// ...
-}
-try
-{
-p = new int ;
-}
-catch ( bad_alloc ba)
-{
-cout << " Allocation error .\n";
-// ...
-}
