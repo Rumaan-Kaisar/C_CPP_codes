@@ -75,7 +75,7 @@ handling.
 MASTERY SKILLS CHECK: Chapter 11
 1. # include <iostream >
 # include <cstring >
-using namespace std ;
+
 // A generic mode - fining function .
 template <class X> X mode (X *data , int size )
 {
@@ -90,8 +90,7 @@ md = data [t];
 count = 1;
 for (w = t +1; w< size ; w++)
 {
-562ANSWERS
-MASTERY SKILLS CHECK: Chapter 11
+
 if(md == data [w])
 count ++;
 if( count > oldcount )
@@ -111,8 +110,11 @@ cout << " mode of i: " << mode (i, 10) << endl ;
 cout << " mode of p: " << mode (p, (int ) strlen (p)) << endl ;
 return 0;
 }
+
+
+
 2. # include <iostream >
-using namespace std ;
+
 template <class X> X sum (X *data , int size )
 {
 int i;
@@ -129,10 +131,10 @@ cout << sum (i, 4) << endl ;
 cout << sum (d, 4) << endl ;
 return 0;
 }
+
+
 3. # include <iostream >
-using namespace std ;
-563TEACH YOURSELF
-C++
+
 // A generic bubble sort .
 template <class X> void bubble (X *data , int size )
 {
@@ -166,6 +168,9 @@ cout << d[j] << ’ ’;
 cout << endl ;
 return 0;
 }
+
+
+
 4. /*
 This function demonstrates a generic stack that
 holds two values .
@@ -175,8 +180,7 @@ using namespace std ;
 # define SIZE 10
 // Create a generic stack class
 template <class StackType > class stack
-564ANSWERS
-MASTERY SKILLS CHECK: Chapter 11
+
 {
 StackType stck [ SIZE ][2]; // holds the stack
 int tos ; // index of top of stack
