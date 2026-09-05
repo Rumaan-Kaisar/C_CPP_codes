@@ -14,8 +14,50 @@
 
 Mastery Skills Check
 At this point you should be able to perform the following exercises and answer the questions.
-1. Create a generic function that returns the mode of an array of values. (The mode of a set
-is the value that occurs most often.)
+
+/* Example 1: Create a generic function that returns the "mode" of an array of values. 
+                (The mode of a data set is the value that "occurs most often".)
+*/
+
+#include <iostream>
+#include <cstring>
+
+// A generic mode - fining function .
+template <class X> X mode (X *data , int size) {
+register int t, w;
+X md , oldmd ;
+int count , oldcount ;
+oldmd = 0;
+oldcount = 0;
+for (t =0; t< size ; t ++)
+{
+md = data [t];
+count = 1;
+for (w = t +1; w< size ; w++)
+{
+
+if(md == data [w])
+count ++;
+if( count > oldcount )
+{
+oldmd = md;
+oldcount = count ;
+}
+}
+}
+return oldmd ;
+}
+int main ()
+{
+int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
+char *p = " this is a test ";
+cout << " mode of i: " << mode (i, 10) << endl ;
+cout << " mode of p: " << mode (p, (int ) strlen (p)) << endl ;
+return 0;
+}
+
+
+
 2. Create a generic function that returns the summation of an array of values.
 3. Create a generic bubble sort(or use nay other sorting algorithm you like).
 4. Rework the stack class so that it can store pairs of different-type objects on the stack.
@@ -73,43 +115,6 @@ handling.
 
 
 MASTERY SKILLS CHECK: Chapter 11
-1. # include <iostream >
-# include <cstring >
-
-// A generic mode - fining function .
-template <class X> X mode (X *data , int size )
-{
-register int t, w;
-X md , oldmd ;
-int count , oldcount ;
-oldmd = 0;
-oldcount = 0;
-for (t =0; t< size ; t ++)
-{
-md = data [t];
-count = 1;
-for (w = t +1; w< size ; w++)
-{
-
-if(md == data [w])
-count ++;
-if( count > oldcount )
-{
-oldmd = md;
-oldcount = count ;
-}
-}
-}
-return oldmd ;
-}
-int main ()
-{
-int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
-char *p = " this is a test ";
-cout << " mode of i: " << mode (i, 10) << endl ;
-cout << " mode of p: " << mode (p, (int ) strlen (p)) << endl ;
-return 0;
-}
 
 
 
