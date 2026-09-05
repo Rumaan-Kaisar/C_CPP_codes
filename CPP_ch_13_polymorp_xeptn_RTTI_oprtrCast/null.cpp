@@ -273,8 +273,7 @@ try
 throw exp ;
 }
 catch ( type arg )
-566ANSWERS
-MASTERY SKILLS CHECK: Chapter 11
+
 {
 // ...
 }
@@ -321,8 +320,7 @@ try
 if( tos ==0)
 throw 0;
 }
-567TEACH YOURSELF
-C++
+
 catch ( int )
 {
 cout << " Stack is empty .\n";
@@ -408,10 +406,9 @@ cout << gexp (2, 3) << endl ;
 cout << gexp (10.0 , 2.0) ;
 return 0;
 }
-569TEACH YOURSELF
-C++
-4. # include <iostream >
-# include <fstream >
+
+#include <iostream>
+# include <fstream>
 using namespace std ;
 template < class CoordType > class coord
 {
