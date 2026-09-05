@@ -47,13 +47,14 @@ template <class X> X mode(X *data, int size) {
 }
 
 
-int main ()
-{
-int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
-char *p = " this is a test ";
-cout << " mode of i: " << mode (i, 10) << endl ;
-cout << " mode of p: " << mode (p, (int ) strlen (p)) << endl ;
-return 0;
+int main() {
+    int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
+    char *p = " this is a test ";
+
+    std::cout << " mode of i: " << mode(i, 10) << std::endl;
+    std::cout << " mode of p: " << mode(p, (int) strlen(p)) << std::endl;
+    
+    return 0;
 }
 
 
