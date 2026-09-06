@@ -59,7 +59,34 @@ int main() {
 
 
 
-2. Create a generic function that returns the summation of an array of values.
+// ---- rev[06-Sept-2026] ----
+
+/* Example 2: Create a generic function that returns the summation of an array of values. */
+
+#include <iostream>
+
+template <class X> X sum (X *data, int size) {
+    int i;
+
+    X result = 0;
+
+    for(i=0; i < size; i++)
+        result += data[i];
+        return result;
+    }
+int main ()
+{
+int i[] = {1, 2, 3, 4};
+double d[] = {1.1 , 2.2 , 3.3 , 4.4};
+cout << sum (i, 4) << endl ;
+cout << sum (d, 4) << endl ;
+return 0;
+}
+
+
+
+
+
 3. Create a generic bubble sort(or use nay other sorting algorithm you like).
 4. Rework the stack class so that it can store pairs of different-type objects on the stack.
 Demonstrate your solution.
@@ -118,25 +145,6 @@ handling.
 MASTERY SKILLS CHECK: Chapter 11
 
 
-
-2. # include <iostream >
-
-template <class X> X sum (X *data , int size )
-{
-int i;
-X result = 0;
-for (i =0; i< size ; i ++)
-result += data [i];
-return result ;
-}
-int main ()
-{
-int i[] = {1, 2, 3, 4};
-double d[] = {1.1 , 2.2 , 3.3 , 4.4};
-cout << sum (i, 4) << endl ;
-cout << sum (d, 4) << endl ;
-return 0;
-}
 
 
 3. # include <iostream >
