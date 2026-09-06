@@ -49,7 +49,7 @@ template <class X> X mode(X *data, int size) {
 
 int main() {
     int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
-    char *p = " this is a test ";
+    char *p = " this is a test ";   // The mode is: " " space (so don't freak out)
 
     std::cout << " mode of i: " << mode(i, 10) << std::endl;
     std::cout << " mode of p: " << mode(p, (int) strlen(p)) << std::endl;
