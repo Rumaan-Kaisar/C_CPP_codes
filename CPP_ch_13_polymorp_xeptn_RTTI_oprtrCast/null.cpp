@@ -70,17 +70,19 @@ template <class X> X sum (X *data, int size) {
 
     X result = 0;
 
-    for(i=0; i < size; i++)
-        result += data[i];
-        return result;
-    }
-int main ()
-{
-int i[] = {1, 2, 3, 4};
-double d[] = {1.1 , 2.2 , 3.3 , 4.4};
-cout << sum (i, 4) << endl ;
-cout << sum (d, 4) << endl ;
-return 0;
+    for(i=0; i < size; i++) result += data[i];
+    return result;
+}
+
+
+int main() {
+    int i[] = {1, 2, 3, 4};
+    double d[] = {1.1 , 2.2 , 3.3 , 4.4};
+
+    std::cout << sum (i, 4) << endl ;
+    std::cout << sum (d, 4) << endl ;
+
+    return 0;
 }
 
 
