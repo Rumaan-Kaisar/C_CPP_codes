@@ -59,7 +59,6 @@ int main() {
 
 
 
-// ---- rev[06-Sept-2026] ----
 
 /* Example 2: Create a generic function that returns the summation of an array of values. */
 
@@ -79,17 +78,56 @@ int main() {
     int i[] = {1, 2, 3, 4};
     double d[] = {1.1 , 2.2 , 3.3 , 4.4};
 
-    std::cout << sum (i, 4) << endl ;
-    std::cout << sum (d, 4) << endl ;
+    std::cout << sum(i, 4) << std::endl;
+    std::cout << sum(d, 4) << std::endl;
 
     return 0;
 }
 
 
+// ---- rev[06-Sept-2026] ----
 
 
 
-3. Create a generic bubble sort(or use nay other sorting algorithm you like).
+/* Example 3: Create a generic bubble sort(or use nay other sorting algorithm you like). */
+
+#include <iostream>
+
+// A generic bubble sort .
+template <class X> void bubble(X *data, int size) {
+    register int a, b;
+    X t;
+
+    for(a = 1; a < size; a++) {
+        for(b = size-1; b >= a; b--) {
+            if(data[b-1] > data[b]) {
+                t = data[b-1];
+                data[b-1] = data[b];
+                data[b] = t;
+            }
+        }
+    }
+}
+
+
+int main() {
+int i[] = {3, 2, 5, 6, 1, 8, 9, 3, 6, 9};
+double d[] = {1.2 , 5.5 , 2.2 , 3.3};
+int j;
+bubble (i, 10) ; // sort ints
+bubble (d, 4); // sort doubles
+for (j =0; j <10; j ++)
+cout << i[j] << ’ ’;
+cout << endl ;
+for (j =0; j <4; j ++)
+cout << d[j] << ’ ’;
+cout << endl ;
+return 0;
+}
+
+
+
+
 4. Rework the stack class so that it can store pairs of different-type objects on the stack.
 Demonstrate your solution.
 5. Show the general forms of try, catch, and throw. In your own words, describe their
@@ -148,42 +186,6 @@ MASTERY SKILLS CHECK: Chapter 11
 
 
 
-
-3. # include <iostream >
-
-// A generic bubble sort .
-template <class X> void bubble (X *data , int size )
-{
-register int a, b;
-X t;
-for (a =1; a< size ; a ++)
-{
-for (b=size -1; b >=a; b --)
-{
-if( data [b -1] > data [b])
-{
-t = data [b -1];
-data [b -1] = data [b];
-data [b] = t;
-}
-}
-}
-}
-int main ()
-{
-int i[] = {3, 2, 5, 6, 1, 8, 9, 3, 6, 9};
-double d[] = {1.2 , 5.5 , 2.2 , 3.3};
-int j;
-bubble (i, 10) ; // sort ints
-bubble (d, 4); // sort doubles
-for (j =0; j <10; j ++)
-cout << i[j] << ’ ’;
-cout << endl ;
-for (j =0; j <4; j ++)
-cout << d[j] << ’ ’;
-cout << endl ;
-return 0;
-}
 
 
 
