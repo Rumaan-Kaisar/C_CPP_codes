@@ -18,30 +18,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 2: Create a generic function that returns the summation of an array of values. */
-
-#include <iostream>
-
-template <class X> X sum (X *data, int size) {
-    int i;
-
-    X result = 0;
-
-    for(i=0; i < size; i++) result += data[i];
-    return result;
-}
-
-
-int main() {
-    int i[] = {1, 2, 3, 4};
-    double d[] = {1.1 , 2.2 , 3.3 , 4.4};
-
-    std::cout << sum(i, 4) << std::endl;
-    std::cout << sum(d, 4) << std::endl;
-
-    return 0;
-}
-
 
 // ---- rev[06-Sept-2026] ----
 
