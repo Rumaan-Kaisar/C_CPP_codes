@@ -908,3 +908,48 @@ int main() {
     return 0;
 }
 
+
+
+
+/* Example 13: Create a generic function that returns the "mode" of an array of values. 
+                (The mode of a data set is the value that "occurs most often".)
+*/
+
+#include <iostream>
+#include <cstring>
+
+// A generic mode - finding function.
+template <class X> X mode(X *data, int size) {
+    register int t, w;
+    X md , oldmd;
+    int count, oldcount;
+
+    oldmd = 0;
+    oldcount = 0;
+
+    for(t =0; t < size; t++) {
+        md = data [t];
+        count = 1;
+        for(w = t +1; w < size; w++) {
+            if(md == data[w]) count++;
+            if(count > oldcount){
+                oldmd = md;
+                oldcount = count;
+            }
+        }
+    }
+
+    return oldmd;
+}
+
+
+int main() {
+    int i[] = {1, 2, 3, 4, 2, 3, 2, 2, 1, 5};
+    char *p = " this is a test ";   // The mode is: " " space (so don't freak out)
+
+    std::cout << " mode of i: " << mode(i, 10) << std::endl;
+    std::cout << " mode of p: " << mode(p, (int) strlen(p)) << std::endl;
+    
+    return 0;
+}
+
