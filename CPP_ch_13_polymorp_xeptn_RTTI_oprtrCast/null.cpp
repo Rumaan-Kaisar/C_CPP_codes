@@ -52,16 +52,13 @@ int main() {
     bubble(i, 10);  // sort ints
     bubble(d, 4);   // sort doubles
 
-    for (j=0; j < 10; j++) std::cout << i[j] << ' ';
+    for(j=0; j < 10; j++) std::cout << i[j] << ' ';
     std::cout << std::endl;
 
-for (j =0; j <4; j ++)
-cout << d[j] << ’ ’;
+    for(j=0; j < 4; j++) std::cout << d[j] << ' ';
     std::cout << std::endl;
 
-
-cout << endl ;
-return 0;
+    return 0;
 }
 
 
