@@ -45,11 +45,13 @@ template <class X> void bubble(X *data, int size) {
 
 
 int main() {
-int i[] = {3, 2, 5, 6, 1, 8, 9, 3, 6, 9};
-double d[] = {1.2 , 5.5 , 2.2 , 3.3};
-int j;
-bubble (i, 10) ; // sort ints
-bubble (d, 4); // sort doubles
+    int i[] = {3, 2, 5, 6, 1, 8, 9, 3, 6, 9};
+    double d[] = {1.2 , 5.5 , 2.2 , 3.3};
+    int j;
+
+    bubble(i, 10);  // sort ints
+    bubble(d, 4);   // sort doubles
+
 for (j =0; j <10; j ++)
 cout << i[j] << ’ ’;
 cout << endl ;
