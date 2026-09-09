@@ -160,9 +160,26 @@ int main() {
 
 
 
-5. Show the general forms of try, catch, and throw. In your own words, describe their
-operation.
+/* Example 5: Show the general forms of try, catch, and throw. In your own words, describe their operation. */
+
+
+5. The general forms of try, catch, and throw are shown here:
+try
+{
+// try block
+throw exp ;
+}
+catch ( type arg )
+
+{
+// ...
+}
+
+
+
 6. Again, rework the stack class so that stack over-and underflows are handled as exceptions.
+
+
 7. Check your compiler’s documentation. See whether it supports the terminate() and
 unexpected() functions. Generally, these functions can be configured to call any function
 you choose. If this is the case with your compiler, try creating your own set of customized
@@ -320,17 +337,6 @@ return 0;
 
 
 
-5. The general forms of try, catch, and throw are shown here:
-try
-{
-// try block
-throw exp ;
-}
-catch ( type arg )
-
-{
-// ...
-}
 6. /*
 This function demonstrates a generic stack
 that includes exception handling .
