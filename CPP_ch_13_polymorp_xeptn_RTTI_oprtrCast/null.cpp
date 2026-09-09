@@ -278,68 +278,6 @@ catch ( type arg )
 /* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. */
 
 
-7. Check your compiler’s documentation. See whether it supports the terminate() and
-unexpected() functions. Generally, these functions can be configured to call any function
-you choose. If this is the case with your compiler, try creating your own set of customized
-termination functions that handle otherwise unhandled exceptions.
-
-
-8. Thought question: Give a reason why having new generate an exception is a better
-approach than having new return null on failure.
-
-
-
-
-Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapter.
-1. In Chapter 6, Section 6.7, Example 3, a safe array class was shown. On your own, convert
-it into a generic safe array.
-2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
-create a generic abs() function on your own that will return the absolute value of any
-numeric object.
-
-
-
-
-Review Skills Check
-Before proceeding, you should be able to correctly answer the following questions and do the
-exercises.
-1. What is a generic function and what is its general form?
-2. What is a generic class and what is its general form?
-3. Write a generic function called gexp() that returns the value of one of its arguments
-raised to the power of the other.
-4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
-created and demonstrated in a program. Create a generic version of the coord class that
-can hold coordinates of any type. Demonstrate your solution in a program.
-5. Briefly explain how try, catch, and throw work together to provide C++ exception
-handling.
-6. Can throw be used if execution has not passed through a try block?
-7. What purpose do terminate() and unexpected() serve?
-8. What form of catch will handle all types of exceptions?
-
-
-
-
-
-
-
-
-
-
-
-
-MASTERY SKILLS CHECK: Chapter 11
-
-
-
-
-
-
-
-
-
-
 6. /*
 This function demonstrates a generic stack
 that includes exception handling .
@@ -427,10 +365,77 @@ for (i =0; i <3; i ++)
 cout << " Pop ds1 : " << ds1 .pop () << ’\n’;
 for (i =0; i <3; i ++)
 cout << " Pop ds2 : " << ds2 .pop () << ’\n’;
-568ANSWERS
-REVIEW SKILLS CHECK: Chapter 12
+
 return 0;
 }
+
+
+
+
+/* Example 7: Check your compiler’s documentation. See whether it supports the terminate() and
+unexpected() functions. Generally, these functions can be configured to call any function
+you choose. If this is the case with your compiler, try creating your own set of customized
+termination functions that handle otherwise unhandled exceptions. */
+
+
+
+
+/* Example 8: Thought question: Give a reason why having new generate an exception is a better
+approach than having new return null on failure. */
+
+
+
+
+Cumulative Skills Check
+This section checks how well you have integrated material in this chapter with that from the
+preceding chapter.
+1. In Chapter 6, Section 6.7, Example 3, a safe array class was shown. On your own, convert
+it into a generic safe array.
+2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
+create a generic abs() function on your own that will return the absolute value of any
+numeric object.
+
+
+
+
+Review Skills Check
+Before proceeding, you should be able to correctly answer the following questions and do the
+exercises.
+1. What is a generic function and what is its general form?
+2. What is a generic class and what is its general form?
+3. Write a generic function called gexp() that returns the value of one of its arguments
+raised to the power of the other.
+4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
+created and demonstrated in a program. Create a generic version of the coord class that
+can hold coordinates of any type. Demonstrate your solution in a program.
+5. Briefly explain how try, catch, and throw work together to provide C++ exception
+handling.
+6. Can throw be used if execution has not passed through a try block?
+7. What purpose do terminate() and unexpected() serve?
+8. What form of catch will handle all types of exceptions?
+
+
+
+
+
+
+
+
+
+
+
+
+MASTERY SKILLS CHECK: Chapter 11
+
+
+
+
+
+
+
+
+
+
 7. If new throws an exception when an allocation error occurs, you can be sure that the
 error will be handled one way or another-even if only by abnormal program termination.
 In contrast, an allocation failure that is reported by new, a return of a null pointer
