@@ -64,9 +64,8 @@ int main() {
 
 
 
-4. Rework the stack class so that it can store pairs of different-type objects on the stack.
-Demonstrate your solution
-(rework version of Example 10 of 'ch13_04_generic_fn_class.cpp')
+/* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
+(rework version of Example 10 of 'ch13_04_generic_fn_class.cpp') */
 .
 
 /* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
