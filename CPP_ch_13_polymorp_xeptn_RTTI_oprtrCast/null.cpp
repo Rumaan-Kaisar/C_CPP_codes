@@ -66,7 +66,105 @@ int main() {
 
 /* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
 (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp') */
-.
+
+
+4. /*
+This function demonstrates a generic stack that
+holds two values .
+*/
+# include <iostream >
+using namespace std ;
+# define SIZE 10
+// Create a generic stack class
+template <class StackType > class stack
+
+{
+StackType stck [ SIZE ][2]; // holds the stack
+int tos ; // index of top of stack
+public :
+void init () { tos = 0; }
+void push ( StackType ob , StackType ob2 );
+StackType pop ( StackType &ob2);
+};
+// Push objects .
+template <class StackType >
+void stack < StackType >:: push ( StackType ob , StackType ob2 )
+{
+if( tos == SIZE )
+{
+cout << " Stack is full .\n";
+return ;
+}
+stck [ tos ][0] = ob;
+stck [ tos ][1] = ob2 ;
+tos ++;
+}
+// Pop objects .
+template <class StackType >
+StackType stack < StackType >:: pop( StackType &ob2)
+{
+if( tos ==0)
+{
+cout << " Stack is empty .\n";
+return 0; // return null on empty stack
+}
+tos --;
+ob2 = stck [ tos ][1];
+return stck [ tos ][0];
+}
+int main ()
+{
+// Demonstrate character stacks .
+stack <char > s1 , s2; // create two stacks
+int i;
+char ch;
+// initialize the stacks
+s1. init ();
+s2. init ();
+s1. push (’a’, ’b’);
+s2. push (’x’, ’z’);
+s1. push (’b’, ’d’);
+565TEACH YOURSELF
+C++
+s2. push (’y’, ’e’);
+s1. push (’c’, ’a’);
+s2. push (’z’, ’x’);
+for (i =0; i <3; i ++)
+{
+cout << " Pop s1: " << s1.pop (ch);
+cout << ’ ’ << ch << ’\n’;
+}
+for (i =0; i <3; i ++)
+{
+cout << " Pop s2: " << s2.pop (ch);
+cout << ’ ’ << ch << ’\n’;
+}
+// demonstrate double stacks
+stack < double > ds1 , ds2 ; // create two stacks
+double d;
+// initialize the stacks
+ds1 . init ();
+ds2 . init ();
+ds1 . push (1.1 , 2.0) ;
+ds2 . push (2.2 , 3.0) ;
+ds1 . push (3.3 , 4.0) ;
+ds2 . push (4.5 , 5.0) ;
+ds1 . push (5.5 , 6.0) ;
+ds2 . push (6.6 , 7.0) ;
+for (i =0; i <3; i ++)
+{
+cout << " Pop ds1 : " << ds1 .pop (d);
+cout << ’ ’ << d << ’\n’;
+}
+for (i =0; i <3; i ++)
+{
+cout << " Pop ds2 : " << ds2 .pop (d);
+cout << ’ ’ << d << ’\n’;
+}
+return 0;
+}
+
+
 
 /* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
                 However, in this case, stack has been made into a template class (i.e a generic stack). 
@@ -177,13 +275,15 @@ catch ( type arg )
 
 
 
-6. Again, rework the stack class so that stack over-and underflows are handled as exceptions.
+/* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. */
 
 
 7. Check your compiler’s documentation. See whether it supports the terminate() and
 unexpected() functions. Generally, these functions can be configured to call any function
 you choose. If this is the case with your compiler, try creating your own set of customized
 termination functions that handle otherwise unhandled exceptions.
+
+
 8. Thought question: Give a reason why having new generate an exception is a better
 approach than having new return null on failure.
 
@@ -234,103 +334,6 @@ MASTERY SKILLS CHECK: Chapter 11
 
 
 
-
-
-4. /*
-This function demonstrates a generic stack that
-holds two values .
-*/
-# include <iostream >
-using namespace std ;
-# define SIZE 10
-// Create a generic stack class
-template <class StackType > class stack
-
-{
-StackType stck [ SIZE ][2]; // holds the stack
-int tos ; // index of top of stack
-public :
-void init () { tos = 0; }
-void push ( StackType ob , StackType ob2 );
-StackType pop ( StackType &ob2);
-};
-// Push objects .
-template <class StackType >
-void stack < StackType >:: push ( StackType ob , StackType ob2 )
-{
-if( tos == SIZE )
-{
-cout << " Stack is full .\n";
-return ;
-}
-stck [ tos ][0] = ob;
-stck [ tos ][1] = ob2 ;
-tos ++;
-}
-// Pop objects .
-template <class StackType >
-StackType stack < StackType >:: pop( StackType &ob2)
-{
-if( tos ==0)
-{
-cout << " Stack is empty .\n";
-return 0; // return null on empty stack
-}
-tos --;
-ob2 = stck [ tos ][1];
-return stck [ tos ][0];
-}
-int main ()
-{
-// Demonstrate character stacks .
-stack <char > s1 , s2; // create two stacks
-int i;
-char ch;
-// initialize the stacks
-s1. init ();
-s2. init ();
-s1. push (’a’, ’b’);
-s2. push (’x’, ’z’);
-s1. push (’b’, ’d’);
-565TEACH YOURSELF
-C++
-s2. push (’y’, ’e’);
-s1. push (’c’, ’a’);
-s2. push (’z’, ’x’);
-for (i =0; i <3; i ++)
-{
-cout << " Pop s1: " << s1.pop (ch);
-cout << ’ ’ << ch << ’\n’;
-}
-for (i =0; i <3; i ++)
-{
-cout << " Pop s2: " << s2.pop (ch);
-cout << ’ ’ << ch << ’\n’;
-}
-// demonstrate double stacks
-stack < double > ds1 , ds2 ; // create two stacks
-double d;
-// initialize the stacks
-ds1 . init ();
-ds2 . init ();
-ds1 . push (1.1 , 2.0) ;
-ds2 . push (2.2 , 3.0) ;
-ds1 . push (3.3 , 4.0) ;
-ds2 . push (4.5 , 5.0) ;
-ds1 . push (5.5 , 6.0) ;
-ds2 . push (6.6 , 7.0) ;
-for (i =0; i <3; i ++)
-{
-cout << " Pop ds1 : " << ds1 .pop (d);
-cout << ’ ’ << d << ’\n’;
-}
-for (i =0; i <3; i ++)
-{
-cout << " Pop ds2 : " << ds2 .pop (d);
-cout << ’ ’ << d << ’\n’;
-}
-return 0;
-}
 
 
 
