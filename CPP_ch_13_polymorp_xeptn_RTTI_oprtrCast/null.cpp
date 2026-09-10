@@ -288,14 +288,15 @@ that includes exception handling .
 #define SIZE 10
 
 // Create a generic stack class
-template <class StackType > class stack
-{
-StackType stck [ SIZE ]; // holds the stack
-int tos ; // index of top of stack
-public :
-void init () { tos = 0; }
-void push ( StackType ob);
-StackType pop ();
+template <class StackType > class stack {
+        StackType stck[SIZE ];  // holds the stack
+        int tos;                // index of top of stack
+    public:
+        void init(){ 
+            tos = 0; 
+        }
+        void push(StackType ob);
+        StackType pop();
 };
 
 
