@@ -126,8 +126,7 @@ s2. init ();
 s1. push (’a’, ’b’);
 s2. push (’x’, ’z’);
 s1. push (’b’, ’d’);
-565TEACH YOURSELF
-C++
+
 s2. push (’y’, ’e’);
 s1. push (’c’, ’a’);
 s2. push (’z’, ’x’);
@@ -284,9 +283,10 @@ catch ( type arg )
 This function demonstrates a generic stack
 that includes exception handling .
 */
-# include <iostream >
-using namespace std ;
-# define SIZE 10
+#include <iostream>
+
+#define SIZE 10
+
 // Create a generic stack class
 template <class StackType > class stack
 {
@@ -297,6 +297,8 @@ void init () { tos = 0; }
 void push ( StackType ob);
 StackType pop ();
 };
+
+
 // Push objects .
 template <class StackType >
 void stack < StackType >:: push ( StackType ob)
@@ -314,6 +316,8 @@ return ;
 stck [ tos ] = ob;
 tos ++;
 }
+
+
 // Pop objects .
 template <class StackType >
 StackType stack < StackType >:: pop ()
@@ -332,6 +336,8 @@ return 0; // return null on empty stack
 tos --;
 return stck [ tos ];
 }
+
+
 int main ()
 {
 // Demonstrate character stacks .
