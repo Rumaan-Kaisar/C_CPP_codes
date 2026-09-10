@@ -301,9 +301,7 @@ template <class StackType > class stack {
 
 
 // Push objects .
-template <class StackType >
-void stack < StackType >:: push ( StackType ob)
-{
+template <class StackType> void stack <StackType>:: push(StackType ob) {
 try
 {
 if( tos == SIZE )
@@ -434,7 +432,7 @@ handling.
 
 
 
-MASTERY SKILLS CHECK: Chapter 11
+MASTERY SKILLS CHECK:
 
 
 
@@ -452,7 +450,7 @@ can be overlooked if you forget to check for this possibility. The trouble is th
 your program attempts to use the null pointer, it might work for a while, then behave
 erratically, and finally crash in unpredictable (and unduplicatable ) ways. This is very
 difficult type of bug to diagnose.
-REVIEW SKILLS CHECK: Chapter 12
+
 1. In C++, a generic function defines a general set of operations that will be applied to
 various types of data. It is implemented with the keyword template. Its general form is
 shown here:
@@ -460,6 +458,8 @@ template <class Ttype > ret_type func_name ( para_list )
 {
 // ...
 }
+
+
 2. In C++, a generic class defines all operations that relate to that class, but the actual
 data is specified as a parameter when an object of that class is created. Its general form
 is shown here:
@@ -467,6 +467,9 @@ template < class Ttype > class class_name
 {
 // ...
 };
+
+
+
 3. # include <iostream >
 using namespace std ;
 // Return a to the b.
@@ -485,8 +488,8 @@ return 0;
 }
 
 #include <iostream>
-# include <fstream>
-using namespace std ;
+#include <fstream>
+
 template < class CoordType > class coord
 {
 CoordType x, y;
@@ -504,11 +507,20 @@ o3. show ();
 o4. show ();
 return 0;
 }
+
+
 5. try, catch, and throw work together like this: Put all statements that you wish to
 monitor for exceptions within a try block, if an exception occurs, throw that exception
 using throw and handle it with a corresponding catch statement.
+
+
 6. No.
+
+
 7. terminate() is called when an exception is thrown for which there is no corresponding
 catch statement. unexpected() is called when an attempt is made to throw an exception
 out of a function that is not specified in the function’s throw clause.
+
+
 8. catch(...).
+
