@@ -416,9 +416,11 @@ exercises.
 raised to the power of the other. */
 
 
-4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
+/* 4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
 created and demonstrated in a program. Create a generic version of the coord class that
-can hold coordinates of any type. Demonstrate your solution in a program.
+can hold coordinates of any type. Demonstrate your solution in a program. */
+
+
 5. Briefly explain how try, catch, and throw work together to provide C++ exception
 handling.
 6. Can throw be used if execution has not passed through a try block?
