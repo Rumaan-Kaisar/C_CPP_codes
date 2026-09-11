@@ -394,15 +394,14 @@ approach than having new return null on failure. */
 
 
 Cumulative Skills Check
-This section checks how well you have integrated material in this chapter with that from the
-preceding chapter.
+
 
 /* 1. In Chapter 6, Section 6.7, Example 3, a safe array class was shown. On your own, convert
 it into a generic safe array. */
 
-2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
+/* 2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
 create a generic abs() function on your own that will return the absolute value of any
-numeric object.
+numeric object. */
 
 
 
