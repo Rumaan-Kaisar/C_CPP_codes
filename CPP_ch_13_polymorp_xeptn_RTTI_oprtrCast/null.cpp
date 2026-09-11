@@ -509,9 +509,9 @@ return 0;
 }
 
 
-5. try, catch, and throw work together like this: Put all statements that you wish to
+/* 5. try, catch, and throw work together like this: Put all statements that you wish to
 monitor for exceptions within a try block, if an exception occurs, throw that exception
-using throw and handle it with a corresponding catch statement.
+using throw and handle it with a corresponding catch statement. */
 
 
 6. No.
