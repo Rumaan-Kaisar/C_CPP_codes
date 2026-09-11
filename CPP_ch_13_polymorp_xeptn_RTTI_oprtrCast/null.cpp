@@ -443,13 +443,13 @@ MASTERY SKILLS CHECK:
 
 
 
-7. If new throws an exception when an allocation error occurs, you can be sure that the
+/* 7. If new throws an exception when an allocation error occurs, you can be sure that the
 error will be handled one way or another-even if only by abnormal program termination.
 In contrast, an allocation failure that is reported by new, a return of a null pointer
 can be overlooked if you forget to check for this possibility. The trouble is that when
 your program attempts to use the null pointer, it might work for a while, then behave
 erratically, and finally crash in unpredictable (and unduplicatable ) ways. This is very
-difficult type of bug to diagnose.
+difficult type of bug to diagnose. */
 
 1. In C++, a generic function defines a general set of operations that will be applied to
 various types of data. It is implemented with the keyword template. Its general form is
@@ -471,7 +471,7 @@ template < class Ttype > class class_name
 
 
 3. # include <iostream >
-using namespace std ;
+
 // Return a to the b.
 template <class X> X gexp (X a, X b)
 {
