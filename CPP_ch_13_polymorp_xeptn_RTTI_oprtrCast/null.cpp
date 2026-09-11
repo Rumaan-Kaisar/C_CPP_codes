@@ -411,10 +411,10 @@ Review Skills Check
 Before proceeding, you should be able to correctly answer the following questions and do the
 exercises.
 /* 1. What is a generic function and what is its general form?
-2. What is a generic class and what is its general form? */
+2. What is a generic class and what is its general form?
 
 3. Write a generic function called gexp() that returns the value of one of its arguments
-raised to the power of the other.
+raised to the power of the other. */
 
 
 4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
