@@ -517,9 +517,9 @@ using throw and handle it with a corresponding catch statement.
 6. No.
 
 
-7. terminate() is called when an exception is thrown for which there is no corresponding
+/* 7. terminate() is called when an exception is thrown for which there is no corresponding
 catch statement. unexpected() is called when an attempt is made to throw an exception
-out of a function that is not specified in the function’s throw clause.
+out of a function that is not specified in the function’s throw clause. */
 
 
 8. catch(...).
