@@ -478,15 +478,15 @@ template < class Ttype > class class_name
 
 
 
-3. # include <iostream >
+3. 
+
+#include <iostream>
 
 // Return a to the b.
-template <class X> X gexp (X a, X b)
-{
-X i, result =1;
-for (i =0; i<b; i ++)
-result *= a;
-return result ;
+template <class X> X gexp (X a, X b){
+    X i, result =1;
+    for (i =0; i<b; i++) result *= a;
+    return result;
 }
 int main ()
 {
