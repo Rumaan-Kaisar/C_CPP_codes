@@ -263,15 +263,13 @@ int main() {
 
 
 5. The general forms of try, catch, and throw are shown here:
-try
-{
-// try block
-throw exp ;
-}
-catch ( type arg )
 
-{
-// ...
+try {
+    // try block
+    throw exp;
+}
+catch (type arg) {
+    // ...
 }
 
 
