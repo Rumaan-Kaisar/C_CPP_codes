@@ -421,8 +421,12 @@ can hold coordinates of any type. Demonstrate your solution in a program. */
 
 5. Briefly explain how try, catch, and throw work together to provide C++ exception
 handling.
+
+
 6. Can throw be used if execution has not passed through a try block?
+
 7. What purpose do terminate() and unexpected() serve?
+
 8. What form of catch will handle all types of exceptions?
 
 
@@ -458,9 +462,9 @@ difficult type of bug to diagnose. */
 1. In C++, a generic function defines a general set of operations that will be applied to
 various types of data. It is implemented with the keyword template. Its general form is
 shown here:
-template <class Ttype > ret_type func_name ( para_list )
-{
-// ...
+
+template <class Ttype> ret_type func_name(para_list) {
+    // ...
 }
 
 
