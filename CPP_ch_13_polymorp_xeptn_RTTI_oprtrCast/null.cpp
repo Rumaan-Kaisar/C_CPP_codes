@@ -294,9 +294,9 @@ throw value;
 
 ### How they work, in short:
 
-* **`try`** → Contains code that might cause an exception.
-* **`throw`** → Signals that an error/exception has occurred.
-* **`catch`** → Catches and handles the exception thrown by `throw`.
+try --> Contains code that might cause an exception.
+throw --> Signals that an error/exception has occurred.
+catch --> Catches and handles the exception thrown by `throw`.
 
 ### Example:
 
