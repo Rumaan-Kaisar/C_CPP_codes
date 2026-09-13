@@ -457,7 +457,25 @@ In contrast, an allocation failure that is reported by new, a return of a null p
 can be overlooked if you forget to check for this possibility. The trouble is that when
 your program attempts to use the null pointer, it might work for a while, then behave
 erratically, and finally crash in unpredictable (and unduplicatable ) ways. This is very
-difficult type of bug to diagnose. */
+difficult type of bug to diagnose. 
+
+
+Here’s a simpler version:
+
+> If `new` throws an exception when memory allocation fails, you can be sure the error will be handled somehow—even if the program simply terminates.
+>
+> On the other hand, if `new` reports an allocation failure by returning a **null pointer**, you might forget to check it. If your program then uses that null pointer, it may behave strangely, work for a while, and eventually crash in unpredictable ways.
+>
+> **Such bugs are very difficult to find and diagnose.**
+
+### In very simple terms:
+
+* **`new` throws an exception:** The error is hard to ignore because the program must deal with the exception.
+* **`new` returns `nullptr`:** You might forget to check it, causing strange behavior or crashes later.
+* Therefore, **exceptions make memory-allocation errors easier to detect and handle.**
+
+
+*/
 
 1. In C++, a generic function defines a general set of operations that will be applied to
 various types of data. It is implemented with the keyword template. Its general form is
