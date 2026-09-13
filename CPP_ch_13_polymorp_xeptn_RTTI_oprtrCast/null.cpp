@@ -259,7 +259,7 @@ int main() {
 
 
 
-/* Example 5: Show the general forms of try, catch, and throw. In your own words, describe their operation. */
+/* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. */
 
 
 5. The general forms of try, catch, and throw are shown here:
@@ -273,11 +273,52 @@ catch (type arg) {
 }
 
 
+//  ----  GPT  ----
+
+### General forms of `try`, `catch`, and `throw` in C++
+
+```cpp
+try {
+    // Code that may cause an exception
+}
+catch (type variable) {
+    // Code that handles the exception
+}
+```
+
+To generate an exception:
+
+```cpp
+throw value;
+```
+
+### How they work, in short:
+
+* **`try`** → Contains code that might cause an exception.
+* **`throw`** → Signals that an error/exception has occurred.
+* **`catch`** → Catches and handles the exception thrown by `throw`.
+
+### Example:
+
+```cpp
+try {
+    throw 10;
+}
+catch (int x) {
+    cout << "Exception: " << x;
+}
+```
+
+Here, `throw 10` sends the value `10` to the matching `catch` block, which then handles it.
+
+
+
+
 
 /* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. */
 
 
-6. /*
+/*
 This function demonstrates a generic stack
 that includes exception handling .
 */
@@ -505,10 +546,10 @@ template <class X> X gexp (X a, X b){
     for (i =0; i<b; i++) result *= a;
     return result;
 }
-int main ()
-{
-cout << gexp (2, 3) << endl ;
-cout << gexp (10.0 , 2.0) ;
+
+int main() {
+cout << gexp(2, 3) << endl;
+cout << gexp(10.0, 2.0);
 return 0;
 }
 
