@@ -23,7 +23,7 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 3: Create a generic bubble sort(or use nay other sorting algorithm you like). */
+/* Example 3: Create a generic bubble sort (or use nay other sorting algorithm you like). */
 
 #include <iostream>
 
@@ -66,13 +66,9 @@ int main() {
 
 /* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
                 (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
+                Following generic function demonstrates a generic stack that holds two values.
 */
 
-
-4. /*
-This function demonstrates a generic stack that
-holds two values .
-*/
 #include <iostream >
 #define SIZE 10
 
