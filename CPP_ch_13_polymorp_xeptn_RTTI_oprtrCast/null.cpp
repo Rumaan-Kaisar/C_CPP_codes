@@ -71,15 +71,14 @@ int main() {
                 Then a character stack and a floating-point stack are created.
 */
 
-#include <iostream >
-#define SIZE 10
+
+
 
 // Create a generic stack class
 template <class StackType > class stack {
-StackType stck [ SIZE ][2]; // holds the stack
-int tos ; // index of top of stack
-public :
-void init () { tos = 0; }
+
+
+
 void push ( StackType ob , StackType ob2 );
 StackType pop ( StackType &ob2);
 };
@@ -175,7 +174,7 @@ return 0;
 
 // Create a generic stack class
 template <class StackType> class stack {
-        StackType stck[SIZE];       // holds the stack
+        StackType stck[SIZE][2];    // holds the stack (of 2 values)
         int tos;                    // index of top of stack
     public:
         void init() { tos = 0; }    // initialize stack
