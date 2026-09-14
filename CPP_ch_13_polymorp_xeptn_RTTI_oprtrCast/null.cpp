@@ -63,6 +63,7 @@ int main() {
 
 
 
+// rev[14-Sept-2026]
 
 /* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
                 (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
@@ -72,16 +73,25 @@ int main() {
 */
 
 
+#include <iostream>
 
+#define SIZE 10
 
 // Create a generic stack class
-template <class StackType > class stack {
-
-
-
-void push ( StackType ob , StackType ob2 );
-StackType pop ( StackType &ob2);
+template <class StackType> class stack {
+        StackType stck[SIZE][2];    // holds the stack (of 2 values)
+        int tos;                    // index of top of stack
+    public:
+        void init() { tos = 0; }    // initialize stack
+        void push(StackType ob , StackType ob2);    // push objects on stack (notice 2 objects)
+        StackType pop(StackType &ob2);            // pop object from stack (from ob2's location)
 };
+// Explain above using GPT
+
+
+
+
+
 
 // Push objects .
 template <class StackType >
@@ -168,19 +178,6 @@ return 0;
                 
 */
 
-#include <iostream>
-
-#define SIZE 10
-
-// Create a generic stack class
-template <class StackType> class stack {
-        StackType stck[SIZE][2];    // holds the stack (of 2 values)
-        int tos;                    // index of top of stack
-    public:
-        void init() { tos = 0; }    // initialize stack
-        void push(StackType ch);    // push object on stack
-        StackType pop();            // pop object from stack
-};
 
 
 // Push an object (GnF)
