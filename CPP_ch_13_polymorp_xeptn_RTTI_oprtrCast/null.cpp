@@ -95,17 +95,16 @@ template <class StackType> class stack {
 
 // Push two objects (GnF)
 template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
-if( tos == SIZE )
-{
-cout << " Stack is full .\n";
-return ;
-}
-stck [ tos ][0] = ob;
-stck [ tos ][1] = ob2 ;
-tos ++;
+    if(tos == SIZE) {
+        std::cout << " Stack is full .\n";
+        return;
+    }
+    stck[tos][0] = ob;
+    stck[tos][1] = ob2;
+    tos++;
 }
 
-// Pop objects .
+// Pop objects (GnF).
 template <class StackType >
 StackType stack < StackType >:: pop( StackType &ob2)
 {
@@ -188,7 +187,7 @@ template <class StackType> void stack <StackType>::push(StackType ob) {
 }
 
 
-// Pop an object (GnF)
+// Pop an object 
 template <class StackType> StackType stack <StackType>::pop() {
     if(tos==0) {
         std::cout << " Stack is empty .\n";
