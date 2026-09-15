@@ -86,10 +86,7 @@ template <class StackType> class stack {
         void push(StackType ob , StackType ob2);    // push objects on stack (notice 2 objects)
         StackType pop(StackType &ob2);            // pop object from stack (from ob2's location)
 };
-// Explain above using GPT
-
-
-
+// --------  Explain above using GPT  --------
 
 
 
@@ -177,14 +174,7 @@ return 0;
 
 
 
-template <class StackType> void stack <StackType>::push(StackType ob) {
-    if(tos == SIZE) {
-        std::cout << " Stack is full .\n";
-        return;
-    }
-    stck [tos] = ob;
-    tos++;
-}
+
 
 
 // Pop an object 
