@@ -93,7 +93,7 @@ template <class StackType> class stack {
 
 
 
-// Push objects .
+// Push two objects (GnF)
 template <class StackType >
 void stack < StackType >:: push ( StackType ob , StackType ob2 )
 {
@@ -180,7 +180,6 @@ return 0;
 
 
 
-// Push an object (GnF)
 template <class StackType> void stack <StackType>::push(StackType ob) {
     if(tos == SIZE) {
         std::cout << " Stack is full .\n";
