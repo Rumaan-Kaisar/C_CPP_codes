@@ -94,9 +94,7 @@ template <class StackType> class stack {
 
 
 // Push two objects (GnF)
-template <class StackType >
-void stack < StackType >:: push ( StackType ob , StackType ob2 )
-{
+template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
 if( tos == SIZE )
 {
 cout << " Stack is full .\n";
