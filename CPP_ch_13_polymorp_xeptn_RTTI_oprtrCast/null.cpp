@@ -106,12 +106,13 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
 template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
     if( tos == 0) {
         std::cout << " Stack is empty .\n";
-        return 0; // return null on empty stack
+        return 0;   // return null on empty stack
     }
-tos --;
-ob2 = stck [ tos ][1];
-return stck [ tos ][0];
+    tos--;
+    ob2 = stck[tos][1];
+    return stck[tos][0];
 }
+
 
 int main (){
 // Demonstrate character stacks .
