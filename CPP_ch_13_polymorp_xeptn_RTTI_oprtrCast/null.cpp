@@ -104,7 +104,7 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
 
 // Pop objects (GnF).
 template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
-    if( tos == 0) {
+    if(tos == 0) {
         std::cout << " Stack is empty .\n";
         return 0;   // return null on empty stack
     }
@@ -176,15 +176,6 @@ return 0;
 
 
 
-// Pop an object 
-template <class StackType> StackType stack <StackType>::pop() {
-    if(tos==0) {
-        std::cout << " Stack is empty .\n";
-        return 0;   // return null on empty stack
-    }
-    tos--;
-    return stck[tos];
-}
 
 
 int main() {
