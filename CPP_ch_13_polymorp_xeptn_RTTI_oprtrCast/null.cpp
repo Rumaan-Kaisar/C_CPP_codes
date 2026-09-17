@@ -114,11 +114,12 @@ template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
 }
 
 
-int main (){
-// Demonstrate character stacks .
-stack <char > s1 , s2; // create two stacks
-int i;
-char ch;
+int main(){
+    // Demonstrate character stacks.
+    stack <char> s1, s2;    // create two stacks
+    int i;
+    char ch;
+
 // initialize the stacks
 s1. init ();
 s2. init ();
@@ -179,9 +180,7 @@ return 0;
 
 
 int main() {
-    // Demonstrate character stacks .
-    stack <char> s1, s2;    // create two stacks
-    int i;
+
 
     // initialize the stacks
     s1.init();
