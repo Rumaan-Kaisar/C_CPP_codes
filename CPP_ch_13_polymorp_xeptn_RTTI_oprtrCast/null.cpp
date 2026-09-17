@@ -120,9 +120,12 @@ int main(){
     int i;
     char ch;
 
-// initialize the stacks
-s1. init ();
-s2. init ();
+    // initialize the stacks
+    s1.init();
+    s2.init();
+
+
+
 s1. push (’a’, ’b’);
 s2. push (’x’, ’z’);
 s1. push (’b’, ’d’);
@@ -182,9 +185,7 @@ return 0;
 int main() {
 
 
-    // initialize the stacks
-    s1.init();
-    s2.init();
+
 
     s1.push('a');
     s2.push('x');
