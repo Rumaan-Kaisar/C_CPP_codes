@@ -125,15 +125,17 @@ int main(){
     s2.init();
 
 
+    s1.push('a', 'b');
+    s2.push('x', 'z');
 
-s1. push (’a’, ’b’);
-s2. push (’x’, ’z’);
+    s1.push('b', 'd');
+    s2.push('y', 'e');
 
-s1. push (’b’, ’d’);
-s2. push (’y’, ’e’);
+    s1.push('c', 'a');
+    s2.push('z', 'x');
 
-s1. push (’c’, ’a’);
-s2. push (’z’, ’x’);
+
+// ---- rev[17-Sept-2026] ----
 
 for (i =0; i <3; i ++)
 {
