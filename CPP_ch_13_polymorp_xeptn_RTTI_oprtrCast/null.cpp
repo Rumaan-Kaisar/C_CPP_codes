@@ -128,11 +128,13 @@ int main(){
 
 s1. push (’a’, ’b’);
 s2. push (’x’, ’z’);
-s1. push (’b’, ’d’);
 
+s1. push (’b’, ’d’);
 s2. push (’y’, ’e’);
+
 s1. push (’c’, ’a’);
 s2. push (’z’, ’x’);
+
 for (i =0; i <3; i ++)
 {
 cout << " Pop s1: " << s1.pop (ch);
@@ -187,12 +189,6 @@ int main() {
 
 
 
-    s1.push('a');
-    s2.push('x');
-    s1.push('b');
-    s2.push('y');
-    s1.push('c');
-    s2.push('z');
 
     for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop() << "\n";
     for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop() << "\n";
