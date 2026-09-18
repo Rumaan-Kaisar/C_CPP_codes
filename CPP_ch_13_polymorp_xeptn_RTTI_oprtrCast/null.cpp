@@ -124,7 +124,6 @@ int main(){
     s1.init();
     s2.init();
 
-
     s1.push('a', 'b');
     s2.push('x', 'z');
 
@@ -137,23 +136,26 @@ int main(){
     for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
     for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
 
-// demonstrate double stacks
-stack < double > ds1 , ds2 ; // create two stacks
-double d;
-// initialize the stacks
-ds1 . init ();
-ds2 . init ();
 
-ds1 . push (1.1 , 2.0) ;
-ds2 . push (2.2 , 3.0) ;
+    // demonstrate double stacks
+    stack <double> ds1, ds2;    // create two stacks
+    double d;
 
-ds1 . push (3.3 , 4.0) ;
-ds2 . push (4.5 , 5.0) ;
+    // initialize the stacks
+    ds1.init();
+    ds2.init();
 
-ds1 . push (5.5 , 6.0) ;
-ds2 . push (6.6 , 7.0) ;
+    ds1.push(1.1, 2.0);
+    ds2.push(2.2, 3.0);
 
-// ---- rev[17-Sept-2026] ----
+    ds1.push(3.3, 4.0);
+    ds2.push(4.5, 5.0);
+
+    ds1.push(5.5, 6.0);
+    ds2.push(6.6, 7.0);
+
+
+// ---- rev[18-Sept-2026] ----
 
 
 for (i =0; i <3; i ++)
