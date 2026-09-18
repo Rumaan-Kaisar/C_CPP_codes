@@ -137,10 +137,9 @@ int main(){
 
 // ---- rev[17-Sept-2026] ----
 
-for (i =0; i <3; i ++)
-{
-cout << " Pop s1: " << s1.pop (ch);
-cout << ’ ’ << ch << ’\n’;
+for (i=0; i<3; i++){
+    std::cout << " Pop s1: " << s1.pop(ch);
+    std::cout << ' ' << ch << '\n';
 }
 for (i =0; i <3; i ++)
 {
