@@ -23,44 +23,6 @@ At this point you should be able to perform the following exercises and answer t
 
 
 
-/* Example 3: Create a generic bubble sort (or use nay other sorting algorithm you like). */
-
-#include <iostream>
-
-// A generic bubble sort .
-template <class X> void bubble(X *data, int size) {
-    register int a, b;
-    X t;
-
-    for(a = 1; a < size; a++) {
-        for(b = size-1; b >= a; b--) {
-            if(data[b-1] > data[b]) {
-                t = data[b-1];
-                data[b-1] = data[b];
-                data[b] = t;
-            }
-        }
-    }
-}
-
-
-int main() {
-    int i[] = {3, 2, 5, 6, 1, 8, 9, 3, 6, 9};
-    double d[] = {1.2 , 5.5 , 2.2 , 3.3};
-    int j;
-
-    bubble(i, 10);  // sort ints
-    bubble(d, 4);   // sort doubles
-
-    for(j=0; j < 10; j++) std::cout << i[j] << ' ';
-    std::cout << std::endl;
-
-    for(j=0; j < 4; j++) std::cout << d[j] << ' ';
-    std::cout << std::endl;
-
-    return 0;
-}
-
 
 
 // rev[14-Sept-2026]
