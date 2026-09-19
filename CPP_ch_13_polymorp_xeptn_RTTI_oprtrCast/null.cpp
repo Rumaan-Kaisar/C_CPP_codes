@@ -116,25 +116,13 @@ int main(){
     ds1.push(5.5, 6.0);
     ds2.push(6.6, 7.0);
 
+    for(i=0; i<3; i++) std::cout << " Pop ds1: " << ds1.pop(d) << ' ' << d << '\n';
+    for(i=0; i<3; i++) std::cout << " Pop ds2: " << ds2.pop(d) << ' ' << d << '\n';
+
+    return 0;
+}
 
 // ---- rev[18-Sept-2026] ----
-
-for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
-    for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
-
-for (i =0; i <3; i ++)
-{
-cout << " Pop ds1 : " << ds1 .pop (d);
-cout << ’ ’ << d << ’\n’;
-}
-for (i =0; i <3; i ++)
-{
-cout << " Pop ds2 : " << ds2 .pop (d);
-cout << ’ ’ << d << ’\n’;
-}
-return 0;
-}
-
 
 
 /* Example 10: 
