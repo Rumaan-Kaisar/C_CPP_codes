@@ -125,6 +125,1167 @@ int main(){
 // ---- rev[18-Sept-2026] ----
 
 
+
+// --------  GPT  --------
+
+
+Absolutely. Since the **old version is already directly above the new version**, the most useful approach is to put the comparison comments **inside the new version exactly where each change occurs**.
+
+I'll keep the code structure essentially the same and add comments like **OLD → NEW**, so you can read downward and immediately understand why each line changed.
+
+One small correction: the declaration should be `StackType stck[SIZE][2]`, not `StackType *stck[SIZE][2]`. The `*` in your pasted version would make it an array of pointers and would not match the rest of the code.
+
+```cpp
+/*
+    Example 4: Rework the stack class so that it can store
+    pairs of objects on the stack.
+
+    The OLD version is directly above this code.
+
+    The main idea of the modification is:
+
+        OLD:
+            One stack position = ONE object
+
+        NEW:
+            One stack position = TWO objects
+
+    ------------------------------------------------------------
+    IMPORTANT:
+    This example stores TWO values of the SAME type.
+
+        stack<char>
+            -> char + char
+
+        stack<double>
+            -> double + double
+
+    It does NOT yet store two DIFFERENT types such as:
+
+        char + double
+
+    ------------------------------------------------------------
+*/
+
+
+#include <iostream>
+
+#define SIZE 10
+
+
+// ============================================================
+// Create a generic stack class
+// ============================================================
+
+template <class StackType>
+class stack
+{
+    /*
+        OLD VERSION:
+        --------------------------------------------------------
+
+            StackType stck[SIZE];
+
+        This creates a one-dimensional array.
+
+        For example, stack<char> becomes:
+
+            char stck[10];
+
+        So each stack position contains only ONE value:
+
+            stck[0] -> one char
+            stck[1] -> one char
+            stck[2] -> one char
+            ...
+
+
+        NEW VERSION:
+        --------------------------------------------------------
+
+            StackType stck[SIZE][2];
+
+        The array is now TWO-dimensional.
+
+        For example, stack<char> becomes:
+
+            char stck[10][2];
+
+        Each stack position can now contain TWO values:
+
+            stck[0][0] -> first value
+            stck[0][1] -> second value
+
+            stck[1][0] -> first value
+            stck[1][1] -> second value
+
+            stck[2][0] -> first value
+            stck[2][1] -> second value
+
+        So visually:
+
+             Stack position
+
+                 0       1
+              +-------+-------+
+            0 |   a   |   b   |
+              +-------+-------+
+            1 |   c   |   d   |
+              +-------+-------+
+            2 |   e   |   f   |
+              +-------+-------+
+
+        The FIRST index selects the stack position.
+
+        The SECOND index selects which value of the pair.
+    */
+
+    StackType stck[SIZE][2];
+
+
+    /*
+        This part does NOT change.
+
+        tos = "top of stack"
+
+        It keeps track of where the next pair will be inserted.
+    */
+
+    int tos;
+
+
+public:
+
+    /*
+        This also does NOT change.
+
+        OLD:
+
+            void init() { tos = 0; }
+
+        NEW:
+
+            void init() { tos = 0; }
+
+        The stack still starts at position 0.
+    */
+
+    void init()
+    {
+        tos = 0;
+    }
+
+
+    /*
+        --------------------------------------------------------
+        PUSH FUNCTION
+        --------------------------------------------------------
+
+        OLD VERSION:
+
+            void push(StackType ch);
+
+        The old push() accepted ONE object.
+
+        Example:
+
+            s1.push('a');
+
+        NEW VERSION:
+
+            void push(StackType ob, StackType ob2);
+
+        The new push() accepts TWO objects.
+
+        Example:
+
+            s1.push('a', 'b');
+
+        This means that ONE stack position now contains:
+
+            ['a', 'b']
+
+        Notice that both parameters have StackType.
+
+        Therefore, if:
+
+            stack<char>
+
+        then both objects must be char.
+
+        If:
+
+            stack<double>
+
+        then both objects must be double.
+    */
+
+    void push(StackType ob, StackType ob2);
+
+
+    /*
+        --------------------------------------------------------
+        POP FUNCTION
+        --------------------------------------------------------
+
+        OLD VERSION:
+
+            StackType pop();
+
+        The old function returned ONE object.
+
+        NEW VERSION:
+
+            StackType pop(StackType &ob2);
+
+        The new function has TWO ways of returning the pair:
+
+            1. The FIRST object is returned normally.
+
+            2. The SECOND object is returned through 'ob2'.
+
+        Why?
+
+        A normal function return gives us one value:
+
+            return first_value;
+
+        To get the second value as well, the parameter:
+
+            StackType &ob2
+
+        is passed by REFERENCE.
+
+        Therefore, if main() has:
+
+            char ch;
+
+        and calls:
+
+            s1.pop(ch);
+
+        then:
+
+            return value -> first object
+            ch           -> second object
+    */
+
+    StackType pop(StackType &ob2);
+};
+
+
+// ============================================================
+// push()
+// ============================================================
+
+/*
+    OLD VERSION:
+
+        template <class StackType>
+        void stack<StackType>::push(StackType ob)
+
+    NEW VERSION:
+
+        template <class StackType>
+        void stack<StackType>::push(StackType ob, StackType ob2)
+
+    The only conceptual change here is that push() now receives
+    TWO objects instead of ONE.
+*/
+
+template <class StackType>
+void stack<StackType>::push(StackType ob, StackType ob2)
+{
+    /*
+        This part is unchanged.
+
+        If tos reaches SIZE, the stack has no more positions.
+    */
+
+    if (tos == SIZE)
+    {
+        std::cout << " Stack is full.\n";
+        return;
+    }
+
+
+    /*
+        --------------------------------------------------------
+        OLD VERSION
+        --------------------------------------------------------
+
+            stck[tos] = ob;
+
+        There was only one value in each stack position.
+
+        Example:
+
+            push('a')
+
+        resulted in:
+
+            stck[0] = 'a'
+
+
+        NEW VERSION
+        --------------------------------------------------------
+
+            stck[tos][0] = ob;
+
+        We now have TWO positions inside each stack entry.
+
+        [0] means:
+
+            "store the FIRST object of the pair."
+
+        Example:
+
+            push('a', 'b')
+
+        gives:
+
+            stck[0][0] = 'a'
+    */
+
+    stck[tos][0] = ob;
+
+
+    /*
+        This is the NEW line.
+
+            stck[tos][1] = ob2;
+
+        [1] means:
+
+            "store the SECOND object of the pair."
+
+        Therefore:
+
+            push('a', 'b')
+
+        produces:
+
+            stck[0][0] = 'a'
+            stck[0][1] = 'b'
+
+        So one stack entry now contains:
+
+            ['a', 'b']
+    */
+
+    stck[tos][1] = ob2;
+
+
+    /*
+        This part is also unchanged.
+
+        After storing the pair, move tos to the next
+        available stack position.
+
+        Before push:
+
+            tos = 0
+
+        After push:
+
+            tos = 1
+    */
+
+    tos++;
+}
+
+
+// ============================================================
+// pop()
+// ============================================================
+
+/*
+    OLD VERSION:
+
+        template <class StackType>
+        StackType stack<StackType>::pop()
+
+    NEW VERSION:
+
+        template <class StackType>
+        StackType stack<StackType>::pop(StackType &ob2)
+
+    The function now needs a reference parameter because
+    there are TWO values to get out of the stack.
+*/
+
+template <class StackType>
+StackType stack<StackType>::pop(StackType &ob2)
+{
+    /*
+        This part is unchanged.
+
+        If tos == 0, there is nothing to remove.
+    */
+
+    if (tos == 0)
+    {
+        std::cout << " Stack is empty.\n";
+
+        /*
+            Same basic idea as the old version:
+
+                return 0;
+
+            However, this is only suitable for types where
+            0 can be used as a meaningful "empty" indication.
+        */
+
+        return 0;
+    }
+
+
+    /*
+        This part is unchanged.
+
+        Move tos backward before accessing the top entry.
+
+        Suppose:
+
+            tos = 3
+
+        The actual top entry is at:
+
+            index 2
+
+        Therefore:
+
+            tos--;
+
+        changes:
+
+            tos = 3
+
+        into:
+
+            tos = 2
+    */
+
+    tos--;
+
+
+    /*
+        --------------------------------------------------------
+        OLD VERSION
+        --------------------------------------------------------
+
+            return stck[tos];
+
+        There was only ONE object to return.
+
+
+        NEW VERSION
+        --------------------------------------------------------
+
+            ob2 = stck[tos][1];
+
+        We first retrieve the SECOND object.
+
+        Because ob2 is a REFERENCE, this changes the variable
+        supplied by the caller.
+
+        Example:
+
+            char ch;
+
+            s1.pop(ch);
+
+        If the top pair is:
+
+            ['c', 'a']
+
+        then:
+
+            ob2 = 'a'
+
+        and therefore:
+
+            ch == 'a'
+    */
+
+    ob2 = stck[tos][1];
+
+
+    /*
+        Now return the FIRST object.
+
+        OLD:
+
+            return stck[tos];
+
+        NEW:
+
+            return stck[tos][0];
+
+        [0] means the FIRST value of the pair.
+
+        Therefore, if:
+
+            stck[tos][0] = 'c'
+            stck[tos][1] = 'a'
+
+        then:
+
+            return stck[tos][0];
+
+        returns:
+
+            'c'
+
+        while the previous statement already placed:
+
+            'a'
+
+        into ob2.
+    */
+
+    return stck[tos][0];
+}
+
+
+// ============================================================
+// main()
+// ============================================================
+
+int main()
+{
+    // --------------------------------------------------------
+    // Character stacks
+    // --------------------------------------------------------
+
+    /*
+        OLD:
+
+            stack<char> s1, s2;
+
+        This line is actually UNCHANGED.
+
+        But what the stack contains has changed.
+
+        OLD stack:
+
+            stack<char>
+                |
+                +-- one char per position
+
+        NEW stack:
+
+            stack<char>
+                |
+                +-- two chars per position
+    */
+
+    stack<char> s1, s2;
+
+
+    int i;
+
+
+    /*
+        NEW:
+
+            char ch;
+
+        This variable is needed because pop() now returns
+        the second value through a reference parameter.
+
+        OLD pop():
+
+            s1.pop();
+
+        NEW pop():
+
+            s1.pop(ch);
+
+        The first value comes back through the return statement.
+
+        The second value comes back through ch.
+    */
+
+    char ch;
+
+
+    // Initialize the stacks.
+    // This is unchanged from the old version.
+
+    s1.init();
+    s2.init();
+
+
+    /*
+        --------------------------------------------------------
+        OLD:
+
+            s1.push('a');
+
+        One value was pushed.
+
+
+        NEW:
+
+            s1.push('a', 'b');
+
+        TWO values are pushed as ONE stack entry.
+
+        The stack now contains:
+
+            ['a', 'b']
+    */
+
+    s1.push('a', 'b');
+
+
+    /*
+        OLD:
+
+            s2.push('x');
+
+        NEW:
+
+            s2.push('x', 'z');
+
+        Stack entry:
+
+            ['x', 'z']
+    */
+
+    s2.push('x', 'z');
+
+
+    /*
+        OLD:
+
+            s1.push('b');
+
+        NEW:
+
+            s1.push('b', 'd');
+
+        s1 now contains:
+
+            ['a', 'b']
+            ['b', 'd']
+    */
+
+    s1.push('b', 'd');
+
+
+    /*
+        s2 now contains:
+
+            ['x', 'z']
+            ['y', 'e']
+    */
+
+    s2.push('y', 'e');
+
+
+    /*
+        s1 now contains:
+
+            ['a', 'b']
+            ['b', 'd']
+            ['c', 'a']
+    */
+
+    s1.push('c', 'a');
+
+
+    /*
+        s2 now contains:
+
+            ['x', 'z']
+            ['y', 'e']
+            ['z', 'x']
+    */
+
+    s2.push('z', 'x');
+
+
+    /*
+        --------------------------------------------------------
+        OLD VERSION:
+
+            s1.pop()
+
+        returned one value.
+
+
+        NEW VERSION:
+
+            s1.pop(ch)
+
+        returns TWO values.
+
+        Example top entry:
+
+            ['c', 'a']
+
+        Then:
+
+            s1.pop(ch)
+
+        does:
+
+            return 'c'
+            ch = 'a'
+
+        Therefore:
+
+            std::cout << s1.pop(ch) << ' ' << ch;
+
+        prints:
+
+            c a
+    */
+
+    for (i = 0; i < 3; i++)
+        std::cout << "Pop s1: "
+                  << s1.pop(ch)
+                  << ' '
+                  << ch
+                  << '\n';
+
+
+    /*
+        s2 contains:
+
+            ['x', 'z']
+            ['y', 'e']
+            ['z', 'x']
+
+        Because a stack is LIFO (Last In, First Out),
+        the pairs come out in reverse order:
+
+            ['z', 'x']
+            ['y', 'e']
+            ['x', 'z']
+    */
+
+    for (i = 0; i < 3; i++)
+        std::cout << "Pop s2: "
+                  << s2.pop(ch)
+                  << ' '
+                  << ch
+                  << '\n';
+
+
+
+    // ========================================================
+    // Demonstrate double stacks
+    // ========================================================
+
+    /*
+        OLD:
+
+            stack<double> ds1, ds2;
+
+        NEW:
+
+            stack<double> ds1, ds2;
+
+        Again, the declaration itself is unchanged.
+
+        But each stack entry can now hold TWO doubles.
+
+        Example:
+
+            [1.1, 2.0]
+            [3.3, 4.0]
+            [5.5, 6.0]
+    */
+
+    stack<double> ds1, ds2;
+
+
+    /*
+        NEW variable.
+
+        It receives the SECOND double from pop().
+
+        The first double is returned normally.
+    */
+
+    double d;
+
+
+    // Initialize the stacks.
+    // Unchanged from the old version.
+
+    ds1.init();
+    ds2.init();
+
+
+    /*
+        OLD:
+
+            ds1.push(1.1);
+
+        NEW:
+
+            ds1.push(1.1, 2.0);
+
+        One stack entry now contains:
+
+            [1.1, 2.0]
+    */
+
+    ds1.push(1.1, 2.0);
+
+
+    /*
+        ds2:
+
+            [2.2, 3.0]
+    */
+
+    ds2.push(2.2, 3.0);
+
+
+    /*
+        ds1:
+
+            [1.1, 2.0]
+            [3.3, 4.0]
+    */
+
+    ds1.push(3.3, 4.0);
+
+
+    /*
+        ds2:
+
+            [2.2, 3.0]
+            [4.5, 5.0]
+    */
+
+    ds2.push(4.5, 5.0);
+
+
+    /*
+        ds1:
+
+            [1.1, 2.0]
+            [3.3, 4.0]
+            [5.5, 6.0]
+    */
+
+    ds1.push(5.5, 6.0);
+
+
+    /*
+        ds2:
+
+            [2.2, 3.0]
+            [4.5, 5.0]
+            [6.6, 7.0]
+    */
+
+    ds2.push(6.6, 7.0);
+
+
+    /*
+        --------------------------------------------------------
+        NEW POP BEHAVIOR
+        --------------------------------------------------------
+
+        ds1 contains:
+
+            [1.1, 2.0]
+            [3.3, 4.0]
+            [5.5, 6.0]
+
+        Since this is a stack, the last pair is removed first:
+
+            [5.5, 6.0]
+
+        pop(d):
+
+            returns 5.5
+            puts 6.0 into d
+
+        So:
+
+            ds1.pop(d)
+
+        gives:
+
+            return value = 5.5
+            d            = 6.0
+
+        Output:
+
+            Pop ds1: 5.5 6
+    */
+
+    for (i = 0; i < 3; i++)
+        std::cout << "Pop ds1: "
+                  << ds1.pop(d)
+                  << ' '
+                  << d
+                  << '\n';
+
+
+    /*
+        ds2:
+
+            [2.2, 3.0]
+            [4.5, 5.0]
+            [6.6, 7.0]
+
+        Pop order:
+
+            [6.6, 7.0]
+            [4.5, 5.0]
+            [2.2, 3.0]
+
+        Again:
+
+            pop(d)
+
+        returns the FIRST value and places the SECOND
+        value into d.
+    */
+
+    for (i = 0; i < 3; i++)
+        std::cout << "Pop ds2: "
+                  << ds2.pop(d)
+                  << ' '
+                  << d
+                  << '\n';
+
+
+    return 0;
+}
+```
+
+### In short, there are really only 4 major changes
+
+You can use this as your quick mental map while looking at the two programs:
+
+```text
+OLD VERSION                         NEW VERSION
+─────────────────────────────────────────────────────────────
+
+StackType stck[SIZE];        →      StackType stck[SIZE][2];
+
+push(StackType ob);         →      push(StackType ob,
+                                         StackType ob2);
+
+stck[tos] = ob;             →      stck[tos][0] = ob;
+                                    stck[tos][1] = ob2;
+
+StackType pop();            →      StackType pop(StackType &ob2);
+
+return stck[tos];           →      ob2 = stck[tos][1];
+                                    return stck[tos][0];
+
+s1.push('a');               →      s1.push('a', 'b');
+
+s1.pop();                   →      s1.pop(ch);
+```
+
+The **conceptual transformation** is simply:
+
+```text
+OLD
+
+push(one object)
+       ↓
+   ┌───────┐
+   │   A   │
+   └───────┘
+
+
+NEW
+
+push(two objects)
+       ↓
+   ┌───────┬───────┐
+   │   A   │   B   │
+   └───────┴───────┘
+```
+
+And `pop()` has to change accordingly: **one value comes back through `return`, while the second comes back through the reference parameter `&ob2`.**
+
+
+
+
+
+// ========  GPT compasct  ========
+
+Yes 😄 — since the **old version is already sitting immediately above it**, there's no need to explain every unchanged line. I'll comment **only where the new version differs**, with short `OLD → NEW` explanations.
+
+```cpp
+/*
+    Example 4: Rework the stack class so that each stack entry
+    can store TWO values.
+
+    OLD: one stack position stored one value.
+    NEW: one stack position stores two values.
+
+    Note: both values are still of the SAME type:
+          stack<char>   -> char + char
+          stack<double> -> double + double
+*/
+
+#include <iostream>
+
+#define SIZE 10
+
+
+// Create a generic stack class
+template <class StackType> class stack {
+
+        // OLD: StackType stck[SIZE];
+        // NEW: each stack position now holds 2 values.
+        StackType stck[SIZE][2];
+
+        int tos;                    // index of top of stack
+
+    public:
+
+        void init() { tos = 0; }    // initialize stack
+
+        // OLD: void push(StackType ch);
+        // NEW: push() receives TWO objects.
+        void push(StackType ob, StackType ob2);
+
+        // OLD: StackType pop();
+        // NEW: second value is returned through reference 'ob2'.
+        StackType pop(StackType &ob2);
+};
+
+
+// Push two objects
+template <class StackType>
+void stack<StackType>::push(StackType ob, StackType ob2) {
+
+    if(tos == SIZE) {
+        std::cout << " Stack is full .\n";
+        return;
+    }
+
+    // OLD: stck[tos] = ob;
+    // NEW: store the two values in columns 0 and 1.
+    stck[tos][0] = ob;
+    stck[tos][1] = ob2;
+
+    tos++;
+}
+
+
+// Pop two objects
+template <class StackType>
+StackType stack<StackType>::pop(StackType &ob2) {
+
+    if(tos == 0) {
+        std::cout << " Stack is empty .\n";
+        return 0;
+    }
+
+    tos--;
+
+    // NEW: put the SECOND value into ob2.
+    // '&' means the caller's variable is changed directly.
+    ob2 = stck[tos][1];
+
+    // OLD: return stck[tos];
+    // NEW: return the FIRST value from column 0.
+    return stck[tos][0];
+}
+
+
+int main() {
+
+    // Demonstrate character stacks.
+    stack<char> s1, s2;
+
+    int i;
+
+    // NEW: variable used to receive the second value from pop().
+    char ch;
+
+    // initialize the stacks
+    s1.init();
+    s2.init();
+
+    // OLD: s1.push('a');
+    // NEW: one stack entry now contains ('a', 'b').
+    s1.push('a', 'b');
+
+    s2.push('x', 'z');
+    s1.push('b', 'd');
+    s2.push('y', 'e');
+    s1.push('c', 'a');
+    s2.push('z', 'x');
+
+    // OLD: s1.pop()
+    // NEW: pop(ch) returns first value and puts second value in ch.
+    for(i=0; i<3; i++)
+        std::cout << "Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
+
+    for(i=0; i<3; i++)
+        std::cout << "Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
+
+
+    // demonstrate double stacks
+    stack<double> ds1, ds2;
+
+    // NEW: receives the second double from pop().
+    double d;
+
+    // initialize the stacks
+    ds1.init();
+    ds2.init();
+
+    // Each push now stores TWO doubles as one stack entry.
+    ds1.push(1.1, 2.0);
+    ds2.push(2.2, 3.0);
+    ds1.push(3.3, 4.0);
+    ds2.push(4.5, 5.0);
+    ds1.push(5.5, 6.0);
+    ds2.push(6.6, 7.0);
+
+    // First value is returned; second value goes into d.
+    for(i=0; i<3; i++)
+        std::cout << "Pop ds1: " << ds1.pop(d) << ' ' << d << '\n';
+
+    for(i=0; i<3; i++)
+        std::cout << "Pop ds2: " << ds2.pop(d) << ' ' << d << '\n';
+
+    return 0;
+}
+```
+
+The **essential changes** are therefore just:
+
+```cpp
+StackType stck[SIZE][2];       // instead of [SIZE]
+
+void push(StackType ob,
+          StackType ob2);      // instead of one parameter
+
+stck[tos][0] = ob;
+stck[tos][1] = ob2;             // store the pair
+
+StackType pop(StackType &ob2); // second value via reference
+
+ob2 = stck[tos][1];             // get second value
+return stck[tos][0];            // get first value
+```
+
+That's really the whole modification. The rest of the program is mostly just changing calls from `push(x)` to `push(x, y)` and from `pop()` to `pop(variable)`.
+
+
+
+
+
 /* Example 10: 
 
                 
