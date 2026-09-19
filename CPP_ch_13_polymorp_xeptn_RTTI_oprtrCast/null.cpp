@@ -119,6 +119,8 @@ int main(){
 
 // ---- rev[18-Sept-2026] ----
 
+for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
+    for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
 
 for (i =0; i <3; i ++)
 {
