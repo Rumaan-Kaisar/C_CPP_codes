@@ -12,20 +12,6 @@
 // -=-=-=-=-=-=-=-    Review Skills Check    -=-=-=-=-=-=-=-
 
 
-Mastery Skills Check
-At this point you should be able to perform the following exercises and answer the questions.
-
-
-
-
-
-// ---- rev[06-Sept-2026] ----
-
-
-
-
-
-// rev[14-Sept-2026]
 
 /* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
                 (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
