@@ -34,11 +34,18 @@
 
 // Create a generic stack class
 template <class StackType> class stack {
+        // OLD: StackType stck[SIZE];
+        // NEW: each stack position now holds 2 values.
         StackType stck[SIZE][2];    // holds the stack (of 2 values)
         int tos;                    // index of top of stack
     public:
         void init() { tos = 0; }    // initialize stack
+
+        // OLD: void push(StackType ch);
+        // NEW: push() receives TWO objects.
         void push(StackType ob , StackType ob2);    // push objects on stack (notice 2 objects)
+
+        
         StackType pop(StackType &ob2);            // pop object from stack (from ob2's location)
 };
 
@@ -1116,29 +1123,18 @@ And `pop()` has to change accordingly: **one value comes back through `return`, 
 
 
 
-/*
-    Example 4: Rework the stack class so that each stack entry
+/*    Example 4: Rework the stack class so that each stack entry
     can store TWO values.
 */
-
-
 
 
 // Create a generic stack class
 template <class StackType> class stack {
 
-        // OLD: StackType stck[SIZE];
-        // NEW: each stack position now holds 2 values.
-        StackType stck[SIZE][2];
-
-        int tos;                    // index of top of stack
-
     public:
-
         void init() { tos = 0; }    // initialize stack
 
-        // OLD: void push(StackType ch);
-        // NEW: push() receives TWO objects.
+        
         void push(StackType ob, StackType ob2);
 
         // OLD: StackType pop();
