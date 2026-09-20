@@ -18,8 +18,15 @@
                 
                 Following template class demonstrates a generic stack that holds two values.
                 Then a character stack and a floating-point stack are created.
-*/
 
+                OLD code: one stack position stored one value (Example 10).
+                NEW code: one stack position stores two values.
+
+            Note: 
+                both values are still of the SAME type:
+                stack<char>   -> char + char
+                stack<double> -> double + double
+*/
 
 #include <iostream>
 
@@ -34,6 +41,7 @@ template <class StackType> class stack {
         void push(StackType ob , StackType ob2);    // push objects on stack (notice 2 objects)
         StackType pop(StackType &ob2);            // pop object from stack (from ob2's location)
 };
+
 // --------  Explain above using GPT  --------
 
 
@@ -1105,24 +1113,15 @@ And `pop()` has to change accordingly: **one value comes back through `return`, 
 
 // ========  GPT compasct  ========
 
-Yes 😄 — since the **old version is already sitting immediately above it**, there's no need to explain every unchanged line. I'll comment **only where the new version differs**, with short `OLD → NEW` explanations.
 
-```cpp
+
+
 /*
     Example 4: Rework the stack class so that each stack entry
     can store TWO values.
-
-    OLD: one stack position stored one value.
-    NEW: one stack position stores two values.
-
-    Note: both values are still of the SAME type:
-          stack<char>   -> char + char
-          stack<double> -> double + double
 */
 
-#include <iostream>
 
-#define SIZE 10
 
 
 // Create a generic stack class
