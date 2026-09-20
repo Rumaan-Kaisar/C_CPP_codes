@@ -34,19 +34,20 @@
 
 // Create a generic stack class
 template <class StackType> class stack {
-        // OLD: StackType stck[SIZE];
-        // NEW: each stack position now holds 2 values.
+        // OLD code: StackType stck[SIZE];
+        // NEW code: each stack position now holds 2 values.
         StackType stck[SIZE][2];    // holds the stack (of 2 values)
         int tos;                    // index of top of stack
     public:
         void init() { tos = 0; }    // initialize stack
 
-        // OLD: void push(StackType ch);
-        // NEW: push() receives TWO objects.
-        void push(StackType ob , StackType ob2);    // push objects on stack (notice 2 objects)
+        // OLD code: void push(StackType ch);
+        // NEW code: push() receives TWO objects.
+        void push(StackType ob, StackType ob2);     // push objects on stack (notice 2 objects)
 
-        
-        StackType pop(StackType &ob2);            // pop object from stack (from ob2's location)
+        // OLD code: StackType pop();
+        // NEW code: second value is returned through reference 'ob2'.
+        StackType pop(StackType &ob2);              // pop object from stack (from ob2's location)
 };
 
 // --------  Explain above using GPT  --------
@@ -1128,19 +1129,7 @@ And `pop()` has to change accordingly: **one value comes back through `return`, 
 */
 
 
-// Create a generic stack class
-template <class StackType> class stack {
 
-    public:
-        void init() { tos = 0; }    // initialize stack
-
-        
-        void push(StackType ob, StackType ob2);
-
-        // OLD: StackType pop();
-        // NEW: second value is returned through reference 'ob2'.
-        StackType pop(StackType &ob2);
-};
 
 
 // Push two objects
