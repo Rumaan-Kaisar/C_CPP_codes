@@ -32,7 +32,7 @@
 
 #define SIZE 10
 
-// Create a generic stack class
+// --------  Create a generic stack class  --------
 template <class StackType> class stack {
         // OLD code: StackType stck[SIZE];
         // NEW code: each stack position now holds 2 values.
@@ -54,7 +54,7 @@ template <class StackType> class stack {
 
 
 
-// Push two objects (GnF)
+// --------  Push two objects (GnF)  --------
 template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
     if(tos == SIZE) {
         std::cout << " Stack is full .\n";
@@ -66,7 +66,7 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
 }
 
 
-// Pop objects (GnF).
+// --------  Pop objects (GnF).  --------
 template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
     if(tos == 0) {
         std::cout << " Stack is empty .\n";
