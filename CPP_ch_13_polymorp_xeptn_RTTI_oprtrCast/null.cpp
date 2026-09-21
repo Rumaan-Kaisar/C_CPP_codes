@@ -50,9 +50,6 @@ template <class StackType> class stack {
         StackType pop(StackType &ob2);              // pop object from stack (from ob2's location)
 };
 
-// --------  Explain above using GPT  --------
-
-
 
 // --------  Push two objects (GnF)  --------
 template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
@@ -130,12 +127,6 @@ int main(){
 
 // --------  GPT  --------
 
-
-Absolutely. Since the **old version is already directly above the new version**, the most useful approach is to put the comparison comments **inside the new version exactly where each change occurs**.
-
-I'll keep the code structure essentially the same and add comments like **OLD → NEW**, so you can read downward and immediately understand why each line changed.
-
-One small correction: the declaration should be `StackType stck[SIZE][2]`, not `StackType *stck[SIZE][2]`. The `*` in your pasted version would make it an array of pointers and would not match the rest of the code.
 
 ```cpp
 /*
