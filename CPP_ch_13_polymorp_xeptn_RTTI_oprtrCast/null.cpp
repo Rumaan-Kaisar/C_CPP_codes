@@ -19,8 +19,8 @@
                 Following template class demonstrates a generic stack that holds two values.
                 Then a character stack and a floating-point stack are created.
 
-                OLD code: one stack position stored one value (Example 10).
-                NEW code: one stack position stores two values.
+                OLD code (ONE object):  one stack position stored one value (Example 10).
+                NEW code (TWO objects): one stack position stores two values.
 
             Note: 
                 both values are still of the SAME type:
@@ -133,31 +133,6 @@ int main(){
     Example 4: Rework the stack class so that it can store
     pairs of objects on the stack.
 
-    The OLD version is directly above this code.
-
-    The main idea of the modification is:
-
-        OLD:
-            One stack position = ONE object
-
-        NEW:
-            One stack position = TWO objects
-
-    ------------------------------------------------------------
-    IMPORTANT:
-    This example stores TWO values of the SAME type.
-
-        stack<char>
-            -> char + char
-
-        stack<double>
-            -> double + double
-
-    It does NOT yet store two DIFFERENT types such as:
-
-        char + double
-
-    ------------------------------------------------------------
 */
 
 
