@@ -52,6 +52,17 @@ template <class StackType> class stack {
 
 
 // --------  Push two objects (GnF)  --------
+/*  
+        The old push() accepted ONE object. Example:    s1.push('a');
+        The new push() accepts TWO objects. Example:    s1.push('a', 'b');
+
+        This means that ONE stack position now contains:    ['a', 'b']
+
+        Notice that both parameters have StackType:
+
+            stack<char>     both objects must be char.
+            stack<double>   then both objects must be double.
+*/
 template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
     if(tos == SIZE) {
         std::cout << " Stack is full .\n";
@@ -121,7 +132,71 @@ int main(){
     return 0;
 }
 
+/*
+    OLD VERSION:
+    --------------------------------------------------------
+
+        StackType stck[SIZE];
+
+    This creates a one-dimensional array.
+
+    For example, stack<char> becomes:
+
+        char stck[10];
+
+    So each stack position contains only ONE value:
+
+        stck[0] -> one char
+        stck[1] -> one char
+        stck[2] -> one char
+        ...
+
+
+    NEW VERSION:
+    --------------------------------------------------------
+
+        StackType stck[SIZE][2];
+
+    The array is now TWO-dimensional.
+
+    For example, stack<char> becomes:
+
+        char stck[10][2];
+
+    Each stack position can now contain TWO values:
+
+        stck[0][0] -> first value
+        stck[0][1] -> second value
+
+        stck[1][0] -> first value
+        stck[1][1] -> second value
+
+        stck[2][0] -> first value
+        stck[2][1] -> second value
+
+    So visually:
+
+            Stack position
+
+                0       1
+            +-------+-------+
+        0 |   a   |   b   |
+            +-------+-------+
+        1 |   c   |   d   |
+            +-------+-------+
+        2 |   e   |   f   |
+            +-------+-------+
+
+    The FIRST index selects the stack position.
+
+    The SECOND index selects which value of the pair.
+*/
+
+
 // ---- rev[18-Sept-2026] ----
+
+
+
 
 
 
@@ -136,112 +211,9 @@ int main(){
 */
 
 
-#include <iostream>
-
-#define SIZE 10
-
-
 // ============================================================
 // Create a generic stack class
 // ============================================================
-
-template <class StackType>
-class stack
-{
-    /*
-        OLD VERSION:
-        --------------------------------------------------------
-
-            StackType stck[SIZE];
-
-        This creates a one-dimensional array.
-
-        For example, stack<char> becomes:
-
-            char stck[10];
-
-        So each stack position contains only ONE value:
-
-            stck[0] -> one char
-            stck[1] -> one char
-            stck[2] -> one char
-            ...
-
-
-        NEW VERSION:
-        --------------------------------------------------------
-
-            StackType stck[SIZE][2];
-
-        The array is now TWO-dimensional.
-
-        For example, stack<char> becomes:
-
-            char stck[10][2];
-
-        Each stack position can now contain TWO values:
-
-            stck[0][0] -> first value
-            stck[0][1] -> second value
-
-            stck[1][0] -> first value
-            stck[1][1] -> second value
-
-            stck[2][0] -> first value
-            stck[2][1] -> second value
-
-        So visually:
-
-             Stack position
-
-                 0       1
-              +-------+-------+
-            0 |   a   |   b   |
-              +-------+-------+
-            1 |   c   |   d   |
-              +-------+-------+
-            2 |   e   |   f   |
-              +-------+-------+
-
-        The FIRST index selects the stack position.
-
-        The SECOND index selects which value of the pair.
-    */
-
-    StackType stck[SIZE][2];
-
-
-    /*
-        This part does NOT change.
-
-        tos = "top of stack"
-
-        It keeps track of where the next pair will be inserted.
-    */
-
-    int tos;
-
-
-public:
-
-    /*
-        This also does NOT change.
-
-        OLD:
-
-            void init() { tos = 0; }
-
-        NEW:
-
-            void init() { tos = 0; }
-
-        The stack still starts at position 0.
-    */
-
-    void init()
-    {
-        tos = 0;
-    }
 
 
     /*
@@ -249,43 +221,8 @@ public:
         PUSH FUNCTION
         --------------------------------------------------------
 
-        OLD VERSION:
 
-            void push(StackType ch);
 
-        The old push() accepted ONE object.
-
-        Example:
-
-            s1.push('a');
-
-        NEW VERSION:
-
-            void push(StackType ob, StackType ob2);
-
-        The new push() accepts TWO objects.
-
-        Example:
-
-            s1.push('a', 'b');
-
-        This means that ONE stack position now contains:
-
-            ['a', 'b']
-
-        Notice that both parameters have StackType.
-
-        Therefore, if:
-
-            stack<char>
-
-        then both objects must be char.
-
-        If:
-
-            stack<double>
-
-        then both objects must be double.
     */
 
     void push(StackType ob, StackType ob2);
