@@ -53,15 +53,15 @@ template <class StackType> class stack {
 
 // --------  Push two objects (GnF)  --------
 /*  
-        The old push() accepted ONE object. Example:    s1.push('a');
-        The new push() accepts TWO objects. Example:    s1.push('a', 'b');
+    The old push() accepted ONE object. Example:    s1.push('a');
+    The new push() accepts TWO objects. Example:    s1.push('a', 'b');
 
-        This means that ONE stack position now contains:    ['a', 'b']
+    This means that ONE stack position now contains:    ['a', 'b']
 
-        Notice that both parameters have StackType:
+    Notice that both parameters have StackType:
 
-            stack<char>     both objects must be char.
-            stack<double>   then both objects must be double.
+        stack<char>     both objects must be char.
+        stack<double>   then both objects must be double.
 */
 template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
     if(tos == SIZE) {
@@ -75,6 +75,13 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
 
 
 // --------  Pop objects (GnF).  --------
+/*  
+    The old version returned ONE object.
+    This new version has TWO ways of returning the pair:
+
+        1. The FIRST object is returned normally.
+        2. The SECOND object is returned through 'ob2'.
+*/
 template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
     if(tos == 0) {
         std::cout << " Stack is empty .\n";
@@ -211,73 +218,7 @@ int main(){
 */
 
 
-// ============================================================
-// Create a generic stack class
-// ============================================================
-
-
-    /*
-        --------------------------------------------------------
-        PUSH FUNCTION
-        --------------------------------------------------------
-
-
-
-    */
-
-    void push(StackType ob, StackType ob2);
-
-
-    /*
-        --------------------------------------------------------
-        POP FUNCTION
-        --------------------------------------------------------
-
-        OLD VERSION:
-
-            StackType pop();
-
-        The old function returned ONE object.
-
-        NEW VERSION:
-
-            StackType pop(StackType &ob2);
-
-        The new function has TWO ways of returning the pair:
-
-            1. The FIRST object is returned normally.
-
-            2. The SECOND object is returned through 'ob2'.
-
-        Why?
-
-        A normal function return gives us one value:
-
-            return first_value;
-
-        To get the second value as well, the parameter:
-
-            StackType &ob2
-
-        is passed by REFERENCE.
-
-        Therefore, if main() has:
-
-            char ch;
-
-        and calls:
-
-            s1.pop(ch);
-
-        then:
-
-            return value -> first object
-            ch           -> second object
-    */
-
-    StackType pop(StackType &ob2);
-};
-
+// --------  rev[21-Sept-2026]  --------
 
 // ============================================================
 // push()
