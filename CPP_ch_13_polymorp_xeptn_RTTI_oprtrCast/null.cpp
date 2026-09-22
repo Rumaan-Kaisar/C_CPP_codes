@@ -239,30 +239,6 @@ int main(){
 
 */
 
-template <class StackType>
-void stack<StackType>::push(StackType ob, StackType ob2)
-{
-
-
-
-
-    /*
-        This part is also unchanged.
-
-        After storing the pair, move tos to the next
-        available stack position.
-
-        Before push:
-
-            tos = 0
-
-        After push:
-
-            tos = 1
-    */
-
-    tos++;
-}
 
 
 // ============================================================
