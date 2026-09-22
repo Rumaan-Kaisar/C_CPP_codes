@@ -53,6 +53,14 @@ template <class StackType> class stack {
 
 // --------  Push two objects (GnF)  --------
 /*  
+    OLD VERSION:
+
+        template <class StackType> void stack<StackType>::push(StackType ob)
+
+    NEW VERSION:
+
+        template <class StackType> void stack<StackType>::push(StackType ob, StackType ob2)
+    
     The old push() accepted ONE object. Example:    s1.push('a');
     The new push() accepts TWO objects. Example:    s1.push('a', 'b');
 
@@ -227,18 +235,8 @@ int main(){
 // ============================================================
 
 /*
-    OLD VERSION:
 
-        template <class StackType>
-        void stack<StackType>::push(StackType ob)
 
-    NEW VERSION:
-
-        template <class StackType>
-        void stack<StackType>::push(StackType ob, StackType ob2)
-
-    The only conceptual change here is that push() now receives
-    TWO objects instead of ONE.
 */
 
 template <class StackType>
