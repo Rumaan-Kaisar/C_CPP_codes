@@ -76,8 +76,8 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
         std::cout << " Stack is full .\n";
         return;
     }
-    stck[tos][0] = ob;
-    stck[tos][1] = ob2;
+    stck[tos][0] = ob;  // store the FIRST object of the pair.
+    stck[tos][1] = ob2; // store the SECOND object of the pair.
     tos++;
 }
 
@@ -242,84 +242,8 @@ int main(){
 template <class StackType>
 void stack<StackType>::push(StackType ob, StackType ob2)
 {
-    /*
-        This part is unchanged.
-
-        If tos reaches SIZE, the stack has no more positions.
-    */
-
-    if (tos == SIZE)
-    {
-        std::cout << " Stack is full.\n";
-        return;
-    }
 
 
-    /*
-        --------------------------------------------------------
-        OLD VERSION
-        --------------------------------------------------------
-
-            stck[tos] = ob;
-
-        There was only one value in each stack position.
-
-        Example:
-
-            push('a')
-
-        resulted in:
-
-            stck[0] = 'a'
-
-
-        NEW VERSION
-        --------------------------------------------------------
-
-            stck[tos][0] = ob;
-
-        We now have TWO positions inside each stack entry.
-
-        [0] means:
-
-            "store the FIRST object of the pair."
-
-        Example:
-
-            push('a', 'b')
-
-        gives:
-
-            stck[0][0] = 'a'
-    */
-
-    stck[tos][0] = ob;
-
-
-    /*
-        This is the NEW line.
-
-            stck[tos][1] = ob2;
-
-        [1] means:
-
-            "store the SECOND object of the pair."
-
-        Therefore:
-
-            push('a', 'b')
-
-        produces:
-
-            stck[0][0] = 'a'
-            stck[0][1] = 'b'
-
-        So one stack entry now contains:
-
-            ['a', 'b']
-    */
-
-    stck[tos][1] = ob2;
 
 
     /*
