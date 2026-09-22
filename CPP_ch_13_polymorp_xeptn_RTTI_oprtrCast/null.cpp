@@ -76,6 +76,8 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
         std::cout << " Stack is full .\n";
         return;
     }
+    // OLD: stck[tos] = ob;
+    // NEW: store the two values in columns 0 and 1.
     stck[tos][0] = ob;  // store the FIRST object of the pair.
     stck[tos][1] = ob2; // store the SECOND object of the pair.
     tos++;
@@ -84,6 +86,14 @@ template <class StackType> void stack <StackType>::push(StackType ob, StackType 
 
 // --------  Pop objects (GnF).  --------
 /*  
+    OLD VERSION:
+
+        template <class StackType> StackType stack<StackType>::pop()
+
+    NEW VERSION:
+
+        template <class StackType> StackType stack<StackType>::pop(StackType &ob2)
+
     The old version returned ONE object.
     This new version has TWO ways of returning the pair:
 
@@ -96,8 +106,9 @@ template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
         return 0;   // return null on empty stack
     }
     tos--;
-    ob2 = stck[tos][1];
-    return stck[tos][0];
+    // We first retrieve the SECOND object. Because ob2 is a REFERENCE, this changes the variable supplied by the caller.
+    ob2 = stck[tos][1];     // put the SECOND value into ob2. '&' means the caller's variable is changed directly.
+    return stck[tos][0];    // return the FIRST value from column 0.
 }
 
 
@@ -245,153 +256,6 @@ int main(){
 // pop()
 // ============================================================
 
-/*
-    OLD VERSION:
-
-        template <class StackType>
-        StackType stack<StackType>::pop()
-
-    NEW VERSION:
-
-        template <class StackType>
-        StackType stack<StackType>::pop(StackType &ob2)
-
-    The function now needs a reference parameter because
-    there are TWO values to get out of the stack.
-*/
-
-template <class StackType>
-StackType stack<StackType>::pop(StackType &ob2)
-{
-    /*
-        This part is unchanged.
-
-        If tos == 0, there is nothing to remove.
-    */
-
-    if (tos == 0)
-    {
-        std::cout << " Stack is empty.\n";
-
-        /*
-            Same basic idea as the old version:
-
-                return 0;
-
-            However, this is only suitable for types where
-            0 can be used as a meaningful "empty" indication.
-        */
-
-        return 0;
-    }
-
-
-    /*
-        This part is unchanged.
-
-        Move tos backward before accessing the top entry.
-
-        Suppose:
-
-            tos = 3
-
-        The actual top entry is at:
-
-            index 2
-
-        Therefore:
-
-            tos--;
-
-        changes:
-
-            tos = 3
-
-        into:
-
-            tos = 2
-    */
-
-    tos--;
-
-
-    /*
-        --------------------------------------------------------
-        OLD VERSION
-        --------------------------------------------------------
-
-            return stck[tos];
-
-        There was only ONE object to return.
-
-
-        NEW VERSION
-        --------------------------------------------------------
-
-            ob2 = stck[tos][1];
-
-        We first retrieve the SECOND object.
-
-        Because ob2 is a REFERENCE, this changes the variable
-        supplied by the caller.
-
-        Example:
-
-            char ch;
-
-            s1.pop(ch);
-
-        If the top pair is:
-
-            ['c', 'a']
-
-        then:
-
-            ob2 = 'a'
-
-        and therefore:
-
-            ch == 'a'
-    */
-
-    ob2 = stck[tos][1];
-
-
-    /*
-        Now return the FIRST object.
-
-        OLD:
-
-            return stck[tos];
-
-        NEW:
-
-            return stck[tos][0];
-
-        [0] means the FIRST value of the pair.
-
-        Therefore, if:
-
-            stck[tos][0] = 'c'
-            stck[tos][1] = 'a'
-
-        then:
-
-            return stck[tos][0];
-
-        returns:
-
-            'c'
-
-        while the previous statement already placed:
-
-            'a'
-
-        into ob2.
-    */
-
-    return stck[tos][0];
-}
 
 
 // ============================================================
@@ -875,44 +739,6 @@ And `pop()` has to change accordingly: **one value comes back through `return`, 
 
 
 
-
-// Push two objects
-template <class StackType>
-void stack<StackType>::push(StackType ob, StackType ob2) {
-
-    if(tos == SIZE) {
-        std::cout << " Stack is full .\n";
-        return;
-    }
-
-    // OLD: stck[tos] = ob;
-    // NEW: store the two values in columns 0 and 1.
-    stck[tos][0] = ob;
-    stck[tos][1] = ob2;
-
-    tos++;
-}
-
-
-// Pop two objects
-template <class StackType>
-StackType stack<StackType>::pop(StackType &ob2) {
-
-    if(tos == 0) {
-        std::cout << " Stack is empty .\n";
-        return 0;
-    }
-
-    tos--;
-
-    // NEW: put the SECOND value into ob2.
-    // '&' means the caller's variable is changed directly.
-    ob2 = stck[tos][1];
-
-    // OLD: return stck[tos];
-    // NEW: return the FIRST value from column 0.
-    return stck[tos][0];
-}
 
 
 int main() {
