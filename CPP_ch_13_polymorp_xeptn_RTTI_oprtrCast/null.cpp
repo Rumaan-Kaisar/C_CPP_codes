@@ -116,7 +116,9 @@ int main(){
     // Demonstrate character stacks.
     stack <char> s1, s2;    // create two stacks
     int i;
-    char ch;
+    char ch;    // it is needed because pop() now returns the second value through a reference parameter "s1.pop(ch);".
+    // The first value comes back through the return statement.
+    // The second value comes back through ch.
 
     // initialize the stacks
     s1.init();
@@ -271,8 +273,7 @@ int main()
 
             char ch;
 
-        This variable is needed because pop() now returns
-        the second value through a reference parameter.
+        
 
         OLD pop():
 
@@ -280,11 +281,9 @@ int main()
 
         NEW pop():
 
-            s1.pop(ch);
+            
 
-        The first value comes back through the return statement.
-
-        The second value comes back through ch.
+        
     */
 
     char ch;
