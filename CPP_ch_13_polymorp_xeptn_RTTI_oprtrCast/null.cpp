@@ -252,16 +252,6 @@ int main()
 
 
 
-    char ch;
-
-
-    // Initialize the stacks.
-    // This is unchanged from the old version.
-
-    s1.init();
-    s2.init();
-
-
     /*
         --------------------------------------------------------
         OLD:
