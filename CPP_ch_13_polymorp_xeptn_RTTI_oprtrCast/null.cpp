@@ -264,31 +264,7 @@ int main(){
 
 int main()
 {
-    // --------------------------------------------------------
-    // Character stacks
-    // --------------------------------------------------------
-
-    /*
-        OLD:
-
-            stack<char> s1, s2;
-
-        This line is actually UNCHANGED.
-
-        But what the stack contains has changed.
-
-        OLD stack:
-
-            stack<char>
-                |
-                +-- one char per position
-
-        NEW stack:
-
-            stack<char>
-                |
-                +-- two chars per position
-    */
+ 
 
     stack<char> s1, s2;
 
