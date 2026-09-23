@@ -264,12 +264,6 @@ int main(){
 
 int main()
 {
- 
-
-    stack<char> s1, s2;
-
-
-    int i;
 
 
     /*
