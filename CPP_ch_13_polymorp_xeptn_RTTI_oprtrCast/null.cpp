@@ -113,7 +113,7 @@ template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
 
 
 int main(){
-    // Demonstrate character stacks.
+    // --------  Demonstrate character stacks.  --------
     stack <char> s1, s2;    // create two stacks
     int i;
     char ch;    // it is needed because pop() now returns the second value through a reference parameter "s1.pop(ch);".
@@ -134,11 +134,25 @@ int main(){
     s1.push('c', 'a');
     s2.push('z', 'x');
 
+    /*
+        s1 now contains:
+
+            ['a', 'b']
+            ['b', 'd']
+            ['c', 'a']
+
+        s2 now contains:
+
+            ['x', 'z']
+            ['y', 'e']
+            ['z', 'x']
+    */
+
     for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
     for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
 
 
-    // demonstrate double stacks
+    // --------  demonstrate double stacks  --------
     stack <double> ds1, ds2;    // create two stacks
     double d;
 
@@ -253,39 +267,6 @@ int main()
 
 
 
-
-    /*
-        s2 now contains:
-
-            ['x', 'z']
-            ['y', 'e']
-    */
-
-    s2.push('y', 'e');
-
-
-    /*
-        s1 now contains:
-
-            ['a', 'b']
-            ['b', 'd']
-            ['c', 'a']
-    */
-
-    s1.push('c', 'a');
-
-
-    /*
-        s2 now contains:
-
-            ['x', 'z']
-            ['y', 'e']
-            ['z', 'x']
-    */
-
-    s2.push('z', 'x');
-
-
     /*
         --------------------------------------------------------
         OLD VERSION:
@@ -301,7 +282,15 @@ int main()
 
         returns TWO values.
 
-        Example top entry:
+
+        since s1 contains:
+
+            ['a', 'b']
+            ['b', 'd']
+            ['c', 'a']
+
+        Because a stack is LIFO (Last In, First Out),
+        then top entry is:
 
             ['c', 'a']
 
@@ -321,6 +310,13 @@ int main()
         prints:
 
             c a
+
+        the pairs come out in reverse order:
+
+            ['c', 'a']
+            ['b', 'd']
+            ['a', 'b']
+
     */
 
     for (i = 0; i < 3; i++)
