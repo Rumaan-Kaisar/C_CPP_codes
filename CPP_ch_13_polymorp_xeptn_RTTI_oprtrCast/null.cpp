@@ -124,6 +124,7 @@ int main(){
     s1.init();
     s2.init();
 
+    // TWO values are pushed as ONE stack entry. But in OLD version One value was pushed like "s1.push('a');"
     s1.push('a', 'b');
     s2.push('x', 'z');
 
@@ -254,18 +255,18 @@ int main()
 
     /*
         --------------------------------------------------------
-        OLD:
+        :
 
-            s1.push('a');
+            
 
-        One value was pushed.
+        .
 
 
         NEW:
 
             s1.push('a', 'b');
 
-        TWO values are pushed as ONE stack entry.
+        
 
         The stack now contains:
 
