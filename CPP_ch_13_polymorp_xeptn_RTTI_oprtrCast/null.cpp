@@ -253,40 +253,6 @@ int main()
 
 
 
-    /*
-        OLD:
-
-            s2.push('x');
-
-        NEW:
-
-            s2.push('x', 'z');
-
-        Stack entry:
-
-            ['x', 'z']
-    */
-
-    s2.push('x', 'z');
-
-
-    /*
-        OLD:
-
-            s1.push('b');
-
-        NEW:
-
-            s1.push('b', 'd');
-
-        s1 now contains:
-
-            ['a', 'b']
-            ['b', 'd']
-    */
-
-    s1.push('b', 'd');
-
 
     /*
         s2 now contains:
