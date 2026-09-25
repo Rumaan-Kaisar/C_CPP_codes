@@ -151,6 +151,59 @@ int main(){
     for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
     for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
 
+    /*  --------------------------------------------------------
+        OLD VERSION:
+
+            s1.pop()    // returned one value.
+
+        NEW VERSION:
+
+            s1.pop(ch)  // returns TWO values.
+
+
+        since s1 contains:
+
+                ['a', 'b']
+                ['b', 'd']
+                ['c', 'a']
+
+            Because a stack is LIFO (Last In, First Out), then top entry is:    ['c', 'a']
+                Then:
+
+                    s1.pop(ch)
+
+                does:
+
+                    return 'c'
+                    ch = 'a'
+
+                Therefore:
+
+                    std::cout << s1.pop(ch) << ' ' << ch;
+
+                prints:
+
+                    c a
+
+                so the pairs come out in reverse order:
+
+                ['c', 'a']
+                ['b', 'd']
+                ['a', 'b']
+
+
+        And s2 contains:
+
+                ['x', 'z']
+                ['y', 'e']
+                ['z', 'x']
+                
+            Then the pairs also come out in reverse order:
+
+                ['z', 'x']
+                ['y', 'e']
+                ['x', 'z']
+    */
 
     // --------  demonstrate double stacks  --------
     stack <double> ds1, ds2;    // create two stacks
@@ -267,48 +320,7 @@ int main()
 
 
 
-    /*
-        --------------------------------------------------------
-        OLD VERSION:
-
-            s1.pop()    // returned one value.
-
-        NEW VERSION:
-
-            s1.pop(ch)  // returns TWO values.
-
-
-        since s1 contains:
-
-            ['a', 'b']
-            ['b', 'd']
-            ['c', 'a']
-
-        Because a stack is LIFO (Last In, First Out), then top entry is:    ['c', 'a']
-            Then:
-
-                s1.pop(ch)
-
-            does:
-
-                return 'c'
-                ch = 'a'
-
-            Therefore:
-
-                std::cout << s1.pop(ch) << ' ' << ch;
-
-            prints:
-
-                c a
-
-        so the pairs come out in reverse order:
-
-            ['c', 'a']
-            ['b', 'd']
-            ['a', 'b']
-
-    */
+    
 
     for (i = 0; i < 3; i++)
         std::cout << "Pop s1: "
@@ -319,18 +331,7 @@ int main()
 
 
     /*
-        s2 contains:
 
-            ['x', 'z']
-            ['y', 'e']
-            ['z', 'x']
-
-        Because a stack is LIFO (Last In, First Out),
-        the pairs come out in reverse order:
-
-            ['z', 'x']
-            ['y', 'e']
-            ['x', 'z']
     */
 
     for (i = 0; i < 3; i++)
