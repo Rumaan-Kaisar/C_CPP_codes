@@ -213,6 +213,7 @@ int main(){
     ds1.init();
     ds2.init();
 
+    // TWO values are pushed as ONE stack entry.
     ds1.push(1.1, 2.0);
     ds2.push(2.2, 3.0);
 
@@ -222,8 +223,58 @@ int main(){
     ds1.push(5.5, 6.0);
     ds2.push(6.6, 7.0);
 
-    for(i=0; i<3; i++) std::cout << " Pop ds1: " << ds1.pop(d) << ' ' << d << '\n';
-    for(i=0; i<3; i++) std::cout << " Pop ds2: " << ds2.pop(d) << ' ' << d << '\n';
+    /*  ds1 contains:
+
+                [1.1, 2.0]
+                [3.3, 4.0]
+                [5.5, 6.0]
+
+            Since this is a stack, the last pair is removed first (LIFO):
+
+                [5.5, 6.0]
+
+            So:
+
+                ds1.pop(d)
+
+            gives:
+
+                return value = 5.5
+                d            = 6.0
+
+            Output order:
+
+                [5.5, 6.0]
+                [3.3, 4.0]
+                [1.1, 2.0]
+
+
+        Similarly ds2 contains:
+
+                [2.2, 3.0]
+                [4.5, 5.0]
+                [6.6, 7.0]
+
+            Pop order:
+
+                [6.6, 7.0]
+                [4.5, 5.0]
+                [2.2, 3.0]
+    */
+
+    for(i=0; i<3; i++) 
+        std::cout   << " Pop ds1: " 
+                    << ds1.pop(d) 
+                    << ' ' 
+                    << d 
+                    << '\n';
+                    
+    for(i=0; i<3; i++) 
+        std::cout   << " Pop ds2: " 
+                    << ds2.pop(d) 
+                    << ' ' 
+                    << d 
+                    << '\n';
 
     return 0;
 }
@@ -315,33 +366,7 @@ int main(){
 // main()
 // ============================================================
 
-int main()
-{
-
-
-
-    
-
-    for (i = 0; i < 3; i++)
-        std::cout << "Pop s1: "
-                  << s1.pop(ch)
-                  << ' '
-                  << ch
-                  << '\n';
-
-
-    /*
-
-    */
-
-    for (i = 0; i < 3; i++)
-        std::cout << "Pop s2: "
-                  << s2.pop(ch)
-                  << ' '
-                  << ch
-                  << '\n';
-
-
+int main() {
 
     // ========================================================
     // Demonstrate double stacks
@@ -456,68 +481,7 @@ int main()
     ds2.push(6.6, 7.0);
 
 
-    /*
-        --------------------------------------------------------
-        NEW POP BEHAVIOR
-        --------------------------------------------------------
-
-        ds1 contains:
-
-            [1.1, 2.0]
-            [3.3, 4.0]
-            [5.5, 6.0]
-
-        Since this is a stack, the last pair is removed first:
-
-            [5.5, 6.0]
-
-        pop(d):
-
-            returns 5.5
-            puts 6.0 into d
-
-        So:
-
-            ds1.pop(d)
-
-        gives:
-
-            return value = 5.5
-            d            = 6.0
-
-        Output:
-
-            Pop ds1: 5.5 6
-    */
-
-    for (i = 0; i < 3; i++)
-        std::cout << "Pop ds1: "
-                  << ds1.pop(d)
-                  << ' '
-                  << d
-                  << '\n';
-
-
-    /*
-        ds2:
-
-            [2.2, 3.0]
-            [4.5, 5.0]
-            [6.6, 7.0]
-
-        Pop order:
-
-            [6.6, 7.0]
-            [4.5, 5.0]
-            [2.2, 3.0]
-
-        Again:
-
-            pop(d)
-
-        returns the FIRST value and places the SECOND
-        value into d.
-    */
+    
 
     for (i = 0; i < 3; i++)
         std::cout << "Pop ds2: "
