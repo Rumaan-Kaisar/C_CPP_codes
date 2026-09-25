@@ -273,7 +273,6 @@ int main()
 
             s1.pop()    // returned one value.
 
-
         NEW VERSION:
 
             s1.pop(ch)  // returns TWO values.
@@ -285,28 +284,25 @@ int main()
             ['b', 'd']
             ['c', 'a']
 
-        Because a stack is LIFO (Last In, First Out), then top entry is:
+        Because a stack is LIFO (Last In, First Out), then top entry is:    ['c', 'a']
+            Then:
 
-            ['c', 'a']
+                s1.pop(ch)
 
-        Then:
+            does:
 
-            s1.pop(ch)
+                return 'c'
+                ch = 'a'
 
-        does:
+            Therefore:
 
-            return 'c'
-            ch = 'a'
+                std::cout << s1.pop(ch) << ' ' << ch;
 
-        Therefore:
+            prints:
 
-            std::cout << s1.pop(ch) << ' ' << ch;
+                c a
 
-        prints:
-
-            c a
-
-        the pairs come out in reverse order:
+        so the pairs come out in reverse order:
 
             ['c', 'a']
             ['b', 'd']
