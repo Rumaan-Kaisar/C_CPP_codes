@@ -271,16 +271,12 @@ int main()
         --------------------------------------------------------
         OLD VERSION:
 
-            s1.pop()
-
-        returned one value.
+            s1.pop()    // returned one value.
 
 
         NEW VERSION:
 
-            s1.pop(ch)
-
-        returns TWO values.
+            s1.pop(ch)  // returns TWO values.
 
 
         since s1 contains:
@@ -289,8 +285,7 @@ int main()
             ['b', 'd']
             ['c', 'a']
 
-        Because a stack is LIFO (Last In, First Out),
-        then top entry is:
+        Because a stack is LIFO (Last In, First Out), then top entry is:
 
             ['c', 'a']
 
