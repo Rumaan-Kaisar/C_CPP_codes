@@ -370,17 +370,6 @@ int main() {
 
 
 
-    stack<double> ds1, ds2;
-
-
-    /*
-        NEW variable.
-
-        It receives the SECOND double from pop().
-
-        The first double is returned normally.
-    */
-
     double d;
 
 
