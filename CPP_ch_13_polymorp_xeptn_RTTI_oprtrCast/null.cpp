@@ -370,26 +370,6 @@ int main() {
 
 
 
-    /*
-        OLD:
-
-            stack<double> ds1, ds2;
-
-        NEW:
-
-            stack<double> ds1, ds2;
-
-        Again, the declaration itself is unchanged.
-
-        But each stack entry can now hold TWO doubles.
-
-        Example:
-
-            [1.1, 2.0]
-            [3.3, 4.0]
-            [5.5, 6.0]
-    */
-
     stack<double> ds1, ds2;
 
 
