@@ -370,30 +370,6 @@ int main() {
 
 
 
-    double d;
-
-
-    // Initialize the stacks.
-    // Unchanged from the old version.
-
-    ds1.init();
-    ds2.init();
-
-
-    /*
-        OLD:
-
-            ds1.push(1.1);
-
-        NEW:
-
-            ds1.push(1.1, 2.0);
-
-        One stack entry now contains:
-
-            [1.1, 2.0]
-    */
-
     ds1.push(1.1, 2.0);
 
 
