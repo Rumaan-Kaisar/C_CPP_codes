@@ -337,6 +337,35 @@ int main(){
     The FIRST index selects the stack position.
 
     The SECOND index selects which value of the pair.
+
+
+
+    ─────────────────────────────────────────────────────────────
+        OLD VERSION                         NEW VERSION
+    ─────────────────────────────────────────────────────────────
+
+        push(one object)                push(two objects)
+            ↓                                ↓
+        ┌───────┐                   ┌───────┬───────┐
+        │   A   │                   │   A   │   B   │
+        └───────┘                   └───────┴───────┘
+
+
+        StackType stck[SIZE];           -->         StackType stck[SIZE][2];
+
+        push(StackType ob);             -->         push(StackType ob, StackType ob2);
+
+        stck[tos] = ob;                 -->         stck[tos][0] = ob;
+                                                    stck[tos][1] = ob2;
+
+        StackType pop();                -->         StackType pop(StackType &ob2);
+
+        return stck[tos];               -->         ob2 = stck[tos][1];
+                                                    return stck[tos][0];
+
+        s1.push('a');                   -->         s1.push('a', 'b');
+
+        s1.pop();                       -->         s1.pop(ch);
 */
 
 
@@ -347,77 +376,8 @@ int main(){
 
 
 
-// --------  GPT  --------
-
-
-```cpp
-/*
-    Example 4: Rework the stack class so that it can store
-    pairs of objects on the stack.
-
-*/
-
 
 // ----------------    rev[21-Sept-2026]: add below in compact form to the function explanation    ----------------
-
-
-
-// ============================================================
-// main()
-// ============================================================
-
-
-
-### In short, there are really only 4 major changes
-
-You can use this as your quick mental map while looking at the two programs:
-
-```text
-OLD VERSION                         NEW VERSION
-─────────────────────────────────────────────────────────────
-
-StackType stck[SIZE];        →      StackType stck[SIZE][2];
-
-push(StackType ob);         →      push(StackType ob,
-                                         StackType ob2);
-
-stck[tos] = ob;             →      stck[tos][0] = ob;
-                                    stck[tos][1] = ob2;
-
-StackType pop();            →      StackType pop(StackType &ob2);
-
-return stck[tos];           →      ob2 = stck[tos][1];
-                                    return stck[tos][0];
-
-s1.push('a');               →      s1.push('a', 'b');
-
-s1.pop();                   →      s1.pop(ch);
-```
-
-The **conceptual transformation** is simply:
-
-```text
-OLD
-
-push(one object)
-       ↓
-   ┌───────┐
-   │   A   │
-   └───────┘
-
-
-NEW
-
-push(two objects)
-       ↓
-   ┌───────┬───────┐
-   │   A   │   B   │
-   └───────┴───────┘
-```
-
-And `pop()` has to change accordingly: **one value comes back through `return`, while the second comes back through the reference parameter `&ob2`.**
-
-
 
 
 
