@@ -366,21 +366,7 @@ int main(){
 // main()
 // ============================================================
 
-int main() {
 
-    
-
-    for (i = 0; i < 3; i++)
-        std::cout << "Pop ds2: "
-                  << ds2.pop(d)
-                  << ' '
-                  << d
-                  << '\n';
-
-
-    return 0;
-}
-```
 
 ### In short, there are really only 4 major changes
 
