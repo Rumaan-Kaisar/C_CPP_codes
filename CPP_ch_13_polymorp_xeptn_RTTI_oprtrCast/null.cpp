@@ -340,15 +340,15 @@ int main(){
 
 
 
-    ─────────────────────────────────────────────────────────────
-        OLD VERSION                         NEW VERSION
-    ─────────────────────────────────────────────────────────────
+    ─────────────────────────────────────────────────────────────────────────────
+        OLD VERSION                                 NEW VERSION
+    ─────────────────────────────────────────────────────────────────────────────
 
-        push(one object)                push(two objects)
-            ↓                                ↓
-        ┌───────┐                   ┌───────┬───────┐
-        │   A   │                   │   A   │   B   │
-        └───────┘                   └───────┴───────┘
+        push(one object)                            push(two objects)
+            ↓                           -->                 ↓
+        ┌───────┐                                   ┌───────┬───────┐
+        │   A   │                                   │   A   │   B   │
+        └───────┘                                   └───────┴───────┘
 
 
         StackType stck[SIZE];           -->         StackType stck[SIZE][2];
@@ -389,10 +389,6 @@ int main(){
 /*    Example 4: Rework the stack class so that each stack entry
     can store TWO values.
 */
-
-
-
-
 
 
 int main() {
