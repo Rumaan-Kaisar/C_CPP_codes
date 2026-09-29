@@ -125,7 +125,7 @@ int main(){
     s2.init();
 
     // TWO values are pushed as ONE stack entry. But in OLD version One value was pushed like "s1.push('a');"
-    s1.push('a', 'b');
+    s1.push('a', 'b');  // one stack entry now contains ('a', 'b').
     s2.push('x', 'z');
 
     s1.push('b', 'd');
@@ -393,19 +393,6 @@ int main(){
 
 int main() {
 
-    // initialize the stacks
-    s1.init();
-    s2.init();
-
-    // OLD: s1.push('a');
-    // NEW: one stack entry now contains ('a', 'b').
-    s1.push('a', 'b');
-
-    s2.push('x', 'z');
-    s1.push('b', 'd');
-    s2.push('y', 'e');
-    s1.push('c', 'a');
-    s2.push('z', 'x');
 
     // OLD: s1.pop()
     // NEW: pop(ch) returns first value and puts second value in ch.
