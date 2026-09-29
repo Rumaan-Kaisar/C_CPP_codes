@@ -207,13 +207,14 @@ int main(){
 
     // --------  demonstrate double stacks  --------
     stack <double> ds1, ds2;    // create two stacks
-    double d;
+    double d;                   // NEW: receives the second double from pop().
 
     // initialize the stacks
     ds1.init();
     ds2.init();
 
     // TWO values are pushed as ONE stack entry.
+    // Each push now stores TWO doubles as one stack entry.
     ds1.push(1.1, 2.0);
     ds2.push(2.2, 3.0);
 
@@ -393,17 +394,8 @@ int main(){
 
 int main() {
 
-    // demonstrate double stacks
-    stack<double> ds1, ds2;
 
-    // NEW: receives the second double from pop().
-    double d;
 
-    // initialize the stacks
-    ds1.init();
-    ds2.init();
-
-    // Each push now stores TWO doubles as one stack entry.
     ds1.push(1.1, 2.0);
     ds2.push(2.2, 3.0);
     ds1.push(3.3, 4.0);
