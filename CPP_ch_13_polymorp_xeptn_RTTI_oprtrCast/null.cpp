@@ -393,14 +393,6 @@ int main(){
 
 int main() {
 
-    // Demonstrate character stacks.
-    stack<char> s1, s2;
-
-    int i;
-
-    // NEW: variable used to receive the second value from pop().
-    char ch;
-
     // initialize the stacks
     s1.init();
     s2.init();
