@@ -393,16 +393,6 @@ int main(){
 
 int main() {
 
-
-    // OLD: s1.pop()
-    // NEW: pop(ch) returns first value and puts second value in ch.
-    for(i=0; i<3; i++)
-        std::cout << "Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
-
-    for(i=0; i<3; i++)
-        std::cout << "Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
-
-
     // demonstrate double stacks
     stack<double> ds1, ds2;
 
