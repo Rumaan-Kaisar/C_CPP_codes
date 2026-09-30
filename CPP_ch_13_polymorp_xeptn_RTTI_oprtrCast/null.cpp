@@ -32,57 +32,61 @@
 
 
 
-/* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. */
+/* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. 
 
 
-5. The general forms of try, catch, and throw are shown here:
+                The general forms of try, catch, and throw are shown here:
 
-try {
-    // try block
-    throw exp;
-}
-catch (type arg) {
-    // ...
-}
+                try {
+                    // try block
+                    throw exp;
+                }
+                catch (type arg) {
+                    // ...
+                }
 
 
-//  ----  GPT  ----
+                //  ----  GPT  ----
 
-### General forms of `try`, `catch`, and `throw` in C++
+                ### General forms of `try`, `catch`, and `throw` in C++
 
-```cpp
-try {
-    // Code that may cause an exception
-}
-catch (type variable) {
-    // Code that handles the exception
-}
-```
+                ```cpp
+                try {
+                    // Code that may cause an exception
+                }
+                catch (type variable) {
+                    // Code that handles the exception
+                }
+                ```
 
-To generate an exception:
+                To generate an exception:
 
-```cpp
-throw value;
-```
+                ```cpp
+                throw value;
+                ```
 
-### How they work, in short:
+                ### How they work, in short:
 
-try --> Contains code that might cause an exception.
-throw --> Signals that an error/exception has occurred.
-catch --> Catches and handles the exception thrown by `throw`.
+                try --> Contains code that might cause an exception.
+                throw --> Signals that an error/exception has occurred.
+                catch --> Catches and handles the exception thrown by `throw`.
 
-### Example:
+                ### Example:
 
-```cpp
-try {
-    throw 10;
-}
-catch (int x) {
-    cout << "Exception: " << x;
-}
-```
+                ```cpp
+                try {
+                    throw 10;
+                }
+                catch (int x) {
+                    cout << "Exception: " << x;
+                }
+                ```
 
-Here, `throw 10` sends the value `10` to the matching `catch` block, which then handles it.
+                Here, `throw 10` sends the value `10` to the matching `catch` block, which then handles it.
+
+
+*/
+
 
 
 
