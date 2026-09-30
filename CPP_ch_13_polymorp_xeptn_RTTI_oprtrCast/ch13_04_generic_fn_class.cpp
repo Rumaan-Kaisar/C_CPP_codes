@@ -1381,3 +1381,26 @@ int main(){
 */
 
 
+
+
+/* Example 17: Write a generic function called gexp() that returns the value of 
+                one of its arguments raised to the power of the other. 
+*/
+
+#include <iostream>
+
+// Return a to the b.
+template <class X> X gexp (X a, X b){
+    X i, result =1;
+    for(i =0; i<b; i++) result *= a;
+    return result;
+}
+
+int main() {
+    std::cout << gexp(2, 3) << std::endl;
+    std::cout << gexp(10.0, 2.0);
+
+    return 0;
+}
+
+
