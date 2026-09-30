@@ -1024,7 +1024,7 @@ int main() {
 
 
 
-/* Example 4: Rework the stack class so that it can store pairs of different-type objects on the stack.
+/* Example 16: Rework the stack class so that it can store pairs of different-type objects on the stack.
                 (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
                 
                 Following template class demonstrates a generic stack that holds two values.
