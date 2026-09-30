@@ -387,19 +387,6 @@ int main(){
 
 
 
-/*    Example 4: Rework the stack class so that each stack entry
-    can store TWO values.
-*/
-
-
-
-
-
-
-
-
-
-
 
 /* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. */
 
