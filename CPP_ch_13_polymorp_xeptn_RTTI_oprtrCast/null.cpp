@@ -91,8 +91,11 @@
 
 
 
+// Exception Handling: goes to "ch13_05_exception_handling.cpp"
+/* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. 
+(rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
 
-/* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. */
+*/
 
 
 /*
@@ -194,260 +197,89 @@ return 0;
 
 
 
-// -----------------------    reworked version    ------------------------
+// --------    reworked    --------
+
+/* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
+                However, in this case, stack has been made into a template class (i.e a generic stack). 
+                Thus, it can be used to store any type of object. 
+                In this example, a character stack and a floating-point stack are created.
+*/
 
 #include <iostream>
 
 #define SIZE 10
 
-// --------  Create a generic stack class  --------
+// Create a generic stack class
 template <class StackType> class stack {
-        // OLD code: StackType stck[SIZE];
-        // NEW code: each stack position now holds 2 values.
-        StackType stck[SIZE][2];    // holds the stack (of 2 values)
+        StackType stck[SIZE];       // holds the stack
         int tos;                    // index of top of stack
     public:
         void init() { tos = 0; }    // initialize stack
-
-        // OLD code: void push(StackType ch);
-        // NEW code: push() receives TWO objects.
-        void push(StackType ob, StackType ob2);     // push objects on stack (notice 2 objects)
-
-        // OLD code: StackType pop();
-        // NEW code: second value is returned through reference 'ob2'.
-        StackType pop(StackType &ob2);              // pop object from stack (from ob2's location)
+        void push(StackType ch);    // push object on stack
+        StackType pop();            // pop object from stack
 };
 
 
-// --------  Push two objects (GnF)  --------
-/*  
-    OLD VERSION:
-
-        template <class StackType> void stack<StackType>::push(StackType ob)
-
-    NEW VERSION:
-
-        template <class StackType> void stack<StackType>::push(StackType ob, StackType ob2)
-    
-    The old push() accepted ONE object. Example:    s1.push('a');
-    The new push() accepts TWO objects. Example:    s1.push('a', 'b');
-
-    This means that ONE stack position now contains:    ['a', 'b']
-
-    Notice that both parameters have StackType:
-
-        stack<char>     both objects must be char.
-        stack<double>   then both objects must be double.
-*/
-template <class StackType> void stack <StackType>::push(StackType ob, StackType ob2) {
+// Push an object (GnF)
+template <class StackType> void stack <StackType>::push(StackType ob) {
     if(tos == SIZE) {
         std::cout << " Stack is full .\n";
         return;
     }
-    // OLD: stck[tos] = ob;
-    // NEW: store the two values in columns 0 and 1.
-    stck[tos][0] = ob;  // store the FIRST object of the pair.
-    stck[tos][1] = ob2; // store the SECOND object of the pair.
+    stck [tos] = ob;
     tos++;
 }
 
 
-// --------  Pop objects (GnF).  --------
-/*  
-    OLD VERSION:
-
-        template <class StackType> StackType stack<StackType>::pop()
-
-    NEW VERSION:
-
-        template <class StackType> StackType stack<StackType>::pop(StackType &ob2)
-
-    The old version returned ONE object.
-    This new version has TWO ways of returning the pair:
-
-        1. The FIRST object is returned normally.
-        2. The SECOND object is returned through 'ob2'.
-*/
-template <class StackType> StackType stack <StackType>::pop(StackType &ob2) {
-    if(tos == 0) {
+// Pop an object (GnF)
+template <class StackType> StackType stack <StackType>::pop() {
+    if(tos==0) {
         std::cout << " Stack is empty .\n";
         return 0;   // return null on empty stack
     }
     tos--;
-    // We first retrieve the SECOND object. Because ob2 is a REFERENCE, this changes the variable supplied by the caller.
-    ob2 = stck[tos][1];     // put the SECOND value into ob2. '&' means the caller's variable is changed directly.
-    return stck[tos][0];    // return the FIRST value from column 0.
+    return stck[tos];
 }
 
 
-int main(){
-    // --------  Demonstrate character stacks.  --------
+int main() {
+    // Demonstrate character stacks .
     stack <char> s1, s2;    // create two stacks
     int i;
-    char ch;    // it is needed because pop() now returns the second value through a reference parameter "s1.pop(ch);".
-    // The first value comes back through the return statement.
-    // The second value comes back through ch.
 
     // initialize the stacks
     s1.init();
     s2.init();
 
-    // TWO values are pushed as ONE stack entry. But in OLD version One value was pushed like "s1.push('a');"
-    s1.push('a', 'b');  // one stack entry now contains ('a', 'b').
-    s2.push('x', 'z');
+    s1.push('a');
+    s2.push('x');
+    s1.push('b');
+    s2.push('y');
+    s1.push('c');
+    s2.push('z');
 
-    s1.push('b', 'd');
-    s2.push('y', 'e');
+    for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop() << "\n";
+    for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop() << "\n";
 
-    s1.push('c', 'a');
-    s2.push('z', 'x');
-
-    /*
-        s1 now contains:
-
-            ['a', 'b']
-            ['b', 'd']
-            ['c', 'a']
-
-        s2 now contains:
-
-            ['x', 'z']
-            ['y', 'e']
-            ['z', 'x']
-    */
-
-    for(i=0; i<3; i++) std::cout << " Pop s1: " << s1.pop(ch) << ' ' << ch << '\n';
-    for(i=0; i<3; i++) std::cout << " Pop s2: " << s2.pop(ch) << ' ' << ch << '\n';
-
-    /*  --------------------------------------------------------
-        OLD VERSION:
-
-            s1.pop()    // returned one value.
-
-        NEW VERSION:
-
-            s1.pop(ch)  // returns TWO values.
-
-
-        since s1 contains:
-
-                ['a', 'b']
-                ['b', 'd']
-                ['c', 'a']
-
-            Because a stack is LIFO (Last In, First Out), then top entry is:    ['c', 'a']
-                Then:
-
-                    s1.pop(ch)
-
-                does:
-
-                    return 'c'
-                    ch = 'a'
-
-                Therefore:
-
-                    std::cout << s1.pop(ch) << ' ' << ch;
-
-                prints:
-
-                    c a
-
-                so the pairs come out in reverse order:
-
-                ['c', 'a']
-                ['b', 'd']
-                ['a', 'b']
-
-
-        And s2 contains:
-
-                ['x', 'z']
-                ['y', 'e']
-                ['z', 'x']
-                
-            Then the pairs also come out in reverse order:
-
-                ['z', 'x']
-                ['y', 'e']
-                ['x', 'z']
-    */
-
-    // --------  demonstrate double stacks  --------
+    // demonstrate double stacks
     stack <double> ds1, ds2;    // create two stacks
-    double d;                   // NEW: receives the second double from pop().
 
     // initialize the stacks
     ds1.init();
     ds2.init();
 
-    // TWO values are pushed as ONE stack entry.
-    // Each push now stores TWO doubles as one stack entry.
-    ds1.push(1.1, 2.0);
-    ds2.push(2.2, 3.0);
+    ds1.push(1.1);
+    ds2.push(2.2);
+    ds1.push(3.3);
+    ds2.push(4.4);
+    ds1.push(5.5);
+    ds2.push(6.6);
 
-    ds1.push(3.3, 4.0);
-    ds2.push(4.5, 5.0);
-
-    ds1.push(5.5, 6.0);
-    ds2.push(6.6, 7.0);
-
-    /*  ds1 contains:
-
-                [1.1, 2.0]
-                [3.3, 4.0]
-                [5.5, 6.0]
-
-            Since this is a stack, the last pair is removed first (LIFO):
-
-                [5.5, 6.0]
-
-            So:
-
-                ds1.pop(d)
-
-            gives:
-
-                return value = 5.5
-                d            = 6.0
-
-            Output order:
-
-                [5.5, 6.0]
-                [3.3, 4.0]
-                [1.1, 2.0]
-
-
-        Similarly ds2 contains:
-
-                [2.2, 3.0]
-                [4.5, 5.0]
-                [6.6, 7.0]
-
-            Pop order:
-
-                [6.6, 7.0]
-                [4.5, 5.0]
-                [2.2, 3.0]
-    */
-
-    for(i=0; i<3; i++) 
-        std::cout   << " Pop ds1: " 
-                    << ds1.pop(d) 
-                    << ' ' 
-                    << d 
-                    << '\n';
-                    
-    for(i=0; i<3; i++) 
-        std::cout   << " Pop ds2: " 
-                    << ds2.pop(d) 
-                    << ' ' 
-                    << d 
-                    << '\n';
+    for (i=0; i<3; i++) std::cout << " Pop ds1 : " << ds1.pop() << "\n";
+    for (i=0; i<3; i++) std::cout << " Pop ds2 : " << ds2.pop() << "\n";
 
     return 0;
 }
-
 
 
 
