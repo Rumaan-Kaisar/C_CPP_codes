@@ -496,7 +496,7 @@ exercises.
 
 
 
-/* Example 4: In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
+/* Example 4: In "ch12_11_custom_io_files.cpp", Example 1, a coord class that holds integer coordinates was
 created and demonstrated in a program. 
 
 Create a generic version of the coord class that
@@ -524,6 +524,80 @@ o3. show ();
 o4. show ();
 return 0;
 }
+
+
+
+
+
+/* "ch12_11_custom_io_files.cpp" Example 1: In the following program, the "coord" class overloads the << and >> operators. 
+                The program uses these operator functions to write data to both the "screen" and a "file". 
+
+                Class Setup: The coord class uses friend functions for input and output.
+
+                Saving: An ofstream object (out) uses << to save coordinates to a file.
+                Loading: An ifstream object (in) uses >> to read that data into new objects.
+
+                Displaying: 
+                    The same << operator works with "cout", 
+                    showing the code is reusable for both files and the screen.
+*/
+
+#include <iostream>
+#include <fstream>
+
+class coord {
+        int x, y;
+    public:
+        coord(int i, int j) { x = i; y = j; }
+        
+        // Friend functions for overloading operators
+        friend std::ostream &operator <<(std::ostream &stream, coord ob);
+        friend std::istream &operator >>(std::istream &stream, coord &ob);
+};
+
+
+// Overload << operator
+std::ostream &operator <<(std::ostream &stream, coord ob) {
+            stream << ob.x << ' ' << ob.y << '\n';
+            return stream;
+}
+
+// Overload >> operator
+std::istream &operator >>(std::istream &stream, coord &ob) {
+            stream >> ob.x >> ob.y;
+            return stream;
+;}
+
+
+int main() {
+    coord o1(1, 2), o2(3, 4);
+
+    // Writing to File
+    std::ofstream out("test");
+    if(!out) {
+        std::cout << "Cannot open output file.\n";
+        return 1; 
+    }
+    out << o1 << o2;    // Uses overloaded << to store values in a file
+    out.close();
+
+    // Reading from File
+    std::ifstream in("test");
+    if(!in) {
+        std::cout << " Cannot open input file .\n";
+        return 1;
+    }
+    coord o3(0, 0), o4(0, 0);  // Initialize objects where values will be stored.
+    in >> o3 >> o4;     // Uses overloaded >> to read from "in"
+
+    // Output the values to Screen
+    std::cout << o3 << o4;      // Uses overloaded << to print the values to screen
+    in.close ();
+
+    return 0;
+}
+
+
 
 
 
