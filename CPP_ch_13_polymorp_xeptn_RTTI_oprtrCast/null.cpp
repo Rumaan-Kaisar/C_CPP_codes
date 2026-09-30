@@ -474,8 +474,6 @@ approach than having new return null on failure. */
 Cumulative Skills Check
 
 
-/* 1. In Chapter 6, Section 6.7, Example 3, a safe array class was shown. On your own, convert
-it into a generic safe array. */
 
 /* 2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
 create a generic abs() function on your own that will return the absolute value of any
@@ -492,35 +490,16 @@ exercises.
 */
 
 
-/* Example 3: Write a generic function called gexp() that returns the value of 
-                one of its arguments raised to the power of the other. 
-*/
-
-#include <iostream>
-
-// Return a to the b.
-template <class X> X gexp (X a, X b){
-    X i, result =1;
-    for(i =0; i<b; i++) result *= a;
-    return result;
-}
-
-int main() {
-    std::cout << gexp(2, 3) << std::endl;
-    std::cout << gexp(10.0, 2.0);
-
-    return 0;
-}
 
 
 
 
 
 
+/* Example 4: In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
+created and demonstrated in a program. 
 
-
-/* 4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
-created and demonstrated in a program. Create a generic version of the coord class that
+Create a generic version of the coord class that
 can hold coordinates of any type. Demonstrate your solution in a program. */
 
 
