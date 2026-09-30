@@ -392,22 +392,6 @@ int main(){
 */
 
 
-The **essential changes** are therefore just:
-
-```cpp
-StackType stck[SIZE][2];       // instead of [SIZE]
-
-void push(StackType ob,
-          StackType ob2);      // instead of one parameter
-
-stck[tos][0] = ob;
-stck[tos][1] = ob2;             // store the pair
-
-StackType pop(StackType &ob2); // second value via reference
-
-ob2 = stck[tos][1];             // get second value
-return stck[tos][0];            // get first value
-```
 
 That's really the whole modification. The rest of the program is mostly just changing calls from `push(x)` to `push(x, y)` and from `pop()` to `pop(variable)`.
 
