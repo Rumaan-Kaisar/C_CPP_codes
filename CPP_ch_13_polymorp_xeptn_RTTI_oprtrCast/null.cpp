@@ -395,14 +395,6 @@ int main(){
 int main() {
 
 
-
-    ds1.push(1.1, 2.0);
-    ds2.push(2.2, 3.0);
-    ds1.push(3.3, 4.0);
-    ds2.push(4.5, 5.0);
-    ds1.push(5.5, 6.0);
-    ds2.push(6.6, 7.0);
-
     // First value is returned; second value goes into d.
     for(i=0; i<3; i++)
         std::cout << "Pop ds1: " << ds1.pop(d) << ' ' << d << '\n';
