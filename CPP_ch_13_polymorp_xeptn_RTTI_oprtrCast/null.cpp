@@ -537,9 +537,9 @@ ds2 . push (4.5) ;
 ds1 . push (5.5) ;
 ds2 . push (6.6) ;
 for (i =0; i <3; i ++)
-cout << " Pop ds1 : " << ds1 .pop () << ’\n’;
+std::cout << " Pop ds1 : " << ds1 .pop () << ’\n’;
 for (i =0; i <3; i ++)
-cout << " Pop ds2 : " << ds2 .pop () << ’\n’;
+std::cout << " Pop ds2 : " << ds2 .pop () << ’\n’;
 
 return 0;
 }
@@ -547,9 +547,10 @@ return 0;
 
 
 
-/* Example 7: Check your compiler’s documentation. See whether it supports the terminate() and
-unexpected() functions. Generally, these functions can be configured to call any function
-you choose. If this is the case with your compiler, try creating your own set of customized
+/* Example 7: Check your compiler’s documentation. 
+See whether it supports the terminate() and unexpected() functions. 
+Generally, these functions can be configured to call any function you choose. 
+If this is the case with your compiler, try creating your own set of customized
 termination functions that handle otherwise unhandled exceptions. */
 
 
