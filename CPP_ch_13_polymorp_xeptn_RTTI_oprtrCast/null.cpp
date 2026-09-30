@@ -392,20 +392,6 @@ int main(){
 */
 
 
-int main() {
-
-
-    // First value is returned; second value goes into d.
-    for(i=0; i<3; i++)
-        std::cout << "Pop ds1: " << ds1.pop(d) << ' ' << d << '\n';
-
-    for(i=0; i<3; i++)
-        std::cout << "Pop ds2: " << ds2.pop(d) << ' ' << d << '\n';
-
-    return 0;
-}
-```
-
 The **essential changes** are therefore just:
 
 ```cpp
