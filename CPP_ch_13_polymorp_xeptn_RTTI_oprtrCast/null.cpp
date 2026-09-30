@@ -489,14 +489,65 @@ Before proceeding, you should be able to correctly answer the following question
 exercises.
 /* 1. What is a generic function and what is its general form?
 2. What is a generic class and what is its general form?
+*/
 
-3. Write a generic function called gexp() that returns the value of one of its arguments
-raised to the power of the other. */
+
+/* Example 3: Write a generic function called gexp() that returns the value of 
+                one of its arguments raised to the power of the other. 
+*/
+
+#include <iostream>
+
+// Return a to the b.
+template <class X> X gexp (X a, X b){
+    X i, result =1;
+    for(i =0; i<b; i++) result *= a;
+    return result;
+}
+
+int main() {
+    std::cout << gexp(2, 3) << std::endl;
+    std::cout << gexp(10.0, 2.0);
+
+    return 0;
+}
+
+
+
+
+
+
 
 
 /* 4. In Chapter 9, Section 9.7, Example 1, a coord class that holds integer coordinates was
 created and demonstrated in a program. Create a generic version of the coord class that
 can hold coordinates of any type. Demonstrate your solution in a program. */
+
+
+#include <iostream>
+#include <fstream>
+
+template < class CoordType > class coord
+{
+CoordType x, y;
+public :
+coord ( CoordType i, CoordType j) { x = i; y = j; }
+void show () { cout << x << ", " << y << endl ; }
+};
+
+int main ()
+{
+coord <int >o1 (1, 2) , o2 (3, 4);
+o1. show ();
+o2. show ();
+coord < double > o3 (0.0 , 0.23) , o4 (10.19 , 3.098) ;
+o3. show ();
+o4. show ();
+return 0;
+}
+
+
+
 
 
 5. Briefly explain how try, catch, and throw work together to provide C++ exception
@@ -574,44 +625,6 @@ template <class Ttype> class class_name {
 };
 
 
-
-3. 
-
-#include <iostream>
-
-// Return a to the b.
-template <class X> X gexp (X a, X b){
-    X i, result =1;
-    for (i =0; i<b; i++) result *= a;
-    return result;
-}
-
-int main() {
-cout << gexp(2, 3) << endl;
-cout << gexp(10.0, 2.0);
-return 0;
-}
-
-#include <iostream>
-#include <fstream>
-
-template < class CoordType > class coord
-{
-CoordType x, y;
-public :
-coord ( CoordType i, CoordType j) { x = i; y = j; }
-void show () { cout << x << ", " << y << endl ; }
-};
-int main ()
-{
-coord <int >o1 (1, 2) , o2 (3, 4);
-o1. show ();
-o2. show ();
-coord < double > o3 (0.0 , 0.23) , o4 (10.19 , 3.098) ;
-o3. show ();
-o4. show ();
-return 0;
-}
 
 
 /* 5. try, catch, and throw work together like this: Put all statements that you wish to
