@@ -35,7 +35,7 @@
 /* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. 
 
             ans:
-                The general forms of try, catch, and throw are shown here:
+                The general forms of "try", "catch", and "throw" are shown here:
 
                         try {
                             // try block: Code that may cause an exception
@@ -46,22 +46,16 @@
                         }
 
 
-                //  ----  GPT  ----
-
-                ### General forms of `try`, `catch`, and `throw` in C++
-
-
                 To generate an exception:
 
-                ```cpp
-                throw value;
-                ```
+                        throw value;
+                
 
-                ### How they work, in short:
+                How they work:
+                    try     -->     Contains code that might cause an exception.
+                    throw   -->     Signals that an error/exception has occurred.
+                    catch   -->     Catches and handles the exception thrown by `throw`.
 
-                try --> Contains code that might cause an exception.
-                throw --> Signals that an error/exception has occurred.
-                catch --> Catches and handles the exception thrown by `throw`.
 
                 ### Example:
 
