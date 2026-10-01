@@ -14,7 +14,7 @@
 
 
 
-// ---- rev[18-Sept-2026] ----
+// ---- rev[01-Oct-2026] ----
 
 
 
@@ -23,54 +23,6 @@
 
 
 // ----------------    rev[21-Sept-2026]: add below in compact form to the function explanation    ----------------
-
-
-
-// ========  GPT compasct  ========
-
-
-
-
-
-/* Example 5: Show the general forms of try, catch, and throw. 
-                Also describe their operation in short words.
-
-            ans:
-                The general forms of "try", "catch", and "throw" are shown here:
-
-                        try {
-                            // try block: Code that may cause an exception
-                            throw exp;
-                        }
-                        catch (type arg) {
-                            // Code that handles the exception
-                        }
-
-
-                To generate an exception:
-
-                        throw value;
-                
-
-                How they work:
-                    try     -->     Contains code that might cause an exception.
-                    throw   -->     Signals that an error/exception has occurred.
-                    catch   -->     Catches and handles the exception thrown by `throw`.
-
-
-                Example:
-                        try {
-                            throw 10;
-                        }
-                        catch (int x) {
-                            cout << "Exception: " << x;
-                        }
-
-                    Here, "throw 10" sends the value "10" to the matching "catch" block, which then handles it.
-*/
-
-
-
 
 
 // Exception Handling: goes to "ch13_05_exception_handling.cpp"
