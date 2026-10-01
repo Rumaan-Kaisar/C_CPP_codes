@@ -32,7 +32,8 @@
 
 
 
-/* Example 5: Show the general forms of try, catch, and throw. In short words, describe their operation. 
+/* Example 5: Show the general forms of try, catch, and throw. 
+                Also describe their operation in short words.
 
             ans:
                 The general forms of "try", "catch", and "throw" are shown here:
@@ -57,20 +58,15 @@
                     catch   -->     Catches and handles the exception thrown by `throw`.
 
 
-                ### Example:
+                Example:
+                        try {
+                            throw 10;
+                        }
+                        catch (int x) {
+                            cout << "Exception: " << x;
+                        }
 
-                ```cpp
-                try {
-                    throw 10;
-                }
-                catch (int x) {
-                    cout << "Exception: " << x;
-                }
-                ```
-
-                Here, `throw 10` sends the value `10` to the matching `catch` block, which then handles it.
-
-
+                    Here, "throw 10" sends the value "10" to the matching "catch" block, which then handles it.
 */
 
 
