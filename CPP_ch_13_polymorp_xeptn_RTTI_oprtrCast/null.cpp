@@ -55,7 +55,6 @@ template <class StackType> void stack <StackType>::push(StackType ob) {
         return;
     }
     */
-    // changed to 
     // include exception handling
     try {
         if(tos == SIZE) throw SIZE;
@@ -64,32 +63,40 @@ template <class StackType> void stack <StackType>::push(StackType ob) {
         std::cout << " Stack is full .\n";
         return;
     }
-    
+
     stck [tos] = ob;
     tos++;
 }
 
 
 
-
-// Pop objects .
-template <class StackType >
-StackType stack < StackType >:: pop ()
-{
+// Pop an object (GnF)
+template <class StackType> StackType stack <StackType>::pop() {
+    /* OLD:
+    if(tos==0) {
+        std::cout << " Stack is empty .\n";
+        return 0;   // return null on empty stack
+    }
+    */
     // include exception handling
-try
-{
-if( tos ==0)
-throw 0;
+    try {
+        if(tos ==0) throw 0;
+    }
+    catch(int) {
+        std::cout << " Stack is empty .\n";
+        return 0; // return null on empty stack
+    }
+    
+    tos--;
+    return stck[tos];
 }
 
-catch ( int )
+
+
 {
-cout << " Stack is empty .\n";
-return 0; // return null on empty stack
-}
-tos --;
-return stck [ tos ];
+
+
+
 }
 
 
@@ -150,16 +157,6 @@ return 0;
 
 
 
-
-// Pop an object (GnF)
-template <class StackType> StackType stack <StackType>::pop() {
-    if(tos==0) {
-        std::cout << " Stack is empty .\n";
-        return 0;   // return null on empty stack
-    }
-    tos--;
-    return stck[tos];
-}
 
 
 int main() {
