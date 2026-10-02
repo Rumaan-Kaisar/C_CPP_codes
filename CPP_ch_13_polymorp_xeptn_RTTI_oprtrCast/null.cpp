@@ -56,24 +56,20 @@ template <class StackType> void stack <StackType>::push(StackType ob) {
     }
     */
     // changed to 
-     
-    stck [tos] = ob;
-    tos++;
-}
-
-// Push objects .
-
     // include exception handling
     try {
         if(tos == SIZE) throw SIZE;
     }
-catch ( int )
-{
-cout << " Stack is full .\n";
-return ;
+    catch(int){
+        std::cout << " Stack is full .\n";
+        return;
+    }
+    
+    stck [tos] = ob;
+    tos++;
 }
 
-}
+
 
 
 // Pop objects .
