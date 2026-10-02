@@ -36,33 +36,43 @@
 #define SIZE 10
 
 // Create a generic stack class
-template <class StackType > class stack {
-        StackType stck[SIZE ];  // holds the stack
-        int tos;                // index of top of stack
+template <class StackType> class stack {
+        StackType stck[SIZE];       // holds the stack
+        int tos;                    // index of top of stack
     public:
-        void init(){ 
-            tos = 0; 
-        }
-        void push(StackType ob);
-        StackType pop();
+        void init() { tos = 0; }    // initialize stack
+        void push(StackType ch);    // push object on stack
+        StackType pop();            // pop object from stack
 };
 
 
-// Push objects .
-template <class StackType> void stack <StackType>:: push(StackType ob) {
-    // include exception handling
-try
-{
-if( tos == SIZE )
-throw SIZE ;
+// Push an object (GnF)
+template <class StackType> void stack <StackType>::push(StackType ob) {
+    
+    /* OLD:
+    if(tos == SIZE) {
+        std::cout << " Stack is full .\n";
+        return;
+    }
+    */
+    // changed to 
+     
+    stck [tos] = ob;
+    tos++;
 }
+
+// Push objects .
+
+    // include exception handling
+    try {
+        if(tos == SIZE) throw SIZE;
+    }
 catch ( int )
 {
 cout << " Stack is full .\n";
 return ;
 }
-stck [ tos ] = ob;
-tos ++;
+
 }
 
 
@@ -140,26 +150,9 @@ return 0;
 
 #define SIZE 10
 
-// Create a generic stack class
-template <class StackType> class stack {
-        StackType stck[SIZE];       // holds the stack
-        int tos;                    // index of top of stack
-    public:
-        void init() { tos = 0; }    // initialize stack
-        void push(StackType ch);    // push object on stack
-        StackType pop();            // pop object from stack
-};
 
 
-// Push an object (GnF)
-template <class StackType> void stack <StackType>::push(StackType ob) {
-    if(tos == SIZE) {
-        std::cout << " Stack is full .\n";
-        return;
-    }
-    stck [tos] = ob;
-    tos++;
-}
+
 
 
 // Pop an object (GnF)
