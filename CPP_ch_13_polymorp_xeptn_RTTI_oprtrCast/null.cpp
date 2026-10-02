@@ -26,16 +26,11 @@
 
 
 // Exception Handling: goes to "ch13_05_exception_handling.cpp"
-/* Example 6: Again, rework the stack class so that stack over-and underflows are handled as exceptions. 
-(rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
 
+/* Example 6: Rework the stack class so that stack "over-and underflows" are handled as "exceptions". 
+                (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
 */
 
-
-/*
-This function demonstrates a generic stack
-that includes exception handling .
-*/
 #include <iostream>
 
 #define SIZE 10
@@ -55,6 +50,7 @@ template <class StackType > class stack {
 
 // Push objects .
 template <class StackType> void stack <StackType>:: push(StackType ob) {
+    // include exception handling
 try
 {
 if( tos == SIZE )
@@ -74,6 +70,7 @@ tos ++;
 template <class StackType >
 StackType stack < StackType >:: pop ()
 {
+    // include exception handling
 try
 {
 if( tos ==0)
