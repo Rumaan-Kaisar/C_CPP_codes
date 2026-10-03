@@ -102,13 +102,9 @@ template <class StackType> StackType stack <StackType>::pop() {
 
 int main ()
 {
-// Demonstrate character stacks .
-stack <char > s1 , s2; // create two stacks
-int i;
-char ch;
-// initialize the stacks
-s1. init ();
-s2. init ();
+
+
+
 s1. push (’a’);
 s2. push (’x’);
 s1. push (’b’);
