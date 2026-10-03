@@ -103,18 +103,6 @@ template <class StackType> StackType stack <StackType>::pop() {
 int main ()
 {
 
-// demonstrate double stacks
-stack < double > ds1 , ds2 ; // create two stacks
-double d;
-// initialize the stacks
-ds1 . init ();
-ds2 . init ();
-ds1 . push (1.1) ;
-ds2 . push (2.2) ;
-ds1 . push (3.3) ;
-ds2 . push (4.5) ;
-ds1 . push (5.5) ;
-ds2 . push (6.6) ;
 for (i =0; i <3; i ++)
 std::cout << " Pop ds1 : " << ds1 .pop () << ’\n’;
 for (i =0; i <3; i ++)
@@ -176,8 +164,8 @@ int main() {
     ds1.push(5.5);
     ds2.push(6.6);
 
-    for (i=0; i<3; i++) std::cout << " Pop ds1 : " << ds1.pop() << "\n";
-    for (i=0; i<3; i++) std::cout << " Pop ds2 : " << ds2.pop() << "\n";
+    for(i=0; i<3; i++) std::cout << " Pop ds1 : " << ds1.pop() << "\n";
+    for(i=0; i<3; i++) std::cout << " Pop ds2 : " << ds2.pop() << "\n";
 
     return 0;
 }
