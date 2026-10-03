@@ -27,8 +27,14 @@
 
 // Exception Handling: goes to "ch13_05_exception_handling.cpp"
 
-/* Example 6: Rework the stack class so that stack "over-and underflows" are handled as "exceptions". 
-                (rework version of Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp") 
+
+
+/* Example 10: Following is a rewoked version of the "stack" class 
+                (Example 10 of 'ch13_04_generic_fn_class.cpp', introduced in "ch10_01_1_class_intro.cpp")
+                
+                However, in this case, 
+                    stack has been made into a template class (i.e a generic stack).
+                    stack "over-and underflows" are handled as "exceptions". 
 */
 
 #include <iostream>
@@ -90,45 +96,6 @@ template <class StackType> StackType stack <StackType>::pop() {
     tos--;
     return stck[tos];
 }
-
-
-
-{
-
-
-
-}
-
-
-int main ()
-{
-
-for (i =0; i <3; i ++)
-std::cout << " Pop ds1 : " << ds1 .pop () << ’\n’;
-for (i =0; i <3; i ++)
-std::cout << " Pop ds2 : " << ds2 .pop () << ’\n’;
-
-return 0;
-}
-
-
-
-// --------    reworked    --------
-
-/* Example 10: Following is a rewoked version of the "stack" class introduced in "ch10_01_1_class_intro.cpp".  
-                However, in this case, stack has been made into a template class (i.e a generic stack). 
-                Thus, it can be used to store any type of object. 
-                In this example, a character stack and a floating-point stack are created.
-*/
-
-#include <iostream>
-
-#define SIZE 10
-
-
-
-
-
 
 
 int main() {
