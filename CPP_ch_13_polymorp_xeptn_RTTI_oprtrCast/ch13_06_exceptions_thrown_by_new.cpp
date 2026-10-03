@@ -196,3 +196,13 @@ int main() {
 
 
 
+
+/* Example 6: Give a reason why having "new" generate an exception is a
+                better approach than having "new" return null on failure. 
+
+            ans:
+                Having "new" generate an exception is better because it clearly signals that "object creation failed", 
+                while returning "null" using "new" can cause hidden errors later when the program tries to use the object.
+*/
+
+
