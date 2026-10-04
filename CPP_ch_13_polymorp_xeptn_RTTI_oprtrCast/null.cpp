@@ -61,12 +61,9 @@ exercises.
 
 
 
-/* Example 4: In "ch12_11_custom_io_files.cpp", Example 1, a coord class that holds integer coordinates was
-created and demonstrated in a program. 
-
-Create a generic version of the coord class that
-can hold coordinates of any type. Demonstrate your solution in a program. */
-
+/* Example 4: In "ch12_11_custom_io_files.cpp", Example 1, a coord class that holds integer coordinates was created.
+                Now create a generic version of the coord class that can hold coordinates of any type.
+*/
 
 #include <iostream>
 #include <fstream>
