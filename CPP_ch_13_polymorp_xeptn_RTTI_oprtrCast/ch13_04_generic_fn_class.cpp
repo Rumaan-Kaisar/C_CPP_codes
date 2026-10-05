@@ -1390,7 +1390,7 @@ int main(){
 #include <iostream>
 
 // Return a to the b.
-template <class X> X gexp (X a, X b){
+template <class X> X gexp(X a, X b){
     X i, result =1;
     for(i =0; i<b; i++) result *= a;
     return result;
@@ -1402,5 +1402,39 @@ int main() {
 
     return 0;
 }
+
+
+
+
+/* Example 18: In "ch12_11_custom_io_files.cpp", Example 1, a coord class that holds integer coordinates was created.
+                Now create a generic version of the coord class that can hold coordinates of any type.
+                (no need to use File I/O, just use a simple show() to display coordinates)
+*/
+
+#include <iostream>
+#include <fstream>
+
+
+template <class CoordType> class coord {
+        CoordType x, y;
+    public:
+        coord(CoordType i, CoordType j) { x = i; y = j; }
+        void show() { std::cout << x << ", " << y << std::endl; }
+};
+
+
+int main(){
+    // Generic-Class object Instantiatiated using "class_name <type> ob1, ob2;" form
+    coord <int> o1(1, 2), o2(3, 4); 
+    o1.show();
+    o2.show();
+
+    coord <double> o3(0.0, 0.23), o4(10.19, 3.098);
+    o3.show();
+    o4.show();
+
+    return 0;
+}
+
 
 
