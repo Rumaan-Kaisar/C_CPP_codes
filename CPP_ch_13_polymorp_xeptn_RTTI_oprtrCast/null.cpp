@@ -14,37 +14,6 @@
 
 
 
-// ---- rev[01-Oct-2026] ----
-
-
-
-
-
-
-
-// ----------------    rev[21-Sept-2026]: add below in compact form to the function explanation    ----------------
-
-
-// Exception Handling: goes to "ch13_05_exception_handling.cpp"
-
-
-
-
-
-
-
-
-
-
-Cumulative Skills Check
-
-
-
-/* 2. In Chapter 1, overloaded versions of the abs() function were created. As a better solution,
-create a generic abs() function on your own that will return the absolute value of any
-numeric object. */
-
-
 
 
 Review Skills Check
