@@ -25,9 +25,23 @@ exercises.
 
 
 
+Explain shortly how try, catch, and throw work together to provide C++ exception handling.
+
+try, catch, and throw work together like this:
+
+    try     -->     Put the code that might cause an error inside try.
+    throw   -->     If an error happens, send/raise the error using throw.
+    catch   -->     Catches the error and handles it so the program doesn't crash.
 
 
 
+Think of it like this:
+    try = “Try this code.”
+    throw = “Something went wrong! Send the error.”
+    catch = “I caught the error; now I'll handle it.”
+
+So the basic flow is:
+    try  -->  error occurs  -->  throw  -->  catch handles it.
 
 
 
@@ -35,6 +49,9 @@ exercises.
 5. Briefly explain how try, catch, and throw work together to provide C++ exception
 handling.
 
+try, catch, and throw work together like this: Put all statements that you wish to
+monitor for exceptions within a try block, if an exception occurs, throw that exception
+using throw and handle it with a corresponding catch statement.
 
 6. Can throw be used if execution has not passed through a try block?
 
@@ -92,9 +109,7 @@ Here’s a simpler version:
 
 
 
-/* 5. try, catch, and throw work together like this: Put all statements that you wish to
-monitor for exceptions within a try block, if an exception occurs, throw that exception
-using throw and handle it with a corresponding catch statement. */
+/* 5.  */
 
 
 6. No.
