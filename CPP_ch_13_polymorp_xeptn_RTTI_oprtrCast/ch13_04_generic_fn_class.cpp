@@ -1438,3 +1438,29 @@ int main(){
 
 
 
+
+/* Example 19:   What are generic function and generic class? 
+                Specify their general forms.
+
+            ans:
+                A generic function defines a "general set of operations" which then applied to different data-types.
+                It is implemented with the keyword "template".
+
+                    Its general form is:
+
+                            template <class Ttype> ret_type func_name(para_list) {
+                                // ...
+                            }
+
+
+                On the other hand a generic class defines all operations that relate to that class, 
+                but the actual data is specified as a parameter when an object of that class is created. 
+
+                    Its general form is:
+
+                            template <class Ttype> class class_name {
+                                // ...
+                            };
+*/
+
+
