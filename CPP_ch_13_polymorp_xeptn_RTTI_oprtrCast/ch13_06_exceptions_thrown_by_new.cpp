@@ -206,3 +206,23 @@ int main() {
 */
 
 
+
+
+/* Example 7: Explain shortly how try, catch, and throw work together to provide C++ exception handling.
+
+                try, catch, and throw work together like this:
+
+                    try     -->     Put the code that might cause an error inside try.
+                    throw   -->     If an error happens, send/raise the error using throw.
+                    catch   -->     Catches the error and handles it so the program doesn't crash.
+
+                Think of it like this:
+                    try = “Try this code.”
+                    throw = “Something went wrong! Send the error.”
+                    catch = “I caught the error; now I'll handle it.”
+
+                So the basic flow is:
+                    try  -->  error occurs  -->  throw  -->  catch handles it.
+*/
+
+
