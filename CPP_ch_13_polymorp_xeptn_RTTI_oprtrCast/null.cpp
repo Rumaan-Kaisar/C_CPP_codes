@@ -23,13 +23,7 @@ exercises.
 
 
 
-/* 7. If new throws an exception when an allocation error occurs, you can be sure that the
-error will be handled one way or another-even if only by abnormal program termination.
-In contrast, an allocation failure that is reported by new, a return of a null pointer
-can be overlooked if you forget to check for this possibility. The trouble is that when
-your program attempts to use the null pointer, it might work for a while, then behave
-erratically, and finally crash in unpredictable (and unduplicatable ) ways. This is very
-difficult type of bug to diagnose. 
+/* 
 
 
 Here’s a simpler version:
@@ -38,9 +32,12 @@ If "new" throws an exception when memory allocation fails,
     you can be sure the error will be handled somehow—even if the program simply terminates.
 
 On the other hand, if "new" reports an allocation failure by returning a "null pointer", you might forget to check it. 
-    If your program then uses that null pointer, it may behave strangely, work for a while, and eventually crash in unpredictable ways.
->
-> **Such bugs are very difficult to find and diagnose.**
+    If your program then uses that "null pointer", it may behave strangely, 
+    it may work for a while, and eventually crash in unpredictable ways.
+
+    Such bugs are very difficult to find and diagnose.
+
+
 
 ### In very simple terms:
 
