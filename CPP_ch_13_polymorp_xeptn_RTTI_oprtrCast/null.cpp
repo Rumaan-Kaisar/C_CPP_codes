@@ -23,47 +23,6 @@ exercises.
 
 
 
-
-
-/* Example 1:   a). Can throw be used if execution has not passed through a try block?
-                b). What purpose do terminate() and unexpected() serve?
-                c). What form of catch will handle all types of exceptions?
-
-            ans: 
-                a). No. "throw" cannot be used.
-
-                b). terminate() is called when an exception is thrown for which there is "no corresponding catch statement". 
-                    unexpected() is called when an attempt is made to throw an exception out of a function 
-                        that is "not specified" in the function's "throw" clause.
-
-                c). To handle all kind of exceptions use ellipsis ". . ." in the following form of "catch"
-
-                        catch(...){  
-                            // process all exceptions
-                        }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 7. If new throws an exception when an allocation error occurs, you can be sure that the
 error will be handled one way or another-even if only by abnormal program termination.
 In contrast, an allocation failure that is reported by new, a return of a null pointer
