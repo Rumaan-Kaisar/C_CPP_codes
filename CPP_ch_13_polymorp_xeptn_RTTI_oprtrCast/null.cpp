@@ -25,16 +25,21 @@ exercises.
 
 
 
+/* Example 1:   a). Can throw be used if execution has not passed through a try block?
+                b). What purpose do terminate() and unexpected() serve?
+                c). What form of catch will handle all types of exceptions?
 
-6. Can throw be used if execution has not passed through a try block?
+            ans: 
+                a). No. "throw" cannot be used.
 
-7. What purpose do terminate() and unexpected() serve?
+                b). terminate() is called when an exception is thrown for which there is "no corresponding catch statement". 
+                    unexpected() is called when an attempt is made to throw an exception out of a function 
+                        that is "not specified" in the function's "throw" clause.
 
-8. What form of catch will handle all types of exceptions?
+*/
 
 
-
-
+8. catch(...).
 
 
 
@@ -84,13 +89,3 @@ Here’s a simpler version:
 
 /* 5.  */
 
-
-6. No.
-
-
-/* 7. terminate() is called when an exception is thrown for which there is no corresponding
-catch statement. unexpected() is called when an attempt is made to throw an exception
-out of a function that is not specified in the function’s throw clause. */
-
-
-8. catch(...).
