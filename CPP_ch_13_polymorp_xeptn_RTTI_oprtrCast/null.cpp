@@ -36,10 +36,14 @@ exercises.
                     unexpected() is called when an attempt is made to throw an exception out of a function 
                         that is "not specified" in the function's "throw" clause.
 
+c). To handle all kind of exceptions use ellipsis ". . ." in the following form of "catch"
+
+catch(...){  
+                // process all exceptions   
+            }
 */
 
 
-8. catch(...).
 
 
 
@@ -48,7 +52,8 @@ exercises.
 
 
 
-MASTERY SKILLS CHECK:
+
+
 
 
 
