@@ -927,3 +927,23 @@ int main() {
 }
 
 
+
+
+/* Example 15:  a). Can throw be used if execution has not passed through a try block?
+                b). What purpose do terminate() and unexpected() serve?
+                c). What form of catch will handle all types of exceptions?
+
+            ans: 
+                a). No. "throw" cannot be used.
+
+                b). terminate() is called when an exception is thrown for which there is "no corresponding catch statement". 
+                    unexpected() is called when an attempt is made to throw an exception out of a function 
+                        that is "not specified" in the function's "throw" clause.
+
+                c). To handle all kind of exceptions use ellipsis ". . ." in the following form of "catch"
+
+                        catch(...){  
+                            // process all exceptions
+                        }
+*/
+
