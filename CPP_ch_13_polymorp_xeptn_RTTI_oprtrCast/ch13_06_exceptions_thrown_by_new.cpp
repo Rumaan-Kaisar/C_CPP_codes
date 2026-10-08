@@ -203,6 +203,16 @@ int main() {
             ans:
                 Having "new" generate an exception is better because it clearly signals that "object creation failed", 
                 while returning "null" using "new" can cause hidden errors later when the program tries to use the object.
+
+
+                If "new" throws an exception when memory allocation fails, 
+                    you can be sure the error will be handled somehow—even if the program simply terminates.
+                
+                On the other hand, if "new" reports an allocation failure by returning a "null pointer", you might forget to check it. 
+                    If your program then uses that "null pointer", it may behave strangely, 
+                    it may work for a while, and eventually crash in unpredictable ways.
+                
+                    Such bugs are very difficult to find and diagnose.
 */
 
 
