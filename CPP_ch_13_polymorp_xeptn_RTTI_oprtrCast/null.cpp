@@ -34,9 +34,11 @@ difficult type of bug to diagnose.
 
 Here’s a simpler version:
 
-> If `new` throws an exception when memory allocation fails, you can be sure the error will be handled somehow—even if the program simply terminates.
->
-> On the other hand, if `new` reports an allocation failure by returning a **null pointer**, you might forget to check it. If your program then uses that null pointer, it may behave strangely, work for a while, and eventually crash in unpredictable ways.
+If "new" throws an exception when memory allocation fails, 
+    you can be sure the error will be handled somehow—even if the program simply terminates.
+
+On the other hand, if "new" reports an allocation failure by returning a "null pointer", you might forget to check it. 
+    If your program then uses that null pointer, it may behave strangely, work for a while, and eventually crash in unpredictable ways.
 >
 > **Such bugs are very difficult to find and diagnose.**
 
