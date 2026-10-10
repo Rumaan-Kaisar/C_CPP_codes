@@ -50,10 +50,10 @@ int main(){ int i;
 BaseClass *p, baseob;
 Derived1 ob1;
 Derived2 ob2;       
-    /* First, display type name of a built -in type. */
+    // First, display type name of a built -in type.
 cout << " Typeid of i is " <<  typeid (i). name () << endl ;
 
-    /* Demonstrate typeid with polymorphic types. */
+    // Demonstrate typeid with polymorphic types.
 p = &baseob ;
   cout << "p is pointing to an object of type" << typeid(*p).name() << endl;
 p = &ob1;
@@ -71,14 +71,22 @@ p is pointing to an object of type class Derived1
 p is pointing to an object of type class Derived2
    when typeid is applied to a base pointer of a polymorphic type, the type of object pointed to will be determined at run time, as the output produced by the program shows.
    Example 2 (When objects are passed to functions by reference): In the following program, the function WhatType() declares a reference parameter to objects of type BaseClass. This means that WhatType() can be passed references to objects of type BaseClass or any class derived from BaseClass. When the typeid operator is applied to this parameter, it returns the actual type of the object being passed.
-class BaseClass {   
-    virtual void f(){  }      /* BaseClass polymorphic */ 
-             /* ... */  };
 
-class Derived1 : public BaseClass{ /* ... */  };
-class Derived2 : public BaseClass{ /* ... */  };
+class BaseClass {
+    virtual void f(){  }      // BaseClass polymorphic
+    // ...
+};
 
-/* Demonstrate typeid with a reference parameter.*/
+class Derived1 : public BaseClass{
+    // ...
+};
+class Derived2 : public BaseClass{
+    // ...
+};
+
+
+// Demonstrate typeid with a reference parameter.
+
 void WhatType( BaseClass &ob){
          cout << "ob is referencing an object of type " << typeid(ob).name() << endl ; }    
 int main(){ BaseClass baseob ;
@@ -134,15 +142,21 @@ virtual T get_val () { return x; }
 public : 
 Square(T i) : Num <T>(i){ }
 T get_val(){ return (this -> x)*(this ->x);  
-/* Edited: main book 'return x*x;' */   }
+
+// Edited: main book 'return x*x;'
+}
 };
     template <class T> class Sqr_root : public Num <T> { 
 public : 
 Sqr_root(T i) : Num <T>(i){ }
 T get_val(){ return sqrt((double) this -> x); 
-/* Edited: main book sqrt( (double) x);' */     }  
+
+// Edited: main book sqrt( (double) x);'
+}
 };
-/* A Random selection factory for objects derived from Num : for run-time selection.*/ 
+
+// A Random selection factory for objects derived from Num : for run-time selection.
+
 Num <double> *generator(){ 
 switch( rand() % 2){    
 case 0: return new Square <double> ( rand() % 100) ;
@@ -166,7 +180,7 @@ cout << "\n\n";
 
 cout << "Now , generate some Objects .\n";
 for (i=0; i <10; i++){
-p1 = generator();       /* get next object */ 
+p1 = generator();       // get next object
 if(typeid(*p1) == typeid(Square <double>)) cout << "Square object :";
 if(typeid (*p1) == typeid(Sqr_root <double>)) cout << "Sqr_root object:";
 cout << "Value is:" << p1 -> get_val();
@@ -207,6 +221,7 @@ void f(){ d = 0; }  };
 
 Note:   RTTI is not common in every program. However, when you are working with polymorphic types, it allows you to know what type of object is being operated upon in any given situation.
 
+*/
 
 
-*/  
+
