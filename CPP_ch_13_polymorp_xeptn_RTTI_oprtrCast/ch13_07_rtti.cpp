@@ -240,6 +240,7 @@ Note:   RTTI is not common in every program. However, when you are working with 
   - An object of any derived class.
 - RTTI helps determine the actual object type during program execution.
 
+
 2. C++ Polymorphism
 C++ implements polymorphism through:
 - Class hierarchies.
@@ -253,11 +254,9 @@ C++ implements polymorphism through:
 - Common syntax:
 typeid(object)
 
-
 - Returns a reference to a type_info object describing the type.
 - Another form accepts a type name:
 typeid(type_name)
-
 
 - Used to obtain type information for type comparisons.
 
@@ -269,6 +268,8 @@ operator!=()	Checks whether two types are different.
 before()	Checks the relative order of two types.
 name()	Returns a pointer to the type's name.
 - before() is used for type ordering; its result has no relationship to inheritance or class hierarchies.
+
+
 5. RTTI with Base-Class Pointers
 - The most important use of typeid is identifying the actual object type through a polymorphic base-class pointer.
 - If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
@@ -276,19 +277,24 @@ name()	Returns a pointer to the type's name.
 - Example:
 typeid(*ptr)
 
-
 - RTTI can also identify the actual type through a reference to a polymorphic object.
+
+
 6. Polymorphic vs. Non-Polymorphic Classes
 - Polymorphic class: typeid applied to a dereferenced base pointer or reference identifies the actual object's type.
 - Non-polymorphic class: typeid applied to a pointer or reference expression identifies the static type, not the actual derived-object type.
+
+
 7. bad_typeid Exception
 - typeid is often used with a dereferenced pointer.
 - If the pointer is null and the dereferenced expression is a polymorphic type, typeid throws a std::bad_typeid exception.
+
+
 8. Relationship Between RTTI and Casting
 - C++ casting operators provide safer, more controlled type conversions.
 - dynamic_cast is directly related to RTTI.
 - dynamic_cast can perform run-time type checking when converting pointers or references within a polymorphic class hierarchy.
 
-
-
 */
+
+
