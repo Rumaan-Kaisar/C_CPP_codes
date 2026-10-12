@@ -17,13 +17,35 @@
             pointers or references within a "polymorphic class hierarchy".
 
 
+
+
+    ----------------    RTTI (run-time type identification)    ----------------
+
+    RTTI is not found in "non-polymorphic languages" such as C. 
+        We dont need RTTI for C, because the type of each object is known at "compile-time"
+        (i.e., when the program is written). 
+
+
+    In "polymorphic languages" such as C++, there can be situations in which-
+        the type of an object is "unknown at compile-time" 
+        because the precise nature of that object is not determined until the program is executed.
+    
+    
     // ----  rev[12-Oct-2026]  ----
 
 
+For example: 
+    A base class pointer can be used to point to objects of the base class or 
+    to any object derived from that base.  This determination must be made at run-time, using RRTI.
 
-13.8 RTTI (run-time type identification)
-   RTTI is not found in non-polymorphic languages such as C. In such languages, there is no need for run-time type information because the type of each object is known at compile time (i.e., when the program is written). 
-   In polymorphic languages such as C++, there can be situations in which the type of an object is unknown at compile time because the precise nature of that object is not determined until the program is executed.  For example: A base class pointer can be used to point to objects of the base class or to any object derived from that base.  This determination must be made at run-time, using RRTI.
+
+- In C++, a base-class pointer can point to:
+  - A base-class object.
+  - An object of any derived class.
+- RTTI helps determine the actual object type during program execution.
+
+
+
    C++ implements polymorphism through :      The use of class hierarchies, 
    Virtual functions, and 
    Base class pointers. 
@@ -265,12 +287,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 13.8 RTTI (Run-Time Type Identification)
 
 
-
-
-- In C++, a base-class pointer can point to:
-  - A base-class object.
-  - An object of any derived class.
-- RTTI helps determine the actual object type during program execution.
 
 
 2. C++ Polymorphism
