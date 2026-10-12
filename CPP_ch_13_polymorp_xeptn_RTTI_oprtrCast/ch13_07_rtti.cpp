@@ -261,10 +261,7 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 13.8 RTTI (Run-Time Type Identification)
 
-1. RTTI Basics
-- RTTI identifies the actual type of an object at run time.
-- C++ uses RTTI when an object's exact type is unknown at compile time.
-- In C, RTTI is generally not available as a built-in language feature because object types are typically determined at compile time.
+
 
 
 - In C++, a base-class pointer can point to:
