@@ -8,19 +8,16 @@
         In C, RTTI is generally not available as a built-in language feature 
             object types are typically determined at "compile time" instead of "run time".
 
-    // ----  rev[10-Oct-2026]  ----
 
-Relationship Between RTTI and Casting:
+    RTTI and Casting Operators:
+        The "casting operators" gives safer, more controlled ways to cast. 
 
-
-   The casting operators give you safer, more controlled ways to cast. 
-As you will see, one of the casting operators, dynamic cast, relates directly to RTTI.
-
-- C++ casting operators provide safer, more controlled type conversions.
-- dynamic_cast is directly related to RTTI.
-- dynamic_cast can perform run-time type checking when converting pointers or references within a polymorphic class hierarchy.
+        One of the casting operators, dynamic_cast is directly related to RTTI
+            dynamic_cast can perform "run-time type checking" (RTTI) when converting 
+            pointers or references within a "polymorphic class hierarchy".
 
 
+    // ----  rev[12-Oct-2026]  ----
 
 
 
