@@ -13,7 +13,13 @@
 Relationship Between RTTI and Casting:
 
 
-   The casting operators give you safer, more controlled ways to cast. As you will see, one of the casting operators, dynamic cast, relates directly to RTTI.
+   The casting operators give you safer, more controlled ways to cast. 
+As you will see, one of the casting operators, dynamic cast, relates directly to RTTI.
+
+- C++ casting operators provide safer, more controlled type conversions.
+- dynamic_cast is directly related to RTTI.
+- dynamic_cast can perform run-time type checking when converting pointers or references within a polymorphic class hierarchy.
+
 
 
 
