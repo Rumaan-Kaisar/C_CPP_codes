@@ -30,16 +30,22 @@
         the type of an object is "unknown at compile-time" 
         because the precise nature of that object is not determined until the program is executed.
     
-    
-    // ----  rev[12-Oct-2026]  ----
-
-
     For example:
         In C++, a base-class pointer can point to:
             - A base-class object.
             - An object of any derived class.
 
         This determination must be made at run-time, using RRTI.
+
+    // ----  rev[13-Oct-2026]  ----
+
+
+2. C++ Polymorphism
+C++ implements polymorphism through:
+- Class hierarchies.
+- Virtual functions.
+- Base-class pointers.
+
 
 
 
@@ -68,7 +74,7 @@ typeid(object)
 
 
 
-   Example 1: The following program demonstrates typeid. It first obtains type information about one of C++'s built-in types, int. It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
+   Example 1: The following program demonstrates type_id. It first obtains type information about one of C++'s built-in types, int. It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -284,13 +290,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 13.8 RTTI (Run-Time Type Identification)
 
 
-
-
-2. C++ Polymorphism
-C++ implements polymorphism through:
-- Class hierarchies.
-- Virtual functions.
-- Base-class pointers.
 
 
 3. typeid Operator
