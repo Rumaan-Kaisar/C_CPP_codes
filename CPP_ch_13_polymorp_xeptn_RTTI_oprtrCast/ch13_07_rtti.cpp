@@ -39,14 +39,7 @@
             - A base-class object.
             - An object of any derived class.
 
-    A base class pointer can be used to point to objects of the base class or 
-    to any object derived from that base.
-    
-    This determination must be made at run-time, using RRTI.
-
-
-
-- RTTI helps determine the actual object type during program execution.
+        This determination must be made at run-time, using RRTI.
 
 
 
