@@ -14,7 +14,7 @@
 
         One of the casting operators, dynamic_cast is directly related to RTTI
             dynamic_cast can perform "run-time type checking" (RTTI) when converting 
-            pointers or references within a "polymorphic class hierarchy".
+            "pointers" or "references" within a "polymorphic class hierarchy".
 
 
 
@@ -334,10 +334,7 @@ typeid(*ptr)
 - If the pointer is null and the dereferenced expression is a polymorphic type, typeid throws a std::bad_typeid exception.
 
 
-8. Relationship Between RTTI and Casting
-- C++ casting operators provide safer, more controlled type conversions.
-- dynamic_cast is directly related to RTTI.
-- dynamic_cast can perform run-time type checking when converting pointers or references within a polymorphic class hierarchy.
+
 
 */
 
