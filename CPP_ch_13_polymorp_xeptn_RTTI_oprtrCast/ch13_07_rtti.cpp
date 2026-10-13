@@ -34,14 +34,18 @@
     // ----  rev[12-Oct-2026]  ----
 
 
-For example: 
+    For example:
+        In C++, a base-class pointer can point to:
+            - A base-class object.
+            - An object of any derived class.
+
     A base class pointer can be used to point to objects of the base class or 
-    to any object derived from that base.  This determination must be made at run-time, using RRTI.
+    to any object derived from that base.
+    
+    This determination must be made at run-time, using RRTI.
 
 
-- In C++, a base-class pointer can point to:
-  - A base-class object.
-  - An object of any derived class.
+
 - RTTI helps determine the actual object type during program execution.
 
 
