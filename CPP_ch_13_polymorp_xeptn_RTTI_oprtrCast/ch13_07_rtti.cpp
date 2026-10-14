@@ -18,7 +18,6 @@
 
 
 
-
     ----------------    RTTI (run-time type identification)    ----------------
 
     RTTI is not found in "non-polymorphic languages" such as C. 
@@ -35,23 +34,29 @@
             - A base-class object.
             - An object of any derived class.
 
-        This determination must be made at run-time, using RRTI.
+        This determination must be made at "run-time", using RRTI.
+
+
+
+    --------  C++ Polymorphism  --------
+
+    C++ implements polymorphism through:
+        Class hierarchies.
+        Virtual functions.
+        Base-class pointers.
+
 
     // ----  rev[13-Oct-2026]  ----
 
 
-2. C++ Polymorphism
-C++ implements polymorphism through:
-- Class hierarchies.
-- Virtual functions.
-- Base-class pointers.
+   C++ implements polymorphism through :
 
 
-
-
-   C++ implements polymorphism through :      The use of class hierarchies, 
+      The use of class hierarchies, 
    Virtual functions, and 
    Base class pointers. 
+
+
    To obtain an object's type, use typeid and must include the header <typeinfo>. The most common form of typeid is:
 typeid(object)
    Here object is the object whose type you will be obtaining. 
