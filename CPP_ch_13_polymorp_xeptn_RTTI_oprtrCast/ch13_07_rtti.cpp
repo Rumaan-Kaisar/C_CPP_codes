@@ -46,22 +46,46 @@
         Base-class pointers.
 
 
-    // ----  rev[13-Oct-2026]  ----
+
+    --------  typeid: obtain an object's type  --------
+
+    To obtain an object's type, use "typeid" and must include the header <typeinfo>.
+    
+    Common syntax:
+
+                typeid(obj)
+
+        Here "obj" is the object whose type you will be obtaining. 
+
+        "typeid" returns a reference to an object of type "type_info" that describes 
+            the type of object defined by "obj". 
+        
+        Another form accepts a "type name":
+
+                typeid(type_name)
+
+        Used to obtain type information for type comparisons.
 
 
-   C++ implements polymorphism through :
+    // ----  rev[14-Oct-2026]  ----
 
 
-      The use of class hierarchies, 
-   Virtual functions, and 
-   Base class pointers. 
 
 
-   To obtain an object's type, use typeid and must include the header <typeinfo>. The most common form of typeid is:
-typeid(object)
-   Here object is the object whose type you will be obtaining. 
-   typeid returns a reference to an object of type type_info that describes the type of object defined by object. 
-   The type_info class defines these public members:      bool operator==( const type_info &ob);
+4. Members of the type_info Class
+Member	Purpose
+operator==()	Checks whether two types are the same.
+operator!=()	Checks whether two types are different.
+before()	Checks the relative order of two types.
+name()	Returns a pointer to the type's name.
+- before() is used for type ordering; its result has no relationship to inheritance or class hierarchies.
+
+
+
+
+
+   The type_info class defines these public members:   
+   bool operator==( const type_info &ob);
    bool operator!=( const type_info &ob);
    bool before( const type_info &ob);
    const char*name();
@@ -297,26 +321,7 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-3. typeid Operator
-- Used to obtain information about an object's type.
-- Requires the header file #include <typeinfo>.
-- Common syntax:
-typeid(object)
 
-- Returns a reference to a type_info object describing the type.
-- Another form accepts a type name:
-typeid(type_name)
-
-- Used to obtain type information for type comparisons.
-
-
-4. Members of the type_info Class
-Member	Purpose
-operator==()	Checks whether two types are the same.
-operator!=()	Checks whether two types are different.
-before()	Checks the relative order of two types.
-name()	Returns a pointer to the type's name.
-- before() is used for type ordering; its result has no relationship to inheritance or class hierarchies.
 
 
 5. RTTI with Base-Class Pointers
@@ -329,9 +334,13 @@ typeid(*ptr)
 - RTTI can also identify the actual type through a reference to a polymorphic object.
 
 
+
+
 6. Polymorphic vs. Non-Polymorphic Classes
 - Polymorphic class: typeid applied to a dereferenced base pointer or reference identifies the actual object's type.
 - Non-polymorphic class: typeid applied to a pointer or reference expression identifies the static type, not the actual derived-object type.
+
+
 
 
 7. bad_typeid Exception
