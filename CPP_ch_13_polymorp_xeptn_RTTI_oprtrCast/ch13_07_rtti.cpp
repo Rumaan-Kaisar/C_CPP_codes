@@ -86,11 +86,11 @@
         The overloaded "==" and "!=" provide for the "comparison of types". 
 
         before() is used for "type ordering"; 
-            its result has no relationship to inheritance or class hierarchies.
+            its result has no relationship to inheritance or class hierarchies (i.e. internal use only).
             returns "true" if the invoking object is before the object used as a parameter in collation order.
 
 
-    // ----  rev[14-Oct-2026]  ----
+    // ----  rev[15-Oct-2026]  ----
 
 
 
@@ -104,8 +104,7 @@
 
 
  
-  (Internal use only. Its return value has nothing to 
- do with inheritance or class hierarchies.) 
+  (
 
 
    The name() function returns a pointer to the name of the type.
