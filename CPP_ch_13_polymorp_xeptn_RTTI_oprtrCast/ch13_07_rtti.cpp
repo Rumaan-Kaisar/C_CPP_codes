@@ -83,8 +83,11 @@
             name()          Returns a pointer to the type's name.
 
 
-- before() is used for type ordering; its result has no relationship to inheritance 
-or class hierarchies.
+        The overloaded "==" and "!=" provide for the "comparison of types". 
+
+        before() is used for "type ordering"; 
+            its result has no relationship to inheritance or class hierarchies.
+            returns "true" if the invoking object is before the object used as a parameter in collation order.
 
 
     // ----  rev[14-Oct-2026]  ----
@@ -98,8 +101,13 @@ or class hierarchies.
 
 
 
-   The overloaded "==" and "!=" provide for the comparison of types. 
-   The before() function returns true if the invoking object is before the object used as a parameter in collation order. (Internal use only. Its return value has nothing to do with inheritance or class hierarchies.) 
+
+
+ 
+  (Internal use only. Its return value has nothing to 
+ do with inheritance or class hierarchies.) 
+
+
    The name() function returns a pointer to the name of the type.
    The most important use of typeid is: its application through a pointer of a polymorphic base. Using typeid you can determine at run-time the type of the object that is being pointed to by a base pointer. 
    typeid will automatically return the type of the actual object being pointed to, which can be a base object or a derived object from that base.  [Note: A base pointer can point to a base object or any derived object from that base.]
