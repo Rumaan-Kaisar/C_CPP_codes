@@ -67,33 +67,35 @@
         Used to obtain type information for "type comparisons".
 
 
-    // ----  rev[14-Oct-2026]  ----
-
-
-
-
     Members of the "type_info" Class:
     
-    Member          Purpose
-    
-    operator==()    Checks whether two types are the same.
-    operator!=()    Checks whether two types are different.
-    before()        Checks the relative order of two types.
-    name()          Returns a pointer to the type's name.
+        bool operator==(const type_info &ob);
+        bool operator!=(const type_info &ob);
+        bool before(const type_info &ob);
+        const char*name();
+
+
+            Member          Purpose
+            
+            operator==()    Checks whether two types are the same.
+            operator!=()    Checks whether two types are different.
+            before()        Checks the relative order of two types.
+            name()          Returns a pointer to the type's name.
 
 
 - before() is used for type ordering; its result has no relationship to inheritance 
 or class hierarchies.
 
 
+    // ----  rev[14-Oct-2026]  ----
 
 
 
-   The type_info class defines these public members:   
-   bool operator==( const type_info &ob);
-   bool operator!=( const type_info &ob);
-   bool before( const type_info &ob);
-   const char*name();
+
+
+
+
+
 
 
    The overloaded "==" and "!=" provide for the comparison of types. 
