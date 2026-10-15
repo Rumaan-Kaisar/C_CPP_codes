@@ -64,7 +64,7 @@
 
                 typeid(type_name)
 
-        Used to obtain type information for type comparisons.
+        Used to obtain type information for "type comparisons".
 
 
     // ----  rev[14-Oct-2026]  ----
@@ -72,13 +72,18 @@
 
 
 
-4. Members of the type_info Class
-Member	Purpose
-operator==()	Checks whether two types are the same.
-operator!=()	Checks whether two types are different.
-before()	Checks the relative order of two types.
-name()	Returns a pointer to the type's name.
-- before() is used for type ordering; its result has no relationship to inheritance or class hierarchies.
+    Members of the "type_info" Class:
+    
+    Member          Purpose
+    
+    operator==()    Checks whether two types are the same.
+    operator!=()    Checks whether two types are different.
+    before()        Checks the relative order of two types.
+    name()          Returns a pointer to the type's name.
+
+
+- before() is used for type ordering; its result has no relationship to inheritance 
+or class hierarchies.
 
 
 
@@ -89,6 +94,8 @@ name()	Returns a pointer to the type's name.
    bool operator!=( const type_info &ob);
    bool before( const type_info &ob);
    const char*name();
+
+
    The overloaded "==" and "!=" provide for the comparison of types. 
    The before() function returns true if the invoking object is before the object used as a parameter in collation order. (Internal use only. Its return value has nothing to do with inheritance or class hierarchies.) 
    The name() function returns a pointer to the name of the type.
