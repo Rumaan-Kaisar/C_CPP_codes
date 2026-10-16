@@ -89,11 +89,9 @@
             its result has no relationship to inheritance or class hierarchies (i.e. internal use only).
             returns "true" if the invoking object is before the object used as a parameter in collation order.
 
+        The name() function returns a pointer to the name of the type.
 
-    // ----  rev[15-Oct-2026]  ----
-
-
-
+    // ----  rev[16-Oct-2026]  ----
 
 
 
@@ -101,14 +99,11 @@
 
 
 
+   The most important use of typeid is:
+its application through a pointer of a polymorphic base.
+Using typeid you can determine at run-time the type of the object that is being pointed to by a base pointer. 
 
 
- 
-  (
-
-
-   The name() function returns a pointer to the name of the type.
-   The most important use of typeid is: its application through a pointer of a polymorphic base. Using typeid you can determine at run-time the type of the object that is being pointed to by a base pointer. 
    typeid will automatically return the type of the actual object being pointed to, which can be a base object or a derived object from that base.  [Note: A base pointer can point to a base object or any derived object from that base.]
    The same applies to references:    When typeid is applied to a reference to an object of a polymorphic class, it will return the type of the object actually being referred to, which can be of a derived type. 
    When typeid is applied to a non-polymorphic class, the base type of the pointer or reference is obtained.
