@@ -95,8 +95,8 @@
 
     --------  RTTI with Base-Class Pointers  --------
 
-The most important use of typeid is:
-its application through a pointer of a "polymorphic base".
+    The most important use of typeid is:
+        Its application through a pointer of a "polymorphic base".
 Using typeid you can determine at run-time the type of the object that is being pointed to by a base pointer. 
 
 
@@ -332,7 +332,8 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 5. RTTI with Base-Class Pointers
-- The most important use of typeid is identifying the actual object type through a polymorphic base-class pointer.
+typeid can identify at run-time the actual object type that is being pointed to by a polymorphic base-class pointer.
+
 - If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
 - The actual object can be either a base-class object or a derived-class object.
 - Example:
