@@ -91,13 +91,24 @@
 
         The name() function returns a pointer to the name of the type.
 
-    // ----  rev[16-Oct-2026]  ----
 
     --------  RTTI with Base-Class Pointers  --------
 
-    The most important use of typeid is:
-        Its application through a pointer of a "polymorphic base".
-Using typeid you can determine at run-time the type of the object that is being pointed to by a base pointer. 
+    The most important use of typeid is- its application through a pointer of a "polymorphic base".
+    "typeid" can identify at "run-time" the actual object type that is being pointed to by a polymorphic base-class pointer.
+
+
+
+    // ----  rev[16-Oct-2026]  ----
+
+
+- If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
+- The actual object can be either a base-class object or a derived-class object.
+- Example:
+typeid(*ptr)
+
+- RTTI can also identify the actual type through a reference to a polymorphic object.
+
 
 
    typeid will automatically return the type of the actual object being pointed to, which can be a base object or a derived object from that base.  [Note: A base pointer can point to a base object or any derived object from that base.]
@@ -332,7 +343,7 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 5. RTTI with Base-Class Pointers
-typeid can identify at run-time the actual object type that is being pointed to by a polymorphic base-class pointer.
+
 
 - If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
 - The actual object can be either a base-class object or a derived-class object.
