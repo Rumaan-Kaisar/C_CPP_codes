@@ -60,11 +60,34 @@
         "typeid" returns a reference to an object of type "type_info" that describes 
             the type of object defined by "obj". 
         
-        Another form accepts a "type name":
+        Another form accepts a "type name" as its argument:
 
                 typeid(type_name)
 
-        Used to obtain type information for "type comparisons".
+            Used to obtain type information for "type comparisons".
+            [returns a "type_info object" that describes the specified type]
+
+
+
+
+    // ----  rev[17-Oct-2026]  ----
+
+typeid with non-polymorphic class:
+    When typeid is applied to a non-polymorphic class, the base type of the pointer or reference is obtained.
+
+It means that in C++, when you use typeid with a pointer or reference to a non-polymorphic class, 
+C++ determines the type from the declared type of the pointer or reference, not the actual type of the object it points to or refers to.
+
+In C++, when you apply the typeid operator to a non-polymorphic class (a class that has no virtual functions), the compiler determines the type at compile-time rather than runtime.
+Because the evaluation happens at compile-time, typeid cannot look at the actual object sitting in memory. Instead, it strictly looks at the declared (static) type of the pointer or reference you are using.
+
+
+bad_typeid exception: 
+Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), 
+a special exception has been created to handle the situation in which the pointer being dereferenced is null. In this case, typeid throws a bad_typeid exception.
+
+----------------------------------------
+
 
 
     Members of the "type_info" Class:
@@ -92,43 +115,27 @@
         The name() function returns a pointer to the name of the type.
 
 
+
     --------  RTTI with Base-Class Pointers  --------
 
     The most important use of typeid is- its application through a pointer of a "polymorphic base".
     "typeid" can identify at "run-time" the actual object type that is being pointed to by a polymorphic base-class pointer.
 
-
-
-    // ----  rev[16-Oct-2026]  ----
-
-
     If the base class is polymorphic (has at least one virtual function),
+        "typeid" will automatically return the type of the actual object being pointed to,
+        which can be a "base object" or a "derived object" from that base.
+        [Note: A "base pointer" can point to a "base object" or any "derived object" from that base.]
 
+        Example:
+            typeid(*ptr)
 
- "typeid" identifies the actual object's type.
-- The actual object can be either a base-class object or a derived-class object.
-- Example:
-typeid(*ptr)
+    
 
-- RTTI can also identify the actual type through a reference to a polymorphic object.
+    --------  RTTI with "references"  --------
 
-
-
-"typeid" will automatically return the type of the actual object being pointed to,
-    which can be a "base object" or a "derived object" from that base.
-    [Note: A "base pointer" can point to a "base object" or any "derived object" from that base.]
-
-
-
-   The same applies to references:    When typeid is applied to a reference to an object of a polymorphic class, 
-it will return the type of the object actually being referred to, 
-which can be of a derived type. 
-
-
-   When typeid is applied to a non-polymorphic class, the base type of the pointer or reference is obtained.
-   Another form of typeid: This form of typeid takes a type name as its argument:   typeid( type_name )
-   It is used to obtain a type_info object that describes the specified type so that it can be used in a type comparison statement.
-   bad_typeid exception: Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), a special exception has been created to handle the situation in which the pointer being dereferenced is null. In this case, typeid throws a bad_typeid exception.
+    The same RTTI rule applies to "references":
+        When "typeid" is applied to a "reference" to an object of a "polymorphic class", 
+        it will return the type of the object actually being referred to, which can be of a derived type.
 
 
 
