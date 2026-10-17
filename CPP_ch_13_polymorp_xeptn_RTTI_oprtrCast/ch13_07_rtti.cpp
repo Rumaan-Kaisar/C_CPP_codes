@@ -102,7 +102,10 @@
     // ----  rev[16-Oct-2026]  ----
 
 
-- If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
+    If the base class is polymorphic (has at least one virtual function),
+
+
+ "typeid" identifies the actual object's type.
 - The actual object can be either a base-class object or a derived-class object.
 - Example:
 typeid(*ptr)
@@ -111,8 +114,17 @@ typeid(*ptr)
 
 
 
-   typeid will automatically return the type of the actual object being pointed to, which can be a base object or a derived object from that base.  [Note: A base pointer can point to a base object or any derived object from that base.]
-   The same applies to references:    When typeid is applied to a reference to an object of a polymorphic class, it will return the type of the object actually being referred to, which can be of a derived type. 
+"typeid" will automatically return the type of the actual object being pointed to,
+    which can be a "base object" or a "derived object" from that base.
+    [Note: A "base pointer" can point to a "base object" or any "derived object" from that base.]
+
+
+
+   The same applies to references:    When typeid is applied to a reference to an object of a polymorphic class, 
+it will return the type of the object actually being referred to, 
+which can be of a derived type. 
+
+
    When typeid is applied to a non-polymorphic class, the base type of the pointer or reference is obtained.
    Another form of typeid: This form of typeid takes a type name as its argument:   typeid( type_name )
    It is used to obtain a type_info object that describes the specified type so that it can be used in a type comparison statement.
