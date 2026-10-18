@@ -68,35 +68,32 @@
             [returns a "type_info object" that describes the specified type]
 
 
-bad_typeid exception: 
-    Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), 
-        a "special exception" has been created to handle the situation in which the pointer being dereferenced is "null". 
+    bad_typeid exception: 
+        Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), 
+            a "special exception" has been created to handle the situation in which the pointer being dereferenced is "null". 
 
-    In this case, typeid throws a "bad_typeid exception".
-
-    // ----  rev[17-Oct-2026]  ----
-
---------  typeid with non-polymorphic class  --------
-
-typeid with non-polymorphic class:
-    When typeid is applied to a "non-polymorphic class", the base type of the pointer or reference is obtained.
-
-It means that in C++, when you use "typeid" with a pointer or reference to a non-polymorphic class, 
-    C++ determines the type from the "declared type" of the pointer or reference, 
-    "not the actual type" of the object it points to or refers to.
-
-In C++, when you apply the typeid operator to a non-polymorphic class (a class that has no virtual functions), 
-    the compiler determines the type at "compile-time" rather than runtime.
-
-    Because the evaluation happens at compile-time, typeid cannot look at the actual object sitting in memory.
-    Instead, it strictly looks at the declared (static) type of the pointer or reference you are using.
+        In this case, typeid throws a "bad_typeid exception".
 
 
 
+    --------  typeid with non-polymorphic class  --------
 
-----------------------------------------
+    typeid with non-polymorphic class:
+        When typeid is applied to a "non-polymorphic class", the base type of the pointer or reference is obtained.
+
+    It means that in C++, when you use "typeid" with a pointer or reference to a non-polymorphic class, 
+        C++ determines the type from the "declared type" of the pointer or reference, 
+        "not the actual type" of the object it points to or refers to.
+
+    In C++, when you apply the typeid operator to a non-polymorphic class (a class that has no virtual functions), 
+        the compiler determines the type at "compile-time" rather than runtime.
+
+        Because the evaluation happens at compile-time, typeid cannot look at the actual object sitting in memory.
+        Instead, it strictly looks at the declared (static) type of the pointer or reference you are using.
 
 
+
+    --------  Members of the "type_info"  --------
 
     Members of the "type_info" Class:
     
@@ -144,11 +141,20 @@ In C++, when you apply the typeid operator to a non-polymorphic class (a class t
     The same RTTI rule applies to "references":
         When "typeid" is applied to a "reference" to an object of a "polymorphic class", 
         it will return the type of the object actually being referred to, which can be of a derived type.
+*/
 
 
 
+// ----  rev[18-Oct-2026]  ----
 
-   Example 1: The following program demonstrates type_id. It first obtains type information about one of C++'s built-in types, int. It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
+
+
+/*  
+
+Example 1: The following program demonstrates type_id. 
+It first obtains type information about one of C++'s built-in types, int. 
+It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
+
 #include <iostream>
 #include <typeinfo>
 using namespace std;
