@@ -68,23 +68,31 @@
             [returns a "type_info object" that describes the specified type]
 
 
+bad_typeid exception: 
+    Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), 
+        a "special exception" has been created to handle the situation in which the pointer being dereferenced is "null". 
 
+    In this case, typeid throws a "bad_typeid exception".
 
     // ----  rev[17-Oct-2026]  ----
 
+--------  typeid with non-polymorphic class  --------
+
 typeid with non-polymorphic class:
-    When typeid is applied to a non-polymorphic class, the base type of the pointer or reference is obtained.
+    When typeid is applied to a "non-polymorphic class", the base type of the pointer or reference is obtained.
 
-It means that in C++, when you use typeid with a pointer or reference to a non-polymorphic class, 
-C++ determines the type from the declared type of the pointer or reference, not the actual type of the object it points to or refers to.
+It means that in C++, when you use "typeid" with a pointer or reference to a non-polymorphic class, 
+    C++ determines the type from the "declared type" of the pointer or reference, 
+    "not the actual type" of the object it points to or refers to.
 
-In C++, when you apply the typeid operator to a non-polymorphic class (a class that has no virtual functions), the compiler determines the type at compile-time rather than runtime.
-Because the evaluation happens at compile-time, typeid cannot look at the actual object sitting in memory. Instead, it strictly looks at the declared (static) type of the pointer or reference you are using.
+In C++, when you apply the typeid operator to a non-polymorphic class (a class that has no virtual functions), 
+    the compiler determines the type at "compile-time" rather than runtime.
+
+    Because the evaluation happens at compile-time, typeid cannot look at the actual object sitting in memory.
+    Instead, it strictly looks at the declared (static) type of the pointer or reference you are using.
 
 
-bad_typeid exception: 
-Because typeid is commonly applied to a dereferenced pointer (i.e., one to which the * operator has been applied), 
-a special exception has been created to handle the situation in which the pointer being dereferenced is null. In this case, typeid throws a bad_typeid exception.
+
 
 ----------------------------------------
 
