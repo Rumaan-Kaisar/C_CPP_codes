@@ -405,3 +405,64 @@ typeid(*ptr)
 */
 
 
+
+1. The following program demonstrates typeid. It first obtains type information about one
+of C++’s built-in types, int. It then displays the types of objects pointed to by p, which
+is a pointer of type BaseClass.
+// An example that uses typeid
+# include <iostream >
+# include <typeinfo >
+using namespace std ;
+class BaseClass
+{
+virtual void f() {} // make BaseClass polymorphic
+// ...
+};
+class Derived1 : public BaseClass
+{
+// ...
+};
+311TEACH YOURSELF
+C++
+class Derived2 : public BaseClass
+{
+// ...
+};
+int main ()
+{
+int i;
+BaseClass *p, baseob ;
+Derived1 ob1 ;
+Derived2 ob2 ;
+// First , display type name of a built -in type .
+cout << " Typeid of i is ";
+cout << typeid (i). name () << endl ;
+// Demonstrate typeid with polumorphic types .
+p = & baseob ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+p = & ob1 ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+p = & ob2 ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+return 0;
+}
+// output may vary depending on compiler .
+The output produced by this program is shown.
+Typeid of i is int
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class Derived1
+p is pointing to an object of type class Derived2
+As explained, when typeid is applied to a base class pointer of a polymorphic type, the
+type of object pointed to will be determined at run time, as the output produced by the
+program shows. As an experiment, comment out the virtual function f() in BaseClass
+and observe the results.
+
+
+
+
+
+
+
