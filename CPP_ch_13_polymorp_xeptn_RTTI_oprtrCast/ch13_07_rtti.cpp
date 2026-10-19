@@ -675,3 +675,157 @@ class Triangle
 *****
 class Line
 *****
+
+
+5. The typeid operator can be applied to template classes. For example, consider the
+following program. It creates a hierarchy of template classes that store a value. The
+virtual function get val() returns a value that is defined by each class. For class Num,
+this is the value of the number itself. For Square, it is the square of the number, and for
+Sqr root, it is the square root of the number. Objects derived from Num are generated
+by the generator() function. The typeid operator is used to determine what type of
+object has been generated.
+// typeid can be used with templates .
+# include <iostream >
+# include <typeinfo >
+# include <cmath >
+# include <cstdlib >
+using namespace std ;
+template <class T> class Num
+{
+public :
+T x;
+Num (T i) { x = i; }
+virtual T get_val () { return x; }
+317TEACH YOURSELF
+C++
+};
+template <class T>
+class Square : public Num <T>
+{
+public :
+Square (T i) : Num <T >(i) {}
+T get_val () { return this ->x*this ->x; }
+};
+template <class T>
+class Sqr_root : public Num <T>
+{
+public :
+Sqr_root (T i) : Num <T >(i) {}
+T get_val () { return sqrt (( double ) this ->x); }
+};
+// A factory for objects derived from Num .
+Num < double > * generator ()
+{
+switch ( rand () % 2)
+{
+case 0:
+return new Square <double > ( rand () % 100) ;
+case 1:
+return new Sqr_root <double > ( rand () % 100) ;
+}
+return NULL ;
+}
+int main ()
+{
+Num < double > ob1 (10) , *p1;
+Square < double > ob2 (100.0) ;
+Sqr_root < double > ob3 (999.2) ;
+int i;
+cout << typeid ( ob1 ). name () << endl ;
+cout << typeid ( ob2 ). name () << endl ;
+cout << typeid ( ob3 ). name () << endl ;
+if( typeid ( ob2 ) == typeid (Square <double >))
+cout << "is Square <double >\n";
+p1 = & ob2 ;
+if( typeid (* p1) != typeid (ob1 ))
+cout << " Value is: " << p1 -> get_val ();
+cout << "\n\n";
+318RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.1. UNDERSTANDING RUN-TIME TYPE IDENTIFICATION (RTTI)
+cout << "Now , generate some Objects .\n";
+for (i =0; i <10; i ++)
+{
+p1 = generator (); // get next object
+if( typeid (* p1) == typeid (Square <double >))
+cout << " Square object : ";
+if( typeid (* p1) == typeid ( Sqr_root <double >))
+cout << " Sqr_root object : ";
+cout << " Value is: " << p1 -> get_val ();
+cout << endl ;
+}
+return 0;
+}
+/*
+The example shown in main book will not compile .
+Reason : https :// goo .gl/ s0cazE
+Remedy : https :// goo .gl /6 lw2sJ
+*/
+The output from the program is shown here.
+class Num<double>
+class Square<double>
+class Sqr root<double>
+is Square<double>
+Value is: 10000
+Now, generate some Objects.
+Sqr root object: Value is: 8.18535
+Square object: Value is: 0
+Sqr root object: Value is: 4.89898
+Square object: Value is: 3364
+Square object: Value is: 4096
+Sqr root object: Value is: 6.7082
+Sqr root object: Value is: 5.19615
+Sqr root object: Value is: 9.53939
+Sqr root object: Value is: 6.48074
+Sqr root object: Value is: 6
+319
+
+
+
+
+
+
+EXERCISES
+1. Why is RTTI a necessary feature of C++?
+2. Try the experiment described in Example 1. What output do you see?
+3. Is the following fragment correct?
+cout << typeid ( float ). name ();
+4. Given this fragment, show how to determine whether p is pointing to a D2 object.
+class B
+{
+virtual void f() {}
+};
+class D1 : public B
+{
+void f() {}
+};
+class D2 : public B
+{
+void f() {}
+};
+int main ()
+{
+B *p;
+5. Assuming the Num class from Example 5, is the following expression true or false?
+typeid (Num <int <) == typeid (Num <double >)
+6. On your own, experiment with RTTI. Although its use might seem a bit esoteric in the
+context of simple, sample programs, it is a powerful construct that allows you to manage
+objects at run time.
+
+
+
+----  EXERCISES  ----
+1. RTTI is necessary to C++ because it is not always possible to know at compile time what
+type of object is being pointed to by a base class pointer of referenced by a base class
+reference.
+2. Here is the output produced when BaseClass is no longer a polymorphic class.
+Typeid of i is int
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class BaseClass
+570ANSWERS
+12.2 EXERCISES
+3. Yes.
+4. if( typeid (*p) == typeid (D2)) ...
+5. False. Although the same template class is used, the type of data used by each version is
+different.
+
