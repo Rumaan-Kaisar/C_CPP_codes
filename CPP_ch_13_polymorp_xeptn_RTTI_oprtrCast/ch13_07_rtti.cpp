@@ -462,6 +462,91 @@ and observe the results.
 
 
 
+2. As explained, when typeid is applied to a reference to a polymorphic base class, the
+type returned is that of the actual object being referred to. The circumstances in which
+you will most often make use of this feature is when objects are passed to functions by
+reference. For example, in the following program, the function WhatType() declares a
+reference parameter to objects of type BaseClass. This means that parameter to objects
+of type BaseClass. This means that WhatType() can be passed references to objects
+312RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.1. UNDERSTANDING RUN-TIME TYPE IDENTIFICATION (RTTI)
+of type BaseClass or any class derived from BaseClass. When the typeid operator is
+applied to this parameter, it returns the actual type of the object being passed.
+// Use a reference with typeid
+# include <iostream >
+# include <typeinfo >
+using namespace std ;
+class BaseClass
+{
+virtual void f() {} // make BaseClass polymorphic
+// ...
+};
+class Derived1 : public BaseClass
+{
+// ...
+};
+class Derived2 : public BaseClass
+{
+// ...
+};
+// Demonstrate typeid with a reference parameter .
+void WhatType ( BaseClass &ob)
+{
+cout << "ob is referencing an object of type ";
+cout << typeid (ob). name () << endl ;
+}
+int main ()
+{
+BaseClass baseob ;
+Derived1 ob1 ;
+Derived2 ob2 ;
+WhatType ( baseob );
+WhatType ( ob1 );
+WhatType ( ob2 );
+return 0;
+}
+The output produced by this program is shown here.
+ob is pointing to an object of type class BaseClass
+ob is pointing to an object of type class Derived1
+ob is pointing to an object of type class Derived2
+
+
+
+3. Although obtaining the type name of an object is useful in some circumstances often all
+you need to know is whether the type of one object matches that of another. Since the
+313TEACH YOURSELF
+C++
+type info object returned by typeid overloads the == and ! = operators, this too is
+easy to accomplish. The following program demonstrates the use of these operators.
+// Demonstrate == and != relative to typeid .
+# include <iostream >
+# include <typeinfo >
+using namespace std ;
+class X
+{
+virtual void f() {}
+};
+class Y
+{
+virtual void f() {}
+};
+int main ()
+{
+X x1 , x2;
+Y y1;
+if( typeid (x1) == typeid (x2))
+cout << "x1 and x2 are same types \n";
+else
+cout << "x1 and x2 are different types \n";
+if( typeid (x1) != typeid (y1))
+cout << "x1 and y1 are different types \n";
+else
+cout << "x1 and y1 are same types \n";
+return 0;
+}
+The program displays the following output.
+x1 and x2 are same types
+x1 and y1 are different types
 
 
 
