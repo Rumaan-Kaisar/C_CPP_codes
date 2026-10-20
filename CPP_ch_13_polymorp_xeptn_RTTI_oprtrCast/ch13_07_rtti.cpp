@@ -145,16 +145,14 @@
 
 
 
-// ----  rev[18-Oct-2026]  ----
+// ----  rev[20-Oct-2026]  ----
 
 
 
-/*  
-
-Example 1: The following program demonstrates type_id. 
+/* Example 1: The following program demonstrates type_id. 
 It first obtains type information about one of C++'s built-in types, int. 
 It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
-
+ */
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -187,7 +185,8 @@ p = &ob2;
   cout <<"p is pointing to an object of type" << typeid(*p).name() << endl ;
 return 0;}
 
-            
+
+/*             
             Output [may vary depending on compiler] :
         
 Typeid of i is int
@@ -196,8 +195,75 @@ p is pointing to an object of type class Derived1
 p is pointing to an object of type class Derived2
    when typeid is applied to a base pointer of a polymorphic type, the type of object pointed to will be determined at run time, as the output produced by the program shows.
 
+ */
 
 
+
+/* 1. The following program demonstrates typeid. It first obtains type information about one
+of C++'s built-in types, int. It then displays the types of objects pointed to by p, which
+is a pointer of type BaseClass. */
+// An example that uses typeid
+# include <iostream>
+# include <typeinfo>
+using namespace std;
+class BaseClass
+{
+virtual void f() {} // make BaseClass polymorphic
+// ...
+};
+class Derived1 : public BaseClass
+{
+// ...
+};
+
+class Derived2 : public BaseClass
+{
+// ...
+};
+int main ()
+{
+int i;
+BaseClass *p, baseob ;
+Derived1 ob1 ;
+Derived2 ob2 ;
+// First , display type name of a built -in type .
+cout << " Typeid of i is ";
+cout << typeid (i). name () << endl ;
+// Demonstrate typeid with polumorphic types .
+p = & baseob ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+p = & ob1 ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+p = & ob2 ;
+cout << "p is pointing to an object of type ";
+cout << typeid (*p). name () << endl ;
+return 0;
+}
+
+// output may vary depending on compiler .
+The output produced by this program is shown.
+Typeid of i is int
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class Derived1
+p is pointing to an object of type class Derived2
+As explained, when typeid is applied to a base class pointer of a polymorphic type, the
+type of object pointed to will be determined at run time, as the output produced by the
+program shows. As an experiment, comment out the virtual function f() in BaseClass
+and observe the results.
+
+
+
+
+
+
+
+
+
+
+
+/*  
 
    Example 2 (When objects are passed to functions by reference): In the following program, the function WhatType() declares a reference parameter to objects of type BaseClass. This means that WhatType() can be passed references to objects of type BaseClass or any class derived from BaseClass. When the typeid operator is applied to this parameter, it returns the actual type of the object being passed.
 
@@ -365,75 +431,22 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-/* 1. The following program demonstrates typeid. It first obtains type information about one
-of C++'s built-in types, int. It then displays the types of objects pointed to by p, which
-is a pointer of type BaseClass. */
-// An example that uses typeid
-# include <iostream >
-# include <typeinfo >
-using namespace std ;
-class BaseClass
-{
-virtual void f() {} // make BaseClass polymorphic
-// ...
-};
-class Derived1 : public BaseClass
-{
-// ...
-};
 
-class Derived2 : public BaseClass
-{
-// ...
-};
-int main ()
-{
-int i;
-BaseClass *p, baseob ;
-Derived1 ob1 ;
-Derived2 ob2 ;
-// First , display type name of a built -in type .
-cout << " Typeid of i is ";
-cout << typeid (i). name () << endl ;
-// Demonstrate typeid with polumorphic types .
-p = & baseob ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-p = & ob1 ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-p = & ob2 ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-return 0;
-}
-// output may vary depending on compiler .
-The output produced by this program is shown.
-Typeid of i is int
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class Derived1
-p is pointing to an object of type class Derived2
-As explained, when typeid is applied to a base class pointer of a polymorphic type, the
-type of object pointed to will be determined at run time, as the output produced by the
-program shows. As an experiment, comment out the virtual function f() in BaseClass
-and observe the results.
-
-
-
-2. As explained, when typeid is applied to a reference to a polymorphic base class, the
+/* 2. As explained, when typeid is applied to a reference to a polymorphic base class, the
 type returned is that of the actual object being referred to. The circumstances in which
 you will most often make use of this feature is when objects are passed to functions by
 reference. For example, in the following program, the function WhatType() declares a
 reference parameter to objects of type BaseClass. This means that parameter to objects
 of type BaseClass. This means that WhatType() can be passed references to objects
-312RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.1. UNDERSTANDING RUN-TIME TYPE IDENTIFICATION (RTTI)
+
 of type BaseClass or any class derived from BaseClass. When the typeid operator is
 applied to this parameter, it returns the actual type of the object being passed.
+ */
+
 // Use a reference with typeid
-# include <iostream >
-# include <typeinfo >
-using namespace std ;
+# include <iostream>
+# include <typeinfo>
+using namespace std;
 class BaseClass
 {
 virtual void f() {} // make BaseClass polymorphic
@@ -470,12 +483,11 @@ ob is pointing to an object of type class Derived2
 
 
 
-3. Although obtaining the type name of an object is useful in some circumstances often all
+/* 3. Although obtaining the type name of an object is useful in some circumstances often all
 you need to know is whether the type of one object matches that of another. Since the
-313TEACH YOURSELF
-C++
 type info object returned by typeid overloads the == and ! = operators, this too is
 easy to accomplish. The following program demonstrates the use of these operators.
+ */
 // Demonstrate == and != relative to typeid .
 # include <iostream >
 # include <typeinfo >
@@ -507,7 +519,7 @@ x1 and x2 are same types
 x1 and y1 are different types
 
 
-4. Although the preceding examples demonstrate the mechanics of using typeid, they don’t
+/* 4. Although the preceding examples demonstrate the mechanics of using typeid, they don’t
 show its full potential because the types in the preceding programs are knowable at compile
 time. In the following program this is not the case. The program defines a simple class
 hierarchy that draws shapes on the screen. At the top of the hierarchy is the abstract
@@ -518,7 +530,8 @@ random number generator rand(). (A function that produces objects is sometimes c
 an object factory.) Inside main(), the shape of each object is displayed for all objects but
 NullShape objects, which have no shape. Since objects are generated randomly, there
 is no way to know in advance what type of object will be created next. Thus, the use of
-RTTI is required.
+RTTI is required. 
+*/
 
 # include <iostream >
 # include <cstdlib >
@@ -635,13 +648,14 @@ class Line
 *****
 
 
-5. The typeid operator can be applied to template classes. For example, consider the
+/* 5. The typeid operator can be applied to template classes. For example, consider the
 following program. It creates a hierarchy of template classes that store a value. The
 virtual function get val() returns a value that is defined by each class. For class Num,
 this is the value of the number itself. For Square, it is the square of the number, and for
 Sqr root, it is the square root of the number. Objects derived from Num are generated
 by the generator() function. The typeid operator is used to determine what type of
 object has been generated.
+*/
 // typeid can be used with templates .
 # include <iostream >
 # include <typeinfo >
@@ -654,8 +668,7 @@ public :
 T x;
 Num (T i) { x = i; }
 virtual T get_val () { return x; }
-317TEACH YOURSELF
-C++
+
 };
 template <class T>
 class Square : public Num <T>
@@ -698,8 +711,7 @@ p1 = & ob2 ;
 if( typeid (* p1) != typeid (ob1 ))
 cout << " Value is: " << p1 -> get_val ();
 cout << "\n\n";
-318RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.1. UNDERSTANDING RUN-TIME TYPE IDENTIFICATION (RTTI)
+
 cout << "Now , generate some Objects .\n";
 for (i =0; i <10; i ++)
 {
@@ -713,6 +725,7 @@ cout << endl ;
 }
 return 0;
 }
+
 /*
 The example shown in main book will not compile .
 Reason : https :// goo .gl/ s0cazE
@@ -743,10 +756,16 @@ Sqr root object: Value is: 6
 
 
 EXERCISES
+
 1. Why is RTTI a necessary feature of C++?
+
 2. Try the experiment described in Example 1. What output do you see?
+
+
 3. Is the following fragment correct?
 cout << typeid ( float ). name ();
+
+
 4. Given this fragment, show how to determine whether p is pointing to a D2 object.
 class B
 {
@@ -763,8 +782,10 @@ void f() {}
 int main ()
 {
 B *p;
+
 5. Assuming the Num class from Example 5, is the following expression true or false?
 typeid (Num <int <) == typeid (Num <double >)
+
 6. On your own, experiment with RTTI. Although its use might seem a bit esoteric in the
 context of simple, sample programs, it is a powerful construct that allows you to manage
 objects at run time.
@@ -775,15 +796,17 @@ objects at run time.
 1. RTTI is necessary to C++ because it is not always possible to know at compile time what
 type of object is being pointed to by a base class pointer of referenced by a base class
 reference.
+
 2. Here is the output produced when BaseClass is no longer a polymorphic class.
 Typeid of i is int
 p is pointing to an object of type class BaseClass
 p is pointing to an object of type class BaseClass
 p is pointing to an object of type class BaseClass
-570ANSWERS
-12.2 EXERCISES
+
 3. Yes.
+
 4. if( typeid (*p) == typeid (D2)) ...
+
 5. False. Although the same template class is used, the type of data used by each version is
 different.
 
