@@ -376,14 +376,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-
-6. Polymorphic vs. Non-Polymorphic Classes
-- Polymorphic class: typeid applied to a dereferenced base pointer or reference identifies the actual object's type.
-- Non-polymorphic class: typeid applied to a pointer or reference expression identifies the static type, not the actual derived-object type.
-
-
-
-
 7. bad_typeid Exception
 - typeid is often used with a dereferenced pointer.
 - If the pointer is null and the dereferenced expression is a polymorphic type, typeid throws a std::bad_typeid exception.
