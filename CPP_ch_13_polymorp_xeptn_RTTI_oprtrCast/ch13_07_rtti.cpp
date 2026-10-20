@@ -365,31 +365,9 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-/*  ----  GPT  ----
-
-13.8 RTTI (Run-Time Type Identification)
-
-
-
-
-
-
-
-
-7. bad_typeid Exception
-- typeid is often used with a dereferenced pointer.
-- If the pointer is null and the dereferenced expression is a polymorphic type, typeid throws a std::bad_typeid exception.
-
-
-
-
-*/
-
-
-
-1. The following program demonstrates typeid. It first obtains type information about one
-of C++’s built-in types, int. It then displays the types of objects pointed to by p, which
-is a pointer of type BaseClass.
+/* 1. The following program demonstrates typeid. It first obtains type information about one
+of C++'s built-in types, int. It then displays the types of objects pointed to by p, which
+is a pointer of type BaseClass. */
 // An example that uses typeid
 # include <iostream >
 # include <typeinfo >
@@ -403,8 +381,7 @@ class Derived1 : public BaseClass
 {
 // ...
 };
-311TEACH YOURSELF
-C++
+
 class Derived2 : public BaseClass
 {
 // ...
