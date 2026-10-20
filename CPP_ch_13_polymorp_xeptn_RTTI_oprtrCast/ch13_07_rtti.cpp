@@ -375,17 +375,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-5. RTTI with Base-Class Pointers
-
-
-- If the base class is polymorphic (has at least one virtual function), typeid identifies the actual object's type.
-- The actual object can be either a base-class object or a derived-class object.
-- Example:
-typeid(*ptr)
-
-- RTTI can also identify the actual type through a reference to a polymorphic object.
-
-
 
 
 6. Polymorphic vs. Non-Polymorphic Classes
