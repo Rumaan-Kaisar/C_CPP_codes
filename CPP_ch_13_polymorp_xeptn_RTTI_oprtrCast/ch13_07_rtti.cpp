@@ -446,7 +446,7 @@ applied to this parameter, it returns the actual type of the object being passed
 // Use a reference with typeid
 # include <iostream>
 # include <typeinfo>
-using namespace std;
+
 class BaseClass
 {
 virtual void f() {} // make BaseClass polymorphic
@@ -491,7 +491,7 @@ easy to accomplish. The following program demonstrates the use of these operator
 // Demonstrate == and != relative to typeid .
 # include <iostream >
 # include <typeinfo >
-using namespace std ;
+
 class X
 {
 virtual void f() {}
@@ -536,7 +536,7 @@ RTTI is required.
 # include <iostream >
 # include <cstdlib >
 # include <typeinfo >
-using namespace std ;
+
 class Shape
 {
 public :
@@ -661,7 +661,7 @@ object has been generated.
 # include <typeinfo >
 # include <cmath >
 # include <cstdlib >
-using namespace std ;
+
 template <class T> class Num
 {
 public :
