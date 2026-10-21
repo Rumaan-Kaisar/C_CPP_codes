@@ -149,41 +149,49 @@
 
 
 
-/* Example 1: The following program demonstrates type_id. 
-It first obtains type information about one of C++'s built-in types, int. 
-It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
- */
+/* Example 1: Following program demonstrates type_id. 
+                It first obtains type information about "int".
+                It then displays the types of objects pointed to by p, which is a pointer of type BaseClass.
+*/
+
 #include <iostream>
 #include <typeinfo>
-using namespace std;
 
 class BaseClass {   
-    virtual void f(){  }      // BaseClass polymorphic
-             // ...
-               };
+    virtual void f(){  }      // make BaseClass polymorphic
+    // ...
+};
 
 class Derived1 : public BaseClass{
-     // ...  
-};
-class Derived2 : public BaseClass{
-     // ...  
+    // ...
 };
 
-int main(){ int i;
-BaseClass *p, baseob;
-Derived1 ob1;
-Derived2 ob2;       
+class Derived2 : public BaseClass{
+    // ...  
+};
+
+
+int main(){
+    int i;
+    BaseClass *p, baseob;
+    Derived1 ob1;
+    Derived2 ob2;
+    
     // First, display type name of a built -in type.
-cout << " Typeid of i is " <<  typeid (i). name () << endl ;
+    std::cout << " Typeid of i is " <<  typeid(i).name() << std::endl;
 
     // Demonstrate typeid with polymorphic types.
-p = &baseob ;
-  cout << "p is pointing to an object of type" << typeid(*p).name() << endl;
-p = &ob1;
-  cout <<"p is pointing to an object of type" << typeid(*p).name() << endl ;
-p = &ob2;
-  cout <<"p is pointing to an object of type" << typeid(*p).name() << endl ;
-return 0;}
+    p = &baseob;
+    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+
+    p = &ob1;
+    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+
+    p = &ob2;
+    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+
+    return 0;
+}
 
 
 /*             
@@ -203,23 +211,8 @@ p is pointing to an object of type class Derived2
 of C++'s built-in types, int. It then displays the types of objects pointed to by p, which
 is a pointer of type BaseClass. */
 // An example that uses typeid
-# include <iostream>
-# include <typeinfo>
-using namespace std;
-class BaseClass
-{
-virtual void f() {} // make BaseClass polymorphic
-// ...
-};
-class Derived1 : public BaseClass
-{
-// ...
-};
 
-class Derived2 : public BaseClass
-{
-// ...
-};
+
 int main ()
 {
 int i;
