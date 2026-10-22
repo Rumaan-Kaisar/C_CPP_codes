@@ -217,20 +217,6 @@ is a pointer of type BaseClass. */
 int main ()
 {
 
-// First , display type name of a built -in type .
-cout << " Typeid of i is ";
-cout << typeid (i). name () << endl ;
-// Demonstrate typeid with polumorphic types .
-p = & baseob ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-p = & ob1 ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-p = & ob2 ;
-cout << "p is pointing to an object of type ";
-cout << typeid (*p). name () << endl ;
-return 0;
 }
 
 // output may vary depending on compiler .
