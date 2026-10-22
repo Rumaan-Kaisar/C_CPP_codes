@@ -194,16 +194,17 @@ int main(){
 }
 
 
-/*             
-            Output [may vary depending on compiler] :
+/*  Output [may vary depending on compiler]:
         
-Typeid of i is int
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class Derived1
-p is pointing to an object of type class Derived2
-   when typeid is applied to a base pointer of a polymorphic type, the type of object pointed to will be determined at run time, as the output produced by the program shows.
+            Typeid of i is int
+            p is pointing to an object of type class BaseClass
+            p is pointing to an object of type class Derived1
+            p is pointing to an object of type class Derived2
 
- */
+    when "typeid" is applied to a "base pointer" of a polymorphic type, 
+        the type of object pointed to will be determined at "run time", 
+        as the output produced by the program shows.
+*/
 
 
 
@@ -215,10 +216,7 @@ is a pointer of type BaseClass. */
 
 int main ()
 {
-int i;
-BaseClass *p, baseob ;
-Derived1 ob1 ;
-Derived2 ob2 ;
+
 // First , display type name of a built -in type .
 cout << " Typeid of i is ";
 cout << typeid (i). name () << endl ;
