@@ -204,6 +204,8 @@ int main(){
     when "typeid" is applied to a "base pointer" of a polymorphic type, 
         the type of object pointed to will be determined at "run time", 
         as the output produced by the program shows.
+    
+    Now try to comment out the virtual function f() in BaseClass and observe the results.
 */
 
 
@@ -219,16 +221,7 @@ int main ()
 
 }
 
-// output may vary depending on compiler .
-The output produced by this program is shown.
-Typeid of i is int
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class Derived1
-p is pointing to an object of type class Derived2
-As explained, when typeid is applied to a base class pointer of a polymorphic type, the
-type of object pointed to will be determined at run time, as the output produced by the
-program shows. As an experiment, comment out the virtual function f() in BaseClass
-and observe the results.
+
 
 
 
