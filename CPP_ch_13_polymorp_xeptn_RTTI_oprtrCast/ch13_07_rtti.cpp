@@ -207,11 +207,20 @@ int main(){
     
     Now try to comment out the virtual function f() in BaseClass and observe the results.
 
+    Note on "type abbreviation":
+        For an int variable in C++, typeid(num).name() typically returns "i" on 
+        common compilers like GCC and Clang (using the Itanium C++ ABI), 
+        or "int" on Microsoft Visual C++ (MSVC).
 */
 
 
-/*  Note:
-For an int variable in C++, typeid(num).name() typically returns "i" on common compilers like GCC and Clang (using the Itanium C++ ABI), or "int" on Microsoft Visual C++ (MSVC).
+/*  ----------------    abbreviation code for built-in types in C++    ----------------
+
+
+
+
+
+
 
 
 There are many more fundamental types in C++. Because GCC/Clang compresses them using name mangling, each type gets its own specific abbreviation code, while MSVC spells out the full name.
