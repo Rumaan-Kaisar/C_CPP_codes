@@ -216,14 +216,10 @@ int main(){
 
 /*  ----------------    abbreviation code for built-in types in C++    ----------------
 
+    There are many more fundamental types in C++.
+    Because GCC/Clang "compresses" them using "name mangling", each type gets its own specific abbreviation code, 
+        while MSVC spells out the full name.
 
-
-
-
-
-
-
-There are many more fundamental types in C++. Because GCC/Clang compresses them using name mangling, each type gets its own specific abbreviation code, while MSVC spells out the full name.
 Here is the breakdown for the other core data types in C++:
 
 Integer & Character Types
@@ -269,26 +265,30 @@ The codes in your table are correct for the fundamental types under the Itanium 
 
 | C++ type             | Mangling code | Correct?                              |
 | -------------------- | ------------- | ------------------------------------- |
-| `char`               | `c`           | &#x20;Yes                             |
+
+
 | `signed char`        | `a`           | &#x20;Yes                             |
 | `unsigned char`      | `h`           | &#x20;Yes                             |
-| `short`              | `s`           | &#x20;Yes                             |
 | `unsigned short`     | `t`           | &#x20;Yes                             |
+
 | `int`                | `i`           | &#x20;Yes                             |
-| `unsigned int`       | `j`           | &#x20;Yes                             |
+| `float`              | `f`           | &#x20;Yes                             |
+| `double`             | `d`           | &#x20;Yes                             |
+| `char`               | `c`           | &#x20;Yes                             |
+| `short`              | `s`           | &#x20;Yes                             |
 | `long`               | `l`           | &#x20;Yes                             |
+| `bool`               | `b`           | &#x20;Yes                             |
+| `void`               | `v`           | &#x20;Yes                             |
+
+| `unsigned int`       | `j`           | &#x20;Yes                             |
 | `unsigned long`      | `m`           | &#x20;Yes                             |
 | `long long`          | `x`           | &#x20;Yes                             |
 | `unsigned long long` | `y`           | &#x20;Yes                             |
-| `bool`               | `b`           | &#x20;Yes                             |
-| `void`               | `v`           | &#x20;Yes                             |
-| `wchar_t`            | `w`           | &#x20;Yes                             |
-| `char8_t`            | `Du`          | &#x20;Yes, in supporting C++ versions |
-| `char16_t`           | `Ds`          | &#x20;Yes                             |
-| `char32_t`           | `Di`          | &#x20;Yes                             |
-| `float`              | `f`           | &#x20;Yes                             |
-| `double`             | `d`           | &#x20;Yes                             |
-| `long double`        | `e`           | &#x20;Yes                             |
+
+
+
+
+
 
 These codes describe types in mangled names; they are not necessarily strings a compiler prints when you ask for a type's name.
 
