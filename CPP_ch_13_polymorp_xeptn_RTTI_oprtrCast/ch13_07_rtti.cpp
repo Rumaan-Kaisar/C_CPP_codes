@@ -214,147 +214,67 @@ int main(){
 */
 
 
+
+
 /*  ----------------    abbreviation code for built-in types in C++    ----------------
 
     There are many more fundamental types in C++.
     Because GCC/Clang "compresses" them using "name mangling", each type gets its own specific abbreviation code, 
         while MSVC spells out the full name.
 
-Here is the breakdown for the other core data types in C++:
 
-Integer & Character Types
+    GCC / Clang type codes:
 
-
-C++ Type	GCC / Clang Code	MSVC Output
-char	"c"	"char"
-signed char	"a"	"signed char"
-unsigned char	"h"	"unsigned char"
-unsigned short	"t"	"unsigned short"
-unsigned int	"j"	"unsigned int"
-unsigned long	"m"	"unsigned long"
-long long	"x"	"__int64" or "long long"
-unsigned long long	"y"	"unsigned __int64"
-
-
-Boolean & Void Types
-
-
-C++ Type	GCC / Clang Code	MSVC Output
-bool	"b"	"bool"
-void	"v"	"void"
-
-
-Modified Types (Pointers & References)
-
-When you add pointers (*) or arrays, GCC/Clang stacks these abbreviations together:
-• int* becomes "Pi" (Pointer to int)
-• const int becomes "Ki" (constant int)
-• int& becomes "Ri" (Reference to int)
-Are you working with standard primitives like these, or are you trying to find the names of custom structures, classes, or std::string?
+    | ------------------------------------ |
+    | C++ type             | Mangling code |
+    | -------------------- | ------------- |
+    | int                  |  i            |
+    | float                |  f            |
+    | double               |  d            |
+    | char                 |  c            |
+    | short                |  s            |
+    | long                 |  l            |
+    | bool                 |  b            |
+    | void                 |  v            |
+    | unsigned int         |  j            |
+    | unsigned long        |  m            |
+    | long long            |  x            |
+    | unsigned long long   |  y            |
+    | signed char          |  a            |
+    | unsigned char        |  h            |
+    | unsigned short       |  t            |
+    | ------------------------------------ |
 
 
+    --------  Modified Types (Pointers & References)   --------
+    
+    When you add pointers (*) or arrays, GCC/Clang stacks these abbreviations together:
+        - int* becomes "Pi" (Pointer to int)
+        - const int becomes "Ki" (constant int)
+        - int& becomes "Ri" (Reference to int)
+
+    pointer and reference codes:
+
+    | ---------------------------------- |
+    | C++ type           | Mangling code |
+    | ------------------ | ------------- |
+    | int*               |  Pi           |
+    | const int          |  Ki           |
+    | const int*         |  PKi          |
+    | int&               |  Ri           |
+    | int&&              |  Oi           |
+    | int const* const   |  KPKi         |
+    | ---------------------------------- |
 
 
-----  GPT  ----
+    The prefixes mean:
 
-Your table is mostly correct for GCC/Clang's Itanium C++ ABI name mangling, but there are a few important caveats, especially regarding MSVC and the distinction between a type's mangling code and a compiler's type-name output.
+        `P` — pointer
+        `R` — lvalue reference
+        `O` — rvalue reference
+        `K` — `const`
 
-## 1. GCC / Clang type codes
-
-The codes in your table are correct for the fundamental types under the Itanium C++ ABI, which GCC and Clang commonly use on Linux and other Itanium-ABI platforms.
-
-| ------------------------------------ |
-| C++ type             | Mangling code |
-| -------------------- | ------------- |
-| signed char          |  a            |
-| unsigned char        |  h            |
-| unsigned short       |  t            |
-| int                  |  i            |
-| float                |  f            |
-| double               |  d            |
-| char                 |  c            |
-| short                |  s            |
-| long                 |  l            |
-| bool                 |  b            |
-| void                 |  v            |
-| unsigned int         |  j            |
-| unsigned long        |  m            |
-| long long            |  x            |
-| unsigned long long   |  y            |
-| ------------------------------------ |
-
-
-
-
-
-
-These codes describe types in mangled names; they are not necessarily strings a compiler prints when you ask for a type's name.
-
-pointer and reference codes:
-
-Yes. Under the same ABI, your examples are correct:
-
-| C++ type           | Mangling code |
-| ------------------ | ------------- |
-| `int*`             | `Pi`          |
-| `const int`        | `Ki`          |
-| `const int*`       | `PKi`         |
-| `int&`             | `Ri`          |
-| `int&&`            | `Oi`          |
-| `int const* const` | `KPKi`        |
-
-The prefixes mean:
-
-- `P` — pointer
-- `R` — lvalue reference
-- `O` — rvalue reference
-- `K` — `const`
-
-One subtlety: these are type encodings, not always complete mangled symbols. For example, the function `void foo(int*)` has the mangled symbol `_Z3fooPi`, not simply `Pi`.
-
-## 3. The MSVC column needs a qualification
-
-MSVC does not use the Itanium ABI's single-letter type encodings. It uses its own decorated-name format, which is different.
-
-Also, `"__int64"` versus `"long long"` is not a universal rule for MSVC output. The spelling depends on the compiler interface, the type involved, and the context. A debugger, RTTI implementation, compiler diagnostic, and decorated symbol may represent the same type differently.
-
-For example, MSVC decorated names encode function parameters using their own codes rather than writing the full type name. Therefore, your MSVC column should be labeled typical type spelling, not MSVC mangling code.
-
-## 4. How to verify the encodings
-
-You can test GCC/Clang symbols directly:
-
-```
-void f(char);
-void f(signed char);
-void f(unsigned char);
-void f(unsigned short);
-void f(unsigned int);
-void f(unsigned long);
-void f(long long);
-void f(unsigned long long);
-void f(int*);
-void f(const int*);
-void f(int&);
-```
-
-Compile and inspect the symbols:
-
-```
-g++ -c types.cpp -o types.o
-nm types.o
-```
-
-For readable names, use:
-
-```
-nm -C types.o
-```
-
-The second command demangles the names, so use the first when you want to inspect the actual mangled symbols.
-
-Bottom line: Your GCC/Clang codes are correct for the Itanium C++ ABI. The main correction is that these are ABI-specific encodings, not universal C++ type identifiers, and MSVC uses a different name-decoration scheme.
-
+    Note: MSVC does not use the Itanium ABI's single-letter type encodings. It uses its own decorated-name format, which is different.
 */
 
 
