@@ -263,27 +263,25 @@ Your table is mostly correct for GCC/Clang's Itanium C++ ABI name mangling, but 
 
 The codes in your table are correct for the fundamental types under the Itanium C++ ABI, which GCC and Clang commonly use on Linux and other Itanium-ABI platforms.
 
-| C++ type             | Mangling code | Correct?                              |
-| -------------------- | ------------- | ------------------------------------- |
-
-
-| `signed char`        | `a`           | &#x20;Yes                             |
-| `unsigned char`      | `h`           | &#x20;Yes                             |
-| `unsigned short`     | `t`           | &#x20;Yes                             |
-
-| `int`                | `i`           | &#x20;Yes                             |
-| `float`              | `f`           | &#x20;Yes                             |
-| `double`             | `d`           | &#x20;Yes                             |
-| `char`               | `c`           | &#x20;Yes                             |
-| `short`              | `s`           | &#x20;Yes                             |
-| `long`               | `l`           | &#x20;Yes                             |
-| `bool`               | `b`           | &#x20;Yes                             |
-| `void`               | `v`           | &#x20;Yes                             |
-
-| `unsigned int`       | `j`           | &#x20;Yes                             |
-| `unsigned long`      | `m`           | &#x20;Yes                             |
-| `long long`          | `x`           | &#x20;Yes                             |
-| `unsigned long long` | `y`           | &#x20;Yes                             |
+| ------------------------------------ |
+| C++ type             | Mangling code |
+| -------------------- | ------------- |
+| signed char          |  a            |
+| unsigned char        |  h            |
+| unsigned short       |  t            |
+| int                  |  i            |
+| float                |  f            |
+| double               |  d            |
+| char                 |  c            |
+| short                |  s            |
+| long                 |  l            |
+| bool                 |  b            |
+| void                 |  v            |
+| unsigned int         |  j            |
+| unsigned long        |  m            |
+| long long            |  x            |
+| unsigned long long   |  y            |
+| ------------------------------------ |
 
 
 
@@ -292,7 +290,7 @@ The codes in your table are correct for the fundamental types under the Itanium 
 
 These codes describe types in mangled names; they are not necessarily strings a compiler prints when you ask for a type's name.
 
-## 2. Are the pointer and reference codes correct?
+pointer and reference codes:
 
 Yes. Under the same ABI, your examples are correct:
 
