@@ -281,25 +281,22 @@ int main(){
 
 
 
-/*  
+/*  Example 2 (When objects are passed to functions by reference):
 
+                As stated above, 
+                    When typeid is used with a reference to a polymorphic base class, 
+                    it returns the actual object's type.
 
+                In the following program, 
+                    the function WhatType() declares a "reference parameter" to objects of type "BaseClass".
+
+                i.e. the function WhatType() accepts references to BaseClass objects or its derived classes. 
+                Using typeid on this parameter returns the actual type of the object passed.
 */
 
+// ----  rev[24-Oct-2026]  ----
 
 
-
-
-// ----  rev[22-Oct-2026]  ----
-
-
-/*  Example 2 (When objects are passed to functions by reference)
-
-When typeid is used with a reference to a polymorphic base class, it returns the actual object's type. This is especially useful when objects are passed to functions by reference.
-
-In the following program, the function WhatType() declares a reference parameter to objects of type BaseClass. 
-This means that WhatType() can be passed references to objects of type BaseClass or any class derived from BaseClass. 
-When the typeid operator is applied to this parameter, it returns the actual type of the object being passed.
 
 class BaseClass {
     virtual void f(){  }      // BaseClass polymorphic
@@ -332,6 +329,51 @@ Output:     ob is pointing to an object of type class BaseClass
         ob is pointing to an object of type class Derived2
 
 
+
+// ----  rev[24-Oct-2026]  ----
+
+
+
+// Use a reference with typeid
+# include <iostream>
+# include <typeinfo>
+
+class BaseClass
+{
+virtual void f() {} // make BaseClass polymorphic
+// ...
+};
+class Derived1 : public BaseClass
+{
+// ...
+};
+class Derived2 : public BaseClass
+{
+// ...
+};
+// Demonstrate typeid with a reference parameter .
+void WhatType ( BaseClass &ob)
+{
+cout << "ob is referencing an object of type ";
+cout << typeid (ob). name () << endl ;
+}
+int main ()
+{
+BaseClass baseob ;
+Derived1 ob1 ;
+Derived2 ob2 ;
+WhatType ( baseob );
+WhatType ( ob1 );
+WhatType ( ob2 );
+return 0;
+}
+The output produced by this program is shown here.
+ob is pointing to an object of type class BaseClass
+ob is pointing to an object of type class Derived1
+ob is pointing to an object of type class Derived2
+
+
+/* 
 
 
    Example 3: Since the type_info object returned by typeid overloads the  ==  and !=  operators, this too is easy to know whether the type of one object matches that of another. The following program demonstrates the use of these operators.
@@ -464,60 +506,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-
-
-/* 2. 
-
-As explained, when typeid is applied to a reference to a polymorphic base class, the
-type returned is that of the actual object being referred to. The circumstances in which
-you will most often make use of this feature is when objects are passed to functions by
-reference.
-
- For example, in the following program, the function WhatType() declares a
-reference parameter to objects of type BaseClass. This means that parameter to objects
-of type BaseClass. This means that WhatType() can be passed references to objects
-
-of type BaseClass or any class derived from BaseClass. When the typeid operator is
-applied to this parameter, it returns the actual type of the object being passed.
- */
-
-// Use a reference with typeid
-# include <iostream>
-# include <typeinfo>
-
-class BaseClass
-{
-virtual void f() {} // make BaseClass polymorphic
-// ...
-};
-class Derived1 : public BaseClass
-{
-// ...
-};
-class Derived2 : public BaseClass
-{
-// ...
-};
-// Demonstrate typeid with a reference parameter .
-void WhatType ( BaseClass &ob)
-{
-cout << "ob is referencing an object of type ";
-cout << typeid (ob). name () << endl ;
-}
-int main ()
-{
-BaseClass baseob ;
-Derived1 ob1 ;
-Derived2 ob2 ;
-WhatType ( baseob );
-WhatType ( ob1 );
-WhatType ( ob2 );
-return 0;
-}
-The output produced by this program is shown here.
-ob is pointing to an object of type class BaseClass
-ob is pointing to an object of type class Derived1
-ob is pointing to an object of type class Derived2
 
 
 
