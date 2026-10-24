@@ -141,6 +141,8 @@
     The same RTTI rule applies to "references":
         When "typeid" is applied to a "reference" to an object of a "polymorphic class", 
         it will return the type of the object actually being referred to, which can be of a derived type.
+
+        This is especially useful when objects are passed to functions by reference.
 */
 
 
@@ -279,7 +281,10 @@ int main(){
 
 
 
+/*  
 
+
+*/
 
 
 
@@ -288,9 +293,13 @@ int main(){
 // ----  rev[22-Oct-2026]  ----
 
 
-/*  
+/*  Example 2 (When objects are passed to functions by reference)
 
-   Example 2 (When objects are passed to functions by reference): In the following program, the function WhatType() declares a reference parameter to objects of type BaseClass. This means that WhatType() can be passed references to objects of type BaseClass or any class derived from BaseClass. When the typeid operator is applied to this parameter, it returns the actual type of the object being passed.
+When typeid is used with a reference to a polymorphic base class, it returns the actual object's type. This is especially useful when objects are passed to functions by reference.
+
+In the following program, the function WhatType() declares a reference parameter to objects of type BaseClass. 
+This means that WhatType() can be passed references to objects of type BaseClass or any class derived from BaseClass. 
+When the typeid operator is applied to this parameter, it returns the actual type of the object being passed.
 
 class BaseClass {
     virtual void f(){  }      // BaseClass polymorphic
@@ -457,10 +466,14 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-/* 2. As explained, when typeid is applied to a reference to a polymorphic base class, the
+/* 2. 
+
+As explained, when typeid is applied to a reference to a polymorphic base class, the
 type returned is that of the actual object being referred to. The circumstances in which
 you will most often make use of this feature is when objects are passed to functions by
-reference. For example, in the following program, the function WhatType() declares a
+reference.
+
+ For example, in the following program, the function WhatType() declares a
 reference parameter to objects of type BaseClass. This means that parameter to objects
 of type BaseClass. This means that WhatType() can be passed references to objects
 
