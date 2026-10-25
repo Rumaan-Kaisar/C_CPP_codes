@@ -297,10 +297,6 @@ int main(){
 #include <iostream>
 #include <typeinfo>
 
-// ----  rev[24-Oct-2026]  ----
-
-
-
 class BaseClass {
     virtual void f(){  }      // make BaseClass polymorphic
     // ...
@@ -315,9 +311,13 @@ class Derived2 : public BaseClass{
 
 
 // Demonstrate typeid with a reference parameter.
+void WhatType( BaseClass &ob ){
+    std::cout << "ob is referencing an object of type " << typeid(ob).name() << std::endl;
+}    
 
-void WhatType( BaseClass &ob){
-         cout << "ob is referencing an object of type " << typeid(ob).name() << endl ; }    
+// ----  rev[25-Oct-2026]  ----
+
+
 int main(){ BaseClass baseob ;
           Derived1 ob1;
           Derived2 ob2;
@@ -338,12 +338,7 @@ Output:     ob is pointing to an object of type class BaseClass
 
 
 
-// Demonstrate typeid with a reference parameter .
-void WhatType ( BaseClass &ob)
-{
-cout << "ob is referencing an object of type ";
-cout << typeid (ob). name () << endl ;
-}
+
 int main ()
 {
 BaseClass baseob ;
