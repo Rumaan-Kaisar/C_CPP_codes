@@ -294,12 +294,15 @@ int main(){
                 Using typeid on this parameter returns the actual type of the object passed.
 */
 
+#include <iostream>
+#include <typeinfo>
+
 // ----  rev[24-Oct-2026]  ----
 
 
 
 class BaseClass {
-    virtual void f(){  }      // BaseClass polymorphic
+    virtual void f(){  }      // make BaseClass polymorphic
     // ...
 };
 
@@ -334,23 +337,7 @@ Output:     ob is pointing to an object of type class BaseClass
 
 
 
-// Use a reference with typeid
-# include <iostream>
-# include <typeinfo>
 
-class BaseClass
-{
-virtual void f() {} // make BaseClass polymorphic
-// ...
-};
-class Derived1 : public BaseClass
-{
-// ...
-};
-class Derived2 : public BaseClass
-{
-// ...
-};
 // Demonstrate typeid with a reference parameter .
 void WhatType ( BaseClass &ob)
 {
