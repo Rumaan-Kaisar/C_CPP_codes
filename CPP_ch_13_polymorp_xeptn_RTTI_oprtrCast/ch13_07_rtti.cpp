@@ -317,19 +317,23 @@ void WhatType( BaseClass &ob ){
 
 // ----  rev[25-Oct-2026]  ----
 
+int main(){
+    BaseClass baseob;
+    Derived1 ob1;
+    Derived2 ob2;
 
-int main(){ BaseClass baseob ;
-          Derived1 ob1;
-          Derived2 ob2;
+    WhatType(baseob);
+    WhatType(ob1);
+    WhatType(ob2);
 
-        WhatType( baseob );
-        WhatType(ob1);
-        WhatType(ob2);
-    return 0;}
+    return 0;
+}
 
-Output:     ob is pointing to an object of type class BaseClass
+/*  Output:
+        ob is pointing to an object of type class BaseClass
         ob is pointing to an object of type class Derived1
         ob is pointing to an object of type class Derived2
+*/
 
 
 
