@@ -281,6 +281,7 @@ int main(){
 
 
 
+
 /*  Example 2 (When objects are passed to functions by reference):
 
                 As stated above, 
@@ -315,7 +316,6 @@ void WhatType( BaseClass &ob ){
     std::cout << "ob is referencing an object of type " << typeid(ob).name() << std::endl;
 }    
 
-// ----  rev[25-Oct-2026]  ----
 
 int main(){
     BaseClass baseob;
@@ -336,6 +336,33 @@ int main(){
 */
 
 
+
+
+/* Example 3: Since the type_info object returned by "typeid" overloads the  ==  and !=  operators, 
+                this too is easy to know whether the type of one object "matches" that of another. 
+                The following program demonstrates the use of these operators.
+*/
+
+class X {   virtual void f(){}  };
+class Y {   virtual void f(){}  };
+
+int main(){
+    X x1, x2;
+    Y y1;
+
+    if(typeid(x1) == typeid(x2)) std::cout << "x1 and x2 are same types \n";
+    else std::cout << "x1 and x2 are different types \n";
+
+    if(typeid (x1) != typeid(y1)) std::cout << "x1 and y1 are different types \n";
+    else std::cout << "x1 and y1 are same types \n";
+
+    return 0;
+}
+
+/*  output:
+        x1 and x2 are same types
+        x1 and y1 are different types    
+*/
 
 
 
