@@ -337,26 +337,7 @@ int main(){
 
 
 
-// ----  rev[24-Oct-2026]  ----
 
-
-
-
-
-int main ()
-{
-BaseClass baseob ;
-Derived1 ob1 ;
-Derived2 ob2 ;
-WhatType ( baseob );
-WhatType ( ob1 );
-WhatType ( ob2 );
-return 0;
-}
-The output produced by this program is shown here.
-ob is pointing to an object of type class BaseClass
-ob is pointing to an object of type class Derived1
-ob is pointing to an object of type class Derived2
 
 
 /* 
