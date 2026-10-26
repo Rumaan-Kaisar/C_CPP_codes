@@ -365,34 +365,49 @@ int main(){
 */
 
 
+// --------  rev[26-10-2026]  --------
+
+// ----  cp1: drop  ----
+
+/* 
+*/
+
+
+// Demonstrate == and != relative to typeid .
+#include <iostream>
+#include <typeinfo>
+
+class X
+{
+virtual void f() {}
+};
+class Y
+{
+virtual void f() {}
+};
+int main ()
+{
+X x1 , x2;
+Y y1;
+if( typeid (x1) == typeid (x2))
+cout << "x1 and x2 are same types \n";
+else
+cout << "x1 and x2 are different types \n";
+if( typeid (x1) != typeid (y1))
+cout << "x1 and y1 are different types \n";
+else
+cout << "x1 and y1 are same types \n";
+return 0;
+}
+The program displays the following output.
+x1 and x2 are same types
+x1 and y1 are different types
+
+
+
 
 
 /* 
-
-
-   Example 3: Since the type_info object returned by typeid overloads the  ==  and !=  operators, this too is easy to know whether the type of one object matches that of another. The following program demonstrates the use of these operators.
-class X {   virtual void f(){}  };
-class Y {   virtual void f(){}  };
-
-    int main(){     X x1, x2;
-Y y1;
-
-if(typeid(x1) == typeid(x2)) cout << "x1 and x2 are same types \n";
-else cout << "x1 and x2 are different types \n";
-
-if( typeid (x1) != typeid (y1)) cout << "x1 and y1 are different types \n";
-else cout << "x1 and y1 are same types \n";
-
-return 0;}
-
-
-    output
-
-   x1 and x2 are same types
-   x1 and y1 are different types    
-
-
-
 
    Example 4: The typeid operator can be applied to template classes. For example, consider the following program. It creates a hierarchy of template classes that store a value. 
    The VF   get_val() returns a value that is defined by each class. 
@@ -502,41 +517,6 @@ Note:   RTTI is not common in every program. However, when you are working with 
 
 
 
-
-/* 3. Although obtaining the type name of an object is useful in some circumstances often all
-you need to know is whether the type of one object matches that of another. Since the
-type info object returned by typeid overloads the == and ! = operators, this too is
-easy to accomplish. The following program demonstrates the use of these operators.
- */
-// Demonstrate == and != relative to typeid .
-# include <iostream >
-# include <typeinfo >
-
-class X
-{
-virtual void f() {}
-};
-class Y
-{
-virtual void f() {}
-};
-int main ()
-{
-X x1 , x2;
-Y y1;
-if( typeid (x1) == typeid (x2))
-cout << "x1 and x2 are same types \n";
-else
-cout << "x1 and x2 are different types \n";
-if( typeid (x1) != typeid (y1))
-cout << "x1 and y1 are different types \n";
-else
-cout << "x1 and y1 are same types \n";
-return 0;
-}
-The program displays the following output.
-x1 and x2 are same types
-x1 and y1 are different types
 
 
 /* 4. Although the preceding examples demonstrate the mechanics of using typeid, they don’t
