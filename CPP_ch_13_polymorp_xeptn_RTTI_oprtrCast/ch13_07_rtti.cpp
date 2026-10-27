@@ -338,13 +338,22 @@ int main(){
 
 
 
-/* Example 3: Since the type_info object returned by "typeid" overloads the  ==  and !=  operators, 
+/* Example 3 (Demonstrate == and != relative to typeid):
+                Since the type_info object returned by "typeid" overloads the  ==  and !=  operators, 
                 this too is easy to know whether the type of one object "matches" that of another. 
                 The following program demonstrates the use of these operators.
 */
+#include <iostream>
+#include <typeinfo>
 
-class X {   virtual void f(){}  };
-class Y {   virtual void f(){}  };
+class X {
+    virtual void f(){}
+};
+
+class Y {
+    virtual void f(){}
+};
+
 
 int main(){
     X x1, x2;
@@ -365,26 +374,13 @@ int main(){
 */
 
 
-// --------  rev[26-10-2026]  --------
+// --------  rev[27-10-2026]  --------
 
-// ----  cp1: drop  ----
-
-/* 
-*/
+//  .
 
 
-// Demonstrate == and != relative to typeid .
-#include <iostream>
-#include <typeinfo>
 
-class X
-{
-virtual void f() {}
-};
-class Y
-{
-virtual void f() {}
-};
+
 int main ()
 {
 X x1 , x2;
