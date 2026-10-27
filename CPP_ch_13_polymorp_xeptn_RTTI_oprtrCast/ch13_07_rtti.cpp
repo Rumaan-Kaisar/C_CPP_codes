@@ -335,6 +335,270 @@ int main(){
         ob is pointing to an object of type class Derived2
 */
 
+/*  Output in GCC:
+        ob is referencing an object of type 9BaseClass
+        ob is referencing an object of type 8Derived1
+        ob is referencing an object of type 8Derived2
+
+
+*/
+
+/* ----  GPT  ---- 
+
+The output is different because **`typeid(ob).name()` returns a compiler-specific type name, not a human-readable type name.** Your output is most likely from the GCC compiler, which uses *name mangling* or abbreviated type names in this context.
+
+Let's understand it step by step.
+
+## 1. Why does the output contain `9BaseClass`, `8Derived1`, and `8Derived2`?
+
+Your code uses:
+
+```cpp
+std::cout << "ob is referencing an object of type "
+          << typeid(ob).name() << std::endl;
+```
+
+The important part is:
+
+```cpp
+typeid(ob).name()
+```
+
+- `typeid(ob)` obtains a `std::type_info` object representing the type of the expression `ob`.
+- `.name()` returns a C-style string containing an implementation-defined name for that type.
+- **C++ does not guarantee that `.name()` returns a readable name such as `class BaseClass`.**
+
+On your compiler, the returned names are:
+
+| Output from `.name()` | Explanation |
+|---|---|
+| `9BaseClass` | `BaseClass` has 9 characters. |
+| `8Derived1` | `Derived1` has 8 characters. |
+| `8Derived2` | `Derived2` has 8 characters. |
+
+The number indicates the length of the class name in this compiler's type-name representation.
+
+For example, `BaseClass` contains nine characters:
+
+`B a s e C l a s s` → **9 characters**
+
+Similarly, `Derived1` and `Derived2` each contain eight characters.
+
+Therefore, your compiler produces:
+
+```text
+ob is referencing an object of type 9BaseClass
+ob is referencing an object of type 8Derived1
+ob is referencing an object of type 8Derived2
+```
+
+These representations are specific to the compiler's implementation. Other compilers may produce different results.
+
+## 2. Why does `typeid(ob)` identify the derived classes?
+
+Look at your function:
+
+```cpp
+void WhatType(BaseClass &ob) {
+    std::cout << "ob is referencing an object of type "
+              << typeid(ob).name() << std::endl;
+}
+```
+
+The parameter is a reference to `BaseClass`:
+
+```cpp
+BaseClass &ob
+```
+
+However, you pass three different objects to the function:
+
+```cpp
+BaseClass baseob;
+Derived1 ob1;
+Derived2 ob2;
+```
+
+When you call:
+
+```cpp
+WhatType(baseob);
+WhatType(ob1);
+WhatType(ob2);
+```
+
+the reference `ob` refers to a different object in each call.
+
+Your `BaseClass` contains a virtual function:
+
+```cpp
+virtual void f() {}
+```
+
+This makes `BaseClass` a **polymorphic class**.
+
+For a polymorphic class, `typeid` applied to an expression representing an object through a reference or pointer identifies the object's **dynamic type**, rather than merely its static type.
+
+Consequently:
+
+| Function call | Static type of `ob` | Dynamic type of the referenced object |
+|---|---|---|
+| `WhatType(baseob)` | `BaseClass` | `BaseClass` |
+| `WhatType(ob1)` | `BaseClass` | `Derived1` |
+| `WhatType(ob2)` | `BaseClass` | `Derived2` |
+
+This is why `typeid(ob)` correctly identifies all three classes.
+
+**Important:** Your program is already identifying the correct types. The difference is only how your compiler displays their names.
+
+---
+
+## 3. How can you display `class BaseClass`, `class Derived1`, and `class Derived2`?
+
+If you are using GCC or a compatible compiler, you can use the `abi::__cxa_demangle()` function to convert the compiler's type-name representation into a more readable form.
+
+Here is a complete example:
+
+```cpp
+#include <iostream>
+#include <typeinfo>
+#include <cxxabi.h>
+#include <cstdlib>
+
+class BaseClass {
+    virtual void f() {}
+};
+
+class Derived1 : public BaseClass {};
+
+class Derived2 : public BaseClass {};
+
+void WhatType(BaseClass& ob) {
+    int status;
+
+    char* demangled = abi::__cxa_demangle(
+        typeid(ob).name(), nullptr, nullptr, &status
+    );
+
+    if (status == 0) {
+        std::cout << "ob is referencing an object of type "
+                  << demangled << std::endl;
+    }
+
+    std::free(demangled);
+}
+
+int main() {
+    BaseClass baseob;
+    Derived1 ob1;
+    Derived2 ob2;
+
+    WhatType(baseob);
+    WhatType(ob1);
+    WhatType(ob2);
+
+    return 0;
+}
+```
+
+The output will typically be:
+
+```text
+ob is referencing an object of type BaseClass
+ob is referencing an object of type Derived1
+ob is referencing an object of type Derived2
+```
+
+Notice that this output does not necessarily contain the word `class`. Demangling produces a readable type name, but the exact formatting is implementation-dependent.
+
+**Note:** `abi::__cxa_demangle()` is a GCC/Clang-oriented solution, not a standard C++ feature. It is not portable to every C++ compiler.
+
+---
+
+## 4. What if you want exactly the output shown in your textbook?
+
+Your textbook shows:
+
+```text
+ob is pointing to an object of type class BaseClass
+ob is pointing to an object of type class Derived1
+ob is pointing to an object of type class Derived2
+```
+
+There are two differences:
+
+1. The textbook uses the phrase `is pointing to`, while your program prints `is referencing`.
+2. The textbook displays readable class names with the `class` prefix.
+
+The first difference is simply the text in the output statement.
+
+The second depends on the compiler and its implementation of `typeid(ob).name()`.
+
+For example, if you want precisely the textbook's wording and output, you can explicitly map the types:
+
+```cpp
+#include <iostream>
+#include <typeinfo>
+
+class BaseClass {
+    virtual void f() {}
+};
+
+class Derived1 : public BaseClass {};
+
+class Derived2 : public BaseClass {};
+
+void WhatType(BaseClass& ob) {
+    const char* name;
+
+    if (typeid(ob) == typeid(BaseClass))
+        name = "class BaseClass";
+    else if (typeid(ob) == typeid(Derived1))
+        name = "class Derived1";
+    else if (typeid(ob) == typeid(Derived2))
+        name = "class Derived2";
+    else
+        name = "unknown type";
+
+    std::cout << "ob is pointing to an object of type "
+              << name << std::endl;
+}
+
+int main() {
+    BaseClass baseob;
+    Derived1 ob1;
+    Derived2 ob2;
+
+    WhatType(baseob);
+    WhatType(ob1);
+    WhatType(ob2);
+
+    return 0;
+}
+```
+
+This produces:
+
+```text
+ob is pointing to an object of type class BaseClass
+ob is pointing to an object of type class Derived1
+ob is pointing to an object of type class Derived2
+```
+
+This version uses standard C++ and works without relying on compiler-specific demangling.
+
+### Key takeaway
+
+Remember these three points:
+
+- **`typeid(ob)`** identifies the actual object's type because `BaseClass` is polymorphic.
+- **`typeid(ob).name()`** returns a compiler-dependent string representation of that type.
+- **`9BaseClass` and `8Derived1` are not errors.** They are simply representations used by your compiler, and the numbers indicate the lengths of the class names in this representation.
+
+
+*/
+
+
 
 
 
@@ -343,6 +607,7 @@ int main(){
                 this too is easy to know whether the type of one object "matches" that of another. 
                 The following program demonstrates the use of these operators.
 */
+
 #include <iostream>
 #include <typeinfo>
 
@@ -375,13 +640,6 @@ int main(){
 
 
 // --------  rev[27-10-2026]  --------
-
-
-The program displays the following output.
-x1 and x2 are same types
-x1 and y1 are different types
-
-
 
 
 
