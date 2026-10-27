@@ -359,10 +359,10 @@ int main(){
     X x1, x2;
     Y y1;
 
-    if(typeid(x1) == typeid(x2)) std::cout << "x1 and x2 are same types \n";
+    if( typeid(x1) == typeid(x2) )  std::cout << "x1 and x2 are same types \n";
     else std::cout << "x1 and x2 are different types \n";
 
-    if(typeid (x1) != typeid(y1)) std::cout << "x1 and y1 are different types \n";
+    if( typeid (x1) != typeid(y1) ) std::cout << "x1 and y1 are different types \n";
     else std::cout << "x1 and y1 are same types \n";
 
     return 0;
@@ -381,14 +381,9 @@ int main(){
 
 
 
-int main ()
-{
-X x1 , x2;
-Y y1;
-if( typeid (x1) == typeid (x2))
-cout << "x1 and x2 are same types \n";
-else
-cout << "x1 and x2 are different types \n";
+int main() {
+
+
 if( typeid (x1) != typeid (y1))
 cout << "x1 and y1 are different types \n";
 else
