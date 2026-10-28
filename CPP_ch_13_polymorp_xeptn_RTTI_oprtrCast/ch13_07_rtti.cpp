@@ -339,17 +339,65 @@ int main(){
         ob is referencing an object of type 8Derived1
         ob is referencing an object of type 8Derived2
 
-Why you see "9BaseClass" instead of class "BaseClass"?
 
-The difference between the expected output and the actual output you are seeing 
-    comes down to "compiler implementation" and "name mangling".
+    Why you see "9BaseClass" instead of class "BaseClass"?
 
-If you are compiling with GCC or Clang, they return a "mangled name". 
-In this scheme, a number is prepended to represent the length of the class name string.
+        The difference between the expected output and the actual output you are seeing 
+            comes down to "compiler implementation" and "name mangling".
 
-"9BaseClass" means a class name consisting of 9 characters (BaseClass).
-"8Derived1" means a class name consisting of 8 characters (Derived1).
+        If you are compiling with GCC or Clang, they return a "mangled name". 
+        In this scheme, a number is prepended to represent the length of the class name string.
+
+        "9BaseClass" means a class name consisting of 9 characters (BaseClass).
+        "8Derived1" means a class name consisting of 8 characters (Derived1).
 */
+
+
+/* Example 2 using demangle():
+If you are using GCC or a compatible compiler, you can use the "abi::__cxa_demangle()" function 
+to convert the compiler's type-name representation into a more readable form. */
+
+
+#include <iostream>
+#include <typeinfo>
+#include <cxxabi.h>
+#include <cstdlib>
+
+class BaseClass {
+    virtual void f() {}
+};
+
+class Derived1 : public BaseClass {};
+
+class Derived2 : public BaseClass {};
+
+void WhatType(BaseClass& ob) {
+    int status;
+
+    char* demangled = abi::__cxa_demangle(
+        typeid(ob).name(), nullptr, nullptr, &status
+    );
+
+    if (status == 0) {
+        std::cout << "ob is referencing an object of type "
+                  << demangled << std::endl;
+    }
+
+    std::free(demangled);
+}
+
+int main() {
+    BaseClass baseob;
+    Derived1 ob1;
+    Derived2 ob2;
+
+    WhatType(baseob);
+    WhatType(ob1);
+    WhatType(ob2);
+
+    return 0;
+}
+
 
 /* 
 
@@ -488,52 +536,6 @@ This is why `typeid(ob)` correctly identifies all three classes.
 
 ---
 
-## 3. How can you display `class BaseClass`, `class Derived1`, and `class Derived2`?
-
-If you are using GCC or a compatible compiler, you can use the `abi::__cxa_demangle()` function to convert the compiler's type-name representation into a more readable form.
-
-Here is a complete example:
-
-```cpp
-#include <iostream>
-#include <typeinfo>
-#include <cxxabi.h>
-#include <cstdlib>
-
-class BaseClass {
-    virtual void f() {}
-};
-
-class Derived1 : public BaseClass {};
-
-class Derived2 : public BaseClass {};
-
-void WhatType(BaseClass& ob) {
-    int status;
-
-    char* demangled = abi::__cxa_demangle(
-        typeid(ob).name(), nullptr, nullptr, &status
-    );
-
-    if (status == 0) {
-        std::cout << "ob is referencing an object of type "
-                  << demangled << std::endl;
-    }
-
-    std::free(demangled);
-}
-
-int main() {
-    BaseClass baseob;
-    Derived1 ob1;
-    Derived2 ob2;
-
-    WhatType(baseob);
-    WhatType(ob1);
-    WhatType(ob2);
-
-    return 0;
-}
 ```
 
 The output will typically be:
