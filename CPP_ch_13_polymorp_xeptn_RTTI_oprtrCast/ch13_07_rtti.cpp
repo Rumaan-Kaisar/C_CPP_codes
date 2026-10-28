@@ -333,31 +333,32 @@ int main(){
         ob is pointing to an object of type class BaseClass
         ob is pointing to an object of type class Derived1
         ob is pointing to an object of type class Derived2
-*/
 
-/*  Output in GCC:
+  Output in GCC:
         ob is referencing an object of type 9BaseClass
         ob is referencing an object of type 8Derived1
         ob is referencing an object of type 8Derived2
 
+Why you see "9BaseClass" instead of class "BaseClass"?
 
+The difference between the expected output and the actual output you are seeing 
+    comes down to "compiler implementation" and "name mangling".
+
+If you are compiling with GCC or Clang, they return a "mangled name". 
+In this scheme, a number is prepended to represent the length of the class name string.
+
+"9BaseClass" means a class name consisting of 9 characters (BaseClass).
+"8Derived1" means a class name consisting of 8 characters (Derived1).
 */
 
 /* 
 
 ----  gemini  ----
 
-The difference between the expected output (in the code's comment) and the actual output you are seeing comes down to **compiler implementation** and **name mangling**.
 
-### 1. The C++ Standard Rule
 
-The C++ standard states that the return value of `std::type_info::name()` is **implementation-defined**. The standard does not mandate *what* format the string must take; it only guarantees that it uniquely identifies the type.
 
-### 2. Why you see `9BaseClass` instead of `class BaseClass`
 
-* **GCC and Clang (Itanium ABI):** If you are compiling this with GCC or Clang, they return a **mangled name**. In this scheme, a number is prepended to represent the length of the class name string.
-* `9BaseClass` means a class name consisting of 9 characters (`BaseClass`).
-* `8Derived1` means a class name consisting of 8 characters (`Derived1`).
 
 
 * **MSVC (Microsoft Visual C++):** The comment in your code was written by someone using MSVC. Microsoft's compiler chooses to return a user-friendly, human-readable string (like `class BaseClass` or `class Derived1`) instead of a mangled identifier.
