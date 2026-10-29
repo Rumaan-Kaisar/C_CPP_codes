@@ -450,7 +450,6 @@ int main(){
 */
 
 
-// --------  rev[29-10-2026]  --------
 
 
 /*  Example 4: Although the previous examples show how to use typeid, they don't demonstrate its full potential 
@@ -459,21 +458,23 @@ int main(){
                 The next program is different: 
                     it defines a simple class hierarchy for drawing shapes on the screen.
 
+                At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
+                    Line, 
+                    Square, 
+                    Rectangle, and 
+                    NullShape. 
+                    
+                The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
+                [Such a function is called an "object factory".]
 
 
+// --------  rev[29-10-2026]  --------
 
 
-At the top of the hierarchy is the abstract
-class Shape. Four concrete subclasses are created: Line, Square, Rectangle, and
-NullShape. The function generator() generates an object and returns a pointer to
-it. The actual object created is determined randomly based upon the outcome of the
-random number generator rand(). (A function that produces objects is sometimes called
-an object factory.) Inside main(), the shape of each object is displayed for all objects but
+Inside main(), the shape of each object is displayed for all objects but
 NullShape objects, which have no shape. Since objects are generated randomly, there
 is no way to know in advance what type of object will be created next. Thus, the use of
 RTTI is required. 
-
-At the top of the hierarchy is the abstract class Shape, with four concrete subclasses: Line, Square, Rectangle, and NullShape. The generator() function randomly creates an object using rand() and returns a pointer to it. Such a function is called an object factory.
 
 Inside main(), the program displays the shape of each object, except for NullShape, which has no shape. Because the objects are created randomly, their types cannot be known in advance. Therefore, RTTI is needed to determine their actual types at runtime.
 
