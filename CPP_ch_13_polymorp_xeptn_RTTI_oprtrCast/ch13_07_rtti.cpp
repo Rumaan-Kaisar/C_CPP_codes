@@ -453,8 +453,13 @@ int main(){
 // --------  rev[29-10-2026]  --------
 
 
-/* 
-   Example 4: The typeid operator can be applied to template classes. For example, consider the following program. It creates a hierarchy of template classes that store a value. 
+/*  Example 4: Although the previous examples show how to use typeid, they don't demonstrate its full potential 
+                because the types are known at compile time. 
+                
+                The next program is different: 
+                    it defines a simple class hierarchy for drawing shapes on the screen.
+
+    The typeid operator can be applied to template classes. For example, consider the following program. It creates a hierarchy of template classes that store a value. 
    The VF   get_val() returns a value that is defined by each class. 
    Num  for value of the number itself
    Square  for square of the number
@@ -465,7 +470,10 @@ int main(){
 /* 4. Although the preceding examples demonstrate the mechanics of using typeid, they don’t
 show its full potential because the types in the preceding programs are knowable at compile
 time. In the following program this is not the case. The program defines a simple class
-hierarchy that draws shapes on the screen. At the top of the hierarchy is the abstract
+hierarchy that draws shapes on the screen. 
+
+
+At the top of the hierarchy is the abstract
 class Shape. Four concrete subclasses are created: Line, Square, Rectangle, and
 NullShape. The function generator() generates an object and returns a pointer to
 it. The actual object created is determined randomly based upon the outcome of the
