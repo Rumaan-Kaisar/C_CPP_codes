@@ -471,12 +471,12 @@ int main(){
 // --------  rev[29-10-2026]  --------
 
 
-Inside main(), the shape of each object is displayed for all objects but
-NullShape objects, which have no shape. Since objects are generated randomly, there
+ Since objects are generated randomly, there
 is no way to know in advance what type of object will be created next. Thus, the use of
 RTTI is required. 
 
-Inside main(), the program displays the shape of each object, except for NullShape, which has no shape. Because the objects are created randomly, their types cannot be known in advance. Therefore, RTTI is needed to determine their actual types at runtime.
+Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
+Because the objects are created randomly, their types cannot be known in advance. Therefore, RTTI is needed to determine their actual types at runtime.
 
 */
 
