@@ -473,10 +473,6 @@ int main(){
                 Therefore, RTTI is needed to determine their actual types at "runtime".
 */
 
-
-// --------  rev[30-10-2026]  --------
-
-
 #include <iostream>
 #include <cstdlib>
 #include <typeinfo>
@@ -489,21 +485,21 @@ class Shape {
 class Rectangle : public Shape {
     public:
         void example() {
-            std::cout << " *****\ n* *\n* *\n *****\ n";
+            std::cout << "*****\n*   *\n*   *\n*****\n\n";
         }
 };
 
 class Triangle : public Shape {
     public:
         void example() {
-            std::cout << "*\n* *\n* *\n *****\ n";
+            std::cout << "*\n* *\n*  *\n*****\n\n";
         }
 };
 
 class Line : public Shape {
     public:
         void example() {
-            std::cout << " *****\ n";
+            std::cout << "*****\n\n";
         }
 };
 
@@ -524,75 +520,70 @@ Shape * generator() {
 }
 
 
-int main ()
-{
-int i;
-Shape *p;
-for (i =0; i <10; i ++)
-{
-p = generator (); // get next object
-std::cout << " class " << typeid (*p). name () << endl ;
-// draw object only if it is not a NullShape
-if( typeid (*p) != typeid ( NullShape ))
-p-> example ();
+int main() {
+    int i;
+    Shape *p;
+
+    for(i=0; i<10; i++) {
+        p = generator();    // get next object
+        std::cout << " class " << typeid(*p).name() << std::endl;
+
+        // draw object only if it is not a NullShape
+        if(typeid(*p) != typeid( NullShape ))
+        p-> example();
+    }
+
+    return 0;
 }
-return 0;
-}
 
 
+/* Sample output:
+
+        class 9NullShape
+        class 8Triangle
+        *
+        * *
+        *  *
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9NullShape
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9NullShape
+        class 8Triangle
+        *
+        * *
+        *  *
+        *****
+
+        class 4Line
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+*/
 
 
-
-
-
-
-
-
-
-
-
-Sample output from the program is shown here
-
-
-class Rectangle
-*****
-* *
-* *
-*****
-class NullShape
-class Triangle
-*
-* *
-* *
-*****
-class Line
-*****
-class Rectangle
-316RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.1. UNDERSTANDING RUN-TIME TYPE IDENTIFICATION (RTTI)
-*****
-* *
-* *
-*****
-class Line
-*****
-class Triangle
-*
-* *
-* *
-*****
-class Triangle
-*
-* *
-* *
-*****
-class Triangle
-*
-* *
-* *
-*****
-class Line
-*****
+// --------  rev[30-10-2026]  --------
 
 
 /* 5. The typeid operator can be applied to template classes. For example, consider the
