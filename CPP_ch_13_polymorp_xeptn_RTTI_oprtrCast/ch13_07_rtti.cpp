@@ -467,16 +467,10 @@ int main(){
                 The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
                 [Such a function is called an "object factory".]
 
+                Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
 
-// --------  rev[29-10-2026]  --------
-
-
-
-
-Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
-Because the objects are created randomly, their types "cannot be known in advance".
-Therefore, RTTI is needed to determine their actual types at "runtime".
-
+                Because the objects are created randomly, their types "cannot be known in advance".
+                Therefore, RTTI is needed to determine their actual types at "runtime".
 */
 
 
@@ -543,7 +537,7 @@ return 0;
 }
 
 
-
+// --------  rev[30-10-2026]  --------
 
 
 # include <iostream>
