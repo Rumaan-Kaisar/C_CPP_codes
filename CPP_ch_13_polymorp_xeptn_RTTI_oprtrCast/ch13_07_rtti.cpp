@@ -474,126 +474,56 @@ int main(){
 */
 
 
-#include <iostream>
-#include <typeinfo>
-#include <cmath>
-#include <cstdlib>
-using namespace std;
-
-template <class T> class Num{ 
-public : 
-T x;
-Num (T i) { x = i; }
-virtual T get_val () { return x; } 
-};  template <class T> class Square : public Num <T> { 
-public : 
-Square(T i) : Num <T>(i){ }
-T get_val(){ return (this -> x)*(this ->x);  
-
-// Edited: main book 'return x*x;'
-}
-};
-    template <class T> class Sqr_root : public Num <T> { 
-public : 
-Sqr_root(T i) : Num <T>(i){ }
-T get_val(){ return sqrt((double) this -> x); 
-
-// Edited: main book sqrt( (double) x);'
-}
-};
-
-// A Random selection factory for objects derived from Num : for run-time selection.
-
-Num <double> *generator(){ 
-switch( rand() % 2){    
-case 0: return new Square <double> ( rand() % 100) ;
-case 1: return new Sqr_root <double> ( rand() % 100) ; }
-return NULL ;  }
-int main(){     
-Num <double> ob1(10), *p1;
-Square <double> ob2(100.0) ;
-Sqr_root <double> ob3(999.2) ;
-int i;
-
-cout << typeid(ob1).name() << endl ;
-cout << typeid(ob2).name() << endl ;
-cout << typeid(ob3).name() << endl ;
-
-if( typeid(ob2) == typeid(Square <double>)) cout << "is Square <double>\n";
-
-p1 = &ob2 ;
-if( typeid(*p1) != typeid(ob1)) cout << " Value is: " << p1 -> get_val();
-cout << "\n\n";
-
-cout << "Now , generate some Objects .\n";
-for (i=0; i <10; i++){
-p1 = generator();       // get next object
-if(typeid(*p1) == typeid(Square <double>)) cout << "Square object :";
-if(typeid (*p1) == typeid(Sqr_root <double>)) cout << "Sqr_root object:";
-cout << "Value is:" << p1 -> get_val();
-cout << endl ;
-}
-return 0;
-}
-
-
 // --------  rev[30-10-2026]  --------
 
 
-# include <iostream>
-# include <cstdlib>
-# include <typeinfo>
+#include <iostream>
+#include <cstdlib>
+#include <typeinfo>
 
-class Shape{
+class Shape {
     public:
         virtual void example() = 0;
 };
-class Rectangle : public Shape
-{
-public :
-void example ()
-{
-cout << " *****\ n* *\n* *\n *****\ n";
-}
+
+class Rectangle : public Shape {
+    public:
+        void example() {
+            std::cout << " *****\ n* *\n* *\n *****\ n";
+        }
 };
-class Triangle : public Shape
-{
-public :
-void example ()
-{
-cout << "*\n* *\n* *\n *****\ n";
-}
+
+class Triangle : public Shape {
+    public:
+        void example() {
+            std::cout << "*\n* *\n* *\n *****\ n";
+        }
 };
-class Line : public Shape
-{
-public :
-void example ()
-{
-cout << " *****\ n";
-}
+
+class Line : public Shape {
+    public:
+        void example() {
+            std::cout << " *****\ n";
+        }
 };
-class NullShape : public Shape
-{
-public :
-void example ()
-{ }
+
+class NullShape : public Shape {
+    public:
+        void example() { }
 };
-// A factory for objects derived from Shape .
-Shape * generator ()
-{
-switch ( rand () % 4)
-{
-case 0:
-return new Line ;
-case 1:
-return new Rectangle ;
-case 2:
-return new Triangle ;
-case 3:
-return new NullShape ;
+
+// A factory for objects derived from Shape.
+Shape * generator() {
+    switch(rand()%4) {
+        case 0: return new Line;
+        case 1: return new Rectangle;
+        case 2: return new Triangle;
+        case 3: return new NullShape;
+    }
+    return NULL;
 }
-return NULL ;
-}
+
+
 int main ()
 {
 int i;
@@ -601,7 +531,7 @@ Shape *p;
 for (i =0; i <10; i ++)
 {
 p = generator (); // get next object
-cout << " class " << typeid (*p). name () << endl ;
+std::cout << " class " << typeid (*p). name () << endl ;
 // draw object only if it is not a NullShape
 if( typeid (*p) != typeid ( NullShape ))
 p-> example ();
@@ -610,45 +540,6 @@ return 0;
 }
 
 
-
-
-
-/* 
-
-output :
-class Num<double>
-class Square<double>
-class Sqr root<double>
-is Square<double>
-Value is: 10000
-Now, generate some Objects.
-Sqr root object: Value is: 8.18535
-Square object: Value is: 0
-Sqr root object: Value is: 4.89898
-Square object: Value is: 3364
-Square object: Value is: 4096
-Sqr root object: Value is: 6.7082
-Sqr root object: Value is: 5.19615
-Sqr root object: Value is: 9.53939
-Sqr root object: Value is: 6.48074
-Sqr root object: Value is: 6
-
-   The example shown in main book will not compile . Reason: Consider a template class Derived with a template base class:
-
-template <typename T> class Base { public: int d; };
-
-template <typename T> class Derived : public Base<T>{  void f(){this->d = 0;}   };
-
-   this has type Derived<T>, a type which depends on T. So this has a dependent type. So this->d makes d a dependent name. Dependent names are looked-up in the context of the template definition as non-dependent names and in the context of instantiation.
-   Without this->, the name d would only be looked-up as a non-dependent name, and not be found.
-   Another solution is to declare d in the template definition itself:
-
-template <typename T> class Derived : public Base<T> {  using Base::d; 
-void f(){ d = 0; }  };
-
-Note:   RTTI is not common in every program. However, when you are working with polymorphic types, it allows you to know what type of object is being operated upon in any given situation.
-
-*/
 
 
 
@@ -820,6 +711,109 @@ Sqr root object: Value is: 6
 319
 
 
+
+#include <iostream>
+#include <typeinfo>
+#include <cmath>
+#include <cstdlib>
+
+template <class T> class Num{ 
+public:
+T x;
+Num (T i) { x = i; }
+virtual T get_val () { return x; } 
+};  template <class T> class Square : public Num <T> { 
+public : 
+Square(T i) : Num <T>(i){ }
+T get_val(){ return (this -> x)*(this ->x);  
+
+// Edited: main book 'return x*x;'
+}
+};
+    template <class T> class Sqr_root : public Num <T> { 
+public : 
+Sqr_root(T i) : Num <T>(i){ }
+T get_val(){ return sqrt((double) this -> x); 
+
+// Edited: main book sqrt( (double) x);'
+}
+};
+
+// A Random selection factory for objects derived from Num : for run-time selection.
+
+Num <double> *generator(){ 
+switch( rand() % 2){    
+case 0: return new Square <double> ( rand() % 100) ;
+case 1: return new Sqr_root <double> ( rand() % 100) ; }
+return NULL ;  }
+int main(){     
+Num <double> ob1(10), *p1;
+Square <double> ob2(100.0) ;
+Sqr_root <double> ob3(999.2) ;
+int i;
+
+cout << typeid(ob1).name() << endl ;
+cout << typeid(ob2).name() << endl ;
+cout << typeid(ob3).name() << endl ;
+
+if( typeid(ob2) == typeid(Square <double>)) cout << "is Square <double>\n";
+
+p1 = &ob2 ;
+if( typeid(*p1) != typeid(ob1)) cout << " Value is: " << p1 -> get_val();
+cout << "\n\n";
+
+cout << "Now , generate some Objects .\n";
+for (i=0; i <10; i++){
+p1 = generator();       // get next object
+if(typeid(*p1) == typeid(Square <double>)) cout << "Square object :";
+if(typeid (*p1) == typeid(Sqr_root <double>)) cout << "Sqr_root object:";
+cout << "Value is:" << p1 -> get_val();
+cout << endl ;
+}
+return 0;
+}
+
+
+
+/* 
+
+output :
+class Num<double>
+class Square<double>
+class Sqr root<double>
+is Square<double>
+Value is: 10000
+Now, generate some Objects.
+Sqr root object: Value is: 8.18535
+Square object: Value is: 0
+Sqr root object: Value is: 4.89898
+Square object: Value is: 3364
+Square object: Value is: 4096
+Sqr root object: Value is: 6.7082
+Sqr root object: Value is: 5.19615
+Sqr root object: Value is: 9.53939
+Sqr root object: Value is: 6.48074
+Sqr root object: Value is: 6
+
+   The example shown in main book will not compile . 
+Reason: Consider a template class Derived with a template base class:
+
+template <typename T> class Base { public: int d; };
+
+template <typename T> class Derived : public Base<T>{  void f(){this->d = 0;}   };
+
+   this has type Derived<T>, a type which depends on T. So this has a dependent type. So this->d makes d a dependent name. Dependent names are looked-up in the context of the template definition as non-dependent names and in the context of instantiation.
+   Without this->, the name d would only be looked-up as a non-dependent name, and not be found.
+
+
+   Another solution is to declare d in the template definition itself:
+
+template <typename T> class Derived : public Base<T> {  using Base::d; 
+void f(){ d = 0; }  };
+
+Note:   RTTI is not common in every program. However, when you are working with polymorphic types, it allows you to know what type of object is being operated upon in any given situation.
+
+*/
 
 
 
