@@ -471,12 +471,11 @@ int main(){
 // --------  rev[29-10-2026]  --------
 
 
- Since objects are generated randomly, there
-is no way to know in advance what type of object will be created next. Thus, the use of
-RTTI is required. 
+
 
 Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
-Because the objects are created randomly, their types cannot be known in advance. Therefore, RTTI is needed to determine their actual types at runtime.
+Because the objects are created randomly, their types "cannot be known in advance".
+Therefore, RTTI is needed to determine their actual types at "runtime".
 
 */
 
@@ -547,14 +546,13 @@ return 0;
 
 
 
-# include <iostream >
-# include <cstdlib >
-# include <typeinfo >
+# include <iostream>
+# include <cstdlib>
+# include <typeinfo>
 
-class Shape
-{
-public :
-virtual void example () = 0;
+class Shape{
+    public:
+        virtual void example() = 0;
 };
 class Rectangle : public Shape
 {
