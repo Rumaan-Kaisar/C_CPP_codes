@@ -586,7 +586,35 @@ int main() {
 // --------  rev[30-10-2026]  --------
 
 
-/* 5. The typeid operator can be applied to template classes. For example, consider the
+/* Example 5: The typeid operator can be used with template classes.
+
+
+
+Consider a program that creates a hierarchy of template classes to store values.
+
+
+
+Each class has a virtual function called get_val() that returns a value.
+
+
+
+Different classes calculate and return different values:
+- Num: Returns the original number.
+- Square: Returns the square of the number.
+- SqrRoot: Returns the square root of the number.
+
+
+
+The generator() function creates objects derived from the Num class.
+
+
+
+The typeid operator identifies the actual type of object created by the generator() function.
+
+
+
+
+ The typeid operator can be applied to template classes. For example, consider the
 following program. It creates a hierarchy of template classes that store a value. The
 virtual function get val() returns a value that is defined by each class. For class Num,
 this is the value of the number itself. For Square, it is the square of the number, and for
