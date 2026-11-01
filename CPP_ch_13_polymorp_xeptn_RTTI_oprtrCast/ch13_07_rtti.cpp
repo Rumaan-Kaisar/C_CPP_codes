@@ -585,8 +585,11 @@ int main() {
 
 
 
+// ---- rev[01-Nov-2026] ----
+
 /* Example 5: The "typeid" operator can be used with "template classes".
                 Consider a program that creates a "hierarchy of template classes" to store values.
+                ["Num" as base template, Square, SqrRoot as derived templates from "Num".]
 
                 Each class has a virtual function called get_val() that returns a value.
 
@@ -599,47 +602,42 @@ int main() {
                 The "typeid" operator identifies the "actual type of object" created by the generator() function.
 */
 
+#include <iostream>
+#include <typeinfo>
+#include <cmath>
+#include <cstdlib>
 
-// typeid can be used with templates .
-# include <iostream >
-# include <typeinfo >
-# include <cmath >
-# include <cstdlib >
+template <class T> class Num {
+    public:
+        T x;
+        Num(T i) { x = i; }
+        virtual T get_val() { return x; }
+};
 
-template <class T> class Num
-{
-public :
-T x;
-Num (T i) { x = i; }
-virtual T get_val () { return x; }
+template <class T> class Square : public Num <T> {
+    public:
+        Square(T i) : Num <T>(i) {}
+        T get_val() { return (this->x)*(this->x); }
+};
 
+template <class T> class Sqr_root : public Num <T> {
+    public:
+        Sqr_root(T i) : Num <T>(i) {}
+        T get_val() { return sqrt( (double)this->x ); }
 };
-template <class T>
-class Square : public Num <T>
-{
-public :
-Square (T i) : Num <T >(i) {}
-T get_val () { return this ->x*this ->x; }
-};
-template <class T>
-class Sqr_root : public Num <T>
-{
-public :
-Sqr_root (T i) : Num <T >(i) {}
-T get_val () { return sqrt (( double ) this ->x); }
-};
-// A factory for objects derived from Num .
-Num < double > * generator ()
-{
-switch ( rand () % 2)
-{
-case 0:
-return new Square <double > ( rand () % 100) ;
-case 1:
-return new Sqr_root <double > ( rand () % 100) ;
+
+
+// A factory for objects derived from Num.
+// the factory return Num<double>*, i.e. returns a pointer to Num<double>
+Num <double> *generator() {
+    switch(rand()%2) {
+        case 0: return new Square <double> ( rand()%100 );      // Square<double> object type
+        case 1: return new Sqr_root <double > ( rand () % 100); // Sqr_root<double> object type
+    }
+    return NULL;
 }
-return NULL ;
-}
+
+
 int main ()
 {
 Num < double > ob1 (10) , *p1;
@@ -669,6 +667,20 @@ cout << endl ;
 }
 return 0;
 }
+
+
+
+/*  --------  using spaces in template object creation  --------
+
+    you do not need spaces between them. But both are valid C++
+
+        return new Square<double>(rand() % 100);
+        or
+        return new Square <double> (rand() % 100);
+        or
+        return new Square<double> (rand() % 100);
+*/
+
 
 
 
