@@ -508,6 +508,17 @@ int main(){
                 list <int> int_start(1);
 
 
+    --------  using spaces in template object creation  --------
+
+    You do not need spaces between them. But both are valid C++ (see in ch13_07_rtti.cpp)
+
+            new Square<double>(rand() % 100);
+        or
+            new Square <double> (rand() % 100);
+        or
+            new Square<double> (rand() % 100);
+
+
     ----------------    Custom Types    ----------------
     
     You can use generic classes to store custom structures. 
