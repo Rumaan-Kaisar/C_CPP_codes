@@ -625,11 +625,13 @@ template <class T> class Square : public Num <T> {
 template <class T> class Sqr_root : public Num <T> {
     public:
         Sqr_root(T i) : Num <T>(i) {}
-        T get_val() { return sqrt( (double)this->x ); }
+        T get_val() { 
+            return sqrt( (double)this->x ); // Do not directly use "sqrt((double)x);"
+        }
 };
 
 
-// A factory for objects derived from Num.
+// A Random selection factory for objects derived from Num : for run-time selection.
 // the factory return Num<double>*, i.e. returns a pointer to Num<double>
 Num <double> *generator() {
     switch(rand()%2) {
@@ -656,7 +658,7 @@ int main() {
     if(typeid(*p1) != typeid(ob1)) std::cout << " Value is: " << p1->get_val();
     std::cout << "\n\n";
 
-cout << "Now , generate some Objects .\n";
+    std::cout << "Now , generate some Objects .\n";
 for (i =0; i <10; i ++)
 {
 p1 = generator (); // get next object
@@ -720,17 +722,9 @@ Sqr root object: Value is: 6
 
 
 
-};
-    template <class T> class Sqr_root : public Num <T> { 
-public : 
-Sqr_root(T i) : Num <T>(i){ }
-T get_val(){ return sqrt((double) this -> x); 
 
-// Edited: main book sqrt( (double) x);'
-}
-};
 
-// A Random selection factory for objects derived from Num : for run-time selection.
+
 
 Num <double> *generator(){ 
 switch( rand() % 2){    
