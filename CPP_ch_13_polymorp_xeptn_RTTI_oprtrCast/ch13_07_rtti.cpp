@@ -617,7 +617,9 @@ template <class T> class Num {
 template <class T> class Square : public Num <T> {
     public:
         Square(T i) : Num <T>(i) {}
-        T get_val() { return (this->x)*(this->x); }
+        T get_val() { 
+            return (this->x)*(this->x); // Do not use 'return x*x;'
+        }
 };
 
 template <class T> class Sqr_root : public Num <T> {
@@ -638,9 +640,8 @@ Num <double> *generator() {
 }
 
 
-int main ()
-{
-Num < double > ob1 (10) , *p1;
+int main() {
+    Num<double> ob1 (10) , *p1;
 Square < double > ob2 (100.0) ;
 Sqr_root < double > ob3 (999.2) ;
 int i;
@@ -714,23 +715,10 @@ Sqr root object: Value is: 6
 
 
 
-#include <iostream>
-#include <typeinfo>
-#include <cmath>
-#include <cstdlib>
 
-template <class T> class Num{ 
-public:
-T x;
-Num (T i) { x = i; }
-virtual T get_val () { return x; } 
-};  template <class T> class Square : public Num <T> { 
-public : 
-Square(T i) : Num <T>(i){ }
-T get_val(){ return (this -> x)*(this ->x);  
 
-// Edited: main book 'return x*x;'
-}
+
+
 };
     template <class T> class Sqr_root : public Num <T> { 
 public : 
