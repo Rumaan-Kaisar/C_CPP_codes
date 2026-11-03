@@ -724,20 +724,7 @@ Sqr root object: Value is: 6
 
 
 int main(){     
-Num <double> ob1(10), *p1;
-Square <double> ob2(100.0) ;
-Sqr_root <double> ob3(999.2) ;
-int i;
 
-cout << typeid(ob1).name() << endl ;
-cout << typeid(ob2).name() << endl ;
-cout << typeid(ob3).name() << endl ;
-
-if( typeid(ob2) == typeid(Square <double>)) cout << "is Square <double>\n";
-
-p1 = &ob2 ;
-if( typeid(*p1) != typeid(ob1)) cout << " Value is: " << p1 -> get_val();
-cout << "\n\n";
 
 cout << "Now , generate some Objects .\n";
 for (i=0; i <10; i++){
