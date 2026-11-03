@@ -585,8 +585,6 @@ int main() {
 
 
 
-// ---- rev[02-Nov-2026] ----
-
 /* Example 5: The "typeid" operator can be used with "template classes".
                 Consider a program that creates a "hierarchy of template classes" to store values.
                 ["Num" as base template, Square, SqrRoot as derived templates from "Num".]
@@ -724,11 +722,7 @@ Sqr root object: Value is: 6
 
 
 
-Num <double> *generator(){ 
-switch( rand() % 2){    
-case 0: return new Square <double> ( rand() % 100) ;
-case 1: return new Sqr_root <double> ( rand() % 100) ; }
-return NULL ;  }
+
 int main(){     
 Num <double> ob1(10), *p1;
 Square <double> ob2(100.0) ;
@@ -755,6 +749,9 @@ cout << endl ;
 }
 return 0;
 }
+
+
+// ---- rev[02-Nov-2026] ----
 
 
 
