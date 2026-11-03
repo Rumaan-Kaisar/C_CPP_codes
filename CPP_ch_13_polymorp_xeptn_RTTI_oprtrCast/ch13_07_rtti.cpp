@@ -650,7 +650,7 @@ int main() {
     std::cout << typeid(ob2).name() << std::endl;
     std::cout << typeid(ob3).name() << std::endl;
 
-    if(typeid(ob2) == typeid(Square <double>)) std::cout << "is Square <double >\n";
+    if(typeid(ob2) == typeid(Square <double>)) std::cout << "is Square <double>\n";
     p1 = & ob2 ;
 
     if(typeid(*p1) != typeid(ob1)) std::cout << " Value is: " << p1->get_val();
@@ -679,38 +679,41 @@ int main() {
         return new Square <double> (rand() % 100);
         or
         return new Square<double> (rand() % 100);
+
+
+    --------  Reason why without "this->" the code will not compile  --------
+
+    Reason : https://goo.gl/s0cazE
+            (https://stackoverflow.com/questions/7908248/in-a-templated-derived-class-why-do-i-need-to-qualify-base-class-member-names-w)
+
+    Remedy : https://goo.gl/6lw2sJ
+            (https://stackoverflow.com/questions/11405/gcc-issue-using-a-member-of-a-base-class-that-depends-on-a-template-argument)
+
+
+    Output using GCC:
+
+        3NumIdE
+        6SquareIdE
+        8Sqr_rootIdE
+        is Square <double>
+        Value is: 10000
+
+        Now , generate some Objects .
+        Sqr_root object :  Value is: 9.27362
+        Sqr_root object :  Value is: 3.87298
+        Sqr_root object :  Value is: 5.91608
+        Square object :  Value is: 8464
+        Sqr_root object :  Value is: 4.58258
+        Square object :  Value is: 729
+        Square object :  Value is: 3481
+        Sqr_root object :  Value is: 5.09902
+        Square object :  Value is: 676
+        Square object :  Value is: 1296
 */
 
 
 
 
-// --------  rev[31-10-2026]  --------
-
-
-
-/*
-The example shown in main book will not compile .
-Reason : https :// goo .gl/ s0cazE
-Remedy : https :// goo .gl /6 lw2sJ
-*/
-The output from the program is shown here.
-class Num<double>
-class Square<double>
-class Sqr root<double>
-is Square<double>
-Value is: 10000
-Now, generate some Objects.
-Sqr root object: Value is: 8.18535
-Square object: Value is: 0
-Sqr root object: Value is: 4.89898
-Square object: Value is: 3364
-Square object: Value is: 4096
-Sqr root object: Value is: 6.7082
-Sqr root object: Value is: 5.19615
-Sqr root object: Value is: 9.53939
-Sqr root object: Value is: 6.48074
-Sqr root object: Value is: 6
-319
 
 
 
@@ -722,11 +725,8 @@ Sqr root object: Value is: 6
 
 
 
+// --------  rev[03-Nov-2026]  --------
 
-
-
-
-// ---- rev[02-Nov-2026] ----
 
 
 
