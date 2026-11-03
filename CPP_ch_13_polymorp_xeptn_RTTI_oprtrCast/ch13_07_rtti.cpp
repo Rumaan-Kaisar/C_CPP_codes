@@ -723,19 +723,7 @@ Sqr root object: Value is: 6
 
 
 
-int main(){     
 
-
-cout << "Now , generate some Objects .\n";
-for (i=0; i <10; i++){
-p1 = generator();       // get next object
-if(typeid(*p1) == typeid(Square <double>)) cout << "Square object :";
-if(typeid (*p1) == typeid(Sqr_root <double>)) cout << "Sqr_root object:";
-cout << "Value is:" << p1 -> get_val();
-cout << endl ;
-}
-return 0;
-}
 
 
 // ---- rev[02-Nov-2026] ----
