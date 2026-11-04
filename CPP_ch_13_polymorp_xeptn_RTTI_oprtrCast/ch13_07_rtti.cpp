@@ -715,40 +715,12 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 // --------  rev[03-Nov-2026]  --------
 
 
 
 
 /* 
-
-output :
-class Num<double>
-class Square<double>
-class Sqr root<double>
-is Square<double>
-Value is: 10000
-Now, generate some Objects.
-Sqr root object: Value is: 8.18535
-Square object: Value is: 0
-Sqr root object: Value is: 4.89898
-Square object: Value is: 3364
-Square object: Value is: 4096
-Sqr root object: Value is: 6.7082
-Sqr root object: Value is: 5.19615
-Sqr root object: Value is: 9.53939
-Sqr root object: Value is: 6.48074
-Sqr root object: Value is: 6
 
    The example shown in main book will not compile . 
 Reason: Consider a template class Derived with a template base class:
