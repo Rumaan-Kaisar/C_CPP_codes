@@ -143,6 +143,12 @@
         it will return the type of the object actually being referred to, which can be of a derived type.
 
         This is especially useful when objects are passed to functions by reference.
+
+
+    Note:
+        RTTI is not common in every program. 
+        However, when you are working with polymorphic types, 
+            it allows you to know what type of object is being operated upon in any given situation.
 */
 
 
@@ -690,6 +696,39 @@ int main() {
             (https://stackoverflow.com/questions/11405/gcc-issue-using-a-member-of-a-base-class-that-depends-on-a-template-argument)
 
 
+    Reason:
+        Consider a template class Derived with a template base class:
+
+            template <typename T> class Base {
+                public: int d;
+            };
+
+            template <typename T> class Derived : public Base<T>{
+                void f(){
+                    this->d = 0;
+                }
+            };
+
+        "this" has type Derived<T>, a type which depends on T. 
+        So "this" has a dependent type. So "this->d" makes d a dependent name. 
+        
+        Dependent names are looked-up in the context of the template definition as non-dependent names 
+            and in the context of instantiation.
+
+        Without "this->", the name d would only be looked-up as a non-dependent name, and not be found.
+
+
+    Alternative way:
+    Another solution is to declare d in the template definition itself:
+
+        template <typename T> class Derived : public Base<T> {
+            using Base::d; 
+            void f(){
+                d = 0;
+            }
+        };
+
+
     Output using GCC:
 
         3NumIdE
@@ -713,36 +752,7 @@ int main() {
 
 
 
-
-
-// --------  rev[03-Nov-2026]  --------
-
-
-
-
-/* 
-
-   The example shown in main book will not compile . 
-Reason: Consider a template class Derived with a template base class:
-
-template <typename T> class Base { public: int d; };
-
-template <typename T> class Derived : public Base<T>{  void f(){this->d = 0;}   };
-
-   this has type Derived<T>, a type which depends on T. So this has a dependent type. So this->d makes d a dependent name. Dependent names are looked-up in the context of the template definition as non-dependent names and in the context of instantiation.
-   Without this->, the name d would only be looked-up as a non-dependent name, and not be found.
-
-
-   Another solution is to declare d in the template definition itself:
-
-template <typename T> class Derived : public Base<T> {  using Base::d; 
-void f(){ d = 0; }  };
-
-Note:   RTTI is not common in every program. However, when you are working with polymorphic types, it allows you to know what type of object is being operated upon in any given situation.
-
-*/
-
-
+// --------  rev[04-Nov-2026]  --------
 
 
 EXERCISES
