@@ -187,13 +187,13 @@ int main(){
 
     // Demonstrate typeid with polymorphic types.
     p = &baseob;
-    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+    std::cout << "p is pointing to an object of type " << typeid(*p).name() << std::endl;
 
     p = &ob1;
-    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+    std::cout << "p is pointing to an object of type " << typeid(*p).name() << std::endl;
 
     p = &ob2;
-    std::cout << "p is pointing to an object of type" << typeid(*p).name() << std::endl;
+    std::cout << "p is pointing to an object of type " << typeid(*p).name() << std::endl;
 
     return 0;
 }
@@ -752,26 +752,6 @@ int main() {
 
 
 
-// --------  rev[04-Nov-2026]  --------
-
-
-/* 
-
-
-1. RTTI is necessary to C++ because it is not always possible to know at compile time what
-type of object is being pointed to by a base class pointer of referenced by a base class
-reference.
-
-2. Here is the output produced when BaseClass is no longer a polymorphic class.
-Typeid of i is int
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class BaseClass
-
-3. Yes.
-
-
-
 
 /*  Example 6: 
                 a)  Why is RTTI necessary in C++?
@@ -782,21 +762,30 @@ p is pointing to an object of type class BaseClass
                         std::cout << typeid(float).name();
 
             ans:
+                a.  RTTI is necessary because we cannot always know the actual type of an
+                    object pointed to by a "base class pointer or reference" at "compile time".
+                    for those cases we need to wait for "runtime".
 
-a. RTTI is necessary because we cannot always know the actual type of an
-   object pointed to by a base class pointer or reference at compile time.
+                b. When BaseClass is not polymorphic, the output is:
 
-2. When BaseClass is not polymorphic, the output is:
+                        Typeid of num is i
+                        p is pointing to an object of type 9BaseClass
+                        p is pointing to an object of type 9BaseClass
+                        p is pointing to an object of type 9BaseClass
 
-   Typeid of i is int
-   p is pointing to an object of type class BaseClass
-   p is pointing to an object of type class BaseClass
-   p is pointing to an object of type class BaseClass
+                Note:
+                    To make BaseClass non-polymorphic, simply comment out or remove the virtual function:
 
-3. Yes, the code is correct.
+                    class BaseClass {
+                        // virtual void f() {}  // Makes BaseClass polymorphic
+                    };
+
+                c. Yes, the code is correct.
 */
 
-*/
+
+
+// --------  rev[05-Nov-2026]  --------
 
 
 
