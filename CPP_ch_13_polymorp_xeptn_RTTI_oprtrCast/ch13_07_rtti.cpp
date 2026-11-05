@@ -776,6 +776,31 @@ p is pointing to an object of type class BaseClass
 3. Yes.
 
 
+
+
+/*
+Example 6: Why is RTTI necessary in C++?
+
+2. Run the experiment from Example 1. What output do you get?
+
+3. Is this code correct?
+   cout << typeid(float).name();
+
+Answers:
+
+1. RTTI is necessary because we cannot always know the actual type of an
+   object pointed to by a base class pointer or reference at compile time.
+
+2. When BaseClass is not polymorphic, the output is:
+
+   Typeid of i is int
+   p is pointing to an object of type class BaseClass
+   p is pointing to an object of type class BaseClass
+   p is pointing to an object of type class BaseClass
+
+3. Yes, the code is correct.
+*/
+
 */
 
 
