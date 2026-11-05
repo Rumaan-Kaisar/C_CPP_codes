@@ -755,12 +755,7 @@ int main() {
 // --------  rev[04-Nov-2026]  --------
 
 
-/* Example 6: Why is RTTI a necessary feature of C++?
-
-2. Try the experiment described in Example 1. What output do you see?
-
-3. Is the following fragment correct?
-cout << typeid ( float ). name ();
+/* 
 
 
 1. RTTI is necessary to C++ because it is not always possible to know at compile time what
@@ -778,17 +773,17 @@ p is pointing to an object of type class BaseClass
 
 
 
-/*
-Example 6: Why is RTTI necessary in C++?
+/*  Example 6: 
+                a)  Why is RTTI necessary in C++?
+                b)  Try experiment from "Example 1". What output do you get when base isn't polymorphic?
+                
+                c)  Is this code correct?
+    
+                        std::cout << typeid(float).name();
 
-2. Run the experiment from Example 1. What output do you get?
+            ans:
 
-3. Is this code correct?
-   cout << typeid(float).name();
-
-Answers:
-
-1. RTTI is necessary because we cannot always know the actual type of an
+a. RTTI is necessary because we cannot always know the actual type of an
    object pointed to by a base class pointer or reference at compile time.
 
 2. When BaseClass is not polymorphic, the output is:
