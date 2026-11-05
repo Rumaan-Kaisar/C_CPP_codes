@@ -755,15 +755,29 @@ int main() {
 // --------  rev[04-Nov-2026]  --------
 
 
-EXERCISES
-
-1. Why is RTTI a necessary feature of C++?
+/* Example 6: Why is RTTI a necessary feature of C++?
 
 2. Try the experiment described in Example 1. What output do you see?
 
-
 3. Is the following fragment correct?
 cout << typeid ( float ). name ();
+
+
+1. RTTI is necessary to C++ because it is not always possible to know at compile time what
+type of object is being pointed to by a base class pointer of referenced by a base class
+reference.
+
+2. Here is the output produced when BaseClass is no longer a polymorphic class.
+Typeid of i is int
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class BaseClass
+p is pointing to an object of type class BaseClass
+
+3. Yes.
+
+
+*/
+
 
 
 4. Given this fragment, show how to determine whether p is pointing to a D2 object.
@@ -793,17 +807,6 @@ objects at run time.
 
 
 ----  EXERCISES  ----
-1. RTTI is necessary to C++ because it is not always possible to know at compile time what
-type of object is being pointed to by a base class pointer of referenced by a base class
-reference.
-
-2. Here is the output produced when BaseClass is no longer a polymorphic class.
-Typeid of i is int
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class BaseClass
-p is pointing to an object of type class BaseClass
-
-3. Yes.
 
 4. if( typeid (*p) == typeid (D2)) ...
 
