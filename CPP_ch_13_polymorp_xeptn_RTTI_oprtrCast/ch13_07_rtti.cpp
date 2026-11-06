@@ -789,7 +789,7 @@ int main() {
 
 
 
-4. Given this fragment, show how to determine whether p is pointing to a D2 object.
+/*  Given following fragment, how would you determine whether p is pointing to a D2 object.
 class B
 {
 virtual void f() {}
@@ -810,10 +810,10 @@ B *p;
 typeid (Num <int <) == typeid (Num <double >)
 
 
-----  EXERCISES  ----
+
 
 4. if( typeid (*p) == typeid (D2)) ...
 
 5. False. Although the same template class is used, the type of data used by each version is
 different.
-
+ */
