@@ -789,25 +789,31 @@ int main() {
 
 
 
-/*  Given following fragment, how would you determine whether p is pointing to a D2 object.
-class B
-{
-virtual void f() {}
-};
-class D1 : public B
-{
-void f() {}
-};
-class D2 : public B
-{
-void f() {}
-};
-int main ()
-{
-B *p;
+/* Example 7: 
 
-5. Assuming the Num class from Example 5, is the following expression true or false?
-typeid (Num <int <) == typeid (Num <double >)
+            a)  Given following fragment, how would you determine whether p is pointing to a D2 object.
+
+                class B {
+                    virtual void f() {}     // making the class polymorphic
+                };
+
+                class D1 : public B {
+                    void f() {}
+                };
+
+                class D2 : public B {
+                    void f() {}
+                };
+
+                int main () {
+                    B *p;
+
+                }
+
+
+            b)  Assuming the "Num class" from Example 5, is the following expression true or false?
+
+                typeid (Num <int <) == typeid (Num <double >)
 
 
 
