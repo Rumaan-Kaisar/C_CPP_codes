@@ -785,9 +785,6 @@ int main() {
 
 
 
-// --------  rev[05-Nov-2026]  --------
-
-
 
 /* Example 7: 
 
@@ -807,19 +804,22 @@ int main() {
 
                 int main () {
                     B *p;
-
+                    // ...
                 }
 
 
             b)  Assuming the "Num class" from Example 5, is the following expression true or false?
 
-                typeid (Num <int <) == typeid (Num <double >)
+                typeid(Num <int>) == typeid (Num <double>)
+
+
+            ans:
+                a.  if( typeid (*p) == typeid (D2)) ...
+
+                b.  False. 
+                    Although the "same template class" is used, 
+                    the "type of data" used by each version is different.
+*/
 
 
 
-
-4. if( typeid (*p) == typeid (D2)) ...
-
-5. False. Although the same template class is used, the type of data used by each version is
-different.
- */
