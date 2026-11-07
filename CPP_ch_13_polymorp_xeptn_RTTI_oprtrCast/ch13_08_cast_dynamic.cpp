@@ -1,12 +1,14 @@
 				
 /*  ------------------------    C++ casting operators    ------------------------
-
-
-
-C++ has four new casting operators. They are:   [1] dynamic_cast    [2] const_cast  [3] reinterpret_cast    [4] static_cast
+    C++ has four new casting operators. They are:
+        [1] dynamic_cast
+        [2] const_cast
+        [3] reinterpret_cast
+        [4] static_cast
 
 
 13.9.1 dynamic_cast:
+
    The dynamic cast is related to RTTI, it performs a run-time cast that verifies the validity of a cast. Dynamic cast can be used to cast one type of pointer into another or one type of reference into another. The general form of dynamic cast is:
 dynamic_cast<target_type>(expr)
    Here target_type  specifies the target type of the cast and expr is the expression being cast into the new type. 
