@@ -1,5 +1,6 @@
 				
 /*  ------------------------    C++ casting operators    ------------------------
+
     C++ has four new casting operators. They are:
         [1] dynamic_cast
         [2] const_cast
@@ -12,14 +13,28 @@
     dynamic_cast is related to RTTI (Run-Time Type Information).
         It performs a run-time type conversion and checks whether the cast is valid.
 
+    It is mainly used for casting between pointers or references of polymorphic classes. 
+    It can convert:
+        One type of pointer into another pointer type.
+        One type of reference into another reference type.
 
-Dynamic cast can be used to cast one type of pointer into another or one type of reference into another.
-The general form of dynamic cast is:
-dynamic_cast<target_type>(expr)
+    General form:
 
-   Here target_type  specifies the target type of the cast and expr is the expression being cast into the new type. 
-   The target_type must be a pointer or reference type, and " expr "  the expression being cast must evaluate to a pointer or reference. 
-   If the cast is invalid during the execution of dynamic_cast, the cast fails. 
+                dynamic_cast<target_type>(expr)
+
+        target_type:
+            specifies the target type of the cast
+            The target type must be a pointer or reference type.
+
+        expr:
+            it is the expression being cast into the new type. 
+            The expression must evaluate to a pointer or reference.
+
+        If the cast is invalid during the execution of dynamic_cast, the cast fails. 
+
+// ---- rev[08-Nov-2026] ----
+
+
    The purpose of dynamic_cast is to perform casts on polymorphic types: For example, given the two polymorphic classes B and D, with D derived from B.
    A dynamic_cast can always cast a D* pointer into a B* pointer. Because a base pointer can always point to a derived.
    But a dynamic_cast can cast a B* pointer into a D* pointer only if the object being pointed to actually is a D object. 
@@ -65,26 +80,6 @@ dp = dynamic_cast < Derived *> (bp);
 
 
 /*  ----  GPT  ----
-
-
-1. Definition and Purpose
-
-
-- 
-- It is mainly used for casting between pointers or references of polymorphic classes.
-- It can convert:
-  - One type of pointer into another pointer type.
-  - One type of reference into another reference type.
-
-
-2. General Syntax
-
-dynamic_cast<target_type>(expression);
-
-- target_type: The type to which the expression is being converted.
-- expression: The pointer or reference being converted.
-- The target type must be a pointer or reference type.
-- The expression must evaluate to a pointer or reference.
 
 
 3. Casting Between Base and Derived Classes
