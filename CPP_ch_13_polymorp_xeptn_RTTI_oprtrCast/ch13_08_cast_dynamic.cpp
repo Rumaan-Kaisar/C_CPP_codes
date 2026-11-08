@@ -6,9 +6,13 @@
         [3] reinterpret_cast
         [4] static_cast
 
-    --------  dynamic_cast  --------
 
-   The dynamic cast is related to RTTI, it performs a run-time cast that verifies the validity of a cast.
+    --------  dynamic_cast  --------
+    
+    dynamic_cast is related to RTTI (Run-Time Type Information).
+        It performs a run-time type conversion and checks whether the cast is valid.
+
+
 Dynamic cast can be used to cast one type of pointer into another or one type of reference into another.
 The general form of dynamic cast is:
 dynamic_cast<target_type>(expr)
@@ -62,21 +66,11 @@ dp = dynamic_cast < Derived *> (bp);
 
 /*  ----  GPT  ----
 
-Here is a simplified and organized version of your notes, keeping the important concepts, rules, examples, and exam-relevant points.
-C++ Casting Operators
-C++ provides four casting operators:
-1. dynamic_cast
-2. const_cast
-3. reinterpret_cast
-4. static_cast
-
-
-13.9.1 dynamic_cast
-
 
 1. Definition and Purpose
-- dynamic_cast is related to RTTI (Run-Time Type Information).
-- It performs a run-time type conversion and checks whether the cast is valid.
+
+
+- 
 - It is mainly used for casting between pointers or references of polymorphic classes.
 - It can convert:
   - One type of pointer into another pointer type.
