@@ -44,10 +44,12 @@
         D is derived from B.
 
 Base-to-derived casting (B* → D*):
-- The cast succeeds only if the object actually is a D object (or an object derived from D).
-- Otherwise, the cast fails.
+    The cast succeeds only if the object actually is a D object (or an object derived from D).
+    Otherwise, the cast fails.
+
 Derived-to-base casting (D* → B*):
-- The cast succeeds because a derived-class object can always be accessed through a base-class pointer, assuming a valid accessible base relationship.
+    The cast succeeds because a derived-class object can always be accessed through a base-class pointer, 
+        assuming a valid accessible base relationship.
 
 
 
@@ -59,7 +61,10 @@ Note:
     But a dynamic_cast can cast a B* pointer into a D* pointer only if 
         the object being pointed to actually is a "D object".
 
-   In general, dynamic_cast will succeed if the pointer (or reference) being cast is a pointer (or reference) to either an object of the target type or an object derived from the target type. Otherwise, the cast will fail. 
+    In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
+        either an "object of the target type" or an "object derived from the target type".
+        Otherwise, the cast will fail. 
+
    If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
    If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
