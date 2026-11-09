@@ -32,7 +32,6 @@
 
         If the cast is invalid during the execution of dynamic_cast, the cast fails. 
 
-// ---- rev[08-Nov-2026] ----
 
 
     --------  Casting Between Base and Derived  --------
@@ -43,30 +42,30 @@
         B is a polymorphic base class.
         D is derived from B.
 
-Base-to-derived casting (B* → D*):
-    The cast succeeds only if the object actually is a D object (or an object derived from D).
-    Otherwise, the cast fails.
+    Base-to-derived casting (B* → D*):
+        The cast succeeds only if the object actually is a D object (or an object derived from D).
+        Otherwise, the cast fails.
 
-Derived-to-base casting (D* → B*):
-    The cast succeeds because a derived-class object can always be accessed through a base-class pointer, 
-        assuming a valid accessible base relationship.
+    Derived-to-base casting (D* → B*):
+        The cast succeeds because a derived-class object can always be accessed through a base-class pointer, 
+            assuming a valid accessible base relationship.
+
+    Note:
+        A dynamic_cast can always cast a "D* pointer" into a "B* pointer" (D* → B*).
+            Because a "base pointer" can always point to a "derived".
+
+        But a dynamic_cast can cast a B* pointer into a D* pointer only if 
+            the object being pointed to actually is a "D object".
+
+        In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
+            either an "object of the target type" or an "object derived from the target type".
+            
+            Otherwise, the cast will fail. 
+                If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
+                If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
 
-
-
-Note:
-    A dynamic_cast can always cast a "D* pointer" into a "B* pointer" (D* → B*).
-        Because a "base pointer" can always point to a "derived".
-
-    But a dynamic_cast can cast a B* pointer into a D* pointer only if 
-        the object being pointed to actually is a "D object".
-
-    In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
-        either an "object of the target type" or an "object derived from the target type".
-        Otherwise, the cast will fail. 
-
-   If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
-   If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
+// ---- rev[09-Nov-2026] ----
 
 
    Example of Successful cast: Assume that Base is a polymorphic class and that Derived is derived from Base.
