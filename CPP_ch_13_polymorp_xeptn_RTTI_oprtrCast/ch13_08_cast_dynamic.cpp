@@ -35,7 +35,24 @@
 // ---- rev[08-Nov-2026] ----
 
 
-   The purpose of dynamic_cast is to perform casts on polymorphic types: For example, given the two polymorphic classes B and D, with D derived from B.
+    --------  Casting Between Base and Derived  --------
+    
+    The purpose of dynamic_cast is to perform casts on polymorphic types,
+    
+    For example, given the two polymorphic classes B and D, assume:
+        B is a polymorphic base class.
+        D is derived from B.
+
+Base-to-derived casting (B* → D*):
+- The cast succeeds only if the object actually is a D object (or an object derived from D).
+- Otherwise, the cast fails.
+Derived-to-base casting (D* → B*):
+- The cast succeeds because a derived-class object can always be accessed through a base-class pointer, assuming a valid accessible base relationship.
+
+
+
+
+
    A dynamic_cast can always cast a D* pointer into a B* pointer. Because a base pointer can always point to a derived.
    But a dynamic_cast can cast a B* pointer into a D* pointer only if the object being pointed to actually is a D object. 
    In general, dynamic_cast will succeed if the pointer (or reference) being cast is a pointer (or reference) to either an object of the target type or an object derived from the target type. Otherwise, the cast will fail. 
@@ -81,16 +98,6 @@ dp = dynamic_cast < Derived *> (bp);
 
 /*  ----  GPT  ----
 
-
-3. Casting Between Base and Derived Classes
-Assume:
-- B is a polymorphic base class.
-- D is derived from B.
-Base-to-derived casting (B* → D*):
-- The cast succeeds only if the object actually is a D object (or an object derived from D).
-- Otherwise, the cast fails.
-Derived-to-base casting (D* → B*):
-- The cast succeeds because a derived-class object can always be accessed through a base-class pointer, assuming a valid accessible base relationship.
 
 
 4. Success and Failure of dynamic_cast
