@@ -65,9 +65,6 @@
                 If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
 
-// ---- rev[09-Nov-2026] ----
-
-
     Example of Successful cast:
         Assume that "Base" is a polymorphic class and "Derived" is derived from "Base".
 
@@ -88,60 +85,15 @@
         and it is "illegal" to cast a "base object" into a "derived object". 
         It displays "Cast Fails".
 
+            bp = &b_ob;         // base pointer points to Base object : Wrong 
+            dp = dynamic_cast <Derived*>(bp);
+            if(!dp) cout << " Cast Fails ";
 
+    Remember:
+        If the base pointer points to a derived object, the cast succeeds.
+        If the base pointer points to a base object, the cast fails.
 
-bp = &b_ob ;            // base pointer points to Base object : Wrong 
-dp = dynamic_cast < Derived *>(bp);
-if (!dp) cout << " Cast Fails ";
-
-
-
-
-### Example of Successful Cast
-
-1. Assume `Base` is a polymorphic class and `Derived` inherits from `Base`.
-2. Declare the objects and pointers:
-   ```
-   Base *bp, b_ob;
-   Derived *dp, d_ob;
-   ```
-3. Assign the address of a `Derived` object to the base pointer:
-   ```
-   bp = &d_ob;
-   ```
-4. Use `dynamic_cast` to convert the base pointer into a derived pointer:
-   ```
-   dp = dynamic_cast<Derived*>(bp);
-   ```
-5. Check the result:
-   ```
-   if (dp)
-       cout << "Cast OK";
-   ```
-6. Explanation: The cast is successful because `bp` actually points to a `Derived` object. 
-Therefore, it displays "Cast OK".
-
-### Example of Unsuccessful Cast
-
-1. Assign the address of a `Base` object to the base pointer:
-   ```
-   bp = &b_ob;
-   ```
-2. Try to convert the base pointer into a derived pointer:
-   ```
-   dp = dynamic_cast<Derived*>(bp);
-   ```
-3. Check the result:
-   ```
-   if (!dp)
-       cout << "Cast Fails";
-   ```
-4. Explanation: The cast fails because `bp` points to a `Base` object, not a `Derived` object. Therefore, `dynamic_cast` returns `nullptr` and displays "Cast Fails".
-
-Remember:
-
-- If the base pointer points to a derived object, the cast succeeds.
-- If the base pointer points to a base object, the cast fails.
+// ---- rev[10-Nov-2026] ----
 
 
 Notes:
