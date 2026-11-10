@@ -68,7 +68,9 @@
 // ---- rev[09-Nov-2026] ----
 
 
-   Example of Successful cast: Assume that Base is a polymorphic class and that Derived is derived from Base.
+Example of Successful cast:
+
+Assume that Base is a polymorphic class and that Derived is derived from Base.
 Base *bp, b_ob;
 Derived *dp, d_ob;
 bp = &d_ob ;            // base pointer points to Derived object : ok
@@ -77,18 +79,74 @@ if(dp) cout << " Cast OK ";
    Here the cast from the base pointer bp to the derived pointer dp works because bp is actually pointing to a Derived object. It displays "Cast OK". 
 
 
-   Example of Unsuccessful cast: In the next fragment, the cast fails because bp is pointing to a Base object and it is illegal to cast a base object into a derived object. It displays "Cast Fails".
+Example of Unsuccessful cast:
+
+In the next fragment, the cast fails because bp is pointing to a Base object and it is illegal to cast a base object into a derived object. It displays "Cast Fails".
 
 bp = &b_ob ;            // base pointer points to Base object : Wrong 
 dp = dynamic_cast < Derived *>(bp);
 if (!dp) cout << " Cast Fails ";
+
+
+
+
+### Example of Successful Cast
+
+1. Assume `Base` is a polymorphic class and `Derived` inherits from `Base`.
+2. Declare the objects and pointers:
+   ```
+   Base *bp, b_ob;
+   Derived *dp, d_ob;
+   ```
+3. Assign the address of a `Derived` object to the base pointer:
+   ```
+   bp = &d_ob;
+   ```
+4. Use `dynamic_cast` to convert the base pointer into a derived pointer:
+   ```
+   dp = dynamic_cast<Derived*>(bp);
+   ```
+5. Check the result:
+   ```
+   if (dp)
+       cout << "Cast OK";
+   ```
+6. Explanation: The cast is successful because `bp` actually points to a `Derived` object. Therefore, it displays "Cast OK".
+
+### Example of Unsuccessful Cast
+
+1. Assign the address of a `Base` object to the base pointer:
+   ```
+   bp = &b_ob;
+   ```
+2. Try to convert the base pointer into a derived pointer:
+   ```
+   dp = dynamic_cast<Derived*>(bp);
+   ```
+3. Check the result:
+   ```
+   if (!dp)
+       cout << "Cast Fails";
+   ```
+4. Explanation: The cast fails because `bp` points to a `Base` object, not a `Derived` object. Therefore, `dynamic_cast` returns `nullptr` and displays "Cast Fails".
+
+Remember:
+
+- If the base pointer points to a derived object, the cast succeeds.
+- If the base pointer points to a base object, the cast fails.
+
+
 Notes:
-The dynamic_cast operator can sometimes be used instead of typeid. Consider the previous example. The following fragment will assign dp the address of the object pointed to by bp  iff  the object is really a Derived object.
+The dynamic_cast operator can sometimes be used instead of typeid. Consider the previous example. 
+The following fragment will assign dp the address of the object pointed to by bp  iff  the object is really a Derived object.
 
 Base *bp;
 Derived *dp;
 // ...
 if( typeid(*bp) == typeid(Derived) ) dp  = (Derived *) bp;
+
+
+
 
    Here a C-style cast is used to perform the cast. It's safe because the if checks the legality of the cast using typeid before the cast actually occurs. 
    The better way to accomplish this is to replace the typeid operators and if statement with this dynamic_cast:
