@@ -69,14 +69,18 @@
 
 
 Example of Successful cast:
+    Assume that "Base" is a polymorphic class and "Derived" is derived from "Base".
 
-Assume that Base is a polymorphic class and that Derived is derived from Base.
-Base *bp, b_ob;
-Derived *dp, d_ob;
-bp = &d_ob ;            // base pointer points to Derived object : ok
-dp = dynamic_cast < Derived * >(bp);
-if(dp) cout << " Cast OK ";
-   Here the cast from the base pointer bp to the derived pointer dp works because bp is actually pointing to a Derived object. It displays "Cast OK". 
+        Base *bp, b_ob;
+        Derived *dp, d_ob;
+
+        bp = &d_ob;         // base pointer points to Derived object : ok
+        dp = dynamic_cast <Derived*>(bp);
+        if(dp) cout << " Cast OK ";
+
+    Here the cast from the "base pointer bp" to the "derived pointer dp" works 
+        because bp is actually pointing to a "Derived" object. 
+        It displays "Cast OK". 
 
 
 Example of Unsuccessful cast:
@@ -111,7 +115,8 @@ if (!dp) cout << " Cast Fails ";
    if (dp)
        cout << "Cast OK";
    ```
-6. Explanation: The cast is successful because `bp` actually points to a `Derived` object. Therefore, it displays "Cast OK".
+6. Explanation: The cast is successful because `bp` actually points to a `Derived` object. 
+Therefore, it displays "Cast OK".
 
 ### Example of Unsuccessful Cast
 
