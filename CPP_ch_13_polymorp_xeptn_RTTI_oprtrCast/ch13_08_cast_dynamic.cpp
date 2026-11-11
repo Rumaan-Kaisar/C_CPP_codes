@@ -42,16 +42,16 @@
         B is a polymorphic base class.
         D is derived from B.
 
-    Base-to-derived casting (B* → D*):
+    Base-to-derived casting (B* --> D*):
         The cast succeeds only if the object actually is a D object (or an object derived from D).
         Otherwise, the cast fails.
 
-    Derived-to-base casting (D* → B*):
+    Derived-to-base casting (D* --> B*):
         The cast succeeds because a derived-class object can always be accessed through a base-class pointer, 
             assuming a valid accessible base relationship.
 
     Note:
-        A dynamic_cast can always cast a "D* pointer" into a "B* pointer" (D* → B*).
+        A dynamic_cast can always cast a "D* pointer" into a "B* pointer" (D* --> B*).
             Because a "base pointer" can always point to a "derived".
 
         But a dynamic_cast can cast a B* pointer into a D* pointer only if 
@@ -93,17 +93,17 @@
         If the base pointer points to a derived object, the cast succeeds.
         If the base pointer points to a base object, the cast fails.
 
-// ---- rev[10-Nov-2026] ----
 
-Notes:
-    The dynamic_cast operator can sometimes be used instead of "typeid". Consider the previous example-
-    The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
+    Notes:
+        The dynamic_cast operator can sometimes be used instead of "typeid". Consider the previous example-
+        The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
 
-Base *bp;
-Derived *dp;
-// ...
-if( typeid(*bp) == typeid(Derived) ) dp  = (Derived *) bp;
+            Base *bp;
+            Derived *dp;
+            // ...
+            if( typeid(*bp) == typeid(Derived) ) dp  = (Derived *) bp;
 
+// ---- rev[11-Nov-2026] ----
 
 
 
