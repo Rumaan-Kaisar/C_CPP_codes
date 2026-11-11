@@ -95,10 +95,9 @@
 
 // ---- rev[10-Nov-2026] ----
 
-
 Notes:
-The dynamic_cast operator can sometimes be used instead of typeid. Consider the previous example. 
-The following fragment will assign dp the address of the object pointed to by bp  iff  the object is really a Derived object.
+    The dynamic_cast operator can sometimes be used instead of "typeid". Consider the previous example-
+    The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
 
 Base *bp;
 Derived *dp;
@@ -204,4 +203,6 @@ Important correction:
 For dynamic_cast to work with class types, the source type must be polymorphic when performing a run-time downcast or cross-cast. 
 A polymorphic class must have at least one virtual function, commonly a virtual destructor.
 
+        
 */
+
