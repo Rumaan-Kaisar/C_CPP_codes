@@ -108,11 +108,16 @@
 
 
    Here a C-style cast is used to perform the cast. It's safe because the if checks the legality of the cast using typeid before the cast actually occurs. 
+
    The better way to accomplish this is to replace the typeid operators and if statement with this dynamic_cast:
 dp = dynamic_cast < Derived *> (bp);
+
    After this statement executes dp will contain either a null or a pointer to an object of type Derived. Because dynamic_cast succeeds only if the object being cast is either 
+
    already an object of the target type or 
+
    an object derived from the target type, 
+
    Since dynamic_cast succeeds only if the cast is legal, it can simplify the logic in certain situations.
 
 
