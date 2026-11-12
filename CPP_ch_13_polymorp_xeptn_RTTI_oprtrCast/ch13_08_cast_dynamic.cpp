@@ -64,6 +64,10 @@
                 If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
                 If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
+        i.e if the cast fails:
+            For pointer types --> returns nullptr.
+            For reference types --> throws a std::bad_cast exception.
+
 
     Example of Successful cast:
         Assume that "Base" is a polymorphic class and "Derived" is derived from "Base".
@@ -133,9 +137,7 @@ dp = dynamic_cast < Derived *> (bp);
 4. Success and Failure of dynamic_cast
 - The cast succeeds if the object is compatible with the target type.
 - Otherwise, the cast fails.
-If the cast fails:
-- For pointer types → returns nullptr.
-- For reference types → throws a std::bad_cast exception.
+
 
 
 5. Example of Successful Casting
