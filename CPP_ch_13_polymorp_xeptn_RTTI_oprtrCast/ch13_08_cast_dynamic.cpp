@@ -60,6 +60,8 @@
         In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
             either an "object of the target type" or an "object derived from the target type".
             
+            i.e. the cast succeeds if the object is "compatible" with the "target type". Otherwise, the cast fails.
+
             Otherwise, the cast will fail. 
                 If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
                 If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
@@ -70,6 +72,8 @@
 
 
     Example of Successful cast:
+        
+
         Assume that "Base" is a polymorphic class and "Derived" is derived from "Base".
 
             Base *bp, b_ob;
@@ -134,9 +138,8 @@ dp = dynamic_cast < Derived *> (bp);
 
 
 
-4. Success and Failure of dynamic_cast
-- The cast succeeds if the object is compatible with the target type.
-- Otherwise, the cast fails.
+
+
 
 
 
