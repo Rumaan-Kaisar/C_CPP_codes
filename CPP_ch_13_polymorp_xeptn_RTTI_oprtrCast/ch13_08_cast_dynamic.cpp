@@ -57,18 +57,22 @@
         But a dynamic_cast can cast a B* pointer into a D* pointer only if 
             the object being pointed to actually is a "D object".
 
-        In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
-            either an "object of the target type" or an "object derived from the target type".
-            
-            i.e. the cast succeeds if the object is "compatible" with the "target type". Otherwise, the cast fails.
 
-            Otherwise, the cast will fail. 
-                If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
-                If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
-        i.e if the cast fails:
-            For pointer types --> returns nullptr.
-            For reference types --> throws a std::bad_cast exception.
+    --------  Success/Failure  --------
+
+    In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
+        either an "object of the target type" or an "object derived from the target type".
+        
+        i.e. the cast succeeds if the object is "compatible" with the "target type". Otherwise, the cast fails.
+
+        Otherwise, the cast will fail. 
+            If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
+            If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
+
+    FAILURE OUTCOME i.e if the cast fails:
+        For pointer types --> returns nullptr.
+        For reference types --> throws a std::bad_cast exception.
 
 
     Example of Successful cast:
@@ -163,13 +167,15 @@ dp = dynamic_cast<Derived*>(bp);
 - If unsuccessful, dp becomes nullptr.
 - Therefore, dynamic_cast simplifies the logic and avoids a separate typeid check.
 
-Key Points to Remember
-- dynamic_cast performs run-time type checking.
-- It is mainly used with polymorphic classes.
-- Base-to-derived casting succeeds only when the actual object is compatible with the target type.
-- Failed pointer cast → nullptr.
-- Failed reference cast → std::bad_cast.
-- It is safer than unchecked downcasting.
+Key Points:
+    dynamic_cast performs run-time type checking.
+        It is mainly used with polymorphic classes.
+
+    Base-to-derived casting succeeds only when the actual object is compatible with the target type.
+
+
+
+It is safer than unchecked downcasting.
 
 
 
