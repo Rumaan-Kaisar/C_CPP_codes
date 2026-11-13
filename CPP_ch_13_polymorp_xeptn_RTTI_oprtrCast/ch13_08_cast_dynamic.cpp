@@ -150,11 +150,10 @@ dp = dynamic_cast<Derived*>(bp);
 if (!dp)
     cout << "Cast Fails";
 
-Explanation:
-- bp points to a Base object, not a Derived object.
-- Therefore, the cast fails and dp becomes nullptr.
-- The output is:
-Cast Fails
+reason:
+    bp points to a Base object, not a Derived object.
+    Therefore, the cast fails and dp becomes nullptr.
+
 
 
 7. dynamic_cast vs. typeid
