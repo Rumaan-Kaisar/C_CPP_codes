@@ -108,25 +108,39 @@
         If the base pointer points to a base object, the cast fails.
 
 
-    Notes:
-        The dynamic_cast operator can sometimes be used instead of "typeid". Consider the previous example-
-        The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
+
+// ---- rev[13-Nov-2026] ----
+
+    --------  dynamic_cast vs. typeid  --------
+
+    The "dynamic_cast" operator can sometimes be used instead of "typeid". Consider the previous example-
+    The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
 
             Base *bp;
             Derived *dp;
             // ...
-            if( typeid(*bp) == typeid(Derived) ) dp  = (Derived *) bp;
+            if( typeid(*bp) == typeid(Derived) ) dp = (Derived*)bp;
 
-// ---- rev[11-Nov-2026] ----
+    Above "C-style cast" is used to perform the cast. It's safe because 
+        the "if" checks the legality of the cast using "typeid" before the cast actually occurs.
+
+    This requires a separate type check and cast:
+        "typeid" checks the object's run-time type.
+        A C-style cast is then used to perform the conversion.
+
+
+    Simpler and safer approach is:
+        Replace the "typeid" operators and "if statement" with dynamic_cast:
+
+            dp = dynamic_cast < Derived *> (bp);
 
 
 
-   Here a C-style cast is used to perform the cast. It's safe because the if checks the legality of the cast using typeid before the cast actually occurs. 
+   After this statement executes dp will contain either a null or a pointer 
+to an object of type Derived. Because dynamic_cast succeeds 
+only if the object being cast is either 
 
-   The better way to accomplish this is to replace the typeid operators and if statement with this dynamic_cast:
-dp = dynamic_cast < Derived *> (bp);
 
-   After this statement executes dp will contain either a null or a pointer to an object of type Derived. Because dynamic_cast succeeds only if the object being cast is either 
 
    already an object of the target type or 
 
@@ -147,18 +161,16 @@ dp = dynamic_cast < Derived *> (bp);
 
 
 
-7. dynamic_cast vs. typeid
+
 
 Previously, typeid could be used to check the object's type before casting:
 
-if (typeid(*bp) == typeid(Derived))
-    dp = (Derived*)bp;
 
-- typeid checks the object's run-time type.
-- A C-style cast is then used to perform the conversion.
-- This requires a separate type check and cast.
 
-A simpler and safer approach is:
+
+
+
+
 
 dp = dynamic_cast<Derived*>(bp);
 
