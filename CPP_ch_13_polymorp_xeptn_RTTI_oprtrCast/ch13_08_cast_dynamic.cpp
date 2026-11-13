@@ -95,6 +95,10 @@
             dp = dynamic_cast <Derived*>(bp);
             if(!dp) cout << " Cast Fails ";
 
+        reason:
+            bp points to a Base object, not a Derived object.
+            Therefore, the cast fails and dp becomes nullptr.
+
     Remember:
         If the base pointer points to a derived object, the cast succeeds.
         If the base pointer points to a base object, the cast fails.
@@ -136,23 +140,6 @@ dp = dynamic_cast < Derived *> (bp);
 
 
 
-
-
-
-
-
-6. Example of Unsuccessful Casting
-
-bp = &b_ob;   // Base pointer points to Base object
-
-dp = dynamic_cast<Derived*>(bp);
-
-if (!dp)
-    cout << "Cast Fails";
-
-reason:
-    bp points to a Base object, not a Derived object.
-    Therefore, the cast fails and dp becomes nullptr.
 
 
 
