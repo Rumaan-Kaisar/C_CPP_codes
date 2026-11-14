@@ -109,8 +109,6 @@
 
 
 
-// ---- rev[13-Nov-2026] ----
-
     --------  dynamic_cast vs. typeid  --------
 
     The "dynamic_cast" operator can sometimes be used instead of "typeid". Consider the previous example-
@@ -135,64 +133,37 @@
             dp = dynamic_cast<Derived*>(bp);
 
         After this statement executes "dp" will contain either 
-            a "null" or a "pointer to an object" of type Derived.
+            a "null" or a "pointer to an object" of type "Derived".
+
+        - dynamic_cast performs the "type check" and "cast" together.
+        - If successful, dp contains a valid pointer.
+        - If unsuccessful, dp becomes "nullptr".
+
+        Because dynamic_cast succeeds only if the object being cast is either:
+            - already an object of the target type or 
+            - an object derived from the target type, 
+
+        Since dynamic_cast succeeds only if the cast is legal, 
+            Therefore, dynamic_cast simplifies the logic and avoids a separate typeid check.
 
 
 
+    --------  Key Points  --------
 
-
-   already an object of the target type or 
-
-   an object derived from the target type, 
-
-   Since dynamic_cast succeeds only if the cast is legal, it can simplify the logic in certain situations.
-
-
-*/  
-
-
-
-
-/*  ----  GPT  ----
-
-
-
-
-
-
-
-
-Previously, typeid could be used to check the object's type before casting:
-
-
-
-
-
-
-
-
-
-
-- dynamic_cast performs the "type check" and "cast" together.
-- If successful, dp contains a valid pointer.
-- If unsuccessful, dp becomes "nullptr".
-- Therefore, dynamic_cast simplifies the logic and avoids a separate typeid check.
-
-Key Points:
     dynamic_cast performs run-time type checking.
         It is mainly used with polymorphic classes.
 
+    It is safer than unchecked "downcasting".
+
     Base-to-derived casting succeeds only when the actual object is compatible with the target type.
 
-It is safer than unchecked downcasting.
+    Remember:
+        For dynamic_cast to work with class types, the "source type" must be polymorphic 
+            when performing a run-time "downcast" or "cross-cast".
 
-
-
-
-Important correction:
-For dynamic_cast to work with class types, the source type must be polymorphic when performing a run-time downcast or cross-cast. 
-A polymorphic class must have at least one virtual function, commonly a virtual destructor.
-
-        
+        A polymorphic class must have "at least one virtual function", 
+            commonly a virtual destructor (e.g., virtual ~Base() = default;).
 */
 
+
+// ---- rev[14-Nov-2026] ----
