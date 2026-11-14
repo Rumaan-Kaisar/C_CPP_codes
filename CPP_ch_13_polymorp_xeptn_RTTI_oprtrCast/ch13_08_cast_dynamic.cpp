@@ -132,13 +132,12 @@
     Simpler and safer approach is:
         Replace the "typeid" operators and "if statement" with dynamic_cast:
 
-            dp = dynamic_cast < Derived *> (bp);
+            dp = dynamic_cast<Derived*>(bp);
+
+        After this statement executes "dp" will contain either 
+            a "null" or a "pointer to an object" of type Derived.
 
 
-
-   After this statement executes dp will contain either a null or a pointer 
-to an object of type Derived. Because dynamic_cast succeeds 
-only if the object being cast is either 
 
 
 
@@ -172,11 +171,11 @@ Previously, typeid could be used to check the object's type before casting:
 
 
 
-dp = dynamic_cast<Derived*>(bp);
 
-- dynamic_cast performs the type check and cast together.
+
+- dynamic_cast performs the "type check" and "cast" together.
 - If successful, dp contains a valid pointer.
-- If unsuccessful, dp becomes nullptr.
+- If unsuccessful, dp becomes "nullptr".
 - Therefore, dynamic_cast simplifies the logic and avoids a separate typeid check.
 
 Key Points:
@@ -184,8 +183,6 @@ Key Points:
         It is mainly used with polymorphic classes.
 
     Base-to-derived casting succeeds only when the actual object is compatible with the target type.
-
-
 
 It is safer than unchecked downcasting.
 
