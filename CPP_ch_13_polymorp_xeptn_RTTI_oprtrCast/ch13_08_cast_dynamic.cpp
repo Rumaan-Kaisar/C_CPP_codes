@@ -280,4 +280,216 @@ Inside Derived
 
 
 
-2. 
+2. The following example illustrates how a dynamic cast can be used to replace typeid.
+// Use dynamic_cast to replace typeid .
+# include <iostream >
+# include <typeinfo >
+using namespace std ;
+class Base
+{
+public :
+virtual void f() {}
+};
+class Derived : public Base
+{
+public :
+void derivedOnly ()
+{
+cout << "Is a Derived Object \n";
+}
+324RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.2. USING dynamic cast
+};
+int main ()
+{
+Base *bp , b_ob ;
+Derived *dp , d_ob ;
+// ***********************************
+// use typeid
+// ***********************************
+bp = & b_ob ;
+if( typeid (* bp) == typeid ( Derived ))
+{
+dp = ( Derived *) bp;
+dp -> derivedOnly ();
+}
+else
+cout << " Cast from Base to Derived failed .\n";
+bp = & d_ob ;
+if( typeid (* bp) == typeid ( Derived ))
+{
+dp = ( Derived *) bp;
+dp -> derivedOnly ();
+}
+else
+cout << "Error , cast should work !\n";
+// ***********************************
+// use dynamic_cast
+// ***********************************
+bp = & b_ob ;
+dp = dynamic_cast < Derived *> (bp);
+if(dp)
+dp -> derivedOnly ();
+else
+cout << " Cast from Base to Derived failed .\n";
+bp = & d_ob ;
+dp = dynamic_cast < Derived *> (bp);
+if(dp)
+dp -> derivedOnly ();
+else
+cout << "Error , cast should work !\n";
+return 0;
+}
+As you can see, the use of dynamic cast simplifies the logic required to cast a base
+pointer into a derived pointer. The output from the program is shown here.
+Cast from Base to Derived failed.
+Is a Derived Object
+325TEACH YOURSELF
+C++
+Cast from Base to Derived failed.
+Is a Derived Object
+3. The dynamic cast operator can also be used with template classes. For example, the
+following program reworks the template class from Example 5 in the preceding section so
+that it uses dynamic cast to determine the type of object returned by the generator()
+function.
+// dynamic_cast can be used with templates , too .
+# include <iostream >
+# include <typeinfo >
+# include <cmath >
+# include <cstdlib >
+using namespace std ;
+template <class T> class Num
+{
+public :
+T x;
+Num (T i) { x = i; }
+virtual T get_val () { return x; }
+};
+template <class T>
+class Square : public Num <T>
+{
+public :
+Square (T i) : Num <T >(i) {}
+T get_val () { return this ->x*this ->x; }
+};
+template <class T>
+class Sqr_root : public Num <T>
+{
+public :
+Sqr_root (T i) : Num <T >(i) {}
+T get_val () { return sqrt (( double ) this ->x); }
+};
+// A factory for objects derived from Num .
+Num < double > * generator ()
+{
+switch ( rand () % 2)
+{
+case 0:
+return new Square <double > ( rand () % 100) ;
+case 1:
+return new Sqr_root <double > ( rand () % 100) ;
+}
+return NULL ;
+}
+326RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.2. USING dynamic cast
+int main ()
+{
+Num < double > ob1 (10) , *p1;
+Square < double > ob2 (100.0) , *p2;
+Sqr_root < double > ob3 (999.2) , *p3;
+int i;
+cout << " Generate some objects .\n";
+for (i =0; i <10; i ++)
+{
+p1 = generator ();
+p2 = dynamic_cast <Square <double > *> (p1);
+if(p2)
+cout << " Square object : ";
+p3 = dynamic_cast < Sqr_root <double > *> (p1);
+if(p3)
+cout << " Sqr_root object : ";
+cout << " Value is: " << p1 -> get_val ();
+cout << endl ;
+}
+return 0;
+}
+
+
+// Exrcs
+
+1. In your own words explain the purpose of dynamic cast.
+2. Given the following fragment and using dynamic cast, show how you can assign p a
+pointer to some object ob if and only if ob is a D2 object.
+class B
+{
+virtual void f() {}
+};
+class D1 : public B
+{
+void f() {}
+};
+class D2 : public B
+{
+void f() {}
+};
+B *p;
+3. Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
+rather than typeid to prevent a NullShape object from being displayed.
+327TEACH YOURSELF
+C++
+4. Using the Num class hierarchy from Example 3 in this section, will the following work?
+Num <int > *Bp;
+Square < double > *Dp;
+// ...
+Dp = dynamic_cast <Num <int >> (Bp);
+
+
+
+// --------------------------------
+
+1. The dynamic cast operator determines the validity of a polymorphic cast.
+2. # include <iostream >
+# include <typeinfo >
+using namespace std ;
+class B
+{
+virtual void f() {}
+};
+class D1 : public B
+{
+void f() {}
+};
+class D2 : public B
+{
+void f() {}
+};
+int main ()
+{
+B *p;
+D2 ob;
+p = dynamic_cast <D2 *> (& ob);
+if(p)
+cout << " Cast OK";
+else
+cout << " Cast Fails ";
+return 0;
+}
+3. int main ()
+{
+int i;
+Shape *p;
+for (i =0; i <10; i ++)
+571TEACH YOURSELF
+C++
+{
+p = generator (); // get next object
+cout << typeid (*p). name () << endl ;
+// draw object only if it is not a Nullshape
+if (! dynamic_cast < NullShape *> (p))
+p-> example ();
+}
+return 0;
+}
+4. No. Bp and Dp are pointers to two fundamentally different types of objects.
+
