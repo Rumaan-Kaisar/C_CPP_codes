@@ -168,7 +168,11 @@
 
 // ---- rev[14-Nov-2026] ----
 
-1. The following program demonstrates dynamic cast:
+
+
+
+
+/* Example 1: The following program demonstrates dynamic cast. */
 // Demonstrate dynamic_cast .
 # include <iostream >
 using namespace std ;
@@ -280,7 +284,12 @@ Inside Derived
 
 
 
-2. The following example illustrates how a dynamic cast can be used to replace typeid.
+
+
+
+
+/* Example 2: The following example illustrates how a dynamic cast can be used to replace typeid. */
+
 // Use dynamic_cast to replace typeid .
 # include <iostream >
 # include <typeinfo >
@@ -348,10 +357,15 @@ Is a Derived Object
 C++
 Cast from Base to Derived failed.
 Is a Derived Object
-3. The dynamic cast operator can also be used with template classes. For example, the
+
+
+
+
+/* Example 3: The dynamic cast operator can also be used with template classes. For example, the
 following program reworks the template class from Example 5 in the preceding section so
-that it uses dynamic cast to determine the type of object returned by the generator()
-function.
+that it uses dynamic cast to determine the type of object returned by the generator() function.
+*/
+
 // dynamic_cast can be used with templates , too .
 # include <iostream >
 # include <typeinfo >
@@ -418,9 +432,11 @@ return 0;
 
 // Exrcs
 
-1. In your own words explain the purpose of dynamic cast.
-2. Given the following fragment and using dynamic cast, show how you can assign p a
+Example 1: In your own words explain the purpose of dynamic cast.
+
+Example 2: Given the following fragment and using dynamic cast, show how you can assign p a
 pointer to some object ob if and only if ob is a D2 object.
+
 class B
 {
 virtual void f() {}
@@ -434,11 +450,15 @@ class D2 : public B
 void f() {}
 };
 B *p;
-3. Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
+
+
+Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
 rather than typeid to prevent a NullShape object from being displayed.
 327TEACH YOURSELF
 C++
-4. Using the Num class hierarchy from Example 3 in this section, will the following work?
+
+
+Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
 Num <int > *Bp;
 Square < double > *Dp;
 // ...
