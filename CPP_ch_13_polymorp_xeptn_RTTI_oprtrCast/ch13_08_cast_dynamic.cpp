@@ -432,9 +432,13 @@ return 0;
 
 // Exrcs
 
-Example 1: In your own words explain the purpose of dynamic cast.
+/* Example 1: In your own words explain the purpose of dynamic cast. */
 
-Example 2: Given the following fragment and using dynamic cast, show how you can assign p a
+1. The dynamic cast operator determines the validity of a polymorphic cast.
+
+
+
+/* Example 2: Given the following fragment and using dynamic cast, show how you can assign p a
 pointer to some object ob if and only if ob is a D2 object.
 
 class B
@@ -450,25 +454,28 @@ class D2 : public B
 void f() {}
 };
 B *p;
+*/
 
 
-Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
-rather than typeid to prevent a NullShape object from being displayed.
+
+/* Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
+rather than typeid to prevent a NullShape object from being displayed. */
 327TEACH YOURSELF
 C++
 
 
-Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
+/* Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
 Num <int > *Bp;
 Square < double > *Dp;
 // ...
 Dp = dynamic_cast <Num <int >> (Bp);
-
+*/
 
 
 // --------------------------------
 
-1. The dynamic cast operator determines the validity of a polymorphic cast.
+
+
 2. # include <iostream >
 # include <typeinfo >
 using namespace std ;
@@ -495,6 +502,8 @@ else
 cout << " Cast Fails ";
 return 0;
 }
+
+
 3. int main ()
 {
 int i;
