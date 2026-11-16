@@ -174,8 +174,8 @@
 
 /* Example 1: The following program demonstrates dynamic cast. */
 // Demonstrate dynamic_cast .
-# include <iostream >
-using namespace std ;
+#include <iostream>
+
 class Base
 {
 public :
@@ -214,8 +214,6 @@ if(bp)
 {
 cout << " Cast from Base * to Base * OK .\n";
 bp ->f();
-322RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.2. USING dynamic cast
 }
 else
 cout << " Error \n";
@@ -258,8 +256,6 @@ bp ->f();
 }
 else
 cout << " Error \n";
-323TEACH YOURSELF
-C++
 return 0;
 }
 The program produces the following output
@@ -294,6 +290,7 @@ Inside Derived
 # include <iostream >
 # include <typeinfo >
 using namespace std ;
+
 class Base
 {
 public :
@@ -306,9 +303,8 @@ void derivedOnly ()
 {
 cout << "Is a Derived Object \n";
 }
-324RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.2. USING dynamic cast
 };
+
 int main ()
 {
 Base *bp , b_ob ;
@@ -353,8 +349,6 @@ As you can see, the use of dynamic cast simplifies the logic required to cast a 
 pointer into a derived pointer. The output from the program is shown here.
 Cast from Base to Derived failed.
 Is a Derived Object
-325TEACH YOURSELF
-C++
 Cast from Base to Derived failed.
 Is a Derived Object
 
@@ -405,8 +399,7 @@ return new Sqr_root <double > ( rand () % 100) ;
 }
 return NULL ;
 }
-326RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
-12.2. USING dynamic cast
+
 int main ()
 {
 Num < double > ob1 (10) , *p1;
@@ -434,7 +427,7 @@ return 0;
 
 /* Example 1: In your own words explain the purpose of dynamic cast. */
 
-1. The dynamic cast operator determines the validity of a polymorphic cast.
+The dynamic cast operator determines the validity of a polymorphic cast.
 
 
 
@@ -457,8 +450,8 @@ B *p;
 */
 
 
-2. # include <iostream >
-# include <typeinfo >
+#include <iostream>
+#include <typeinfo>
 using namespace std ;
 class B
 {
@@ -489,18 +482,11 @@ return 0;
 
 /* Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
 rather than typeid to prevent a NullShape object from being displayed. */
-327TEACH YOURSELF
-C++
 
-
-3. int main ()
-{
+int main() {
 int i;
 Shape *p;
-for (i =0; i <10; i ++)
-571TEACH YOURSELF
-C++
-{
+for(i=0; i<10; i++) {
 p = generator (); // get next object
 cout << typeid (*p). name () << endl ;
 // draw object only if it is not a Nullshape
