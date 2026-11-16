@@ -457,25 +457,6 @@ B *p;
 */
 
 
-
-/* Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
-rather than typeid to prevent a NullShape object from being displayed. */
-327TEACH YOURSELF
-C++
-
-
-/* Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
-Num <int > *Bp;
-Square < double > *Dp;
-// ...
-Dp = dynamic_cast <Num <int >> (Bp);
-*/
-
-
-// --------------------------------
-
-
-
 2. # include <iostream >
 # include <typeinfo >
 using namespace std ;
@@ -504,6 +485,14 @@ return 0;
 }
 
 
+
+
+/* Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
+rather than typeid to prevent a NullShape object from being displayed. */
+327TEACH YOURSELF
+C++
+
+
 3. int main ()
 {
 int i;
@@ -520,5 +509,15 @@ p-> example ();
 }
 return 0;
 }
+
+
+
+/* Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
+Num <int > *Bp;
+Square < double > *Dp;
+// ...
+Dp = dynamic_cast <Num <int >> (Bp);
+*/
+
 4. No. Bp and Dp are pointers to two fundamentally different types of objects.
 
