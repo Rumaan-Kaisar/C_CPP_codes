@@ -202,7 +202,6 @@ int main() {
     }
     else
         std::cout << " Error \n";
-
     std::cout << std::endl;
 
     bp = dynamic_cast<Base*>(& d_ob);
@@ -212,7 +211,6 @@ int main() {
     }
     else
         std::cout << " Error \n";
-
     std::cout << std::endl;
 
     bp = dynamic_cast<Base*>(& b_ob);
@@ -222,28 +220,26 @@ int main() {
     }
     else
         std::cout << " Error \n";
-
     std::cout << std::endl;
 
     dp = dynamic_cast<Derived*> (&b_ob);
     if(dp) std::cout << " Error \n";
     else std::cout << " Cast from Base * to Derived * not OK .\n";
+    std::cout << std::endl;
 
-std::cout << std::endl;
+    bp = & d_ob;    // bp points to "Derived object"
+    dp = dynamic_cast<Derived*>(bp);
+    if(dp) {
+        std::cout << " Casting bp to a Derived * OK .\n" 
+                << " because bp is really pointing \n"
+                << "to a Derived object .\n";
+        dp->f();
+    }
+    else
+        std::cout << " Error \n";
+    std::cout << std::endl;
 
-bp = & d_ob ; // bp points to Derived object
-dp = dynamic_cast < Derived *> (bp);
-if(dp)
-{
-cout << " Casting bp to a Derived * OK .\n" <<
-" because bp is really pointing \n" <<
-"to a Derived object .\n";
-dp ->f();
-}
-else
-cout << " Error \n";
-cout << endl ;
-bp = & b_ob ; // bp points to Base object
+    bp = & b_ob ; // bp points to "Base object"
 dp = dynamic_cast < Derived *> (bp);
 if(dp)
 cout << " Error \n";
