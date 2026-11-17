@@ -172,8 +172,8 @@
 
 
 
-/* Example 1: The following program demonstrates dynamic cast. */
-// Demonstrate dynamic_cast .
+/* Example 1: The following program demonstrates dynamic_cast. */
+
 #include <iostream>
 
 class Base
@@ -287,9 +287,8 @@ Inside Derived
 /* Example 2: The following example illustrates how a dynamic cast can be used to replace typeid. */
 
 // Use dynamic_cast to replace typeid .
-# include <iostream >
-# include <typeinfo >
-using namespace std ;
+#include <iostream>
+#include <typeinfo>
 
 class Base
 {
@@ -365,7 +364,7 @@ that it uses dynamic cast to determine the type of object returned by the genera
 # include <typeinfo >
 # include <cmath >
 # include <cstdlib >
-using namespace std ;
+
 template <class T> class Num
 {
 public :
@@ -452,7 +451,7 @@ B *p;
 
 #include <iostream>
 #include <typeinfo>
-using namespace std ;
+
 class B
 {
 virtual void f() {}
