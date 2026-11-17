@@ -176,30 +176,34 @@
 
 #include <iostream>
 
-class Base
-{
-public :
-virtual void f() { cout << " Inside Base \n"; }
-// ...
+class Base {
+    public:
+        virtual void f() { 
+            std::cout << " Inside Base \n";
+        }
+        // ...
 };
-class Derived : public Base
-{
-public :
-void f() { cout << " Inside Derived \n"; }
+
+class Derived : public Base {
+    public:
+        void f() { 
+            std::cout << " Inside Derived \n";
+        }
 };
-int main ()
-{
-Base *bp , b_ob ;
-Derived *dp , d_ob ;
-dp = dynamic_cast < Derived *> (& d_ob );
-if(dp)
-{
-cout << " Cast from Derived * to Derived * OK .\n";
-dp ->f();
-}
-else
-cout << " Error \n";
-cout << endl ;
+
+int main() {
+    Base *bp, b_ob;
+    Derived *dp, d_ob;
+
+    dp = dynamic_cast<Derived*>(&d_ob);
+    if(dp) {
+        std::cout << " Cast from Derived * to Derived * OK .\n";
+        dp->f();
+    }
+    else
+        std::cout << " Error \n";
+
+    std::cout << std::endl;
 bp = dynamic_cast < Base *> (& d_ob );
 if(bp)
 {
