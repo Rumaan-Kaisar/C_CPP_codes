@@ -166,7 +166,7 @@
 */
 
 
-// ---- rev[14-Nov-2026] ----
+
 
 
 
@@ -204,7 +204,7 @@ int main() {
         std::cout << " Error \n";
     std::cout << std::endl;
 
-    bp = dynamic_cast<Base*>(& d_ob);
+    bp = dynamic_cast<Base*>(&d_ob);
     if(bp) {
         std::cout << " Cast from Derived * to Base * OK .\n";
         bp->f();
@@ -213,7 +213,7 @@ int main() {
         std::cout << " Error \n";
     std::cout << std::endl;
 
-    bp = dynamic_cast<Base*>(& b_ob);
+    bp = dynamic_cast<Base*>(&b_ob);
     if(bp) {
         std::cout << " Cast from Base * to Base * OK .\n";
         bp->f();
@@ -222,12 +222,12 @@ int main() {
         std::cout << " Error \n";
     std::cout << std::endl;
 
-    dp = dynamic_cast<Derived*> (&b_ob);
+    dp = dynamic_cast<Derived*>(&b_ob);
     if(dp) std::cout << " Error \n";
     else std::cout << " Cast from Base * to Derived * not OK .\n";
     std::cout << std::endl;
 
-    bp = & d_ob;    // bp points to "Derived object"
+    bp = &d_ob;     // bp points to "Derived object"
     dp = dynamic_cast<Derived*>(bp);
     if(dp) {
         std::cout << " Casting bp to a Derived * OK .\n" 
@@ -239,7 +239,7 @@ int main() {
         std::cout << " Error \n";
     std::cout << std::endl;
 
-    bp = & b_ob ; // bp points to "Base object"
+    bp = &b_ob;     // bp points to "Base object"
     dp = dynamic_cast<Derived*>(bp);
     if(dp) std::cout << " Error \n";
     else {
@@ -249,42 +249,49 @@ int main() {
     }
     std::cout << std::endl;
 
-dp = & d_ob ; // dp points to Derived object
-bp = dynamic_cast < Base *> (dp);
-if(bp)
-{
-cout << " Casting dp to a Base * is OK .\n";
-bp ->f();
+    dp = &d_ob;     // dp points to Derived object
+    bp = dynamic_cast<Base*>(dp);
+    if(bp) {
+        std::cout << " Casting dp to a Base * is OK .\n";
+        bp->f();
+    }
+    else 
+        std::cout << " Error \n";
+
+    return 0;
 }
-else
-cout << " Error \n";
-return 0;
-}
-The program produces the following output
 
 
-Cast from Derived * to Derived * OK.
-Inside Derived
-Cast from Derived * to Base * OK.
-Inside Derived
-Cast from Base * to Base * OK.
-Inside Base
-Cast from Base * to Derived * not OK.
-Casting bp to a Derived * OK.
-because bp is really pointing
-to a Derived object.
-Inside Derived
-Now casting bp to a Derived *
-is not OK because bp is really
-pointing to a Base object.
-Casting dp to a Base * is OK.
-Inside Derived
+/* Output:
+
+    Cast from Derived * to Derived * OK .
+    Inside Derived 
+
+    Cast from Derived * to Base * OK .
+    Inside Derived 
+
+    Cast from Base * to Base * OK .
+    Inside Base 
+
+    Cast from Base * to Derived * not OK .
+
+    Casting bp to a Derived * OK .
+    because bp is really pointing 
+    to a Derived object .
+    Inside Derived 
+
+    Now casting bp to a Derived *
+    is not OK because bp is really 
+    pointing to a Base object .
+
+    Casting dp to a Base * is OK .
+    Inside Derived 
+*/
 
 
 
 
-
-
+// ---- rev[18-Nov-2026] ----
 
 /* Example 2: The following example illustrates how a dynamic cast can be used to replace typeid. */
 
