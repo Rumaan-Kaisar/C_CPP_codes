@@ -240,16 +240,15 @@ int main() {
     std::cout << std::endl;
 
     bp = & b_ob ; // bp points to "Base object"
-dp = dynamic_cast < Derived *> (bp);
-if(dp)
-cout << " Error \n";
-else
-{
-cout << " Now casting bp to a Derived *\n" <<
-"is not OK because bp is really \n" <<
-" pointing to a Base object .\n";
-}
-cout << endl ;
+    dp = dynamic_cast<Derived*>(bp);
+    if(dp) std::cout << " Error \n";
+    else {
+        std::cout << " Now casting bp to a Derived *\n" 
+                << "is not OK because bp is really \n" 
+                << " pointing to a Base object .\n";
+    }
+    std::cout << std::endl;
+
 dp = & d_ob ; // dp points to Derived object
 bp = dynamic_cast < Base *> (dp);
 if(bp)
