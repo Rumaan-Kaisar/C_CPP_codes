@@ -332,25 +332,28 @@ int main() {
     else std::cout << "Error , cast should work !\n";
 
 
-// --------  using dynamic_cast  --------
-bp = & b_ob;
-dp = dynamic_cast<Derived*>(bp);
-if(dp) dp->derivedOnly();
-else std::cout << " Cast from Base to Derived failed .\n";
+    // --------  using dynamic_cast  --------
+    bp = & b_ob;
+    dp = dynamic_cast<Derived*>(bp);
+    if(dp) dp->derivedOnly();
+    else std::cout << " Cast from Base to Derived failed .\n";
 
-bp = & d_ob ;
-dp = dynamic_cast < Derived *> (bp);
-if(dp) dp->derivedOnly();
-else std::cout << "Error , cast should work !\n";
+    bp = & d_ob ;
+    dp = dynamic_cast < Derived *> (bp);
+    if(dp) dp->derivedOnly();
+    else std::cout << "Error , cast should work !\n";
 
-return 0;
+    return 0;
 }
-As you can see, the use of dynamic cast simplifies the logic required to cast a base
-pointer into a derived pointer. The output from the program is shown here.
-Cast from Base to Derived failed.
-Is a Derived Object
-Cast from Base to Derived failed.
-Is a Derived Object
+
+/*  Notice that, the use of dynamic_cast simplifies the logic required to cast a base
+
+    Output:
+         Cast from Base to Derived failed.
+        Is a Derived Object
+         Cast from Base to Derived failed.
+        Is a Derived Object
+*/
 
 
 
