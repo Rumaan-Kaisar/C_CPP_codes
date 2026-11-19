@@ -291,31 +291,27 @@ int main() {
 
 
 
-// ---- rev[18-Nov-2026] ----
+// ---- rev[19-Nov-2026] ----
 
-/* Example 2: The following example illustrates how a dynamic cast can be used to replace typeid. */
+/* Example 2: The following example illustrates how a dynamic cast can be used to replace "typeid". */
 
-// Use dynamic_cast to replace typeid .
 #include <iostream>
 #include <typeinfo>
 
-class Base
-{
-public :
-virtual void f() {}
-};
-class Derived : public Base
-{
-public :
-void derivedOnly ()
-{
-cout << "Is a Derived Object \n";
-}
+class Base {
+    public:
+        virtual void f() {}
 };
 
-int main ()
-{
-Base *bp , b_ob ;
+class Derived : public Base {
+    public:
+        void derivedOnly() {
+            std::cout << "Is a Derived Object \n";
+        }
+};
+
+int main() {
+Base *bp, b_ob;
 Derived *dp , d_ob ;
 // ***********************************
 // use typeid
