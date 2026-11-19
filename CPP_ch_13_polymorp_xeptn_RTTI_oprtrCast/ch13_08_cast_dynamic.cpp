@@ -303,6 +303,7 @@ class Base {
         virtual void f() {}
 };
 
+
 class Derived : public Base {
     public:
         void derivedOnly() {
@@ -310,31 +311,29 @@ class Derived : public Base {
         }
 };
 
+
 int main() {
-Base *bp, b_ob;
-Derived *dp , d_ob ;
-// ***********************************
-// use typeid
-// ***********************************
-bp = & b_ob ;
-if( typeid (* bp) == typeid ( Derived ))
-{
-dp = ( Derived *) bp;
-dp -> derivedOnly ();
-}
-else
-cout << " Cast from Base to Derived failed .\n";
-bp = & d_ob ;
-if( typeid (* bp) == typeid ( Derived ))
-{
-dp = ( Derived *) bp;
-dp -> derivedOnly ();
-}
-else
-cout << "Error , cast should work !\n";
-// ***********************************
-// use dynamic_cast
-// ***********************************
+    Base *bp, b_ob;
+    Derived *dp, d_ob;
+
+    // --------  using typeid  --------
+    bp = & b_ob;
+    if( typeid(*bp) == typeid(Derived) ) {
+        dp = (Derived*)bp;
+        dp->derivedOnly();
+    }
+    else std::cout << " Cast from Base to Derived failed .\n";
+
+    bp = &d_ob;
+    if( typeid(*bp) == typeid(Derived) ) {
+        dp = (Derived*)bp;
+        dp->derivedOnly ();
+    }
+    else std::cout << "Error , cast should work !\n";
+
+
+// --------  using dynamic_cast  --------
+
 bp = & b_ob ;
 dp = dynamic_cast < Derived *> (bp);
 if(dp)
