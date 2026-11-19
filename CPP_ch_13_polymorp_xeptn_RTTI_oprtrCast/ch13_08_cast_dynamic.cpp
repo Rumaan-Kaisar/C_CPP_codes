@@ -317,7 +317,7 @@ int main() {
     Derived *dp, d_ob;
 
     // --------  using typeid  --------
-    bp = & b_ob;
+    bp = &b_ob;
     if( typeid(*bp) == typeid(Derived) ) {
         dp = (Derived*)bp;
         dp->derivedOnly();
@@ -333,19 +333,16 @@ int main() {
 
 
 // --------  using dynamic_cast  --------
+bp = & b_ob;
+dp = dynamic_cast<Derived*>(bp);
+if(dp) dp->derivedOnly();
+else std::cout << " Cast from Base to Derived failed .\n";
 
-bp = & b_ob ;
-dp = dynamic_cast < Derived *> (bp);
-if(dp)
-dp -> derivedOnly ();
-else
-cout << " Cast from Base to Derived failed .\n";
 bp = & d_ob ;
 dp = dynamic_cast < Derived *> (bp);
-if(dp)
-dp -> derivedOnly ();
-else
-cout << "Error , cast should work !\n";
+if(dp) dp->derivedOnly();
+else std::cout << "Error , cast should work !\n";
+
 return 0;
 }
 As you can see, the use of dynamic cast simplifies the logic required to cast a base
