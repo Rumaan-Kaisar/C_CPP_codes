@@ -372,10 +372,14 @@ that it uses dynamic cast to determine the type of object returned by the genera
 
 
 
-The program modifies the template class from Example 5 in the previous section "ch13_07_rtti.cpp" to demonstrate this.
+Following program modifies the template class from "Example 5" in the previous section "ch13_07_rtti.cpp"
 
-Previously we've used  the "typeid" operator with "template classes".
-                Consider a program that creates a "hierarchy of template classes" to store values.
+
+
+
+
+                
+                The program creates a "hierarchy of template classes" to store values.
                 ["Num" as base template, Square, SqrRoot as derived templates from "Num".]
 
                 Each class has a virtual function called get_val() that returns a value.
@@ -386,8 +390,10 @@ Previously we've used  the "typeid" operator with "template classes".
                     SqrRoot: Returns the square root of the number.
 
                 The generator() function creates objects derived from the "Num class".
-                The "typeid" operator identifies the "actual type of object" created by the generator() function.
-
+                
+                Previously we've used  the "typeid" operator with "template classes", 
+                    to identify the "actual type of object" created by the generator() function.
+                    Now we'll use "dynamic_cast" to do that.
 
 */
 
