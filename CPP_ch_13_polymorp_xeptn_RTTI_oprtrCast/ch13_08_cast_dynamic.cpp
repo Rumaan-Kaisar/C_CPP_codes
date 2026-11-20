@@ -1,5 +1,5 @@
 				
-/*  ------------------------    C++ casting operators    ------------------------
+/*  ------------------------    C++ casting operators: dynamic_cast    ------------------------
 
     C++ has four new casting operators. They are:
         [1] dynamic_cast
@@ -415,11 +415,13 @@ template <class T> class Sqr_root : public Num <T> {
 Num <double> *generator() {
     switch(rand()%2) {
         case 0: return new Square <double> ( rand()%100 );      // Square<double> object type
-        case 1: return new Sqr_root <double > ( rand () % 100); // Sqr_root<double> object type
+        case 1: return new Sqr_root <double> ( rand()%100 );    // Sqr_root<double> object type
     }
     return NULL;
 }
 
+
+// Note: Above code is unchanged. Notice the changes inside main()
 
 int main() {
     Num <double> ob1(10), *p1;
@@ -460,39 +462,10 @@ int main() {
 // dynamic_cast can be used with templates , too .
 
 
-template <class T> class Num
-{
-public :
-T x;
-Num (T i) { x = i; }
-virtual T get_val () { return x; }
-};
-template <class T>
-class Square : public Num <T>
-{
-public :
-Square (T i) : Num <T >(i) {}
-T get_val () { return this ->x*this ->x; }
-};
-template <class T>
-class Sqr_root : public Num <T>
-{
-public :
-Sqr_root (T i) : Num <T >(i) {}
-T get_val () { return sqrt (( double ) this ->x); }
-};
-// A factory for objects derived from Num .
-Num < double > * generator ()
-{
-switch ( rand () % 2)
-{
-case 0:
-return new Square <double > ( rand () % 100) ;
-case 1:
-return new Sqr_root <double > ( rand () % 100) ;
-}
-return NULL ;
-}
+
+
+
+
 
 int main ()
 {
