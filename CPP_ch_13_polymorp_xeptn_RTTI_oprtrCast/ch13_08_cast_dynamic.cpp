@@ -391,6 +391,83 @@ Previously we've used  the "typeid" operator with "template classes".
 
 */
 
+
+#include <iostream>
+#include <typeinfo>
+#include <cmath>
+#include <cstdlib>
+
+template <class T> class Num {
+    public:
+        T x;
+        Num(T i) { x = i; }
+        virtual T get_val() { return x; }
+};
+
+template <class T> class Square : public Num <T> {
+    public:
+        Square(T i) : Num <T>(i) {}
+        T get_val() { 
+            return (this->x)*(this->x); // Do not use 'return x*x;'
+        }
+};
+
+template <class T> class Sqr_root : public Num <T> {
+    public:
+        Sqr_root(T i) : Num <T>(i) {}
+        T get_val() { 
+            return sqrt( (double)this->x ); // Do not directly use "sqrt((double)x);"
+        }
+};
+
+
+// A Random selection factory for objects derived from Num : for run-time selection.
+// the factory return Num<double>*, i.e. returns a pointer to Num<double>
+Num <double> *generator() {
+    switch(rand()%2) {
+        case 0: return new Square <double> ( rand()%100 );      // Square<double> object type
+        case 1: return new Sqr_root <double > ( rand () % 100); // Sqr_root<double> object type
+    }
+    return NULL;
+}
+
+
+int main() {
+    Num <double> ob1(10), *p1;
+    Square <double> ob2(100.0);
+    Sqr_root <double> ob3(999.2) ;
+    int i;
+
+    std::cout << typeid(ob1).name() << std::endl;
+    std::cout << typeid(ob2).name() << std::endl;
+    std::cout << typeid(ob3).name() << std::endl;
+
+    if(typeid(ob2) == typeid(Square <double>)) std::cout << "is Square <double>\n";
+    p1 = & ob2 ;
+
+    if(typeid(*p1) != typeid(ob1)) std::cout << " Value is: " << p1->get_val();
+    std::cout << "\n\n";
+
+    std::cout << "Now , generate some Objects .\n";
+
+    for(i =0; i<10; i++) {
+        p1 = generator(); // get next object
+        if(typeid(*p1) == typeid(Square <double>)) std::cout << " Square object : ";
+        if(typeid(*p1) == typeid(Sqr_root <double>)) std::cout << " Sqr_root object : ";
+        std::cout << " Value is: " << p1 -> get_val ();
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
 // dynamic_cast can be used with templates , too .
 # include <iostream >
 # include <typeinfo >
