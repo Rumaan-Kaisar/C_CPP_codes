@@ -424,22 +424,24 @@ Num <double> *generator() {
 // Note: Above code is unchanged. Notice the changes inside main()
 
 int main() {
+    // notice new *p2, *p3
     Num <double> ob1(10), *p1;
-    Square <double> ob2(100.0);
-    Sqr_root <double> ob3(999.2) ;
+    Square <double> ob2(100.0), *p2;
+    Sqr_root <double> ob3(999.2), *p3;
     int i;
 
+/*  // --------  old code  --------
     std::cout << typeid(ob1).name() << std::endl;
     std::cout << typeid(ob2).name() << std::endl;
     std::cout << typeid(ob3).name() << std::endl;
 
     if(typeid(ob2) == typeid(Square <double>)) std::cout << "is Square <double>\n";
-    p1 = & ob2 ;
+    p1 = &ob2 ;
 
     if(typeid(*p1) != typeid(ob1)) std::cout << " Value is: " << p1->get_val();
     std::cout << "\n\n";
 
-    std::cout << "Now , generate some Objects .\n";
+    std::cout << "Generate some Objects .\n";
 
     for(i =0; i<10; i++) {
         p1 = generator(); // get next object
@@ -448,6 +450,8 @@ int main() {
         std::cout << " Value is: " << p1 -> get_val ();
         std::cout << std::endl;
     }
+*/
+
 
     return 0;
 }
@@ -473,6 +477,9 @@ Num < double > ob1 (10) , *p1;
 Square < double > ob2 (100.0) , *p2;
 Sqr_root < double > ob3 (999.2) , *p3;
 int i;
+
+
+
 cout << " Generate some objects .\n";
 for (i =0; i <10; i ++)
 {
@@ -480,6 +487,7 @@ p1 = generator ();
 p2 = dynamic_cast <Square <double > *> (p1);
 if(p2)
 cout << " Square object : ";
+
 p3 = dynamic_cast < Sqr_root <double > *> (p1);
 if(p3)
 cout << " Sqr_root object : ";
