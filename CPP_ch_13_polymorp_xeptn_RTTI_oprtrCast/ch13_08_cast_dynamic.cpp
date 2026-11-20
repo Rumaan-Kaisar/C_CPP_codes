@@ -361,6 +361,16 @@ int main() {
 /* Example 3: The dynamic cast operator can also be used with template classes. For example, the
 following program reworks the template class from Example 5 in the preceding section so
 that it uses dynamic cast to determine the type of object returned by the generator() function.
+
+The dynamic_cast operator can be used with template classes.
+
+
+
+It helps identify the actual type of an object returned by the generator() function.
+
+
+
+The program modifies the template class from Example 5 in the previous section to demonstrate this.
 */
 
 // dynamic_cast can be used with templates , too .
