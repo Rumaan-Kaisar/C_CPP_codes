@@ -291,8 +291,6 @@ int main() {
 
 
 
-// ---- rev[19-Nov-2026] ----
-
 /* Example 2: The following example illustrates how a dynamic cast can be used to replace "typeid". */
 
 #include <iostream>
@@ -357,6 +355,9 @@ int main() {
 
 
 
+// ---- rev[20-Nov-2026] ----
+
+
 
 /* Example 3: The "dynamic_cast" operator can be used with "template classes".
                 It helps identify the "actual type" of an object returned by the generator() function.
@@ -379,7 +380,6 @@ int main() {
                     to identify the "actual type of object" created by the generator() function.
                     Now we'll use "dynamic_cast" to do that.
 */
-
 
 #include <iostream>
 #include <typeinfo>
@@ -430,7 +430,8 @@ int main() {
     Sqr_root <double> ob3(999.2), *p3;
     int i;
 
-/*  // --------  old code  --------
+    /*  
+    // --------  old code  --------
     std::cout << typeid(ob1).name() << std::endl;
     std::cout << typeid(ob2).name() << std::endl;
     std::cout << typeid(ob3).name() << std::endl;
@@ -450,8 +451,21 @@ int main() {
         std::cout << " Value is: " << p1 -> get_val ();
         std::cout << std::endl;
     }
-*/
+    */
 
+    std::cout << " Generate some objects .\n";
+    for (i=0; i<10; i++) {
+        p1 = generator();
+
+        p2 = dynamic_cast<Square <double> *>(p1);
+        if(p2) std::cout << " Square object : ";
+
+        p3 = dynamic_cast<Sqr_root <double> *>(p1);
+        if(p3) std::cout << " Sqr_root object : ";
+
+        std::cout << " Value is: " << p1 -> get_val();
+        std::cout << std::endl;
+    }
 
     return 0;
 }
@@ -463,35 +477,9 @@ int main() {
 
 
 
-// dynamic_cast can be used with templates , too .
 
 
 
-
-
-
-
-int main ()
-{
-
-
-
-
-std::cout << " Generate some objects .\n";
-for (i=0; i<10; i++) {
-    p1 = generator();
-
-    p2 = dynamic_cast<Square <double> *>(p1);
-    if(p2) std::cout << " Square object : ";
-
-    p3 = dynamic_cast<Sqr_root <double> *>(p1);
-    if(p3) std::cout << " Sqr_root object : ";
-
-    std::cout << " Value is: " << p1 -> get_val();
-    std::cout << std::endl;
-}
-return 0;
-}
 
 
 // Exrcs
