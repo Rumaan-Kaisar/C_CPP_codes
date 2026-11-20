@@ -473,26 +473,22 @@ int main() {
 
 int main ()
 {
-Num < double > ob1 (10) , *p1;
-Square < double > ob2 (100.0) , *p2;
-Sqr_root < double > ob3 (999.2) , *p3;
-int i;
 
 
 
-cout << " Generate some objects .\n";
-for (i =0; i <10; i ++)
-{
-p1 = generator ();
-p2 = dynamic_cast <Square <double > *> (p1);
-if(p2)
-cout << " Square object : ";
 
-p3 = dynamic_cast < Sqr_root <double > *> (p1);
-if(p3)
-cout << " Sqr_root object : ";
-cout << " Value is: " << p1 -> get_val ();
-cout << endl ;
+std::cout << " Generate some objects .\n";
+for (i=0; i<10; i++) {
+    p1 = generator();
+
+    p2 = dynamic_cast<Square <double> *>(p1);
+    if(p2) std::cout << " Square object : ";
+
+    p3 = dynamic_cast<Sqr_root <double> *>(p1);
+    if(p3) std::cout << " Sqr_root object : ";
+
+    std::cout << " Value is: " << p1 -> get_val();
+    std::cout << std::endl;
 }
 return 0;
 }
