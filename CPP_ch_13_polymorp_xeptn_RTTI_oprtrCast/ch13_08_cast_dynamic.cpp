@@ -358,19 +358,37 @@ int main() {
 
 
 
-/* Example 3: The dynamic cast operator can also be used with template classes. For example, the
-following program reworks the template class from Example 5 in the preceding section so
+/* Example 3: The "dynamic_cast" operator can be used with "template classes".
+                It helps identify the "actual type" of an object returned by the generator() function.
+
+For example, the following program reworks the template class from Example 5 in the preceding section so
 that it uses dynamic cast to determine the type of object returned by the generator() function.
 
-The dynamic_cast operator can be used with template classes.
 
 
 
-It helps identify the actual type of an object returned by the generator() function.
 
 
 
-The program modifies the template class from Example 5 in the previous section to demonstrate this.
+
+
+The program modifies the template class from Example 5 in the previous section "ch13_07_rtti.cpp" to demonstrate this.
+
+Previously we've used  the "typeid" operator with "template classes".
+                Consider a program that creates a "hierarchy of template classes" to store values.
+                ["Num" as base template, Square, SqrRoot as derived templates from "Num".]
+
+                Each class has a virtual function called get_val() that returns a value.
+
+                Different classes calculate and return different values:
+                    Num:     Returns the value of the number itself.
+                    Square:  Returns the square of the number.
+                    SqrRoot: Returns the square root of the number.
+
+                The generator() function creates objects derived from the "Num class".
+                The "typeid" operator identifies the "actual type of object" created by the generator() function.
+
+
 */
 
 // dynamic_cast can be used with templates , too .
