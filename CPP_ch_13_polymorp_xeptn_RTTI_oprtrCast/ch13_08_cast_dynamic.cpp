@@ -496,22 +496,23 @@ int main() {
 
 
 
-/* Example 2: Given the following fragment and using dynamic cast, show how you can assign p a
-pointer to some object ob if and only if ob is a D2 object.
+/* Example 2: Consider following fragment, use dynamic_cast,
+                assign "p" a pointer to some object "ob" if and only if "ob is a D2 object".
+                (i.e. assign the address of "object ob" to "pointer p" only if ob is a D2 object.)
 
-class B
-{
-virtual void f() {}
-};
-class D1 : public B
-{
-void f() {}
-};
-class D2 : public B
-{
-void f() {}
-};
-B *p;
+                        class B {
+                            virtual void f() {}
+                        };
+
+                        class D1 : public B {
+                            void f() {}
+                        };
+
+                        class D2 : public B {
+                            void f() {}
+                        };
+
+                        B *p;
 */
 
 
@@ -526,10 +527,13 @@ class D1 : public B
 {
 void f() {}
 };
+
 class D2 : public B
 {
 void f() {}
 };
+
+
 int main ()
 {
 B *p;
