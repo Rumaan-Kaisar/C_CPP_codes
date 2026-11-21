@@ -264,28 +264,28 @@ int main() {
 
 /* Output:
 
-    Cast from Derived * to Derived * OK .
-    Inside Derived 
+        Cast from Derived * to Derived * OK .
+        Inside Derived 
 
-    Cast from Derived * to Base * OK .
-    Inside Derived 
+        Cast from Derived * to Base * OK .
+        Inside Derived 
 
-    Cast from Base * to Base * OK .
-    Inside Base 
+        Cast from Base * to Base * OK .
+        Inside Base 
 
-    Cast from Base * to Derived * not OK .
+        Cast from Base * to Derived * not OK .
 
-    Casting bp to a Derived * OK .
-    because bp is really pointing 
-    to a Derived object .
-    Inside Derived 
+        Casting bp to a Derived * OK .
+        because bp is really pointing 
+        to a Derived object .
+        Inside Derived 
 
-    Now casting bp to a Derived *
-    is not OK because bp is really 
-    pointing to a Base object .
+        Now casting bp to a Derived *
+        is not OK because bp is really 
+        pointing to a Base object .
 
-    Casting dp to a Base * is OK .
-    Inside Derived 
+        Casting dp to a Base * is OK .
+        Inside Derived 
 */
 
 
@@ -353,9 +353,6 @@ int main() {
         Is a Derived Object
 */
 
-
-
-// ---- rev[20-Nov-2026] ----
 
 
 
@@ -473,6 +470,15 @@ int main() {
 
 
 
+/* Example 4: Explain the purpose of dynamic cast in simple words. 
+            ans:
+                The dynamic cast operator determines the validity of a polymorphic cast.
+                It checks whether a type conversion is valid at runtime.
+*/
+
+
+
+// ---- rev[21-Nov-2026] ----
 
 
 
@@ -484,9 +490,9 @@ int main() {
 
 // Exrcs
 
-/* Example 1: In your own words explain the purpose of dynamic cast. */
 
-The dynamic cast operator determines the validity of a polymorphic cast.
+
+
 
 
 
