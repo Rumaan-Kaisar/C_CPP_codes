@@ -478,25 +478,8 @@ int main() {
 
 
 
-// ---- rev[21-Nov-2026] ----
 
-
-
-
-
-
-
-
-
-// Exrcs
-
-
-
-
-
-
-
-/* Example 2: Consider following fragment, use dynamic_cast,
+/* Example 5: Consider following fragment, use dynamic_cast,
                 assign "p" a pointer to some object "ob" if and only if "ob is a D2 object".
                 (i.e. assign the address of "object ob" to "pointer p" only if ob is a D2 object.)
 
@@ -532,25 +515,24 @@ class D2 : public B {
 };
 
 
+int main() {
+    B *p;
+    D2 ob;
 
+    p = dynamic_cast<D2 *>(&ob);
 
+    if(p) std::cout << " Cast OK";
+    else std::cout << " Cast Fails ";
 
-
-
-
-
-
-int main ()
-{
-B *p;
-D2 ob;
-p = dynamic_cast <D2 *> (& ob);
-if(p)
-cout << " Cast OK";
-else
-cout << " Cast Fails ";
-return 0;
+    return 0;
 }
+
+
+
+
+// ---- rev[22-Nov-2026] ----
+
+// Exrcs
 
 
 
