@@ -519,19 +519,25 @@ int main() {
 #include <iostream>
 #include <typeinfo>
 
-class B
-{
-virtual void f() {}
-};
-class D1 : public B
-{
-void f() {}
+class B {
+    virtual void f() {}
 };
 
-class D2 : public B
-{
-void f() {}
+class D1 : public B {
+    void f() {}
 };
+
+class D2 : public B {
+    void f() {}
+};
+
+
+
+
+
+
+
+
 
 
 int main ()
