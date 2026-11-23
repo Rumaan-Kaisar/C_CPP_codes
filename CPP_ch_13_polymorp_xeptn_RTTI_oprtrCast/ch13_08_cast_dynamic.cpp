@@ -612,32 +612,13 @@ int main() {
         p = generator();    // get next object
         std::cout << " class " << typeid(*p).name() << std::endl;
 
-        // draw object only if it is not a NullShape
-        if(typeid(*p) != typeid( NullShape ))
-        p-> example();
+        // --------  draw object only if it is not a NullShape  --------
+        // if(typeid(*p) != typeid( NullShape )) p-> example();     // previously used "typeid"
+        if( !dynamic_cast<NullShape *>(p) ) p-> example();          // now "dynamic_cast" is used instead of "typeid"
     }
 
     return 0;
 }
-
-
-
-int main() {
-int i;
-Shape *p;
-for(i=0; i<10; i++) {
-p = generator (); // get next object
-cout << typeid (*p). name () << endl ;
-// draw object only if it is not a Nullshape
-if (! dynamic_cast < NullShape *> (p))
-p-> example ();
-}
-return 0;
-}
-
-
-
-
 
 
 /* Sample output:
