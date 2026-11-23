@@ -541,8 +541,7 @@ int main() {
                 so that it uses "dynamic_cast" rather than "typeid" 
                 to prevent a NullShape object from being displayed.
 
-Following program defines a simple class hierarchy for drawing shapes on the screen.
-
+                Following program defines a simple class hierarchy for drawing shapes on the screen.
                 At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
                     Line, 
                     Square, 
@@ -556,27 +555,6 @@ Following program defines a simple class hierarchy for drawing shapes on the scr
 
                 Because the objects are created randomly, their types "cannot be known in advance".
                 Therefore, RTTI is needed to determine their actual types at "runtime".
-*/
-
-int main() {
-int i;
-Shape *p;
-for(i=0; i<10; i++) {
-p = generator (); // get next object
-cout << typeid (*p). name () << endl ;
-// draw object only if it is not a Nullshape
-if (! dynamic_cast < NullShape *> (p))
-p-> example ();
-}
-return 0;
-}
-
-
-
-/*  Example 4: Although the previous examples show how to use typeid, they don't demonstrate its full potential 
-                because the types are known at compile time. 
-                
-                
 */
 
 #include <iostream>
@@ -641,6 +619,25 @@ int main() {
 
     return 0;
 }
+
+
+
+int main() {
+int i;
+Shape *p;
+for(i=0; i<10; i++) {
+p = generator (); // get next object
+cout << typeid (*p). name () << endl ;
+// draw object only if it is not a Nullshape
+if (! dynamic_cast < NullShape *> (p))
+p-> example ();
+}
+return 0;
+}
+
+
+
+
 
 
 /* Sample output:
