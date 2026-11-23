@@ -555,6 +555,145 @@ return 0;
 
 
 
+/*  Example 4: Although the previous examples show how to use typeid, they don't demonstrate its full potential 
+                because the types are known at compile time. 
+                
+                The next program is different: 
+                    it defines a simple class hierarchy for drawing shapes on the screen.
+
+                At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
+                    Line, 
+                    Square, 
+                    Rectangle, and 
+                    NullShape. 
+                    
+                The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
+                [Such a function is called an "object factory".]
+
+                Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
+
+                Because the objects are created randomly, their types "cannot be known in advance".
+                Therefore, RTTI is needed to determine their actual types at "runtime".
+*/
+
+#include <iostream>
+#include <cstdlib>
+#include <typeinfo>
+
+class Shape {
+    public:
+        virtual void example() = 0;
+};
+
+class Rectangle : public Shape {
+    public:
+        void example() {
+            std::cout << "*****\n*   *\n*   *\n*****\n\n";
+        }
+};
+
+class Triangle : public Shape {
+    public:
+        void example() {
+            std::cout << "*\n* *\n*  *\n*****\n\n";
+        }
+};
+
+class Line : public Shape {
+    public:
+        void example() {
+            std::cout << "*****\n\n";
+        }
+};
+
+class NullShape : public Shape {
+    public:
+        void example() { }
+};
+
+// A factory for objects derived from Shape.
+Shape * generator() {
+    switch(rand()%4) {
+        case 0: return new Line;
+        case 1: return new Rectangle;
+        case 2: return new Triangle;
+        case 3: return new NullShape;
+    }
+    return NULL;
+}
+
+
+int main() {
+    int i;
+    Shape *p;
+
+    for(i=0; i<10; i++) {
+        p = generator();    // get next object
+        std::cout << " class " << typeid(*p).name() << std::endl;
+
+        // draw object only if it is not a NullShape
+        if(typeid(*p) != typeid( NullShape ))
+        p-> example();
+    }
+
+    return 0;
+}
+
+
+/* Sample output:
+
+        class 9NullShape
+        class 8Triangle
+        *
+        * *
+        *  *
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9NullShape
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9NullShape
+        class 8Triangle
+        *
+        * *
+        *  *
+        *****
+
+        class 4Line
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+        class 9Rectangle
+        *****
+        *   *
+        *   *
+        *****
+
+ch13_07_rtti.cpp
+*/
+
+
+
+
+
+
+
+
 /* Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
 Num <int > *Bp;
 Square < double > *Dp;
