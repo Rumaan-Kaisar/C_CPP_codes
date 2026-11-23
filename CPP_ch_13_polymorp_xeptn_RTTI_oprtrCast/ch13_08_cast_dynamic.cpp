@@ -537,8 +537,26 @@ int main() {
 
 
 
-/* Example 3: Convert the main() function in Section 12.1, Example 4, so that it uses dynamic cast
-rather than typeid to prevent a NullShape object from being displayed. */
+/* Example 3: Convert the main() function in "Example 4 of ch13_07_rtti.cpp",
+                so that it uses "dynamic_cast" rather than "typeid" 
+                to prevent a NullShape object from being displayed.
+
+Following program defines a simple class hierarchy for drawing shapes on the screen.
+
+                At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
+                    Line, 
+                    Square, 
+                    Rectangle, and 
+                    NullShape. 
+                    
+                The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
+                [Such a function is called an "object factory".]
+
+                Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
+
+                Because the objects are created randomly, their types "cannot be known in advance".
+                Therefore, RTTI is needed to determine their actual types at "runtime".
+*/
 
 int main() {
 int i;
@@ -558,22 +576,7 @@ return 0;
 /*  Example 4: Although the previous examples show how to use typeid, they don't demonstrate its full potential 
                 because the types are known at compile time. 
                 
-                The next program is different: 
-                    it defines a simple class hierarchy for drawing shapes on the screen.
-
-                At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
-                    Line, 
-                    Square, 
-                    Rectangle, and 
-                    NullShape. 
-                    
-                The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
-                [Such a function is called an "object factory".]
-
-                Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
-
-                Because the objects are created randomly, their types "cannot be known in advance".
-                Therefore, RTTI is needed to determine their actual types at "runtime".
+                
 */
 
 #include <iostream>
