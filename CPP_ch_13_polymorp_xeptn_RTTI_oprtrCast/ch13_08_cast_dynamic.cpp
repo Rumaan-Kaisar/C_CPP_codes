@@ -677,3 +677,15 @@ Dp = dynamic_cast <Num <int >> (Bp);
 
 4. No. Bp and Dp are pointers to two fundamentally different types of objects.
 
+/*  
+
+Example 4: Will the following code work?
+Num<int>* Bp;
+Square<double>* Dp;
+
+// ...
+Dp = dynamic_cast<Square<double>*>(Bp);
+
+
+Answer: No. Num<int> and Square<double> are fundamentally different types with no inheritance relationship in the given class hierarchy. Therefore, dynamic_cast cannot convert a Num<int>* into a Square<double>*.
+*/
