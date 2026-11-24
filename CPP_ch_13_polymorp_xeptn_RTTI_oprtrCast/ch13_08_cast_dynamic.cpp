@@ -668,18 +668,23 @@ int main() {
 
 
 
-/* Example 4: Using the Num class hierarchy from Example 3 in this section, will the following work?
-Num <int > *Bp;
-Square < double > *Dp;
-// ...
-Dp = dynamic_cast <Num <int >> (Bp);
+/* Example 4: Use the "Num" class hierarchy from above "Example 3".
+                Will the following code work?
+
+                    Num <int> *Bp;
+                    Square <double> *Dp;
+
+                    // ...
+
+                    Dp = dynamic_cast< Num <int> >(Bp);
+ans:
 */
 
 4. No. Bp and Dp are pointers to two fundamentally different types of objects.
 
 /*  
 
-Example 4: Will the following code work?
+
 Num<int>* Bp;
 Square<double>* Dp;
 
