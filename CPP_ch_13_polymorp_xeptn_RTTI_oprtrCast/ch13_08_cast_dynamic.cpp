@@ -530,13 +530,6 @@ int main() {
 
 
 
-// ---- rev[22-Nov-2026] ----
-
-// Exrcs
-
-
-
-
 /* Example 3: Convert the main() function in "Example 4 of ch13_07_rtti.cpp",
                 so that it uses "dynamic_cast" rather than "typeid" 
                 to prevent a NullShape object from being displayed.
@@ -664,13 +657,13 @@ int main() {
         *   *
         *   *
         *****
-
-ch13_07_rtti.cpp
 */
 
 
 
+// ---- rev[23-Nov-2026] ----
 
+// Exrcs
 
 
 
