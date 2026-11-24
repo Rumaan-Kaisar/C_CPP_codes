@@ -530,7 +530,7 @@ int main() {
 
 
 
-/* Example 3: Convert the main() function in "Example 4 of ch13_07_rtti.cpp",
+/* Example 6: Convert the main() function in "Example 4 of ch13_07_rtti.cpp",
                 so that it uses "dynamic_cast" rather than "typeid" 
                 to prevent a NullShape object from being displayed.
 
@@ -661,14 +661,8 @@ int main() {
 
 
 
-// ---- rev[23-Nov-2026] ----
 
-// Exrcs
-
-
-
-
-/* Example 4: Use the "Num" class hierarchy from above "Example 3".
+/* Example 7: Use the "Num" class hierarchy from above "Example 3".
                 Will the following code work?
 
                     Num <int> *Bp;
@@ -677,20 +671,17 @@ int main() {
                     // ...
 
                     Dp = dynamic_cast< Num <int> >(Bp);
-ans:
+
+            ans:
+                No.
+
+                Num<int> and Square<double> are fundamentally different types 
+                    with no inheritance relationship in the given class hierarchy.
+                    So Bp and Dp are pointers to two different types of objects.
+
+                Therefore, dynamic_cast cannot convert a Num<int>* into a Square<double>*.
 */
 
-4. No. Bp and Dp are pointers to two fundamentally different types of objects.
 
-/*  
+// ---- rev[24-Nov-2026] ----
 
-
-Num<int>* Bp;
-Square<double>* Dp;
-
-// ...
-Dp = dynamic_cast<Square<double>*>(Bp);
-
-
-Answer: No. Num<int> and Square<double> are fundamentally different types with no inheritance relationship in the given class hierarchy. Therefore, dynamic_cast cannot convert a Num<int>* into a Square<double>*.
-*/
