@@ -168,10 +168,6 @@
 
 
 
-
-
-
-
 /* Example 1: The following program demonstrates dynamic_cast. */
 
 #include <iostream>
@@ -498,7 +494,6 @@ int main() {
                         B *p;
 */
 
-
 #include <iostream>
 #include <typeinfo>
 
@@ -683,5 +678,4 @@ int main() {
 */
 
 
-// ---- rev[24-Nov-2026] ----
 
