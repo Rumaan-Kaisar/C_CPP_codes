@@ -7,8 +7,13 @@
         reinterpret_cast <target_type> (expr)
         static_cast <target_type> (expr)
 
+        target_type: 
+            specifies the target type of the cast 
+        
+        expr: 
+            is the expression being cast into the new type.
 
-   Here target_type specifies the target type of the cast and expr is the expression being cast into the new type.
+
    const_cast: The const_cast operator is used to explicitly override const and/or volatile in a cast.  The most common use of const_cast is to remove const-ness.
    The target_type must be the same as the source type except for the alteration of its const or volatile attributes. 
    static_cast: The static_cast operator performs a non-polymorphic cast. For example, it can be used to cast a base class pointer into a derived class pointer. 
@@ -26,19 +31,25 @@ Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, s
 
 
 
-C++ Type Casting Operators
-1. const_cast
+
+--------  const_cast  --------
 - Used to add or remove const and/or volatile qualifiers.
 - Most commonly used to remove const-ness.
 - Source and target types must be the same, except for const or volatile attributes.
-2. static_cast
+
+
+--------  static_cast  --------
 - Used for standard type conversions.
 - Supports non-polymorphic conversions, such as base-class pointer to derived-class pointer.
 - Performs no runtime checks.
-3. reinterpret_cast
+
+
+--------  reinterpret_cast  --------
 - Used to convert between incompatible pointer types.
 - Can convert a pointer into an integer and vice versa.
 - Mainly used for low-level type reinterpretation.
+
+
 Note:
 - Only const_cast can remove const or volatile qualifiers.
 - static_cast, dynamic_cast, and reinterpret_cast cannot remove const-ness.
