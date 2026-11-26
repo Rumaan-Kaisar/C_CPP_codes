@@ -22,7 +22,31 @@
 
 Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, static_cast, nor reinterpret_cast can alter the const-ness of an object.
 
+
+
+
+
+C++ Type Casting Operators
+1. const_cast
+- Used to add or remove const and/or volatile qualifiers.
+- Most commonly used to remove const-ness.
+- Source and target types must be the same, except for const or volatile attributes.
+2. static_cast
+- Used for standard type conversions.
+- Supports non-polymorphic conversions, such as base-class pointer to derived-class pointer.
+- Performs no runtime checks.
+3. reinterpret_cast
+- Used to convert between incompatible pointer types.
+- Can convert a pointer into an integer and vice versa.
+- Mainly used for low-level type reinterpretation.
+Note:
+- Only const_cast can remove const or volatile qualifiers.
+- static_cast, dynamic_cast, and reinterpret_cast cannot remove const-ness.
+
+
+
    Example 1: The following program demonstrates dynamic_cast:
+
 class Base{ public : virtual void f(){ cout << "Inside Base \n"; } };
 class Derived : public Base{ public : void f() { 
                 cout << " Inside Derived \n"; } };
@@ -90,6 +114,10 @@ Casting dp to a Base * is OK.
 Inside Derived
 
    Cast from base* to derived* means: derived pointer points to a base object via derived* cast. 
+
+
+
+
    Example 2: The following example illustrates how a dynamic_cast can be used to replace typeid.
 # include <iostream >
 # include <typeinfo >
@@ -126,6 +154,10 @@ if( typeid (* bp) == typeid ( Derived )){dp = ( Derived *) bp;
 
 return 0; }
    The use of dynamic_cast simplifies the logic required to cast a base pointer into a derived pointer. 
+
+
+
+
     Example 3: The dynamic_cast operator can also be used with template classes. For example, the following program reworks the template class from Example 4 in the preceding section so that it uses dynamic_cast to determine the type of object returned by the generator() function.
 //  . . . . . . .  same as Exampole 4,   section 13.8   RTTI
 int main() {    Num <double> ob1(10), *p1;
@@ -146,6 +178,9 @@ cout << "Value is:" << p1 -> get_val();
 cout << endl; }
 return 0; }
 
+
+
+
    Example 4: The following program demonstrates the use of reinterpret_cast.
 int main() {    int i;
 char *p = " This is a string ";
@@ -155,6 +190,9 @@ cout << i;
 return 0;}
 
    Here reinterpret_cast converts the pointer p into an integer. This conversion represents a fundamental type change and is a good use of reinterpret_cast.
+
+
+
 
    Example 5 :The following program demonstrates const_cast.
 void f( const int *p) {     int *v;
@@ -171,6 +209,10 @@ x after call: 100
 
    As you can see, x was modified by f() even though the parameter to f() was specified as a const pointer.
    It must be stressed that the use of const_cast to cast way const-ness is a potentially dangerous feature. Use it with care.
+
+
+
+
 
    Example 6: The static_cast operator is essentially a substitute for the original cast operator. It simply performs a non-polymorphic cast. For example, the following casts a float into an int.
 int main() {    int i; float f;
