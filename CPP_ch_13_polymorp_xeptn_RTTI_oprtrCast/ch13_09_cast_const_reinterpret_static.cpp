@@ -234,3 +234,81 @@ return 0;}
 
 */  
 
+
+1. The following program demonstrates the use of reinterpret cast.
+// An example that uses reinterpret_cast .
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int i;
+char *p = " This is a string ";
+i = reinterpret_cast <int > (p); // cast pointer to integer
+cout << i;
+return 0;
+}
+Here reinterpret cast converts the pointer p into an integer. This conversion represents
+a fundamental type change and is a good use of reinterpret cast.
+328RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.3. USING const cast, reinterpret cast, AND static cast
+2. The following program demonstrates const cast.
+// Demonstrate const_cast
+# include <iostream >
+using namespace std ;
+void f( const int *p)
+{
+int *v;
+// cast away const - ness
+v = const_cast < int *> (p);
+*v = 100; // now , modify object through v
+}
+int main ()
+{
+int x = 99;
+cout << "x before call : " << x << endl ;
+f(&x);
+cout << "x after call : " << x << endl ;
+return 0;
+}
+The output produced by this program is shown here.
+x before call: 99
+x after call: 100
+As you can see, x was modified by f() even though the parameter to f() was specified as
+a const pointer.
+It must be stressed that the use of const cast to cast way const-ness is a potentially
+dangerous feature. Use it with care.
+3. The static cast operator is essentially a substitute for the original cast operator. It
+simply performs a non-polymorphic cast. For example, the following casts a float into an
+int.
+// use static_cast
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int i;
+float f;
+f = 199.22;
+i = static_cast <int > (f);
+329TEACH YOURSELF
+C++
+cout << i;
+return 0;
+}
+EXERCISES
+1. Explain the rationale for const cast, reinterpret cast, and static cast.
+2. The following program contains an error. Show how to fix it using a const cast.
+# include <iostream >
+using namespace std ;
+void f( const double &i)
+{
+i = 100; // Error -- fix using const_cast
+}
+int main ()
+{
+double x = 98.6;
+cout << x << endl ;
+f(x);
+cout << x << endl ;
+return 0;
+}
+3. Explain why const cast should normally be reserved for special cases.
