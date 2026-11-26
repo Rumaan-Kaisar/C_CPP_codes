@@ -14,11 +14,28 @@
             is the expression being cast into the new type.
 
 
-   const_cast: The const_cast operator is used to explicitly override const and/or volatile in a cast.  The most common use of const_cast is to remove const-ness.
-   The target_type must be the same as the source type except for the alteration of its const or volatile attributes. 
+    --------  const_cast  --------
+
+    This operator is used to explicitly override "const" and/or "volatile" in a CAST.
+    The most common use of const_cast is to remove "const-ness".
+    The target_type must be the same as the source type, except for const or volatile attributes.
+
+
+--------  static_cast  --------
+
+- Used for standard type conversions.
+- Supports non-polymorphic conversions, such as base-class pointer to derived-class pointer.
+- Performs no runtime checks.
+
    static_cast: The static_cast operator performs a non-polymorphic cast. For example, it can be used to cast a base class pointer into a derived class pointer. 
    It can also be used for any standard conversion.
        No run-time checks are performed.
+
+
+--------  reinterpret_cast  --------
+- Used to convert between incompatible pointer types.
+- Can convert a pointer into an integer and vice versa.
+- Mainly used for low-level type reinterpretation.
 
    reinterpret_cast: The reinterpret_cast operator:
        Changes one pointer type into another (mainly different, pointer type).
@@ -31,28 +48,10 @@ Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, s
 
 
 
-
---------  const_cast  --------
-- Used to add or remove const and/or volatile qualifiers.
-- Most commonly used to remove const-ness.
-- Source and target types must be the same, except for const or volatile attributes.
-
-
---------  static_cast  --------
-- Used for standard type conversions.
-- Supports non-polymorphic conversions, such as base-class pointer to derived-class pointer.
-- Performs no runtime checks.
-
-
---------  reinterpret_cast  --------
-- Used to convert between incompatible pointer types.
-- Can convert a pointer into an integer and vice versa.
-- Mainly used for low-level type reinterpretation.
-
-
 Note:
 - Only const_cast can remove const or volatile qualifiers.
 - static_cast, dynamic_cast, and reinterpret_cast cannot remove const-ness.
+
 
 
 
