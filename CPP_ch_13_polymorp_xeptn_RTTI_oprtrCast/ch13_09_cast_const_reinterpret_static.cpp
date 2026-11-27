@@ -30,6 +30,12 @@
     No "run-time checks" are performed.
 
 
+    --------  reinterpret_cast  --------
+
+    Changes one pointer type into another (mainly different, pointer type).
+    Used to convert between incompatible pointer types.
+    Can convert a pointer into an integer and vice versa.
+    Mainly used for low-level type reinterpretation.
 
 
 
@@ -37,20 +43,9 @@
 
 
 
---------  reinterpret_cast  --------
-- Used to convert between incompatible pointer types.
-- Can convert a pointer into an integer and vice versa.
-- Mainly used for low-level type reinterpretation.
 
-   reinterpret_cast: The reinterpret_cast operator:
-       Changes one pointer type into another (mainly different, pointer type).
-   It can also change a pointer into an integer and an integer into a pointer. 
-   A reinterpret_cast should be used for casting inherently incompatible pointer types.
 
 Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, static_cast, nor reinterpret_cast can alter the const-ness of an object.
-
-
-
 
 
 Note:
