@@ -1,681 +1,319 @@
 				
-/*  ------------------------    C++ casting operators: dynamic_cast    ------------------------
+/*  ------------------------    C++ casting operators: const_cast, reinterpret_cast and static_cast    ------------------------
 
-    C++ has four new casting operators. They are:
-        [1] dynamic_cast
-        [2] const_cast
-        [3] reinterpret_cast
-        [4] static_cast
+    General forms of other three casting operators are:
 
+        const_cast <target_type> (expr)
+        reinterpret_cast <target_type> (expr)
+        static_cast <target_type> (expr)
 
-    --------  dynamic_cast  --------
-    
-    dynamic_cast is related to RTTI (Run-Time Type Information).
-        It performs a run-time type conversion and checks whether the cast is valid.
-
-    It is mainly used for casting between pointers or references of polymorphic classes. 
-    It can convert:
-        One type of pointer into another pointer type.
-        One type of reference into another reference type.
-
-    General form:
-
-                dynamic_cast<target_type>(expr)
-
-        target_type:
-            specifies the target type of the cast
-            The target type must be a pointer or reference type.
-
-        expr:
-            it is the expression being cast into the new type. 
-            The expression must evaluate to a pointer or reference.
-
-        If the cast is invalid during the execution of dynamic_cast, the cast fails. 
-
-
-
-    --------  Casting Between Base and Derived  --------
-    
-    The purpose of dynamic_cast is to perform casts on polymorphic types,
-    
-    For example, given the two polymorphic classes B and D, assume:
-        B is a polymorphic base class.
-        D is derived from B.
-
-    Base-to-derived casting (B* --> D*):
-        The cast succeeds only if the object actually is a D object (or an object derived from D).
-        Otherwise, the cast fails.
-
-    Derived-to-base casting (D* --> B*):
-        The cast succeeds because a derived-class object can always be accessed through a base-class pointer, 
-            assuming a valid accessible base relationship.
-
-    Note:
-        A dynamic_cast can always cast a "D* pointer" into a "B* pointer" (D* --> B*).
-            Because a "base pointer" can always point to a "derived".
-
-        But a dynamic_cast can cast a B* pointer into a D* pointer only if 
-            the object being pointed to actually is a "D object".
-
-
-
-    --------  Success/Failure  --------
-
-    In general, dynamic_cast will succeed if the "pointer (or reference) being cast" is a pointer (or reference) to 
-        either an "object of the target type" or an "object derived from the target type".
+        target_type: 
+            specifies the target type of the cast 
         
-        i.e. the cast succeeds if the object is "compatible" with the "target type". Otherwise, the cast fails.
+        expr: 
+            is the expression being cast into the new type.
 
-        Otherwise, the cast will fail. 
-            If the cast fails, dynamic_cast evaluates to null if the cast involves pointers. 
-            If a dynamic_cast on reference types fails, a bad_cast exception is thrown.
 
-    FAILURE OUTCOME i.e if the cast fails:
-        For pointer types --> returns nullptr.
-        For reference types --> throws a std::bad_cast exception.
+    --------  const_cast  --------
 
+    This operator is used to explicitly override "const" and/or "volatile" in a CAST.
+    The most common use of const_cast is to remove "const-ness".
+    The target_type must be the same as the source type, except for const or volatile attributes.
 
-    Example of Successful cast:
-        Assume that "Base" is a polymorphic class and "Derived" is derived from "Base".
 
-            Base *bp, b_ob;
-            Derived *dp, d_ob;
+    --------  static_cast  --------
 
-            bp = &d_ob;         // base pointer points to Derived object : ok
-            dp = dynamic_cast <Derived*>(bp);
-            if(dp) cout << " Cast OK ";
+    This operator performs a "non-polymorphic cast". Used for standard type conversions.
+        For example, it can be used to cast a "base-class pointer" into a "derived-class pointer". 
 
-        Here the cast from the "base pointer bp" to the "derived pointer dp" works 
-            because "bp" is actually pointing to a "Derived" object. 
-            It displays "Cast OK". 
+    It can also be used for any standard conversion.
+    No "run-time checks" are performed.
 
 
-    Example of Unsuccessful cast:
-        In the next fragment, the "cast fails" because "bp" is pointing to a "Base" object 
-        and it is "illegal" to cast a "base object" into a "derived object". 
-        It displays "Cast Fails".
 
-            bp = &b_ob;         // base pointer points to Base object : Wrong 
-            dp = dynamic_cast <Derived*>(bp);
-            if(!dp) cout << " Cast Fails ";
 
-        reason:
-            bp points to a Base object, not a Derived object.
-            Therefore, the cast fails and dp becomes nullptr.
 
-    Remember:
-        If the base pointer points to a derived object, the cast succeeds.
-        If the base pointer points to a base object, the cast fails.
 
 
 
-    --------  dynamic_cast vs. typeid  --------
 
-    The "dynamic_cast" operator can sometimes be used instead of "typeid". Consider the previous example-
-    The following fragment will assign "dp" the address of the object pointed to by "bp"  iff  the object is really a "Derived object."
+--------  reinterpret_cast  --------
+- Used to convert between incompatible pointer types.
+- Can convert a pointer into an integer and vice versa.
+- Mainly used for low-level type reinterpretation.
 
-            Base *bp;
-            Derived *dp;
-            // ...
-            if( typeid(*bp) == typeid(Derived) ) dp = (Derived*)bp;
+   reinterpret_cast: The reinterpret_cast operator:
+       Changes one pointer type into another (mainly different, pointer type).
+   It can also change a pointer into an integer and an integer into a pointer. 
+   A reinterpret_cast should be used for casting inherently incompatible pointer types.
 
-    Above "C-style cast" is used to perform the cast. It's safe because 
-        the "if" checks the legality of the cast using "typeid" before the cast actually occurs.
+Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, static_cast, nor reinterpret_cast can alter the const-ness of an object.
 
-    This requires a separate type check and cast:
-        "typeid" checks the object's run-time type.
-        A C-style cast is then used to perform the conversion.
 
 
-    Simpler and safer approach is:
-        Replace the "typeid" operators and "if statement" with dynamic_cast:
 
-            dp = dynamic_cast<Derived*>(bp);
 
-        After this statement executes "dp" will contain either 
-            a "null" or a "pointer to an object" of type "Derived".
+Note:
+- Only const_cast can remove const or volatile qualifiers.
+- static_cast, dynamic_cast, and reinterpret_cast cannot remove const-ness.
 
-        - dynamic_cast performs the "type check" and "cast" together.
-        - If successful, dp contains a valid pointer.
-        - If unsuccessful, dp becomes "nullptr".
 
-        Because dynamic_cast succeeds only if the object being cast is either:
-            - already an object of the target type or 
-            - an object derived from the target type, 
 
-        Since dynamic_cast succeeds only if the cast is legal, 
-            Therefore, dynamic_cast simplifies the logic and avoids a separate typeid check.
 
+   Example 1: The following program demonstrates dynamic_cast:
 
+class Base{ public : virtual void f(){ cout << "Inside Base \n"; } };
+class Derived : public Base{ public : void f() { 
+                cout << " Inside Derived \n"; } };
 
-    --------  Key Points  --------
+int main() {    Base *bp , b_ob ;
+Derived *dp , d_ob ;
 
-    dynamic_cast performs run-time type checking.
-        It is mainly used with polymorphic classes.
+dp = dynamic_cast < Derived *> (& d_ob );
+if(dp) {    cout << " Cast from Derived * to Derived * OK .\n";     dp ->f(); }
+else    cout << " Error \n";
+cout << endl ;
 
-    It is safer than unchecked "downcasting".
+bp = dynamic_cast < Base *> (& d_ob );
+if(bp) {    cout << " Cast from Derived * to Base * OK .\n";    bp ->f(); }
+else    cout << " Error \n";
+cout << endl ;
 
-    Base-to-derived casting succeeds only when the actual object is compatible with the target type.
+bp = dynamic_cast < Base *> (& b_ob );
+if(bp) { cout << " Cast from Base * to Base * OK .\n";    bp ->f();}
+else    cout << " Error \n";
+cout << endl ;
 
-    Remember:
-        For dynamic_cast to work with class types, the "source type" must be polymorphic 
-            when performing a run-time "downcast" or "cross-cast".
+// following is not ok
+dp = dynamic_cast < Derived *> (& b_ob );
+if(dp)  cout << " Error \n";
+else    cout << " Cast from Base* to Derived* not OK .\n";
+cout << endl ;  bp = &d_ob ;        // base pointer bp points to Derived object 
+dp = dynamic_cast < Derived *> (bp);
+if(dp){cout  << " Casting bp to a Derived * OK .\n" 
+          <<" because bp is really  pointing \n"
+          <<"to a Derived object .\n";
+              dp ->f();}
+else   cout << " Error \n";
+cout << endl ;
 
-        A polymorphic class must have "at least one virtual function", 
-            commonly a virtual destructor (e.g., virtual ~Base() = default;).
-*/
+bp = &b_ob ;        // bp points to Base object 
+dp = dynamic_cast < Derived *> (bp);             // NOT OK: 
+if(dp) cout << " Error \n";
+else { cout  << "Now casting bp to a Derived *\n" 
+        << "is not OK because bp is really \n" 
+        <<" pointing to a Base object .\n"; }
+cout << endl ;
 
-
-
-
-/* Example 1: The following program demonstrates dynamic_cast. */
-
-#include <iostream>
-
-class Base {
-    public:
-        virtual void f() { 
-            std::cout << " Inside Base \n";
-        }
-        // ...
-};
-
-class Derived : public Base {
-    public:
-        void f() { 
-            std::cout << " Inside Derived \n";
-        }
-};
-
-int main() {
-    Base *bp, b_ob;
-    Derived *dp, d_ob;
-
-    dp = dynamic_cast<Derived*>(&d_ob);
-    if(dp) {
-        std::cout << " Cast from Derived * to Derived * OK .\n";
-        dp->f();
-    }
-    else
-        std::cout << " Error \n";
-    std::cout << std::endl;
-
-    bp = dynamic_cast<Base*>(&d_ob);
-    if(bp) {
-        std::cout << " Cast from Derived * to Base * OK .\n";
-        bp->f();
-    }
-    else
-        std::cout << " Error \n";
-    std::cout << std::endl;
-
-    bp = dynamic_cast<Base*>(&b_ob);
-    if(bp) {
-        std::cout << " Cast from Base * to Base * OK .\n";
-        bp->f();
-    }
-    else
-        std::cout << " Error \n";
-    std::cout << std::endl;
-
-    dp = dynamic_cast<Derived*>(&b_ob);
-    if(dp) std::cout << " Error \n";
-    else std::cout << " Cast from Base * to Derived * not OK .\n";
-    std::cout << std::endl;
-
-    bp = &d_ob;     // bp points to "Derived object"
-    dp = dynamic_cast<Derived*>(bp);
-    if(dp) {
-        std::cout << " Casting bp to a Derived * OK .\n" 
-                << " because bp is really pointing \n"
-                << "to a Derived object .\n";
-        dp->f();
-    }
-    else
-        std::cout << " Error \n";
-    std::cout << std::endl;
-
-    bp = &b_ob;     // bp points to "Base object"
-    dp = dynamic_cast<Derived*>(bp);
-    if(dp) std::cout << " Error \n";
-    else {
-        std::cout << " Now casting bp to a Derived *\n" 
-                << "is not OK because bp is really \n" 
-                << " pointing to a Base object .\n";
-    }
-    std::cout << std::endl;
-
-    dp = &d_ob;     // dp points to Derived object
-    bp = dynamic_cast<Base*>(dp);
-    if(bp) {
-        std::cout << " Casting dp to a Base * is OK .\n";
-        bp->f();
-    }
-    else 
-        std::cout << " Error \n";
-
-    return 0;
-}
-
-
-/* Output:
-
-        Cast from Derived * to Derived * OK .
-        Inside Derived 
-
-        Cast from Derived * to Base * OK .
-        Inside Derived 
-
-        Cast from Base * to Base * OK .
-        Inside Base 
-
-        Cast from Base * to Derived * not OK .
-
-        Casting bp to a Derived * OK .
-        because bp is really pointing 
-        to a Derived object .
-        Inside Derived 
-
-        Now casting bp to a Derived *
-        is not OK because bp is really 
-        pointing to a Base object .
-
-        Casting dp to a Base * is OK .
-        Inside Derived 
-*/
-
-
-
-
-/* Example 2: The following example illustrates how a dynamic cast can be used to replace "typeid". */
-
-#include <iostream>
-#include <typeinfo>
-
-class Base {
-    public:
-        virtual void f() {}
-};
-
-
-class Derived : public Base {
-    public:
-        void derivedOnly() {
-            std::cout << "Is a Derived Object \n";
-        }
-};
-
-
-int main() {
-    Base *bp, b_ob;
-    Derived *dp, d_ob;
-
-    // --------  using typeid  --------
-    bp = &b_ob;
-    if( typeid(*bp) == typeid(Derived) ) {
-        dp = (Derived*)bp;
-        dp->derivedOnly();
-    }
-    else std::cout << " Cast from Base to Derived failed .\n";
-
-    bp = &d_ob;
-    if( typeid(*bp) == typeid(Derived) ) {
-        dp = (Derived*)bp;
-        dp->derivedOnly ();
-    }
-    else std::cout << "Error , cast should work !\n";
-
-
-    // --------  using dynamic_cast  --------
-    bp = & b_ob;
-    dp = dynamic_cast<Derived*>(bp);
-    if(dp) dp->derivedOnly();
-    else std::cout << " Cast from Base to Derived failed .\n";
+dp = &d_ob ;        // dp points to Derived object
+bp = dynamic_cast < Base *> (dp);
+if(bp){ cout << " Casting dp to a Base * is OK .\n";
+    bp ->f(); }
+else cout << " Error \n";
+return 0; }
+
+Output:
+Cast from Derived * to Derived * OK.
+Inside Derived
+Cast from Derived * to Base * OK.
+Inside Derived  
+Cast from Base * to Base * OK.  Inside Base
+Cast from Base * to Derived * not OK.
+Casting bp to a Derived * OK.
+because bp is really pointing
+to a Derived object.
+Inside Derived  Now casting bp to a Derived *
+is not OK because bp is really
+pointing to a Base object.
+Casting dp to a Base * is OK.
+Inside Derived
+
+   Cast from base* to derived* means: derived pointer points to a base object via derived* cast. 
+
+
+
+
+   Example 2: The following example illustrates how a dynamic_cast can be used to replace typeid.
+# include <iostream >
+# include <typeinfo >
+using namespace std;
+
+class Base { public : virtual void f() {} };
+class Derived : public Base { public : void derivedOnly(){ cout << "Is a Derived Object \n";}    }; 
+Output :
+Cast from Base to Derived failed.
+Is a Derived Object
+Cast from Base to Derived failed.
+Is a Derived Object
+int main() {  Base *bp , b_ob ;
+           Derived *dp , d_ob ;
+    // use typeid 
+    bp = & b_ob ;
+    if( typeid (* bp) == typeid ( Derived )){dp = ( Derived *) bp;
+                       dp -> derivedOnly( );}
+    else cout << " Cast from Base to Derived failed .\n";
+
+    bp = & d_ob ;
+if( typeid (* bp) == typeid ( Derived )){dp = ( Derived *) bp;
+                         dp -> derivedOnly( );}
+    else cout << "Error , cast should work !\n";    // use dynamic_cast
+    bp = &b_ob ;
+    dp = dynamic_cast < Derived *> (bp);
+    if(dp) dp -> derivedOnly ();
+    else cout << " Cast from Base to Derived failed .\n";
 
     bp = & d_ob ;
     dp = dynamic_cast < Derived *> (bp);
-    if(dp) dp->derivedOnly();
-    else std::cout << "Error , cast should work !\n";
+    if(dp) dp -> derivedOnly ();
+    else cout << "Error , cast should work !\n";
 
-    return 0;
-}
-
-/*  Notice that, the use of dynamic_cast simplifies the logic required to cast a base
-
-    Output:
-         Cast from Base to Derived failed.
-        Is a Derived Object
-         Cast from Base to Derived failed.
-        Is a Derived Object
-*/
+return 0; }
+   The use of dynamic_cast simplifies the logic required to cast a base pointer into a derived pointer. 
 
 
 
 
-/* Example 3: The "dynamic_cast" operator can be used with "template classes".
-                It helps identify the "actual type" of an object returned by the generator() function.
+    Example 3: The dynamic_cast operator can also be used with template classes. For example, the following program reworks the template class from Example 4 in the preceding section so that it uses dynamic_cast to determine the type of object returned by the generator() function.
+//  . . . . . . .  same as Exampole 4,   section 13.8   RTTI
+int main() {    Num <double> ob1(10), *p1;
+Square <double> ob2(100.0), *p2;
+Sqr_root <double> ob3(999.2), *p3;
+int i;
 
-                Following program modifies the template class from "Example 5" in the previous section "ch13_07_rtti.cpp"
+cout << " Generate some objects .\n";
+for(i=0; i <10; i++) {  p1 = generator();
 
-                The program creates a "hierarchy of template classes" to store values.
-                ["Num" as base template, Square, SqrRoot as derived templates from "Num".]
+p2 = dynamic_cast < Square<double> * > (p1);
+if(p2) cout << " Square object : ";
 
-                Each class has a virtual function called get_val() that returns a value.
+p3 = dynamic_cast < Sqr_root<double> * > (p1);
+if(p3) cout << " Sqr_root object : ";
 
-                Different classes calculate and return different values:
-                    Num:     Returns the value of the number itself.
-                    Square:  Returns the square of the number.
-                    SqrRoot: Returns the square root of the number.
-
-                The generator() function creates objects derived from the "Num class".
-                
-                Previously we've used  the "typeid" operator with "template classes", 
-                    to identify the "actual type of object" created by the generator() function.
-                    Now we'll use "dynamic_cast" to do that.
-*/
-
-#include <iostream>
-#include <typeinfo>
-#include <cmath>
-#include <cstdlib>
-
-template <class T> class Num {
-    public:
-        T x;
-        Num(T i) { x = i; }
-        virtual T get_val() { return x; }
-};
-
-template <class T> class Square : public Num <T> {
-    public:
-        Square(T i) : Num <T>(i) {}
-        T get_val() { 
-            return (this->x)*(this->x); // Do not use 'return x*x;'
-        }
-};
-
-template <class T> class Sqr_root : public Num <T> {
-    public:
-        Sqr_root(T i) : Num <T>(i) {}
-        T get_val() { 
-            return sqrt( (double)this->x ); // Do not directly use "sqrt((double)x);"
-        }
-};
+cout << "Value is:" << p1 -> get_val();
+cout << endl; }
+return 0; }
 
 
-// A Random selection factory for objects derived from Num : for run-time selection.
-// the factory return Num<double>*, i.e. returns a pointer to Num<double>
-Num <double> *generator() {
-    switch(rand()%2) {
-        case 0: return new Square <double> ( rand()%100 );      // Square<double> object type
-        case 1: return new Sqr_root <double> ( rand()%100 );    // Sqr_root<double> object type
+
+
+   Example 4: The following program demonstrates the use of reinterpret_cast.
+int main() {    int i;
+char *p = " This is a string ";
+
+i = reinterpret_cast <int> (p);         // cast pointer to integer 
+cout << i;
+return 0;}
+
+   Here reinterpret_cast converts the pointer p into an integer. This conversion represents a fundamental type change and is a good use of reinterpret_cast.
+
+
+
+
+   Example 5 :The following program demonstrates const_cast.
+void f( const int *p) {     int *v;
+v = const_cast <int *> (p); // cast away const - ness 
+*v = 100;   // now , modify object through v 
     }
-    return NULL;
+int main(){     int x = 99;
+cout << "x before call : " << x << endl ;
+f(&x);
+cout << "x after call : " << x << endl ;
+return 0; } Output:
+x before call: 99
+x after call: 100
+
+   As you can see, x was modified by f() even though the parameter to f() was specified as a const pointer.
+   It must be stressed that the use of const_cast to cast way const-ness is a potentially dangerous feature. Use it with care.
+
+
+
+
+
+   Example 6: The static_cast operator is essentially a substitute for the original cast operator. It simply performs a non-polymorphic cast. For example, the following casts a float into an int.
+int main() {    int i; float f;
+f = 199.22;
+i = static_cast <int> (f);
+cout << i;
+return 0;}
+
+
+*/  
+
+
+1. The following program demonstrates the use of reinterpret cast.
+// An example that uses reinterpret_cast .
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int i;
+char *p = " This is a string ";
+i = reinterpret_cast <int > (p); // cast pointer to integer
+cout << i;
+return 0;
 }
-
-
-// Note: Above code is unchanged. Notice the changes inside main()
-
-int main() {
-    // notice new *p2, *p3
-    Num <double> ob1(10), *p1;
-    Square <double> ob2(100.0), *p2;
-    Sqr_root <double> ob3(999.2), *p3;
-    int i;
-
-    /*  
-    // --------  old code  --------
-    std::cout << typeid(ob1).name() << std::endl;
-    std::cout << typeid(ob2).name() << std::endl;
-    std::cout << typeid(ob3).name() << std::endl;
-
-    if(typeid(ob2) == typeid(Square <double>)) std::cout << "is Square <double>\n";
-    p1 = &ob2 ;
-
-    if(typeid(*p1) != typeid(ob1)) std::cout << " Value is: " << p1->get_val();
-    std::cout << "\n\n";
-
-    std::cout << "Generate some Objects .\n";
-
-    for(i =0; i<10; i++) {
-        p1 = generator(); // get next object
-        if(typeid(*p1) == typeid(Square <double>)) std::cout << " Square object : ";
-        if(typeid(*p1) == typeid(Sqr_root <double>)) std::cout << " Sqr_root object : ";
-        std::cout << " Value is: " << p1 -> get_val ();
-        std::cout << std::endl;
-    }
-    */
-
-    std::cout << " Generate some objects .\n";
-    for (i=0; i<10; i++) {
-        p1 = generator();
-
-        p2 = dynamic_cast<Square <double> *>(p1);
-        if(p2) std::cout << " Square object : ";
-
-        p3 = dynamic_cast<Sqr_root <double> *>(p1);
-        if(p3) std::cout << " Sqr_root object : ";
-
-        std::cout << " Value is: " << p1 -> get_val();
-        std::cout << std::endl;
-    }
-
-    return 0;
+Here reinterpret cast converts the pointer p into an integer. This conversion represents
+a fundamental type change and is a good use of reinterpret cast.
+328RUN-TIME TYPE IDENTIFICATION AND THE CASTING OPERATORS
+12.3. USING const cast, reinterpret cast, AND static cast
+2. The following program demonstrates const cast.
+// Demonstrate const_cast
+# include <iostream >
+using namespace std ;
+void f( const int *p)
+{
+int *v;
+// cast away const - ness
+v = const_cast < int *> (p);
+*v = 100; // now , modify object through v
 }
-
-
-
-
-/* Example 4: Explain the purpose of dynamic cast in simple words. 
-            ans:
-                The dynamic cast operator determines the validity of a polymorphic cast.
-                It checks whether a type conversion is valid at runtime.
-*/
-
-
-
-
-/* Example 5: Consider following fragment, use dynamic_cast,
-                assign "p" a pointer to some object "ob" if and only if "ob is a D2 object".
-                (i.e. assign the address of "object ob" to "pointer p" only if ob is a D2 object.)
-
-                        class B {
-                            virtual void f() {}
-                        };
-
-                        class D1 : public B {
-                            void f() {}
-                        };
-
-                        class D2 : public B {
-                            void f() {}
-                        };
-
-                        B *p;
-*/
-
-#include <iostream>
-#include <typeinfo>
-
-class B {
-    virtual void f() {}
-};
-
-class D1 : public B {
-    void f() {}
-};
-
-class D2 : public B {
-    void f() {}
-};
-
-
-int main() {
-    B *p;
-    D2 ob;
-
-    p = dynamic_cast<D2 *>(&ob);
-
-    if(p) std::cout << " Cast OK";
-    else std::cout << " Cast Fails ";
-
-    return 0;
+int main ()
+{
+int x = 99;
+cout << "x before call : " << x << endl ;
+f(&x);
+cout << "x after call : " << x << endl ;
+return 0;
 }
-
-
-
-
-/* Example 6: Convert the main() function in "Example 4 of ch13_07_rtti.cpp",
-                so that it uses "dynamic_cast" rather than "typeid" 
-                to prevent a NullShape object from being displayed.
-
-                Following program defines a simple class hierarchy for drawing shapes on the screen.
-                At the top of the hierarchy is the abstract class "Shape", with four concrete subclasses: 
-                    Line, 
-                    Square, 
-                    Rectangle, and 
-                    NullShape. 
-                    
-                The generator() function "randomly creates an object" using rand() and returns a "pointer" to it.
-                [Such a function is called an "object factory".]
-
-                Inside main(), the program displays the "shape of each object", except for NullShape, which has no shape. 
-
-                Because the objects are created randomly, their types "cannot be known in advance".
-                Therefore, RTTI is needed to determine their actual types at "runtime".
-*/
-
-#include <iostream>
-#include <cstdlib>
-#include <typeinfo>
-
-class Shape {
-    public:
-        virtual void example() = 0;
-};
-
-class Rectangle : public Shape {
-    public:
-        void example() {
-            std::cout << "*****\n*   *\n*   *\n*****\n\n";
-        }
-};
-
-class Triangle : public Shape {
-    public:
-        void example() {
-            std::cout << "*\n* *\n*  *\n*****\n\n";
-        }
-};
-
-class Line : public Shape {
-    public:
-        void example() {
-            std::cout << "*****\n\n";
-        }
-};
-
-class NullShape : public Shape {
-    public:
-        void example() { }
-};
-
-// A factory for objects derived from Shape.
-Shape * generator() {
-    switch(rand()%4) {
-        case 0: return new Line;
-        case 1: return new Rectangle;
-        case 2: return new Triangle;
-        case 3: return new NullShape;
-    }
-    return NULL;
+The output produced by this program is shown here.
+x before call: 99
+x after call: 100
+As you can see, x was modified by f() even though the parameter to f() was specified as
+a const pointer.
+It must be stressed that the use of const cast to cast way const-ness is a potentially
+dangerous feature. Use it with care.
+3. The static cast operator is essentially a substitute for the original cast operator. It
+simply performs a non-polymorphic cast. For example, the following casts a float into an
+int.
+// use static_cast
+# include <iostream >
+using namespace std ;
+int main ()
+{
+int i;
+float f;
+f = 199.22;
+i = static_cast <int > (f);
+329TEACH YOURSELF
+C++
+cout << i;
+return 0;
 }
-
-
-int main() {
-    int i;
-    Shape *p;
-
-    for(i=0; i<10; i++) {
-        p = generator();    // get next object
-        std::cout << " class " << typeid(*p).name() << std::endl;
-
-        // --------  draw object only if it is not a NullShape  --------
-        // if(typeid(*p) != typeid( NullShape )) p-> example();     // previously used "typeid"
-        if( !dynamic_cast<NullShape *>(p) ) p-> example();          // now "dynamic_cast" is used instead of "typeid"
-    }
-
-    return 0;
+EXERCISES
+1. Explain the rationale for const cast, reinterpret cast, and static cast.
+2. The following program contains an error. Show how to fix it using a const cast.
+# include <iostream >
+using namespace std ;
+void f( const double &i)
+{
+i = 100; // Error -- fix using const_cast
 }
-
-
-/* Sample output:
-
-        class 9NullShape
-        class 8Triangle
-        *
-        * *
-        *  *
-        *****
-
-        class 9Rectangle
-        *****
-        *   *
-        *   *
-        *****
-
-        class 9NullShape
-        class 9Rectangle
-        *****
-        *   *
-        *   *
-        *****
-
-        class 9NullShape
-        class 8Triangle
-        *
-        * *
-        *  *
-        *****
-
-        class 4Line
-        *****
-
-        class 9Rectangle
-        *****
-        *   *
-        *   *
-        *****
-
-        class 9Rectangle
-        *****
-        *   *
-        *   *
-        *****
-*/
-
-
-
-
-/* Example 7: Use the "Num" class hierarchy from above "Example 3".
-                Will the following code work?
-
-                    Num <int> *Bp;
-                    Square <double> *Dp;
-
-                    // ...
-
-                    Dp = dynamic_cast< Num <int> >(Bp);
-
-            ans:
-                No.
-
-                Num<int> and Square<double> are fundamentally different types 
-                    with no inheritance relationship in the given class hierarchy.
-                    So Bp and Dp are pointers to two different types of objects.
-
-                Therefore, dynamic_cast cannot convert a Num<int>* into a Square<double>*.
-*/
-
-
-
+int main ()
+{
+double x = 98.6;
+cout << x << endl ;
+f(x);
+cout << x << endl ;
+return 0;
+}
+3. Explain why const cast should normally be reserved for special cases.
