@@ -21,15 +21,20 @@
     The target_type must be the same as the source type, except for const or volatile attributes.
 
 
---------  static_cast  --------
+    --------  static_cast  --------
 
-- Used for standard type conversions.
-- Supports non-polymorphic conversions, such as base-class pointer to derived-class pointer.
-- Performs no runtime checks.
+    This operator performs a "non-polymorphic cast". Used for standard type conversions.
+        For example, it can be used to cast a "base-class pointer" into a "derived-class pointer". 
 
-   static_cast: The static_cast operator performs a non-polymorphic cast. For example, it can be used to cast a base class pointer into a derived class pointer. 
-   It can also be used for any standard conversion.
-       No run-time checks are performed.
+    It can also be used for any standard conversion.
+    No "run-time checks" are performed.
+
+
+
+
+
+
+
 
 
 --------  reinterpret_cast  --------
