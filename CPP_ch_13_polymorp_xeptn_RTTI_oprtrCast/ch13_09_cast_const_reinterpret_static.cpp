@@ -38,19 +38,11 @@
     Mainly used for low-level type reinterpretation.
 
 
+    Note: 
+        Only const_cast can remove const or volatile qualifiers.
+        That is, neither dynamic_cast, static_cast, nor reinterpret_cast can alter the const-ness of an object.
 
 
-
-
-
-
-
-Note: Only const_cast can cast away const-ness. That is, neither dynamic_cast, static_cast, nor reinterpret_cast can alter the const-ness of an object.
-
-
-Note:
-- Only const_cast can remove const or volatile qualifiers.
-- static_cast, dynamic_cast, and reinterpret_cast cannot remove const-ness.
 
 
 
