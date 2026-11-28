@@ -218,9 +218,10 @@ int main() {
         std::cout << " Error \n";
     std::cout << std::endl;
 
+	// following is not ok
     dp = dynamic_cast<Derived*>(&b_ob);
     if(dp) std::cout << " Error \n";
-    else std::cout << " Cast from Base * to Derived * not OK .\n";
+    else std::cout << " Cast from Base* to Derived* not OK .\n";
     std::cout << std::endl;
 
     bp = &d_ob;     // bp points to "Derived object"
@@ -258,8 +259,9 @@ int main() {
 }
 
 
-/* Output:
+/* Cast from base* to derived* means: derived pointer points to a base object via derived* cast. 
 
+	Output:
         Cast from Derived * to Derived * OK .
         Inside Derived 
 
